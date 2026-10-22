@@ -1,4 +1,4 @@
-# WoW Companion Protocol 1
+# WoW Companion: WCP1 frame, snapshot version 2
 
 The addon publishes a bounded snapshot through a visible black-and-white grid. The desktop bridge reads the grid without accessing game process memory.
 
@@ -21,7 +21,7 @@ CRC uses initial value `0xffff` and polynomial `0x1021`. Python reference: `bina
 ## Snapshot
 
 ```json
-{"v":1,"session":"example-session","seq":2,"tick":9,"guid":"Player-example","name":"示例角色","realm":"示例服务器","level":30,"class":"MAGE","spec":64,"map":84,"zone":"暴风城","combat":false,"dead":false,"online":true}
+{"v":2,"session":"example-session","seq":2,"tick":9,"guid":"Player-example","name":"示例角色","realm":"示例服务器","level":30,"class":"MAGE","spec":64,"map":84,"zone":"暴风城","combat":false,"dead":false,"online":true,"account":"local-example","moneyEpoch":"segment-example","copper":12345,"earned":1000,"spent":250}
 ```
 
 This example is synthetic. Production frames contain the current character's available data.
@@ -37,6 +37,41 @@ This example is synthetic. Production frames contain the current character's ava
 - The addon filters secret values before comparison, encoding, or display.
 - Text is bounded and truncated at UTF-8 boundaries when required.
 
+All three components require snapshot version 2. Update the addon, bridge, and AIRI together.
+The grid size and WCP1 frame header do not change.
+
+## Gold counters
+
+All source amounts use integer copper. One gold equals 10,000 copper. One silver equals 100 copper.
+
+| Field | Meaning |
+| --- | --- |
+| `account` | Persistent local account identifier matching `[A-Za-z0-9_-]{1,40}`. It contains no Battle.net login information. |
+| `moneyEpoch` | Persistent character counter segment matching `[A-Za-z0-9_-]{1,40}`. Reloads retain the segment. |
+| `copper` | Current character wallet, or `null` while unavailable. |
+| `earned` | Cumulative wallet increases observed by the addon in this segment. |
+| `spent` | Cumulative wallet decreases observed by the addon in this segment. |
+
+Numeric amounts range from 0 through 9,007,199,254,740,991. The addon creates a segment for a new or invalid character record, and starts another segment on counter overflow.
+The addon samples `GetMoney()` on `PLAYER_MONEY`. The first sample sets the balance baseline without counting existing gold as income.
+Each subsequent change updates one counter. Gains and losses between screen captures remain separate.
+After a reload or unavailable value, a fresh balance baseline prevents invented transactions across the gap.
+
+AIRI imports these cumulative counters only from live, online screen snapshots without a capture error.
+Account, character GUID, and counter segment identify each record. Repeated frames and session changes do not add the counters again.
+For the same segment, lower counters are rejected. Retired segments cannot replace a newer segment.
+Restoring an older SavedVariables file can lower these counters. Both source counters must catch up before that character resumes ledger updates.
+Desktop totals use exact integers and cross IPC as decimal copper strings. Gold, silver, and copper formatting happens at display time.
+
+The account identifier belongs to the account-wide SavedVariables file. It does not identify a Battle.net account independently of that file.
+Characters that share this file share the account group. AIRI stores an optional display name for each group.
+Clearing this file creates a new identity. Copying it across unrelated accounts also copies that identity.
+
+Totals describe wallet flows, including mail, trades, repairs, purchases, and bank transfers.
+They exclude separate warband and guild bank balances. Account balance sums the last known wallets of observed characters.
+It is not a simultaneous measurement of every character. Transfers between owned characters appear as both inflow and outflow.
+The protocol carries no transaction category or transaction timestamp. It cannot reconstruct activity that the addon did not observe.
+
 ## Freshness and events
 
 The bridge rejects bad magic, version, length, JSON shape, and CRC. A repeated frame does not refresh its heartbeat timestamp.
@@ -45,7 +80,8 @@ A heartbeat older than five seconds marks the source stale. Stale data remains v
 
 The first valid snapshot establishes a baseline. A new character, session, data source, or recovery after a gap establishes a new baseline.
 
-The bridge derives changes from successive valid snapshots. This protocol transmits current state, not a lossless queue of every game event.
+The bridge derives changes from successive valid snapshots. This protocol does not provide a lossless queue of every game event.
+Gold counters preserve observed cumulative flows during capture gaps. They do not preserve individual transaction times or descriptions.
 
 The AIRI integration consumes bridge events once. It applies reminder preferences, combat quiet mode, and cooldown before requesting a character reaction.
 
@@ -66,7 +102,13 @@ Browser origins are restricted to local development and the AIRI app. Write requ
 
 ## SavedVariables
 
-`WoWMapCompanionDB` preserves the addon settings and last snapshot. WoW writes this data on reload or logout. It is not the real-time transport.
+`WoWMapCompanionDB` preserves settings, the last snapshot, the local account identifier, and character gold counters.
+WoW writes this data on reload or logout. It is not the real-time transport.
+An abrupt game exit before saving can lose recent source counters.
+
+AIRI stores its account ledger in its local user data directory. Atomic file replacement protects completed saves.
+An invalid ledger file is preserved. AIRI reports the error and stops ingestion instead of overwriting it.
+Demo observations never enter the ledger.
 
 ## Capture conditions
 

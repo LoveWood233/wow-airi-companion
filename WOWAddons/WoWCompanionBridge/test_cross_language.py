@@ -27,7 +27,7 @@ class LuaBridgeIntegrationTests(unittest.TestCase):
         lua.execute(harness.MOCK)
         ns = lua.table()
         loader = lua.eval(b"function(source, ns) local f, err=loadstring(source); assert(f,err); return f('WoWMapCompanion', ns) end")
-        for filename in ("Protocol.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
+        for filename in ("Protocol.lua", "Money.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
             loader((ADDON / filename).read_bytes(), ns)
         g = lua.globals()
         g.Fire(b"ADDON_LOADED", b"WoWMapCompanion")
@@ -54,6 +54,17 @@ class LuaBridgeIntegrationTests(unittest.TestCase):
         self.assertEqual([e["type"] for e in events], ["connected", "level_up"])
         self.assertEqual(events[-1]["snapshot"]["level"], 30)
         self.assertIn("29", events[-1]["detail"])
+        g.Model[b"copper"] = 150000
+        g.Fire(b"PLAYER_MONEY")
+        g.Model[b"copper"] = 120000
+        g.Fire(b"PLAYER_MONEY")
+        # No desktop frame was sampled between the gain and the expense.
+        render_and_ingest()
+        gold = engine.view()["snapshot"]
+        self.assertEqual((gold["copper"], gold["earned"], gold["spent"]), (120000, 50000, 30000))
+        self.assertTrue(gold["account"])
+        self.assertTrue(gold["moneyEpoch"])
+        self.assertEqual([event["type"] for event in engine.view()["events"]], ["connected", "level_up"])
 
 
 if __name__ == "__main__":

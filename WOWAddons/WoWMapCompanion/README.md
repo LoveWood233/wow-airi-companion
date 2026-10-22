@@ -1,4 +1,4 @@
-# 魔兽陪伴精灵 · WoW 插件端 2.0
+# 魔兽陪伴精灵 · WoW 插件端 2.1
 
 在原地图面板上增加角色状态采集与 WCP1 屏幕遥测，供本机桥接模块接入 AIRI。
 插件本身不调用大模型、不联网、不读取其他进程、不执行角色操作。
@@ -7,6 +7,8 @@
 
 - 保留顶部地图面板，新增角色名、等级、战斗/灵魂状态。
 - 采集角色 GUID、名字、服务器、等级、职业英文 token、专精 ID、地图 ID、地图名，以及战斗、死亡、是否进入世界。
+- 金币：监听 `PLAYER_MONEY`，读取 `GetMoney()` 的铜币整数，保存当前余额和累计流入/流出。首次读数只建立余额基线，不把原有财富计入收入。
+- 本机账号标识保存在账号级 SavedVariables，角色计数以 GUID 分开；重载沿用累计数，不能补回未观察到的交易。
 - 监听升级、区域变化、专精、战斗进入/退出、死亡/复活、进入/离开世界事件。
 - 升级使用 `PLAYER_LEVEL_UP` 的新等级参数，避免刚升级时 `UnitLevel` 暂时返回旧值。
 - 区域事件后在 0.25、1、2、5 秒重试，等待地图数据稳定；新事件会取消旧重试。
@@ -21,18 +23,19 @@
 
 ## 安装
 
-退出游戏，把此目录下 **三个 Lua 文件、TOC 文件**放入：
+退出游戏，把此目录下 **四个 Lua 文件、TOC 文件**放入：
 
 ```text
 World of Warcraft\_retail_\Interface\AddOns\WoWMapCompanion\
     WoWMapCompanion.toc
     Protocol.lua
     Telemetry.lua
+    Money.lua
     WoWMapCompanion.lua
 ```
 
 README 可一起复制，`tests` 目录无需安装。已有旧版则用新版文件覆盖，并保留相同插件目录名。
-重新启动游戏并启用“魔兽陪伴精灵 / AIRI 桥接”。新增 SavedVariables 声明后优先完整重启客户端；后续 Lua 修改可 `/reload`。
+重新启动游戏并启用“魔兽陪伴精灵 / AIRI 桥接”。本轮新增 Money.lua，更新后完整重启客户端以加载文件列表；已有文件内的 Lua 修改可 `/reload`。
 
 TOC 延用本工作区的正式服接口号 `120105, 120100`。客户端更新或其他分支必须核对实际接口号：
 `/dump select(4, GetBuildInfo())`。声明接口号并不代表已在该版本实机测试。
@@ -44,7 +47,7 @@ TOC 延用本工作区的正式服接口号 `120105, 120100`。客户端更新�
 | `/wowc` | 查看命令帮助 |
 | `/wowc panel` | 显示/隐藏顶部地图面板 |
 | `/wowc telemetry` | 开启/关闭黑白遥测网格；关闭后桌面端应进入失联状态 |
-| `/wowc status` | 显示等级、业务序号、心跳、负载大小、遥测坐标 |
+| `/wowc status` | 显示金币、等级、业务序号、心跳、负载大小、遥测坐标 |
 | `/wowc pos 8 8` | 遥测网格相对游戏客户区的左上坐标 |
 | `/wowc cell 2` | 每个位格的像素尺寸，可用整数 1–6；对应网格 64–384 像素宽高 |
 | `/wowc selftest` | 运行 WCP1 / CRC16 / UTF-8 编码自检 |
@@ -70,18 +73,20 @@ TOC 延用本工作区的正式服接口号 `120105, 120100`。客户端更新�
 | 8–511 | JSON 负载（最多 504 字节），剩余字节补零 |
 
 ```json
-{"v":1,"session":"1700000000-12500-123456","seq":2,"tick":5,"guid":"Player-1-00000001","name":"冒险者","realm":"服务器","level":30,"class":"MAGE","spec":64,"map":84,"zone":"暴风城","combat":false,"dead":false,"online":true}
+{"v":2,"session":"1700000000-12500-123456","seq":2,"tick":5,"guid":"Player-1-00000001","name":"冒险者","realm":"服务器","level":30,"class":"MAGE","spec":64,"map":84,"zone":"暴风城","combat":false,"dead":false,"online":true,"account":"local-example","moneyEpoch":"segment-example","copper":12345,"earned":1000,"spent":250}
 ```
 
 每次登录/重载生成新的 `session`。`seq` 描述该会话内业务变化；`tick` 每秒递增。
 桌面端应先验证版本、长度、CRC，再读取 JSON；初次读取或会话改变应建立基线，不应误报升级。
 `PLAYER_LEAVING_WORLD` 设置 `online=false`，它也可能是加载/传送过程，并不等价于永久退出游戏。
-网格传递最新状态快照，不是可靠事件队列；捕获停止期间短暂发生又结束的状态可能无法重放。
+网格仍为 64×64 位，WCP1 帧头不变。JSON 版本升级为 2，插件、桥接和 AIRI 必须一起更新。
+网格传递最新状态快照，不是可靠事件队列；捕获停止期间短暂发生又结束的状态可能无法重放。金币使用累计计数，能补上插件持续观察期间尚未被桌面读取的收支，但不保存逐笔时间或原因。
 
 ## SavedVariables 后备
 
 声明全局变量 `WoWMapCompanionDB`，游戏写入账号目录下的 `SavedVariables\WoWMapCompanion.lua`。
 
+- `money`：本机账号标识，以及按角色 GUID 保存的计数段、累计流入和流出铜币数。
 - `settings`：面板、遥测开关、x/y/cell。
 - `snapshot`：最后一份经过裁剪的安全快照表。
 - `snapshotJSON`：与屏幕负载完全相同的 JSON 字符串。
@@ -98,9 +103,9 @@ python -m pip install --target tests/.deps lupa
 python -m unittest discover -s tests -v
 ```
 
-13 项测试已通过，覆盖：Lua/Python CRC 与位序一致、UTF-8 边界和长度、升级参数优先、心跳不生成业务事件、战斗/死亡/区域/上下线、secret 值过滤、命令参数与遥测开关，以及物理像素换算、晚期 UI 缩放修复和 NDui 颜色纹理钩子的吸附恢复。
+本轮 20 项测试通过，覆盖：Lua/Python CRC 与位序一致、UTF-8 边界和长度、升级参数优先、心跳不生成业务事件、战斗/死亡/区域/上下线、secret 值过滤、命令参数与遥测开关，金币初始基线、快速收支、重载与角色切换、不可用值和计数溢出，以及物理像素换算、晚期 UI 缩放修复和 NDui 颜色纹理钩子的吸附恢复。
 
-本机实测：重新应用显示模式并 `/reload` 后，`/wowc cell 1` 的 64×64 物理像素网格已成功实时读取。以 500ms 间隔连续采样 20 次，20/20 均为 `live`、0 个错误，心跳从 41 递增至 50；BMP 实测为 64×64，标准 CRC 解码得到真实等级 90、区域“银月城”。此次保存的桌面采集设置为 `x=8、y=32、cellSize=1`；这是当前布局的校准结果，不是所有电脑的通用坐标。这验证了真实画面采集与状态读取；真实升级、死亡和 AI 语音回应仍需分别验收。
+此前 2.0 版的网格实测：重新应用显示模式并 `/reload` 后，`/wowc cell 1` 的 64×64 物理像素网格已成功实时读取。以 500ms 间隔连续采样 20 次，20/20 均为 `live`、0 个错误，心跳从 41 递增至 50；BMP 实测为 64×64，标准 CRC 解码得到真实等级 90、区域“银月城”。此次保存的桌面采集设置为 `x=8、y=32、cellSize=1`；这是当前布局的校准结果，不是所有电脑的通用坐标。这验证了真实画面采集与状态读取；真实升级、死亡和 AI 语音回应仍需分别验收。
 
 游戏内还需验收：
 
@@ -111,9 +116,24 @@ python -m unittest discover -s tests -v
 5. `/reload` 后新会话不会被误认为升级；隐藏网格或最小化游戏时桌面端及时显示失联。
 6. 不同 UI 缩放、Windows 缩放、HDR/显示器布局下实际校准捕获位置。
 
+## AIRI 金币汇总
+
+打开 AIRI 的“设置 → 魔兽陪伴精灵”，查看金币汇总。首次读取有效累计数后建立账号与角色记录。
+同账号各角色合并显示流入、流出、净变化与已知余额；可给账号添加备注。金额显示为金、银、铜。
+
+- 首次持有余额不计为收入；累计统计从插件开始观察起，不查询历史交易。
+- 已知余额是各角色最近读数的合计。先逐个登录需要统计的角色，不会自动查询未登录角色。
+- 统计对象是角色钱包。邮件、交易和银行存取会改变流入/流出；战团及公会银行自身余额不计入。
+- 同账号转账会在不同角色分别体现收入、支出，不等于纯经济利润。
+- 不读取战网账户信息。删除 SavedVariables 会产生新标识；跨账号复制该文件也会复制标识。
+- 插件未运行、值不可用和游戏崩溃前未保存的变化无法完整追回。恢复旧 SavedVariables 导致同段计数回退时，AIRI 会拒绝该角色回退记录，直到收入和支出均追上桌面记录。
+- 备份时先正常退出游戏与 AIRI，再保留插件 SavedVariables 和 AIRI 用户数据根目录的 `wow-companion-gold-v1.json`。
+
 ## API 参考
 
 - [暴雪 UI 源码镜像：Unit 接口](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua)
 - [暴雪 UI 源码镜像：地图接口](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/MapDocumentation.lua)
 - [暴雪 UI 源码镜像：专精接口](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpecializationInfoDocumentation.lua)
 - [暴雪 UI 源码镜像：受限操作及 InCombatLockdown](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua)
+
+- [暴雪 UI 源码镜像：PLAYER_MONEY 与 GetMoney 使用](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_AuctionHouseUI/Shared/Blizzard_AuctionHouseFrame.lua)

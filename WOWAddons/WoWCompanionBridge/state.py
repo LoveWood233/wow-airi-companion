@@ -85,7 +85,7 @@ class CompanionState:
     def ingest(self, snapshot: dict) -> None:
         with self.lock:
             old = self.snapshot
-            identity_changed = old is None or (old["guid"], old["session"]) != (snapshot["guid"], snapshot["session"])
+            identity_changed = old is None or (old["account"], old["guid"], old["session"]) != (snapshot["account"], snapshot["guid"], snapshot["session"])
             was_stale = self._status() not in ("live", "demo")
             if not identity_changed and old is not None and snapshot["seq"] < old["seq"]:
                 self.error = "忽略旧序号遥测帧"
@@ -173,9 +173,10 @@ class CompanionState:
             if not enabled:
                 return
             if self.snapshot is None:
-                self.ingest({"v": 1, "session": "demo-session", "seq": 1, "tick": 1, "guid": "DEMO-PLAYER",
+                self.ingest({"v": 2, "session": "demo-session", "seq": 1, "tick": 1, "guid": "DEMO-PLAYER",
                              "name": "演示冒险者", "realm": "演示服务器", "level": 29, "class": "MAGE", "spec": 64,
-                             "map": 37, "zone": "艾尔文森林（演示）", "combat": False, "dead": False, "online": True})
+                             "map": 37, "zone": "艾尔文森林（演示）", "combat": False, "dead": False, "online": True,
+                             "account": "demo-account", "moneyEpoch": "demo-epoch", "copper": 1234567, "earned": 0, "spent": 0})
             if action:
                 next_state = dict(self.snapshot)
                 next_state["seq"] += 1

@@ -2,11 +2,12 @@
 ## Title: WoW Companion / AIRI Bridge
 ## Title-zhCN: 魔兽陪伴精灵 / AIRI 桥接
 ## Notes: Character context, map panel and WCP1 screen telemetry for the AIRI companion.
-## Notes-zhCN: 地图、等级、职业专精与冒险状态；通过屏幕遥测接入 AIRI 陪伴精灵。
+## Notes-zhCN: 地图、等级、金币收支与冒险状态；通过屏幕遥测接入 AIRI 陪伴精灵。
 ## Author: WoWMapCompanion
-## Version: 2.0.0
+## Version: 2.1.0
 ## SavedVariables: WoWMapCompanionDB
 
 Protocol.lua
+Money.lua
 Telemetry.lua
 WoWMapCompanion.lua

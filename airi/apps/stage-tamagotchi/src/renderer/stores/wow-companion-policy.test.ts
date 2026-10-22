@@ -8,7 +8,7 @@ import { CompanionPolicy } from './wow-companion-policy'
 
 const now = Date.parse('2026-10-22T10:00:00Z')
 const snapshot: Snapshot = {
-  v: 1,
+  v: 2,
   session: 'login-1',
   seq: 1,
   tick: 1,
@@ -23,6 +23,11 @@ const snapshot: Snapshot = {
   combat: false,
   dead: false,
   online: true,
+  account: 'account-1',
+  moneyEpoch: 'money-1',
+  copper: 12345,
+  earned: 0,
+  spent: 0,
 }
 
 function event(id: number, type: CompanionEvent['type'] = 'level_up', overrides: Partial<CompanionEvent> = {}): CompanionEvent {
@@ -113,6 +118,12 @@ describe('woW companion notification policy', () => {
     expect(policy.accept(bridge([event(1, 'zone', { snapshot: { ...snapshot, map: 0 } })]), defaultSettings, now)).toBeUndefined()
     expect(policy.accept(bridge([event(2, 'level_up', { snapshot: { ...snapshot, session: 'other' } })]), defaultSettings, now)).toBeUndefined()
     expect(policy.accept(bridge([event(3, 'level_up', { timestamp: 'not-a-date' })]), defaultSettings, now)).toBeUndefined()
+  })
+
+  it('keeps money updates silent without a companion event', () => {
+    const policy = new CompanionPolicy()
+    policy.accept(bridge(), defaultSettings, now)
+    expect(policy.accept(bridge([], { snapshot: { ...snapshot, seq: 2, copper: 22345, earned: 10000 } }), defaultSettings, now + 1000)).toBeUndefined()
   })
 })
 

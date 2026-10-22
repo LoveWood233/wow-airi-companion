@@ -66,6 +66,12 @@ describe.skipIf(!bridgeDirectory)('woW Python bridge HTTP contract', () => {
     expect(demo.status).toBe('demo')
     expect(demo.source).toBe('demo')
     expect(demo.snapshot?.level).toBeGreaterThan(0)
+    expect(demo.snapshot?.v).toBe(2)
+    expect(demo.snapshot?.account.length).toBeGreaterThan(0)
+    expect(demo.snapshot?.moneyEpoch.length).toBeGreaterThan(0)
+    expect(demo.snapshot?.copper).toBeGreaterThanOrEqual(0)
+    expect(demo.snapshot?.earned).toBeGreaterThanOrEqual(0)
+    expect(demo.snapshot?.spent).toBeGreaterThanOrEqual(0)
 
     const upgrade = await request('/api/demo', { enabled: true, action: 'level_up' })
     expect(upgrade.snapshot?.level).toBe((demo.snapshot?.level ?? 0) + 1)

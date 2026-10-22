@@ -15,6 +15,7 @@ from protocol import COLS, ROWS, FrameError, decode_pixels
 from state import CompanionState, validate_config
 
 ROOT = Path(__file__).resolve().parent
+VERSION = "2.1.0"
 
 
 def allowed_origin(origin: str | None) -> bool:
@@ -42,7 +43,7 @@ class BridgeServer(ThreadingHTTPServer):
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "WoWCompanionBridge/1.0"
+    server_version = f"WoWCompanionBridge/{VERSION}"
 
     def _permitted(self) -> bool:
         try:
@@ -96,7 +97,7 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/":
             self._send(200, (ROOT / "index.html").read_bytes(), "text/html; charset=utf-8")
         elif path in ("/health", "/api/health"):
-            self._json(200, {"ok": True, "service": "wow-companion-bridge", "version": "1.0.0", "protocol": "WCP1", "instanceId": self.server.state.instance_id})
+            self._json(200, {"ok": True, "service": "wow-companion-bridge", "version": VERSION, "protocol": "WCP1", "instanceId": self.server.state.instance_id})
         elif path == "/api/status":
             self._json(200, self.server.state.view())
         elif path == "/api/events":

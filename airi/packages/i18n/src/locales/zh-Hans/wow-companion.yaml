@@ -65,6 +65,35 @@ actions:
 events: 最近游戏事件
 events-description: 此处记录观察到的事件，不代表 AI 已完成回应。静音或被规则过滤的事件仍会显示。
 no-events: 暂无事件。
+gold:
+  title: 金币账本
+  description: 按本机插件账号统计金币流入和流出。数据随游戏连接更新，并保存在这台电脑上。
+  current-balance: 当前角色持有金币
+  current-unavailable: 当前金币暂不可用。请保持真实角色在线，并使用有效的实时画面采集。
+  empty: 尚无真实金币记录。请安装更新后的插件和桥接程序，再逐个登录角色，开始建立账本。
+  storage-error: 账本读取或保存失败，当前汇总尚未确认写入磁盘。请检查下方存储错误和磁盘剩余空间。
+  unnamed-account: 本机插件账号
+  account-id: 账号标识
+  account-name: 账号备注
+  account-name-placeholder: 例如：主账号
+  account-name-help: 最多 64 个字符，留空可移除备注。
+  save-name: 保存备注
+  character-count: '已记录角色：{count}'
+  since: 桌面开始记录于
+  earned: 累计收入（流入）
+  spent: 累计消耗（流出）
+  net: 净变化
+  balance: 已记录角色余额合计
+  character: 角色
+  realm: 服务器
+  character-balance: 最后已知余额
+  last-seen: 最近采集时间
+  characters-description: 此账号已采集角色的最后已知余额与累计收支。
+  identity-note: 使用插件在本机保存的账号标识归组，不读取登录账号。可为每个标识填写备注以便区分。
+  flow-note: 首次持有的余额不算收入。邮件、交易、银行存取及自己角色间的转账均计入流入或流出，不等于实际赚取或消费。
+  balance-note: 余额仅覆盖已登录采集的角色，采用各角色最后一次采集值，并非所有角色同时实时的余额。不包含战团银行余额。
+  demo-note: 演示数据不会进入真实账本。金币变化只更新聊天上下文，不会触发主动语音提醒。
+  money: '{sign}{gold}金 {silver}银 {copper}铜'
 status:
   disabled: 陪伴已关闭
   disconnected: 桥接服务未连接

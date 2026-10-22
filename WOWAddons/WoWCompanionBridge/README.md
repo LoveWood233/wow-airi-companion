@@ -37,6 +37,7 @@ cd I:\GameTools\WOWAddons\WoWCompanionBridge
 
 - GDI 仅截图配置的网格区域，不访问 WoW 进程内存、文件内部结构或游戏输入。
 - WCP1 帧头、长度、CRC16、UTF-8、JSON 类型及范围校验；不完整或损坏帧不触发事件。
+- 金币快照：严格验证 v2 的本机账号标识、角色计数段、当前铜币余额和累计流入/流出，金额必须为非负安全整数。余额不可用时为 null。
 - 角色状态：姓名、服务器、等级、职业、专精、地图与区域、战斗、死亡、在线状态。
 - 事件：`connected`、`level_up`、`zone`、`death`、`revive`、`combat_start`、`combat_end`、`offline`。
 - 初次连接、角色切换、会话切换、画面过期恢复、暂停恢复只建立新基线；不把离线期间的等级变化当作刚发生的升级。
@@ -92,7 +93,10 @@ staleAfterSeconds: 5
 | 6–7 | JSON 负载 CRC16-CCITT，小端，初始 `0xffff`、多项式 `0x1021` |
 | 8–511 | JSON 字节，余下补 0 |
 
-字段：`v,session,seq,tick,guid,name,realm,level,class,spec,map,zone,combat,dead,online`。`seq` 仅业务更新时增加，`tick` 每秒更新。`class` 是英文职业 token，`spec/map` 为数字 ID。
+字段：`v,session,seq,tick,guid,name,realm,level,class,spec,map,zone,combat,dead,online,account,moneyEpoch,copper,earned,spent`。
+JSON 快照版本 `v=2`，WCP1 帧布局和 64×64 位网格不变。插件、桥接和 AIRI 需一起更新；旧 v1 快照会被拒绝。
+`account` 为本机账号级保存标识，`moneyEpoch` 为角色计数段；后三个金额字段使用铜币整数。金币汇总及磁盘账本由 AIRI 主进程管理，桥接只校验并传递。
+`seq` 仅业务更新时增加，`tick` 每秒更新。`class` 是英文职业 token，`spec/map` 为数字 ID。
 
 ## 验证
 
@@ -100,6 +104,6 @@ staleAfterSeconds: 5
 python -m unittest -v
 ```
 
-31 个测试覆盖 UTF-8 和像素编解码、CRC、非法帧、状态切换、升级去重、过期与恢复、演示隔离、未知区域抖动和区域基线重置、事件上限、本机 HTTP 接口及来源/Host/JSON 校验、进程 UUID 和真实 Lua 编码 fixture。其中一个跨语言联测使用同级 `WoWMapCompanion/tests/.deps` 的可选 `lupa`：实际 Lua 插件收到升级事件 → 编码 → 合成像素传输 → Python 解码 → 产生唯一 `level_up` 事件；没有该测试依赖时会显式跳过，运行服务不需要 lupa。本机已验证真实 WoW 网格采集和当前角色状态；其他显示器/缩放组合、真实升级与死亡事件、AIRI 模型语音仍需分别验收，自动测试不替代这些实机验证。
+本轮 32 项测试通过，覆盖 UTF-8 和像素编解码、CRC、非法帧、状态切换、升级去重、过期与恢复、演示隔离、未知区域抖动和区域基线重置、事件上限、本机 HTTP 接口及来源/Host/JSON 校验、进程 UUID 、金币类型/边界/空余额校验和真实 Lua 编码 fixture。其中一个跨语言联测使用同级 `WoWMapCompanion/tests/.deps` 的可选 `lupa`：实际 Lua 插件收到升级事件 → 编码 → 合成像素传输 → Python 解码 → 产生唯一 `level_up` 事件；没有该测试依赖时会显式跳过，运行服务不需要 lupa。本机已验证真实 WoW 网格采集和当前角色状态；其他显示器/缩放组合、真实升级与死亡事件、AIRI 模型语音仍需分别验收，自动测试不替代这些实机验证。
 
-实机采样记录：采集配置 `x=8、y=32、cellSize=1`，每隔 500ms 采样一次，共 20 次，20/20 为 `live`、0 个错误，心跳 41→50；返回的 BMP 精确为 64×64，标准 CRC 解码成功读取 90 级、“银月城”。此记录仅代表本次电脑、显示模式与会话。
+此前 2.0 版的网格实机采样记录：采集配置 `x=8、y=32、cellSize=1`，每隔 500ms 采样一次，共 20 次，20/20 为 `live`、0 个错误，心跳 41→50；返回的 BMP 精确为 64×64，标准 CRC 解码成功读取 90 级、“银月城”。此记录仅代表本次电脑、显示模式与会话。

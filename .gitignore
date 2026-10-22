@@ -23,6 +23,9 @@ backups/
 !*.env.template
 bridge-config.json
 bridge-config.json.tmp
+wow-companion-gold-v1.json
+wow-companion-gold-v1.json.*.tmp
+SavedVariables/
 
 # Interrupted original download
 AIRI-WoW/

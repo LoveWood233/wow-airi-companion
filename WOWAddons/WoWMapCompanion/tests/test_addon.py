@@ -20,7 +20,7 @@ ROOT = HERE.parent
 MOCK = b'''
 Objects, Frames, Timers, Tickers, Messages = {}, {}, {}, {}, {}
 Screen = {width=2560, height=1600}
-Model = {level=29, name="Adventurer", realm="Realm", class="MAGE", spec=64, map=84, zone="Stormwind", dead=false, combat=false}
+Model = {guid="Player-1-00000001", level=29, name="Adventurer", realm="Realm", class="MAGE", spec=64, map=84, zone="Stormwind", dead=false, combat=false, copper=100000}
 Secret = setmetatable({}, {__tostring=function() error("secret converted") end})
 function issecretvalue(v) return rawequal(v, Secret) end
 local methods = {}
@@ -65,7 +65,8 @@ function print(message) Messages[#Messages+1]=message end
 function GetServerTime() return 1700000000 end
 function time() return 1700000000 end
 function GetTime() return 12.5 end
-function UnitGUID() return "Player-1-00000001" end
+function UnitGUID() return Model.guid end
+function GetMoney() if Model.moneyError then error("unavailable") end; return Model.copper end
 function UnitName() return Model.name end
 function UnitClass() return "Mage", Model.class end
 function UnitLevel() return Model.level end
@@ -95,7 +96,7 @@ class AddonTest(unittest.TestCase):
         self.lua.execute(MOCK)
         self.ns = self.lua.table()
         self.load = self.lua.eval(b"function(source, name, ns) local f, err = loadstring(source); assert(f, err); return f(name, ns) end")
-        for name in ("Protocol.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
+        for name in ("Protocol.lua", "Money.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
             self.load((ROOT / name).read_bytes(), b"WoWMapCompanion", self.ns)
         self.lua.globals().Fire(b"ADDON_LOADED", b"WoWMapCompanion")
         self.lua.globals().Fire(b"PLAYER_ENTERING_WORLD")
@@ -207,6 +208,143 @@ class AddonTest(unittest.TestCase):
         command(b"reset")
         self.assertTrue(g.Objects[b"WoWCompanionTelemetry"][b"shown"])
         self.assertAlmostEqual(g.Objects[b"WoWCompanionTelemetry"][b"scale"], (768 / 1600) / .7)
+
+    def test_money_first_balance_and_fast_income_spending_remain_separate(self):
+        g = self.lua.globals()
+        initial = self.snapshot()
+        self.assertEqual((initial["copper"], initial["earned"], initial["spent"]), (100000, 0, 0))
+        g.Model[b"copper"] = 150000
+        g.Fire(b"PLAYER_MONEY")
+        g.Model[b"copper"] = 120000
+        g.Fire(b"PLAYER_MONEY")
+        after = self.snapshot()
+        self.assertEqual((after["copper"], after["earned"], after["spent"]), (120000, 50000, 30000))
+        # Both events occur between desktop frames. A net-only poll would lose the two flows.
+        for _ in range(3):
+            g.Fire(b"PLAYER_MONEY")
+            g.Heartbeat()
+        self.assertEqual(self.snapshot()["earned"], 50000)
+        self.assertEqual(self.snapshot()["spent"], 30000)
+        self.assertEqual(self.snapshot()["seq"], after["seq"])
+        self.assertEqual(g.WoWMapCompanionDB[b"money"][b"characters"][b"Player-1-00000001"][b"earned"], 50000)
+
+    def test_money_unavailable_values_break_the_baseline(self):
+        g = self.lua.globals()
+        for invalid in (g.Secret, float("nan"), float("inf"), -1, .5, 9007199254740992, None):
+            with self.subTest(invalid=type(invalid).__name__):
+                g.Model[b"copper"] = invalid
+                g.Fire(b"PLAYER_MONEY")
+                self.assertIsNone(self.snapshot()["copper"])
+                g.Model[b"copper"] = 777777
+                g.Fire(b"PLAYER_MONEY")
+                self.assertEqual((self.snapshot()["earned"], self.snapshot()["spent"]), (0, 0))
+        g.Model[b"moneyError"] = True
+        g.Fire(b"PLAYER_MONEY")
+        self.assertIsNone(self.snapshot()["copper"])
+        g.Model[b"moneyError"] = False
+        g.Model[b"copper"] = 0
+        g.Fire(b"PLAYER_MONEY")
+        g.Model[b"copper"] = 1
+        g.Fire(b"PLAYER_MONEY")
+        self.assertEqual((self.snapshot()["copper"], self.snapshot()["earned"], self.snapshot()["spent"]), (1, 1, 0))
+
+    def test_money_reload_retains_account_counters_and_rebaselines_balance(self):
+        g = self.lua.globals()
+        g.Model[b"copper"] = 130000
+        g.Fire(b"PLAYER_MONEY")
+        before = self.snapshot()
+        g.Fire(b"PLAYER_LOGOUT")
+        self.assertIsNone(self.snapshot()["copper"])
+        # Reset client runtime objects while retaining its account-wide SavedVariables table.
+        self.lua.execute(MOCK)
+        ns = self.lua.table()
+        for name in ("Protocol.lua", "Money.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
+            self.load((ROOT / name).read_bytes(), b"WoWMapCompanion", ns)
+        g.Fire(b"ADDON_LOADED", b"WoWMapCompanion")
+        g.Model[b"copper"] = 900000
+        g.Fire(b"PLAYER_ENTERING_WORLD")
+        after = self.snapshot()
+        self.assertEqual((after["account"], after["moneyEpoch"]), (before["account"], before["moneyEpoch"]))
+        self.assertEqual((after["copper"], after["earned"], after["spent"]), (900000, 30000, 0))
+        g.Model[b"copper"] = 899999
+        g.Fire(b"PLAYER_MONEY")
+        self.assertEqual(self.snapshot()["spent"], 1)
+
+    def test_money_characters_share_account_but_keep_separate_ledgers(self):
+        g = self.lua.globals()
+        g.Model[b"copper"] = 100500
+        g.Fire(b"PLAYER_MONEY")
+        first = self.snapshot()
+        g.Fire(b"PLAYER_LEAVING_WORLD")
+        g.Model[b"guid"] = b"Player-2-ALT"
+        g.Model[b"copper"] = 800000
+        g.Fire(b"PLAYER_ENTERING_WORLD")
+        second = self.snapshot()
+        self.assertEqual(first["account"], second["account"])
+        self.assertNotEqual(first["moneyEpoch"], second["moneyEpoch"])
+        self.assertEqual((second["earned"], second["spent"]), (0, 0))
+        g.Model[b"copper"] = 799800
+        g.Fire(b"PLAYER_MONEY")
+        self.assertEqual(self.snapshot()["spent"], 200)
+        g.Fire(b"PLAYER_LEAVING_WORLD")
+        g.Model[b"guid"] = b"Player-1-00000001"
+        g.Model[b"copper"] = 300
+        g.Fire(b"PLAYER_ENTERING_WORLD")
+        self.assertEqual((self.snapshot()["earned"], self.snapshot()["spent"]), (500, 0))
+        self.assertEqual(self.snapshot()["moneyEpoch"], first["moneyEpoch"])
+
+    def test_money_unavailable_character_identity_breaks_balance_continuity(self):
+        g = self.lua.globals()
+        original = self.snapshot()
+        g.Model[b"guid"] = g.Secret
+        g.Model[b"copper"] = 200000
+        g.Fire(b"PLAYER_MONEY")
+        unavailable = self.snapshot()
+        self.assertIsNone(unavailable["copper"])
+        self.assertEqual(unavailable["guid"], original["guid"])
+        self.assertEqual(unavailable["moneyEpoch"], original["moneyEpoch"])
+        g.Model[b"guid"] = original["guid"].encode()
+        g.Fire(b"PLAYER_MONEY")
+        self.assertEqual((self.snapshot()["earned"], self.snapshot()["spent"]), (0, 0))
+
+    def test_money_safe_integer_max_and_counter_epoch_rollover(self):
+        g = self.lua.globals()
+        g.Fire(b"PLAYER_LEAVING_WORLD")
+        g.Model[b"copper"] = 9007199254740991
+        g.Fire(b"PLAYER_ENTERING_WORLD")
+        self.assertEqual(self.snapshot()["copper"], 9007199254740991)
+        g.Model[b"copper"] = 9007199254740990
+        g.Fire(b"PLAYER_MONEY")
+        self.assertEqual(self.snapshot()["spent"], 1)
+        old_epoch = self.snapshot()["moneyEpoch"]
+        record = g.WoWMapCompanionDB[b"money"][b"characters"][b"Player-1-00000001"]
+        record[b"earned"] = 9007199254740991
+        g.Model[b"copper"] = 9007199254740991
+        g.Fire(b"PLAYER_MONEY")
+        self.assertNotEqual(self.snapshot()["moneyEpoch"], old_epoch)
+        self.assertEqual((self.snapshot()["earned"], self.snapshot()["spent"]), (1, 0))
+
+    def test_money_frame_limit_preserves_identity_and_exact_counters(self):
+        g = self.lua.globals()
+        snapshot = g.WoWMapCompanionDB[b"snapshot"]
+        exact = {b"guid": b"G" * 48, b"session": b"s" * 40, b"account": b"a" * 40,
+                 b"moneyEpoch": b"e" * 40, b"copper": 9007199254740991,
+                 b"earned": 9007199254740991, b"spent": 9007199254740991}
+        for key, value in exact.items():
+            snapshot[key] = value
+        for key in (b"name", b"realm", b"zone"):
+            snapshot[key] = ("测试" * 100).encode()
+        for key in (b"seq", b"tick"):
+            snapshot[key] = 2147483647
+        snapshot[b"class"] = b"M" * 20
+        snapshot[b"map"], snapshot[b"spec"], snapshot[b"level"] = 10000000, 65535, 255
+        frame, payload, _ = self.ns[b"Protocol"][b"Encode"](snapshot)
+        self.assertEqual(len(frame), 512)
+        self.assertLessEqual(len(payload), 504)
+        value = json.loads(payload)
+        for key, expected in exact.items():
+            self.assertEqual(value[key.decode()], expected.decode() if isinstance(expected, bytes) else expected)
+        self.assertTrue(value["name"])
 
     def assert_physical_layout(self, cell, x, y):
         g = self.lua.globals()

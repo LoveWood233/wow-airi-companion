@@ -14,9 +14,10 @@ from state import CompanionState, validate_config
 
 
 def snapshot(**changes):
-    result = {"v": 1, "session": "test-session", "seq": 1, "tick": 1, "guid": "Player-1-TEST",
+    result = {"v": 2, "session": "test-session", "seq": 1, "tick": 1, "guid": "Player-1-TEST",
               "name": "旅行者", "realm": "艾泽拉斯", "level": 29, "class": "MAGE", "spec": 64,
-              "map": 37, "zone": "艾尔文森林", "combat": False, "dead": False, "online": True}
+              "map": 37, "zone": "艾尔文森林", "combat": False, "dead": False, "online": True,
+              "account": "test-account", "moneyEpoch": "test-epoch", "copper": 100000, "earned": 0, "spent": 0}
     result.update(changes)
     return result
 
@@ -53,9 +54,26 @@ class ProtocolTests(unittest.TestCase):
         for frame in (b"", bytes(512), b"WCP1" + b"\xff" * 508):
             with self.assertRaises(FrameError):
                 decode_frame(frame)
-        for changes in ({"level": True}, {"level": -1}, {"v": 2}, {"combat": 0}, {"guid": ""}, {"class": "<script>"}):
+        for changes in ({"level": True}, {"level": -1}, {"v": 1}, {"combat": 0}, {"guid": ""}, {"class": "<script>"}):
             with self.assertRaises(FrameError):
                 encode_frame(snapshot(**changes))
+
+    def test_copper_precision_null_and_strict_money_identity(self):
+        for copper in (0, 100000000000, 9007199254740991, None):
+            value = snapshot(copper=copper, earned=9007199254740991, spent=9007199254740991)
+            self.assertEqual(decode_frame(encode_frame(value)), value)
+        for key in ("copper", "earned", "spent"):
+            for value in (True, -1, .5, 9007199254740992, "123"):
+                with self.subTest(key=key, value=value), self.assertRaises(FrameError):
+                    encode_frame(snapshot(**{key: value}))
+            missing = snapshot()
+            del missing[key]
+            with self.assertRaises(FrameError):
+                encode_frame(missing)
+        for key in ("account", "moneyEpoch"):
+            for value in ("", "x" * 41, "account@example.com", "账户", None):
+                with self.subTest(key=key, value=value), self.assertRaises(FrameError):
+                    encode_frame(snapshot(**{key: value}))
 
     def test_ambiguous_pixel_rejected(self):
         pixels = bytearray(pixels_for_frame(encode_frame(snapshot())))
@@ -121,7 +139,8 @@ class StateTests(unittest.TestCase):
         self.state.ingest(snapshot())
         self.state.ingest(snapshot(guid="Player-2-ALT", level=80))
         self.state.ingest(snapshot(guid="Player-2-ALT", session="reloaded", level=81))
-        self.assertEqual(self.kinds(), ["connected", "connected", "connected"])
+        self.state.ingest(snapshot(guid="Player-2-ALT", session="reloaded", account="other-account", level=82))
+        self.assertEqual(self.kinds(), ["connected", "connected", "connected", "connected"])
 
     def test_all_event_types_and_offline(self):
         self.state.ingest(snapshot())
@@ -236,6 +255,7 @@ class HttpTests(unittest.TestCase):
         status, _, body = self.request("GET", "/health")
         self.assertEqual(status, 200)
         self.assertEqual(json.loads(body)["protocol"], "WCP1")
+        self.assertEqual(json.loads(body)["version"], "2.1.0")
 
     def test_external_origin_and_dns_rebinding_rejected(self):
         self.assertEqual(self.request("GET", "/api/status", headers={"Origin": "https://evil.example"})[0], 403)

@@ -3,14 +3,14 @@ import type { CaptureSettings, CompanionSettings, DemoRequest } from '../../../s
 
 import { errorMessageFrom } from '@moeru/std'
 import { useConsciousnessStore } from '@proj-airi/stage-ui/stores/modules/consciousness'
-import { Button, FieldCheckbox, FieldInput, SettingsCard } from '@proj-airi/ui'
+import { Button, FieldCheckbox, FieldInput, Input, SettingsCard } from '@proj-airi/ui'
 import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { defaultSettings } from '../../../shared/wow-companion'
 import { useWowCompanionStore } from '../../stores/wow-companion'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const tn = (key: string) => t(`wow-companion.${key}`)
 const companion = useWowCompanionStore()
 const consciousness = useConsciousnessStore()
@@ -19,6 +19,11 @@ const capture = reactive<CaptureSettings>({ x: 8, y: 8, cellSize: 2, pollMs: 500
 const busy = ref(false)
 const message = ref('')
 const actionError = ref('')
+const accountNames = reactive<Record<string, string>>({})
+const goldSavingAccount = ref('')
+const goldMessage = ref('')
+const goldActionError = ref('')
+const storedAccountNames = new Map<string, string>()
 let settingsLoaded = false
 let captureLoaded = false
 
@@ -35,6 +40,37 @@ const isCurrent = computed(() => status.value === 'live' || status.value === 'de
 const error = computed(() => actionError.value || companion.error || companion.state.error || bridge.value?.error)
 const preferences = ['enabled', 'muted', 'quietInCombat', 'levelUp', 'zone', 'death', 'revive', 'allowDemo'] as const
 const demoActions = ['level_up', 'zone', 'death', 'revive', 'combat'] as const
+const goldAccounts = computed(() => companion.state.gold.accounts)
+const currentMoney = computed(() => {
+  if (status.value !== 'live' || bridge.value?.source !== 'screen' || bridge.value.error || !snapshot.value?.online)
+    return null
+  return snapshot.value.copper
+})
+const summaryFields = ['earned', 'spent', 'net', 'balance'] as const
+
+/** Keep full copper precision for account totals that exceed the safe number range. */
+function formatMoney(copper: string | number) {
+  const amount = BigInt(copper)
+  const absolute = amount < 0n ? -amount : amount
+  return t('wow-companion.gold.money', {
+    sign: amount < 0n ? '−' : '',
+    gold: (absolute / 10000n).toLocaleString(locale.value),
+    silver: (absolute % 10000n / 100n).toString(),
+    copper: (absolute % 100n).toString(),
+  })
+}
+
+function formatDate(timestamp: number) {
+  return new Date(timestamp).toLocaleString(locale.value)
+}
+
+watch(goldAccounts, (accounts) => {
+  for (const account of accounts) {
+    if (!(account.account in accountNames) || accountNames[account.account] === storedAccountNames.get(account.account))
+      accountNames[account.account] = account.name
+    storedAccountNames.set(account.account, account.name)
+  }
+}, { immediate: true })
 
 watch(() => companion.state, (value) => {
   if (!settingsLoaded) {
@@ -67,12 +103,41 @@ function demo(enabled: boolean, action: DemoRequest['action'] = 'none') {
   return perform(() => companion.demo({ enabled, action }))
 }
 
+async function saveAccountName(account: string) {
+  goldSavingAccount.value = account
+  goldActionError.value = ''
+  goldMessage.value = ''
+  try {
+    await companion.setAccountName({ account, name: accountNames[account] ?? '' })
+    if (companion.state.gold.storageError)
+      return
+    const saved = companion.state.gold.accounts.find(item => item.account === account)
+    if (saved)
+      accountNames[account] = saved.name
+    goldMessage.value = tn('saved')
+  }
+  catch (cause) {
+    goldActionError.value = errorMessageFrom(cause) ?? tn('failed')
+  }
+  finally {
+    goldSavingAccount.value = ''
+  }
+}
+
 onMounted(() => companion.start())
 </script>
 
 <template>
   <div :class="['mx-auto max-w-4xl pb-12', 'flex flex-col gap-5']">
-    <SettingsCard :title="tn('connection')" :description="tn('description')">
+    <SettingsCard>
+      <header>
+        <h2 :class="['text-lg font-semibold']">
+          {{ tn('connection') }}
+        </h2>
+        <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+          {{ tn('description') }}
+        </p>
+      </header>
       <div :class="['flex flex-col gap-3']">
         <div :class="['flex flex-wrap items-center gap-3']">
           <span :class="['rounded-full px-3 py-1 text-sm font-medium', isCurrent ? 'bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100' : 'bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300']">
@@ -135,7 +200,136 @@ onMounted(() => companion.start())
       </div>
     </SettingsCard>
 
-    <SettingsCard :title="tn('preferences')" :description="tn('preferences-description')">
+    <SettingsCard>
+      <header>
+        <h2 :class="['text-lg font-semibold']">
+          {{ tn('gold.title') }}
+        </h2>
+        <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+          {{ tn('gold.description') }}
+        </p>
+      </header>
+      <div :class="['flex flex-col gap-5']">
+        <div :class="['rounded-xl p-4', 'bg-neutral-50 dark:bg-neutral-900']">
+          <p :class="['text-sm text-neutral-500 dark:text-neutral-400']">
+            {{ tn('gold.current-balance') }}
+          </p>
+          <p v-if="currentMoney !== null" :class="['mt-1 text-xl font-semibold tabular-nums']">
+            {{ formatMoney(currentMoney) }}
+          </p>
+          <p v-else :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+            {{ tn('gold.current-unavailable') }}
+          </p>
+        </div>
+        <p v-if="companion.state.gold.storageError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
+          {{ tn('gold.storage-error') }} {{ companion.state.gold.storageError }}
+        </p>
+        <p v-if="goldActionError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
+          {{ goldActionError }}
+        </p>
+        <p v-if="goldMessage" role="status" :class="['text-sm text-primary-600 dark:text-primary-300']">
+          {{ goldMessage }}
+        </p>
+        <p v-if="!goldAccounts.length" :class="['text-sm text-neutral-500 dark:text-neutral-400']">
+          {{ tn('gold.empty') }}
+        </p>
+        <article
+          v-for="account in goldAccounts" :key="account.account"
+          :aria-label="account.name || account.account"
+          :class="['min-w-0 rounded-xl p-4', 'border border-neutral-200 dark:border-neutral-800', 'flex flex-col gap-4']"
+        >
+          <div>
+            <h3 :class="['font-semibold']">
+              {{ account.name || tn('gold.unnamed-account') }}
+            </h3>
+            <p :class="['mt-1 break-all text-xs text-neutral-500 dark:text-neutral-400']">
+              {{ tn('gold.account-id') }} {{ account.account }}
+            </p>
+            <p :class="['mt-1 text-xs text-neutral-500 dark:text-neutral-400']">
+              {{ t('wow-companion.gold.character-count', { count: account.characterCount }) }} · {{ tn('gold.since') }} {{ formatDate(account.firstSeen) }}
+            </p>
+          </div>
+          <form :class="['flex flex-col gap-2 sm:flex-row sm:items-end']" @submit.prevent="saveAccountName(account.account)">
+            <div :class="['min-w-0 flex-1']">
+              <label :for="`gold-account-${account.account}`" :class="['mb-1 block text-sm']">{{ tn('gold.account-name') }}</label>
+              <Input
+                :id="`gold-account-${account.account}`" v-model="accountNames[account.account]"
+                type="text" :maxlength="64" :placeholder="tn('gold.account-name-placeholder')"
+                :disabled="Boolean(goldSavingAccount)" :aria-describedby="`gold-account-help-${account.account}`"
+              />
+              <p :id="`gold-account-help-${account.account}`" :class="['mt-1 text-xs text-neutral-500 dark:text-neutral-400']">
+                {{ tn('gold.account-name-help') }}
+              </p>
+            </div>
+            <Button type="submit" color="primary" variant="primary" :loading="goldSavingAccount === account.account" :disabled="Boolean(goldSavingAccount)">
+              {{ tn('gold.save-name') }}
+            </Button>
+          </form>
+          <dl :class="['grid grid-cols-1 gap-4 sm:grid-cols-2']">
+            <div v-for="field in summaryFields" :key="field">
+              <dt :class="['text-xs text-neutral-500 dark:text-neutral-400']">
+                {{ tn(`gold.${field}`) }}
+              </dt>
+              <dd :class="['mt-1 break-words font-medium tabular-nums']">
+                {{ formatMoney(account[field]) }}
+              </dd>
+            </div>
+          </dl>
+          <div :class="['overflow-x-auto']">
+            <table :class="['w-full text-left text-sm']">
+              <caption :class="['mb-2 text-left text-xs text-neutral-500 dark:text-neutral-400']">
+                {{ tn('gold.characters-description') }}
+              </caption>
+              <thead :class="['text-neutral-500 dark:text-neutral-400']">
+                <tr>
+                  <th v-for="column in ['character', 'realm', 'character-balance', 'earned', 'spent', 'last-seen']" :key="column" scope="col" :class="['whitespace-nowrap px-2 py-2 font-medium']">
+                    {{ tn(`gold.${column}`) }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="character in account.characters" :key="character.guid" :class="['border-t border-neutral-200 dark:border-neutral-800']">
+                  <th scope="row" :class="['whitespace-nowrap px-2 py-3 font-medium']">
+                    {{ character.name }}
+                  </th>
+                  <td :class="['whitespace-nowrap px-2 py-3']">
+                    {{ character.realm }}
+                  </td>
+                  <td :class="['whitespace-nowrap px-2 py-3 tabular-nums']">
+                    {{ formatMoney(character.copper) }}
+                  </td>
+                  <td :class="['whitespace-nowrap px-2 py-3 tabular-nums']">
+                    {{ formatMoney(character.earned) }}
+                  </td>
+                  <td :class="['whitespace-nowrap px-2 py-3 tabular-nums']">
+                    {{ formatMoney(character.spent) }}
+                  </td>
+                  <td :class="['whitespace-nowrap px-2 py-3 text-xs text-neutral-500 dark:text-neutral-400']">
+                    <time :datetime="new Date(character.lastSeen).toISOString()">{{ formatDate(character.lastSeen) }}</time>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <ul :class="['list-disc pl-5 text-xs text-neutral-500 dark:text-neutral-400', 'flex flex-col gap-2']">
+          <li>{{ tn('gold.identity-note') }}</li>
+          <li>{{ tn('gold.flow-note') }}</li>
+          <li>{{ tn('gold.balance-note') }}</li>
+          <li>{{ tn('gold.demo-note') }}</li>
+        </ul>
+      </div>
+    </SettingsCard>
+
+    <SettingsCard>
+      <header>
+        <h2 :class="['text-lg font-semibold']">
+          {{ tn('preferences') }}
+        </h2>
+        <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+          {{ tn('preferences-description') }}
+        </p>
+      </header>
       <div :class="['flex flex-col gap-5']">
         <FieldCheckbox v-for="key in preferences" :key="key" v-model="settings[key]" :label="tn(`options.${key}`)" :description="tn(`hints.${key}`)" :disabled="busy" />
         <FieldInput v-model="settings.cooldownSeconds" type="number" :label="tn('cooldown')" :description="tn('cooldown-description')" :disabled="busy" />
@@ -147,7 +341,15 @@ onMounted(() => companion.start())
       </div>
     </SettingsCard>
 
-    <SettingsCard :title="tn('capture')" :description="tn('capture-description')">
+    <SettingsCard>
+      <header>
+        <h2 :class="['text-lg font-semibold']">
+          {{ tn('capture') }}
+        </h2>
+        <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+          {{ tn('capture-description') }}
+        </p>
+      </header>
       <div :class="['grid grid-cols-2 gap-4']">
         <FieldInput v-model="capture.x" type="number" :label="tn('capture-x')" :disabled="busy" />
         <FieldInput v-model="capture.y" type="number" :label="tn('capture-y')" :disabled="busy" />
@@ -163,7 +365,15 @@ onMounted(() => companion.start())
       </Button>
     </SettingsCard>
 
-    <SettingsCard :title="tn('demo')" :description="tn('demo-description')">
+    <SettingsCard>
+      <header>
+        <h2 :class="['text-lg font-semibold']">
+          {{ tn('demo') }}
+        </h2>
+        <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+          {{ tn('demo-description') }}
+        </p>
+      </header>
       <div :class="['flex flex-wrap gap-2']">
         <Button :loading="busy" :disabled="!bridge" @click="demo(bridge?.source !== 'demo')">
           {{ tn(bridge?.source === 'demo' ? 'stop-demo' : 'start-demo') }}
@@ -174,7 +384,15 @@ onMounted(() => companion.start())
       </div>
     </SettingsCard>
 
-    <SettingsCard :title="tn('events')" :description="tn('events-description')">
+    <SettingsCard>
+      <header>
+        <h2 :class="['text-lg font-semibold']">
+          {{ tn('events') }}
+        </h2>
+        <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+          {{ tn('events-description') }}
+        </p>
+      </header>
       <ol v-if="bridge?.events.length" :class="['flex max-h-80 flex-col gap-3 overflow-y-auto']">
         <li v-for="event in [...bridge.events].reverse()" :key="event.id" :class="['rounded-lg p-3', 'bg-neutral-50 dark:bg-neutral-900']">
           <div :class="['flex items-center justify-between gap-3 text-sm']">

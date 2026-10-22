@@ -14,7 +14,7 @@
 <body>
 <header class="top"><div class="wrap"><div class="brand"><b>✦</b> AZEROTH COMPANION</div><nav class="nav" aria-label="章节导航"><a href="#features">功能清单</a><a href="#logic">实现逻辑</a><a href="#setup">使用方法</a><a href="#user-tasks">需要你协助</a><a href="#checks">验证结果</a></nav><button class="print" id="print" type="button">打印 / 保存 PDF</button></div></header>
 <main class="wrap">
-<div class="hero"><div><p class="eyebrow">WOW × AIRI · IMPLEMENTATION NOTES · V2.0</p><h1>艾泽拉斯的旅途，<br><span>有人一起见证。</span></h1><p class="lead">正式服插件采集可用的角色状态，本机桥接识别变化，AIRI 在合适的时机回应。这里记录本次实际实现的功能、数据流与验证边界。</p><div class="meta"><span class="pill">2026.10.22</span><span class="pill">正式服 12.1.5.70448</span><span class="pill">Windows · AIRI 桌面版</span><span class="pill">本轮：可运行陪伴版</span></div></div><div class="art" aria-hidden="true"><div class="orbit"></div><div class="orbit two"></div><div class="orb"><svg viewBox="0 0 64 64" fill="none"><path d="M32 4 39 24 59 32 39 40 32 60 25 40 5 32 25 24Z" fill="#ead092"/><path d="M32 17 36 28 47 32 36 36 32 47 28 36 17 32 28 28Z" fill="#112c28"/></svg></div><div class="float one">事件确认 <strong>→ 升级祝贺</strong></div><div class="float two">战斗中 <strong>· 安静陪伴</strong></div><div class="float three">新区域 <strong>· 新旅程</strong></div><div class="kicker">功能示意 · 非实时游戏状态</div></div></div>
+<div class="hero"><div><p class="eyebrow">WOW × AIRI · IMPLEMENTATION NOTES · V2.1</p><h1>艾泽拉斯的旅途，<br><span>有人一起见证。</span></h1><p class="lead">正式服插件采集可用的角色状态，本机桥接识别变化，AIRI 在合适的时机回应。新增角色金币采集与账号收支汇总。这里记录实际实现的功能、数据流与验证边界。</p><div class="meta"><span class="pill">2026.10.22</span><span class="pill">正式服 12.1.5.70448</span><span class="pill">Windows · AIRI 桌面版</span><span class="pill">本轮：账号金币统计</span></div></div><div class="art" aria-hidden="true"><div class="orbit"></div><div class="orbit two"></div><div class="orb"><svg viewBox="0 0 64 64" fill="none"><path d="M32 4 39 24 59 32 39 40 32 60 25 40 5 32 25 24Z" fill="#ead092"/><path d="M32 17 36 28 47 32 36 36 32 47 28 36 17 32 28 28Z" fill="#112c28"/></svg></div><div class="float one">事件确认 <strong>→ 升级祝贺</strong></div><div class="float two">战斗中 <strong>· 安静陪伴</strong></div><div class="float three">新区域 <strong>· 新旅程</strong></div><div class="kicker">功能示意 · 非实时游戏状态</div></div></div>
 <div class="ribbon"><div><strong>事件驱动</strong><span>升级 / 区域 / 生死 / 战斗</span></div><div><strong>1 秒心跳</strong><span>识别画面是否仍在更新</span></div><div><strong>5 秒过期</strong><span>停止把旧画面当作实时状态</span></div><div><strong>独立提醒规则</strong><span>静音 / 冷却 / 战斗免打扰</span></div></div>
 
 <p class="note"><strong>接下来做什么：</strong><a href="#user-tasks">查看需要你协助完成的步骤</a>：游戏端启用、画面校准、模型与声音配置、演示和实机验收。每一步都附有成功标志和排错方法。</p><section id="overview"><div class="section-title"><small>01 / OVERVIEW</small><h2>三部分，形成陪伴闭环</h2></div><div class="cards"><article class="card"><span class="label">IN GAME · LUA</span><h3>插件端：采集事实</h3><p>保留地图面板，显示角色与等级。游戏事件更新快照，黑白编码区持续显示最新数据。</p><ul><li>使用当前角色所在地图，浏览世界地图不会改变来源。</li><li>升级事件直接使用新等级参数。</li><li>设置和最后快照由 SavedVariables 保留。</li></ul></article><article class="card"><span class="label">LOCAL · PYTHON</span><h3>本机桥接：确认变化</h3><p>只捕获配置区域，解码并校验 WCP1 数据。建立角色基线，再生成有限的陪伴事件。</p><ul><li>检查帧头、长度、CRC、UTF-8 与字段。</li><li>识别停更画面、重载、角色切换和重连。</li><li>校准页面与明确标记的演示模式。</li></ul></article><article class="card"><span class="label">DESKTOP · AIRI</span><h3>桌面端：选择回应时机</h3><p>后台连接桥接服务，将当前状态加入对话上下文。提醒通过 AIRI 原有角色流程处理。</p><ul><li>设置页面显示连接、角色信息和事件。</li><li>按静音、战斗状态与冷却决定是否提醒。</li><li>沿用已有模型、语音和形象配置。</li></ul></article></div></section>
@@ -25,7 +25,7 @@
 <tr data-side="addon"><td>升级与状态事件</td><td><span class="tag">插件 · 已实现</span></td><td>监听升级、区域、专精、进出战斗、死亡复活、进入和离开世界。业务变化递增序号。</td><td>升级读取事件参数，避免读取到暂时未刷新的旧等级。</td></tr>
 <tr data-side="addon"><td>实时画面遥测</td><td><span class="tag">插件 · 已实现</span></td><td>JSON → UTF-8 → 长度/CRC → 64×64 黑白位网格。默认占 128×128 物理像素，可缩至 64×64。按物理屏幕高度换算，心跳修复晚期 UI 缩放变化，颜色更新后恢复 NDui 等插件关闭的像素吸附。</td><td>编码区必须可见，最终桌面画面不能被额外拉伸。它是单向状态传输，无法确认外部是否收到。</td></tr>
 <tr data-side="addon"><td>心跳和传输校验</td><td><span class="tag">插件 · 已实现</span></td><td>每秒更新心跳。只有变化的纹理位才重绘。限制负载大小，并在 UTF-8 边界裁剪文本。</td><td>传递最新状态快照，不保证捕获间隔内每个短暂事件都能重放。</td></tr>
-<tr data-side="addon"><td>控制命令与保存</td><td><span class="tag">插件 · 已实现</span></td><td><code>/wowc</code> 管理面板、遥测、位置、格子大小、自检和重置。SavedVariables 保留设置与最近快照。</td><td>SavedVariables 等游戏保存时才落盘，不是实时通道。</td></tr>
+<tr data-side="addon"><td>控制命令与保存</td><td><span class="tag">插件 · 已实现</span></td><td><code>/wowc</code> 管理面板、遥测、位置、格子大小、自检和重置。SavedVariables 保留设置、最近快照、账号标识和各角色金币累计计数。</td><td>SavedVariables 等游戏保存时才落盘，不是实时通道。</td></tr>
 <tr data-side="desktop"><td>Windows 截图与解码</td><td><span class="tag desktop">桥接 · 已实现</span></td><td>GDI 读取指定小区域，按每格中心像素还原位串，再验证长度、CRC 与 JSON 字段。</td><td>校准屏幕坐标。窗口偏移、遮挡、HDR 与缩放需要实机核对。</td></tr>
 <tr data-side="desktop"><td>连接状态与基线</td><td><span class="tag desktop">桥接 · 已实现</span></td><td>首帧只建立基线。角色或会话变化、过期恢复、暂停恢复时重建基线。相同心跳超过 5 秒标记过期。</td><td>旧状态保留供核对，但不能作为实时数据触发通知。</td></tr>
 <tr data-side="desktop"><td>陪伴事件生成</td><td><span class="tag desktop">桥接 · 已实现</span></td><td>比较连续有效快照，生成升级、区域、死亡、复活、战斗开始/结束及上下线事件。</td><td>去重并限制最近事件数量。初次连接不误报升级。</td></tr>
@@ -33,11 +33,17 @@
 <tr data-side="desktop"><td>游戏上下文与主动陪伴</td><td><span class="tag desktop">AIRI · 本次新增</span></td><td>当前角色信息进入对话上下文。确认的升级、区域或生死事件经提醒策略后进入角色回应流程。</td><td>模型需已在 AIRI 中配置。回应内容与完成时间由模型决定。</td></tr>
 <tr data-side="desktop"><td>免打扰与提醒偏好</td><td><span class="tag desktop">AIRI · 本次新增</span></td><td>设置开启陪伴、静音、战斗免打扰、提醒冷却和各类事件开关。丢弃过时通知，避免积压补播。</td><td>规则控制主动游戏提醒，不替代 AIRI 的全局音频设置。</td></tr>
 <tr data-side="desktop"><td>校准、演示与事件记录</td><td><span class="tag desktop">桌面 · 本次新增</span></td><td>查看角色快照、连接错误与事件，设置采集位置/大小。演示可触发升级等事件。</td><td>演示明确标记。默认不向角色发送演示提醒，需主动允许。</td></tr>
-<tr data-side="desktop"><td>聊天、语音与动态形象</td><td><span class="tag built-in">AIRI · 原有能力复用</span></td><td>继续使用 AIRI 原有聊天窗口、模型提供方、语音输入/输出与角色形象。新增游戏信息参与上下文。</td><td>首次启动尚未配置模型。本次没有新建 API Key；需在 AIRI 中完成模型与声音设置。</td></tr>
+<tr data-side="desktop"><td>聊天、语音与动态形象</td><td><span class="tag built-in">AIRI · 原有能力复用</span></td><td>继续使用 AIRI 原有聊天窗口、模型提供方、语音输入/输出与角色形象。新增游戏信息参与上下文。</td><td>沿用你在 AIRI 中配置的模型和声音。金币采集与统计不需要调用模型。</td></tr>
+<tr data-side="addon"><td>金币余额与累计收支</td><td><span class="tag">插件 · 2.1 新增</span></td><td>监听 PLAYER_MONEY，读取 GetMoney() 的整数铜币。首次余额只建基线，后续增加与减少分别累计；同一账号保存独立标识，每个角色保留自己的计数。</td><td>两次采集之间先赚后花也会分别保留。重载后沿用计数；无法补回插件未运行时的交易。</td></tr>
+<tr data-side="desktop"><td>按账号汇总金币</td><td><span class="tag desktop">AIRI · 2.1 新增</span></td><td>按账号标识和角色 GUID 归组，显示累计流入、累计流出、净变化、已知角色余额合计及各角色明细。账号可设置备注名。</td><td>账号按本机 SavedVariables 区分，不读取战网账号。余额是已登录角色的最近记录，非全账号同时查询。</td></tr>
+<tr data-side="desktop"><td>金币账本持久化与去重</td><td><span class="tag desktop">AIRI · 2.1 新增</span></td><td>主进程保存账本，按累计计数差额入账。重复帧、重载与桥接重启不会重复累计。用整数铜币计算，保存时原子替换文件。</td><td>演示、过期或异常快照不入账。坏文件保留并报错；保存失败显示错误。邮件、交易、银行存取都体现为角色钱包流动。</td></tr>
 </tbody></table></div><p class="caption" id="count" aria-live="polite">显示全部功能</p></section>
 
 <section id="logic"><div class="section-title"><small>03 / DATA FLOW</small><h2>一次升级，如何抵达精灵</h2></div><div class="flow"><article><span class="step-no">01</span><h3>游戏确认升级</h3><p><code>PLAYER_LEVEL_UP(30)</code><br>插件更新 level 与 seq，生成带校验的新快照。</p></article><article><span class="step-no">02</span><h3>桌面读到新帧</h3><p>截图解码通过后，将 29 → 30 识别为一条 <code>level_up</code> 事件。</p></article><article><span class="step-no">03</span><h3>AIRI 判断时机</h3><p>检查角色会话、重复事件、时效、静音、战斗与冷却设置。</p></article><article><span class="step-no">04</span><h3>角色作出回应</h3><p>把确认的升级事实交给 AIRI 角色，使用已配置的模型与语音表达祝贺。</p></article></div><div class="note"><strong>本机内存与传输：</strong>WoW Lua 无法直接写入供外部软件访问的共享内存。本版由插件显示编码网格，Python 解码后将状态保存在本机内存，通过本机 HTTP 交给 AIRI。<br><strong>传输与 AI 分工：</strong>等级判断、校验和去重由代码完成。无需让视觉大模型反复识别数字；AI 负责收到事实后的表达。</div><div class="two-col"><div><h3>线上快照的简化示例</h3><pre class="code">{
-  "session": "本次登录会话",
+  "v": 2, "session": "本次登录会话",
+  "account": "local-account-example",
+  "moneyEpoch": "character-segment-example",
+  "copper": 12345, "earned": 1000, "spent": 250,
   "seq": 12, "tick": 86,
   "name": "示例角色", "level": 30,
   "class": "MAGE", "spec": 64,
@@ -46,7 +52,9 @@
   "online": true
 }</pre><p>这是说明用数据，完整字段见 <a href="WoWCompanion-PROTOCOL.md">WCP1 协议文档</a>。</p></div><div><h3>几个重要的状态处理</h3><ul><li><strong>第一次连接：</strong>记录当前等级，不把已有等级当作刚刚升级。</li><li><strong>画面停更：</strong>超过 5 秒无新心跳，状态过期，不产生新的陪伴提醒。</li><li><strong>重载或换角色：</strong>更换基线，避免跨角色比较等级。</li><li><strong>战斗期间：</strong>继续更新信息，按免打扰设置控制主动回应。</li><li><strong>退出演示：</strong>清空演示基线，等待真实网格。</li><li><strong>桥接重启：</strong>用服务实例标识重置事件游标，不重播旧记录。</li></ul></div></div></section>
 
-<section id="setup"><div class="section-title"><small>04 / GET STARTED</small><h2>从安装到第一次回应</h2></div><div class="two-col"><article class="card"><span class="label">STEP A · 游戏端</span><h3>启用插件和遥测</h3><ol><li>本机已部署到 <code>I:\Game\World of Warcraft\_retail_\Interface\AddOns</code>，5 个文件的 SHA256 与源代码一致。重新安装可运行 <code>Install-WoWCompanion.ps1</code>；脚本会先备份旧版。</li><li>首次增加 SavedVariables 声明后，完整重启 WoW。启用“魔兽陪伴精灵 / AIRI 桥接”。</li><li>进入角色，确认顶部面板和左上角黑白网格出现。</li><li>输入 <code>/wowc selftest</code> 检查编码，再用 <code>/wowc status</code> 查看位置和大小。</li></ol></article><article class="card"><span class="label">STEP B · 桌面端</span><h3>连接 AIRI 陪伴模块</h3><ol><li>运行 <code>Start-WoWCompanion.cmd</code>，启动本机桥接和二开后的 AIRI 源码版。</li><li>在 AIRI 设置中打开“魔兽陪伴精灵”，开启连接。</li><li>对齐采集坐标与网格。默认主屏无边框游戏为 X=8、Y=8、每格 2 像素。</li><li>确认显示真实角色信息。配置 AIRI 的模型和语音后，按需开启主动提醒。</li></ol></article></div><div class="note"><strong>先验证连接：</strong>可打开 <a href="http://127.0.0.1:18765/">本机桥接校准页</a> 查看状态和截图。这里不依赖 AI，也不消耗模型调用。开启演示时不会自动冒充真实游戏。</div><details><summary>查看源码安装与启动命令</summary><pre class="code"># 工作区内运行（安装脚本先备份旧版）
+<section id="gold"><div class="section-title"><small>03B / GOLD LEDGER</small><h2>账号金币怎样统计</h2></div><p class="intro">以铜币为最小单位：1 金 = 100 银 = 10,000 铜。界面显示金、银、铜，不使用浮点小数累计。</p><div class="two-col"><article class="card"><h3>先赚后花，分别入账</h3><p>插件首次读取已有 100 金，只显示为余额。之后获得 3 金、花掉 2 金，即使两次变化都发生在一次桌面采集之前，累计流入仍是 3 金，流出是 2 金，净变化是 +1 金。</p><p>插件保留累计数，AIRI 只加入尚未记过的差额。AIRI 首次连接会导入插件已有累计收支。关闭 AIRI 后继续游玩，只要插件仍在采集且计数未丢失，下次连接会补上这段累计变化。</p></article><article class="card"><h3>账号与余额的范围</h3><p>同一账号 SavedVariables 下的角色会归为一组。你可以把自动标识改备注为“主账号”“小号账号”。这个功能不读取战网邮箱、密码或登录信息。</p><p>已知余额合计只包含本机观察过的角色，取各自最后一次余额。未登录角色、战团银行和公会银行的余额不在其中。</p></article></div><div class="note"><strong>理解收入与消耗：</strong>统计的是角色钱包流入和流出，包含邮件、交易、修理、购买和银行存取。自己的角色之间转账会分别出现流出和流入；它们不等于纯收益或物品购买分类。此次不按日拆分，也不推断交易原因。<br><strong>保留数据：</strong>不要删除插件 SavedVariables 或 AIRI 本地账本。清空插件保存文件会产生新的账号标识；把该文件复制给不同账号会复制标识。游戏异常退出前尚未保存的变化，以及插件未运行时的变化，无法完整追回。若恢复旧 SavedVariables 导致同一计数段的累计数回退，桌面会拒绝该角色的回退记录，直到收入和支出都追上已保存数值；此时账号汇总的最近采集时间不会更新，也不会自动补账。</div></section>
+
+<section id="setup"><div class="section-title"><small>04 / GET STARTED</small><h2>从安装到第一次回应</h2></div><div class="two-col"><article class="card"><span class="label">STEP A · 游戏端</span><h3>启用插件和遥测</h3><ol><li>本机已部署到 <code>I:\Game\World of Warcraft\_retail_\Interface\AddOns</code>，插件文件已与源代码核对。重新安装可运行 <code>Install-WoWCompanion.ps1</code>；脚本会先备份旧版。</li><li>本次新增 Money.lua，完整重启 WoW 以加载插件文件列表。启用“魔兽陪伴精灵 / AIRI 桥接”。</li><li>进入角色，确认顶部面板和左上角黑白网格出现。</li><li>输入 <code>/wowc selftest</code> 检查编码，再用 <code>/wowc status</code> 查看位置和大小。</li></ol></article><article class="card"><span class="label">STEP B · 桌面端</span><h3>连接 AIRI 陪伴模块</h3><ol><li>运行 <code>Start-WoWCompanion.cmd</code>，启动本机桥接和二开后的 AIRI 源码版。</li><li>在 AIRI 设置中打开“魔兽陪伴精灵”，开启连接。</li><li>对齐采集坐标与网格。默认主屏无边框游戏为 X=8、Y=8、每格 2 像素。</li><li>确认显示真实角色信息。配置 AIRI 的模型和语音后，按需开启主动提醒。</li></ol></article></div><div class="note"><strong>先验证连接：</strong>可打开 <a href="http://127.0.0.1:18765/">本机桥接校准页</a> 查看状态和截图。这里不依赖 AI，也不消耗模型调用。开启演示时不会自动冒充真实游戏。</div><details><summary>查看源码安装与启动命令</summary><pre class="code"># 工作区内运行（安装脚本先备份旧版）
 .\Install-WoWCompanion.ps1
 .\Start-WoWCompanion.ps1
 
@@ -71,19 +79,19 @@ I:\GameTools\WOWAddons\WoWCompanionBridge\stop.ps1</pre></details></section>
 <section id="user-tasks">
 <div class="section-title"><small>05 / YOUR CHECKLIST</small><h2>需要你协助完成的工作</h2></div>
 <p class="intro">代码、依赖、桌面构建和插件安装已经完成。接下来需要你操作自己的游戏会话、选择可用的 AI 服务，并确认实际画面和声音。以下步骤是待你完成的配置与验收，不计入已完成的自动测试结果。</p>
-<div class="note"><strong>按目标选择：</strong>只看角色数据，先完成第 1～3 步即可，不需要 AI 账号。需要文字陪伴，再完成第 4 步；需要角色说话，再完成第 5 步的发声配置。麦克风输入是可选项。最后用第 6～7 步确认整条链路。</div>
-<nav class="task-links" aria-label="协助步骤导航"><a href="#task-start">1 启动</a><a href="#task-game">2 游戏插件</a><a href="#task-capture">3 画面校准</a><a href="#task-model">4 对话模型</a><a href="#task-voice">5 声音与麦克风</a><a href="#task-demo">6 演示验收</a><a href="#task-live">7 真实游戏验收</a><a href="#task-help">排错与反馈</a></nav>
+<div class="note"><strong>按目标选择：</strong>只看角色数据，先完成第 1～3 步即可，不需要 AI 账号。需要文字陪伴，再完成第 4 步；需要角色说话，再完成第 5 步的发声配置。麦克风输入是可选项。最后用第 6～7 步确认陪伴链路，用第 8 步核对金币汇总。金币统计不需要模型或语音服务。</div>
+<nav class="task-links" aria-label="协助步骤导航"><a href="#task-start">1 启动</a><a href="#task-game">2 游戏插件</a><a href="#task-capture">3 画面校准</a><a href="#task-model">4 对话模型</a><a href="#task-voice">5 声音与麦克风</a><a href="#task-demo">6 演示验收</a><a href="#task-live">7 真实游戏验收</a><a href="#task-gold">8 金币汇总</a><a href="#task-help">排错与反馈</a></nav>
 <div class="task-list">
 
 <article class="task" id="task-start"><span class="task-label">01 · 必做 · 先确认程序能启动</span><h3>启动这次二开的 AIRI 与本机桥接</h3>
 <ol><li>打开文件夹 <code>I:\GameTools\WOWAddons</code>，双击 <strong>Start-WoWCompanion.cmd</strong>。当前电脑已经完成源码下载、依赖安装和构建，正常使用不必重新运行安装命令。</li>
-<li>若 AIRI 已经在运行，可直接使用现有窗口。启动脚本提示 <code>already running</code> 属于正常情况。日志写入 <code>I:\GameTools\WOWAddons\logs</code>。</li>
+<li>日常使用时，若 AIRI 已经运行可使用现有窗口；本次升级后，请先正常退出旧 AIRI，再运行启动脚本。脚本提示 <code>already running</code> 时不会自动替换旧进程。日志写入 <code>I:\GameTools\WOWAddons\logs</code>。</li>
 <li>打开浏览器访问 <a href="http://127.0.0.1:18765/">http://127.0.0.1:18765/ 本机桥接页</a>。没进入游戏时出现“等待游戏”正常；网页完全打不开则先处理启动问题。</li>
 <li>在 AIRI 角色右侧点击展开箭头，再点击齿轮“打开设置”，进入 <strong>魔兽陪伴精灵</strong>。保留角色主窗口运行；设置窗口可以关闭。若出现首次欢迎页，需要配置模型时再按第 4 步操作。</li></ol>
 <p class="done">成功标志：AIRI 角色窗口可见，本机桥接网页可打开，AIRI 设置里存在“魔兽陪伴精灵”。此时没有角色数据也可以继续。</p></article>
 
 <article class="task" id="task-game"><span class="task-label">02 · 必做 · 需要你登录正式服角色</span><h3>启用插件，并确认黑白网格正在更新</h3>
-<ol><li>完整退出并重新启动魔兽世界正式服。本次增加了 SavedVariables 声明，首次使用建议完整重启客户端。</li>
+<ol><li>完整退出并重新启动魔兽世界正式服。本次新增 Money.lua，并在已有 SavedVariables 中增加金币数据，更新后完整重启客户端。</li>
 <li>在插件列表勾选 <strong>魔兽陪伴精灵 / AIRI 桥接</strong>（英文名 <code>WoW Companion / AIRI Bridge</code>）。安装位置是 <code>I:\Game\World of Warcraft\_retail_\Interface\AddOns\WoWMapCompanion</code>，无需再次复制文件。</li>
 <li>登录角色，确认顶部角色/地图面板与左上角黑白方格出现。在聊天框依次输入下方两条命令，每条输入后按回车。</li></ol>
 <pre class="code">/wowc selftest
@@ -143,6 +151,18 @@ I:\GameTools\WOWAddons\WoWCompanionBridge\stop.ps1</pre></details></section>
 <div class="task-checks" role="group" aria-label="用户实机验收勾选"><label><input type="checkbox">真实角色与地图一致，持续在线</label><label><input type="checkbox">普通文字聊天与游戏上下文正确</label><label><input type="checkbox">语音输出可听见（如需语音）</label><label><input type="checkbox">真实升级只记录一次（满级可待测）</label><label><input type="checkbox">静音、战斗免打扰符合预期</label><label><input type="checkbox">断流显示过期，恢复不补播旧事件</label></div>
 <p class="caption">勾选用于你本次阅读时记录进度，不会自动上传，也不保证刷新页面后保留。未实际完成的项目请保持未勾选。</p></article>
 
+<article class="task" id="task-gold"><span class="task-label">08 · 新增 · 在正常游玩时核对</span><h3>查看每个账号的金币获取与消耗</h3>
+<ol><li><strong>启用新版：</strong>插件、桥接和 AIRI 必须一起更新到本次版本。游戏输入 <code>/reload</code>；若新增文件未加载，完整退出再启动游戏。退出旧 AIRI，再双击 <code>Start-WoWCompanion.cmd</code>。启动脚本不会替换已经运行的旧 AIRI 进程。</li>
+<li><strong>查看首个账号：</strong>打开 AIRI“设置 → 魔兽陪伴精灵”，保持真实采集在线。找到金币汇总，核对当前角色余额与游戏背包的金、银、铜一致。刚开始记录时，原有金币不会成为收入。</li>
+<li><strong>设置账号备注：</strong>在账号卡片填写易辨认的名字，例如“主账号”，点击保存。备注只改变显示名称，不改变游戏账号或角色。</li>
+<li><strong>自然发生收支时核对：</strong>记录页面当前累计数。在正常游玩获得金币后核对流入增量，正常修理或消费后核对流出增量。净变化应等于流入减流出。无需为了验收专门花钱或转账。</li>
+<li><strong>汇总更多角色和账号：</strong>依次登录你希望纳入统计的角色，保持网格可见并等待实时连接。同账号的角色出现在同一组；其他账号分别建组。未登录过的角色不会自动出现。</li>
+<li><strong>核对持久化：</strong>记下累计数，游戏输入 <code>/reload</code>，再正常退出并启动 AIRI。没有发生新收支时，累计数应保持一致。演示模式不会加入金币账本，离线时仍可查看历史汇总。</li>
+<li><strong>备份与排错：</strong>先正常退出 WoW 和 AIRI，再备份游戏 <code>_retail_\WTF\Account\你的账号目录\SavedVariables\WoWMapCompanion.lua</code> 与 AIRI 用户数据目录中的金币账本。若页面显示账本读取或保存错误，先保留原文件和错误信息，不要清空重建。文件名为 <code>wow-companion-gold-v1.json</code>，位于 AIRI 用户数据根目录。本机源码版路径为 <code>C:\Users\10413\AppData\Roaming\@proj-airi\stage-tamagotchi\wow-companion-gold-v1.json</code>。使用其他安装版或自定义数据目录时，以实际目录为准；勿把整个用户目录中的模型配置上传。</li></ol>
+<p class="done">成功标志：余额一致，收入和支出分别增加，重载不重复，同账号多角色归组，重新打开 AIRI 后统计和账号备注仍在。</p><p class="caption">计数起点是插件开始观察金币变化的时间。历史财富、插件停用期间的交易和未保存的崩溃前变化不会自动补齐。</p></article>
+
+
+
 <article class="task" id="task-help"><span class="task-label">排错 · 卡在哪一步，就反馈那一步</span><h3>出现问题时，按现象缩小范围</h3>
 <div class="table-wrap"><table class="troubleshooting"><caption class="sr-only">协助验收常见问题</caption><thead><tr><th>看到的现象</th><th>先做什么</th><th>仍不成功时提供</th></tr></thead><tbody>
 <tr><td>本机网页打不开 / 桥接服务未连接</td><td>双击一键启动；查看启动窗口是否有错误，以及 <code>WoWCompanionBridge/bridge.stderr.log</code>。</td><td>启动报错和桥接日志末尾相关内容。</td></tr>
@@ -168,15 +188,15 @@ I:\GameTools\WOWAddons\WoWCompanionBridge\stop.ps1</pre></details></section>
 </div></section>
 
 <section id="checks"><div class="section-title"><small>06 / VALIDATION</small><h2>验证结果与实际边界</h2></div><p class="intro">自动化检查覆盖实现逻辑，本机已完成真实画面采集与角色状态读取。真实升级、死亡及已配置模型的语音回应仍需分别验收，其他显示器和缩放组合需重新校准。</p><div class="checklist">
-<article class="check ok"><span class="status">已通过</span><strong>插件 Lua 5.1 测试</strong><p id="lua-result">13 项：真实 Lua 编码、事件参数、心跳、受限值过滤、UTF-8、设置与专精接口，以及物理像素换算、晚期 UI 缩放修复、NDui 纹理吸附恢复。</p></article>
-<article class="check ok"><span class="status">已通过</span><strong>桥接与协议测试</strong><p id="bridge-result">31 项通过，包含真实 Lua 升级事件 → 编码 → 像素 → Python 解码 → 唯一升级事件的跨语言测试。</p></article>
-<article class="check ok"><span class="status" id="airi-check-status">已通过</span><strong>AIRI 提醒策略、类型与构建</strong><p id="airi-result">15 项测试通过：提醒策略、真实 Python HTTP 合约与 HTTP 并发顺序。桌面 typecheck 和生产构建通过。全仓 lint：0 错误，671 条原有警告。</p></article>
-<article class="check ok"><span class="status">已验证</span><strong>Windows 本机采集与服务</strong><p id="capture-result">重新应用原生分辨率的全屏（窗口化）并 /reload 后，64×64 网格实测成功：每隔 500ms 采样，共 20/20 次 live、0 错误，心跳 41→50；BMP 精确为 64×64，标准 CRC 解码得到真实等级 90、银月城。采集配置为 X=8、Y=32、每格 1 像素。此前已在 AIRI 窗口验证设置入口、演示 29→30 升级、死亡事件与退出演示。</p></article>
-<article class="check"><span class="status">待实机验收</span><strong>真实升级、死亡与区域事件</strong><p>当前角色与地图的真实采集已通过。仍需在正常游玩中确认真实升级仅记录一次，以及死亡、复活和跨地图事件；本机画面验证不等于这些事件全部通过。</p></article>
-<article class="check"><span class="status">依赖 AIRI 配置</span><strong>模型、语音与形象效果</strong><p>已启动 AIRI 并显示动态角色；模型和语音尚未配置，实际 AI 文本/语音回应未验收。本轮未调用付费模型。</p></article>
-</div><p class="caption">全仓检查说明：pnpm typecheck 已尝试，但非桌面场景包缺少 vue-tsc，未完成全仓类型检查。本次安装聚焦桌面依赖，桌面独立类型检查通过；完整仓库检查不标为通过。</p><div class="note"><strong>本轮范围：</strong>角色/地图、升级祝贺、死亡鼓励、聊天语音接入、免打扰和事件记录。任务攻略、装备比较、长期冒险日记与自动操作不属于此次已实现功能。</div></section>
+<article class="check ok"><span class="status">已通过</span><strong>插件 Lua 5.1 测试</strong><p id="lua-result">20 项通过：真实 Lua 编码、金币基线、快速收支、重载/角色切换、受限值、整数溢出、UTF-8，以及原有事件与物理像素回归。</p></article>
+<article class="check ok"><span class="status">已通过</span><strong>桥接与协议测试</strong><p id="bridge-result">32 项通过：v2 严格校验、真实 Lua → 像素 → Python 跨语言读取，同时保留采样间隔内的 50,000 铜收入与 30,000 铜支出，另含升级、HTTP 和状态回归。</p></article>
+<article class="check ok"><span class="status" id="airi-check-status">已通过</span><strong>AIRI 提醒策略、类型与构建</strong><p id="airi-result">43 项测试通过：金币账本/协议 17、客户端 4、真实 Python HTTP 1、退出生命周期 2、提醒策略 11、Chromium 界面 8。最终桌面 typecheck 通过；本轮生产构建通过，全仓 lint 0 错误、671 条原有警告。</p></article>
+<article class="check ok"><span class="status">已验证</span><strong>Windows 本机采集与服务</strong><p id="capture-result">此前 2.0 版本重新应用原生分辨率的全屏（窗口化）并 /reload 后，64×64 网格实测成功：每隔 500ms 采样，共 20/20 次 live、0 错误，心跳 41→50；BMP 精确为 64×64，标准 CRC 解码得到真实等级 90、银月城。采集配置为 X=8、Y=32、每格 1 像素。此前已在 AIRI 窗口验证设置入口、演示 29→30 升级、死亡事件与退出演示。</p></article>
+<article class="check"><span class="status">待实机验收</span><strong>真实金币收支、升级与生死事件</strong><p>当前游戏未运行。新增金币功能已通过模拟 API、跨语言和界面测试，仍需下次登录后核对真实余额与自然收支、跨角色账号归组。升级、死亡与复活也继续按第 7 步验收。</p></article>
+<article class="check"><span class="status">依赖 AIRI 配置</span><strong>模型、语音与形象效果</strong><p>已启动 AIRI 并显示动态角色；模型和语音沿用现有配置，实际 AI 文本/语音回应仍需按上面的步骤验收。本轮未调用付费模型。</p></article>
+</div><p class="caption">全仓检查说明：pnpm typecheck 已尝试，但非桌面场景包缺少 vue-tsc，未完成全仓类型检查。本次安装聚焦桌面依赖，桌面独立类型检查通过；完整仓库检查不标为通过。</p><div class="note"><strong>本轮范围：</strong>角色/地图、升级祝贺、死亡鼓励、聊天语音接入、免打扰、事件记录和账号金币收支汇总。任务攻略、装备比较、长期冒险日记与自动操作不属于此次已实现功能。</div></section>
 
-<section id="files"><div class="section-title"><small>07 / DELIVERABLES</small><h2>代码与交付文件</h2></div><div class="files"><article class="file"><a href="WoWMapCompanion/README.md">WoWMapCompanion/</a><p>插件 2.0 源码、安装说明、命令、Lua 测试。</p></article><article class="file"><a href="WoWCompanionBridge/README.md">WoWCompanionBridge/</a><p>本机采集服务、校准页、启动/停止脚本、测试；最近 200 条事件保存在内存，重启清空。</p></article><article class="file"><a href="../airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion.vue">I:\GameTools\airi</a><p>在用户下载的 AIRI 源码上直接实现。设置路由：/settings/wow-companion。</p></article><article class="file"><a href="WoWCompanion-PROTOCOL.md">WoWCompanion-PROTOCOL.md</a><p>字节布局、心跳规则、快照、HTTP 边界和采集条件。</p></article><article class="file"><a href="Install-WoWCompanion.ps1">Install-WoWCompanion.ps1</a><p>部署正式服插件，保存已有版本的本机备份。</p></article><article class="file"><a href="Start-WoWCompanion.cmd">Start-WoWCompanion.cmd</a><p>一键启动桥接与已构建的 AIRI 桌面版；运行日志在 logs/。开发模式可使用 -Dev。</p></article></div><p class="caption">插件旧版备份：<code>backups/WoWMapCompanion-20261022-003701-131/</code>。<a href="WoWMapCompanion-2.0.0.zip">下载插件 ZIP</a> · <a href="WoWCompanion-2.0.0-source.zip">完整二开源代码包</a>（不含 AIRI 上游全仓和依赖）。</p><p class="caption">AIRI 源码基线：<code>747d4f68aa42180671de3071fb78d5e6129433bd</code>。本页完全离线，无外部字体或脚本。<a href="https://github.com/moeru-ai/airi">AIRI 上游项目 ↗</a></p></section>
+<section id="files"><div class="section-title"><small>07 / DELIVERABLES</small><h2>代码与交付文件</h2></div><div class="files"><article class="file"><a href="WoWMapCompanion/README.md">WoWMapCompanion/</a><p>插件 2.1 源码、安装说明、命令、Lua 测试。</p></article><article class="file"><a href="WoWCompanionBridge/README.md">WoWCompanionBridge/</a><p>本机采集服务、校准页、启动/停止脚本、测试；最近 200 条事件保存在内存，重启清空。</p></article><article class="file"><a href="../airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion.vue">I:\GameTools\airi</a><p>在用户下载的 AIRI 源码上直接实现。设置路由：/settings/wow-companion。</p></article><article class="file"><a href="WoWCompanion-PROTOCOL.md">WoWCompanion-PROTOCOL.md</a><p>字节布局、心跳规则、快照、HTTP 边界和采集条件。</p></article><article class="file"><a href="Install-WoWCompanion.ps1">Install-WoWCompanion.ps1</a><p>部署正式服插件，保存已有版本的本机备份。</p></article><article class="file"><a href="Start-WoWCompanion.cmd">Start-WoWCompanion.cmd</a><p>一键启动桥接与已构建的 AIRI 桌面版；运行日志在 logs/。开发模式可使用 -Dev。</p></article></div><p class="caption">本轮更新前备份：<code>backups/WoWMapCompanion-20261022-115236-871/</code>。<a href="WoWMapCompanion-2.1.0.zip">下载插件 ZIP</a> · <a href="WoWCompanion-2.1.0-source.zip">完整二开源代码包</a>（不含 AIRI 上游全仓和依赖）。</p><p class="caption">AIRI 源码基线：<code>747d4f68aa42180671de3071fb78d5e6129433bd</code>。本页完全离线，无外部字体或脚本。<a href="https://github.com/moeru-ai/airi">AIRI 上游项目 ↗</a></p></section>
 <footer><span>魔兽陪伴精灵 · 实现说明 · 2026.10.22</span><span>游戏事实交给代码，陪伴表达交给角色。</span></footer>
 </main>
 <script>

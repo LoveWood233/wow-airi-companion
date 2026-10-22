@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 AIRI = ROOT.parent / "airi"
-DESTINATION = ROOT / "WoWCompanion-2.0.0-source.zip"
+DESTINATION = ROOT / "WoWCompanion-2.1.0-source.zip"
 BASELINE = "747d4f68aa42180671de3071fb78d5e6129433bd"
 
 
@@ -24,7 +24,7 @@ def main() -> None:
     for name in (
         "wow-companion-implementation.html", "WoWCompanion-PROTOCOL.md",
         "Start-WoWCompanion.cmd", "Start-WoWCompanion.ps1",
-        "Install-WoWCompanion.ps1", "build-delivery.py", "WoWMapCompanion-2.0.0.zip",
+        "Install-WoWCompanion.ps1", "build-delivery.py", "WoWMapCompanion-2.1.0.zip",
     ):
         entries[f"WOWAddons/{name}"] = ROOT / name
     for folder in ("WoWMapCompanion", "WoWCompanionBridge"):
@@ -49,7 +49,7 @@ def main() -> None:
             entries[f"airi/{name}"] = AIRI / name
     manifest = {
         "name": "WoW Companion",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "airiBaseline": BASELINE,
         "airiPackageVersion": "0.12.0-beta.5",
         "instructions": "AIRI entries are changed/new files only. Overlay them onto the specified AIRI baseline, then install dependencies and build as described in WOWAddons/wow-companion-implementation.html. Keep the airi and WOWAddons folders side by side. No model credentials, dependencies, compiled application, or user data are included.",

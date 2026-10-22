@@ -3,7 +3,7 @@
 local _, ns = ...
 local Protocol = {}
 ns.Protocol = Protocol
-local keys = { "v", "session", "seq", "tick", "guid", "name", "realm", "level", "class", "spec", "map", "zone", "combat", "dead", "online" }
+local keys = { "v", "session", "seq", "tick", "guid", "name", "realm", "level", "class", "spec", "map", "zone", "combat", "dead", "online", "account", "moneyEpoch", "copper", "earned", "spent" }
 local limits = { session = 40, guid = 48, name = 48, realm = 48, class = 20, zone = 96 }
 
 local function Public(value)
@@ -76,7 +76,8 @@ function Protocol.Encode(snapshot)
         clean[key] = value
     end
     local payload = Protocol.JSON(clean)
-    for _, key in ipairs({ "zone", "realm", "name", "guid", "session", "class" }) do
+    -- Identity and money counters must remain exact. Only display labels can shrink to fit the fixed grid.
+    for _, key in ipairs({ "zone", "realm", "name" }) do
         while #payload > 504 and #clean[key] > 0 do
             clean[key] = Protocol.UTF8Prefix(clean[key], math.max(0, #clean[key] - 8))
             payload = Protocol.JSON(clean)
@@ -96,7 +97,7 @@ end
 function Protocol.SelfTest()
     if Protocol.CRC16("123456789") ~= 10673 then return false, "CRC16 check failed" end
     if Protocol.UTF8Prefix("中文", 4) ~= "中" then return false, "UTF-8 check failed" end
-    local frame = Protocol.Encode({ v = 1, session = "test", seq = 1, tick = 1, guid = "test", name = "测试", realm = "测试", level = 30, class = "MAGE", spec = 64, map = 84, zone = "暴风城", combat = false, dead = false, online = true })
+    local frame = Protocol.Encode({ v = 2, session = "test", seq = 1, tick = 1, guid = "test", name = "测试", realm = "测试", level = 30, class = "MAGE", spec = 64, map = 84, zone = "暴风城", combat = false, dead = false, online = true, account = "test-account", moneyEpoch = "test-epoch", copper = 12345, earned = 0, spent = 0 })
     if not frame or #frame ~= 512 or string.sub(frame, 1, 4) ~= "WCP1" then return false, "frame check failed" end
     return true, "WCP1 / CRC16 / UTF-8"
 end

@@ -1,13 +1,17 @@
 import type { InferOutput } from 'valibot'
 
+import type { GoldState } from './wow-companion-gold'
+
 import { array, boolean, finite, integer, literal, looseObject, maxLength, maxValue, minValue, nullable, number, object, picklist, pipe, string } from 'valibot'
 
-const count = pipe(number(), integer(), minValue(0))
+import { copperSchema, moneyIdSchema } from './wow-companion-gold'
+
+const count = pipe(number(), integer(), minValue(0), maxValue(Number.MAX_SAFE_INTEGER))
 const label = pipe(string(), maxLength(256))
 
 /** Validated observations from the local WCP1 screen decoder. */
 export const snapshotSchema = looseObject({
-  v: literal(1),
+  v: literal(2),
   session: label,
   seq: count,
   tick: count,
@@ -22,6 +26,11 @@ export const snapshotSchema = looseObject({
   combat: boolean(),
   dead: boolean(),
   online: boolean(),
+  account: moneyIdSchema,
+  moneyEpoch: moneyIdSchema,
+  copper: nullable(copperSchema),
+  earned: copperSchema,
+  spent: copperSchema,
 })
 
 export const eventSchema = object({
@@ -92,6 +101,7 @@ export interface CompanionState {
   bridge: BridgeStatus | null
   error: string | null
   updatedAt: number
+  gold: GoldState
 }
 
 export const demoSchema = object({

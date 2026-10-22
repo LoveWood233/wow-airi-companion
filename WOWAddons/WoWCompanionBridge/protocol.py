@@ -10,6 +10,7 @@ import struct
 COLS = ROWS = 64
 FRAME_BYTES = 512
 MAX_PAYLOAD = 504
+MAX_SAFE_INTEGER = 9007199254740991
 
 
 class FrameError(ValueError):
@@ -30,12 +31,25 @@ def validate_snapshot(value: object) -> dict:
         raise FrameError("缺少角色或会话标识")
     if not re.fullmatch(r"[A-Z_]{1,32}", result["class"]):
         raise FrameError("职业标识不合法")
-    ranges = {"v": (1, 1), "seq": (0, 2147483647), "tick": (0, 2147483647),
+    ranges = {"v": (2, 2), "seq": (0, 2147483647), "tick": (0, 2147483647),
               "level": (1, 255), "spec": (0, 65535), "map": (0, 2147483647)}
     for key, (minimum, maximum) in ranges.items():
         item = value.get(key)
         if type(item) is not int or not minimum <= item <= maximum:
             raise FrameError(f"字段 {key} 超出范围")
+        result[key] = item
+    for key in ("account", "moneyEpoch"):
+        item = value.get(key)
+        if not isinstance(item, str) or re.fullmatch(r"[A-Za-z0-9_-]{1,40}", item) is None:
+            raise FrameError(f"字段 {key} 不合法")
+        result[key] = item
+    for key in ("copper", "earned", "spent"):
+        item = value.get(key)
+        if key == "copper" and key in value and item is None:
+            result[key] = None
+            continue
+        if type(item) is not int or not 0 <= item <= MAX_SAFE_INTEGER:
+            raise FrameError(f"字段 {key} 必须是安全的非负整数铜币数")
         result[key] = item
     for key in ("combat", "dead", "online"):
         item = value.get(key)

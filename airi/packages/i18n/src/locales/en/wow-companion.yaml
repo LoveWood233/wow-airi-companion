@@ -65,6 +65,35 @@ actions:
 events: Recent game events
 events-description: These are observations, not delivery receipts. Muted or filtered events remain visible here.
 no-events: No events yet.
+gold:
+  title: Gold ledger
+  description: Track money flows by local addon account. Totals update with the game connection and remain saved on this computer.
+  current-balance: Current character money
+  current-unavailable: Current money is unavailable. Keep a real character online with live capture to read the balance.
+  empty: No real money observations yet. Install the updated addon and bridge, then log in to each character to start the ledger.
+  storage-error: The ledger failed to load or save. These totals are not confirmed on disk. Check the storage error and available disk space.
+  unnamed-account: Local addon account
+  account-id: Account ID
+  account-name: Account label
+  account-name-placeholder: For example, main account
+  account-name-help: Up to 64 characters. Leave blank to remove the label.
+  save-name: Save label
+  character-count: 'Recorded characters: {count}'
+  since: Desktop tracking since
+  earned: Total inflow
+  spent: Total outflow
+  net: Net change
+  balance: Recorded character balances
+  character: Character
+  realm: Realm
+  character-balance: Last balance
+  last-seen: Last observation
+  characters-description: Last known balances and recorded flows for this account.
+  identity-note: Accounts use a local ID saved by the addon. AIRI does not read your login account. Label each ID to identify it.
+  flow-note: Initial balances do not count as inflow. Mail, trades, bank deposits, withdrawals, and transfers between your characters count as money flows.
+  balance-note: Balances cover only observed characters, each at its last observation. They are not all current. Warband bank balances are excluded.
+  demo-note: Demo data stays outside this ledger. Money changes update chat context without proactive voice replies.
+  money: '{sign}{gold}g {silver}s {copper}c'
 status:
   disabled: Companion disabled
   disconnected: Bridge unavailable
