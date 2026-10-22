@@ -1,0 +1,28 @@
+# Runtime dependencies, build output, and caches
+node_modules/
+.deps/
+.cache/
+.turbo/
+__pycache__/
+*.py[cod]
+out/
+dist/
+logs/
+*.log
+*.pid
+backups/
+
+# Local credentials and machine-specific configuration
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+!*.env.example
+!*.env.sample
+!*.env.template
+bridge-config.json
+bridge-config.json.tmp
+
+# Interrupted original download
+AIRI-WoW/

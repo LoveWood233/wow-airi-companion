@@ -1,0 +1,75 @@
+title: 魔兽陪伴精灵
+description: 一起漫游艾泽拉斯。了解角色状态，在重要时刻陪你回应。
+connection: 游戏连接
+last-seen: 最近有效画面
+demo-warning: 当前为演示数据，不代表真实游戏角色。
+model-required: 请在 AIRI 中选择对话服务和模型后启用角色回应。语音沿用现有声音设置。
+start-bridge: 先启动 WoWCompanionBridge，并保持插件的黑白编码区可见。解码服务地址为 127.0.0.1:18765。
+player: 当前角色
+level: 等级
+zone-label: 所在区域
+class-spec: 职业 / 专精编号
+activity: 活动状态
+freshness: 数据状态
+dead: 已死亡
+combat: 战斗中
+exploring: 探索中
+current: 当前有效
+historical: 上次已知状态
+no-character: 尚未读取到角色。请检查桥接服务和屏幕坐标。
+preferences: 陪伴偏好
+preferences-description: 离开此页面后连接仍会继续。仅主角色窗口生成回应，避免多窗口重复播报。
+options:
+  enabled: 开启陪伴
+  muted: 游戏提醒静音
+  quietInCombat: 战斗时免打扰
+  levelUp: 升级时祝贺
+  zone: 进入新区域时回应
+  death: 死亡后安慰
+  revive: 复活后鼓励
+  allowDemo: 允许角色回应演示事件
+hints:
+  enabled: 将当前游戏状态提供给角色的对话上下文。
+  muted: 继续更新上下文，但不主动回应游戏事件。
+  quietInCombat: 保留一个重要事件，战斗结束后回应；超过 30 秒的事件会丢弃。
+  levelUp: 只在同一角色会话内检测等级提高。
+  zone: 地图或区域改变时回应，遵守提醒间隔。
+  death: 用简短温和的话陪伴。
+  revive: 在角色恢复生命时回应。
+  allowDemo: 默认关闭。开启后测试回应会使用已配置的模型和语音。
+cooldown: 两次回应的最小间隔（秒）
+cooldown-description: 可设 0～300 秒。间隔期间只保留一个近期事件。
+capture: 屏幕位置校准
+capture-description: 使用桌面的物理像素坐标，需与插件编码区的位置和单元格尺寸一致。
+capture-x: 编码区左侧 X
+capture-y: 编码区顶部 Y
+cell-size: 单元格大小（像素）
+poll-ms: 采集间隔（毫秒）
+pause-capture: 暂停采集
+capture-help: 在游戏中输入 /wowc status 查看编码区设置。窗口边框或多屏会改变桌面起点；请保持编码区无遮挡。
+save-preferences: 保存陪伴偏好
+save-capture: 应用校准
+saved: 已保存。
+failed: 操作失败。
+demo: 连接演示
+demo-description: 无需登录游戏即可测试。默认不会将演示信息加入角色上下文，需要先明确开启上方开关。
+demo-label: 演示
+start-demo: 开始演示
+stop-demo: 返回真实画面采集
+actions:
+  level_up: 模拟升级
+  zone: 切换区域
+  death: 模拟死亡
+  revive: 模拟复活
+  combat: 切换战斗状态
+events: 最近游戏事件
+events-description: 此处记录观察到的事件，不代表 AI 已完成回应。静音或被规则过滤的事件仍会显示。
+no-events: 暂无事件。
+status:
+  disabled: 陪伴已关闭
+  disconnected: 桥接服务未连接
+  waiting: 等待游戏画面
+  live: 真实角色在线
+  stale: 画面已过期
+  demo: 演示数据
+  paused: 采集已暂停

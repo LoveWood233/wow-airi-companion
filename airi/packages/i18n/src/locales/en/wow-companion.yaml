@@ -1,0 +1,75 @@
+title: WoW Companion
+description: Stay together in Azeroth. Read character status and respond to important moments.
+connection: Game connection
+last-seen: Last observation
+demo-warning: This is simulated data. It does not describe a real character.
+model-required: Select a chat provider and model in AIRI to enable character replies. Speech uses your existing voice settings.
+start-bridge: Start WoWCompanionBridge, then keep the addon's black-and-white grid visible. The decoder listens on 127.0.0.1:18765.
+player: Character
+level: Level
+zone-label: Location
+class-spec: Class / specialization ID
+activity: Activity
+freshness: Observation
+dead: Dead
+combat: In combat
+exploring: Exploring
+current: Current
+historical: Last known state
+no-character: No character observation yet. Check the bridge and capture coordinates.
+preferences: Companion preferences
+preferences-description: The connection continues when you close this page. Only the main character window generates replies.
+options:
+  enabled: Enable companion
+  muted: Mute game reactions
+  quietInCombat: Stay quiet in combat
+  levelUp: Celebrate level increases
+  zone: Comment on new locations
+  death: Offer support after death
+  revive: Welcome resurrection
+  allowDemo: Allow character replies to demo events
+hints:
+  enabled: Keep the current game state available to the character.
+  muted: Continue to update context without proactive game replies.
+  quietInCombat: Hold one important event until combat ends. Discard events after 30 seconds.
+  levelUp: Detect a higher level within the same character session.
+  zone: React to a new map or zone, subject to the cooldown.
+  death: Offer a short, gentle response.
+  revive: React when the character returns to life.
+  allowDemo: Off by default. Test replies use the configured model and voice.
+cooldown: Minimum seconds between reactions
+cooldown-description: From 0 to 300 seconds. Only one recent event waits during the cooldown.
+capture: Screen calibration
+capture-description: Coordinates use physical desktop pixels. Match the addon grid origin and cell size.
+capture-x: Grid left (X)
+capture-y: Grid top (Y)
+cell-size: Cell size in pixels
+poll-ms: Capture interval in milliseconds
+pause-capture: Pause capture
+capture-help: Use /wowc status in WoW. Adjust the desktop origin for window borders or another monitor. Keep the grid unobstructed.
+save-preferences: Save preferences
+save-capture: Apply calibration
+saved: Saved.
+failed: The operation failed.
+demo: Connection test
+demo-description: Test without a game login. Demo events stay outside character context until you explicitly allow them above.
+demo-label: Demo
+start-demo: Start demo
+stop-demo: Return to live capture
+actions:
+  level_up: Simulate level up
+  zone: Change zone
+  death: Simulate death
+  revive: Simulate resurrection
+  combat: Toggle combat
+events: Recent game events
+events-description: These are observations, not delivery receipts. Muted or filtered events remain visible here.
+no-events: No events yet.
+status:
+  disabled: Companion disabled
+  disconnected: Bridge unavailable
+  waiting: Waiting for game
+  live: Live character
+  stale: Capture is stale
+  demo: Demo data
+  paused: Capture paused

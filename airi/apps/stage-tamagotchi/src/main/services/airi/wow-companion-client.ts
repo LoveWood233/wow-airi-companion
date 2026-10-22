@@ -1,0 +1,95 @@
+import type { BridgeStatus } from '../../../shared/wow-companion'
+
+import { errorMessageFrom } from '@moeru/std'
+import { parse } from 'valibot'
+
+import { bridgeSchema } from '../../../shared/wow-companion'
+
+/**
+ * Owns the decoder cache and request ordering.
+ * Writes suspend new reads. A response from an older generation cannot replace newer state.
+ */
+export class CompanionBridgeClient {
+  private bridge: BridgeStatus | null = null
+  private error: string | null = null
+  private updatedAt = 0
+  private generation = 0
+  private mutations = 0
+  private pendingRead = false
+  private stopped = false
+
+  /** The address is fixed in production. Tests use an isolated loopback HTTP server. */
+  constructor(private readonly baseUrl = 'http://127.0.0.1:18765') {}
+
+  read() {
+    return structuredClone({ bridge: this.bridge, error: this.error, updatedAt: this.updatedAt })
+  }
+
+  /** Invalidates both the cached observation and requests started before a settings change. */
+  invalidate() {
+    this.generation++
+    this.bridge = null
+    this.error = null
+  }
+
+  dispose() {
+    this.stopped = true
+    this.invalidate()
+  }
+
+  async refresh() {
+    if (this.stopped || this.pendingRead || this.mutations > 0)
+      return
+    this.pendingRead = true
+    const generation = this.generation
+    try {
+      const bridge = await this.request('/api/status')
+      this.apply(bridge, generation)
+    }
+    catch (error) {
+      if (!this.stopped && generation === this.generation) {
+        this.error = errorMessageFrom(error) ?? 'WoW bridge unavailable'
+        this.bridge = null
+        this.updatedAt = Date.now()
+      }
+    }
+    finally {
+      this.pendingRead = false
+    }
+  }
+
+  /** Applies a calibration or demo command without allowing an older HTTP response to replace its result. */
+  async update(path: '/api/config' | '/api/demo', body: object) {
+    if (this.stopped)
+      throw new Error('WoW bridge client is stopped')
+    const generation = ++this.generation
+    this.mutations++
+    try {
+      this.apply(await this.request(path, body), generation)
+    }
+    finally {
+      this.mutations--
+    }
+  }
+
+  private apply(bridge: BridgeStatus, generation: number) {
+    if (this.stopped || generation !== this.generation)
+      return
+    this.bridge = bridge
+    this.error = null
+    this.updatedAt = Date.now()
+  }
+
+  private async request(path: '/api/status' | '/api/config' | '/api/demo', body?: object) {
+    const response = await fetch(`${this.baseUrl}${path}`, {
+      method: body ? 'POST' : 'GET',
+      headers: body ? { 'Content-Type': 'application/json' } : undefined,
+      body: body ? JSON.stringify(body) : undefined,
+      signal: AbortSignal.timeout(2000),
+      redirect: 'error',
+    })
+    if (!response.ok)
+      throw new Error(`WoW bridge HTTP ${response.status}`)
+    return parse(bridgeSchema, await response.json())
+  }
+}
