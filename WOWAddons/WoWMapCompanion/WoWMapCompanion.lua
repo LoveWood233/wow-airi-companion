@@ -5,7 +5,7 @@ local Public = Protocol.Public
 local state, config, db, ticker, pendingLevel
 local ready, online, combat, dead = false, false, false, false
 local refreshTimers = {}
-local defaults = { panel = true, telemetry = true, x = 8, y = 8, cell = 2 }
+local defaults = { telemetry = true, x = 8, y = 8, cell = 2 }
 local lastBusinessJSON, currentJSON
 
 local function Call(fn, ...)
@@ -32,43 +32,6 @@ end
 
 local function Print(text) print("|cffefd18b[魔兽陪伴精灵]|r " .. text) end
 
-local panel = CreateFrame("Frame", "WoWMapCompanionPanel", UIParent)
-panel:SetSize(390, 78)
-panel:SetPoint("TOP", UIParent, "TOP", 0, -72)
-panel:SetFrameStrata("MEDIUM")
-panel:EnableMouse(false)
-local background = panel:CreateTexture(nil, "BACKGROUND")
-background:SetAllPoints(panel)
-background:SetColorTexture(0.035, 0.055, 0.085, 0.85)
-local accent = panel:CreateTexture(nil, "BORDER")
-accent:SetPoint("TOPLEFT", panel, "TOPLEFT", 0, 0)
-accent:SetPoint("TOPRIGHT", panel, "TOPRIGHT", 0, 0)
-accent:SetHeight(2)
-accent:SetColorTexture(0.87, 0.71, 0.36, 1)
-local mapLabel = panel:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-mapLabel:SetPoint("TOPLEFT", panel, "TOPLEFT", 12, -10)
-mapLabel:SetPoint("TOPRIGHT", panel, "TOPRIGHT", -12, -10)
-mapLabel:SetJustifyH("CENTER")
-mapLabel:SetWordWrap(true)
-mapLabel:SetTextColor(1, 0.87, 0.56)
-mapLabel:SetText("正在获取地图…")
-local detailLabel = panel:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-detailLabel:SetPoint("BOTTOM", panel, "BOTTOM", 0, 34)
-detailLabel:SetText("魔兽陪伴精灵 · /wowc")
-local moneyLabel = panel:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-moneyLabel:SetPoint("BOTTOM", panel, "BOTTOM", 0, 12)
-moneyLabel:SetTextColor(1, 0.87, 0.56)
-
-local function UpdatePanel()
-    if not state then return end
-    mapLabel:SetText(online and state.zone or "正在切换世界…")
-    local status = state.dead and "灵魂状态" or (state.combat and "战斗中 · 安静陪伴" or "冒险中")
-    detailLabel:SetText(string.format("%s · 等级 %d · %s", state.name ~= "" and state.name or "角色", state.level, status))
-    moneyLabel:SetText(Money.Format(state.copper))
-    panel:SetHeight(math.max(96, mapLabel:GetStringHeight() + 68))
-    panel:SetShown(config.panel)
-end
-
 local function CancelRefreshTimers()
     for _, timer in ipairs(refreshTimers) do timer:Cancel() end
     refreshTimers = {}
@@ -83,7 +46,6 @@ local function Export()
     db.snapshot, db.snapshotJSON = clean, payload
     db.updatedAt = Number(Call(GetServerTime) or Call(time), 0)
     Telemetry.Render(bytes)
-    UpdatePanel()
 end
 
 local function Sample()
@@ -136,6 +98,7 @@ local function Initialize()
     Money.Initialize(db)
     if type(db.settings) ~= "table" then db.settings = {} end
     config = db.settings
+    config.panel = nil
     for key, value in pairs(defaults) do if type(config[key]) ~= type(value) then config[key] = value end end
     config.x = Number(config.x, 8, 16000)
     config.y = Number(config.y, 8, 16000)
@@ -188,11 +151,7 @@ SlashCmdList.WOWMAPCOMPANION = function(message)
     if not ready then return end
     local command, arg = string.match(message or "", "^%s*(%S*)%s*(.-)%s*$")
     command = string.lower(command)
-    if command == "panel" then
-        config.panel = not config.panel
-        UpdatePanel()
-        Print("地图面板：" .. (config.panel and "显示" or "隐藏"))
-    elseif command == "telemetry" then
+    if command == "telemetry" then
         config.telemetry = not config.telemetry
         Telemetry.UpdateLayout()
         Export()
@@ -223,7 +182,7 @@ SlashCmdList.WOWMAPCOMPANION = function(message)
         Print("这是单向发送状态；插件无法确认桌面端是否已连接。")
         Print(Money.Format(state.copper) .. " · 累计收入 " .. Money.Format(state.earned) .. " · 累计支出 " .. Money.Format(state.spent))
     else
-        Print("/wowc panel 地图面板；telemetry 遥测；status 状态；selftest 编码自检")
+        Print("/wowc telemetry 遥测；status 状态；selftest 编码自检")
         Print("/wowc pos 8 8 位置；cell 2 像素尺寸；reset 重置设置")
     end
 end

@@ -23501,7 +23501,7 @@
     },
     "WOWAddons/build-delivery.py": {
       "bytes": 3340,
-      "sha256": "74b504c94bb1ad2d379f1236e5f6329362d887abf0fb67389be50c72cf568cdb"
+      "sha256": "a2bdc53d7282e0f9056c7ba530a8b3becd937c5cfd980175b9eb007633568ee6"
     },
     "WOWAddons/Install-WoWCompanion.ps1": {
       "bytes": 1548,
@@ -23520,8 +23520,8 @@
       "sha256": "f3f6bc4b9978aa88b7b54427cbf3bf4b4e1bc1b0382e44c5d49e86a118bc0724"
     },
     "WOWAddons/wow-companion-implementation.html": {
-      "bytes": 58259,
-      "sha256": "7e9c8adfebb4187fe7ded75f402f63cfd2381508da42fe219b0570e636462c23"
+      "bytes": 58592,
+      "sha256": "1c33060502a4e5ffed11684495b4a4865d662a3ed2edc139ba8990cb000b2661"
     },
     "WOWAddons/WoWCompanion-2.0.0-source.zip": {
       "bytes": 116702,
@@ -23608,8 +23608,8 @@
       "sha256": "6817cb2002c359131024200e5f5efb0c95016621634ac8e887c9e62b83470e55"
     },
     "WOWAddons/WoWMapCompanion/README.md": {
-      "bytes": 11582,
-      "sha256": "304ddc414a158aaba8bc58775629d6e698d1df8c4952ea5e0cdf0fcecd193007"
+      "bytes": 11794,
+      "sha256": "176d623f4968fd0a03f77b557cebc32161d345d100aad5da503f7e62ecad6013"
     },
     "WOWAddons/WoWMapCompanion/Telemetry.lua": {
       "bytes": 3631,
@@ -23632,12 +23632,12 @@
       "sha256": "5f9ab747cd0d4885c3272e738c195e5de152481479176a005cc17a021670ed33"
     },
     "WOWAddons/WoWMapCompanion/WoWMapCompanion.lua": {
-      "bytes": 11612,
-      "sha256": "d4a2a50a570962f0ecf5985b518af64bfc6927bd51aa197d1d42b93dd3dd1e06"
+      "bytes": 9620,
+      "sha256": "6b53d0eb4a12d25416cfc18e54ec9c302e884ba9fefa35bd14dacdc17b9224bc"
     },
     "WOWAddons/WoWMapCompanion/WoWMapCompanion.toc": {
-      "bytes": 453,
-      "sha256": "b1ed739acfed131a6bd114d4a9785acca44bc988a593936f61420b5990d0a7a2"
+      "bytes": 449,
+      "sha256": "2d578ab3b66c740de4e32ba3e424559b1e70586146f90209316a4f3b3592b916"
     },
     "WOWAddons/WoWMapCompanion-1.0.0.zip": {
       "bytes": 3821,
@@ -23674,6 +23674,14 @@
     "airi/apps/stage-tamagotchi/src/shared/wow-companion-gold.ts": {
       "bytes": 1556,
       "sha256": "62ea25b65887b1389fd9ff2071a537799f0c0b7fd158353143a351ab55e9da58"
+    },
+    "WOWAddons/WoWMapCompanion-2.1.1.zip": {
+      "bytes": 14362,
+      "sha256": "32d1ba9830d5859a956636b5aac127208cee4d82af3ddb2529aace566551aaec"
+    },
+    "WOWAddons/WoWCompanion-2.1.1-source.zip": {
+      "bytes": 142392,
+      "sha256": "96a3d50f810a1f828a73f8005049cb43840a8ea11298b3e5a0f072b6878b930a"
     }
   },
   "airiGitFileModes": {
@@ -23695,5 +23703,5 @@
     "airi/packages/ui-transitions/netlify.toml": "100755",
     "airi/scripts/build-airi-docs.sh": "100755"
   },
-  "updatedAt": "2026-10-22T03:59:46.318601+00:00"
+  "updatedAt": "2026-10-22T04:41:04.002748+00:00"
 }
