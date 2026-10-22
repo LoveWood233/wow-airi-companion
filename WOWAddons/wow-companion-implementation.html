@@ -23,7 +23,7 @@
 <tr data-side="addon"><td>地图与角色面板</td><td><span class="tag">插件 · 已实现</span></td><td>现有顶部面板增加角色名、等级、战斗和灵魂状态。地图变化后延迟重试，等待客户端信息稳定。</td><td>信息来自当前角色，面板不拦截鼠标。</td></tr>
 <tr data-side="addon"><td>角色信息采集</td><td><span class="tag">插件 · 已实现</span></td><td>采集角色标识、名字、服务器、等级、职业、专精 ID、地图 ID 和区域名。</td><td>仅导出公开可用值。未知地图/专精不作为可靠情报。</td></tr>
 <tr data-side="addon"><td>升级与状态事件</td><td><span class="tag">插件 · 已实现</span></td><td>监听升级、区域、专精、进出战斗、死亡复活、进入和离开世界。业务变化递增序号。</td><td>升级读取事件参数，避免读取到暂时未刷新的旧等级。</td></tr>
-<tr data-side="addon"><td>实时画面遥测</td><td><span class="tag">插件 · 已实现</span></td><td>JSON → UTF-8 → 长度/CRC → 64×64 黑白位网格。默认占 128×128 物理像素。</td><td>编码区必须可见。它是单向状态传输，无法确认外部是否收到。</td></tr>
+<tr data-side="addon"><td>实时画面遥测</td><td><span class="tag">插件 · 已实现</span></td><td>JSON → UTF-8 → 长度/CRC → 64×64 黑白位网格。默认占 128×128 物理像素，可缩至 64×64。按物理屏幕高度换算，心跳修复晚期 UI 缩放变化，颜色更新后恢复 NDui 等插件关闭的像素吸附。</td><td>编码区必须可见，最终桌面画面不能被额外拉伸。它是单向状态传输，无法确认外部是否收到。</td></tr>
 <tr data-side="addon"><td>心跳和传输校验</td><td><span class="tag">插件 · 已实现</span></td><td>每秒更新心跳。只有变化的纹理位才重绘。限制负载大小，并在 UTF-8 边界裁剪文本。</td><td>传递最新状态快照，不保证捕获间隔内每个短暂事件都能重放。</td></tr>
 <tr data-side="addon"><td>控制命令与保存</td><td><span class="tag">插件 · 已实现</span></td><td><code>/wowc</code> 管理面板、遥测、位置、格子大小、自检和重置。SavedVariables 保留设置与最近快照。</td><td>SavedVariables 等游戏保存时才落盘，不是实时通道。</td></tr>
 <tr data-side="desktop"><td>Windows 截图与解码</td><td><span class="tag desktop">桥接 · 已实现</span></td><td>GDI 读取指定小区域，按每格中心像素还原位串，再验证长度、CRC 与 JSON 字段。</td><td>校准屏幕坐标。窗口偏移、遮挡、HDR 与缩放需要实机核对。</td></tr>
@@ -93,13 +93,15 @@ I:\GameTools\WOWAddons\WoWCompanionBridge\stop.ps1</pre></details></section>
 <p class="done">成功标志：自检通过，状态信息中的角色等级正确；隔几秒再次执行 /wowc status，可见心跳递增，屏幕上有完整网格。插件自检通过只说明编码正常，还要完成桌面采集校准。</p></article>
 
 <article class="task" id="task-capture"><span class="task-label">03 · 必做 · 需要实际分辨率和显示器布局</span><h3>让桌面捕获区域准确对齐游戏网格</h3>
+<p><strong>缩小传输码：</strong>游戏内输入 <code>/wowc cell 1</code>，桥接页“每格像素”同步设为 <code>1</code>，即可缩至 <strong>64 × 64 物理像素</strong>。当前插件已修正屏幕分辨率和 UI 缩放导致的额外放大；首次更新旧版后需 <code>/reload</code>。主屏无边框、插件位置为 (8,8) 时，桥接填写 X=8、Y=8。窗口模式需加上客户区偏移；如单像素受到缩放或 HDR 干扰，可将两端都改回每格 2 像素。</p>
 <ol><li>第一次校准建议把 WoW 放在<strong>主显示器、无边框窗口模式</strong>，游戏画面保持可见。把 AIRI、浏览器和其他窗口移开网格所在区域，避免截图采到它们。</li>
 <li>在游戏里运行 <code>/wowc status</code> 记下位置和每格尺寸。默认位置为游戏客户区左上 <code>(8, 8)</code>，每格 <code>2</code> 像素，总大小 <code>128 × 128</code>。</li>
 <li>打开本机桥接页。主屏无边框且游戏客户区原点为 <code>(0, 0)</code> 时，填写<strong>屏幕 X=8、屏幕 Y=8、每格像素=2、轮询毫秒=500</strong>，点击“保存校准”。若页面显示“恢复采集”，再点击它恢复采集。</li>
 <li>点击<strong>刷新预览</strong>。预览应恰好包含完整的 64×64 黑白格：没有标题栏、边框、背景，也没有切掉边缘。预览是点击时取得的截图，调整后要再次点击。</li>
 <li>窗口模式或副屏上，填写的是<strong>桌面物理坐标</strong>，不能直接照抄插件坐标。计算方式：桌面采集 X/Y = 游戏客户区在桌面上的物理起点 + 插件 X/Y。例如客户区起点为 <code>(200, 120)</code>，插件为 <code>(8, 8)</code>，则填 <code>(208, 128)</code>。左侧/上方副屏可能使用负坐标。</li>
 <li>也可以在 AIRI“魔兽陪伴精灵 → 屏幕位置校准”中填写同样数值并点击<strong>应用校准</strong>。截图预览在本机桥接网页中查看。两边编辑的是同一份桥接配置，选一处修改即可。</li></ol>
-<p><strong>网格模糊、CRC 失败或一直等待：</strong>先核对坐标和遮挡，再核对每格尺寸。可在游戏中设 <code>/wowc cell 3</code>，并把桥接每格像素同步改为 <code>3</code>；此时网格为 <code>192 × 192</code>。若截图仍有灰色边缘或异常颜色，检查分辨率、UI/Windows 缩放及 HDR，修改后重新校准。不要只在一端改尺寸。</p>
+<p><strong>网格模糊、CRC 失败或一直等待：</strong>先核对坐标、遮挡和两端每格尺寸。如果网格边缘混入灰色或游戏背景色，进入游戏<strong>系统 → 图形</strong>，先切到<strong>窗口模式</strong>并应用，再切回<strong>全屏（窗口化）</strong>并应用，使用显示器原生分辨率；随后输入 <code>/reload</code> 重建游戏布局，再重新校准并刷新预览。游戏报告分辨率与 Windows 实际客户区不一致时，整幅画面会被再次拉伸；本机曾为 2560×1440 与 2576×1460，重新应用显示模式并重载后恢复一致，64×64 网格成功实时读取。若仍失败，检查 UI/Windows 缩放及 HDR，或将两端都恢复为每格 2 像素。不要只在一端改尺寸，也不要仅靠放宽校验阈值掩盖缩放问题。</p>
+<p><strong>本机当前校准：</strong>已保存 <strong>X=8、Y=32、每格像素=1</strong>，64×64 网格已持续读取真实等级 90、银月城及递增心跳。这是当前电脑和布局的实测值；移动网格、切换显示器或改变窗口位置后仍需重新校准。</p>
 <p class="done">成功标志：桥接页显示“真实游戏 · 已连接”，AIRI 显示“真实角色在线”，姓名、等级、地图与游戏一致，连续观察约 10 秒仍保持在线。状态不能是“演示数据”或“上次已知状态”。</p></article>
 
 <article class="task" id="task-model"><span class="task-label">04 · 文字陪伴必做 · 服务选择和凭据由你提供</span><h3>配置对话服务，并真正选中一个模型</h3>
@@ -144,7 +146,7 @@ I:\GameTools\WOWAddons\WoWCompanionBridge\stop.ps1</pre></details></section>
 <article class="task" id="task-help"><span class="task-label">排错 · 卡在哪一步，就反馈那一步</span><h3>出现问题时，按现象缩小范围</h3>
 <div class="table-wrap"><table class="troubleshooting"><caption class="sr-only">协助验收常见问题</caption><thead><tr><th>看到的现象</th><th>先做什么</th><th>仍不成功时提供</th></tr></thead><tbody>
 <tr><td>本机网页打不开 / 桥接服务未连接</td><td>双击一键启动；查看启动窗口是否有错误，以及 <code>WoWCompanionBridge/bridge.stderr.log</code>。</td><td>启动报错和桥接日志末尾相关内容。</td></tr>
-<tr><td>等待游戏 / 网格模糊 / 校验失败</td><td>确认遥测开启、暂停关闭、游戏可见；刷新预览，核对桌面坐标、每格大小和遮挡。</td><td><code>/wowc status</code> 输出、网格与采集预览、分辨率及缩放信息。</td></tr>
+<tr><td>等待游戏 / 网格模糊 / 校验失败</td><td>确认遥测开启、暂停关闭、游戏可见；核对桌面坐标、每格大小和遮挡。若有灰边或背景色混入，先切到窗口模式再切回全屏（窗口化），使用原生分辨率，输入 <code>/reload</code> 后重新校准并刷新预览。</td><td><code>/wowc status</code> 输出、网格与采集预览、分辨率及缩放信息。</td></tr>
 <tr><td>画面已过期</td><td>恢复游戏渲染并露出网格，等待新心跳；检查是否最小化、切屏或出现加载画面。</td><td>停更前做了什么、持续多久、当时的窗口/显示器布局。</td></tr>
 <tr><td>有事件记录，但精灵不回应</td><td>先测普通聊天；核对已选模型、静音、事件开关、战斗/冷却、演示允许开关；确认主角色窗口仍在运行。旧事件不会在修好设置后补播，应重新触发。</td><td>事件类型与时间、陪伴偏好、聊天是否正常，以及 AIRI 报错。</td></tr>
 <tr><td>有文字，没有声音</td><td>先在“发声”页试听，核对当前角色的服务/模型/声线，AIRI 扬声器和 Windows 输出设备及音量。</td><td>试听是否成功、使用的语音服务名称、错误文字。</td></tr>
@@ -165,12 +167,12 @@ I:\GameTools\WOWAddons\WoWCompanionBridge\stop.ps1</pre></details></section>
 <p class="done">你不需要重新下载源码、修改 Lua/TypeScript，或自行修复构建问题。如果以上步骤暴露兼容性或程序错误，把对应信息给我，由我继续修改代码。</p></article>
 </div></section>
 
-<section id="checks"><div class="section-title"><small>06 / VALIDATION</small><h2>验证结果与实际边界</h2></div><p class="intro">自动化检查覆盖实现逻辑。真实游戏中的事件、窗口缩放和已配置模型的语音回应，需要在本机实际会话中验收。</p><div class="checklist">
-<article class="check ok"><span class="status">已通过</span><strong>插件 Lua 5.1 测试</strong><p id="lua-result">9 项：真实 Lua 编码、事件参数、心跳、受限值过滤、UTF-8、设置与专精接口。</p></article>
+<section id="checks"><div class="section-title"><small>06 / VALIDATION</small><h2>验证结果与实际边界</h2></div><p class="intro">自动化检查覆盖实现逻辑，本机已完成真实画面采集与角色状态读取。真实升级、死亡及已配置模型的语音回应仍需分别验收，其他显示器和缩放组合需重新校准。</p><div class="checklist">
+<article class="check ok"><span class="status">已通过</span><strong>插件 Lua 5.1 测试</strong><p id="lua-result">13 项：真实 Lua 编码、事件参数、心跳、受限值过滤、UTF-8、设置与专精接口，以及物理像素换算、晚期 UI 缩放修复、NDui 纹理吸附恢复。</p></article>
 <article class="check ok"><span class="status">已通过</span><strong>桥接与协议测试</strong><p id="bridge-result">31 项通过，包含真实 Lua 升级事件 → 编码 → 像素 → Python 解码 → 唯一升级事件的跨语言测试。</p></article>
 <article class="check ok"><span class="status" id="airi-check-status">已通过</span><strong>AIRI 提醒策略、类型与构建</strong><p id="airi-result">15 项测试通过：提醒策略、真实 Python HTTP 合约与 HTTP 并发顺序。桌面 typecheck 和生产构建通过。全仓 lint：0 错误，671 条原有警告。</p></article>
-<article class="check ok"><span class="status">已验证</span><strong>Windows 本机采集与服务</strong><p id="capture-result">GDI 截图和 HTTP 服务可运行。实际 AIRI 窗口中已验证设置入口、演示 29→30 升级、死亡事件与退出演示；无游戏网格时显示等待。</p></article>
-<article class="check"><span class="status">待实机验收</span><strong>真实 WoW 升级与画面校准</strong><p>未替用户登录游戏。需要确认实际分辨率、UI 缩放和显示器布局，并触发真实升级或区域变化。</p></article>
+<article class="check ok"><span class="status">已验证</span><strong>Windows 本机采集与服务</strong><p id="capture-result">重新应用原生分辨率的全屏（窗口化）并 /reload 后，64×64 网格实测成功：每隔 500ms 采样，共 20/20 次 live、0 错误，心跳 41→50；BMP 精确为 64×64，标准 CRC 解码得到真实等级 90、银月城。采集配置为 X=8、Y=32、每格 1 像素。此前已在 AIRI 窗口验证设置入口、演示 29→30 升级、死亡事件与退出演示。</p></article>
+<article class="check"><span class="status">待实机验收</span><strong>真实升级、死亡与区域事件</strong><p>当前角色与地图的真实采集已通过。仍需在正常游玩中确认真实升级仅记录一次，以及死亡、复活和跨地图事件；本机画面验证不等于这些事件全部通过。</p></article>
 <article class="check"><span class="status">依赖 AIRI 配置</span><strong>模型、语音与形象效果</strong><p>已启动 AIRI 并显示动态角色；模型和语音尚未配置，实际 AI 文本/语音回应未验收。本轮未调用付费模型。</p></article>
 </div><p class="caption">全仓检查说明：pnpm typecheck 已尝试，但非桌面场景包缺少 vue-tsc，未完成全仓类型检查。本次安装聚焦桌面依赖，桌面独立类型检查通过；完整仓库检查不标为通过。</p><div class="note"><strong>本轮范围：</strong>角色/地图、升级祝贺、死亡鼓励、聊天语音接入、免打扰和事件记录。任务攻略、装备比较、长期冒险日记与自动操作不属于此次已实现功能。</div></section>
 

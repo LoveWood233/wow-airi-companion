@@ -23515,12 +23515,12 @@
       "sha256": "f3f6bc4b9978aa88b7b54427cbf3bf4b4e1bc1b0382e44c5d49e86a118bc0724"
     },
     "WOWAddons/wow-companion-implementation.html": {
-      "bytes": 49358,
-      "sha256": "e2fd50188a1c01c569be4c853f671fe65d6b4411a1580970ad1e5386d8736145"
+      "bytes": 51385,
+      "sha256": "b6c495520f5e4e29b320ca5ac85656ab92a3860a5dc9f9e0175b38f46b4478c1"
     },
     "WOWAddons/WoWCompanion-2.0.0-source.zip": {
-      "bytes": 110406,
-      "sha256": "29c78e0cc640ae29e696a6955e674e9ec6266cd9257a3b41b66c2b8c8e7bab30"
+      "bytes": 116702,
+      "sha256": "020abed2b17c66fd9c3f67e269ddf788cf3749bd7193470d13614e2edce33522"
     },
     "WOWAddons/WoWCompanion-PROTOCOL.md": {
       "bytes": 3925,
@@ -23543,8 +23543,8 @@
       "sha256": "fc47a971b5f83559d4964ed672fcce5a7130d3c6d9d2c3ef2eecda00232eb82b"
     },
     "WOWAddons/WoWCompanionBridge/README.md": {
-      "bytes": 6237,
-      "sha256": "e06ba8310956fc2e0319bd89127d3ca927219c4d7aa1b8adcee719be712eb2b0"
+      "bytes": 8047,
+      "sha256": "543dc6da7896d6c48ee9a7f51ba86dd92c9d59ba0d2a2336b36b9c7151b2c97a"
     },
     "WOWAddons/WoWCompanionBridge/server.py": {
       "bytes": 10404,
@@ -23603,12 +23603,12 @@
       "sha256": "409cb985afa743fa987273c7b27f369079790009238efba42b21e6259d5bfeda"
     },
     "WOWAddons/WoWMapCompanion/README.md": {
-      "bytes": 6827,
-      "sha256": "9ccdb5db8aae78508f8421ad59390ee3c3d177c3981dfcce0e1bccbf58b32362"
+      "bytes": 9202,
+      "sha256": "c59a6798ba138e313936c94efd91ab0532f695080e616b2c2ff0fb38ebdc0e62"
     },
     "WOWAddons/WoWMapCompanion/Telemetry.lua": {
-      "bytes": 1777,
-      "sha256": "89a43e8da988b620b35ef09fad5d3360d3593e1ed7f0ca2c335fd5cea2b9e259"
+      "bytes": 3631,
+      "sha256": "92cc380cef1d5e33db52fd1a034a699ab0b44886dca2e3ad9af97a650d5a282e"
     },
     "WOWAddons/WoWMapCompanion/tests/.gitignore": {
       "bytes": 20,
@@ -23623,8 +23623,8 @@
       "sha256": "be7b0b9f05be4908e375386507a73fdcdd613d588a0ac94ef0b34a9940f2cd14"
     },
     "WOWAddons/WoWMapCompanion/tests/test_addon.py": {
-      "bytes": 9218,
-      "sha256": "7bc9eb60a1d1bf02953289f85bfd0e738eef7c69976ed74ded619cbaeb8f1649"
+      "bytes": 15147,
+      "sha256": "b8493bd3134b20c2175e6d3bc71cfd29fbb689e40ddfb3808d7670fca551453b"
     },
     "WOWAddons/WoWMapCompanion/WoWMapCompanion.lua": {
       "bytes": 10995,
@@ -23639,8 +23639,8 @@
       "sha256": "cced506876c056040d09c2cc2c556faf13c90b5b1bc50227c295f30f97a4a624"
     },
     "WOWAddons/WoWMapCompanion-2.0.0.zip": {
-      "bytes": 10907,
-      "sha256": "42432d4d7bde6a06d79c70e60a604aef4d75b2c3d09d3dca86c990a41ddb37e9"
+      "bytes": 12406,
+      "sha256": "0c486c6473dec7ee1937c1df3f010b962138ab00c577e0dbd1f9ebdc8eb3569c"
     }
   },
   "airiGitFileModes": {
@@ -23661,5 +23661,6 @@
     "airi/packages/ui-loading-screens/netlify.toml": "100755",
     "airi/packages/ui-transitions/netlify.toml": "100755",
     "airi/scripts/build-airi-docs.sh": "100755"
-  }
+  },
+  "updatedAt": "2026-10-22T03:16:53.304203+00:00"
 }
