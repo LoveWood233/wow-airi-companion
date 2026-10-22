@@ -4,7 +4,7 @@ connection: Game connection
 last-seen: Last observation
 demo-warning: This is simulated data. It does not describe a real character.
 model-required: Select a chat provider and model in AIRI to enable character replies. Speech uses your existing voice settings.
-start-bridge: Start WoWCompanionBridge, then keep the addon's black-and-white grid visible. The decoder listens on 127.0.0.1:18765.
+start-bridge: AIRI starts the local bridge when this connection is enabled. Keep the addon grid visible. Python 3.10 or later is required on Windows.
 player: Character
 level: Level
 zone-label: Location

@@ -11,7 +11,7 @@
 | `WOWAddons/WoWMapCompanion/` | 正式服 Lua 插件、WCP1 编码、测试 |
 | `WOWAddons/WoWCompanionBridge/` | Windows 屏幕采集、协议解码、事件状态、本机校准页面和测试 |
 | `airi/` | AIRI 上游完整源码快照，包含本次修改和新增的魔兽陪伴功能 |
-| `WOWAddons/Start-WoWCompanion.cmd` | 一键启动桥接和已构建的 AIRI 桌面端 |
+| `WOWAddons/Start-WoWCompanion.cmd` | 启动已构建的 AIRI 桌面端，由 AIRI 自动管理桥接 |
 | `WOWAddons/Install-WoWCompanion.ps1` | 将插件安装到正式服 AddOns 目录 |
 | `WOWAddons/wow-companion-implementation.html` | 功能清单、实现逻辑、配置步骤和需用户协助的验收事项 |
 | `WOWAddons/WoWCompanion-PROTOCOL.md` | WCP1 数据协议与边界说明 |
@@ -41,13 +41,17 @@ cd ..\WOWAddons
 
 HTML 中出现的 `I:\GameTools\...` 是原电脑的实际路径；在其他电脑上请换成当前克隆目录。GitHub 文件预览不会执行 HTML，需下载或克隆后在浏览器打开。
 
+2026-10-23 更新至 2.2.0：只启动 AIRI 即可。开启陪伴连接后，AIRI 自动启动隐藏的 Python 桥接；关闭连接或退出 AIRI 时清理自有子进程，意外退出也通过管道关闭触发清理。兼容的外部桥接会被复用，保持原有生命周期。启动失败显示错误，30 秒后重试。仍需本机 Python 3.10+，本次没有捆绑 Python 解释器。源码版保留原 `bridge-config.json` 校准；打包版使用 AIRI 用户数据目录保存校准。`-BridgeOnly` 仅供独立排错。
+
+本轮验证：AIRI 相关 59 项、Python 桥接 33 项通过；默认端口的真实管理启停、重启、外部复用及原校准保留通过。桌面 typecheck、中英文资源构建和生产构建通过；全仓 lint 0 错误、671 条既有警告。全仓 typecheck 因 model-driver-mediapipe 等其他包缺少依赖/类型及场景包类型错误未通过。详细命令、边界和需用户验收项目见 HTML。
+
 ## 快照范围与验证
 
 这是可恢复的项目源码备份，不是包含依赖和 Electron 的免安装程序。保存了插件、桥接、完整 AIRI 源码、锁文件、工作区配置、补丁、资源及现有交付包。
 
 未上传模型 API Key、账号登录数据、`.env` 实际环境文件、依赖缓存、未被上游跟踪的构建产物、运行日志、PID、安装备份、本机金币账本、游戏 SavedVariables 或本机采集坐标配置。配置样例保留；被省略的环境文件路径列在 `snapshot-manifest.json` 中。恢复后重新配置模型服务和采集坐标。
 
-2026-10-22 插件更新至 2.1.1：删除游戏中央的地图、角色与金币文字面板，游戏中只保留 WCP1 数据传输码。角色、地图和金币采集继续供 AIRI 使用。已复测插件 20 项、桥接 32 项测试，全部通过；当前已安装 2.1.0 的电脑只需在游戏输入 `/reload`，无需重启 AIRI。
+2026-10-22 插件更新至 2.1.1：删除游戏中央的地图、角色与金币文字面板，游戏中只保留 WCP1 数据传输码。角色、地图和金币采集继续供 AIRI 使用。已复测插件 20 项、桥接 32 项测试，全部通过；该轮仅修改插件。本次 2.2.0 更新需要正常退出旧 AIRI，再启动新版。
 
 此前账号金币汇总版本 2.1.0 的验证记录：插件 20 项、桥接 32 项、AIRI 相关 43 项测试通过（含 8 项 Chromium 界面测试和 2 项退出生命周期测试）。桌面类型检查、中英文资源构建和生产构建通过；全仓 lint 0 错误、671 条原有警告。全仓 typecheck 因非桌面场景包缺少 vue-tsc 而未完成，不标记为通过。
 
@@ -55,7 +59,7 @@ HTML 中出现的 `I:\GameTools\...` 是原电脑的实际路径；在其他电�
 
 传输码保持 64×64 像素。此前 2.0 版的连续 20 次实机采集全部为 live、无错误，CRC 正确读取等级、地图与心跳；该记录不等于本轮金币功能已实机验证。
 
-`WoWCompanion-2.1.1-source.zip` 是已更新的插件、桥接和 AIRI 改动包，内部不含 AIRI 上游全仓；本仓库的 `airi/` 才是完整源码。保留的 `build-delivery.py` 使用原独立 AIRI Git 仓库的差异生成增量包，不能直接把它在本合并快照仓库中的输出当作完整备份。
+`WoWCompanion-2.2.0-source.zip` 是已更新的插件、桥接和 AIRI 改动包，内部不含 AIRI 上游全仓；本仓库的 `airi/` 才是完整源码。保留的 `build-delivery.py` 使用原独立 AIRI Git 仓库的差异生成增量包，不能直接把它在本合并快照仓库中的输出当作完整备份。
 
 ## 上游与许可
 

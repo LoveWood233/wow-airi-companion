@@ -114,6 +114,12 @@ export default {
   ],
   extraResources: [
     {
+      from: '../../../WOWAddons/WoWCompanionBridge',
+      to: 'wow-companion-bridge',
+      // Keep local calibration, logs, and process identifiers out of the release.
+      filter: ['server.py', 'capture.py', 'protocol.py', 'state.py', 'index.html'],
+    },
+    {
       from: '../../engines/stage-tamagotchi-godot/out/${os}',
       to: 'godot-stage',
       filter: ['**/*'],

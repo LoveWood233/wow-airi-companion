@@ -4,7 +4,7 @@ connection: 游戏连接
 last-seen: 最近有效画面
 demo-warning: 当前为演示数据，不代表真实游戏角色。
 model-required: 请在 AIRI 中选择对话服务和模型后启用角色回应。语音沿用现有声音设置。
-start-bridge: 先启动 WoWCompanionBridge，并保持插件的黑白编码区可见。解码服务地址为 127.0.0.1:18765。
+start-bridge: 开启陪伴连接后，AIRI 会自动启动本机桥接，无需单独操作。请保持插件数据传输码可见。Windows 需已安装 Python 3.10 或更高版本。
 player: 当前角色
 level: 等级
 zone-label: 所在区域

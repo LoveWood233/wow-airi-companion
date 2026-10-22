@@ -4,10 +4,12 @@ param(
     [switch]$Dev
 )
 $ErrorActionPreference = 'Stop'
-$bridgeStart = Join-Path $PSScriptRoot 'WoWCompanionBridge\start.ps1'
-if (-not (Test-Path -LiteralPath $bridgeStart)) { throw 'The companion bridge is missing.' }
-& $bridgeStart
-if ($BridgeOnly) { return }
+if ($BridgeOnly) {
+    $bridgeStart = Join-Path $PSScriptRoot 'WoWCompanionBridge\start.ps1'
+    if (-not (Test-Path -LiteralPath $bridgeStart)) { throw 'The companion bridge is missing.' }
+    & $bridgeStart
+    return
+}
 if (-not (Test-Path -LiteralPath (Join-Path $AiriPath 'apps\stage-tamagotchi\package.json'))) {
     throw "AIRI source was not found: $AiriPath. Pass -AiriPath with the source directory."
 }
@@ -15,7 +17,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $AiriPath 'node_modules'))) {
     throw 'AIRI dependencies are missing. Read the setup section in wow-companion-implementation.html.'
 }
 $pnpm = Get-Command pnpm.cmd -ErrorAction Stop
-Write-Output 'Starting AIRI. Open Settings > WoW Companion to view the connection.'
+Write-Output 'Starting AIRI. It manages the bridge when the WoW Companion connection is enabled.'
 Push-Location -LiteralPath $AiriPath
 try {
     if ($Dev) {

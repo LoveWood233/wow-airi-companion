@@ -5,17 +5,19 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
+from typing import BinaryIO
 
 from capture import ScreenCapture, to_bmp
 from protocol import COLS, ROWS, FrameError, decode_pixels
 from state import CompanionState, validate_config
 
 ROOT = Path(__file__).resolve().parent
-VERSION = "2.1.0"
+VERSION = "2.2.0"
 
 
 def allowed_origin(origin: str | None) -> bool:
@@ -200,11 +202,19 @@ def capture_loop(state: CompanionState, stop: threading.Event) -> None:
         stop.wait(config["pollMs"] / 1000)
 
 
+def watch_parent_input(server: BridgeServer, stream: BinaryIO) -> None:
+    """A managed child exits when AIRI closes its pipe, including after a crash."""
+    while stream.read(1):
+        pass
+    server.shutdown()
+
+
 def main():
     parser = argparse.ArgumentParser(description="WoW WCP1 本机陪伴桥接")
     parser.add_argument("--port", type=int, default=18765)
     parser.add_argument("--config", type=Path, default=ROOT / "bridge-config.json")
     parser.add_argument("--demo", action="store_true", help="明确启用演示数据，默认不启用")
+    parser.add_argument("--managed-stdin", action="store_true", help="随父进程的 stdin 管道关闭而退出")
     args = parser.parse_args()
     if not 1 <= args.port <= 65535:
         parser.error("端口必须在 1–65535 范围内")
@@ -222,6 +232,9 @@ def main():
         parser.error(f"无法监听 127.0.0.1:{args.port}：{exc}")
     worker = threading.Thread(target=capture_loop, args=(state, stop), daemon=True, name="wow-screen-capture")
     worker.start()
+    if args.managed_stdin:
+        threading.Thread(target=watch_parent_input, args=(server, sys.stdin.buffer), daemon=True,
+                         name="airi-parent-watch").start()
     print(f"WoW Companion Bridge: http://127.0.0.1:{args.port}/", flush=True)
     print("Demo enabled: " + str(args.demo), flush=True)
     try:

@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 AIRI = ROOT.parent / "airi"
-DESTINATION = ROOT / "WoWCompanion-2.1.1-source.zip"
+DESTINATION = ROOT / "WoWCompanion-2.2.0-source.zip"
 BASELINE = "747d4f68aa42180671de3071fb78d5e6129433bd"
 
 
@@ -34,6 +34,7 @@ def main() -> None:
             if path.suffix in (".lua", ".toc", ".md", ".py", ".ps1", ".html", ".bin") or path.name == "lua-wcp1.json":
                 entries[f"WOWAddons/{path.relative_to(ROOT).as_posix()}"] = path
     modified_entries = {
+        "apps/stage-tamagotchi/electron-builder.config.ts",
         "apps/stage-tamagotchi/src/main/index.ts",
         "apps/stage-tamagotchi/src/renderer/App.vue",
         "packages/i18n/src/locales/en/index.ts",
@@ -49,7 +50,7 @@ def main() -> None:
             entries[f"airi/{name}"] = AIRI / name
     manifest = {
         "name": "WoW Companion",
-        "version": "2.1.1",
+        "version": "2.2.0",
         "airiBaseline": BASELINE,
         "airiPackageVersion": "0.12.0-beta.5",
         "instructions": "AIRI entries are changed/new files only. Overlay them onto the specified AIRI baseline, then install dependencies and build as described in WOWAddons/wow-companion-implementation.html. Keep the airi and WOWAddons folders side by side. No model credentials, dependencies, compiled application, or user data are included.",
