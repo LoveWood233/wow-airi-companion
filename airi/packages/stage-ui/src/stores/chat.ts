@@ -909,6 +909,28 @@ export const useChatStore = defineStore('chat', () => {
     return span
   }
 
+  /**
+   * Owns a fresh turn that never enters chat generation. It cannot consume a pending voice or composer parent.
+   * The caller closes this scope after its output drains, including failed setup and cancellation.
+   */
+  function openStandaloneTurnSpan(turn: { sessionId: string, turnId: string }) {
+    const key = JSON.stringify([turn.sessionId, turn.turnId])
+    if (ownedTurnSpans.has(key))
+      throw new Error('The interaction turn already has a trace owner')
+    const span = startSpan(IOSpanNames.InteractionTurn, undefined, {
+      [IOAttributes.TurnId]: turn.turnId,
+      [IOAttributes.GenAIConversationId]: turn.sessionId,
+    })
+    ownedTurnSpans.set(key, { span, unregister: registerTurnSpan(turn.turnId, span) })
+    let closed = false
+    return (status: 'finished' | 'cancelled' | 'failed') => {
+      if (closed)
+        return
+      closed = true
+      settleOwnedTurnSpan({ ...turn, status })
+    }
+  }
+
   function settleOwnedTurnSpan(turn: { sessionId: string, turnId: string, status: 'finished' | 'cancelled' | 'failed' }) {
     const key = JSON.stringify([turn.sessionId, turn.turnId])
     const owned = ownedTurnSpans.get(key)
@@ -1539,6 +1561,7 @@ export const useChatStore = defineStore('chat', () => {
     cancelPendingSends,
     getPendingQueuedSendSnapshot,
     openTurnSpan,
+    openStandaloneTurnSpan,
 
     clearHooks: runtime.hooks.clearHooks,
 

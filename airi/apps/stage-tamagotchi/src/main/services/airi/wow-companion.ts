@@ -1,6 +1,6 @@
 import type { createContext } from '@moeru/eventa/adapters/electron/main'
 
-import type { CompanionState } from '../../../shared/wow-companion'
+import type { CaptureSettings, CompanionSettings, CompanionState, DemoRequest, GameVersion } from '../../../shared/wow-companion'
 
 import process from 'node:process'
 
@@ -9,114 +9,182 @@ import { join } from 'node:path'
 import { defineInvokeHandler } from '@moeru/eventa'
 import { errorMessageFrom } from '@moeru/std'
 import { app } from 'electron'
-import { parse } from 'valibot'
+import { object, parse } from 'valibot'
 
 import { wowCompanionDemo, wowCompanionGet, wowCompanionSetAccountName, wowCompanionSetCapture, wowCompanionSetSettings } from '../../../shared/eventa/wow-companion'
-import { captureSchema, defaultSettings, demoSchema, settingsSchema } from '../../../shared/wow-companion'
+import { captureSchema, defaultSettings, demoSchema, gameProfiles, gameVersionSchema, settingsSchema } from '../../../shared/wow-companion'
+import { accountNameSchema } from '../../../shared/wow-companion-gold'
 import { onAppBeforeQuit } from '../../libs/bootkit/lifecycle'
 import { createConfig } from '../../libs/electron/persistence'
 import { CompanionBridgeClient } from './wow-companion-client'
+import { CompanionEquipmentHistory } from './wow-companion-equipment-history'
 import { CompanionGoldLedger } from './wow-companion-gold'
 import { CompanionBridgeRuntime } from './wow-companion-runtime'
 
-/**
- * Owns the HTTP poller for the desktop lifetime, including when settings close.
- * Only the fixed loopback decoder is reachable through these IPC handlers.
- */
-export function setupWowCompanion(context: ReturnType<typeof createContext>['context']) {
-  const config = createConfig('wow-companion', 'v1.json', settingsSchema, { default: defaultSettings, autoHeal: true })
-  config.setup()
-  let settings = config.get() ?? defaultSettings
-  const client = new CompanionBridgeClient()
-  const runtime = new CompanionBridgeRuntime({
-    appPath: app.getAppPath(),
-    resourcesPath: process.resourcesPath,
-    userDataPath: app.getPath('userData'),
-    platform: process.platform,
-  })
-  const gold = new CompanionGoldLedger(join(app.getPath('userData'), 'wow-companion-gold-v1.json'))
-  let stopped = false
-  let generation = 0
-  let connectionError: string | null = null
-  let timer: ReturnType<typeof setTimeout> | undefined
+const getSchema = object({ game: gameVersionSchema })
+const settingsRequestSchema = object({ game: gameVersionSchema, settings: settingsSchema })
+const captureRequestSchema = object({ game: gameVersionSchema, capture: captureSchema })
+const demoRequestSchema = object({ game: gameVersionSchema, request: demoSchema })
+const accountRequestSchema = object({ game: gameVersionSchema, request: accountNameSchema })
 
-  function read(): CompanionState {
-    const state = client.read()
+/** Each profile owns one poller, lifecycle generation, settings, gold ledger, and equipment history. */
+class CompanionProfile {
+  private readonly config
+  private settings: CompanionSettings
+  private readonly client: CompanionBridgeClient
+  private readonly runtime: CompanionBridgeRuntime
+  readonly gold: CompanionGoldLedger
+  private readonly equipmentHistory: CompanionEquipmentHistory
+  private stopped = false
+  private generation = 0
+  private connectionError: string | null = null
+  private timer: ReturnType<typeof setTimeout> | undefined
+
+  constructor(private readonly game: GameVersion) {
+    const profile = gameProfiles[game]
+    const defaults = { ...defaultSettings, enabled: game === 'retail' }
+    this.config = createConfig(profile.settingsNamespace, 'v1.json', settingsSchema, { default: defaults, autoHeal: true })
+    this.config.setup()
+    this.settings = this.config.get() ?? defaults
+    this.client = new CompanionBridgeClient(undefined, game)
+    this.runtime = new CompanionBridgeRuntime({
+      appPath: app.getAppPath(),
+      resourcesPath: process.resourcesPath,
+      userDataPath: app.getPath('userData'),
+      platform: process.platform,
+      game,
+    })
+    this.gold = new CompanionGoldLedger(join(app.getPath('userData'), profile.goldFile))
+    this.equipmentHistory = new CompanionEquipmentHistory(join(app.getPath('userData'), profile.historyFile))
+  }
+
+  read(): CompanionState {
+    const state = this.client.read()
     return {
-      settings: structuredClone(settings),
+      game: this.game,
+      settings: structuredClone(this.settings),
       ...state,
-      error: settings.enabled ? connectionError ?? runtime.read().error ?? state.error : null,
-      gold: gold.read(),
+      error: this.settings.enabled ? this.connectionError ?? this.runtime.read().error ?? state.error : null,
+      gold: this.gold.read(),
+      equipmentHistory: this.equipmentHistory.read(),
     }
   }
 
-  async function poll() {
-    await gold.load()
-    const currentGeneration = generation
-    if (settings.enabled && !stopped) {
+  start() {
+    void this.poll()
+  }
+
+  async setSettings(next: CompanionSettings) {
+    if (next.enabled !== this.settings.enabled) {
+      this.generation++
+      this.connectionError = null
+      this.client.invalidate()
+    }
+    this.settings = next
+    this.config.update(next)
+    if (!next.enabled)
+      await this.runtime.stop()
+    return this.read()
+  }
+
+  async setCapture(capture: CaptureSettings) {
+    await this.ensureConnected()
+    await this.client.update('/api/config', capture)
+    return this.read()
+  }
+
+  async demo(request: DemoRequest) {
+    await this.ensureConnected()
+    await this.client.update('/api/demo', {
+      enabled: request.enabled,
+      ...(request.action === 'none' ? {} : { action: request.action }),
+    })
+    return this.read()
+  }
+
+  async dispose() {
+    this.stopped = true
+    this.generation++
+    this.client.dispose()
+    clearTimeout(this.timer)
+    await Promise.all([this.gold.flush(), this.equipmentHistory.flush(), this.runtime.dispose()])
+  }
+
+  private async ensureConnected() {
+    const generation = this.generation
+    if (!this.settings.enabled || this.stopped)
+      throw new Error('Enable the companion connection for this game before capture or demo commands.')
+    await this.runtime.ensureReady()
+    if (!this.settings.enabled || this.stopped || generation !== this.generation)
+      throw new Error('The companion connection changed before the command completed.')
+  }
+
+  private async poll() {
+    await Promise.all([this.gold.load(), this.equipmentHistory.load()])
+    const generation = this.generation
+    if (this.settings.enabled && !this.stopped) {
       try {
-        await runtime.ensureReady()
-        // Disabling or quitting can finish while the helper is starting.
-        if (!stopped && settings.enabled && currentGeneration === generation) {
-          connectionError = null
-          await client.refresh()
+        await this.runtime.ensureReady()
+        // Disabling or quitting can finish while this profile starts its helper.
+        if (!this.stopped && this.settings.enabled && generation === this.generation) {
+          this.connectionError = null
+          await this.client.refresh()
         }
       }
       catch (error) {
-        if (!stopped && settings.enabled && currentGeneration === generation) {
-          connectionError = errorMessageFrom(error) ?? 'WoW bridge failed to start'
-          client.invalidate()
+        if (!this.stopped && this.settings.enabled && generation === this.generation) {
+          this.connectionError = errorMessageFrom(error) ?? 'WoW bridge failed to start'
+          this.client.invalidate()
         }
       }
     }
-    if (!stopped) {
-      const state = client.read()
-      await gold.observe(settings.enabled && !connectionError ? state.bridge : null, connectionError ?? state.error)
-      if (!stopped)
-        timer = setTimeout(poll, 750)
+    if (!this.stopped) {
+      const state = this.client.read()
+      const bridge = this.settings.enabled && !this.connectionError ? state.bridge : null
+      const error = this.connectionError ?? state.error
+      await Promise.all([this.gold.observe(bridge, error), this.equipmentHistory.observe(bridge, error)])
+      if (!this.stopped)
+        this.timer = setTimeout(() => this.poll(), 750)
     }
   }
+}
 
+/**
+ * Keeps both game profiles active outside settings pages.
+ * IPC validates the game key before it selects a fixed profile. Requests cannot select files, executables, or network addresses.
+ */
+export function setupWowCompanion(context: ReturnType<typeof createContext>['context']) {
+  const profiles = {
+    retail: new CompanionProfile('retail'),
+    forever: new CompanionProfile('forever'),
+  }
   const disposers = [
-    defineInvokeHandler(context, wowCompanionGet, read),
+    defineInvokeHandler(context, wowCompanionGet, (input) => {
+      const { game } = parse(getSchema, input)
+      return profiles[game].read()
+    }),
     defineInvokeHandler(context, wowCompanionSetAccountName, async (input) => {
-      await gold.setAccountName(input)
-      return read()
+      const { game, request } = parse(accountRequestSchema, input)
+      await profiles[game].gold.setAccountName(request)
+      return profiles[game].read()
     }),
     defineInvokeHandler(context, wowCompanionSetSettings, async (input) => {
-      const next = parse(settingsSchema, input)
-      if (next.enabled !== settings.enabled) {
-        generation++
-        connectionError = null
-        client.invalidate()
-      }
-      settings = next
-      config.update(next)
-      if (!next.enabled)
-        await runtime.stop()
-      return read()
+      const { game, settings } = parse(settingsRequestSchema, input)
+      return profiles[game].setSettings(settings)
     }),
     defineInvokeHandler(context, wowCompanionSetCapture, async (input) => {
-      await client.update('/api/config', parse(captureSchema, input))
-      return read()
+      const { game, capture } = parse(captureRequestSchema, input)
+      return profiles[game].setCapture(capture)
     }),
     defineInvokeHandler(context, wowCompanionDemo, async (input) => {
-      const demo = parse(demoSchema, input)
-      await client.update('/api/demo', {
-        enabled: demo.enabled,
-        ...(demo.action === 'none' ? {} : { action: demo.action }),
-      })
-      return read()
+      const { game, request } = parse(demoRequestSchema, input)
+      return profiles[game].demo(request)
     }),
   ]
 
-  void poll()
+  Object.values(profiles).forEach(profile => profile.start())
   onAppBeforeQuit(async () => {
-    stopped = true
-    generation++
-    client.dispose()
-    clearTimeout(timer)
     disposers.forEach(dispose => dispose())
-    await Promise.all([gold.flush(), runtime.dispose()])
+    await Promise.all(Object.values(profiles).map(profile => profile.dispose()))
   })
 }

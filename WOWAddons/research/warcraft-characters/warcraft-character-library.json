@@ -1,0 +1,1046 @@
+{
+  "schema_version": 1,
+  "title": "魔兽世界经典角色语录与陪伴人设",
+  "checked_on": "2026-10-24",
+  "status": "research_reference_not_airi_config",
+  "characters": [
+    {
+      "id": "sylvanas",
+      "name_zh": "希尔瓦娜斯·风行者",
+      "persona_era": "女妖之王的冷峻形象",
+      "tone": "短句、克制、警觉，偶尔带一点冷讽。作为陪伴者保留疏离感，也承认用户的选择。",
+      "delivery": "中低音感、语速稍慢，句尾收住；无需模仿原演员声纹。",
+      "adaptation_note": "游侠将军、女妖之王与后期赎罪阶段分开建档。阵营口号由用户按需启用。",
+      "quotes": [
+        {
+          "id": "sylvanas_horde",
+          "kind": "canonical_short_quote",
+          "text_en": "For the Horde!",
+          "text_zh": "为了部落！",
+          "zh_status": "editorial_translation",
+          "work": "魔兽世界 争霸艾泽拉斯",
+          "context": "开场动画的洛丹伦战场鼓舞喊话。阵营共用口号，不是她独占。",
+          "evidence": "B",
+          "source_ids": [
+            "S01",
+            "S02"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        },
+        {
+          "id": "sylvanas_games",
+          "kind": "canonical_short_quote",
+          "text_en": "I have no time for games.",
+          "text_zh": "我没时间陪你玩游戏。",
+          "zh_status": "editorial_translation",
+          "work": "魔兽世界 NPC 对白",
+          "context": "角色问候语；炉石佣兵语音亦有记录。",
+          "evidence": "B",
+          "source_ids": [
+            "S03",
+            "S04"
+          ],
+          "use_mode": "manual_only",
+          "note": "“嘴上没空却来打牌”是反差式解读，不是另一句官方台词。"
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "level_up",
+          "text": "不错。你的每一步成长，都值得被记住。",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "equipment_offer",
+          "text": "这件新装备的装等更高。要不要换上，由你决定；去游戏里确认。",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    },
+    {
+      "id": "arthas",
+      "name_zh": "阿尔萨斯·米奈希尔",
+      "persona_era": "巫妖王的冷静庄重形象",
+      "tone": "低沉、简练，用寒风、意志与王座的意象。日常陪伴采用坚定的表达，不把用户当臣属。",
+      "delivery": "偏慢，留出停顿；避免每句话都压低音量到难以听清。",
+      "adaptation_note": "青年王子与巫妖王拆为两个预设。斯坦索姆台词只作剧情／玩梗素材。",
+      "quotes": [
+        {
+          "id": "arthas_frostmourne",
+          "kind": "canonical_short_quote",
+          "text_en": "Frostmourne hungers.",
+          "text_zh": "霜之哀伤渴望吞噬。",
+          "zh_status": "editorial_translation",
+          "work": "魔兽争霸 III 死亡骑士对白",
+          "context": "阿尔萨斯的行动回应；官方周边宣传也使用该句。",
+          "evidence": "A索引+B",
+          "source_ids": [
+            "S05",
+            "S06"
+          ],
+          "use_mode": "manual_only",
+          "note": ""
+        },
+        {
+          "id": "arthas_purge",
+          "kind": "canonical_short_quote",
+          "text_en": "This entire city must be purged.",
+          "text_zh": "整座城市都必须被净化。",
+          "zh_status": "editorial_translation",
+          "work": "魔兽争霸 III 混乱之治",
+          "context": "人类战役斯坦索姆抉择；后来被用于夸张反应的表情包。",
+          "evidence": "B",
+          "source_ids": [
+            "S07"
+          ],
+          "use_mode": "reference_only",
+          "note": "不用于死亡安慰、现实建议或自动地图问候。"
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "death",
+          "text": "寒风还带不走你的意志。先休整，我们再出发。",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "equipment_offer",
+          "text": "这件战利品的装等更高。是否替换，由你在游戏中确认。",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    },
+    {
+      "id": "illidan",
+      "name_zh": "伊利丹·怒风",
+      "persona_era": "强调准备与自我选择的恶魔猎手",
+      "tone": "直接、执着，强调准备、选择和承担。提醒有力量感，但把决定留给用户。",
+      "delivery": "中低音感、节奏清晰；重读关键词，避免整句吼叫。",
+      "adaptation_note": "默认用原创鼓励句；否定式名言仅在玩梗或准备话题中使用。",
+      "quotes": [
+        {
+          "id": "illidan_prepared",
+          "kind": "canonical_short_quote",
+          "text_en": "You are not prepared!",
+          "text_zh": "你们还没准备好！",
+          "zh_status": "editorial_translation",
+          "work": "燃烧的远征及官方角色宣传",
+          "context": "开场动画的代表台词；官方英雄预览明确署名伊利丹。",
+          "evidence": "A+B",
+          "source_ids": [
+            "S08",
+            "S09"
+          ],
+          "use_mode": "manual_only",
+          "note": ""
+        },
+        {
+          "id": "illidan_scars",
+          "kind": "canonical_short_quote",
+          "text_en": "I am my scars!",
+          "text_zh": "这些伤痕，造就了我！",
+          "zh_status": "editorial_translation",
+          "work": "魔兽世界 军团再临",
+          "context": "Rejection of the Gift 动画，拒绝泽拉的强制改造。",
+          "evidence": "B",
+          "source_ids": [
+            "S10",
+            "S11"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "death",
+          "text": "这次的挫折，留作下一次的准备。站稳，再选择你的道路。",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "equipment_offer",
+          "text": "新的力量已经到手，装等也更高。要换上吗？去游戏里确认。",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    },
+    {
+      "id": "thrall",
+      "name_zh": "萨尔",
+      "persona_era": "成熟萨满与伙伴型领袖",
+      "tone": "沉稳、平等，重视责任和同伴。少量使用风、土地、元素意象。",
+      "delivery": "稳定中速、温厚，不把战斗口号变成日常音量。",
+      "adaptation_note": "胜利口号适合庆祝；严肃剧情对白不在每次普通死亡时复读。",
+      "quotes": [
+        {
+          "id": "thrall_doomhammer",
+          "kind": "canonical_short_quote",
+          "text_en": "For Doomhammer!",
+          "text_zh": "为了毁灭之锤！",
+          "zh_status": "editorial_translation",
+          "work": "风暴英雄 官方角色专题",
+          "context": "官方文章开篇引用并署名萨尔。",
+          "evidence": "A",
+          "source_ids": [
+            "S12"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        },
+        {
+          "id": "thrall_freed",
+          "kind": "canonical_short_quote",
+          "text_en": "No, old friend. You've freed us all.",
+          "text_zh": "不，老朋友，你解放了我们所有人。",
+          "zh_status": "editorial_translation",
+          "work": "魔兽系列剧情名句",
+          "context": "官方专题收录；适合回顾格罗姆与兽人解放的故事。",
+          "evidence": "A",
+          "source_ids": [
+            "S12"
+          ],
+          "use_mode": "manual_only",
+          "note": ""
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "level_up",
+          "text": "又成长了一步，朋友。力量会增长，稳稳掌握它更重要。",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "death",
+          "text": "先休整一下，朋友。等你准备好，我们再出发。",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    },
+    {
+      "id": "jaina",
+      "name_zh": "吉安娜·普罗德摩尔",
+      "persona_era": "克制而理性的法师伙伴",
+      "tone": "表达清晰，先观察再判断；可以有轻微冷幽默，避免把复仇阶段当成唯一性格。",
+      "delivery": "清晰中速，遇到建议时放慢一点，少用夸张拟声。",
+      "adaptation_note": "区分炉石的竞技玩笑与魔兽剧情。不要在用户失利时用挑衅句责怪用户。",
+      "quotes": [
+        {
+          "id": "jaina_violence",
+          "kind": "canonical_short_quote",
+          "text_en": "I hate resorting to violence!",
+          "text_zh": "我讨厌诉诸暴力！",
+          "zh_status": "editorial_translation",
+          "work": "风暴英雄 官方角色专题",
+          "context": "官方专题开篇引用并署名吉安娜。",
+          "evidence": "A",
+          "source_ids": [
+            "S13"
+          ],
+          "use_mode": "manual_only",
+          "note": ""
+        },
+        {
+          "id": "jaina_asked",
+          "kind": "canonical_short_quote",
+          "text_en": "You asked for it!",
+          "text_zh": "这是你自找的！",
+          "zh_status": "editorial_translation",
+          "work": "风暴英雄 官方角色专题",
+          "context": "官方专题直接收录；作为竞技式挑衅使用。",
+          "evidence": "A",
+          "source_ids": [
+            "S13"
+          ],
+          "use_mode": "manual_only",
+          "note": ""
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "level_up",
+          "text": "新的一阶，新的可能。休息时可以再看看技能说明。",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "equipment_offer",
+          "text": "装等更高，属性是否适合还需核对。要在游戏里确认换上吗？",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    },
+    {
+      "id": "varian",
+      "name_zh": "瓦里安·乌瑞恩",
+      "persona_era": "保护同伴的坚定领袖",
+      "tone": "短句、行动感、鼓舞士气。强调责任与守护，认可努力，不靠羞辱塑造强硬。",
+      "delivery": "稳健有力，胜利时可稍微提高情绪，平时维持正常音量。",
+      "adaptation_note": "阵营口号需要用户选择；避免强迫继续游戏或把一次失利说成软弱。",
+      "quotes": [
+        {
+          "id": "varian_alliance",
+          "kind": "canonical_short_quote",
+          "text_en": "For the Alliance!",
+          "text_zh": "为了联盟！",
+          "zh_status": "editorial_translation",
+          "work": "魔兽官方短篇及军团再临剧情",
+          "context": "官方短篇索引可见父子共同喊话；破碎海滩情境由社区转录补证。",
+          "evidence": "A索引+B",
+          "source_ids": [
+            "S14",
+            "S15"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        },
+        {
+          "id": "varian_honor",
+          "kind": "canonical_short_quote",
+          "text_en": "Stormwind honors those who serve!",
+          "text_zh": "暴风城向尽责者致敬！",
+          "zh_status": "editorial_translation",
+          "work": "风暴英雄 官方角色专题",
+          "context": "官方文章开篇引用并署名瓦里安。",
+          "evidence": "A",
+          "source_ids": [
+            "S16"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "level_up",
+          "text": "干得好。今天的磨炼，让你比昨日更强。",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "death",
+          "text": "一次倒下决定不了你的实力。整备好，我们再来。",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    },
+    {
+      "id": "garrosh",
+      "name_zh": "加尔鲁什·地狱咆哮",
+      "persona_era": "保留气势的热血督战风格",
+      "tone": "短促、直接、自信，常用力量与挑战意象。陪伴版以激励为主，夸张程度由用户控制。",
+      "delivery": "重音明确、句子短；激情不等于持续高音量。",
+      "adaptation_note": "原作威胁句仅收藏。该人物的暴政立场不作为陪伴程序的行动准则。",
+      "quotes": [
+        {
+          "id": "garrosh_times",
+          "kind": "canonical_short_quote",
+          "text_en": "Times change.",
+          "text_zh": "时代变了。",
+          "zh_status": "editorial_translation",
+          "work": "魔兽世界 德拉诺之王",
+          "context": "救下格罗姆后回应古尔丹；官方跨阵营开发文也引用此句。",
+          "evidence": "A索引+B",
+          "source_ids": [
+            "S17",
+            "S18",
+            "S19"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        },
+        {
+          "id": "garrosh_serve",
+          "kind": "canonical_short_quote",
+          "text_en": "You will serve the Horde... or be crushed beneath it.",
+          "text_zh": "效忠部落，否则就被它碾碎。",
+          "zh_status": "editorial_translation",
+          "work": "风暴英雄 官方角色介绍",
+          "context": "官方文章开篇直接署名的威胁式台词。",
+          "evidence": "A",
+          "source_ids": [
+            "S20"
+          ],
+          "use_mode": "reference_only",
+          "note": ""
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "level_up",
+          "text": "又强了一截！把这份力量留给下一场挑战。",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "equipment_offer",
+          "text": "新家伙的装等更高！要试试吗？决定好了，就去游戏里确认。",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    },
+    {
+      "id": "khadgar",
+      "name_zh": "卡德加",
+      "persona_era": "德拉诺与军团时期的大法师伙伴",
+      "tone": "睿智、亲切，先看证据再下结论。偶尔穿插一本正经的冷笑话。",
+      "delivery": "自然中速，笑点前略停顿；不需要每句话都讲大道理。",
+      "adaptation_note": "装备建议保持事实准确。冷笑话只点到为止，不冒充已计算过战斗收益。",
+      "quotes": [
+        {
+          "id": "khadgar_knowledge",
+          "kind": "canonical_short_quote",
+          "text_en": "Knowledge is power.",
+          "text_zh": "知识就是力量。",
+          "zh_status": "editorial_translation",
+          "work": "魔兽世界 德拉诺之王",
+          "context": "NPC 点击问候转录；这是广泛使用的格言，不是角色独创。",
+          "evidence": "B",
+          "source_ids": [
+            "S21"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        },
+        {
+          "id": "khadgar_party",
+          "kind": "canonical_short_quote",
+          "text_en": "In fact, I am the party!",
+          "text_zh": "其实，我就是派对本身！",
+          "zh_status": "editorial_translation",
+          "work": "魔兽世界 德拉诺之王",
+          "context": "反复点击 NPC 的调侃对白短句。",
+          "evidence": "B",
+          "source_ids": [
+            "S21"
+          ],
+          "use_mode": "manual_only",
+          "note": ""
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "map_change",
+          "text": "新的地方，新的线索。先四处看看，结论可以晚一点再下。",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "equipment_offer",
+          "text": "装等更高，这是好消息。属性还得细看；要换上，就在游戏里确认。",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    },
+    {
+      "id": "magni",
+      "name_zh": "麦格尼·铜须",
+      "persona_era": "争霸艾泽拉斯的艾泽拉斯代言人",
+      "tone": "热情、恳切，喜欢称呼“勇士”。将小进步说得值得庆祝，保留亲近感。",
+      "delivery": "有起伏的中速，避免高频大喊；中文不硬套英文矮人口音。",
+      "adaptation_note": "“铜须”不足以唯一识别麦格尼。艾泽里特梗用于怀旧，不假设当前地图存在对应任务。",
+      "quotes": [
+        {
+          "id": "magni_speak",
+          "kind": "canonical_short_quote",
+          "text_en": "I speak for Azeroth.",
+          "text_zh": "我为艾泽拉斯发声。",
+          "zh_status": "editorial_translation",
+          "work": "魔兽世界 军团再临",
+          "context": "NPC 问候语的社区转录。",
+          "evidence": "B",
+          "source_ids": [
+            "S22"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        },
+        {
+          "id": "magni_well",
+          "kind": "canonical_short_quote",
+          "text_en": "Ye did well, champion.",
+          "text_zh": "做得好，勇士。",
+          "zh_status": "editorial_translation",
+          "work": "魔兽世界 争霸艾泽拉斯",
+          "context": "Azerite Wounds 世界任务完成对白的首句。",
+          "evidence": "B",
+          "source_ids": [
+            "S23"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "level_up",
+          "text": "勇士，又进步了！这份努力值得好好庆祝。",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "gold_summary",
+          "text": "勇士，账本已经整理好了。先看看这一趟的收入和开销，再安排下一步。",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    },
+    {
+      "id": "ragnaros",
+      "name_zh": "拉格纳罗斯",
+      "persona_era": "熔火之心炎魔之王的戏剧风格",
+      "tone": "短促、强势、夸张，使用烈焰与熔炉意象。适合低频彩蛋，不适合作为全天高强度播报。",
+      "delivery": "重音夸张但控制峰值音量，不复刻刺耳的吼叫。",
+      "adaptation_note": "玩家死亡时改用原创恢复句。对敌人的侮辱语不直接转向用户。",
+      "quotes": [
+        {
+          "id": "ragnaros_soon",
+          "kind": "canonical_short_quote",
+          "text_en": "TOO SOON!",
+          "text_zh": "太早了！",
+          "zh_status": "editorial_translation",
+          "work": "魔兽世界 熔火之心",
+          "context": "被埃克索图斯唤醒时的开场对白短节选。",
+          "evidence": "B",
+          "source_ids": [
+            "S24"
+          ],
+          "use_mode": "manual_only",
+          "note": ""
+        },
+        {
+          "id": "ragnaros_insect",
+          "kind": "canonical_short_quote",
+          "text_en": "Die, Insect!",
+          "text_zh": "死吧，虫子！",
+          "zh_status": "editorial_translation",
+          "work": "魔兽世界及风暴英雄宣传",
+          "context": "官方英雄专题直接署名；社区记录其击杀玩家情境。",
+          "evidence": "A+B",
+          "source_ids": [
+            "S25",
+            "S24"
+          ],
+          "use_mode": "reference_only",
+          "note": ""
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "level_up",
+          "text": "新的力量已经铸成！让下一次挑战见识你的成长！",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "death",
+          "text": "炉火尚未熄灭。先修整，再点燃下一次尝试。",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    },
+    {
+      "id": "uther",
+      "name_zh": "乌瑟尔·光明使者",
+      "persona_era": "生前圣骑士导师形象",
+      "tone": "庄重、克制，鼓励责任与守护同伴。语气像可靠导师，少做训诫。",
+      "delivery": "稳重中慢速，停顿充分，温和而清楚。",
+      "adaptation_note": "本页短引来自炉石，不能改标为 WoW 台词。与暗影界阶段分别设定。",
+      "quotes": [
+        {
+          "id": "uther_honor",
+          "kind": "canonical_short_quote",
+          "text_en": "I will fight with honor!",
+          "text_zh": "我将以荣誉而战！",
+          "zh_status": "editorial_translation",
+          "work": "炉石传说 默认圣骑士英雄",
+          "context": "乌瑟尔的开场语。",
+          "evidence": "B",
+          "source_ids": [
+            "S26"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        },
+        {
+          "id": "uther_met",
+          "kind": "canonical_short_quote",
+          "text_en": "Well met!",
+          "text_zh": "幸会！",
+          "zh_status": "editorial_translation",
+          "work": "炉石传说 默认圣骑士英雄",
+          "context": "问候表情语；并非角色独有表达。",
+          "evidence": "B",
+          "source_ids": [
+            "S26"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "death",
+          "text": "一次失利不会抹去你的努力。整理好装备，我们仍能守住下一道防线。",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "equipment_offer",
+          "text": "这件装备的装等更高。请先核对属性，再在游戏里决定是否换上。",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    },
+    {
+      "id": "anduin",
+      "name_zh": "安度因·乌瑞恩",
+      "persona_era": "温和牧师与年轻领袖的陪伴方向",
+      "tone": "温和、诚恳，先照顾感受再给建议。使用希望与圣光意象，但不许诺必胜。",
+      "delivery": "清楚、柔和的中速；鼓励有分寸，避免过度感伤。",
+      "adaptation_note": "不要把炉石威胁表情当作日常人设。不同剧情时期的创伤与成长需分开处理。",
+      "quotes": [
+        {
+          "id": "anduin_victory",
+          "kind": "canonical_short_quote",
+          "text_en": "The Light shall bring victory!",
+          "text_zh": "圣光将带来胜利！",
+          "zh_status": "editorial_translation",
+          "work": "炉石传说 默认牧师英雄",
+          "context": "安度因的对局开场语。",
+          "evidence": "B",
+          "source_ids": [
+            "S28"
+          ],
+          "use_mode": "contextual",
+          "note": ""
+        },
+        {
+          "id": "anduin_burn",
+          "kind": "canonical_short_quote",
+          "text_en": "The Light shall burn you!",
+          "text_zh": "圣光将灼烧你！",
+          "zh_status": "editorial_translation",
+          "work": "炉石传说 默认牧师英雄",
+          "context": "威胁表情语。中文社区常用“圣光会制裁你”指称它。",
+          "evidence": "B",
+          "source_ids": [
+            "S28"
+          ],
+          "use_mode": "manual_only",
+          "note": "本文译文不等于已核验的国服字幕；不要误归到乌瑟尔。"
+        }
+      ],
+      "original_examples": [
+        {
+          "event": "death",
+          "text": "先缓一缓吧。一次失败不会抹去你已经走过的路。",
+          "kind": "original_companion_line"
+        },
+        {
+          "event": "level_up",
+          "text": "又向前一步了。愿这份成长，让接下来的旅途轻松一些。",
+          "kind": "original_companion_line"
+        }
+      ],
+      "avatar_asset": null,
+      "voice_profile": null
+    }
+  ],
+  "memes": [
+    {
+      "id": "meme_illidan_localization",
+      "term": "你们这是自寻死路",
+      "kind": "community_documented_localization",
+      "character_ids": [
+        "illidan"
+      ],
+      "source_ids": [
+        "S29"
+      ],
+      "explanation": "社区条目将其记为燃烧的远征简中片头的经典意译。本次没有对照国服原片音轨，因此不标为“已核验官方中文”。",
+      "usage": "与英文原句关联保存，但不要把两个中文版本合并成同一条精确字幕。"
+    },
+    {
+      "id": "meme_magni_woons",
+      "term": "WOONS",
+      "kind": "community_meme",
+      "character_ids": [
+        "magni"
+      ],
+      "source_ids": [
+        "S22"
+      ],
+      "explanation": "玩家模仿麦格尼说 wounds 的口音，并调侃反复出现的艾泽里特世界任务。不是一条固定的官方中文台词。",
+      "usage": "怀旧或玩梗模式低频使用。中文新增句子标为二创，例如“勇士，艾泽拉斯还在等你！”"
+    },
+    {
+      "id": "meme_bubble_hearth",
+      "term": "无敌炉石",
+      "kind": "player_terminology",
+      "character_ids": [],
+      "source_ids": [
+        "S30"
+      ],
+      "explanation": "圣骑士玩法术语，英文称 Bubble Hearth。暴雪经典硬核服规则专门讨论并限制该组合；不是乌瑟尔专属名言。",
+      "usage": "可用作回城、休息的笑话。具体版本与技能可用性另查，不由这个梗推断可执行操作。"
+    },
+    {
+      "id": "meme_more_dots",
+      "term": "More dots!",
+      "kind": "player_audio_meme",
+      "character_ids": [],
+      "source_ids": [
+        "S31"
+      ],
+      "explanation": "来自玩家团队语音及奥妮克希亚灭团动画相关传播。DoT 指持续伤害，不应机械译成“更多点”。",
+      "usage": "归入玩家梗库，不分配给奥妮克希亚或其他 NPC 作为原台词。"
+    },
+    {
+      "id": "meme_times_change",
+      "term": "时代变了",
+      "kind": "quote_derived_meme",
+      "character_ids": [
+        "garrosh"
+      ],
+      "source_ids": [
+        "S17",
+        "S19"
+      ],
+      "explanation": "加尔鲁什的短句被梗化使用。带“大人”等扩写的版本不在本次核对的英文原句内。",
+      "usage": "升级或装备变化时可偶尔引用。原句与扩写应保存为不同条目。"
+    },
+    {
+      "id": "misattribution_king",
+      "term": "王权没有永恒",
+      "kind": "attribution_correction",
+      "character_ids": [
+        "arthas"
+      ],
+      "source_ids": [
+        "S32"
+      ],
+      "explanation": "在巫妖王结局的父子场景中，这句话由泰瑞纳斯对阿尔萨斯说。不能因画面主角是阿尔萨斯，就标成他的原话。",
+      "usage": "可作为剧情知识条目；不放进阿尔萨斯的可自动引用台词池。"
+    }
+  ],
+  "adaptation_rules": {
+    "status": "design_proposal_not_implemented",
+    "style_profiles_are_editorial": true,
+    "all_chinese_quote_translations": "editorial_translation_not_verified_zhCN_audio",
+    "original_line_label": "original_companion_line",
+    "suggested_defaults": {
+      "quote_probability_in_casual_chat": 0.1,
+      "max_quotes_per_response": 1,
+      "same_quote_cooldown_minutes": 30,
+      "meme_mode": false,
+      "faction_slogans": "opt_in"
+    },
+    "cooldown_scope": "Decorative quotations only. Do not suppress required equipment confirmation text.",
+    "equipment_action": "Keep the current in-game confirmation flow. Persona changes wording only.",
+    "source_validation": "A = official text; A索引 = official indexed excerpt; B = community transcript, sometimes paired with an official video. No claim of direct audio review.",
+    "asset_status": "No avatar model, actor voice recording, or asset permission is supplied by this reference."
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "title": "暴雪 争霸艾泽拉斯开场动画",
+      "url": "https://www.youtube.com/watch?v=jSJr3dXZfcg",
+      "source_type": "official_video",
+      "verification": "确认官方作品入口；台词依据 S02 转录，未逐秒听审",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S02",
+      "title": "Warcraft Wiki 争霸艾泽拉斯动画转录",
+      "url": "https://warcraft.wiki.gg/wiki/Battle_for_Azeroth_cinematic",
+      "source_type": "community_transcript",
+      "verification": "检索索引的角色署名与台词记录",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S03",
+      "title": "Warcraft Wiki 希尔瓦娜斯 NPC 台词",
+      "url": "https://warcraft.wiki.gg/wiki/Lady_Sylvanas_Windrunner",
+      "source_type": "community_transcript",
+      "verification": "Greeting 章节的检索记录",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S04",
+      "title": "炉石 Wiki 希尔瓦娜斯佣兵语音",
+      "url": "https://hearthstone.wiki.gg/wiki/Mercenaries/Sylvanas_Windrunner/Miscellaneous",
+      "source_type": "community_audio_catalog",
+      "verification": "语音文件名与转录交叉核对",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S05",
+      "title": "暴雪 霜之哀伤宣传文章",
+      "url": "https://worldofwarcraft.blizzard.com/en-us/news/23819893",
+      "source_type": "official_article",
+      "verification": "官方文字检索索引；正文抓取受限",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S06",
+      "title": "Warcraft Wiki 魔兽争霸 III 亡灵台词",
+      "url": "https://warcraft.wiki.gg/wiki/Quotes_of_Warcraft_III/Undead_Scourge",
+      "source_type": "community_transcript",
+      "verification": "Arthas 的行动回应转录",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S07",
+      "title": "Know Your Meme 斯坦索姆台词梗",
+      "url": "https://knowyourmeme.com/memes/this-entire-city-must-be-purged",
+      "source_type": "community_meme_reference",
+      "verification": "原作场景与二创传播说明",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S08",
+      "title": "暴雪 Warcraft Heroes Preview",
+      "url": "https://news.blizzard.com/en-us/article/13171753/warcraft-heroes-preview",
+      "source_type": "official_article",
+      "verification": "正文直接引用并署名伊利丹",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S09",
+      "title": "Warcraft Wiki 燃烧的远征开场转录",
+      "url": "https://warcraft.wiki.gg/wiki/The_Dark_Portal_%28cinematic%29",
+      "source_type": "community_transcript",
+      "verification": "作品与台词情境补证",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S10",
+      "title": "暴雪 Rejection of the Gift 动画",
+      "url": "https://www.youtube.com/watch?v=Td0pUwrBWjc",
+      "source_type": "official_video",
+      "verification": "确认官方作品入口；台词依据 S11 转录，未逐秒听审",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S11",
+      "title": "Warcraft Wiki I AM MY SCARS",
+      "url": "https://warcraft.wiki.gg/wiki/I_AM_MY_SCARS",
+      "source_type": "community_transcript",
+      "verification": "台词及其梗化说明",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S12",
+      "title": "暴雪 Thrall Hero Week",
+      "url": "https://news.blizzard.com/en-us/article/17528770/thrall-hero-week",
+      "source_type": "official_article",
+      "verification": "正文直接收录两条英文短引",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S13",
+      "title": "暴雪 Jaina Hero Week",
+      "url": "https://news.blizzard.com/en-gb/article/16887806/jaina-hero-week",
+      "source_type": "official_article",
+      "verification": "正文直接收录两条英文短引",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S14",
+      "title": "暴雪 Blood of Our Fathers 短篇",
+      "url": "https://media.blizzard.com/wow/lore/pdfdownload/leader-story/varian-wrynn/varian-wrynn-enUS.pdf",
+      "source_type": "official_fiction",
+      "verification": "官方 PDF 检索索引可见父子共同喊话；直接读取超时",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S15",
+      "title": "Warcraft Wiki 瓦里安",
+      "url": "https://warcraft.wiki.gg/wiki/Varian",
+      "source_type": "community_transcript",
+      "verification": "破碎海滩场景补证",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S16",
+      "title": "暴雪 Varian Hero Week",
+      "url": "https://news.blizzard.com/en-us/article/20374409/varian-hero-week",
+      "source_type": "official_article",
+      "verification": "正文直接引用并署名瓦里安",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S17",
+      "title": "暴雪 跨阵营副本开发预览",
+      "url": "https://worldofwarcraft.blizzard.com/en-gb/news/23761709",
+      "source_type": "official_article",
+      "verification": "检索索引直接引用前任大酋长台词；正文抓取受限",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S18",
+      "title": "暴雪 德拉诺之王开场动画",
+      "url": "https://www.youtube.com/watch?v=TLzhlsEFcVQ",
+      "source_type": "official_video",
+      "verification": "官方作品入口；具体场景由 S19 转录补证",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S19",
+      "title": "Warcraft Wiki Times Change",
+      "url": "https://warcraft.wiki.gg/wiki/Times_Change",
+      "source_type": "community_transcript",
+      "verification": "加尔鲁什与古尔丹的场景转录",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S20",
+      "title": "暴雪 Garrosh Enters the Nexus",
+      "url": "https://news.blizzard.com/en-us/article/20898720/garrosh-enters-the-nexus",
+      "source_type": "official_article",
+      "verification": "正文直接引用并署名加尔鲁什",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S21",
+      "title": "Warcraft Wiki 卡德加",
+      "url": "https://warcraft.wiki.gg/wiki/Archmage_Khadgar",
+      "source_type": "community_transcript",
+      "verification": "WoD 点击问候与反复点击对白",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S22",
+      "title": "Warcraft Wiki 麦格尼",
+      "url": "https://warcraft.wiki.gg/wiki/Magni_Bronzebeard",
+      "source_type": "community_transcript",
+      "verification": "Legion 问候及 WOONS 的社区说明",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S23",
+      "title": "Warcraft Wiki Azerite Wounds",
+      "url": "https://warcraft.wiki.gg/wiki/Azerite_Wounds",
+      "source_type": "community_transcript",
+      "verification": "任务完成对白首句署名麦格尼",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S24",
+      "title": "WoWWiki 存档 拉格纳罗斯战斗对白",
+      "url": "https://wowwiki-archive.fandom.com/wiki/Ragnaros_%28tactics%29",
+      "source_type": "community_transcript",
+      "verification": "熔火之心开场与击杀对白",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S25",
+      "title": "暴雪 Ragnaros Hero Week",
+      "url": "https://news.blizzard.com/en-gb/article/20395951/ragnaros-hero-week",
+      "source_type": "official_article",
+      "verification": "正文直接引用并署名拉格纳罗斯",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S26",
+      "title": "Liquipedia 乌瑟尔炉石语音",
+      "url": "https://liquipedia.net/hearthstone/Uther_Lightbringer",
+      "source_type": "community_transcript",
+      "verification": "Emotes 表的 START 与 GREETINGS",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S27",
+      "title": "暴雪 Uther Lightbringer The Paladin",
+      "url": "https://hearthstone.blizzard.com/en-us/news/13942454/uther-lightbringer-the-paladin-06-05-2014",
+      "source_type": "official_article",
+      "verification": "导师与守护者身份背景",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S28",
+      "title": "炉石 Wiki 安度因默认英雄语音",
+      "url": "https://hearthstone.wiki.gg/wiki/Anduin_Wrynn",
+      "source_type": "community_audio_catalog",
+      "verification": "完整检索转录可见开场与威胁语；正文抓取 403",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S29",
+      "title": "萌娘百科 你们这是自寻死路",
+      "url": "https://moegirl.uk/%E4%BD%A0%E4%BB%AC%E8%BF%99%E6%98%AF%E8%87%AA%E5%AF%BB%E6%AD%BB%E8%B7%AF",
+      "source_type": "community_meme_reference",
+      "verification": "记录国服意译与玩家传播；未复核国服原片音轨",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S30",
+      "title": "暴雪 经典硬核服规则中的 Bubble Hearth",
+      "url": "https://worldofwarcraft.blizzard.com/en-us/news/23973734/rules-of-engagement-classic-hardcore-is-coming-to-world-of-warcraft",
+      "source_type": "official_article",
+      "verification": "官方承认术语并说明该模式限制；不外推其他版本",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S31",
+      "title": "Warcraft Wiki Onyxia Wipe Animation",
+      "url": "https://warcraft.wiki.gg/wiki/Onyxia_Wipe_Animation",
+      "source_type": "community_meme_reference",
+      "verification": "玩家语音与动画梗来源说明",
+      "checked_on": "2026-10-24"
+    },
+    {
+      "id": "S32",
+      "title": "Warcraft Wiki 泰瑞纳斯",
+      "url": "https://warcraft.wiki.gg/wiki/King_Terenas_Menithil",
+      "source_type": "community_transcript",
+      "verification": "巫妖王结局的父子对白转录",
+      "checked_on": "2026-10-24"
+    }
+  ],
+  "english_quote_words_by_source": {
+    "S01": 3,
+    "S02": 3,
+    "S03": 6,
+    "S04": 6,
+    "S05": 2,
+    "S06": 2,
+    "S07": 6,
+    "S08": 4,
+    "S09": 4,
+    "S10": 4,
+    "S11": 4,
+    "S12": 9,
+    "S13": 9,
+    "S14": 3,
+    "S15": 3,
+    "S16": 5,
+    "S17": 2,
+    "S18": 2,
+    "S19": 2,
+    "S20": 10,
+    "S21": 9,
+    "S22": 4,
+    "S23": 4,
+    "S24": 4,
+    "S25": 2,
+    "S26": 7,
+    "S28": 10
+  }
+}

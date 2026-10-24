@@ -1,6 +1,7 @@
--- Public character state only. No gameplay actions, sockets or secret unwrapping.
+-- Public telemetry and equipment actions approved by an in-game confirmation click.
 local addonName, ns = ...
 local Protocol, Telemetry, Money = ns.Protocol, ns.Telemetry, ns.Money
+local Equipment, Transfer, ConfirmEquip = ns.Equipment, ns.Transfer, ns.ConfirmEquip
 local Public = Protocol.Public
 local state, config, db, ticker, pendingLevel
 local ready, online, combat, dead = false, false, false, false
@@ -45,7 +46,7 @@ local function Export()
     -- The client flushes these on reload/logout, never as live disk writes.
     db.snapshot, db.snapshotJSON = clean, payload
     db.updatedAt = Number(Call(GetServerTime) or Call(time), 0)
-    Telemetry.Render(bytes)
+    Telemetry.Render(Transfer.Current(bytes))
 end
 
 local function Sample()
@@ -107,19 +108,31 @@ local function Initialize()
     local uptime = Number((Call(GetTime) or 0) * 1000, 0)
     state = { v = 2, session = string.format("%d-%d-%d", timestamp, uptime, math.random(100000, 999999)), seq = 0, tick = 0, guid = "", name = "", realm = "", level = 0, class = "", spec = 0, map = 0, zone = "当前位置暂不可用", combat = false, dead = false, online = false }
     Telemetry.Initialize(config)
+    ConfirmEquip.Initialize(state, config, Transfer.AddSwap, Print, function(offer)
+        Transfer.SetOffer(offer)
+        if ready then Export() end
+    end)
+    Equipment.Initialize(state, function(record)
+        Transfer.Add(record)
+        ConfirmEquip.Add(record)
+    end)
     ready = true
     ticker = C_Timer.NewTicker(1, function()
         state.tick = (state.tick + 1) % 2147483647
+        ConfirmEquip.Tick()
+        Transfer.Advance()
         Export()
     end)
     Sample()
 end
 
 local events = CreateFrame("Frame")
-for _, event in ipairs({ "ADDON_LOADED", "PLAYER_ENTERING_WORLD", "PLAYER_LEAVING_WORLD", "PLAYER_LOGOUT", "PLAYER_MONEY", "PLAYER_LEVEL_UP", "ZONE_CHANGED_NEW_AREA", "ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "PLAYER_SPECIALIZATION_CHANGED", "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "PLAYER_DEAD", "PLAYER_ALIVE", "PLAYER_UNGHOST", "UI_SCALE_CHANGED", "DISPLAY_SIZE_CHANGED" }) do events:RegisterEvent(event) end
-events:SetScript("OnEvent", function(_, event, arg1)
+for _, event in ipairs({ "ADDON_LOADED", "PLAYER_ENTERING_WORLD", "PLAYER_LEAVING_WORLD", "PLAYER_LOGOUT", "PLAYER_MONEY", "PLAYER_LEVEL_UP", "ZONE_CHANGED_NEW_AREA", "ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "PLAYER_SPECIALIZATION_CHANGED", "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "PLAYER_DEAD", "PLAYER_ALIVE", "PLAYER_UNGHOST", "UI_SCALE_CHANGED", "DISPLAY_SIZE_CHANGED", "BAG_UPDATE_DELAYED", "PLAYER_EQUIPMENT_CHANGED", "ITEM_PUSH", "GET_ITEM_INFO_RECEIVED", "ITEM_DATA_LOAD_RESULT" }) do events:RegisterEvent(event) end
+events:SetScript("OnEvent", function(_, event, arg1, arg2)
     if event == "ADDON_LOADED" then if arg1 == addonName then Initialize() end; return end
     if not ready then return end
+    ConfirmEquip.OnEvent(event, arg1, arg2)
+    Equipment.OnEvent(event, arg1, arg2)
     if event == "PLAYER_ENTERING_WORLD" then
         online = true
         local isCombat, isDead = Call(InCombatLockdown), Call(UnitIsDeadOrGhost, "player")
@@ -131,6 +144,7 @@ events:SetScript("OnEvent", function(_, event, arg1)
         online = false
         Sample()
         Export()
+    elseif event == "BAG_UPDATE_DELAYED" or event == "PLAYER_EQUIPMENT_CHANGED" or event == "ITEM_PUSH" or event == "GET_ITEM_INFO_RECEIVED" or event == "ITEM_DATA_LOAD_RESULT" then return
     elseif event == "PLAYER_MONEY" then Sample()
     elseif event == "PLAYER_LEVEL_UP" then pendingLevel = Number(arg1, pendingLevel, 255); Sample()
     elseif event == "PLAYER_REGEN_DISABLED" then combat = true; Sample()
@@ -151,7 +165,9 @@ SlashCmdList.WOWMAPCOMPANION = function(message)
     if not ready then return end
     local command, arg = string.match(message or "", "^%s*(%S*)%s*(.-)%s*$")
     command = string.lower(command)
-    if command == "telemetry" then
+    if command == "equip" then
+        ConfirmEquip.Command(string.lower(arg))
+    elseif command == "telemetry" then
         config.telemetry = not config.telemetry
         Telemetry.UpdateLayout()
         Export()
@@ -180,9 +196,13 @@ SlashCmdList.WOWMAPCOMPANION = function(message)
         Print(string.format("WCP1 · 等级 %d · 状态序号 %d · 心跳 %d · JSON %d/504 字节", state.level, state.seq, state.tick, #(currentJSON or "")))
         Print(string.format("遥测：%s · 左上(%d,%d) · 每格%dpx · 画面区%d×%dpx", config.telemetry and "开启" or "关闭", config.x, config.y, config.cell, 64 * config.cell, 64 * config.cell))
         Print("这是单向发送状态；插件无法确认桌面端是否已连接。")
+        Print(Equipment.Status())
+        Print(ConfirmEquip.Status())
+        Print(Transfer.Status())
         Print(Money.Format(state.copper) .. " · 累计收入 " .. Money.Format(state.earned) .. " · 累计支出 " .. Money.Format(state.spent))
     else
         Print("/wowc telemetry 遥测；status 状态；selftest 编码自检")
+        Print("equip on | off | status：开启、关闭或查看逐件确认换装")
         Print("/wowc pos 8 8 位置；cell 2 像素尺寸；reset 重置设置")
     end
 end

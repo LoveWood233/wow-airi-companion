@@ -1,9 +1,9 @@
-import type { BridgeStatus } from '../../../shared/wow-companion'
+import type { BridgeStatus, GameVersion } from '../../../shared/wow-companion'
 
 import { errorMessageFrom } from '@moeru/std'
 import { parse } from 'valibot'
 
-import { bridgeSchema } from '../../../shared/wow-companion'
+import { bridgeSchema, gameProfiles } from '../../../shared/wow-companion'
 
 /**
  * Owns the decoder cache and request ordering.
@@ -17,9 +17,12 @@ export class CompanionBridgeClient {
   private mutations = 0
   private pendingRead = false
   private stopped = false
+  private readonly baseUrl: string
 
   /** The address is fixed in production. Tests use an isolated loopback HTTP server. */
-  constructor(private readonly baseUrl = 'http://127.0.0.1:18765') {}
+  constructor(baseUrl: string | undefined = undefined, private readonly game: GameVersion = 'retail') {
+    this.baseUrl = baseUrl ?? `http://127.0.0.1:${gameProfiles[game].port}`
+  }
 
   read() {
     return structuredClone({ bridge: this.bridge, error: this.error, updatedAt: this.updatedAt })
@@ -90,6 +93,13 @@ export class CompanionBridgeClient {
     })
     if (!response.ok)
       throw new Error(`WoW bridge HTTP ${response.status}`)
-    return parse(bridgeSchema, await response.json())
+    const bridge = parse(bridgeSchema, await response.json())
+    // Retail 2.2 has no identity fields in status. Its health protocol remains WCP1.
+    if ((bridge.game !== undefined && bridge.game !== this.game)
+      || (bridge.protocol !== undefined && bridge.protocol !== gameProfiles[this.game].protocol)
+      || (this.game === 'forever' && (bridge.game !== 'forever' || bridge.protocol !== 'WCF1'))) {
+      throw new Error(`The WoW bridge response does not match the ${this.game} profile.`)
+    }
+    return bridge
   }
 }

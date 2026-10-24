@@ -68,6 +68,13 @@ function Protocol.CRC16(payload)
     return crc
 end
 
+function Protocol.Frame(payload)
+    if type(payload) ~= "string" or #payload > 504 then return nil end
+    local crc = Protocol.CRC16(payload)
+    local header = "WCP1" .. string.char(#payload % 256, math.floor(#payload / 256), crc % 256, math.floor(crc / 256))
+    return header .. payload .. string.rep(string.char(0), 504 - #payload)
+end
+
 function Protocol.Encode(snapshot)
     local clean = {}
     for _, key in ipairs(keys) do
@@ -84,9 +91,7 @@ function Protocol.Encode(snapshot)
         end
     end
     if #payload > 504 then return nil, "snapshot exceeds 504 bytes" end
-    local crc = Protocol.CRC16(payload)
-    local header = "WCP1" .. string.char(#payload % 256, math.floor(#payload / 256), crc % 256, math.floor(crc / 256))
-    return header .. payload .. string.rep(string.char(0), 504 - #payload), payload, clean
+    return Protocol.Frame(payload), payload, clean
 end
 
 function Protocol.Bit(frame, index)

@@ -30,4 +30,4 @@ New-Item -ItemType Directory -Path $destination -Force | Out-Null
 foreach ($file in $files) {
     Copy-Item -LiteralPath $file.FullName -Destination (Join-Path $destination $file.Name) -Force
 }
-Write-Output 'Installed. In WoW, enable WoW Map Companion and run /reload.'
+Write-Output 'Installed. Fully restart WoW to load new modules, then enable WoW Map Companion.'

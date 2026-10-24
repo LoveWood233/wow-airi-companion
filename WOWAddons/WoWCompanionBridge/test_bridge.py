@@ -255,7 +255,7 @@ class HttpTests(unittest.TestCase):
         status, _, body = self.request("GET", "/health")
         self.assertEqual(status, 200)
         self.assertEqual(json.loads(body)["protocol"], "WCP1")
-        self.assertEqual(json.loads(body)["version"], "2.2.0")
+        self.assertEqual(json.loads(body)["version"], "2.6.0")
 
     def test_external_origin_and_dns_rebinding_rejected(self):
         self.assertEqual(self.request("GET", "/api/status", headers={"Origin": "https://evil.example"})[0], 403)

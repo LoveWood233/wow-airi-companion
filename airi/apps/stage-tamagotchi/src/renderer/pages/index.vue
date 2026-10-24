@@ -29,6 +29,7 @@ import { useVoiceStore } from '@proj-airi/stage-ui/stores/voice'
 import { refDebounced } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
 import { computed, nextTick, onMounted, onScopeDispose, ref, shallowRef, toRef, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { toast } from 'vue-sonner'
 
@@ -38,6 +39,7 @@ import AuthStatusIsland from '../components/stage-islands/auth-status-island.vue
 import ControlsIslandRoot from '../components/stage-islands/controls-island/controls-island-root.vue'
 import ControlsIsland from '../components/stage-islands/controls-island/index.vue'
 import ResourceStatusIsland from '../components/stage-islands/resource-status-island/index.vue'
+import SpeechCaptionBubble from '../components/stage-islands/speech-caption-bubble.vue'
 
 import { defaultFullscreenSurface, electronAppIsWayland, electronFullscreenExit, electronFullscreenSetMode, electronMainWindowEnterFullscreen, electronMainWindowGetFullscreenState, electronMainWindowSetFullscreenBounds, electronOpenInlay, electronOpenOnboarding, electronOpenSettings } from '../../shared/eventa'
 import { fullscreenHostPages, fullscreenSurfaceOf } from '../components/fullscreen/surfaces'
@@ -51,6 +53,7 @@ import { useControlsIslandStore } from '../stores/controls-island'
 import { useFullscreenStore } from '../stores/fullscreen'
 import { useStageWindowLifecycleStore } from '../stores/stage-window-lifecycle'
 import { useToolSelectionStore } from '../stores/tools'
+import { useWowCompanionStore } from '../stores/wow-companion'
 import { resolveFadeOnHoverInteraction } from '../utils/fade-on-hover'
 import { shouldSampleStageTransparency } from '../utils/stage-three-transparency'
 
@@ -61,6 +64,32 @@ const { isOutside: outsideAuthStatus } = useElectronMouseInElement(authStatusEle
 const controlsIslandRef = ref<InstanceType<typeof ControlsIsland>>()
 const controlsIslandInteractionActive = shallowRef(false)
 const widgetStageRef = ref<InstanceType<typeof WidgetStage>>()
+const speechCaption = ref('')
+const speechCaptionBubbleRef = ref<InstanceType<typeof SpeechCaptionBubble>>()
+const { isOutside: outsideCaptionAccept } = useElectronMouseInElement(toRef(() => speechCaptionBubbleRef.value?.acceptElement))
+const { isOutside: outsideCaptionDecline } = useElectronMouseInElement(toRef(() => speechCaptionBubbleRef.value?.declineElement))
+const wowCompanion = useWowCompanionStore()
+const { equipmentPrompt } = storeToRefs(wowCompanion)
+const { t } = useI18n()
+const captionActions = computed(() => {
+  const prompt = equipmentPrompt.value
+  if (prompt?.phase !== 'choosing')
+    return undefined
+  return {
+    id: prompt.id,
+    acceptLabel: t('settings.wow-companion.equipment-prompt.accept'),
+    declineLabel: t('settings.wow-companion.equipment-prompt.decline'),
+    hint: `${t('settings.wow-companion.equipment-prompt.timeout')} ${t('settings.wow-companion.equipment-prompt.description')}`,
+  }
+})
+const captionActionsInteractive = computed(() => equipmentPrompt.value?.phase === 'choosing'
+  && (!outsideCaptionAccept.value || !outsideCaptionDecline.value || speechCaptionBubbleRef.value?.actionsFocused))
+
+// Prompt text owns this surface until it closes. Discard its ordinary speech captions to prevent a stale return.
+watch(equipmentPrompt, () => speechCaption.value = '', { flush: 'sync' })
+function handleSpeechCaption(text: string) {
+  speechCaption.value = equipmentPrompt.value ? '' : text
+}
 // The stage canvas alpha tells the sampler which pixels of the window AIRI
 // paints, so it can read the desktop showing through behind the character.
 useScreenAmbientLight({ stageCanvas: () => widgetStageRef.value?.canvasElement() })
@@ -156,8 +185,14 @@ const isTransparent = computed(() => {
  * the cursor instead. This is a hit test, not an event, so it still answers while the
  * window is click-through.
  */
-const isPointerOverStageCanvas = computed(() =>
-  document.elementFromPoint(relativeMouseX.value, relativeMouseY.value) === stageCanvas.value,
+const isPointerOverStageCanvas = ref(false)
+watch(
+  [relativeMouseX, relativeMouseY, stageCanvas, captionActions],
+  () => {
+    isPointerOverStageCanvas.value = document.elementFromPoint(relativeMouseX.value, relativeMouseY.value) === stageCanvas.value
+  },
+  // Prompt buttons can appear or disappear under a still cursor. Read the new DOM before deciding click-through.
+  { immediate: true, flush: 'post' },
 )
 /**
  * Drives native click-through, and runs whether or not Auto Hide is on.
@@ -587,7 +622,7 @@ function handleFadeOnHoverInteractionChange() {
     return
   }
 
-  if (controlsOverlayActive.value || !outsideHearingStatus.value || !outsideAuthStatus.value) {
+  if (controlsOverlayActive.value || !outsideHearingStatus.value || !outsideAuthStatus.value || captionActionsInteractive.value) {
     // Portaled controls must receive clicks even outside the Island's bounds.
     isIgnoringMouseEvents.value = false
     shouldFadeOnCursorWithin.value = false
@@ -630,7 +665,7 @@ function handleFadeOnHoverInteractionChange() {
 }
 
 watch(
-  [outsideHearingStatus, outsideAuthStatus, isOutside, isOutsideFor250Ms, isPointerOverStageCanvas, isAroundWindowBorder, isAroundWindowBorderFor250Ms, isOutsideWindow, isTransparent, isTransparentForMouseEvents, controlsOverlayActive, fadeOnHoverEnabled, alwaysOnTop, stagePaused, isWayland, fullscreenActive],
+  [outsideHearingStatus, outsideAuthStatus, captionActionsInteractive, isOutside, isOutsideFor250Ms, isPointerOverStageCanvas, isAroundWindowBorder, isAroundWindowBorderFor250Ms, isOutsideWindow, isTransparent, isTransparentForMouseEvents, controlsOverlayActive, fadeOnHoverEnabled, alwaysOnTop, stagePaused, isWayland, fullscreenActive],
   handleFadeOnHoverInteractionChange,
   { immediate: true },
 )
@@ -734,7 +769,14 @@ const cursorPosition = computed(() => ({
           :paused="stagePaused"
           @error="handleStageRenderError"
           @reset="handleStageReset"
+          @speech-caption="handleSpeechCaption"
           @select-avatar-model="openSettings({ route: '/settings/models' })"
+        />
+        <SpeechCaptionBubble
+          ref="speechCaptionBubbleRef"
+          :text="equipmentPrompt?.text ?? speechCaption"
+          :actions="captionActions"
+          @choose="wowCompanion.chooseEquipmentPrompt"
         />
         <HoloCoupon />
         <div v-show="!fullscreenActive">

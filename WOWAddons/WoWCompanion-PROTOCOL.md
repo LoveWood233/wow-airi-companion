@@ -1,17 +1,17 @@
-# WoW Companion: WCP1 frame, snapshot version 2
+# WoW Companion: WCP1 / WCF1 frames, snapshot version 2
 
 The addon publishes a bounded snapshot through a visible black-and-white grid. The desktop bridge reads the grid without accessing game process memory.
 
 ## Frame
 
 - Grid: 64 columns by 64 rows, in row-major order.
-- Default cell size: 2 physical pixels. Default screen position: x=8, y=8 for a game on the primary display.
+- Default cell size: Retail 2 physical pixels, Forever 1 physical pixel. Default screen position: x=8, y=8 for a game on the primary display.
 - Each cell stores one bit. Black is 0. White is 1. Bytes use most-significant bit first.
 - Frame size: 512 bytes. The decoder rejects incomplete frames and invalid checksums.
 
 | Offset | Bytes | Meaning |
 | --- | --- | --- |
-| 0 | 4 | ASCII `WCP1` |
+| 0 | 4 | ASCII `WCP1` for Retail, `WCF1` for Forever |
 | 4 | 2 | UTF-8 JSON payload length, unsigned little-endian |
 | 6 | 2 | CRC16-CCITT of payload, unsigned little-endian |
 | 8 | 0–504 | JSON payload, followed by zero padding |
@@ -38,7 +38,7 @@ This example is synthetic. Production frames contain the current character's ava
 - Text is bounded and truncated at UTF-8 boundaries when required.
 
 All three components require snapshot version 2. Update the addon, bridge, and AIRI together.
-The grid size and WCP1 frame header do not change.
+Both games use the same layout and snapshot fields. Frame magic identifies the game. Decoders reject the other game’s magic.
 
 ## Gold counters
 
@@ -87,7 +87,7 @@ The AIRI integration consumes bridge events once. It applies reminder preference
 
 ## HTTP boundary
 
-The bridge binds to `127.0.0.1:18765`. The AIRI main process calls its local HTTP API. AIRI main-to-renderer messages use Eventa.
+Retail binds to `127.0.0.1:18765`. Forever binds to `127.0.0.1:18766`. Each game uses a separate process. The AIRI main process calls its local HTTP API. AIRI main-to-renderer messages use Eventa.
 
 | Method | Path | Purpose |
 | --- | --- | --- |
@@ -102,7 +102,7 @@ Browser origins are restricted to local development and the AIRI app. Write requ
 
 ## SavedVariables
 
-`WoWMapCompanionDB` preserves settings, the last snapshot, the local account identifier, and character gold counters.
+`WoWMapCompanionDB` (Retail) and `WoWForeverCompanionDB` (Forever) preserve settings, the last snapshot, the local account identifier, and character gold counters.
 WoW writes this data on reload or logout. It is not the real-time transport.
 An abrupt game exit before saving can lose recent source counters.
 
@@ -117,3 +117,151 @@ The grid must be visible and fully captured. Window position, monitor arrangemen
 Calibrate the bridge coordinates against the visible grid. Keep the game in windowed or borderless mode during initial setup.
 
 The bridge reports waiting or stale when capture fails. Demo mode always uses a separate label and baseline.
+
+## Game profiles (2.3.0)
+
+`--game retail|forever` selects a fixed protocol, default port, and default capture configuration file.
+Retail retains `bridge-config.json`. Forever uses `bridge-config-forever.json` and defaults to cell size 1.
+HTTP health and status responses include `game` and `protocol`. Capture updates cannot change the game.
+
+AIRI uses explicit game keys in IPC requests. Each game owns its settings, client, runtime, event cursor, notification policy, and ledger.
+Retail retains its original files. Forever uses `wow-companion-forever-v1.json` and `wow-companion-forever-gold-v1.json` in AIRI user data.
+Both profiles share the configured model and voice providers. Forever starts disabled until the user enables it.
+Matching account IDs and character GUIDs across games never merge their ledgers.
+
+Forever addon 1.0.0 targets the published 1.60.x / Interface 16001 baseline.
+An unsupported client reports an error without publishing telemetry. Encoding self-tests do not certify client compatibility.
+No Forever client was available for this delivery. API compatibility and capture need verification after client download.
+
+## Equipment extension (2.4.0)
+
+The grid size and frame magic stay unchanged. Each frame contains either the supported v2 snapshot or one equipment fragment.
+The addon alternates status and equipment frames. Each frame stays visible for one second. Capture uses a 250–500 ms interval.
+Equipment frames do not refresh the status heartbeat. The decoder requires a current, online screen snapshot from the same character and session.
+
+```json
+{"v":1,"kind":"eq","s":"session","g":"Player-example","id":1,"p":1,"n":2,"d":"base64 bytes"}
+```
+
+`s` and `g` use ASCII letters, digits, underscores, and hyphens. Their limits are 40 and 48 bytes.
+`id` ranges from 1 through 2,147,483,647. `p` is a one-based part number. `n` ranges from 1 through 35.
+Each nonfinal part contains 240 raw bytes. The final part contains 1–240 bytes. Base64 wraps those bytes inside JSON.
+The complete UTF-8 JSON body is at most 8,192 bytes. A fragment can split a UTF-8 character between its bytes.
+The decoder joins raw bytes before UTF-8 decoding. Each frame retains its original CRC16 check.
+
+| Complete record field | Meaning |
+| --- | --- |
+| `v`, `id`, `session`, `guid` | Version 1 and identity. The identity must match the fragment envelope. |
+| `source`, `observedAt`, `quantity` | `bag_added`, game server time in seconds, and newly observed quantity. |
+| `itemID`, `itemGUID`, `link` | Item ID, optional instance GUID, and exact instance hyperlink. |
+| `name`, `type`, `subtype`, `equipLoc` | Public item metadata, or null when unavailable. |
+| `quality`, `itemLevel`, `requiredLevel` | Public numeric metadata, or null when unavailable. |
+| `stats` | Up to 32 `{key,value}` entries from the public stats API. |
+| `tooltip` | Up to 48 public tooltip lines, at most 256 UTF-8 bytes per line. |
+| `infoComplete`, `statsComplete`, `tooltipComplete` | Whether each source supplied all readable values within the local limits. |
+| `truncated` | Whether the addon removed content to obey limits. |
+
+The hyperlink limit is 1,024 UTF-8 bytes. Other text fields allow 128 bytes. Stat keys allow 64 bytes.
+Missing metadata stays null. Empty stats do not prove that an item has no bonuses.
+Tooltip text includes displayed affixes, enchants, sockets, effects, and set descriptions when the client supplies them.
+A set description does not prove that its effect is active. This extension does not calculate damage, proc chance, or equipment upgrades.
+
+The addon records newly observed equipment in carried bags. Initial inventory and equipped items form the baseline.
+Bag sorting and equip changes do not create new records. A bank withdrawal, mail, trade, or purchase can create a bag addition.
+The record does not identify a loot source. A GUID supplies instance identity. Without a GUID, link counts use conservative deduplication.
+Initial loading, restricted fields, rapid item removal, capture gaps, or a full queue can prevent a record.
+
+The addon retains at most six recent records for ten minutes in the current session.
+Without swap results, first transmission takes roughly two seconds per fragment, plus queue and item-loading time.
+Swap result frames can extend a 35-fragment transmission from about 70 seconds to about 94 seconds.
+Concurrent offer and swap frames extend the upper bound to about 140 seconds, before queueing or retransmission.
+Repeated frames allow recovery from missed captures. There is no acknowledgment channel or lossless delivery guarantee.
+The bridge bounds incomplete records by count, length, and timeout. Conflicting fragments cannot replace a valid record.
+Pausing, capture changes, character changes, and demo switches clear equipment assembly state.
+
+HTTP status adds `equipment`, an array of at most ten complete records, and `equipmentError` for independent equipment diagnostics.
+Older bridge releases without these fields remain a supported status-only source. They cannot decode equipment frames.
+Update the addon, bridge, and AIRI together before equipment use.
+AIRI shows recent records and includes bounded equipment data in chat context. It treats all item text as untrusted observations.
+Equipment does not trigger an automatic spoken notification. Demo data never enters the real equipment list or gold ledger.
+
+## Confirmed equipment swaps (2.5.0)
+
+The addon asks the player inside the game. Only the acceptance button starts an equipment action.
+Desktop chat, voice replies, and screen frames cannot accept a proposal. The transport remains one-way.
+The addon checks the exact item instance and destination again before the action.
+It reports success only after it observes the candidate GUID in the intended equipment slot.
+Native binding, refund, and trade confirmation dialogs remain under player control.
+
+Swap results use an independent single frame. They do not change the equipment record schema or the grid size.
+
+```json
+{"v":1,"kind":"swap","s":"session-1","g":"Player-1-ABC","id":1,"e":3,"st":"equipped","r":"confirmed","at":1792800000,"slot":1,"item":12345,"old":67890}
+```
+
+All fields are required. Unknown fields are rejected.
+
+| Field | Meaning and bounds |
+| --- | --- |
+| `v`, `kind` | `1` and `swap`. |
+| `s`, `g` | Session and player GUID. ASCII letters, digits, underscore, and hyphen. Maximum lengths are 40 and 48 bytes. |
+| `id` | Result sequence for this session. Integer from 1 through 2,147,483,647. |
+| `e` | Original equipment observation ID, with the same integer bounds. |
+| `st` | `equipped`, `declined`, `failed`, or `expired`. |
+| `r` | A fixed reason code from the table below. |
+| `at` | Original result time in Unix seconds, from 0 through 4,102,444,800. Zero means unavailable. |
+| `slot` | Target inventory slot, from 1 through 19. |
+| `item`, `old` | New and previous item IDs. Maximum 2,147,483,647. New IDs start at 1. Zero means an empty previous slot. |
+
+| Result | Valid reasons |
+| --- | --- |
+| `equipped` | `confirmed` |
+| `declined` | `user` |
+| `expired` | `timeout` |
+| `failed` | `timeout`, `combat`, `changed`, `unavailable`, `locked`, `cursor`, `dead`, `restricted`, `disabled`, `left_world` |
+
+The addon retains ten results for ten minutes and repeats them through the existing grid.
+New results receive their first broadcast before older results are replayed.
+With equipment fragments present, at most one of every four remaining data slots carries a swap result.
+Offers take one of every three data slots first.
+A new result normally reaches its next slot within eight seconds without offers, or twelve seconds with offers. Bursts can queue longer.
+Normal status frames still appear at least every two seconds. Swap frames never refresh the bridge heartbeat.
+
+HTTP status adds `equipmentSwaps` and `equipmentSwapError`.
+The bridge accepts results only for the current live, online screen session and retains ten results in ID order.
+Repeated IDs are deduplicated. Conflicting payloads for the same ID produce an independent swap error.
+The same reset boundaries as equipment observations apply to swap results.
+Older bridges without these fields remain supported for their existing telemetry features.
+
+AIRI shows the latest results and includes three matching results in live chat context.
+An `equipped` result proves a past confirmed action, not that the item remains equipped now.
+Swap results do not trigger automatic model calls, voice replies, or gameplay actions.
+
+## AIRI equipment history (desktop 2.5.1)
+
+AIRI saves complete equipment observations in its local user data directory.
+Each game profile retains ten records across characters. New records replace the oldest records by receipt order.
+Each entry includes the character name, realm, account identifier, receipt time, and original equipment record.
+Repeated observations do not change the order or add another entry.
+The history survives application restarts, lost connections, and character changes.
+Only matching live screen observations enter the history. Demo observations do not enter it.
+The files are `wow-companion-equipment-history-v1.json` and `wow-companion-forever-equipment-history-v1.json`.
+At most 512 identity hashes prevent recent duplicates after discarded records or desktop restarts. These hashes contain no equipment details.
+
+The desktop IPC state adds `equipmentHistory`, with `entries` and `storageError`.
+This field does not change the screen protocol or the bridge HTTP response.
+History entries are past observations. They do not prove current ownership or equipment slots.
+Chat context continues to use current bridge observations. Saved history does not trigger speech or equipment actions.
+
+
+## Equipment offers (2.6.0)
+
+A single `kind=offer` frame describes the current game confirmation. It never requests a desktop game action.
+
+Fields: `v=1`, `kind=offer`, session `s`, character `g`, equipment observation `id`, monotonic publication sequence `q`, state `st` (`ready` or `closed`), slot `slot`, new item ID `item`, plain name `n` (1–96 UTF-8 bytes), new item level `il`, old item ID `old` (0 for empty), old item level `ol` (-1 for empty), and server expiration `until` in seconds.
+
+Item and sequence IDs range from 1 through 2147483647. Slots range from 1 through 19. Item levels range from 0 through 100000, except the empty-slot sentinel. A nonempty slot requires `il > ol`. The candidate expires within 120 seconds of creation.
+
+The bridge orders states by `q` within the current character session. Status exposes closed states until expiry so the desktop can dismiss its prompt. After expiry, the bridge retains the last value internally to reject older frames. Duplicate frames do not refresh the heartbeat or expiry. Status adds optional `equipmentOffer` and `equipmentOfferError`. Only live screen observations expose an unexpired offer. Older bridges without this extension remain supported for existing features.
+
+The desktop reads fixed localized text through the configured voice. With no voice, muting, or voice failure, it shows text. After playback drains, it shows Yes and No thanks for ten seconds. Yes instructs the player to confirm in game. Decline and timeout only dismiss the desktop prompt. No keyboard input, game commands, or reverse transport is added.

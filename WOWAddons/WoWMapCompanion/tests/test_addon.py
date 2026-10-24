@@ -96,7 +96,7 @@ class AddonTest(unittest.TestCase):
         self.lua.execute(MOCK)
         self.ns = self.lua.table()
         self.load = self.lua.eval(b"function(source, name, ns) local f, err = loadstring(source); assert(f, err); return f(name, ns) end")
-        for name in ("Protocol.lua", "Money.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
+        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
             self.load((ROOT / name).read_bytes(), b"WoWMapCompanion", self.ns)
         self.lua.globals().Fire(b"ADDON_LOADED", b"WoWMapCompanion")
         self.lua.globals().Fire(b"PLAYER_ENTERING_WORLD")
@@ -258,7 +258,7 @@ class AddonTest(unittest.TestCase):
         # Reset client runtime objects while retaining its account-wide SavedVariables table.
         self.lua.execute(MOCK)
         ns = self.lua.table()
-        for name in ("Protocol.lua", "Money.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
+        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
             self.load((ROOT / name).read_bytes(), b"WoWMapCompanion", ns)
         g.Fire(b"ADDON_LOADED", b"WoWMapCompanion")
         g.Model[b"copper"] = 900000

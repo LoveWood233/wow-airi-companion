@@ -20,25 +20,33 @@ except ImportError:
                      "可选联测需要 WoWMapCompanion/tests/.deps 中的 lupa Lua 5.1")
 class LuaBridgeIntegrationTests(unittest.TestCase):
     def test_real_lua_level_event_to_python_pixels_to_state(self):
-        spec = importlib.util.spec_from_file_location("wow_addon_harness", ADDON / "tests" / "test_addon.py")
+        self.check_game(ADDON, "WoWMapCompanion", "retail", "WCP1", 2)
+
+    def test_forever_lua_level_and_money_at_cell_one(self):
+        self.check_game(ADDON.parent / "WoWForeverCompanion", "WoWForeverCompanion", "forever", "WCF1", 1)
+
+    def check_game(self, addon, name, game, protocol, cell):
+        spec = importlib.util.spec_from_file_location("wow_addon_harness", addon / "tests" / "test_addon.py")
         harness = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(harness)
         lua = LuaRuntime(encoding=None, unpack_returned_tuples=True)
         lua.execute(harness.MOCK)
         ns = lua.table()
-        loader = lua.eval(b"function(source, ns) local f, err=loadstring(source); assert(f,err); return f('WoWMapCompanion', ns) end")
-        for filename in ("Protocol.lua", "Money.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
-            loader((ADDON / filename).read_bytes(), ns)
+        loader = lua.eval(b"function(source, name, ns) local f, err=loadstring(source); assert(f,err); return f(name, ns) end")
+        filenames = [line.strip() for line in (addon / f"{name}.toc").read_text(encoding="utf-8-sig").splitlines()
+                     if line.strip().endswith(".lua") and not line.lstrip().startswith("#")]
+        for filename in filenames:
+            loader((addon / filename).read_bytes(), name.encode(), ns)
         g = lua.globals()
-        g.Fire(b"ADDON_LOADED", b"WoWMapCompanion")
+        g.Fire(b"ADDON_LOADED", name.encode())
         g.Fire(b"PLAYER_ENTERING_WORLD")
-        engine = CompanionState()
+        engine = CompanionState(game=game)
 
         def render_and_ingest():
-            frame, _, _ = ns[b"Protocol"][b"Encode"](g.WoWMapCompanionDB[b"snapshot"])
-            decoded = decode_frame(frame)
-            pixels = pixels_for_frame(frame, cell_size=2)
-            from_pixels = decode_pixels(pixels, 128, 128, 2)
+            frame, _, _ = ns[b"Protocol"][b"Encode"](g[(name + 'DB').encode()][b"snapshot"])
+            decoded = decode_frame(frame, protocol)
+            pixels = pixels_for_frame(frame, cell_size=cell)
+            from_pixels = decode_pixels(pixels, 64 * cell, 64 * cell, cell, protocol)
             self.assertEqual(decoded, from_pixels)
             engine.ingest(from_pixels)
 

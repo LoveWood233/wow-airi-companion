@@ -1,5 +1,7 @@
 import type { ChildProcessWithoutNullStreams } from 'node:child_process'
 
+import type { GameVersion } from '../../../shared/wow-companion'
+
 import process from 'node:process'
 
 import { execFile, spawn } from 'node:child_process'
@@ -10,13 +12,16 @@ import { setTimeout as delay } from 'node:timers/promises'
 import { promisify } from 'node:util'
 
 import { errorMessageFrom } from '@moeru/std'
-import { integer, literal, looseObject, minLength, minValue, number, pipe, safeParse, string } from 'valibot'
+import { integer, literal, looseObject, minLength, minValue, number, optional, picklist, pipe, safeParse, string } from 'valibot'
+
+import { gameProfiles, gameVersionSchema } from '../../../shared/wow-companion'
 
 const execFileAsync = promisify(execFile)
 const healthSchema = looseObject({
   ok: literal(true),
   service: literal('wow-companion-bridge'),
-  protocol: literal('WCP1'),
+  protocol: picklist(['WCP1', 'WCF1']),
+  game: optional(gameVersionSchema),
   version: string(),
   instanceId: pipe(string(), minLength(1)),
 })
@@ -32,6 +37,8 @@ interface RuntimeOptions {
   resourcesPath: string
   userDataPath: string
   platform: NodeJS.Platform
+  /** @default 'retail' */
+  game?: GameVersion
 }
 
 interface OwnedProcess {
@@ -58,7 +65,7 @@ export class CompanionBridgeRuntime {
   private owned: OwnedProcess | undefined
 
   /** The loopback address is fixed in AIRI. Tests use an isolated local HTTP server. */
-  constructor(private readonly options: RuntimeOptions, private readonly baseUrl = 'http://127.0.0.1:18765') {
+  constructor(private readonly options: RuntimeOptions, private readonly baseUrl = `http://127.0.0.1:${gameProfiles[options.game ?? 'retail'].port}`) {
     const address = new URL(baseUrl)
     if (address.protocol !== 'http:' || address.hostname !== '127.0.0.1' || address.username || address.password)
       throw new Error('The WoW bridge must use a local HTTP address.')
@@ -143,7 +150,7 @@ export class CompanionBridgeRuntime {
       signal.throwIfAborted()
       const python = await this.findPython(signal)
       signal.throwIfAborted()
-      const child = spawn(python, [resources.script, '--port', new URL(this.baseUrl).port || '80', '--config', resources.config, '--managed-stdin'], {
+      const child = spawn(python, [resources.script, '--game', this.options.game ?? 'retail', '--port', new URL(this.baseUrl).port || '80', '--config', resources.config, '--managed-stdin'], {
         cwd: dirname(resources.script),
         windowsHide: true,
         shell: false,
@@ -206,6 +213,8 @@ export class CompanionBridgeRuntime {
   }
 
   private async healthy(signal: AbortSignal) {
+    const port = new URL(this.baseUrl).port
+    const game = this.options.game ?? 'retail'
     let response: Response
     try {
       response = await fetch(`${this.baseUrl}/health`, { redirect: 'error', signal: AbortSignal.any([signal, AbortSignal.timeout(1500)]) })
@@ -217,32 +226,38 @@ export class CompanionBridgeRuntime {
         && 'code' in error.cause && error.cause.code === 'ECONNREFUSED') {
         return false
       }
-      throw new Error('The local WoW bridge port did not respond. Check port 18765 before retrying.')
+      throw new Error(`The local WoW bridge port did not respond. Check port ${port} before retrying.`)
     }
     let value: unknown
     try {
       value = await response.json()
     }
     catch {
-      throw new Error('Port 18765 is occupied by an incompatible service. Close that service or update the WoW bridge.')
+      throw new Error(`Port ${port} is occupied by an incompatible service. Close that service or update the WoW bridge.`)
     }
     const result = safeParse(healthSchema, value)
     const version = result.success && /^2\.(\d+)\.\d+$/.exec(result.output.version)
-    if (!response.ok || !result.success || !version || Number(version[1]) < 1)
-      throw new Error('Port 18765 is occupied by an incompatible service. Close that service or update the WoW bridge to 2.1 or newer.')
+    // Retail 2.1 and 2.2 remain supported through WCP1. Forever requires its own WCF1 service from release 2.3.
+    if (!response.ok || !result.success || !version || Number(version[1]) < (game === 'forever' ? 3 : 1)
+      || result.output.protocol !== gameProfiles[game].protocol
+      || (result.output.game !== undefined && result.output.game !== game)
+      || (game === 'forever' && result.output.game !== game)) {
+      throw new Error(`Port ${port} is occupied by an incompatible service. Use the ${game} WoW bridge for this profile.`)
+    }
     return true
   }
 
   private async findResources() {
+    const filename = gameProfiles[this.options.game ?? 'retail'].captureFile
     const source = resolve(this.options.appPath, '..', '..', '..', 'WOWAddons', 'WoWCompanionBridge')
     const bundled = join(this.options.resourcesPath, 'wow-companion-bridge')
     if (await this.isFile(join(bundled, 'server.py'))) {
       const directory = join(this.options.userDataPath, 'wow-companion-bridge')
       await mkdir(directory, { recursive: true })
-      const config = join(directory, 'bridge-config.json')
-      if (!await this.isFile(config) && await this.isFile(join(source, 'bridge-config.json'))) {
+      const config = join(directory, filename)
+      if (!await this.isFile(config) && await this.isFile(join(source, filename))) {
         try {
-          await copyFile(join(source, 'bridge-config.json'), config, constants.COPYFILE_EXCL)
+          await copyFile(join(source, filename), config, constants.COPYFILE_EXCL)
         }
         catch (error) {
           if (typeof error !== 'object' || error === null || !('code' in error) || error.code !== 'EEXIST')
@@ -252,7 +267,7 @@ export class CompanionBridgeRuntime {
       return { script: join(bundled, 'server.py'), config }
     }
     if (await this.isFile(join(source, 'server.py')))
-      return { script: join(source, 'server.py'), config: join(source, 'bridge-config.json') }
+      return { script: join(source, 'server.py'), config: join(source, filename) }
     throw new Error('WoW bridge files are missing. Restore WOWAddons beside the AIRI source, or reinstall the companion desktop package.')
   }
 

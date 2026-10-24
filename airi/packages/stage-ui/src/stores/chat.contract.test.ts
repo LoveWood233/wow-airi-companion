@@ -1730,6 +1730,51 @@ describe('chat store contract', () => {
     expect(speechParent.end).toHaveBeenCalledOnce()
   })
 
+  it.each(['finished', 'cancelled', 'failed'] as const)('closes a standalone speech turn with status %s without consuming voice parents', (status) => {
+    const store = useChatStore()
+    const turn = { sessionId: 'session-1', turnId: 'standalone-speech' }
+    const close = store.openStandaloneTurnSpan(turn)
+    const parent = store.openTurnSpan(turn)
+
+    expect(ioTracerMocks.takeVoiceTurnParent).not.toHaveBeenCalled()
+    expect(ioTracerMocks.takeComposerVoiceParent).not.toHaveBeenCalled()
+    expect(ioTracerMocks.turnSpans.get(turn.turnId)).toBe(parent)
+    expect(parent.end).not.toHaveBeenCalled()
+    close(status)
+    close(status)
+    expect(parent.end).toHaveBeenCalledOnce()
+    expect(ioTracerMocks.turnSpans.has(turn.turnId)).toBe(false)
+    if (status === 'cancelled')
+      expect(parent.setAttribute).toHaveBeenCalledWith(IOAttributes.Cancelled, true)
+    if (status === 'failed')
+      expect(parent.setStatus).toHaveBeenCalledWith({ code: SpanStatusCode.ERROR })
+  })
+
+  it('does not let standalone speech take ownership of a normal chat trace', () => {
+    const store = useChatStore()
+    const turn = { sessionId: 'session-1', turnId: 'chat-turn' }
+    const parent = store.openTurnSpan(turn)
+    expect(() => store.openStandaloneTurnSpan(turn)).toThrow('already has a trace owner')
+    expect(parent.end).not.toHaveBeenCalled()
+    expect(ioTracerMocks.turnSpans.get(turn.turnId)).toBe(parent)
+  })
+
+  it('releases standalone trace ownership without letting late cleanup close a later trace', () => {
+    const store = useChatStore()
+    const turn = { sessionId: 'session-1', turnId: 'standalone-speech' }
+    const close = store.openStandaloneTurnSpan(turn)
+    const first = store.openTurnSpan(turn)
+    close('finished')
+    const closeNext = store.openStandaloneTurnSpan(turn)
+    const next = store.openTurnSpan(turn)
+    expect(next).not.toBe(first)
+    close('cancelled')
+    expect(next.end).not.toHaveBeenCalled()
+    closeNext('finished')
+    expect(next.end).toHaveBeenCalledOnce()
+    expect(ioTracerMocks.turnSpans.has(turn.turnId)).toBe(false)
+  })
+
   it('records the IDs and the final status of a turn on its span', async () => {
     llmStreamMock.mockImplementationOnce(async (_model: string, _provider: GenerationProvider, _messages: Conversation, options: StreamOptions) => {
       await options.onStreamEvent?.({ type: 'finish' })

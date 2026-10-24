@@ -102,3 +102,143 @@ status:
   stale: 画面已过期
   demo: 演示数据
   paused: 采集已暂停
+
+versions:
+  label: 魔兽世界版本
+  isolation: 两个版本的连接设置、采集坐标、事件、金币记录和装备历史独立保存。切换页面会放弃尚未保存的修改。
+  retail:
+    name: 魔兽世界正式服
+    description: 正式服专用的陪伴设置与金币记录。
+    capture-help: 在正式服输入 /wowc status 查看参数。窗口边框或其他显示器会改变桌面坐标，请保持传输码无遮挡。
+  forever:
+    name: 魔兽世界：无限
+    description: 无限服独立的陪伴设置与金币记录。
+    preview: 当前为客户端开放前的预备版本，真实游戏兼容性需待开放后验证。陪伴连接默认关闭。
+    capture-help: 安装无限服专用插件后，输入 /wowf status 查看参数。填写该客户端的传输码坐标，并保持传输码无遮挡。
+
+equipment:
+  title: 装备获取记录
+  description: AIRI 在本机为每个游戏版本保存最近 10 条记录，最新记录在前。超过 10 条时，自动丢弃最早的记录。
+  empty: 暂无装备获取记录。登录时已有的背包装备不计为新获取。
+  bridge-update: 当前桥接仅支持角色数据。请先退出旧版独立桥接，再重启 AIRI，让它启动新版桥接以读取装备。
+  capture-note: 建议将采集间隔设为 250–500 毫秒，过长的间隔可能反复错过装备分片。
+  historical: 历史记录
+  character: 角色
+  realm: 服务器
+  received: AIRI 接收时间
+  storage-error: 装备记录读取或保存失败，无法确认磁盘中的记录。请检查错误信息和可用磁盘空间。
+  unnamed: '物品 {id}'
+  unavailable: 暂未读取到
+  item-level: 装等
+  observed: 发现时间
+  completeness: 数据读取情况
+  infoComplete: 基本信息
+  statsComplete: 数值属性
+  tooltipComplete: 提示文字
+  complete: 已读取
+  incomplete: 未完整读取
+  truncated: 部分文字已截短
+  show-details: 查看装备详情
+  hide-details: 收起装备详情
+  quality: 品质
+  required-level: 需求等级
+  slot: 装备部位
+  attributes: 数值属性
+  no-stats: 游戏未返回此物品的数值属性。
+  tooltip: 词条、特效、加成与套装说明
+  effect-note: 这里保留游戏提示文字，不代表其中的套装加成或特效当前已经激活。
+  item-link: 物品链接
+  session-note: 重启 AIRI、更换角色、重载、重置采集或切换演示后仍保留记录。背包新增可能来自拾取、购买、邮件或银行取出。
+  history-note: 历史记录不代表当前穿戴，也不提供实时聊天上下文。装备询问仅使用当前实时会话中满足条件的候选装备。
+  read-error: 部分装备数据未能读取。
+  qualities:
+    '0': 粗糙
+    '1': 普通
+    '2': 优秀
+    '3': 精良
+    '4': 史诗
+    '5': 传说
+    '6': 神器
+    '7': 传家宝
+    '8': 魔兽世界时光徽章
+  stats:
+    ITEM_MOD_STRENGTH_SHORT: 力量
+    ITEM_MOD_AGILITY_SHORT: 敏捷
+    ITEM_MOD_INTELLECT_SHORT: 智力
+    ITEM_MOD_STAMINA_SHORT: 耐力
+    ITEM_MOD_SPIRIT_SHORT: 精神
+    ITEM_MOD_CRIT_RATING_SHORT: 暴击
+    ITEM_MOD_HASTE_RATING_SHORT: 急速
+    ITEM_MOD_MASTERY_RATING_SHORT: 精通
+    ITEM_MOD_VERSATILITY: 全能
+    ITEM_MOD_VERSATILITY_SHORT: 全能
+    ITEM_MOD_ARMOR_SHORT: 护甲
+    RESISTANCE0_NAME: 护甲
+    ITEM_MOD_ATTACK_POWER_SHORT: 攻击强度
+    ITEM_MOD_SPELL_POWER_SHORT: 法术强度
+    ITEM_MOD_DAMAGE_PER_SECOND_SHORT: 每秒伤害
+    ITEM_MOD_CR_AVOIDANCE_SHORT: 闪避
+    ITEM_MOD_CR_LIFESTEAL_SHORT: 吸血
+    ITEM_MOD_CR_SPEED_SHORT: 加速
+
+equipment-swaps:
+  title: 确认换装记录
+  description: 新装备满足条件且装等更高或对应栏位为空时，插件会在游戏中逐件询问。每次换装都需要确认。
+  confirmation: 请在游戏内最终确认。在 AIRI 中选择“好”只会显示下一步提示，不会执行换装或向游戏发送输入。
+  empty: 当前角色会话中还没有换装确认记录。
+  bridge-update: 当前桥接没有提供换装结果。请更新插件和桥接，然后重启 AIRI。
+  read-error: 部分换装结果暂时不可用。
+  historical: 以下为上次收到的结果。连接或结果数据不可用时，AIRI 不会将其作为实时上下文。
+  observed: 结果时间
+  previous: 原物品
+  empty-slot: 空栏位
+  expired-reason: 询问已过期，插件没有执行换装。
+  scope-note: 记录反映过去的操作，不代表当前仍然穿戴。装等更高不保证属性、套装效果或实战收益更好。
+  status:
+    equipped: 换装已核实
+    declined: 已拒绝
+    failed: 未能确认
+    expired: 询问已过期
+  reason:
+    confirmed: 在你于游戏内确认后，插件已核实该次换装。
+    user: 你在游戏内拒绝了此次换装。
+    timeout: 未能确认换装结果，请检查游戏穿戴栏。
+    combat: 战斗中断了请求，请在战斗结束后重新确认。
+    changed: 物品或目标栏位发生变化，请求已停止。
+    unavailable: 所需的物品信息或游戏接口不可用。
+    locked: 物品被锁定，请求已停止。
+    cursor: 鼠标正在拖动物品，请求已停止。
+    dead: 角色已死亡，请求已停止。
+    restricted: 游戏限制了此操作，请求已停止。
+    disabled: 换装确认已关闭，请求已停止。
+    left_world: 角色离开了游戏世界，请求已停止。
+  slots:
+    '1': 头部
+    '2': 颈部
+    '3': 肩部
+    '4': 衬衣
+    '5': 胸部
+    '6': 腰部
+    '7': 腿部
+    '8': 脚部
+    '9': 腕部
+    '10': 手部
+    '11': 戒指 1
+    '12': 戒指 2
+    '13': 饰品 1
+    '14': 饰品 2
+    '15': 背部
+    '16': 主手
+    '17': 副手
+    '18': 远程
+    '19': 战袍
+equipment-prompt:
+  message: '恭喜获得{name}！{reason}要换上这件装备吗？'
+  reason:
+    higher: '新装备装等为 {newLevel}，当前装备为 {oldLevel}。'
+    empty: 对应装备栏位当前为空。
+  accepted: 请在游戏内点击“确认换装”。AIRI 不会向游戏发送输入。
+  accept: 好
+  decline: 不用
+  timeout: 请在 10 秒内选择。不选择会关闭此提醒，换装仍需在游戏内确认。
+  description: 建议仅依据装等或空栏位，不代表属性、特效或套装的总收益更好。

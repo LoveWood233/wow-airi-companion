@@ -102,3 +102,143 @@ status:
   stale: Capture is stale
   demo: Demo data
   paused: Capture paused
+
+versions:
+  label: World of Warcraft version
+  isolation: Each version has separate connection settings, calibration, events, gold records, and equipment history. Switching pages discards unsaved edits.
+  retail:
+    name: World of Warcraft Retail
+    description: Companion settings and gold records for Retail.
+    capture-help: Use /wowc status in Retail. Adjust the desktop origin for window borders or another monitor. Keep the grid unobstructed.
+  forever:
+    name: 'World of Warcraft: Forever'
+    description: Independent companion settings and gold records for Forever.
+    preview: This version is prepared before the client release. Live compatibility requires a check after release. The connection is disabled by default.
+    capture-help: After installing the Forever addon, use /wowf status. Enter the grid coordinates for that client and keep the grid unobstructed.
+
+equipment:
+  title: Equipment acquisition history
+  description: AIRI keeps the latest ten records for this game version on this computer. Once ten records exist, each new record removes the oldest.
+  empty: No equipment history yet. Existing bag items are not a new acquisition.
+  bridge-update: This bridge only provides character data. Stop the old standalone bridge, then restart AIRI to read equipment with the updated bridge.
+  capture-note: Use a capture interval between 250 and 500 ms. Longer intervals can repeatedly miss equipment fragments.
+  historical: Historical record
+  character: Character
+  realm: Realm
+  received: Received by AIRI
+  storage-error: Equipment history failed to load or save. Disk storage is not confirmed. Check the error and available disk space.
+  unnamed: 'Item {id}'
+  unavailable: Unavailable
+  item-level: Item level
+  observed: Observed at
+  completeness: Data availability
+  infoComplete: Item details
+  statsComplete: Numeric attributes
+  tooltipComplete: Tooltip
+  complete: Read
+  incomplete: Incomplete
+  truncated: Some text was shortened
+  show-details: Show equipment details
+  hide-details: Hide equipment details
+  quality: Quality
+  required-level: Required level
+  slot: Equipment slot
+  attributes: Numeric attributes
+  no-stats: The game returned no numeric attributes for this item.
+  tooltip: Effects, bonuses, and set descriptions
+  effect-note: Tooltip text describes the item. It does not prove that a set bonus or effect is currently active.
+  item-link: Item link
+  session-note: Records remain after restarts, character changes, capture resets, and demo switches. Bag additions can include purchases, mail, and bank withdrawals.
+  history-note: History does not describe current equipment or supply live chat context. Equipment prompts use eligible offers from the current live session.
+  read-error: Some equipment data is unavailable.
+  qualities:
+    '0': Poor
+    '1': Common
+    '2': Uncommon
+    '3': Rare
+    '4': Epic
+    '5': Legendary
+    '6': Artifact
+    '7': Heirloom
+    '8': WoW Token
+  stats:
+    ITEM_MOD_STRENGTH_SHORT: Strength
+    ITEM_MOD_AGILITY_SHORT: Agility
+    ITEM_MOD_INTELLECT_SHORT: Intellect
+    ITEM_MOD_STAMINA_SHORT: Stamina
+    ITEM_MOD_SPIRIT_SHORT: Spirit
+    ITEM_MOD_CRIT_RATING_SHORT: Critical Strike
+    ITEM_MOD_HASTE_RATING_SHORT: Haste
+    ITEM_MOD_MASTERY_RATING_SHORT: Mastery
+    ITEM_MOD_VERSATILITY: Versatility
+    ITEM_MOD_VERSATILITY_SHORT: Versatility
+    ITEM_MOD_ARMOR_SHORT: Armor
+    RESISTANCE0_NAME: Armor
+    ITEM_MOD_ATTACK_POWER_SHORT: Attack Power
+    ITEM_MOD_SPELL_POWER_SHORT: Spell Power
+    ITEM_MOD_DAMAGE_PER_SECOND_SHORT: Damage per second
+    ITEM_MOD_CR_AVOIDANCE_SHORT: Avoidance
+    ITEM_MOD_CR_LIFESTEAL_SHORT: Leech
+    ITEM_MOD_CR_SPEED_SHORT: Speed
+
+equipment-swaps:
+  title: Equipment change results
+  description: The addon asks about eligible new equipment with a higher item level or an empty slot. Each change requires confirmation.
+  confirmation: Confirm inside the game. Choosing Yes in AIRI shows the next step. It does not change equipment or send input to the game.
+  empty: No equipment confirmation results in this character session.
+  bridge-update: This bridge does not supply equipment change results. Update the addon and bridge, then restart AIRI.
+  read-error: Some equipment results are unavailable.
+  historical: Last known results. AIRI does not use them as live context while the connection or result data is unavailable.
+  observed: Result time
+  previous: Previous item
+  empty-slot: Empty slot
+  expired-reason: The question expired. The addon did not execute the change.
+  scope-note: These records describe past actions, not current equipment. A higher item level does not guarantee better attributes or set effects.
+  status:
+    equipped: Change confirmed
+    declined: Declined
+    failed: Not confirmed
+    expired: Question expired
+  reason:
+    confirmed: The addon confirmed the equipment change after your approval in the game.
+    user: You declined the change in the game.
+    timeout: The addon did not confirm the result. Check your equipment in the game.
+    combat: Combat interrupted the request. Confirm a new request after combat ends.
+    changed: The item or destination slot changed. The request stopped.
+    unavailable: Required item information or game functions were unavailable.
+    locked: The item was locked. The request stopped.
+    cursor: The cursor held an item. The request stopped.
+    dead: The character was dead. The request stopped.
+    restricted: The game restricted the action. The request stopped.
+    disabled: Equipment confirmation was disabled. The request stopped.
+    left_world: The character left the world. The request stopped.
+  slots:
+    '1': Head
+    '2': Neck
+    '3': Shoulders
+    '4': Shirt
+    '5': Chest
+    '6': Waist
+    '7': Legs
+    '8': Feet
+    '9': Wrists
+    '10': Hands
+    '11': Finger 1
+    '12': Finger 2
+    '13': Trinket 1
+    '14': Trinket 2
+    '15': Back
+    '16': Main hand
+    '17': Off hand
+    '18': Ranged
+    '19': Tabard
+equipment-prompt:
+  message: 'Congratulations on {name}! {reason} Do you want to change equipment?'
+  reason:
+    higher: 'Its item level is {newLevel}, compared with {oldLevel} for your current item.'
+    empty: Its destination slot is empty.
+  accepted: Please click “Confirm change” in the game. AIRI does not send input to the game.
+  accept: Yes
+  decline: No thanks
+  timeout: Choose within 10 seconds. No choice closes this reminder. Equipment changes still require confirmation in the game.
+  description: These suggestions use item level or an empty slot. They do not compare attribute, bonus, or set benefits.

@@ -1,13 +1,16 @@
 ## Interface: 120105, 120100
 ## Title: WoW Companion / AIRI Bridge
 ## Title-zhCN: 魔兽陪伴精灵 / AIRI 桥接
-## Notes: Character, map and gold data for AIRI. Displays only the WCP1 telemetry grid.
-## Notes-zhCN: 采集角色、地图与金币收支供 AIRI 读取；游戏中仅显示数据传输码。
+## Notes: Character, map, gold and new equipment data for AIRI. WCP1 grid and player-confirmed equipment swaps.
+## Notes-zhCN: 采集角色、地图、金币收支和新增装备供 AIRI 读取；显示数据传输码，并在游戏内询问后换装。
 ## Author: WoWMapCompanion
-## Version: 2.1.1
+## Version: 2.6.0
 ## SavedVariables: WoWMapCompanionDB
 
 Protocol.lua
 Money.lua
+Equipment.lua
+Transfer.lua
+ConfirmEquip.lua
 Telemetry.lua
 WoWMapCompanion.lua

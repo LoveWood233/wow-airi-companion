@@ -7,12 +7,12 @@ import { env } from 'node:process'
 import { parse } from 'valibot'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-import { bridgeSchema } from './wow-companion'
+import { bridgeSchema, gameProfiles } from './wow-companion'
 
 const bridgeDirectory = env.WOW_COMPANION_BRIDGE_DIR
 
 /** The opt-in fixture runs the real Python HTTP server without desktop capture or external model calls. */
-describe.skipIf(!bridgeDirectory)('woW Python bridge HTTP contract', () => {
+describe.skipIf(!bridgeDirectory).each(['retail', 'forever'] as const)('woW Python bridge HTTP contract: %s', (game) => {
   let process: ChildProcess
   let baseUrl = ''
 
@@ -20,7 +20,7 @@ describe.skipIf(!bridgeDirectory)('woW Python bridge HTTP contract', () => {
     const script = [
       'from server import BridgeServer',
       'from state import CompanionState',
-      'http = BridgeServer(("127.0.0.1", 0), CompanionState())',
+      `http = BridgeServer(("127.0.0.1", 0), CompanionState(game="${game}"))`,
       'print(http.server_port, flush=True)',
       'http.serve_forever()',
     ].join('\n')
@@ -61,6 +61,8 @@ describe.skipIf(!bridgeDirectory)('woW Python bridge HTTP contract', () => {
     expect(initial.status).toBe('waiting')
     expect(initial.snapshot).toBeNull()
     expect(initial.instanceId.length).toBeGreaterThan(0)
+    expect(initial.game).toBe(game)
+    expect(initial.protocol).toBe(gameProfiles[game].protocol)
 
     const demo = await request('/api/demo', { enabled: true })
     expect(demo.status).toBe('demo')

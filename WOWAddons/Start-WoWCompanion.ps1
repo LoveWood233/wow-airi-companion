@@ -1,13 +1,14 @@
 param(
     [string]$AiriPath = (Join-Path (Split-Path $PSScriptRoot -Parent) 'airi'),
     [switch]$BridgeOnly,
+    [ValidateSet('retail', 'forever')][string]$Game = 'retail',
     [switch]$Dev
 )
 $ErrorActionPreference = 'Stop'
 if ($BridgeOnly) {
     $bridgeStart = Join-Path $PSScriptRoot 'WoWCompanionBridge\start.ps1'
     if (-not (Test-Path -LiteralPath $bridgeStart)) { throw 'The companion bridge is missing.' }
-    & $bridgeStart
+    & $bridgeStart -Game $Game
     return
 }
 if (-not (Test-Path -LiteralPath (Join-Path $AiriPath 'apps\stage-tamagotchi\package.json'))) {

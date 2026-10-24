@@ -9,15 +9,15 @@ import sys
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, urlsplit
 from typing import BinaryIO
+from urllib.parse import parse_qs, urlsplit
 
 from capture import ScreenCapture, to_bmp
-from protocol import COLS, ROWS, FrameError, decode_pixels
+from protocol import COLS, ROWS, GAME_PROTOCOLS, EquipmentOfferError, EquipmentSwapError, FrameError, decode_pixels
 from state import CompanionState, validate_config
 
 ROOT = Path(__file__).resolve().parent
-VERSION = "2.2.0"
+VERSION = "2.6.0"
 
 
 def allowed_origin(origin: str | None) -> bool:
@@ -99,7 +99,9 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/":
             self._send(200, (ROOT / "index.html").read_bytes(), "text/html; charset=utf-8")
         elif path in ("/health", "/api/health"):
-            self._json(200, {"ok": True, "service": "wow-companion-bridge", "version": VERSION, "protocol": "WCP1", "instanceId": self.server.state.instance_id})
+            self._json(200, {"ok": True, "service": "wow-companion-bridge", "version": VERSION,
+                             "protocol": self.server.state.protocol, "game": self.server.state.game,
+                             "instanceId": self.server.state.instance_id})
         elif path == "/api/status":
             self._json(200, self.server.state.view())
         elif path == "/api/events":
@@ -186,12 +188,22 @@ def capture_loop(state: CompanionState, stop: threading.Event) -> None:
                     size = config["cellSize"]
                     width, height = COLS * size, ROWS * size
                     pixels = capture.grab(config["x"], config["y"], width, height)
-                    snapshot = decode_pixels(pixels, width, height, size)
+                    snapshot = decode_pixels(pixels, width, height, size, state.protocol)
                     with state.lock:
                         # Config/demo may have changed while BitBlt was running.
                         if state.config == config and not state.demo:
                             state.frame_bmp = to_bmp(pixels, width, height)
                             state.ingest(snapshot)
+                except EquipmentOfferError as exc:
+                    with state.lock:
+                        if state.config == config and not state.demo:
+                            state.frame_bmp = to_bmp(pixels, width, height)
+                            state.capture_offer_error(str(exc))
+                except EquipmentSwapError as exc:
+                    with state.lock:
+                        if state.config == config and not state.demo:
+                            state.frame_bmp = to_bmp(pixels, width, height)
+                            state.capture_swap_error(str(exc))
                 except FrameError as exc:
                     with state.lock:
                         if state.config == config and not state.demo:
@@ -210,17 +222,22 @@ def watch_parent_input(server: BridgeServer, stream: BinaryIO) -> None:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="WoW WCP1 本机陪伴桥接")
-    parser.add_argument("--port", type=int, default=18765)
-    parser.add_argument("--config", type=Path, default=ROOT / "bridge-config.json")
+    parser = argparse.ArgumentParser(description="WoW 正式服 / 无限服本机陪伴桥接")
+    parser.add_argument("--game", choices=tuple(GAME_PROTOCOLS), default="retail")
+    parser.add_argument("--port", type=int)
+    parser.add_argument("--config", type=Path)
     parser.add_argument("--demo", action="store_true", help="明确启用演示数据，默认不启用")
     parser.add_argument("--managed-stdin", action="store_true", help="随父进程的 stdin 管道关闭而退出")
     args = parser.parse_args()
+    if args.port is None:
+        args.port = 18766 if args.game == "forever" else 18765
+    if args.config is None:
+        args.config = ROOT / ("bridge-config-forever.json" if args.game == "forever" else "bridge-config.json")
     if not 1 <= args.port <= 65535:
         parser.error("端口必须在 1–65535 范围内")
     try:
         config = json.loads(args.config.read_text(encoding="utf-8-sig")) if args.config.exists() else {}
-        state = CompanionState(config)
+        state = CompanionState(config, game=args.game)
     except (OSError, ValueError) as exc:
         parser.error(f"无法读取配置：{exc}")
     if args.demo:
@@ -235,7 +252,7 @@ def main():
     if args.managed_stdin:
         threading.Thread(target=watch_parent_input, args=(server, sys.stdin.buffer), daemon=True,
                          name="airi-parent-watch").start()
-    print(f"WoW Companion Bridge: http://127.0.0.1:{args.port}/", flush=True)
+    print(f"WoW Companion Bridge ({args.game}): http://127.0.0.1:{args.port}/", flush=True)
     print("Demo enabled: " + str(args.demo), flush=True)
     try:
         server.serve_forever(poll_interval=0.5)

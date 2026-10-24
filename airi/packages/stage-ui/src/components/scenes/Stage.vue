@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { SpeechClip, SpeechClipEnd } from '@proj-airi/core-agent'
 import type { Live2DLipSync, Live2DLipSyncOptions } from '@proj-airi/model-driver-lipsync'
 import type { Profile } from '@proj-airi/model-driver-lipsync/shared/wlipsync'
 import type { CaptionChannelEvent, PresenceBubbleState } from '@proj-airi/stage-shared'
@@ -34,6 +35,7 @@ import StageRenderError from './stage-render-error.vue'
 // import { useDuckDb } from '../../composables/use-duck-db'
 import { Emotion, EMOTION_EmotionMotionName_value, EMOTION_VRMExpressionName_value, EmotionThinkMotionName } from '../../constants/emotions'
 import { live2dMotionMagicProfiles, useLive2DMotionMagic, useLive2DMotionMagicSettings } from '../../features/motions/live2d'
+import { PlaybackCaption } from '../../libs/speech/playback-caption'
 import { getSpeechBusContext, speechOutputGetPlaybackState, speechOutputPlaybackStateChangedEvent } from '../../services/speech/bus'
 import { useLlmStreamingControlStore } from '../../stores/ai/chat-llm/streaming-control'
 import { useAudioContext, useSpeakingStore } from '../../stores/audio'
@@ -64,6 +66,8 @@ const emit = defineEmits<{
   reset: []
   /** The active card has no model. The app opens the model settings. */
   selectAvatarModel: []
+  /** The desktop bubble shows played speech. Empty text hides it after playback settles. */
+  speechCaption: [text: string]
 }>()
 const componentState = defineModel<'pending' | 'loading' | 'mounted'>('state', { default: 'pending' })
 
@@ -422,6 +426,7 @@ const playback = new Playback(new BrowserPlayback(audioContext, {
   onSource: (source) => { currentAudioSource.value = source },
 }))
 let playingCount = 0
+const playbackCaption = new PlaybackCaption(text => emit('speechCaption', text))
 
 function resetSpeakingState() {
   nowSpeaking.value = false
@@ -430,6 +435,7 @@ function resetSpeakingState() {
 
 // A response leaves the active turns after its playback drains, or at once
 // when it is canceled or interrupted.
+watch(() => voice.activeTurns, turns => playbackCaption.updateActiveTurns(turns), { flush: 'sync' })
 watch(() => voice.activeTurns, (turns) => {
   if (turns.length === 0)
     speechVoicing.value = false
@@ -437,10 +443,13 @@ watch(() => voice.activeTurns, (turns) => {
 
 const cards = useAiriCardStore()
 const disconnectVoiceOutput = voice.connectOutput((turn) => {
+  const caption = playbackCaption.connectTurn(turn)
   const output = {
     playback,
     onSpecial: (special: string) => void playSpecialToken(special, { turnId: turn.turnId }),
-    onPlaybackStart: ({ text }: { text: string }) => {
+    onPlaybackStart: (clip: SpeechClip) => {
+      caption.onPlaybackStart(clip)
+      const { text } = clip
       playingCount += 1
       nowSpeaking.value = true
       speechVoicing.value = true
@@ -453,7 +462,8 @@ const disconnectVoiceOutput = voice.connectOutput((turn) => {
         console.error('Speech presentation channel failed', error)
       }
     },
-    onPlaybackEnd: () => {
+    onPlaybackEnd: (clip: SpeechClip, end: SpeechClipEnd) => {
+      caption.onPlaybackEnd(clip, end)
       playingCount -= 1
       if (playingCount === 0)
         resetSpeakingState()
@@ -557,8 +567,10 @@ function setupAnalyser() {
 
 watch(speechMuted, (muted) => {
   if (muted) {
-    for (const turn of voice.activeTurns)
+    for (const turn of voice.activeTurns) {
+      playbackCaption.closeTurn(turn)
       voice.getSpeech(turn)?.cancel('Speech muted')
+    }
   }
 })
 
@@ -681,6 +693,7 @@ async function captureCharacterFrame() {
 }
 
 onUnmounted(() => {
+  playbackCaption.dispose()
   live2d.dispose()
   disposePlaybackStateHandler()
   resetLive2dLipSync()

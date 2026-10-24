@@ -1,0 +1,16 @@
+## Interface: 16001
+## Title: WoW Forever Companion / AIRI Bridge
+## Title-zhCN: 魔兽无限陪伴精灵 / AIRI 桥接
+## Notes: WoW Forever character, map, gold and new equipment telemetry. WCF1 grid and player-confirmed equipment swaps.
+## Notes-zhCN: 无限服独立插件，采集角色、地图、金币收支和新增装备供 AIRI 读取；显示数据传输码，并在游戏内询问后换装。
+## Author: WoWForeverCompanion
+## Version: 1.3.0
+## SavedVariables: WoWForeverCompanionDB
+
+Protocol.lua
+Money.lua
+Equipment.lua
+Transfer.lua
+ConfirmEquip.lua
+Telemetry.lua
+WoWForeverCompanion.lua

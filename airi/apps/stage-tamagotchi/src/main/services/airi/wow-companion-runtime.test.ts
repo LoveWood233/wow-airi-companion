@@ -19,6 +19,7 @@ from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 p=argparse.ArgumentParser()
 p.add_argument('--port',type=int)
 p.add_argument('--config')
+p.add_argument('--game',choices=['retail','forever'],default='retail')
 p.add_argument('--managed-stdin',action='store_true')
 a=p.parse_args()
 root=pathlib.Path(__file__).parent
@@ -33,7 +34,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(json.dumps({'ok':True,'service':'wow-companion-bridge','protocol':'WCP1','version':'2.2.0','instanceId':'test'}).encode())
+        self.wfile.write(json.dumps({'ok':True,'service':'wow-companion-bridge','protocol':'WCF1' if a.game=='forever' else 'WCP1','game':a.game,'version':'2.3.0','instanceId':'test'}).encode())
         if self.path=='/crash':
             self.wfile.flush()
             os._exit(2)
@@ -140,6 +141,30 @@ describe('managed WoW bridge runtime', () => {
     expect(runtime.read().error).toBe(error)
   })
 
+  it('reuses an external Forever bridge without stopping it', async () => {
+    await runtime.dispose()
+    runtime = new CompanionBridgeRuntime({ appPath, resourcesPath, userDataPath, platform: 'win32', game: 'forever' }, baseUrl)
+    const forever = { ...health, protocol: 'WCF1', game: 'forever', version: '2.3.0' }
+    await serve(forever)
+    await runtime.ensureReady()
+    expect(runtime.read().status).toBe('external')
+    await runtime.stop()
+    expect(await (await fetch(`${baseUrl}/health`)).json()).toEqual(forever)
+  })
+
+  it.each([
+    { selected: 'forever' as const, value: health },
+    { selected: 'retail' as const, value: { ...health, protocol: 'WCF1', game: 'forever', version: '2.3.0' } },
+    { selected: 'retail' as const, value: { ...health, game: 'forever', version: '2.3.0' } },
+    { selected: 'forever' as const, value: { ...health, protocol: 'WCF1', version: '2.3.0' } },
+  ])('rejects a listener from another game for $selected', async ({ selected, value }) => {
+    await runtime.dispose()
+    runtime = new CompanionBridgeRuntime({ appPath, resourcesPath, userDataPath, platform: 'win32', game: selected }, baseUrl)
+    await serve(value)
+    await expect(runtime.ensureReady()).rejects.toThrow('incompatible service')
+    expect(await (await fetch(`${baseUrl}/health`)).json()).toEqual(value)
+  })
+
   it('reports a missing Python without running Windows Store aliases', async () => {
     await writeFile(join(source, 'server.py'), script)
     const aliases = join(directory, 'Microsoft', 'WindowsApps')
@@ -232,6 +257,40 @@ describe('managed WoW bridge runtime', () => {
     vi.spyOn(Date, 'now').mockReturnValue(now + 31_000)
     await runtime.ensureReady()
     expect(runtime.read().status).toBe('running')
+  }, 15_000)
+
+  integration('starts Forever with its own source calibration and game argument', async () => {
+    await runtime.dispose()
+    runtime = new CompanionBridgeRuntime({ appPath, resourcesPath, userDataPath, platform: 'win32', game: 'forever' }, baseUrl)
+    await prepareOwned()
+    const retailConfig = join(source, 'bridge-config.json')
+    const foreverConfig = join(source, 'bridge-config-forever.json')
+    await writeFile(retailConfig, '{"x":8,"y":32,"cellSize":1}')
+    await writeFile(foreverConfig, '{"x":80,"y":64,"cellSize":2}')
+    await runtime.ensureReady()
+    expect(runtime.read().status).toBe('running')
+    expect(JSON.parse(await readFile(join(source, 'arguments.json'), 'utf8'))).toMatchObject({ game: 'forever', config: foreverConfig })
+    expect(await readFile(retailConfig, 'utf8')).toBe('{"x":8,"y":32,"cellSize":1}')
+    expect(await readFile(foreverConfig, 'utf8')).toBe('{"x":80,"y":64,"cellSize":2}')
+  }, 15_000)
+
+  integration('keeps bundled Forever calibration separate from existing Retail calibration', async () => {
+    await runtime.dispose()
+    runtime = new CompanionBridgeRuntime({ appPath, resourcesPath, userDataPath, platform: 'win32', game: 'forever' }, baseUrl)
+    await prepareOwned()
+    const bundled = join(resourcesPath, 'wow-companion-bridge')
+    await mkdir(bundled, { recursive: true })
+    await writeFile(join(bundled, 'server.py'), script)
+    await writeFile(join(source, 'bridge-config.json'), '{"x":8}')
+    await writeFile(join(source, 'bridge-config-forever.json'), '{"x":80}')
+    const directory = join(userDataPath, 'wow-companion-bridge')
+    await mkdir(directory, { recursive: true })
+    await writeFile(join(directory, 'bridge-config.json'), '{"x":16}')
+    await runtime.ensureReady()
+    const config = join(directory, 'bridge-config-forever.json')
+    expect(await readFile(config, 'utf8')).toBe('{"x":80}')
+    expect(await readFile(join(directory, 'bridge-config.json'), 'utf8')).toBe('{"x":16}')
+    expect(JSON.parse(await readFile(join(bundled, 'arguments.json'), 'utf8'))).toMatchObject({ game: 'forever', config })
   }, 15_000)
 
   integration('cancels startup without leaving a listener behind', async () => {
