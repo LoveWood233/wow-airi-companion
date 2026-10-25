@@ -22,6 +22,14 @@
 
 [结构化 JSON](WOWAddons/research/warcraft-characters/warcraft-character-library.json) 与 [生成脚本](WOWAddons/research/warcraft-characters/build_library.py) 一并保存。原作短引、中文译写和原创示例分别标注。该资料用于后续开发，尚未接入 AIRI，也未包含人物模型或原声资源。
 
+## 可导入角色资产
+
+[希尔瓦娜斯卡通陪伴形象 v0.3](assets/sylvanas-companion/README.md)：Spine 4.2 模型，包含 19 个动作、肘部弯曲和闭合握弓手。
+
+[下载 AIRI 导入包](assets/sylvanas-companion/output/sylvanas-companion.spine.zip) · [全身预览](assets/sylvanas-companion/output/portrait.png) · [握弓近景](assets/sylvanas-companion/output/grip-closeup-idle.png)
+
+该角色采用手动导入，未替换默认形象。首次导入需要按资产说明设置透明混合模式。源贴图、生成提示词、绑定脚本和验证记录一并保存在资产目录。
+
 ## 项目内容
 
 | 路径 | 内容 |
@@ -30,6 +38,7 @@
 | `WOWAddons/WoWForeverCompanion/` | 无限服独立 Lua 插件、WCF1 编码、测试与安装说明 |
 | `WOWAddons/WoWCompanionBridge/` | Windows 屏幕采集、协议解码、事件状态、本机校准页面和测试 |
 | `airi/` | AIRI 上游完整源码快照，包含本次修改和新增的魔兽陪伴功能 |
+| `assets/sylvanas-companion/` | 希尔瓦娜斯 v0.3 导入包、可重建源文件、预览与来源说明 |
 | `WOWAddons/Start-WoWCompanion.cmd` | 启动已构建的 AIRI 桌面端，由 AIRI 自动管理桥接 |
 | `WOWAddons/Install-WoWCompanion.ps1` | 将插件安装到正式服 AddOns 目录 |
 | `WOWAddons/wow-companion-implementation.html` | 功能清单、实现逻辑、配置步骤和需用户协助的验收事项 |

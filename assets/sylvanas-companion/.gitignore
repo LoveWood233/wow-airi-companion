@@ -1,0 +1,12 @@
+node_modules/
+.cache/
+__pycache__/
+*.log
+preview/app.bundle.js
+output/*
+!output/sylvanas-companion.spine.zip
+!output/portrait.png
+!output/grip-closeup-idle.png
+!output/grip-closeup-ready.png
+!output/validation-report.json
+!output/airi-loader-report.json

@@ -1,0 +1,310 @@
+{
+  "runtime": "Spine 4.2",
+  "bones": 12,
+  "slots": 9,
+  "regions": 9,
+  "pages": [
+    "sylvanas-atlas.png",
+    "arm-right-grip-clean.png"
+  ],
+  "meshAttachments": 9,
+  "weightedMeshAttachments": 2,
+  "totalSampledFrames": 11228,
+  "gripConstraint": "rendered-uv-barycentric",
+  "maximumGripDrift": 0.00002303,
+  "maximumSubpixelInvertedArea": 0.051593,
+  "allMotionBounds": {
+    "minX": -197.065,
+    "minY": 37.13,
+    "maxX": 234.848,
+    "maxY": 643.264,
+    "width": 431.913,
+    "height": 606.134
+  },
+  "idleMeshDeformations": {
+    "cape": {
+      "maximumAuthoredOffset": 3.999671,
+      "maximumRuntimeOffset": 3.999671
+    },
+    "hair-back": {
+      "maximumAuthoredOffset": 2.999952,
+      "maximumRuntimeOffset": 2.99995
+    }
+  },
+  "animations": [
+    {
+      "name": "idle",
+      "duration": 5,
+      "sampledFrames": 300,
+      "endpointError": 0.00003052,
+      "motionBounds": {
+        "minX": -141.955,
+        "minY": 37.13,
+        "maxX": 141.955,
+        "maxY": 626.638,
+        "width": 283.91,
+        "height": 589.508
+      }
+    },
+    {
+      "name": "greet",
+      "duration": 2.799999952316284,
+      "sampledFrames": 168,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -136.651,
+        "minY": 37.13,
+        "maxX": 226.555,
+        "maxY": 620.362,
+        "width": 363.206,
+        "height": 583.232
+      }
+    },
+    {
+      "name": "wave",
+      "duration": 3.4000000953674316,
+      "sampledFrames": 205,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -136.651,
+        "minY": 37.13,
+        "maxX": 227.437,
+        "maxY": 620.362,
+        "width": 364.088,
+        "height": 583.232
+      }
+    },
+    {
+      "name": "celebrate",
+      "duration": 2.799999952316284,
+      "sampledFrames": 168,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -180.901,
+        "minY": 37.13,
+        "maxX": 231.869,
+        "maxY": 628.848,
+        "width": 412.77,
+        "height": 591.718
+      }
+    },
+    {
+      "name": "sad",
+      "duration": 3.200000047683716,
+      "sampledFrames": 193,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -171.72,
+        "minY": 37.13,
+        "maxX": 136.651,
+        "maxY": 619.161,
+        "width": 308.371,
+        "height": 582.03
+      }
+    },
+    {
+      "name": "angry",
+      "duration": 2.4000000953674316,
+      "sampledFrames": 145,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -159.794,
+        "minY": 37.13,
+        "maxX": 211.554,
+        "maxY": 621.927,
+        "width": 371.348,
+        "height": 584.797
+      }
+    },
+    {
+      "name": "think",
+      "duration": 3.5999999046325684,
+      "sampledFrames": 216,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -136.651,
+        "minY": 37.13,
+        "maxX": 213.34,
+        "maxY": 619.2,
+        "width": 349.991,
+        "height": 582.07
+      }
+    },
+    {
+      "name": "surprise",
+      "duration": 1.7999999523162842,
+      "sampledFrames": 108,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -162.773,
+        "minY": 37.13,
+        "maxX": 216.133,
+        "maxY": 633.017,
+        "width": 378.907,
+        "height": 595.886
+      }
+    },
+    {
+      "name": "awkward",
+      "duration": 2.799999952316284,
+      "sampledFrames": 168,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -146.509,
+        "minY": 37.13,
+        "maxX": 196.53,
+        "maxY": 619.2,
+        "width": 343.038,
+        "height": 582.07
+      }
+    },
+    {
+      "name": "question",
+      "duration": 2.799999952316284,
+      "sampledFrames": 168,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -136.651,
+        "minY": 37.13,
+        "maxX": 215.728,
+        "maxY": 619.719,
+        "width": 352.379,
+        "height": 582.589
+      }
+    },
+    {
+      "name": "curious",
+      "duration": 3.200000047683716,
+      "sampledFrames": 193,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -136.725,
+        "minY": 37.13,
+        "maxX": 182.474,
+        "maxY": 619.18,
+        "width": 319.198,
+        "height": 582.05
+      }
+    },
+    {
+      "name": "look-around",
+      "duration": 4.800000190734863,
+      "sampledFrames": 289,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -157.391,
+        "minY": 37.13,
+        "maxX": 157.391,
+        "maxY": 621.197,
+        "width": 314.782,
+        "height": 584.067
+      }
+    },
+    {
+      "name": "nod",
+      "duration": 2.4000000953674316,
+      "sampledFrames": 145,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -147.174,
+        "minY": 37.13,
+        "maxX": 147.174,
+        "maxY": 619.161,
+        "width": 294.348,
+        "height": 582.03
+      }
+    },
+    {
+      "name": "head-shake",
+      "duration": 2.5999999046325684,
+      "sampledFrames": 156,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -138.54,
+        "minY": 37.13,
+        "maxX": 138.54,
+        "maxY": 619.188,
+        "width": 277.081,
+        "height": 582.058
+      }
+    },
+    {
+      "name": "listen",
+      "duration": 3.5999999046325684,
+      "sampledFrames": 216,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -136.651,
+        "minY": 37.13,
+        "maxX": 215.384,
+        "maxY": 619.912,
+        "width": 352.035,
+        "height": 582.782
+      }
+    },
+    {
+      "name": "salute",
+      "duration": 3,
+      "sampledFrames": 180,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -136.651,
+        "minY": 37.13,
+        "maxX": 223.212,
+        "maxY": 624.79,
+        "width": 359.863,
+        "height": 587.66
+      }
+    },
+    {
+      "name": "stretch",
+      "duration": 4.199999809265137,
+      "sampledFrames": 252,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -166.932,
+        "minY": 37.13,
+        "maxX": 234.848,
+        "maxY": 636.075,
+        "width": 401.78,
+        "height": 598.945
+      }
+    },
+    {
+      "name": "ready",
+      "duration": 3.4000000953674316,
+      "sampledFrames": 205,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -197.065,
+        "minY": 37.13,
+        "maxX": 211.277,
+        "maxY": 619.161,
+        "width": 408.342,
+        "height": 582.03
+      }
+    },
+    {
+      "name": "bounce",
+      "duration": 3.200000047683716,
+      "sampledFrames": 193,
+      "endpointError": 0,
+      "motionBounds": {
+        "minX": -144.185,
+        "minY": 37.13,
+        "maxX": 180.81,
+        "maxY": 643.264,
+        "width": 324.994,
+        "height": 606.134
+      }
+    }
+  ],
+  "visualReviewRequired": true,
+  "sourceImageSha256": "f2ccd913607ca3d48fdace62748cf4740d317996169f9c3bad9423a1fdfbbe0b",
+  "sourceImagesSha256": {
+    "sylvanas-atlas.png": "f2ccd913607ca3d48fdace62748cf4740d317996169f9c3bad9423a1fdfbbe0b",
+    "arm-right-grip-clean.png": "13016a940d83551c307194800122f87dfa876a482e46ca24008c656ab1a7ab58"
+  },
+  "zipIntegrity": "passed",
+  "sourcePixelsUnchanged": true
+}

@@ -1,0 +1,20 @@
+{
+  "loader": "airi/packages/stage-ui-spine/src/utils/spine-zip-loader.ts",
+  "loaderSourceSha256": "d9d4228cca9c36d88bd9af723c6da8eeea545d0747ddd869408664df66d2e83b",
+  "assetSha256": "fb8b7c47f23ed5043bb91c252b793e264ce84ce9e2d244c8cd67e24c0d8bb385",
+  "layout": {
+    "skeletonPath": "sylvanas-companion.json",
+    "skeletonFormat": "json",
+    "atlasPath": "sylvanas-companion.atlas",
+    "texturePaths": [
+      "arm-right-grip-clean.png",
+      "sylvanas-atlas.png"
+    ]
+  },
+  "variants": [
+    "sylvanas-companion"
+  ],
+  "textureCount": 2,
+  "status": "passed",
+  "scope": "ZIP loader only; full Electron import is not tested"
+}
