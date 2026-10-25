@@ -1,0 +1,110 @@
+{
+  "parts": {
+    "torso": {
+      "x": 0,
+      "y": 300,
+      "width": 150,
+      "height": 223,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "parent": "root"
+    },
+    "head": {
+      "x": 0,
+      "y": 409,
+      "width": 280,
+      "height": 258,
+      "pivotX": 0.5,
+      "pivotY": 0.83,
+      "parent": "torso"
+    },
+    "cape": {
+      "x": 0,
+      "y": 402,
+      "width": 230,
+      "height": 325,
+      "pivotX": 0.5,
+      "pivotY": 0.05,
+      "parent": "torso"
+    },
+    "hair-back": {
+      "x": 0,
+      "y": 510,
+      "width": 190,
+      "height": 225,
+      "pivotX": 0.5,
+      "pivotY": 0.08,
+      "parent": "head"
+    },
+    "arm-right": {
+      "x": -67,
+      "y": 389,
+      "width": 77.31237322515213,
+      "height": 166.19089574155655,
+      "pivotX": 0.806060606060606,
+      "pivotY": 0.12006079027355623,
+      "parent": "torso",
+      "elbowX": -27.02028397565923,
+      "elbowY": -55.060205580029375
+    },
+    "arm-left": {
+      "x": 67,
+      "y": 389,
+      "width": 77,
+      "height": 185,
+      "pivotX": 0.22,
+      "pivotY": 0.12,
+      "parent": "torso"
+    },
+    "leg-right": {
+      "x": -35,
+      "y": 244,
+      "width": 69,
+      "height": 230,
+      "pivotX": 0.5,
+      "pivotY": 0.08,
+      "parent": "root"
+    },
+    "leg-left": {
+      "x": 35,
+      "y": 244,
+      "width": 61,
+      "height": 230,
+      "pivotX": 0.5,
+      "pivotY": 0.08,
+      "parent": "root"
+    },
+    "bow": {
+      "x": -111,
+      "y": 238,
+      "width": 88,
+      "height": 300,
+      "pivotX": 0.68,
+      "pivotY": 0.51,
+      "parent": "arm-right-forearm",
+      "rotation": 0,
+      "flipX": true
+    }
+  },
+  "drawOrder": [
+    "cape",
+    "hair-back",
+    "leg-right",
+    "leg-left",
+    "torso",
+    "bow",
+    "arm-right",
+    "arm-left",
+    "head"
+  ],
+  "grip": {
+    "armUV": [
+      0.30303030303030304,
+      0.898936170212766
+    ],
+    "bowUV": [
+      0.6686746987951807,
+      0.5072463768115942
+    ]
+  }
+}
