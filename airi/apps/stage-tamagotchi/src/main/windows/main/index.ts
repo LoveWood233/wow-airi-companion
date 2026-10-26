@@ -59,6 +59,9 @@ const appConfigSchema = object({
 
 type AppConfig = InferOutput<typeof appConfigSchema>
 
+/** Leaves room for the expanded menu beside the main controls at the default icon size. */
+const minimumWidth = 300
+
 export async function setupMainWindow(params: {
   editorWindow: EditorWindowManager
   settingsWindow: SettingsWindowManager
@@ -113,7 +116,8 @@ export async function setupMainWindow(params: {
 
   const window = new BrowserWindow({
     title: 'AIRI',
-    width: mainWindowConfig?.width ?? 450.0,
+    minWidth: minimumWidth,
+    width: Math.max(mainWindowConfig?.width ?? 450.0, minimumWidth),
     height: mainWindowConfig?.height ?? 600.0,
     x: mainWindowConfig?.x,
     y: mainWindowConfig?.y,

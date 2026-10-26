@@ -14,8 +14,9 @@ from state import CompanionState, validate_config
 
 
 def snapshot(**changes):
-    result = {"v": 2, "session": "test-session", "seq": 1, "tick": 1, "guid": "Player-1-TEST",
+    result = {"v": 3, "session": "test-session", "seq": 1, "tick": 1, "guid": "Player-1-TEST",
               "name": "旅行者", "realm": "艾泽拉斯", "level": 29, "class": "MAGE", "spec": 64,
+              "faction": "Alliance", "race": "人类",
               "map": 37, "zone": "艾尔文森林", "combat": False, "dead": False, "online": True,
               "account": "test-account", "moneyEpoch": "test-epoch", "copper": 100000, "earned": 0, "spent": 0}
     result.update(changes)
@@ -54,9 +55,38 @@ class ProtocolTests(unittest.TestCase):
         for frame in (b"", bytes(512), b"WCP1" + b"\xff" * 508):
             with self.assertRaises(FrameError):
                 decode_frame(frame)
-        for changes in ({"level": True}, {"level": -1}, {"v": 1}, {"combat": 0}, {"guid": ""}, {"class": "<script>"}):
+        for changes in ({"level": True}, {"level": -1}, {"v": 1}, {"v": 2}, {"combat": 0}, {"guid": ""}, {"class": "<script>"}):
             with self.assertRaises(FrameError):
                 encode_frame(snapshot(**changes))
+
+    def test_faction_and_race_round_trip_including_unknown_without_inference(self):
+        for protocol in ("WCP1", "WCF1"):
+            for faction in ("Alliance", "Horde", "Neutral", None):
+                for race in ("熊猫人", "族" * 16, None):
+                    with self.subTest(protocol=protocol, faction=faction, race=race):
+                        value = snapshot(faction=faction, race=race)
+                        self.assertEqual(decode_frame(encode_frame(value, protocol), protocol), value)
+
+    def test_legacy_snapshot_requires_all_components_to_be_updated(self):
+        legacy = snapshot(v=2)
+        del legacy["faction"]
+        del legacy["race"]
+        with self.assertRaisesRegex(FrameError, "v3.*插件、桥接和 AIRI"):
+            encode_frame(legacy)
+
+    def test_faction_and_race_reject_missing_invalid_types_and_control_characters(self):
+        invalid_values = {
+            "faction": ("horde", "部落", "Unknown", "", True, 1, [], {}),
+            "race": (True, 1, [], {}, "", "x" * 49, "族" * 17, "人\x00类", "人\n类", "人\x7f类", "人\x85类", "\ud800"),
+        }
+        for key, values in invalid_values.items():
+            missing = snapshot()
+            del missing[key]
+            with self.subTest(key=key, missing=True), self.assertRaises(FrameError):
+                encode_frame(missing)
+            for value in values:
+                with self.subTest(key=key, value=value), self.assertRaises(FrameError):
+                    encode_frame(snapshot(**{key: value}))
 
     def test_copper_precision_null_and_strict_money_identity(self):
         for copper in (0, 100000000000, 9007199254740991, None):
@@ -150,6 +180,21 @@ class StateTests(unittest.TestCase):
         self.assertEqual(self.kinds(), ["connected", "zone", "death", "combat_start", "revive", "combat_end", "offline"])
         self.assertEqual(self.state.view()["status"], "waiting")
 
+    def test_event_snapshot_preserves_faction_and_race_at_event_time(self):
+        self.state.ingest(snapshot(faction="Horde", race="亡灵"))
+        death = snapshot(seq=2, tick=2, faction="Horde", race="亡灵", dead=True)
+        self.state.ingest(death)
+        death["race"] = "changed by caller"
+        self.state.ingest(snapshot(seq=3, tick=3, faction=None, race=None, dead=True))
+        view = self.state.view()
+        self.assertIsNone(view["snapshot"]["faction"])
+        self.assertIsNone(view["snapshot"]["race"])
+        event = next(event for event in view["events"] if event["type"] == "death")
+        self.assertEqual((event["snapshot"]["faction"], event["snapshot"]["race"]), ("Horde", "亡灵"))
+        event["snapshot"]["faction"] = "Alliance"
+        copied_event = next(event for event in self.state.view()["events"] if event["type"] == "death")
+        self.assertEqual(copied_event["snapshot"]["faction"], "Horde")
+
     def test_old_sequence_does_not_replay(self):
         self.state.ingest(snapshot(seq=10))
         self.state.ingest(snapshot(seq=1, tick=2, level=30))
@@ -210,6 +255,9 @@ class StateTests(unittest.TestCase):
         self.state.set_demo(True, "level_up")
         self.assertEqual(self.state.view()["status"], "demo")
         self.assertTrue(all(event["demo"] for event in self.state.view()["events"]))
+        self.assertEqual(self.state.view()["snapshot"]["v"], 3)
+        self.assertEqual(self.state.view()["snapshot"]["faction"], "Alliance")
+        self.assertEqual(self.state.view()["snapshot"]["race"], "人类")
         self.state.set_demo(False)
         self.assertIsNone(self.state.view()["snapshot"])
         self.assertEqual(self.state.view()["status"], "waiting")
@@ -227,6 +275,17 @@ class StateTests(unittest.TestCase):
         for value in ({"paused": 1}, {"cellSize": 0}, {"x": True}, {"pollMs": 5}, {"command": "anything"}):
             with self.assertRaises(ValueError):
                 validate_config(value)
+
+    def test_fast_capture_interval_defaults_and_inclusive_bounds(self):
+        self.assertEqual(CompanionState().view()["config"]["pollMs"], 100)
+        self.assertEqual(CompanionState(game="forever").view()["config"]["pollMs"], 100)
+        for interval in (100, 250, 500, 5000):
+            with self.subTest(interval=interval):
+                self.assertEqual(validate_config({"pollMs": interval})["pollMs"], interval)
+        for interval in (99, 5001, True, 100.0):
+            with self.subTest(interval=interval):
+                with self.assertRaises(ValueError):
+                    validate_config({"pollMs": interval})
 
 
 class HttpTests(unittest.TestCase):
@@ -255,7 +314,7 @@ class HttpTests(unittest.TestCase):
         status, _, body = self.request("GET", "/health")
         self.assertEqual(status, 200)
         self.assertEqual(json.loads(body)["protocol"], "WCP1")
-        self.assertEqual(json.loads(body)["version"], "2.6.0")
+        self.assertEqual(json.loads(body)["version"], "2.11.1")
 
     def test_external_origin_and_dns_rebinding_rejected(self):
         self.assertEqual(self.request("GET", "/api/status", headers={"Origin": "https://evil.example"})[0], 403)
@@ -273,11 +332,24 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(self.request("POST", "/api/config", {"x": "bad"}, {"Content-Type": "application/json"})[0], 400)
         self.assertEqual(self.request("POST", "/api/config", {"x": 8}, {"Content-Type": "application/json"})[0], 200)
 
+    def test_fast_capture_configuration_over_http(self):
+        headers = {"Content-Type": "application/json"}
+        status, _, body = self.request("POST", "/api/config", {"pollMs": 100}, headers)
+        self.assertEqual(status, 200)
+        self.assertEqual(json.loads(body)["config"]["pollMs"], 100)
+        self.assertEqual(self.request("POST", "/api/config", {"pollMs": 99}, headers)[0], 400)
+
     def test_demo_and_event_cursor(self):
         status, _, body = self.request("POST", "/api/demo", {"enabled": True, "action": "level_up"}, {"Content-Type": "application/json"})
         self.assertEqual(status, 200)
         state = json.loads(body)
         self.assertEqual(state["status"], "demo")
+        self.assertEqual((state["snapshot"]["faction"], state["snapshot"]["race"]), ("Alliance", "人类"))
+        _, _, status_body = self.request("GET", "/api/status")
+        self.assertEqual(json.loads(status_body)["snapshot"], state["snapshot"])
+        _, _, event_body = self.request("GET", "/api/events?after=0")
+        self.assertTrue(all(event["snapshot"]["faction"] == "Alliance" and event["snapshot"]["race"] == "人类"
+                            for event in json.loads(event_body)["events"]))
         _, _, events = self.request("GET", "/api/events?after=" + str(state["eventCursor"]))
         self.assertEqual(json.loads(events)["events"], [])
         self.request("POST", "/api/demo", {"enabled": False}, {"Content-Type": "application/json"})

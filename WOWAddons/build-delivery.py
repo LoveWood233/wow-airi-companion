@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 AIRI = ROOT.parent / "airi"
-DESTINATION = ROOT / "WoWCompanion-2.6.0-source.zip"
+DESTINATION = ROOT / "WoWCompanion-2.12.4-source.zip"
 BASELINE = "747d4f68aa42180671de3071fb78d5e6129433bd"
 
 
@@ -22,9 +22,10 @@ def git_paths(*args: str) -> list[str]:
 def main() -> None:
     entries: dict[str, Path] = {}
     for name in (
-        "wow-companion-implementation.html", "WoWCompanion-PROTOCOL.md",
+        "wow-companion-implementation.html", "魔兽陪伴精灵-使用说明.html", "WoWCompanion-PROTOCOL.md",
         "Start-WoWCompanion.cmd", "Start-WoWCompanion.ps1",
-        "Install-WoWCompanion.ps1", "build-delivery.py", "WoWMapCompanion-2.6.0.zip", "WoWForeverCompanion-1.3.0.zip",
+        "Install-WoWCompanion.ps1", "build-delivery.py", "WoWMapCompanion-2.10.1.zip", "WoWForeverCompanion-1.7.1.zip",
+        "research/airi-personas/sylvanas-tone.json",
     ):
         entries[f"WOWAddons/{name}"] = ROOT / name
     for folder in ("WoWMapCompanion", "WoWForeverCompanion", "WoWCompanionBridge"):
@@ -36,10 +37,16 @@ def main() -> None:
                 entries[f"WOWAddons/{path.relative_to(ROOT).as_posix()}"] = path
     modified_entries = {
         "apps/stage-tamagotchi/electron-builder.config.ts",
+        "apps/stage-tamagotchi/resources/icon.png",
         "apps/stage-tamagotchi/vitest.config.ts",
         "apps/stage-tamagotchi/src/main/index.ts",
+        "apps/stage-tamagotchi/src/main/windows/main/index.ts",
         "apps/stage-tamagotchi/src/renderer/App.vue",
         "apps/stage-tamagotchi/src/renderer/pages/index.vue",
+        "apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/index.vue",
+        "apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-overflow.browser.test.ts",
+        "apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-notifications.browser.test.ts",
+        "apps/stage-tamagotchi/src/main/windows/shared/window.test.ts",
         "packages/stage-ui/src/components/scenes/Stage.vue",
         "packages/stage-ui/src/stores/chat.ts",
         "packages/stage-ui/src/stores/chat.contract.test.ts",
@@ -47,6 +54,8 @@ def main() -> None:
         "packages/stage-ui/src/libs/speech/playback-caption.test.ts",
         "packages/i18n/src/locales/en/index.ts",
         "packages/i18n/src/locales/zh-Hans/index.ts",
+        "packages/i18n/src/locales/en/tamagotchi/stage.yaml",
+        "packages/i18n/src/locales/zh-Hans/tamagotchi/stage.yaml",
     }
     changes = set(git_paths("diff", "--name-only", "-z", "HEAD"))
     changes.update(git_paths("ls-files", "--others", "--exclude-standard", "-z"))
@@ -60,7 +69,7 @@ def main() -> None:
             entries[f"airi/{name}"] = AIRI / name
     manifest = {
         "name": "WoW Companion",
-        "version": "2.6.0",
+        "version": "2.12.4",
         "airiBaseline": BASELINE,
         "airiPackageVersion": "0.12.0-beta.5",
         "instructions": "AIRI entries are changed/new files only. Overlay them onto the specified AIRI baseline, then install dependencies and build as described in WOWAddons/wow-companion-implementation.html. Keep the airi and WOWAddons folders side by side. No model credentials, dependencies, compiled application, or user data are included.",

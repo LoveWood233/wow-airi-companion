@@ -13,7 +13,7 @@ import { CompanionBridgeRuntime } from './wow-companion-runtime'
 
 const python = process.env.AIRI_WOW_RUNTIME_TEST_PYTHON
 const integration = it.runIf(process.platform === 'win32' && Boolean(python))
-const health = { ok: true, service: 'wow-companion-bridge', protocol: 'WCP1', version: '2.2.0', instanceId: 'test-instance' }
+const health = { ok: true, service: 'wow-companion-bridge', protocol: 'WCP1', version: '2.11.0', instanceId: 'test-instance' }
 const script = `import argparse,json,os,pathlib,sys,threading,time
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 p=argparse.ArgumentParser()
@@ -34,7 +34,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(json.dumps({'ok':True,'service':'wow-companion-bridge','protocol':'WCF1' if a.game=='forever' else 'WCP1','game':a.game,'version':'2.3.0','instanceId':'test'}).encode())
+        self.wfile.write(json.dumps({'ok':True,'service':'wow-companion-bridge','protocol':'WCF1' if a.game=='forever' else 'WCP1','game':a.game,'version':'2.11.0','instanceId':'test'}).encode())
         if self.path=='/crash':
             self.wfile.flush()
             os._exit(2)
@@ -123,6 +123,9 @@ describe('managed WoW bridge runtime', () => {
   it.each([
     { ...health, service: 'unrelated' },
     { ...health, version: '1.0.0' },
+    { ...health, version: '2.6.0' },
+    { ...health, version: '2.9.0' },
+    { ...health, version: '2.10.0' },
     { ...health, version: '3.0.0' },
     { ...health, protocol: 'OTHER' },
   ])('rejects incompatible listeners without replacing them: $version $service $protocol', async (value) => {
@@ -144,7 +147,7 @@ describe('managed WoW bridge runtime', () => {
   it('reuses an external Forever bridge without stopping it', async () => {
     await runtime.dispose()
     runtime = new CompanionBridgeRuntime({ appPath, resourcesPath, userDataPath, platform: 'win32', game: 'forever' }, baseUrl)
-    const forever = { ...health, protocol: 'WCF1', game: 'forever', version: '2.3.0' }
+    const forever = { ...health, protocol: 'WCF1', game: 'forever', version: '2.11.0' }
     await serve(forever)
     await runtime.ensureReady()
     expect(runtime.read().status).toBe('external')
@@ -154,9 +157,9 @@ describe('managed WoW bridge runtime', () => {
 
   it.each([
     { selected: 'forever' as const, value: health },
-    { selected: 'retail' as const, value: { ...health, protocol: 'WCF1', game: 'forever', version: '2.3.0' } },
-    { selected: 'retail' as const, value: { ...health, game: 'forever', version: '2.3.0' } },
-    { selected: 'forever' as const, value: { ...health, protocol: 'WCF1', version: '2.3.0' } },
+    { selected: 'retail' as const, value: { ...health, protocol: 'WCF1', game: 'forever', version: '2.11.0' } },
+    { selected: 'retail' as const, value: { ...health, game: 'forever', version: '2.11.0' } },
+    { selected: 'forever' as const, value: { ...health, protocol: 'WCF1', version: '2.11.0' } },
   ])('rejects a listener from another game for $selected', async ({ selected, value }) => {
     await runtime.dispose()
     runtime = new CompanionBridgeRuntime({ appPath, resourcesPath, userDataPath, platform: 'win32', game: selected }, baseUrl)

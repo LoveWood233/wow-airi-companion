@@ -8,6 +8,7 @@ import type { WorkspaceWindowManager } from './windows/workspace'
 
 import process, { env, platform } from 'node:process'
 
+import { mkdirSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -90,7 +91,10 @@ const log = useLogg('main').useGlobalConfig()
 
 const appUserDataPath = env.APP_USER_DATA_PATH?.trim()
 if (appUserDataPath) {
+  mkdirSync(appUserDataPath, { recursive: true })
   app.setPath('userData', appUserDataPath)
+  // Browser storage and main-process records must use the same explicit profile.
+  app.setPath('sessionData', appUserDataPath)
 }
 
 // Thanks to [@blurymind](https://github.com/blurymind),

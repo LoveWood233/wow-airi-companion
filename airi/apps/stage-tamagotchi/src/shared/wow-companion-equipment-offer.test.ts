@@ -16,12 +16,13 @@ function offer(): EquipmentOffer {
 describe('game equipment confirmation contract', () => {
   it('accepts item-level upgrades, empty slots, and closed confirmations', () => {
     expect(parse(equipmentOfferSchema, offer())).toEqual(offer())
+    expect(parse(equipmentOfferSchema, { ...offer(), il: offer().ol }).il).toBe(offer().ol)
     expect(parse(equipmentOfferSchema, { ...offer(), old: 0, ol: -1 }).old).toBe(0)
     expect(parse(equipmentOfferSchema, { ...offer(), st: 'closed', q: 4 }).st).toBe('closed')
   })
 
   it('rejects non-upgrades, malformed identities, oversized names, and extra actions', () => {
-    for (const patch of [{ il: 140 }, { old: 0 }, { ol: -1 }, { s: '' }, { g: 'Player 1' }, { q: 0 }, { q: true }, { n: '中'.repeat(33) }, { n: '' }, { n: 'bad\u007F' }, { il: Number.NaN }, { until: 0 }, { st: 'execute' }, { command: 'equip' }]) {
+    for (const patch of [{ il: 139 }, { old: 0 }, { ol: -1 }, { s: '' }, { g: 'Player 1' }, { q: 0 }, { q: true }, { n: '中'.repeat(33) }, { n: '' }, { n: 'bad\u007F' }, { il: Number.NaN }, { until: 0 }, { st: 'execute' }, { command: 'equip' }]) {
       expect(safeParse(equipmentOfferSchema, { ...offer(), ...patch }).success).toBe(false)
     }
   })

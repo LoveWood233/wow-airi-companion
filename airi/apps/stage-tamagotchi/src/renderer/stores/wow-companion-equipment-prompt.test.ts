@@ -5,18 +5,22 @@ import type { EquipmentPrompt, EquipmentPromptHost } from './wow-companion-equip
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { defaultSettings } from '../../shared/wow-companion'
+import { comparisonFixture } from '../../shared/wow-companion-comparison.test-helper'
 import { EquipmentPromptController } from './wow-companion-equipment-prompt'
 
 const now = Date.parse('2026-10-24T14:00:00Z')
 
 function state(game: GameVersion = 'retail', changes: Partial<EquipmentOffer> = {}): CompanionState {
-  return {
+  const profile: CompanionState = {
     game,
     settings: { ...defaultSettings },
     error: null,
     updatedAt: now,
     gold: { accounts: [], storageError: null },
     equipmentHistory: { entries: [], storageError: null },
+    equipmentComparisons: { entries: [], storageError: null },
+    equipmentLoadouts: { entries: [], latestCharacter: null, storageError: null },
+    levelHistory: { characters: [], storageError: null },
     bridge: {
       instanceId: 'bridge',
       status: 'live',
@@ -26,9 +30,13 @@ function state(game: GameVersion = 'retail', changes: Partial<EquipmentOffer> = 
       eventCursor: 0,
       events: [],
       error: null,
+      equipmentComparisons: [],
+      equipmentComparisonError: null,
+      equipmentLoadout: null,
+      equipmentLoadoutError: null,
       config: { x: 8, y: 8, cellSize: 1, pollMs: 500, paused: false },
       snapshot: {
-        v: 2,
+        v: 3,
         session: 'login',
         seq: 1,
         tick: 1,
@@ -37,6 +45,8 @@ function state(game: GameVersion = 'retail', changes: Partial<EquipmentOffer> = 
         realm: 'Realm',
         level: 80,
         class: 'MAGE',
+        faction: 'Alliance',
+        race: 'Human',
         spec: 64,
         map: 84,
         zone: 'City',
@@ -68,6 +78,16 @@ function state(game: GameVersion = 'retail', changes: Partial<EquipmentOffer> = 
       },
     },
   }
+  const offer = profile.bridge!.equipmentOffer!
+  const comparison = comparisonFixture({ id: offer.id, session: offer.s, guid: offer.g, slot: offer.slot })
+  comparison.candidate.itemID = offer.item
+  comparison.candidate.itemLevel = offer.il
+  comparison.current!.itemID = offer.old
+  comparison.current!.itemLevel = offer.ol
+  if (offer.old === 0)
+    comparison.current!.stats = []
+  profile.bridge!.equipmentComparisons = [comparison]
+  return profile
 }
 
 function harness() {
@@ -82,10 +102,11 @@ function harness() {
   }[] = []
   const host: EquipmentPromptHost = {
     publish: vi.fn(value => view = value),
+    currentPlayer: vi.fn(() => true),
     busy: () => busy,
     muted: () => muted,
     sessionId: () => sessionId,
-    message: offer => `Change to ${offer.n}?`,
+    message: vi.fn((offer: EquipmentOffer) => `Change to ${offer.n}?`),
     accepted: () => 'Confirm the change in the game.',
     speak: vi.fn(() => {
       const done = Promise.withResolvers<void>()
@@ -108,6 +129,77 @@ function harness() {
 }
 
 describe('equipmentPromptController', () => {
+  it('rejects an older player and cancels its prompt before another profile can update', () => {
+    const h = harness()
+    h.muted(true)
+    vi.mocked(h.host.currentPlayer).mockReturnValue(false)
+    h.controller.observe('retail', state())
+    expect(h.view()).toBeNull()
+    expect(h.host.speak).not.toHaveBeenCalled()
+
+    vi.mocked(h.host.currentPlayer).mockReturnValue(true)
+    h.controller.observe('retail', state())
+    expect(h.view()?.phase).toBe('choosing')
+
+    vi.mocked(h.host.currentPlayer).mockReturnValue(false)
+    h.controller.unavailable('forever')
+    expect(h.view()).toBeNull()
+    expect(h.host.speak).not.toHaveBeenCalled()
+  })
+
+  it.each(['missing', 'wrong-spec', 'tradeoff', 'complex', 'old-item', 'slot', 'candidate', 'changed-spec', 'comparison-error'] as const)('does not ask for an unproven upgrade: %s', (condition) => {
+    const h = harness()
+    const profile = state()
+    const comparison = profile.bridge!.equipmentComparisons[0]
+    if (condition === 'missing')
+      profile.bridge!.equipmentComparisons = []
+    if (condition === 'wrong-spec')
+      comparison.specMatch = false
+    if (condition === 'tradeoff')
+      comparison.candidate.stats[0].value = 1
+    if (condition === 'complex')
+      comparison.candidate.complex = true
+    if (condition === 'old-item')
+      comparison.current!.itemID++
+    if (condition === 'slot')
+      comparison.slot++
+    if (condition === 'candidate')
+      comparison.candidate.itemID++
+    if (condition === 'changed-spec')
+      profile.bridge!.snapshot!.spec++
+    if (condition === 'comparison-error')
+      profile.bridge!.equipmentComparisonError = 'Invalid data'
+    h.controller.observe('retail', profile)
+    expect(h.view()).toBeNull()
+    expect(h.host.speak).not.toHaveBeenCalled()
+  })
+
+  it('waits for comparison arrival and accepts proven equal-item-level improvements', () => {
+    const h = harness()
+    h.muted(true)
+    const profile = state('retail', { il: 100 })
+    const comparison = profile.bridge!.equipmentComparisons.pop()!
+    h.controller.observe('retail', profile)
+    expect(h.view()).toBeNull()
+    profile.bridge!.equipmentComparisons.push(comparison)
+    h.controller.observe('retail', profile)
+    expect(h.view()?.phase).toBe('choosing')
+    profile.bridge!.snapshot!.spec = 63
+    h.controller.observe('retail', profile)
+    expect(h.view()).toBeNull()
+  })
+
+  it('asks about a supported secondary trade-off without relabeling it as a clear upgrade', () => {
+    const h = harness()
+    h.muted(true)
+    const profile = state()
+    const comparison = profile.bridge!.equipmentComparisons[0]
+    comparison.current!.stats.push({ key: 'ITEM_MOD_MASTERY_RATING_SHORT', value: 37 })
+    comparison.candidate.stats.push({ key: 'ITEM_MOD_MASTERY_RATING_SHORT', value: 30 })
+    h.controller.observe('retail', profile)
+    expect(h.view()?.phase).toBe('choosing')
+    expect(h.host.message).toHaveBeenCalledWith(profile.bridge!.equipmentOffer, comparison)
+  })
   beforeEach(() => {
     vi.useFakeTimers()
     vi.setSystemTime(now)
@@ -217,10 +309,10 @@ describe('equipmentPromptController', () => {
     expect(h.view()?.deadline).toBe(now + 11_000)
   })
 
-  it('bounds synthesis wait to thirty seconds and cancels only its owned audio', async () => {
+  it('bounds synthesis wait to two minutes and cancels only its owned audio', async () => {
     const h = harness()
-    h.controller.observe('retail', state())
-    await vi.advanceTimersByTimeAsync(29_999)
+    h.controller.observe('retail', state('retail', { until: now / 1000 + 180 }))
+    await vi.advanceTimersByTimeAsync(119_999)
     expect(h.calls[0].stop).not.toHaveBeenCalled()
     await vi.advanceTimersByTimeAsync(1)
     expect(h.calls[0].stop).toHaveBeenCalledTimes(1)
@@ -231,13 +323,13 @@ describe('equipmentPromptController', () => {
     await vi.advanceTimersByTimeAsync(5000)
     h.calls[0].done.resolve()
     await vi.advanceTimersByTimeAsync(0)
-    expect(h.view()?.deadline).toBe(now + 40_000)
+    expect(h.view()?.deadline).toBe(now + 130_000)
   })
 
   it('closes an audio cancellation that never confirms silence', async () => {
     const h = harness()
     h.controller.observe('retail', state())
-    await vi.advanceTimersByTimeAsync(35_000)
+    await vi.advanceTimersByTimeAsync(115_000)
     expect(h.view()).toBeNull()
     expect(h.calls[0].stop).toHaveBeenCalledTimes(1)
   })

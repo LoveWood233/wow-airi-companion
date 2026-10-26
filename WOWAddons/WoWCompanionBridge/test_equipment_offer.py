@@ -38,7 +38,7 @@ class EquipmentOfferTests(unittest.TestCase):
     def test_rejects_invalid_schema_and_non_upgrades(self):
         changes = [{"id": True}, {"q": 0}, {"s": ""}, {"g": "other user"}, {"n": ""},
                    {"n": "中" * 33}, {"n": "bad\x7f"}, {"il": float("nan")},
-                   {"il": 140}, {"old": 0}, {"ol": -1}, {"slot": 20},
+                   {"il": 139}, {"old": 0}, {"ol": -1}, {"slot": 20},
                    {"st": "equip"}, {"until": 0}, {"command": "execute"}]
         for change in changes:
             with self.subTest(change=change), self.assertRaises(EquipmentOfferError):
@@ -49,6 +49,8 @@ class EquipmentOfferTests(unittest.TestCase):
             with self.subTest(key=key), self.assertRaises(EquipmentOfferError):
                 validate_equipment_offer(value)
         self.assertEqual(validate_equipment_offer(offer(old=0, ol=-1))["ol"], -1)
+        # Equal item level can have better attributes. Lua and AIRI require separate comparison evidence.
+        self.assertEqual(validate_equipment_offer(offer(il=140))["il"], 140)
 
     def test_repeated_ready_does_not_emit_events_or_refresh_heartbeat(self):
         cursor = self.state.event_id

@@ -3,12 +3,19 @@ description: 一起漫游艾泽拉斯。了解角色状态，在重要时刻陪�
 connection: 游戏连接
 last-seen: 最近有效画面
 demo-warning: 当前为演示数据，不代表真实游戏角色。
-model-required: 请在 AIRI 中选择对话服务和模型后启用角色回应。语音沿用现有声音设置。
-start-bridge: 开启陪伴连接后，AIRI 会自动启动本机桥接，无需单独操作。请保持插件数据传输码可见。Windows 需已安装 Python 3.10 或更高版本。
+model-required: 请在魔兽陪伴精灵中选择对话服务和模型后启用角色回应。语音沿用现有声音设置。
+start-bridge: 开启陪伴连接后，魔兽陪伴精灵会自动启动本机桥接，无需单独操作。请保持插件数据传输码可见。Windows 需已安装 Python 3.10 或更高版本。
 player: 当前角色
 level: 等级
 zone-label: 所在区域
 class-spec: 职业 / 专精编号
+faction: 阵营
+race: 种族
+identity-unknown: 未知
+factions:
+  Alliance: 联盟
+  Horde: 部落
+  Neutral: 中立
 activity: 活动状态
 freshness: 数据状态
 dead: 已死亡
@@ -25,7 +32,7 @@ options:
   quietInCombat: 战斗时免打扰
   levelUp: 升级时祝贺
   zone: 进入新区域时回应
-  death: 死亡后安慰
+  death: 死亡时回应
   revive: 复活后鼓励
   allowDemo: 允许角色回应演示事件
 hints:
@@ -34,19 +41,19 @@ hints:
   quietInCombat: 保留一个重要事件，战斗结束后回应；超过 30 秒的事件会丢弃。
   levelUp: 只在同一角色会话内检测等级提高。
   zone: 地图或区域改变时回应，遵守提醒间隔。
-  death: 用简短温和的话陪伴。
+  death: 按当前角色语气简短回应，可结合已知的游戏阵营或种族调侃。
   revive: 在角色恢复生命时回应。
   allowDemo: 默认关闭。开启后测试回应会使用已配置的模型和语音。
 cooldown: 两次回应的最小间隔（秒）
 cooldown-description: 可设 0～300 秒。间隔期间只保留一个近期事件。
 capture: 屏幕位置校准
-capture-description: 使用桌面的物理像素坐标，需与插件编码区的位置和单元格尺寸一致。
+capture-description: 默认每格 1 个物理像素，占用 64×64 像素，已是当前黑白编码格式的最小尺寸。坐标按桌面物理像素填写。
 capture-x: 编码区左侧 X
 capture-y: 编码区顶部 Y
 cell-size: 单元格大小（像素）
 poll-ms: 采集间隔（毫秒）
 pause-capture: 暂停采集
-capture-help: 在游戏中输入 /wowc status 查看编码区设置。窗口边框或多屏会改变桌面起点；请保持编码区无遮挡。
+capture-help: 在游戏输入 /wowc compact 缩至 64×64，再用 /wowc status 查看起点。保持传输码无遮挡。若单像素显示模糊，可用 /wowc cell 2，并将这里的单元格大小改为 2。
 save-preferences: 保存陪伴偏好
 save-capture: 应用校准
 saved: 已保存。
@@ -105,27 +112,61 @@ status:
 
 versions:
   label: 魔兽世界版本
-  isolation: 两个版本的连接设置、采集坐标、事件、金币记录和装备历史独立保存。切换页面会放弃尚未保存的修改。
+  isolation: 两个版本的连接设置、采集坐标、事件、金币记录、装备历史和等级历史独立保存。切换页面会放弃尚未保存的修改。
   retail:
     name: 魔兽世界正式服
     description: 正式服专用的陪伴设置与金币记录。
-    capture-help: 在正式服输入 /wowc status 查看参数。窗口边框或其他显示器会改变桌面坐标，请保持传输码无遮挡。
+    capture-help: 正式服输入 /wowc compact 缩至 64×64，再用 /wowc status 查看起点。窗口边框或其他显示器会改变桌面坐标。保持传输码无遮挡。若单像素显示模糊，可用 /wowc cell 2，并将这里的单元格大小改为 2。
   forever:
     name: 魔兽世界：无限
     description: 无限服独立的陪伴设置与金币记录。
     preview: 当前为客户端开放前的预备版本，真实游戏兼容性需待开放后验证。陪伴连接默认关闭。
-    capture-help: 安装无限服专用插件后，输入 /wowf status 查看参数。填写该客户端的传输码坐标，并保持传输码无遮挡。
+    capture-help: 安装无限服插件后，输入 /wowf compact 缩至 64×64，再用 /wowf status 查看起点。填写该客户端的桌面坐标，并保持传输码无遮挡。若单像素显示模糊，可用 /wowf cell 2，并将这里的单元格大小改为 2。
+
+level-history:
+  title: 角色等级历史
+  description: 魔兽陪伴精灵在本机按角色保存等级记录。耗时按现实世界的时间计算，包含离线时间。
+  empty: 暂无等级记录。连接真实角色后，从当时的等级开始记录。
+  storage-error: 等级历史读取或保存失败，无法确认磁盘中的记录。请检查错误信息和可用磁盘空间。
+  current-character: 当前角色
+  account: 本机账号标识
+  current-level: '最后观测等级：{level}'
+  first-seen: 首次记录
+  complete-count: 已完整记录的单级用时数
+  average: 完整单级平均用时
+  show-records: 查看等级历史
+  hide-records: 收起等级历史
+  table-description: 保留全部等级变化，最新记录在前。日期时间使用本机时区。
+  level-change: 等级变化
+  recorded-at: 记录时间
+  duration: 本级用时
+  source-title: 记录说明
+  unknown-duration: 未知
+  partial: 从首次发现上一等级开始计时，并非该等级的完整用时。
+  offline-note: 两次升级之间的离线、游玩其他角色及关闭魔兽陪伴精灵的时间均计入。重启后保留记录。
+  observation-note: 魔兽陪伴精灵无法还原漏记的升级时间。首次记录或中断后发现的等级变化，仅代表当时发现，不能作为准确升级时间。
+  average-note: 平均用时仅统计完整观测的单级间隔，不包含部分用时、漏记、降级或时钟变化。
+  duration-days: '{days}天 {hours}小时 {minutes}分 {seconds}秒'
+  duration-hours: '{hours}小时 {minutes}分 {seconds}秒'
+  duration-minutes: '{minutes}分 {seconds}秒'
+  duration-seconds: '{seconds}秒'
+  source:
+    baseline: 首次发现该等级，此前升级时间未知。
+    live: 实时采集时观察到升级。
+    gap: 中断后或跨多个等级发现变化，实际升级时间未知。
+    decrease: 观察到等级降低，不统计升级用时。
+    clock-change: 本机时钟发生变化，无法统计此段用时。
 
 equipment:
   title: 装备获取记录
-  description: AIRI 在本机为每个游戏版本保存最近 10 条记录，最新记录在前。超过 10 条时，自动丢弃最早的记录。
+  description: 魔兽陪伴精灵在本机为每个游戏版本保存最近 10 条记录，最新记录在前。超过 10 条时，自动丢弃最早的记录。
   empty: 暂无装备获取记录。登录时已有的背包装备不计为新获取。
-  bridge-update: 当前桥接仅支持角色数据。请先退出旧版独立桥接，再重启 AIRI，让它启动新版桥接以读取装备。
-  capture-note: 建议将采集间隔设为 250–500 毫秒，过长的间隔可能反复错过装备分片。
+  bridge-update: 当前桥接仅支持角色数据。请先退出旧版独立桥接，再重启魔兽陪伴精灵，让它启动新版桥接以读取装备。
+  capture-note: 建议将采集间隔设为 100 毫秒，以便快速显示装备询问。过长的间隔可能反复错过装备分片。
   historical: 历史记录
   character: 角色
   realm: 服务器
-  received: AIRI 接收时间
+  received: 魔兽陪伴精灵接收时间
   storage-error: 装备记录读取或保存失败，无法确认磁盘中的记录。请检查错误信息和可用磁盘空间。
   unnamed: '物品 {id}'
   unavailable: 暂未读取到
@@ -148,7 +189,7 @@ equipment:
   tooltip: 词条、特效、加成与套装说明
   effect-note: 这里保留游戏提示文字，不代表其中的套装加成或特效当前已经激活。
   item-link: 物品链接
-  session-note: 重启 AIRI、更换角色、重载、重置采集或切换演示后仍保留记录。背包新增可能来自拾取、购买、邮件或银行取出。
+  session-note: 重启魔兽陪伴精灵、更换角色、重载、重置采集或切换演示后仍保留记录。背包新增可能来自拾取、购买、邮件或银行取出。
   history-note: 历史记录不代表当前穿戴，也不提供实时聊天上下文。装备询问仅使用当前实时会话中满足条件的候选装备。
   read-error: 部分装备数据未能读取。
   qualities:
@@ -180,15 +221,24 @@ equipment:
     ITEM_MOD_CR_AVOIDANCE_SHORT: 闪避
     ITEM_MOD_CR_LIFESTEAL_SHORT: 吸血
     ITEM_MOD_CR_SPEED_SHORT: 加速
+    ITEM_MOD_LIFESTEAL_SHORT: 吸血
+    ITEM_MOD_AVOIDANCE_SHORT: 闪避
+    ITEM_MOD_SPEED_SHORT: 加速
+    ITEM_MOD_DODGE_RATING_SHORT: 躲闪
+    ITEM_MOD_PARRY_RATING_SHORT: 招架
+    ITEM_MOD_BLOCK_RATING_SHORT: 格挡
+    ITEM_MOD_DEFENSE_SKILL_RATING_SHORT: 防御
+    ITEM_MOD_HIT_RATING_SHORT: 命中
+    ITEM_MOD_EXPERTISE_RATING_SHORT: 精准
 
 equipment-swaps:
   title: 确认换装记录
-  description: 新装备满足条件且装等更高或对应栏位为空时，插件会在游戏中逐件询问。每次换装都需要确认。
-  confirmation: 请在游戏内最终确认。在 AIRI 中选择“好”只会显示下一步提示，不会执行换装或向游戏发送输入。
+  description: 新装备明确提升、对应栏位为空，或装等与主属性提高但副属性有下降时，插件会在游戏中逐件询问。每次换装都需要确认。
+  confirmation: 请在游戏内最终确认。在魔兽陪伴精灵中选择“好”只会显示下一步提示，不会执行换装或向游戏发送输入。
   empty: 当前角色会话中还没有换装确认记录。
-  bridge-update: 当前桥接没有提供换装结果。请更新插件和桥接，然后重启 AIRI。
+  bridge-update: 当前桥接没有提供换装结果。请更新插件和桥接，然后重启魔兽陪伴精灵。
   read-error: 部分换装结果暂时不可用。
-  historical: 以下为上次收到的结果。连接或结果数据不可用时，AIRI 不会将其作为实时上下文。
+  historical: 以下为上次收到的结果。连接或结果数据不可用时，魔兽陪伴精灵不会将其作为实时上下文。
   observed: 结果时间
   previous: 原物品
   empty-slot: 空栏位
@@ -233,12 +283,69 @@ equipment-swaps:
     '18': 远程
     '19': 战袍
 equipment-prompt:
-  message: '恭喜获得{name}！{reason}要换上这件装备吗？'
+  message: '恭喜获得新装备{name}，又能变强了！{reason}要换上这件装备吗？'
+  message-player: '{player}，恭喜获得新装备{name}，又能变强了！{reason}要换上这件装备吗？'
+  message-player-tradeoff: '{player}，恭喜获得新装备{name}，主属性又能提高了！{reason}要换上这件装备吗？'
   reason:
-    higher: '新装备装等为 {newLevel}，当前装备为 {oldLevel}。'
+    stats: '已比较当前装备，这件已记录的属性有明确提升（装等 {oldLevel} → {newLevel}）。'
     empty: 对应装备栏位当前为空。
-  accepted: 请在游戏内点击“确认换装”。AIRI 不会向游戏发送输入。
+    tradeoff: '装等 {oldLevel} → {newLevel}，{primary} {oldPrimary} → {newPrimary}，但{decreases}。属性存在取舍，不保证综合收益更高。'
+    separator: '；'
+  accepted: 请在游戏内点击“确认换装”。魔兽陪伴精灵不会向游戏发送输入。
   accept: 好
   decline: 不用
   timeout: 请在 10 秒内选择。不选择会关闭此提醒，换装仍需在游戏内确认。
-  description: 建议仅依据装等或空栏位，不代表属性、特效或套装的总收益更好。
+  description: 明确提升，或装等和主属性提高但副属性有下降时，也会说明取舍并询问；每次换装均由你确认。
+
+idle-interaction:
+  title: 非战斗陪伴互动
+  messages:
+    '0': '{player}，下一段征途，你想去哪里？'
+    '1': '{player}，趁现在平静，喝口水歇一歇吧。我会陪着你。'
+    '2': '{player}，接下来最想换哪件装备？'
+    '3': '{player}，艾泽拉斯的风景里，你最喜欢哪里？'
+
+comparison:
+  title: 新旧装备比较
+  missing: 尚未收到匹配的比较数据，不能仅凭装等认定提升。
+  historical: '获得时的装备与专精记录：'
+  stale-spec: 这是历史比较。当前角色或专精已不同，或暂时无法核对。
+  type: 装备类型
+  empty-slot: 空槽
+  attribute: 属性
+  difference: 变化
+  item-level: 物品等级
+  unknown: 未知
+  limitation: 装等和主属性提高时，副属性有下降也会说明取舍并询问。特效、套装、插槽和资料不全仍需自行复核。
+  verdict:
+    upgrade: 明确提升
+    not_upgrade: 当前角色不适合或没有提升
+    review: 需要复核
+  reason:
+    empty_slot: 可使用装备填补空槽
+    stats_upgrade: 已比较属性有提升，且没有已记录属性下降
+    unusable: 当前无法使用
+    wrong_spec: 不符合记录时的专精
+    weaker_stats: 已比较属性更低
+    equivalent: 已比较属性没有提升
+    incomplete: 比较资料不全或包含暂不支持的属性
+    unknown_spec: 无法确认专精适配
+    weapon_change: 装备类型不同
+    complex_item: 涉及特效或装备组合，需要自行复核
+    stat_tradeoff: 属性存在取舍
+    primary_upgrade_tradeoff: 装等与主属性提高，但副属性存在取舍，由你确认
+    no_target: 无法确认目标槽位
+
+loadout:
+  title: 当前穿戴装备
+  description: 登录、获取新装备和换装后，插件重新采集全部 19 个穿戴槽位。魔兽陪伴精灵按角色保存最新快照，供聊天参考。
+  characters: 已保存的角色
+  waiting: 正在等待本次登录的全套装备快照，已有记录仅代表上次采集时的装备。
+  empty: 尚未收到穿戴装备快照。请登录角色、加载新版插件，并保持传输码可见。
+  received: 桌面接收时间
+  observed: 游戏采集时间
+  historical: 以下为最近一次记录的快照，不代表持续实时查看穿戴栏。
+  unknown: 未知 / 暂不可读取
+  empty-slot: 空槽位
+  incomplete: 部分物品资料未完整读取或已截断。
+  note: 空槽位与未知不同；套装效果文字不代表效果已激活。每角色的装备快照不受最近 10 条获取记录限制。

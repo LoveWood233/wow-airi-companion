@@ -9,6 +9,31 @@ from test_equipment import EQUIPMENT_MOCK
 
 CONFIRM_MOCK = r'''
 Model.level=90
+function GetSpecializationInfo() return Model.spec,"Spec","Description",123,"DAMAGER",4 end
+if C_SpecializationInfo then C_SpecializationInfo.GetSpecializationInfo=function(...) return GetSpecializationInfo(...) end end
+local BaseNewItem=NewItem
+function NewItem(id,guid,name)
+ local item=BaseNewItem(id,guid,name)
+ Catalog[item.link]=nil
+ item.link="|Hitem:"..id..":0:0:0:0:0:0:0:90|h["..name.."]|h"
+ item.lines={{leftText=name},{leftText="物品等级 150"},{leftText="灵魂绑定"}}
+ Catalog[item.link]=item
+ return item
+end
+C_Item.GetItemSpecInfo=function() return {Model.spec} end
+C_Item.GetItemStats=function(link)
+ local item=Catalog[link]
+ return item and item.loaded and (item.compareStats or {ITEM_MOD_INTELLECT_SHORT=item.level or 140.5,ITEM_MOD_HASTE_RATING_SHORT=42}) or nil
+end
+TooltipReads={hyperlink={},bag={},inventory={}}
+local function TooltipData(item,path)
+ if not item or not item.loaded or item.noTooltip then return nil end
+ TooltipReads[path][item.link]=(TooltipReads[path][item.link] or 0)+1
+ return {lines=item[path.."Lines"] or item.lines}
+end
+C_TooltipInfo.GetHyperlink=function(link) return TooltipData(Catalog[link],"hyperlink") end
+C_TooltipInfo.GetBagItem=function(bag,slot) return TooltipData(Bags[bag] and Bags[bag][slot],"bag") end
+C_TooltipInfo.GetInventoryItem=function(unit,slot) return TooltipData(Inventory[slot],"inventory") end
 Results, Offers, Actions, StaticPopupDialogs = {}, {}, {}, {}
 Cursor, Visible, Native, PendingNative = nil,nil,false,nil
 function GetServerTime() return 1700000000 + math.floor(Now) end
@@ -25,7 +50,7 @@ C_Item.IsEquippableItem=function(link) return Catalog[link].equippable~=false en
 C_Item.IsUsableItem=function(link) return Catalog[link].usable~=false end
 C_Item.GetDetailedItemLevelInfo=function(link) local item=Catalog[link]; return item and item.loaded and (item.level or 140.5) end
 C_Item.GetItemInfoInstant=function(link) local item=Catalog[link]; if item and item.loaded then return item.id,"Armor","Plate",item.kind or "INVTYPE_CHEST",123,4,4 end end
-C_Item.GetItemInfo=function(link) local item=Catalog[link]; if item and item.loaded then return item.name,link,4,item.level or 140.5,80,"Armor","Plate",1,item.kind or "INVTYPE_CHEST" end end
+C_Item.GetItemInfo=function(link) local item=Catalog[link]; if item and item.loaded then return item.name,link,4,item.level or 140.5,item.requiredLevel or 80,item.itemType or "Armor",item.subtype or "Plate",1,item.kind or "INVTYPE_CHEST" end end
 function StaticPopup_IsAnyDialogShown() return Visible~=nil or Native end
 function StaticPopup_Show(key,text,unused,data)
  local dialog={key=key,text=text,data=data}
@@ -85,13 +110,13 @@ class ConfirmEquipTest(unittest.TestCase):
         self.lua.execute(CONFIRM_MOCK)
         self.ns = self.lua.table()
         load = self.lua.eval(b"function(source,name,ns) assert(loadstring(source))(name,ns) end")
-        for filename in ("Protocol.lua", "Equipment.lua", "Transfer.lua", "ConfirmEquip.lua"):
+        for filename in ("Protocol.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua"):
             load((ROOT / filename).read_bytes(), ROOT.name.encode(), self.ns)
         self.g = self.lua.globals()
         self.g.NS = self.ns
-        self.lua.execute(b'''Owner={session="1700000000-12500-123456",guid=Model.guid}; Settings={}
+        self.lua.execute(b'''Owner={session="1700000000-12500-123456",guid=Model.guid,class=Model.class,spec=Model.spec}; Settings={}
 NS.ConfirmEquip.Initialize(Owner,Settings,function(result) Results[#Results+1]=result; NS.Transfer.AddSwap(result) end,print,
-function(offer) Offers[#Offers+1]=offer; NS.Transfer.SetOffer(offer) end)
+function(offer) Offers[#Offers+1]=offer; NS.Transfer.SetOffer(offer) end,NS.Transfer.AddComparison)
 NS.Equipment.Initialize(Owner,function(record) Records[#Records+1]=record; NS.Transfer.Add(record); NS.ConfirmEquip.Add(record) end)
 NS.ConfirmEquip.OnEvent("PLAYER_ENTERING_WORLD")
 NS.Equipment.EnterWorld(); AdvanceTime(2)''')
@@ -118,7 +143,7 @@ NS.Equipment.EnterWorld(); AdvanceTime(2)''')
         self.g.SetupOld(5, 100, b"old chest", 100)
         self.add()
         self.assertEqual(len(self.g.Actions), 0)
-        self.assertIn("未计入收益", self.g.Visible[b"text"].decode())
+        self.assertIn("已核对专精", self.g.Visible[b"text"].decode())
         self.g.AcceptPopup()
         self.assertEqual(self.g.Inventory[5][b"guid"], b"new-guid")
         self.assertEqual([self.g.Actions[i][b"kind"] for i in (1, 2)], [b"pickup", b"equip"])
@@ -259,13 +284,13 @@ end''')
             self.assertEqual(self.result()["r"], "disabled" if mode == "off" else "left_world")
             self.assertEqual(len(self.g.Actions), 0)
 
-    def test_equal_level_unusable_missing_guid_and_partial_records_are_not_prompted(self):
-        for mode in ("equal", "unusable", "guidless", "partial"):
+    def test_equal_level_unequippable_missing_guid_and_partial_records_are_not_prompted(self):
+        for mode in ("equal", "unequippable", "guidless", "partial"):
             self.setUp()
             if mode == "equal": self.g.SetupOld(5, 100, b"old", 150)
             self.g.New = self.g.NewItem(12345, b"new", b"new")
             self.g.New[b"level"] = 150
-            if mode == "unusable": self.g.New[b"usable"] = False
+            if mode == "unequippable": self.g.New[b"equippable"] = False
             if mode == "guidless": self.g.New[b"guid"] = None
             if mode == "partial": self.g.New[b"noTooltip"] = True
             self.g.Bags[0][2] = self.g.New
@@ -292,7 +317,7 @@ end''')
         self.assertEqual(self.result()["slot"], 16)
         self.setUp(); self.g.DualWield = True
         self.g.SetupOld(16, 100, b"main", 140, b"INVTYPE_WEAPON")
-        self.g.SetupOld(17, 101, b"off", 100, b"INVTYPE_WEAPONOFFHAND")
+        self.g.SetupOld(17, 101, b"off", 100, b"INVTYPE_WEAPON")
         self.add("INVTYPE_WEAPON"); self.g.AcceptPopup()
         self.assertEqual(self.result()["slot"], 17)
         self.setUp()
@@ -440,8 +465,8 @@ Native=false; NS.ConfirmEquip.OnEvent("PLAYER_EQUIPMENT_CHANGED")''')
                 length = struct.unpack("<H", frame[4:6])[0]
                 data = json.loads(frame[8:8 + length]); kinds.append(data["kind"])
                 if data["kind"] == "eq": parts.append(data["p"])
-        self.assertEqual(kinds, ["eq", "eq", "eq", "swap", "eq", "eq", "eq", "swap"])
-        self.assertEqual(parts[:4], [1, 2, 3, 4])
+        self.assertEqual(kinds, ["cmp", "cmp", "cmp", "swap", "eq", "eq", "eq", "swap"])
+        self.assertEqual(parts[:3], [1, 2, 3])
         self.tick(601); self.ns[b"Transfer"][b"Advance"]()
         self.assertEqual(self.ns[b"Transfer"][b"Current"](b"state"), b"state")
 

@@ -1,5 +1,8 @@
-import type { CompanionState, GameVersion } from '../../shared/wow-companion'
+import type { CompanionState, GameVersion, Snapshot } from '../../shared/wow-companion'
+import type { EquipmentComparison } from '../../shared/wow-companion-equipment-comparisons'
 import type { EquipmentOffer } from '../../shared/wow-companion-equipment-offer'
+
+import { assessEquipment } from '../../shared/wow-companion-equipment-comparisons'
 
 /** One desktop suggestion. Acceptance only explains the required confirmation inside the game. */
 export interface EquipmentPrompt {
@@ -7,6 +10,18 @@ export interface EquipmentPrompt {
   text: string
   phase: 'speaking' | 'choosing' | 'accepted'
   deadline: number | null
+}
+
+/** The desktop page and caption bubble share the same localized choice labels. */
+export function equipmentPromptActions(prompt: EquipmentPrompt | null, translate: (key: string) => string) {
+  if (prompt?.phase !== 'choosing')
+    return undefined
+  return {
+    id: prompt.id,
+    acceptLabel: translate('wow-companion.equipment-prompt.accept'),
+    declineLabel: translate('wow-companion.equipment-prompt.decline'),
+    hint: `${translate('wow-companion.equipment-prompt.timeout')} ${translate('wow-companion.equipment-prompt.description')}`,
+  }
 }
 
 /** The voice host owns audio. Stop resolves after this specific turn becomes silent. */
@@ -19,10 +34,12 @@ export interface EquipmentPromptPlayback {
 /** Platform speech, chat activity, localization, and presentation belong to the mounted desktop host. */
 export interface EquipmentPromptHost {
   publish: (prompt: EquipmentPrompt | null) => void
+  /** Checks the latest character before each tick, including during another profile's update. */
+  currentPlayer: (game: GameVersion, snapshot: Snapshot) => boolean
   sessionId: () => string | undefined
   busy: (ownedTurnId?: string) => boolean
   muted: () => boolean
-  message: (offer: EquipmentOffer) => string
+  message: (offer: EquipmentOffer, comparison: EquipmentComparison) => string
   accepted: () => string
   speak: (sessionId: string, text: string) => EquipmentPromptPlayback
 }
@@ -30,6 +47,7 @@ export interface EquipmentPromptHost {
 interface Candidate {
   game: GameVersion
   offer: EquipmentOffer
+  comparison: EquipmentComparison
   key: string
   identity: string
   muted: boolean
@@ -57,6 +75,11 @@ export class EquipmentPromptController {
   private stoppingAudio = 0
 
   constructor(private readonly host: EquipmentPromptHost) {}
+
+  /** A valid waiting suggestion reserves priority over background companion speech. */
+  get hasPending() {
+    return !!this.current || this.waiting.size > 0
+  }
 
   /** The owner supplies fresh bridge state. Missing or invalid observations cancel their pending suggestions. */
   observe(game: GameVersion, state: CompanionState) {
@@ -99,13 +122,22 @@ export class EquipmentPromptController {
     const snapshot = bridge?.snapshot
     const offer = bridge?.equipmentOffer
     if (!state || state.game !== game || !state.settings.enabled || state.error || !bridge || bridge.error
-      || bridge.equipmentOfferError || bridge.status !== 'live' || bridge.source !== 'screen'
-      || !snapshot?.online || snapshot.combat || snapshot.dead || !offer || offer.st !== 'ready'
+      || bridge.equipmentOfferError || bridge.equipmentComparisonError || bridge.status !== 'live' || bridge.source !== 'screen'
+      || !snapshot?.online || !this.host.currentPlayer(game, snapshot) || snapshot.combat || snapshot.dead || !offer || offer.st !== 'ready'
       || offer.s !== snapshot.session || offer.g !== snapshot.guid || offer.until * 1000 <= now) {
       return
     }
+    const comparison = bridge.equipmentComparisons.find(value => value.id === offer.id && value.session === offer.s && value.guid === offer.g)
+    if (!comparison || comparison.class !== snapshot.class || comparison.spec !== snapshot.spec
+      || comparison.slot !== offer.slot || comparison.candidate.itemID !== offer.item || comparison.candidate.itemLevel !== offer.il
+      || comparison.current?.itemID !== offer.old || comparison.current.itemLevel !== offer.ol) {
+      return
+    }
+    const assessment = assessEquipment(comparison)
+    if (assessment.verdict !== 'upgrade' && assessment.reason !== 'primary_upgrade_tradeoff')
+      return
     const identity = JSON.stringify([game, offer.s, offer.g])
-    return { game, offer, identity, key: JSON.stringify([game, offer.s, offer.g, offer.id]), muted: state.settings.muted }
+    return { game, offer, comparison, identity, key: JSON.stringify([game, offer.s, offer.g, offer.id]), muted: state.settings.muted }
   }
 
   private tick() {
@@ -168,8 +200,9 @@ export class EquipmentPromptController {
     const current: ActivePrompt = {
       ...candidate,
       sessionId,
-      view: { id: candidate.key, text: this.host.message(candidate.offer), phase: 'speaking', deadline: null },
-      speechDeadline: Math.min(now + 30_000, candidate.offer.until * 1000 - 10_000),
+      view: { id: candidate.key, text: this.host.message(candidate.offer, candidate.comparison), phase: 'speaking', deadline: null },
+      // Slow speech synthesis still leaves ten seconds for a valid in-game offer.
+      speechDeadline: Math.min(now + 120_000, candidate.offer.until * 1000 - 10_000),
       stopping: false,
     }
     this.current = current

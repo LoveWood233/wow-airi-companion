@@ -3,12 +3,12 @@ import type { BridgeStatus, CompanionEvent, Snapshot } from '../../shared/wow-co
 import { parse } from 'valibot'
 import { describe, expect, it } from 'vitest'
 
-import { bridgeSchema, defaultSettings, settingsSchema } from '../../shared/wow-companion'
+import { bridgeSchema, captureSchema, defaultSettings, settingsSchema, snapshotSchema } from '../../shared/wow-companion'
 import { CompanionPolicy } from './wow-companion-policy'
 
 const now = Date.parse('2026-10-22T10:00:00Z')
 const snapshot: Snapshot = {
-  v: 2,
+  v: 3,
   session: 'login-1',
   seq: 1,
   tick: 1,
@@ -17,6 +17,8 @@ const snapshot: Snapshot = {
   realm: '艾泽拉斯',
   level: 29,
   class: 'MAGE',
+  faction: 'Alliance',
+  race: '人类',
   spec: 64,
   map: 84,
   zone: '暴风城',
@@ -44,6 +46,10 @@ function bridge(events: CompanionEvent[] = [], overrides: Partial<BridgeStatus> 
     ageSeconds: 0,
     eventCursor: events.at(-1)?.id ?? 0,
     events,
+    equipmentComparisons: [],
+    equipmentComparisonError: null,
+    equipmentLoadout: null,
+    equipmentLoadoutError: null,
     config: { x: 8, y: 8, cellSize: 2, pollMs: 500, paused: false },
     error: null,
     ...overrides,
@@ -128,6 +134,39 @@ describe('woW companion notification policy', () => {
 })
 
 describe('woW companion input boundary', () => {
+  it('accepts fast capture intervals and enforces the polling bounds', () => {
+    const capture = { x: 8, y: 8, cellSize: 1, pollMs: 100, paused: false }
+    expect(parse(captureSchema, capture).pollMs).toBe(100)
+    expect(parse(captureSchema, { ...capture, pollMs: 5000 }).pollMs).toBe(5000)
+    for (const pollMs of [99, 100.5, 5001])
+      expect(() => parse(captureSchema, { ...capture, pollMs })).toThrow()
+  })
+
+  it.each(['Alliance', 'Horde', 'Neutral', null] as const)('accepts the reported faction %s without inferring it from Pandaren', (faction) => {
+    expect(parse(snapshotSchema, { ...snapshot, faction, race: '熊猫人' }).faction).toBe(faction)
+    expect(parse(snapshotSchema, { ...snapshot, faction, race: null }).race).toBeNull()
+  })
+
+  it.each([
+    { v: 2 },
+    { faction: undefined },
+    { faction: 'Unknown' },
+    { faction: 'horde' },
+    { race: undefined },
+    { race: '' },
+    { race: '熊'.repeat(17) },
+    { race: '人\n类' },
+    { race: '人\u007F类' },
+    { race: '人\u0085类' },
+    { race: '\uD800' },
+  ])('rejects invalid identity observations: %j', (changes) => {
+    expect(() => parse(snapshotSchema, { ...snapshot, ...changes })).toThrow()
+  })
+
+  it('accepts a race label at the UTF-8 byte limit', () => {
+    expect(parse(snapshotSchema, { ...snapshot, race: '熊'.repeat(16) }).race).toBe('熊'.repeat(16))
+  })
+
   it('accepts the bridge contract and rejects invalid control values', () => {
     expect(parse(bridgeSchema, bridge()).snapshot?.name).toBe('旅人')
     expect(() => parse(settingsSchema, { ...defaultSettings, cooldownSeconds: -1 })).toThrow()

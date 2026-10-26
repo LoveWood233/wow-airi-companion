@@ -170,7 +170,7 @@ export class CompanionGoldLedger {
       if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT')
         return
       this.blocked = true
-      this.storageError = `Cannot load WoW gold ledger (${this.filePath}). Restore the file and restart AIRI: ${errorMessageFrom(error) ?? 'Unknown read error'}`
+      this.storageError = `Cannot load WoW gold ledger (${this.filePath}). Restore the file and restart 魔兽陪伴精灵: ${errorMessageFrom(error) ?? 'Unknown read error'}`
     }
   }
 
@@ -255,7 +255,7 @@ export class CompanionGoldLedger {
       this.storageError = null
     }
     catch (error) {
-      this.storageError = `Cannot save WoW gold ledger (${this.filePath}). Changes are only in memory; AIRI will retry: ${errorMessageFrom(error) ?? 'Unknown write error'}`
+      this.storageError = `Cannot save WoW gold ledger (${this.filePath}). Changes are only in memory; 魔兽陪伴精灵 will retry: ${errorMessageFrom(error) ?? 'Unknown write error'}`
     }
     finally {
       // The original write error remains visible if temporary-file cleanup also fails.

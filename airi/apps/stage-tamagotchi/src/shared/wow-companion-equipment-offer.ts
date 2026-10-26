@@ -21,6 +21,6 @@ export const equipmentOfferSchema = pipe(strictObject({
   old: pipe(number(), integer(), minValue(0), maxValue(2147483647)),
   ol: pipe(number(), finite(), minValue(-1), maxValue(100000)),
   until: pipe(number(), integer(), minValue(1), maxValue(4102444800)),
-}), check(value => value.il > value.ol && (value.old === 0 ? value.ol === -1 : value.ol >= 0), 'Offer is not an item-level upgrade'))
+}), check(value => value.il >= value.ol && (value.old === 0 ? value.ol === -1 : value.ol >= 0), 'Offer is not an item-level upgrade'))
 
 export type EquipmentOffer = InferOutput<typeof equipmentOfferSchema>

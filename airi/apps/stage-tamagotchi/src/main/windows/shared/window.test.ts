@@ -1,6 +1,7 @@
+import { BrowserWindow } from 'electron'
 import { describe, expect, it, vi } from 'vitest'
 
-import { resizeBoundsByDelta, setWindowAlwaysOnTop } from './window'
+import { resizeBoundsByDelta, setWindowAlwaysOnTop, toggleWindowShow } from './window'
 
 const mocks = vi.hoisted(() => ({
   isMacOS: false,
@@ -11,7 +12,21 @@ vi.mock('electron', () => ({
   shell: {
     openExternal: vi.fn(),
   },
-  BrowserWindow: vi.fn(),
+  BrowserWindow: class {
+    private visible = false
+    isDestroyed = vi.fn(() => false)
+    isMinimized = vi.fn(() => false)
+    isVisible = vi.fn(() => this.visible)
+    webContents = {
+      isDestroyed: vi.fn(() => false),
+      isCrashed: vi.fn(() => false),
+    }
+
+    show = vi.fn(() => { this.visible = true })
+    hide = vi.fn(() => { this.visible = false })
+    focus = vi.fn()
+    restore = vi.fn(() => { this.isMinimized.mockReturnValue(false) })
+  },
 }))
 
 vi.mock('std-env', () => ({
@@ -30,6 +45,34 @@ vi.mock('../../services/electron', () => ({
   createSystemPreferencesService: vi.fn(),
   createWindowService: vi.fn(),
 }))
+
+describe('toggleWindowShow', () => {
+  it.each([
+    ['hidden', false, false],
+    ['already visible', true, false],
+    ['minimized', true, true],
+  ] as const)('shows and focuses a %s settings window', (_state, visible, minimized) => {
+    const window = new BrowserWindow()
+    if (visible)
+      window.show()
+    vi.mocked(window.show).mockClear()
+    vi.mocked(window.isMinimized).mockReturnValue(minimized)
+
+    toggleWindowShow(window)
+
+    expect(window.isVisible()).toBe(true)
+    expect(window.show).toHaveBeenCalledOnce()
+    expect(window.focus).toHaveBeenCalledOnce()
+    expect(window.hide).not.toHaveBeenCalled()
+    if (minimized) {
+      expect(window.restore).toHaveBeenCalledOnce()
+      expect(vi.mocked(window.restore).mock.invocationCallOrder[0]).toBeLessThan(vi.mocked(window.show).mock.invocationCallOrder[0]!)
+    }
+    else {
+      expect(window.restore).not.toHaveBeenCalled()
+    }
+  })
+})
 
 describe('setWindowAlwaysOnTop', () => {
   it('disables always-on-top when flag is false', () => {

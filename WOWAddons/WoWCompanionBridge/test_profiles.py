@@ -40,7 +40,7 @@ class GameProtocolTests(unittest.TestCase):
 
     def test_same_account_and_guid_keep_separate_state_and_defaults(self):
         retail, forever = CompanionState(), CompanionState(game="forever")
-        self.assertEqual((retail.config["cellSize"], forever.config["cellSize"]), (2, 1))
+        self.assertEqual((retail.config["cellSize"], forever.config["cellSize"]), (1, 1))
         for state in (retail, forever):
             state.ingest(snapshot())
         forever.ingest(snapshot(seq=2, tick=2, level=30, earned=1000))

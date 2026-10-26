@@ -47,6 +47,7 @@ docs:
   'expand': Expand
   'collapse': Collapse
   'login': Sign in
+  'open-wow-companion': WoW info card
   'logging-in': Signing in...
   'account': Account
   'logout': Sign out

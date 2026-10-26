@@ -1,11 +1,79 @@
-# WoW Companion: WCP1 / WCF1 frames, snapshot version 2
+# WoW Companion: WCP1 / WCF1 frames, snapshot version 3
 
 The addon publishes a bounded snapshot through a visible black-and-white grid. The desktop bridge reads the grid without accessing game process memory.
+
+## Compact grid (2.11.1)
+
+Retail addon 2.10.1 and Forever addon 1.7.1 use one physical pixel per bit by default. The complete frame occupies 64 by 64 pixels.
+
+The first updated addon load changes the stored cell size to one. Position and telemetry settings remain unchanged.
+
+A migration marker preserves later user choices, including larger cells. The `compact` addon command selects one-pixel cells again.
+
+Bridge 2.11.1 also uses one-pixel cells by default. It can detect the compact grid near a configured larger-cell origin.
+
+This detection does not change the stored calibration. CRC, frame validation, and gray-pixel rejection still apply.
+
+Frame bytes, field bounds, fragment scheduling, and heartbeat rules do not change.
+
+## Current equipped inventory (2.11.0)
+
+Retail addon 2.10.0 and Forever addon 1.7.0 publish a separate full equipment snapshot. The desktop requires bridge 2.11 or later.
+
+Login, a real equipment acquisition, and an equipment change request a fresh collection. A manual acquisition comparison does not fabricate an acquisition.
+
+The addon reads all slots from 1 through 19. It retries public item data loads for a bounded period.
+
+Each slot has one state. `equipped` contains an item. `empty` and `unknown` contain JSON `null`.
+
+Only a public negative item-existence result establishes an empty slot. A restricted read remains unknown.
+
+The snapshot body contains these exact fields:
+
+| Field | Contract |
+| --- | --- |
+| `v` | Integer `1` |
+| `id` | Positive session-local equipment revision, independent of acquisition IDs |
+| `session`, `guid` | Current character session and GUID, matching the fragment headers |
+| `observedAt` | Observation time in Unix seconds. Zero means unavailable |
+| `reason` | `login`, `equipment_acquired`, `equipment_changed`, or `refresh` |
+| `slots` | Exactly 19 ordered, unique entries for slots 1 through 19 |
+
+Each slot contains `slot`, `state`, and `item`. An equipped item contains these exact fields:
+
+`itemID`, `itemGUID`, `link`, `name`, `type`, `subtype`, `equipLoc`, `quality`, `itemLevel`, `requiredLevel`,
+`stats`, `tooltip`, `infoComplete`, `statsComplete`, `tooltipComplete`, and `truncated`.
+
+The instance link preserves the observed item variant. Public statistics and tooltip lines describe that instance, not character-wide totals.
+
+Items retain the acquisition codec's bounds: 32 statistics, 48 tooltip lines, 256 UTF-8 bytes per line, and 8192 JSON bytes per item.
+
+Each snapshot has a 196608-byte body limit. Cropped details set the truncation flag and clear the affected completeness flag.
+
+The fragment envelope is `{v:1,kind:"gear",s,g,id,p,n,d}`. It uses 240-byte raw chunks with canonical Base64, like acquisition fragments.
+
+A snapshot uses at most 820 fragments. The decoder allows 1200 seconds for assembly and retains at most two pending revisions.
+
+The receiver matches session, GUID, revision, fragment count, and complete body identity. It rejects conflicting or stale revisions.
+
+CRC, JSON validation, and field validation apply before publication. The receiver replaces all 19 slots together after successful assembly.
+
+Equipment frames do not advance the character heartbeat. Character changes, session changes, and demo transitions clear the bridge's current equipment.
+
+Fresh comparisons and equipment offers retain transmission priority. The full snapshot receives background capacity before old acquisition and comparison replays.
+
+The HTTP status adds required fields `equipmentLoadout` and `equipmentLoadoutError`. Both use JSON `null` when no value exists.
+
+The desktop saves snapshots by game profile, local account identifier, and character GUID. This store is separate from the ten-entry acquisition history.
+
+Chat labels saved equipment with observation time and freshness. Unknown slots remain unknown. Set tooltip descriptions do not establish active set bonuses.
+
+Equipment snapshots do not request a proactive chat response. Existing acquisition offers continue to control equipment suggestions.
 
 ## Frame
 
 - Grid: 64 columns by 64 rows, in row-major order.
-- Default cell size: Retail 2 physical pixels, Forever 1 physical pixel. Default screen position: x=8, y=8 for a game on the primary display.
+- Default cell size: 1 physical pixel in both game profiles. Default screen position: x=8, y=8 for a game on the primary display.
 - Each cell stores one bit. Black is 0. White is 1. Bytes use most-significant bit first.
 - Frame size: 512 bytes. The decoder rejects incomplete frames and invalid checksums.
 
@@ -21,7 +89,7 @@ CRC uses initial value `0xffff` and polynomial `0x1021`. Python reference: `bina
 ## Snapshot
 
 ```json
-{"v":2,"session":"example-session","seq":2,"tick":9,"guid":"Player-example","name":"示例角色","realm":"示例服务器","level":30,"class":"MAGE","spec":64,"map":84,"zone":"暴风城","combat":false,"dead":false,"online":true,"account":"local-example","moneyEpoch":"segment-example","copper":12345,"earned":1000,"spent":250}
+{"v":3,"session":"example-session","seq":2,"tick":9,"guid":"Player-example","name":"示例角色","realm":"示例服务器","level":30,"class":"MAGE","faction":"Alliance","race":"人类","spec":64,"map":84,"zone":"暴风城","combat":false,"dead":false,"online":true,"account":"local-example","moneyEpoch":"segment-example","copper":12345,"earned":1000,"spent":250}
 ```
 
 This example is synthetic. Production frames contain the current character's available data.
@@ -37,8 +105,119 @@ This example is synthetic. Production frames contain the current character's ava
 - The addon filters secret values before comparison, encoding, or display.
 - Text is bounded and truncated at UTF-8 boundaries when required.
 
-All three components require snapshot version 2. Update the addon, bridge, and AIRI together.
+All three components require snapshot version 3. Update the addon, bridge, and AIRI together.
 Both games use the same layout and snapshot fields. Frame magic identifies the game. Decoders reject the other game’s magic.
+
+## Faction and race (2.7.0)
+
+Both keys are required. An unavailable, restricted, or invalid source value becomes JSON `null`.
+
+| Field | Values and source |
+| --- | --- |
+| `faction` | `Alliance`, `Horde`, `Neutral`, or `null`. The first return value of `UnitFactionGroup("player")`. |
+| `race` | Localized race name from the first return value of `UnitRace("player")`, or `null`. Maximum 48 UTF-8 bytes. |
+
+Consumers reject other faction tokens, non-string race values, control characters, and race names over the byte limit.
+Faction is never inferred from race, class, or character name. This also covers races that can join different factions.
+Unknown values replace the previous values. A character change cannot retain the previous character's faction or race.
+
+The grid stays 64 × 64. Encoding first shortens the existing display labels to fit the 504-byte payload.
+If the payload still does not fit, the complete race value becomes `null`. A partial race name is never transmitted.
+Identifiers, gold counters, and faction are preserved exactly. If that minimum payload exceeds 504 bytes, encoding fails instead of corrupting data.
+The unrefreshed frame then ages out through the existing heartbeat rules. Extreme combinations of maximum-length identifiers can reach this limit.
+
+AIRI displays both fields and includes them in live chat context and event facts.
+Event wording follows the active character card, including user-requested fictional faction banter. It does not override mute, cooldown, or combat quiet settings.
+The local Sylvanas card permits occasional Horde death banter such as “部落都是废物。” This is an example, not a fixed response.
+The model must use the event's actual faction and race, and treat unknown values as unknown.
+
+API definitions: [Retail UnitDocumentation](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua) and [Forever UnitDocumentation](https://github.com/Gethe/wow-ui-source/blob/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua).
+
+## Desktop level history (2.8.0)
+
+This desktop feature uses existing snapshot v3 fields. Retail addon 2.7.0, Forever addon 1.4.0, and bridge 2.7.0 remain unchanged.
+No new screen field, frame type, or HTTP endpoint is required.
+
+The AIRI main process stores level observations by game profile, local account identifier, and character GUID.
+Only valid, live, online screen observations without capture errors enter this history. Demo data does not enter the history.
+Each record contains the previous level, observed level, local receipt time, observation source, duration, and duration basis.
+Timestamps use `Date.now()` as Unix milliseconds. The settings page displays local dates and times.
+Receipt timestamps include the existing capture and polling delay. They are not server-issued achievement timestamps.
+
+The first observation establishes a baseline. It cannot recover earlier level changes.
+Consecutive observed upgrades produce a complete duration for one level. That duration is the difference between their receipt timestamps.
+Offline periods, character switches, and AIRI downtime between those observations remain part of the duration.
+An unchanged level after reconnection preserves the known start time for the next observed upgrade.
+
+The first upgrade after a baseline only measures time since that baseline. The display marks this duration as partial.
+If reconnection reveals a changed level, the record marks a gap. Its timestamp records discovery, not the unknown upgrade time.
+A jump across multiple levels does not create invented intermediate records or evenly divided durations.
+Decreases and clock changes cannot produce negative or complete level durations from invalid intervals.
+The history retains all recorded changes. It does not use the ten-record equipment limit.
+
+Retail saves `wow-companion-level-history-v1.json` in the AIRI user data directory.
+Forever saves `wow-companion-forever-level-history-v1.json` in the same directory.
+Each profile owns its file, and each account and GUID owns separate records within that file.
+Atomic replacement protects completed saves. Invalid files remain untouched, and the settings page displays the storage error.
+AIRI flushes pending writes during normal exit. Saved records remain available while the game is offline.
+
+This feature makes no model requests and adds no speech trigger. Reminder preferences and notification cooldowns retain their existing behavior.
+
+## Equipment comparison observations (desktop and bridge 2.9.0)
+
+Retail addon 2.8.0 and Forever addon 1.5.0 add a separate comparison stream. Snapshot v3, equipment observations, and frame size remain unchanged.
+Update the addon, bridge, and desktop together. AIRI requires bridge 2.9 or later for this feature.
+
+A `cmp` fragment uses the existing 512-byte frame and 504-byte payload limit:
+
+```json
+{"v":1,"kind":"cmp","s":"session","g":"Player-1","id":1,"p":1,"n":2,"d":"base64"}
+```
+
+Parts carry at most 240 decoded bytes. A comparison contains at most 4096 bytes across at most 18 parts.
+The bridge isolates comparison reassembly, errors, deduplication, and byte budgets from equipment observations.
+A comparison never refreshes the character heartbeat. Session and character changes clear the live comparison cache.
+
+The comparison body has these required fields:
+
+| Field | Meaning |
+| --- | --- |
+| `v`, `id`, `session`, `guid` | Version 1 and the matching equipment acquisition identity. |
+| `class`, `spec`, `primary` | Observed class and specialization. Primary stat is 1 for strength, 2 for agility, 4 for intellect, or 0 for unknown. |
+| `observedAt` | Original game observation time in Unix seconds. Zero means unknown. |
+| `slot` | Target equipment slot, or 0 when no target is available. |
+| `usable`, `specMatch` | Observed usability and specialization match. An unavailable specialization match is `null`. |
+| `current`, `candidate` | Equipment attributes at comparison time. `current=null` accompanies an unavailable target slot. |
+
+Each item contains `itemID`, `name`, `itemLevel`, `equipLoc`, `type`, `subtype`, `stats`, `complex`, and `complete`.
+Item labels use at most 128 UTF-8 bytes. Stats retain at most 32 unique keys and finite values.
+An empty slot uses `itemID=0`, `itemLevel=-1`, and an empty stats array.
+Unknown or restricted item values cannot prove an upgrade. Oversized comparisons are rejected without truncating the evidence.
+
+The API exposes `equipmentComparisons` and `equipmentComparisonError`. It retains the ten latest live comparison records.
+AIRI independently evaluates the received evidence. It stores ten comparison observations per game in separate user-data files:
+`wow-companion-equipment-comparisons-v1.json` and `wow-companion-forever-equipment-comparisons-v1.json`.
+Acquisition ID, character GUID, session, and account correlate a saved comparison with an equipment history entry.
+These records describe equipment at observation time. They are not a continuously updated snapshot of all equipped slots.
+
+### Decision rules
+
+Only a clear upgrade can produce a desktop equipment question or enter the game confirmation queue.
+The candidate must be usable, match the active specialization, and have complete comparison data.
+A comparable item keeps the equipment type and slot layout. Recognized quantitative stats for the active specialization cannot decrease, and at least one must increase.
+Only the active primary stat participates. Other specialization primary stats do not contribute.
+Item level cannot decrease. A higher item level alone does not prove an upgrade. Equal item levels can still qualify through better stats.
+An available empty slot can qualify. Unknown data, stat tradeoffs, complex effects, sets, sockets, and enchantments require manual review.
+Items that do not suit the specialization, or have only stat losses, do not trigger an upgrade question.
+The implementation does not translate a stat difference into a claimed damage or healing percentage.
+
+The desktop also requires a matching, live, unexpired game offer. Character, session, class, specialization, slot, and both item identities must agree.
+A missing comparison never falls back to item level alone. Spec changes, stale capture, and changed offers cancel the question.
+The game repeats its comparison and slot checks when the player clicks the confirmation.
+Desktop Yes remains a request to return to the game confirmation. It does not send a game command or simulated input.
+Voice availability controls speech output. Text and ten-second Yes/No choices remain available without speech.
+
+API definitions: [Retail item APIs](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua), [Retail specialization APIs](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpecializationInfoDocumentation.lua), and the corresponding [Forever item](https://github.com/Gethe/wow-ui-source/blob/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua) and [specialization](https://github.com/Gethe/wow-ui-source/blob/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpecializationInfoDocumentation.lua) definitions.
 
 ## Gold counters
 
@@ -135,7 +314,7 @@ No Forever client was available for this delivery. API compatibility and capture
 
 ## Equipment extension (2.4.0)
 
-The grid size and frame magic stay unchanged. Each frame contains either the supported v2 snapshot or one equipment fragment.
+The grid size and frame magic stay unchanged. Each frame contains either the supported v3 snapshot or one equipment fragment.
 The addon alternates status and equipment frames. Each frame stays visible for one second. Capture uses a 250–500 ms interval.
 Equipment frames do not refresh the status heartbeat. The decoder requires a current, online screen snapshot from the same character and session.
 

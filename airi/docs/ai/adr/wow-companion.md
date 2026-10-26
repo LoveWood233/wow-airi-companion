@@ -31,6 +31,7 @@ The Forever connection starts disabled. Both connections can run together after 
 | Capture file | `bridge-config.json` | `bridge-config-forever.json` |
 | AIRI settings file | `wow-companion-v1.json` | `wow-companion-forever-v1.json` |
 | Gold ledger | `wow-companion-gold-v1.json` | `wow-companion-forever-gold-v1.json` |
+| Level history | `wow-companion-level-history-v1.json` | `wow-companion-forever-level-history-v1.json` |
 
 Retail retains its existing files and preferences. Each profile owns a client, process runtime, event cache, and gold ledger.
 The same account identifier in both games produces separate totals and account labels.
@@ -42,11 +43,10 @@ Mutations carry `settings`, `capture`, or `request` beside the game key. Respons
 The renderer cannot choose a service address, executable, or storage path.
 Capture and demo commands require an enabled connection and a healthy service for that game.
 
-Retail bridge releases 2.1 and 2.2 remain supported through their `WCP1` health response.
-Their status responses can omit game identity. Later responses must match any identity fields that they contain.
-Forever requires a 2.3 service with `game: forever` and `protocol: WCF1` in health and status responses.
+Both profiles require bridge 2.7 or later for snapshot v3, including faction and race.
+Forever requires `game: forever` and `protocol: WCF1` in health and status responses.
 The runtime rejects a bridge from the other game. The HTTP client also rejects observations from the other game.
-Snapshot version 2 remains the shared payload format. The screen envelope identifies the game before the bridge accepts the payload.
+The screen envelope identifies the game before the bridge accepts the snapshot v3 payload.
 
 ## Bridge lifecycle
 
@@ -258,6 +258,53 @@ The bubble accepts plain text and ignores pointer events. Its painted surface is
 An unusually long audio segment can exceed a very short character window. Enlarge the window to read more text.
 This feature adds no model requests, speech requests, or game event triggers.
 
+## Character faction, race, and tone
+
+Snapshot v3 requires `faction` and `race` for both game profiles. Each field can be `null` when the game cannot report it.
+Faction values are `Alliance`, `Horde`, and `Neutral`. Race uses the localized game label, with a limit of 48 UTF-8 bytes.
+The desktop rejects empty race labels, control characters, invalid Unicode, and invalid factions. Both profiles require bridge 2.7 or later.
+The settings page shows the observed faction and race. Unknown data stays unknown, including Pandaren characters without a reported faction.
+
+Ordinary chat context and event reactions include the reported identity. The model must not infer faction from race, name, language, or location.
+Reactions follow the active character persona and the user's preferred tone. Fictional faction and race banter can match that tone.
+A sharp persona can tease a reported Horde death with “部落都是废物”. This example does not force the same line after every death.
+The instructions keep these jokes within Warcraft fiction. They prohibit references that extend the insult to real-world groups or the real player.
+Equipment confirmation text, choices, and game actions keep their existing behavior.
+
+## Persistent level history
+
+Desktop release 2.8.0 adds per-character level history. It retains Retail addon 2.7.0, Forever addon 1.4.0, bridge 2.7.0, and snapshot v3.
+The main process observes existing level snapshots. This feature adds no screen fields or HTTP commands.
+Each game profile owns its history file and exposes its records through the existing Eventa state.
+The record key combines the local account identifier and character GUID. The separate profile file isolates each game.
+Characters with equal display names retain separate records.
+
+Only valid, live, online screen observations without capture errors enter the history. Demo and stale observations do not create records.
+The first observation records the current level as a baseline. The service cannot recover levels from before this baseline.
+Each record contains the previous level, observed level, receipt time, observation source, duration, and duration basis.
+The main process uses `Date.now()` for Unix milliseconds. The settings page displays each timestamp in local time.
+The timestamp represents desktop receipt. It includes capture and polling delay, rather than an exact server event time.
+
+Complete single-level durations require two observed consecutive upgrades. The service subtracts the earlier timestamp from the later timestamp.
+This subtraction includes all elapsed real time, including offline periods, character switches, and AIRI downtime.
+If reconnection reports an unchanged level, the next observed upgrade retains the saved start time.
+The first upgrade after a baseline gives only a partial duration since the first observation of that level.
+The display separates this partial duration from a complete single-level duration.
+
+If reconnection reveals a changed level, the service records discovery and marks the time of the actual upgrade as unknown.
+A jump across multiple levels does not generate intermediate timestamps or divide the duration equally between missing levels.
+Level decreases and clock changes do not produce negative durations or false complete durations.
+The history retains all recorded changes. The equipment history limit does not apply to level records.
+
+Retail uses `wow-companion-level-history-v1.json` in the AIRI user data directory.
+Forever uses `wow-companion-forever-level-history-v1.json` in the same directory.
+Atomic file replacement protects completed saves. Normal exit flushes pending changes, and restarting AIRI restores saved records.
+An invalid file remains untouched and blocks new writes to that file. The settings page displays its storage error.
+Offline characters retain visible history. A disabled connection stops new observations without deleting existing records.
+
+The settings page groups records by character and identifies each account and realm. It displays levels, local timestamps, duration, and timing limitations.
+This feature makes no model or speech requests. Existing notification preferences, combat quiet mode, and cooldown rules keep their behavior.
+
 ## Checks
 
 Caption tests cover playback timing, sentence gaps, interruption, muting, empty segments, session isolation, and scene teardown.
@@ -273,3 +320,35 @@ Lifecycle tests cover automatic startup, external service reuse, retry delays, o
 Profile tests cover explicit IPC routing, file isolation, shared account identifiers, disabled defaults, and invalid game keys.
 HTTP and lifecycle tests reject bridges from the other game and keep separate capture files.
 Run the desktop typecheck and targeted Vitest tests before a release.
+
+
+## Conservative acquisition comparisons
+
+Release 2.9 requires bridge 2.9 and a separate comparison stream. Snapshot v3 and existing acquisition records keep their shapes.
+Each comparison captures the candidate, target item, attributes, specialization, suitability, and completeness at acquisition time.
+The desktop repeats the game's numeric comparison rules. A higher item level alone does not establish an upgrade.
+
+Known usable items require compatible types and no compared attribute loss. At least one recorded attribute must increase.
+Equal item level can qualify when those conditions hold. Special effects, sets, sockets, unknown attributes, and trade-offs require manual review.
+
+A suggestion requires a live ready game offer and a matching comparison. Character, session, specialization, slot, item identities, and item levels must match.
+Only a clear upgrade requests confirmation. Missing comparisons wait without consuming the offer. Spec changes and invalid comparisons cancel active suggestions.
+
+The existing optional speech, captions, and ten-second choices remain. Accept directs the player to the game confirmation button.
+The desktop sends no game inputs. The game rechecks the slot and candidate before equipment changes.
+
+Each profile keeps ten comparison records in its own equipment-comparisons-v1 JSON file. Account, character, session, and acquisition ID identify a record.
+Existing acquisition, gold, and level files retain their formats. Invalid comparison files remain untouched and display a storage error.
+Repeated identities retain their first saved comparison.
+
+Saved comparison details describe a past observation, rather than a current full equipment inventory. The UI labels this distinction and specialization changes.
+Ordinary equipment context includes matching comparison facts. These observations add no chat-model request or proactive reaction.
+
+
+## Stage information shortcut (desktop 2.9.1)
+
+The expanded desktop controls replace the sign-in banner with a WoW info card button.
+The button opens `/settings/wow-companion` through the existing settings IPC boundary.
+The existing window manager restores, shows, and focuses the settings window after navigation.
+An already visible settings window remains visible.
+The English and Simplified Chinese locales provide the button label.

@@ -4,12 +4,19 @@
   "upstreamCommit": "747d4f68aa42180671de3071fb78d5e6129433bd",
   "airiModifiedTrackedFiles": [
     "apps/stage-tamagotchi/electron-builder.config.ts",
+    "apps/stage-tamagotchi/resources/icon.png",
     "apps/stage-tamagotchi/src/main/index.ts",
+    "apps/stage-tamagotchi/src/main/windows/main/index.ts",
+    "apps/stage-tamagotchi/src/main/windows/shared/window.test.ts",
     "apps/stage-tamagotchi/src/renderer/App.vue",
+    "apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-overflow.browser.test.ts",
+    "apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/index.vue",
     "apps/stage-tamagotchi/src/renderer/pages/index.vue",
     "apps/stage-tamagotchi/vitest.config.ts",
     "packages/i18n/src/locales/en/index.ts",
+    "packages/i18n/src/locales/en/tamagotchi/stage.yaml",
     "packages/i18n/src/locales/zh-Hans/index.ts",
+    "packages/i18n/src/locales/zh-Hans/tamagotchi/stage.yaml",
     "packages/stage-ui/src/components/scenes/Stage.vue",
     "packages/stage-ui/src/stores/chat.contract.test.ts",
     "packages/stage-ui/src/stores/chat.ts"
@@ -17,18 +24,27 @@
   "airiAddedFiles": [
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-client.test.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-client.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-comparisons.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-comparisons.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-history.test.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-history.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-gold.test.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-gold.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-companion-level-history.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-companion-level-history.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-companion-loadouts.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-companion-loadouts.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-profiles.test.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-runtime.test.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-runtime.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion.ts",
     "apps/stage-tamagotchi/src/renderer/components/stage-islands/speech-caption-bubble.browser.test.ts",
     "apps/stage-tamagotchi/src/renderer/components/stage-islands/speech-caption-bubble.vue",
+    "apps/stage-tamagotchi/src/renderer/components/wow-companion-equipment-comparison.vue",
     "apps/stage-tamagotchi/src/renderer/components/wow-companion-equipment-swaps.vue",
     "apps/stage-tamagotchi/src/renderer/components/wow-companion-equipment.vue",
+    "apps/stage-tamagotchi/src/renderer/components/wow-companion-level-history.vue",
+    "apps/stage-tamagotchi/src/renderer/components/wow-companion-loadout.vue",
     "apps/stage-tamagotchi/src/renderer/components/wow-companion-settings.vue",
     "apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion-forever.vue",
     "apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion.browser.test.ts",
@@ -38,10 +54,19 @@
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment-prompt.ts",
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment-swaps-context.ts",
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment.test.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-companion-idle.test.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-companion-idle.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-companion-loadout-context.test.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-companion-loadout-context.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-companion-player-address.test.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-companion-player-address.ts",
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion-policy.test.ts",
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion-policy.ts",
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion.ts",
     "apps/stage-tamagotchi/src/shared/eventa/wow-companion.ts",
+    "apps/stage-tamagotchi/src/shared/wow-companion-comparison.test-helper.ts",
+    "apps/stage-tamagotchi/src/shared/wow-companion-equipment-comparisons.test.ts",
+    "apps/stage-tamagotchi/src/shared/wow-companion-equipment-comparisons.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-equipment-history.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-equipment-offer.test.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-equipment-offer.ts",
@@ -49,7 +74,20 @@
     "apps/stage-tamagotchi/src/shared/wow-companion-equipment.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-gold.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-http.test.ts",
+    "apps/stage-tamagotchi/src/shared/wow-companion-level-history.ts",
+    "apps/stage-tamagotchi/src/shared/wow-companion-loadout.test-helper.ts",
+    "apps/stage-tamagotchi/src/shared/wow-companion-loadout.test.ts",
+    "apps/stage-tamagotchi/src/shared/wow-companion-loadout.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion.ts",
+    "docs/ai/adr/wow-companion-compact-grid.md",
+    "docs/ai/adr/wow-companion-current-loadout.md",
+    "docs/ai/adr/wow-companion-expanded-menu-width.md",
+    "docs/ai/adr/wow-companion-fast-equipment-offers.md",
+    "docs/ai/adr/wow-companion-player-address.md",
+    "docs/ai/adr/wow-companion-proactive-speech.md",
+    "docs/ai/adr/wow-companion-product-name.md",
+    "docs/ai/adr/wow-companion-stable-profile.md",
+    "docs/ai/adr/wow-companion-window-icon.md",
     "docs/ai/adr/wow-companion.md",
     "packages/i18n/src/locales/en/wow-companion.yaml",
     "packages/i18n/src/locales/zh-Hans/wow-companion.yaml",
@@ -75,6 +113,18 @@
     "older local release archives not present in the previous snapshot"
   ],
   "files": {
+    ".gitattributes": {
+      "bytes": 13,
+      "sha256": "547f59603028195ff9f8a87d04c4651551e8bd0d68f075257dfd549cd846b25b"
+    },
+    ".gitignore": {
+      "bytes": 578,
+      "sha256": "55c58630a124479588419b243f27c21479244345c584c66af95e6e79f612e5dc"
+    },
+    "README.md": {
+      "bytes": 9961,
+      "sha256": "ef298a7d513f74b5241f105bb4dd5a61115e34544e2ded6aef1fc17b2f49a78d"
+    },
     "WOWAddons/Install-WoWCompanion.ps1": {
       "bytes": 1568,
       "sha256": "ca495e0553049f167b496b5d1d9af2de78f5f6bfce8a9f1b796b8298949c46ae"
@@ -84,8 +134,8 @@
       "sha256": "42cacffded69e6a63f14576d51f177f9a06ae58915e4a798b0167ec860b2337a"
     },
     "WOWAddons/Start-WoWCompanion.ps1": {
-      "bytes": 2704,
-      "sha256": "32d2ccb421f9f04643b7947ad929a4da7a82f1af7a4440c6ef2578f22cd6a0bc"
+      "bytes": 4347,
+      "sha256": "aead33d36e7d1a8c3d8d97bd2a78911fd5e3e78137726d8146cbd59b963128f9"
     },
     "WOWAddons/WoWCompanion-2.0.0-source.zip": {
       "bytes": 116702,
@@ -99,6 +149,10 @@
       "bytes": 142392,
       "sha256": "96a3d50f810a1f828a73f8005049cb43840a8ea11298b3e5a0f072b6878b930a"
     },
+    "WOWAddons/WoWCompanion-2.12.4-source.zip": {
+      "bytes": 732374,
+      "sha256": "5ae1d7f29ff8e0a3242c5b617f9818180e2f4e3da64fd30ac5b9e80d3dfe8286"
+    },
     "WOWAddons/WoWCompanion-2.2.0-source.zip": {
       "bytes": 160491,
       "sha256": "073e56c4872344330898ccf203faf57506bbbb7ce14b9dbd2e792f1bff48908d"
@@ -108,48 +162,52 @@
       "sha256": "9c56d6dc01b6f8786b67be39ffbfbb1d0c66de72be3bf3c35659aca212b128ed"
     },
     "WOWAddons/WoWCompanion-PROTOCOL.md": {
-      "bytes": 19153,
-      "sha256": "0b367f0544e4019f15575812c731b62d6ac669e2bb396c18594d9a8927e16aac"
+      "bytes": 32698,
+      "sha256": "6bef4d85a97340ba1311ed725ef06f865be0013598f511df166bf4c046da5f13"
     },
     "WOWAddons/WoWCompanionBridge/.gitignore": {
       "bytes": 155,
       "sha256": "831d3c37702149166e3050ebe820f5454489fa7e11fa3a7dbca4a3e6fe2f4fd7"
     },
     "WOWAddons/WoWCompanionBridge/README.md": {
-      "bytes": 18212,
-      "sha256": "d9eaf28a7e1aa9e0990feb371554e215980a8db46675edc5dd005b43d25bf801"
+      "bytes": 27444,
+      "sha256": "f74271defbce80513ed7169e56379584a618fc6832c0c6bd33c1e2338bc64628"
     },
     "WOWAddons/WoWCompanionBridge/capture.py": {
       "bytes": 4223,
       "sha256": "7befe922a218362a7f74c92545edf827a137ef9c861009ac0d071ffd4f25cfe4"
     },
+    "WOWAddons/WoWCompanionBridge/geometry.py": {
+      "bytes": 11208,
+      "sha256": "f423bef4982b408bd6568e65c8a202eedc326db9ae9d0040f8416b73e93228ad"
+    },
     "WOWAddons/WoWCompanionBridge/index.html": {
-      "bytes": 8922,
-      "sha256": "d8091f45ca68e6b318be0c2a129354ebc3d80f8fb3fa34fca878f7af3cc67299"
+      "bytes": 9796,
+      "sha256": "c0b5354ea342fa0e9c3b0a79d0b9a00c179e64f6c1dec7b4a6dc8884fb329f49"
     },
     "WOWAddons/WoWCompanionBridge/protocol.py": {
-      "bytes": 14147,
-      "sha256": "af16cc7e23377de6aa0ef4010e5ea1cbf830dd5fb0f28a81064feb5dcd714ccd"
+      "bytes": 25243,
+      "sha256": "13848b9964d58ed4dfb07e60ca95800055c497e2974cb482f701b390c238fe7f"
     },
     "WOWAddons/WoWCompanionBridge/server.py": {
-      "bytes": 12070,
-      "sha256": "dd460605cb5ae5c8276a4b549cc18918fbba0060ef7484fb1b77bcc05a400452"
+      "bytes": 12831,
+      "sha256": "8a36e2636256569647cde8440342a20c3e1e03aa03dcf9da8e119ae6ea4061b9"
     },
     "WOWAddons/WoWCompanionBridge/start.ps1": {
       "bytes": 2240,
       "sha256": "baa59b0563eed74e00fede197af461e2d90bef88075b80cbe28691d6c41fde39"
     },
     "WOWAddons/WoWCompanionBridge/state.py": {
-      "bytes": 19599,
-      "sha256": "0348da51da3f2f4e2cdbfdbe2092ef6c03e096f88fd6489c7d4efbd0426d534d"
+      "bytes": 30789,
+      "sha256": "941af55d8b946a3b772c2a01acdc1c8b6b27a059d2edc14fcb3ee7c610e6bf6a"
     },
     "WOWAddons/WoWCompanionBridge/stop.ps1": {
       "bytes": 1044,
       "sha256": "c948df779bbc4c179588a0e3ff23623b9730d19ac543a539924c2cbf324a9e33"
     },
     "WOWAddons/WoWCompanionBridge/test_bridge.py": {
-      "bytes": 14493,
-      "sha256": "b8d800800a000a26687371daa46b3813f5481ecb3af2f01fddc1f95122e2a26b"
+      "bytes": 18807,
+      "sha256": "6f2c6a96b56dff1293806498aef844d128f303819cfe20f9b9c83e5e01f3611e"
     },
     "WOWAddons/WoWCompanionBridge/test_cross_language.py": {
       "bytes": 3594,
@@ -159,13 +217,25 @@
       "bytes": 15477,
       "sha256": "f64cdd18d9ea44ada67b39bb4313b44250330d16ae1fa3b8dac66b79be2e0882"
     },
+    "WOWAddons/WoWCompanionBridge/test_equipment_comparison.py": {
+      "bytes": 16491,
+      "sha256": "64a260b93271a00e3deb0ef8e8c2a6bd6b2351ff4f3ef3ebebeef0ff7b9c675f"
+    },
+    "WOWAddons/WoWCompanionBridge/test_equipment_loadout.py": {
+      "bytes": 19249,
+      "sha256": "7a07107f7d8e6fbb3d51f7b7197cc954d908ac341084e5236e576c4bf391ad00"
+    },
     "WOWAddons/WoWCompanionBridge/test_equipment_offer.py": {
-      "bytes": 6713,
-      "sha256": "05182824ad4fb3be09932827eda0c16ba86731fdb9e69fdff0bae54ed32aa941"
+      "bytes": 6896,
+      "sha256": "c243ac305c0d71429e68a367c195137f247d5666bf133692123c43848cc499c0"
     },
     "WOWAddons/WoWCompanionBridge/test_equipment_swap.py": {
       "bytes": 13162,
-      "sha256": "9a54de90f74bf17451f5ef3a76e0115a9e3b647477b5ea07733683a710e116ac"
+      "sha256": "618cf967642a868a1ae42b8ed51529dced7b14ebbefb308984676319fb75142e"
+    },
+    "WOWAddons/WoWCompanionBridge/test_geometry.py": {
+      "bytes": 9968,
+      "sha256": "f99351b8fef0fc907e40ff7f419ac030d0b868e306cb5d4a635c6880b236dc84"
     },
     "WOWAddons/WoWCompanionBridge/test_managed_lifecycle.py": {
       "bytes": 2122,
@@ -173,51 +243,79 @@
     },
     "WOWAddons/WoWCompanionBridge/test_profiles.py": {
       "bytes": 6713,
-      "sha256": "ac16b196e1507d09226b1afda403f0062b9fbc20a8444e679b27793549c6b2a6"
+      "sha256": "6679d68f50d252cc5fdfa7db590d258bceec9ccade72533818ca9fdf9d075ce7"
     },
     "WOWAddons/WoWForeverCompanion-1.3.0.zip": {
       "bytes": 33614,
       "sha256": "8f8dceb8e7f7e0dc6e2f95ab5287399ba619f52b28acf8afc5ef81f74bf4bf75"
     },
+    "WOWAddons/WoWForeverCompanion-1.7.1.zip": {
+      "bytes": 47288,
+      "sha256": "a3c82e97518fd2df3e8060449429d87526e4b08b2cb3f79b4b445d0583f66562"
+    },
     "WOWAddons/WoWForeverCompanion/ConfirmEquip.lua": {
-      "bytes": 23015,
-      "sha256": "dcf590c163ee7f2da81404c1e1bf6ddf22e2ee98c6f79f819e56b1fdbee5ebbe"
+      "bytes": 24858,
+      "sha256": "6752f38cd88b3d65b3a85aa2d23274c985cc52b47430183235ce3dcfdec35405"
     },
     "WOWAddons/WoWForeverCompanion/Equipment.lua": {
-      "bytes": 13129,
-      "sha256": "355f49a94411164ea6b5901075c66dcb2defc6219b3c92aa3cfb033380ede341"
+      "bytes": 21202,
+      "sha256": "0470dc6a4c065bf3cd66b9a32a055aa7c1d60d574a29352be94d88d8c98ffa72"
+    },
+    "WOWAddons/WoWForeverCompanion/EquipmentCompare.lua": {
+      "bytes": 16995,
+      "sha256": "23864cad7a51a8bfde60926e6ca54fc5487ab1ebb2d94130ef4dd6d4e9aa11a5"
     },
     "WOWAddons/WoWForeverCompanion/Money.lua": {
       "bytes": 3082,
       "sha256": "538cff9cf448a65c0019403e8625f4fa6a74f5774b4cdf41075b42c88aac80b6"
     },
     "WOWAddons/WoWForeverCompanion/Protocol.lua": {
-      "bytes": 4609,
-      "sha256": "fda35172eff77768d23ccb9b8265c2795d38e7ab67f17f931b1d1ef3c3fd667d"
+      "bytes": 5587,
+      "sha256": "41fce2ddd6f0e4bb7d02d1d186594eff5d9148fac5a3757bd8393cf1e73c61f8"
     },
     "WOWAddons/WoWForeverCompanion/README.md": {
-      "bytes": 21442,
-      "sha256": "bb67425b423f01f89c1b139ee5cb0a8a5b929a0ea176908676323acf120d159a"
+      "bytes": 28633,
+      "sha256": "468ef6832e3b2acf340a38cc9099727d7fa4b9dee9e893f7e49859769a1955ea"
     },
     "WOWAddons/WoWForeverCompanion/Telemetry.lua": {
       "bytes": 3722,
       "sha256": "6fd764a080394cdceb94bb41bc8bc81c4693822e5cad46e57a405a4acfa6f6d9"
     },
     "WOWAddons/WoWForeverCompanion/Transfer.lua": {
-      "bytes": 11431,
-      "sha256": "f7a3204f848664d7aa318a9d7326b02a935b20f799d45d226442aeac86eb1ecc"
+      "bytes": 23207,
+      "sha256": "46b2110d95cb91f1ff2d17770d684e3638fc37452909c560c16fa15b61d380b6"
     },
     "WOWAddons/WoWForeverCompanion/WoWForeverCompanion.lua": {
-      "bytes": 12275,
-      "sha256": "b1cf3be3b508aa061b8dc891980ac4f671618f018863c050046fa3f83fbde3a8"
+      "bytes": 13148,
+      "sha256": "dd4fb11d8cc6be5eabc1ab67f9c6086dc2cdb9aa06c9387810523f41eac47f72"
     },
     "WOWAddons/WoWForeverCompanion/WoWForeverCompanion.toc": {
-      "bytes": 602,
-      "sha256": "cd7d5aefb596a23897437d03cc9b9022ea02f41e3a6da82f4e1b84f64879b4fc"
+      "bytes": 659,
+      "sha256": "e0f6ab87479c9fc31270681bdb248ae71cc35d00f97ac822fea4b1625ba07f38"
     },
     "WOWAddons/WoWForeverCompanion/WoWForeverCompanion_Camelot.toc": {
-      "bytes": 602,
-      "sha256": "cd7d5aefb596a23897437d03cc9b9022ea02f41e3a6da82f4e1b84f64879b4fc"
+      "bytes": 659,
+      "sha256": "e0f6ab87479c9fc31270681bdb248ae71cc35d00f97ac822fea4b1625ba07f38"
+    },
+    "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-comparison-001.bin": {
+      "bytes": 512,
+      "sha256": "71e0ebcb202eb295864314d788f7ae01a9bfefc586b4682b5e2659ca1f5161fa"
+    },
+    "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-comparison-002.bin": {
+      "bytes": 512,
+      "sha256": "02f95da894f220216b7a2e026ffc61036aecf0949edf9d6b75943ffe9e5086a9"
+    },
+    "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-comparison-003.bin": {
+      "bytes": 512,
+      "sha256": "867756d32e4c212372a1b7cc22a50c5f32f83bdc33a8249b8afe2b9ac6731b9f"
+    },
+    "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-comparison-cases.json": {
+      "bytes": 24992,
+      "sha256": "a0edce126d6cb97bd09064116e8343d21666f19a987d46abae7be8bb387dcf2a"
+    },
+    "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-comparison.json": {
+      "bytes": 1010,
+      "sha256": "02cc440eec235ffe2c438dc25617aa2c92344be4222f626a2471493f79e21645"
     },
     "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-equipment-01.bin": {
       "bytes": 512,
@@ -239,6 +337,14 @@
       "bytes": 776,
       "sha256": "657de1589ebf229a30dfcc548753e4f73f802701f7c399ac58710b7c91261446"
     },
+    "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-forever-gear.bin": {
+      "bytes": 4096,
+      "sha256": "38f375c0265dc74b8884a7b5c161e5c818a02d604eef7178863de2d1aea32a1e"
+    },
+    "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-forever-gear.json": {
+      "bytes": 1889,
+      "sha256": "3e4257f623e66d4762bbe5a4add511391d454d77b50c03fd8d8b12ba4b82545d"
+    },
     "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-offer.bin": {
       "bytes": 512,
       "sha256": "0f734917c70f0b1354f66c06e43eb56d42f735f8ecde8ddec44b7ec6619f7de4"
@@ -257,23 +363,31 @@
     },
     "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-wcf1.bin": {
       "bytes": 512,
-      "sha256": "b8a98bc2254960b8a9d5f0369298369402cc94e1c61da429bc9d6b0fa66529ce"
+      "sha256": "8a5e9f3089b9e6d67c70f08aa3e205d2d2f88a7615fbb440791418bae9191efd"
     },
     "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-wcf1.json": {
-      "bytes": 447,
-      "sha256": "b7ed0fecd846755698b6c1f421ec18f1895ce1eddbfcf4751fe5c1a1493c2fa8"
+      "bytes": 491,
+      "sha256": "aa604b4e18da5994bb9fc6ba778750e89d6a5705c40737ba86d3272253c0c069"
     },
     "WOWAddons/WoWForeverCompanion/tests/test_addon.py": {
-      "bytes": 26576,
-      "sha256": "35ec360bed45af4ed3c14a5f769545f349a089fa6b81c289e06f1ae7ccdf4847"
+      "bytes": 35753,
+      "sha256": "a276e2f739f9f00f3cdaac21bb82a79a10d81b711a4f118b15b470d7da039efa"
     },
     "WOWAddons/WoWForeverCompanion/tests/test_confirm_equip.py": {
-      "bytes": 39212,
-      "sha256": "75801d724922bff0b1bf3cd8807e7ad91bd2642dababd1406ce54bb4263f91eb"
+      "bytes": 40732,
+      "sha256": "f402848effa7709197cf94735caa8e5756d38201de5a8dc3f4ecf5b8f3bac6d9"
     },
     "WOWAddons/WoWForeverCompanion/tests/test_equipment.py": {
-      "bytes": 15346,
-      "sha256": "a0af6f113993290786fa8f52f0688729a807457323066d33c5a8119e2f076cdb"
+      "bytes": 15371,
+      "sha256": "5759b44300fc7b225bed37ea75358bb3f3fc4f8a208170435fa84cb4bc36356b"
+    },
+    "WOWAddons/WoWForeverCompanion/tests/test_equipment_compare.py": {
+      "bytes": 37465,
+      "sha256": "42c5444d178d14e356ff462150e3b0f74bbb52387a49c958dc163d2dbb4950b5"
+    },
+    "WOWAddons/WoWForeverCompanion/tests/test_loadout.py": {
+      "bytes": 19451,
+      "sha256": "49ef0e8655df058f544524d348e69bfcc655ca9c7792785c28ff04097e288fc4"
     },
     "WOWAddons/WoWIntelAPI-1.0.0.zip": {
       "bytes": 15442,
@@ -319,49 +433,77 @@
       "bytes": 14362,
       "sha256": "32d1ba9830d5859a956636b5aac127208cee4d82af3ddb2529aace566551aaec"
     },
+    "WOWAddons/WoWMapCompanion-2.10.1.zip": {
+      "bytes": 47858,
+      "sha256": "ccda59a9fb4795ff7ff01ad4ee00c3c40784ae6cf3566652aac34f5a640c3d12"
+    },
     "WOWAddons/WoWMapCompanion-2.6.0.zip": {
       "bytes": 33785,
       "sha256": "8de14b0f55da26ceb097777135f5e1913f5b37d95e5b7534469d25ef55618127"
     },
     "WOWAddons/WoWMapCompanion/ConfirmEquip.lua": {
-      "bytes": 23015,
-      "sha256": "dcf590c163ee7f2da81404c1e1bf6ddf22e2ee98c6f79f819e56b1fdbee5ebbe"
+      "bytes": 24858,
+      "sha256": "6752f38cd88b3d65b3a85aa2d23274c985cc52b47430183235ce3dcfdec35405"
     },
     "WOWAddons/WoWMapCompanion/Equipment.lua": {
-      "bytes": 13129,
-      "sha256": "355f49a94411164ea6b5901075c66dcb2defc6219b3c92aa3cfb033380ede341"
+      "bytes": 21202,
+      "sha256": "0470dc6a4c065bf3cd66b9a32a055aa7c1d60d574a29352be94d88d8c98ffa72"
+    },
+    "WOWAddons/WoWMapCompanion/EquipmentCompare.lua": {
+      "bytes": 16995,
+      "sha256": "23864cad7a51a8bfde60926e6ca54fc5487ab1ebb2d94130ef4dd6d4e9aa11a5"
     },
     "WOWAddons/WoWMapCompanion/Money.lua": {
       "bytes": 3009,
       "sha256": "830743ca7ca0b34a7a60c4b2c955ccd7952ec359482bd75ed5e7fc8deadcc03e"
     },
     "WOWAddons/WoWMapCompanion/Protocol.lua": {
-      "bytes": 4501,
-      "sha256": "3ac2f33bd43cbbb46d49745c5debc711a6a7ce3c37a56011aa72fa8c22676266"
+      "bytes": 5456,
+      "sha256": "f2fd3f9ce7e6cf84d8555e86eed847b1e5adfa4b006a123eef53bfc8127e6189"
     },
     "WOWAddons/WoWMapCompanion/README.md": {
-      "bytes": 24834,
-      "sha256": "89c0860f979465b038233573220f69604a3e1072f6aa66dfe7892b57332f85ea"
+      "bytes": 33378,
+      "sha256": "d536d640a99b5674238280cf05282bd17fe4820bc96a0862bf56d5cf2545ac3d"
     },
     "WOWAddons/WoWMapCompanion/Telemetry.lua": {
       "bytes": 3631,
       "sha256": "92cc380cef1d5e33db52fd1a034a699ab0b44886dca2e3ad9af97a650d5a282e"
     },
     "WOWAddons/WoWMapCompanion/Transfer.lua": {
-      "bytes": 11431,
-      "sha256": "f7a3204f848664d7aa318a9d7326b02a935b20f799d45d226442aeac86eb1ecc"
+      "bytes": 23207,
+      "sha256": "46b2110d95cb91f1ff2d17770d684e3638fc37452909c560c16fa15b61d380b6"
     },
     "WOWAddons/WoWMapCompanion/WoWMapCompanion.lua": {
-      "bytes": 10728,
-      "sha256": "84bb06af507f6fd36efb4eba2fe7e7525f105445f51e7e1d8df45246c624c141"
+      "bytes": 11601,
+      "sha256": "998353157d7f1a8db5fed630c71d64ee0530535ea2c4bd19ad942065b117d47a"
     },
     "WOWAddons/WoWMapCompanion/WoWMapCompanion.toc": {
-      "bytes": 553,
-      "sha256": "21f33480310c13d82e779d2ca54fbdde893dd1d14ed60bb407fafac5a6a66583"
+      "bytes": 616,
+      "sha256": "843da3c0016976ceff1468763f6c5e6c505a6f9d50f9ce3a8e3970108f1169f7"
     },
     "WOWAddons/WoWMapCompanion/tests/.gitignore": {
       "bytes": 20,
       "sha256": "0572832eb6ecab28ff4a6a38432fa51326e71ed54ca6bdd825c36d4005c1b1eb"
+    },
+    "WOWAddons/WoWMapCompanion/tests/fixtures/lua-comparison-001.bin": {
+      "bytes": 512,
+      "sha256": "167fdd012c1ad0726b6a15b9c2eb21d814469eb057c55617b78ef47d14a4319a"
+    },
+    "WOWAddons/WoWMapCompanion/tests/fixtures/lua-comparison-002.bin": {
+      "bytes": 512,
+      "sha256": "418eb172f683d8dcd878511869fa5a72e2b64d3848c3b9ebfef8feb48264885c"
+    },
+    "WOWAddons/WoWMapCompanion/tests/fixtures/lua-comparison-003.bin": {
+      "bytes": 512,
+      "sha256": "9caa8dc1b77b6ce80595cfdc9c707e8a04afcb568abe821f8cffa6ea96d074be"
+    },
+    "WOWAddons/WoWMapCompanion/tests/fixtures/lua-comparison-cases.json": {
+      "bytes": 24992,
+      "sha256": "a0edce126d6cb97bd09064116e8343d21666f19a987d46abae7be8bb387dcf2a"
+    },
+    "WOWAddons/WoWMapCompanion/tests/fixtures/lua-comparison.json": {
+      "bytes": 1010,
+      "sha256": "02cc440eec235ffe2c438dc25617aa2c92344be4222f626a2471493f79e21645"
     },
     "WOWAddons/WoWMapCompanion/tests/fixtures/lua-equipment-01.bin": {
       "bytes": 512,
@@ -391,6 +533,14 @@
       "bytes": 194,
       "sha256": "e81b769c3e627761bd7c24d0641b01be8439723aad280e1ada04f180b958d29f"
     },
+    "WOWAddons/WoWMapCompanion/tests/fixtures/lua-retail-gear.bin": {
+      "bytes": 4096,
+      "sha256": "dacd183f6e8f96f39748e0152a1f6d08632b0479be58986248cbe8ca73f5eaf8"
+    },
+    "WOWAddons/WoWMapCompanion/tests/fixtures/lua-retail-gear.json": {
+      "bytes": 1889,
+      "sha256": "3e4257f623e66d4762bbe5a4add511391d454d77b50c03fd8d8b12ba4b82545d"
+    },
     "WOWAddons/WoWMapCompanion/tests/fixtures/lua-swap.bin": {
       "bytes": 512,
       "sha256": "2ebdd15f19b30b92b341268475fa85417a3fa58b39d35c49ee989f09be04fe14"
@@ -401,31 +551,43 @@
     },
     "WOWAddons/WoWMapCompanion/tests/fixtures/lua-wcp1.bin": {
       "bytes": 512,
-      "sha256": "03fe6a1eca8ad03c4a7b0955d92d4207e79626d07662373dbfee30b32b06445d"
+      "sha256": "f58eeb32012e74b849b90b9372ed362802a0683f969c3ada781dd184078d42eb"
     },
     "WOWAddons/WoWMapCompanion/tests/fixtures/lua-wcp1.json": {
-      "bytes": 433,
-      "sha256": "0ba1562e51fafca1ca6d8bb3d43397bf56545a4318960fe41a3c688887fbe05d"
+      "bytes": 478,
+      "sha256": "a9bd0a6e7efaec62c871430f7d62f5634e9e144527984df52304548e7dc4784a"
     },
     "WOWAddons/WoWMapCompanion/tests/test_addon.py": {
-      "bytes": 22199,
-      "sha256": "03c72c59846a50512873e2f9df32ccad8ea81d12c2f200b93b2ca26481b9e42f"
+      "bytes": 31843,
+      "sha256": "749dafd7546d155a8a532547383f4a5932f9ff48098923e9da8908ab46c4670f"
     },
     "WOWAddons/WoWMapCompanion/tests/test_confirm_equip.py": {
-      "bytes": 39212,
-      "sha256": "75801d724922bff0b1bf3cd8807e7ad91bd2642dababd1406ce54bb4263f91eb"
+      "bytes": 40732,
+      "sha256": "f402848effa7709197cf94735caa8e5756d38201de5a8dc3f4ecf5b8f3bac6d9"
     },
     "WOWAddons/WoWMapCompanion/tests/test_equipment.py": {
-      "bytes": 15346,
-      "sha256": "a0af6f113993290786fa8f52f0688729a807457323066d33c5a8119e2f076cdb"
+      "bytes": 15371,
+      "sha256": "5759b44300fc7b225bed37ea75358bb3f3fc4f8a208170435fa84cb4bc36356b"
+    },
+    "WOWAddons/WoWMapCompanion/tests/test_equipment_compare.py": {
+      "bytes": 37465,
+      "sha256": "42c5444d178d14e356ff462150e3b0f74bbb52387a49c958dc163d2dbb4950b5"
+    },
+    "WOWAddons/WoWMapCompanion/tests/test_loadout.py": {
+      "bytes": 19451,
+      "sha256": "49ef0e8655df058f544524d348e69bfcc655ca9c7792785c28ff04097e288fc4"
     },
     "WOWAddons/build-delivery.py": {
-      "bytes": 4064,
-      "sha256": "a9aed4502e66790815682f1db18a44e64cc8096978712099f845fbfec4d44c2b"
+      "bytes": 4835,
+      "sha256": "043a3307b236f715de872355f2e95703e1883d193c8ab6e765bfafb292673050"
     },
     "WOWAddons/output/pdf/魔兽世界经典角色语录与陪伴人设.pdf": {
       "bytes": 593120,
       "sha256": "d14bbe4d8b1949d7198854b5048e873fcfb56c86a0617954282dad02a9cf4eb3"
+    },
+    "WOWAddons/research/airi-personas/sylvanas-tone.json": {
+      "bytes": 3924,
+      "sha256": "0c274137ee85e4090893b9a948bf4c87d8657eb734611580e72c2c14d8b8671a"
     },
     "WOWAddons/research/warcraft-characters/build_library.py": {
       "bytes": 37086,
@@ -440,8 +602,12 @@
       "sha256": "f3f6bc4b9978aa88b7b54427cbf3bf4b4e1bc1b0382e44c5d49e86a118bc0724"
     },
     "WOWAddons/wow-companion-implementation.html": {
-      "bytes": 95204,
-      "sha256": "6ea0ca0893c17ca991dbff492b469367a21325239384f8deb17ce991274037f3"
+      "bytes": 153059,
+      "sha256": "db1dca41132df070320f06360d667761d8ca7f68bfee7956785d1ffc371f053c"
+    },
+    "WOWAddons/魔兽陪伴精灵-使用说明.html": {
+      "bytes": 15332,
+      "sha256": "f17a00747b0e7d4cbd95e02e910b53c849032242fe323bc7bcb53614310ed927"
     },
     "airi/.agents/skills/agent-browser-electron/SKILL.md": {
       "bytes": 12464,
@@ -4676,8 +4842,8 @@
       "sha256": "0255c8f9a37a277adff7a91c2fda503012c4e67c8aa079555f997d423f880c23"
     },
     "airi/apps/stage-tamagotchi/electron-builder.config.ts": {
-      "bytes": 12824,
-      "sha256": "4d9f6bd36730b6985c9fa1f4b8dcfc43fb4c17c0e6857f4213a0fe953d48b5cb"
+      "bytes": 12839,
+      "sha256": "82048213e545b08cbe5798143765814e12a4b3267ec9e1bd3609e8cb98a1c798"
     },
     "airi/apps/stage-tamagotchi/electron.vite.config.ts": {
       "bytes": 11867,
@@ -4696,8 +4862,8 @@
       "sha256": "fb15063803247b55d4b1890124d52bce9347e860521def126d211f3dbf70223d"
     },
     "airi/apps/stage-tamagotchi/resources/icon.png": {
-      "bytes": 148123,
-      "sha256": "ccaf08d5dd2bb93ea25280449f948e3ad681af8e6c608426f5edf970eff3b15a"
+      "bytes": 1757,
+      "sha256": "1ba1a6b3e25488d282307e40dd8c202543d2f9533e0b3105947a4f358ba362b5"
     },
     "airi/apps/stage-tamagotchi/resources/icon.svg": {
       "bytes": 16544,
@@ -4832,8 +4998,8 @@
       "sha256": "76a42904fc704cd27b5506c4c43d814447d284f5c1d86df99878ae40c61b3d2d"
     },
     "airi/apps/stage-tamagotchi/src/main/index.ts": {
-      "bytes": 25821,
-      "sha256": "56075aeb4ed64ed7cbf4397963d61764fa7e56280e05b46894cb21fbb8ae9be6"
+      "bytes": 26039,
+      "sha256": "a0873ac7a428fc19d787f868bc1aace185bae1a706ddd57c68df5cbb7b1faa95"
     },
     "airi/apps/stage-tamagotchi/src/main/libs/bootkit/lifecycle.test.ts": {
       "bytes": 1111,
@@ -5208,44 +5374,68 @@
       "sha256": "72bbcd5a655b6445571d9e749bbaf4805ef512c546f39ef0145486a0e21a0040"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-client.test.ts": {
-      "bytes": 6991,
-      "sha256": "7bfde689e1eb601e5a2b7768b8e77848e2eccf31cd3e0ad7b5b69a647ce9a4f9"
+      "bytes": 7118,
+      "sha256": "929b1fb4e772dd5bedb30113324b5c8cd5ec5956e7569603cca8e2e2dd8edfec"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-client.ts": {
       "bytes": 3519,
       "sha256": "13d3ed628774927e29db143d85c459aa58d2ca3a81e7d52efde393a008146994"
     },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-comparisons.test.ts": {
+      "bytes": 5389,
+      "sha256": "deea8086fae26ce151d7344d1a151002961f9613691880683c1093574c4534d3"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-comparisons.ts": {
+      "bytes": 6278,
+      "sha256": "3d9a56739d7530d49a0fe31df2156545c93b386d6dcaf5ef6f84cfe5ec9d7350"
+    },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-history.test.ts": {
-      "bytes": 12452,
-      "sha256": "38a399a1c3bd0d5aef29eda8655aa9263312ff222b2ecf8f983d76922314d5a9"
+      "bytes": 12627,
+      "sha256": "a399a30a2d2719e992f3c325facd95ca507f9bddc2f11b9f79715695fe225153"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-history.ts": {
-      "bytes": 6188,
-      "sha256": "596ddfc6c391afa923d5912cc47b57d1c3d2d491ab4a8c9f6a1a177f84bc43a2"
+      "bytes": 6216,
+      "sha256": "d54c3f8e035e26163b77b821dc113d3eb5a81a8124a67358737dd30c7ec02f41"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-gold.test.ts": {
-      "bytes": 10885,
-      "sha256": "cde36364b937616860ae62a050092ce34d96758198fa0aac42ffd5e66bba441c"
+      "bytes": 11060,
+      "sha256": "42a4efd0daaaa3d8bfc7a882923ed8fc6908ed468d685f11b400be89be0116f0"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-gold.ts": {
-      "bytes": 9990,
-      "sha256": "d1206c96bc8f468baa3c6a552be94751cca3f3f714f5da7aaf1d013a5fdc22e3"
+      "bytes": 10018,
+      "sha256": "51a0e7cd10086f784c2a754c7c3c02e745b8a4ac47fd5326f10cdfada65ff15e"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-level-history.test.ts": {
+      "bytes": 16292,
+      "sha256": "e181f8823f9e2a9209b09a4a8fea0c72410dc4ffe7d458ed5612cc81cabc9591"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-level-history.ts": {
+      "bytes": 12628,
+      "sha256": "a4e73347f1b4f8d6e215215b0bf6925b08648ed52cd39a5378a4bc21f9c6d059"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-loadouts.test.ts": {
+      "bytes": 5996,
+      "sha256": "1f7508fca16605b8973960b26c7f622d3748950ab8856f8096fd1950b55a009f"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-loadouts.ts": {
+      "bytes": 9045,
+      "sha256": "ec4f0ccccf95cfe81ecf56c2c17985372134be6f3ab078f7994033ddf0180c95"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-profiles.test.ts": {
-      "bytes": 9304,
-      "sha256": "7511c96db49d71362dfa4fbe7fbe34b2e9f1baeadcfb6f4b7c18ac2d095fe989"
+      "bytes": 15708,
+      "sha256": "d4f4330cc92e2d8c54addcc3b8d92d294766dbd8369d6c808d411f29fb359762"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-runtime.test.ts": {
-      "bytes": 14861,
-      "sha256": "ee58207665044b3ff8376f78f3cbe42e1321662fafacd099f6091382586785b8"
+      "bytes": 14979,
+      "sha256": "dcd9ddd9c82a1c78a88217bebb843e3735b281bfd11983b5e54b9f493c1f885e"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-runtime.ts": {
-      "bytes": 12804,
-      "sha256": "bb1239dc582810471798d91faf049f4cf71710b2ffe9da3c548b20b4885763ff"
+      "bytes": 12797,
+      "sha256": "cb704a41f501cf3b8ff050468fd13e0844eddd516307b48a334a7d17b106c788"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion.ts": {
-      "bytes": 7655,
-      "sha256": "c42978b1d6fea213cb6ec40d17a0def4381d9258260a5cc1855ae3a0f1769107"
+      "bytes": 9002,
+      "sha256": "84daa02a34b59a09b5ca2aa12069dacef4fae786b58cd4cdd0595d1c010e8d48"
     },
     "airi/apps/stage-tamagotchi/src/main/services/electron/app.test.ts": {
       "bytes": 1909,
@@ -5452,8 +5642,8 @@
       "sha256": "097bfbc7801c65d3a7789a334ceeadc8d2aefb98b364d9416c0a43d420dac369"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/main/index.ts": {
-      "bytes": 20534,
-      "sha256": "9b6ecd1ae5ad846dec02aea207808c6d819dccb6d5cdbcafccdbf72bbca7e78f"
+      "bytes": 20708,
+      "sha256": "88a3b47d76e5bdbdfd9b09ec783e1c77811f2fd5f6614cd28cea0d452107ddeb"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/main/rpc/index.electron.ts": {
       "bytes": 5442,
@@ -5520,8 +5710,8 @@
       "sha256": "e627822a5d5d11923ed315f75131a1623a4378259a99d047ec2f4961c2fe00ac"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/shared/window.test.ts": {
-      "bytes": 2743,
-      "sha256": "7a1afa27c73e4b0cc79c48bc156459b0bde5e691530bfdc39dd1a1e56283028d"
+      "bytes": 4204,
+      "sha256": "841a6683b8e1d0d647f2bacc42fd84cbd1ab042916dc28ec4b2180101403f953"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/shared/window.ts": {
       "bytes": 6297,
@@ -5916,8 +6106,8 @@
       "sha256": "59d90c5a4d6e689dcfbfb9752703620a0e9ce3886e3bb6983544568333d376fd"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-overflow.browser.test.ts": {
-      "bytes": 33956,
-      "sha256": "85e2208605d7331f209c4fac6e4a0152661bcecb298f1603d9ac8328545e1eae"
+      "bytes": 38808,
+      "sha256": "4c0e7c330bc1602ff5c930f25f6b6e05544f7ceef7a954e03ec935a84cb560df"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-profile-picker.vue": {
       "bytes": 1499,
@@ -5940,8 +6130,8 @@
       "sha256": "18c2fe62deb4e6316f33045953e32a0cfe82c16d175386b788f3b7bc7d97f389"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/index.vue": {
-      "bytes": 32056,
-      "sha256": "426fb3089bf5810cd9b248ec2c9eec3aa5dfcc734eb2eedaaa09de8f2798f11c"
+      "bytes": 32881,
+      "sha256": "bcd52b57dc016ebda8c28e62d847ae3cb421a47ec60277c2da4a6f2b64352171"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/indicator-mic-volume.vue": {
       "bytes": 3161,
@@ -5976,8 +6166,8 @@
       "sha256": "0d5f1441161c699986bd92a1018ecebc45de73c0757b3831546f213852696810"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/speech-caption-bubble.browser.test.ts": {
-      "bytes": 11613,
-      "sha256": "1b0c8f36888c3362cac3b0c46c6472034506b6777bd5c914ae280322aea21de5"
+      "bytes": 13473,
+      "sha256": "8fa6167edc4215e9b611da805458c7c0af862c5ad47f49d8a834b267c5a30b8c"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/speech-caption-bubble.vue": {
       "bytes": 3579,
@@ -5991,17 +6181,29 @@
       "bytes": 2326,
       "sha256": "733d9cd3f4742112409c0cb74bb83675b19fe479a73b93ed89862b1414722208"
     },
+    "airi/apps/stage-tamagotchi/src/renderer/components/wow-companion-equipment-comparison.vue": {
+      "bytes": 5676,
+      "sha256": "cb5bff64ae2c17968da67e4bdac74954bf40e33262db9ee284bd911d7be48b6c"
+    },
     "airi/apps/stage-tamagotchi/src/renderer/components/wow-companion-equipment-swaps.vue": {
       "bytes": 3887,
       "sha256": "4bee6f3bf2095c4432fffcabc9a5987d02a0f919c4b0513914b518a58108cb8b"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/wow-companion-equipment.vue": {
-      "bytes": 7845,
-      "sha256": "525e5f98128cb39edc0be6c05b44b5e72e6e9b7f37909852d605307e06ef53e3"
+      "bytes": 8781,
+      "sha256": "da8c775f587a45825ba7e99e0fa2c4051a2c32f9f6dd40f3df417206d712baa4"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/components/wow-companion-level-history.vue": {
+      "bytes": 7774,
+      "sha256": "4f297ab47b39dd1875e38f78ee75490077ec023f71f9bdf60b39c5af7b25f54c"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/components/wow-companion-loadout.vue": {
+      "bytes": 6175,
+      "sha256": "ffbe5a2e90d7f1daae36c2e52ac549bda0a7b92ab1f3c61e5589dd505bdb34ff"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/wow-companion-settings.vue": {
-      "bytes": 20199,
-      "sha256": "b1f0116ec066c1c81c9026391c838dde2dc8527cb7813861ecf36bee28582ab6"
+      "bytes": 21282,
+      "sha256": "f3944c4a2b95e6273cd745d84c1b4f7feaf2ba9ebf7ecf9a64ccd763b545bd41"
     },
     "airi/apps/stage-tamagotchi/src/renderer/composables/icon-animation.ts": {
       "bytes": 859,
@@ -6292,8 +6494,8 @@
       "sha256": "f09d2a1cd4cff7099bb53a4b5b8318773ff672e8ab0c1770540bf614b8b7abe6"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/index.vue": {
-      "bytes": 40413,
-      "sha256": "fb44e27070e7bb21c96edb55c1d0a9a28f122642789d9a4c729c27adced84565"
+      "bytes": 40130,
+      "sha256": "268e99a63a615fc18e45ff5dca904300b43b5da4c722047748db2145fecfd2d2"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/inlay/index.vue": {
       "bytes": 204,
@@ -6408,8 +6610,8 @@
       "sha256": "0fe37ece76f99ab72d3a56de5511016535f376da827360f11317628cd6ddf9d2"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion.browser.test.ts": {
-      "bytes": 45596,
-      "sha256": "0e0f31929cd65a4a3150e99a65dcdd16fd94a143fd0b6d8cf62bfa10903afea4"
+      "bytes": 91207,
+      "sha256": "287f4cc75b08728e60dfe0ad42d4a7b4c83cda026d26d1952bd4cde76d93bb58"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion.vue": {
       "bytes": 509,
@@ -6564,36 +6766,60 @@
       "sha256": "b5b07eecb9a71bf8fd4e59e1f3ac56e2775c07d2c91b1363129d54caea4c5922"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment-context.ts": {
-      "bytes": 2404,
-      "sha256": "b5d57e48d212480b1fd64328450bfaaeaca9ab50ac39e36a427279fab464dfdb"
+      "bytes": 3959,
+      "sha256": "390fbda7b3d6eee0dd222d1f64e87bfd3e9e1dd03b373f8b9cea926fc65eca20"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment-prompt.test.ts": {
-      "bytes": 15070,
-      "sha256": "b2dbe4f736b442bf40bae2d8a6fed5544f5620d5ae929cf6bf10db98f714adc1"
+      "bytes": 19105,
+      "sha256": "0cf4b2fe7b7ab3a12988f4410b093cc1a00976556e4bc23fd4465ba8970dd5aa"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment-prompt.ts": {
-      "bytes": 8804,
-      "sha256": "4bcca6e6e01a892cc39ea3cb19ce638d3c73ea9f3b89879dedbcd44ae14b4fc1"
+      "bytes": 10785,
+      "sha256": "99e67fae0f6429595bc726870c6d93a44f8e0063d23d787ea3c0db71a31b6316"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment-swaps-context.ts": {
       "bytes": 1989,
       "sha256": "21ec4db195fc13f16f3521dfad2a4cd4a7c75652373abe5d1db8a569d5ab4839"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment.test.ts": {
-      "bytes": 14317,
-      "sha256": "4520f668f67eeca34831bd3936c9a158c8956068c298cc8a0713289648acf172"
+      "bytes": 14492,
+      "sha256": "c50af59557be84e91c677897aebee88b333f2f641e8c6c5401494a6fcc590ba2"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-idle.test.ts": {
+      "bytes": 7802,
+      "sha256": "ac3fadd20312028acdba0ddd9d04d352c9b46f319f1accbaa18327bf4e68e910"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-idle.ts": {
+      "bytes": 2726,
+      "sha256": "af75c7abaaf4893238111e40605cfa68fdc7943063cacca3e21f49b1b0b90e2d"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-loadout-context.test.ts": {
+      "bytes": 6067,
+      "sha256": "4485eb125acf9a05e493b01c4d49f4e90bd9ab496e0d5803a0b9ebaee4a6cf59"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-loadout-context.ts": {
+      "bytes": 6129,
+      "sha256": "84df6d63b79bec2487deb4fed92d33859f2fe90d6597ea2d63bc591c5b2cd7ce"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-player-address.test.ts": {
+      "bytes": 9001,
+      "sha256": "a0e7ab16ae25bae0a93e67edfea4db3305ea0e4c29353a27906ba614670feed8"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-player-address.ts": {
+      "bytes": 3640,
+      "sha256": "049bbbfbdbc3e79c9c4453f186633246197b4b4af1b45a81f8dd0383cecde49d"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-policy.test.ts": {
-      "bytes": 6372,
-      "sha256": "ad0ee1008c589008623d093ff9f43e8b02f9fd459637bf1fb20a4880c57394fe"
+      "bytes": 7943,
+      "sha256": "1b2ef99f55949f60583b862eded5be2910738da6a406068dcc9eefd001a78537"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-policy.ts": {
       "bytes": 2888,
       "sha256": "778a6e7eae760abc2cc9e4b03cc2fe2a39bbaed21066e9692a4d73b59d2e9445"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion.ts": {
-      "bytes": 14048,
-      "sha256": "1fb3dfc699c694713449fcd7eb08bc6169db8be7fee85702039ba956c38a43a3"
+      "bytes": 24448,
+      "sha256": "c659d9c4dcb28141ec5057172319b998545dbd85bd4a9a49d90a7cdb7fb0861f"
     },
     "airi/apps/stage-tamagotchi/src/renderer/styles/main.css": {
       "bytes": 820,
@@ -6823,17 +7049,29 @@
       "bytes": 1646,
       "sha256": "4c856ce559dbba704031e87f42ee7df0c0be91c9a8f17360e4fa37fd143a4769"
     },
+    "airi/apps/stage-tamagotchi/src/shared/wow-companion-comparison.test-helper.ts": {
+      "bytes": 1123,
+      "sha256": "bcd398b4a986aae53ed928fd1f833572ca3ccf7b30968c6e541533d641bf8fc6"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/wow-companion-equipment-comparisons.test.ts": {
+      "bytes": 8711,
+      "sha256": "d3009e34f3f0ef46f82c04d41da2c67404c1be784b3267581f43400091219bd0"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/wow-companion-equipment-comparisons.ts": {
+      "bytes": 7324,
+      "sha256": "f543b302c8ffbc73a2ffc5c99c1bec1baadf3b960a3d51ed2e0eec26fa0b6ee5"
+    },
     "airi/apps/stage-tamagotchi/src/shared/wow-companion-equipment-history.ts": {
       "bytes": 622,
       "sha256": "26c682ee52a12d13746f1d755e6b61e24291c9eeb6997c1e7cf47b1a9969c156"
     },
     "airi/apps/stage-tamagotchi/src/shared/wow-companion-equipment-offer.test.ts": {
-      "bytes": 2242,
-      "sha256": "c7930a13ca2c141b6226d3bbc7aad9c64b068742fff37b076cfa03de4f64e0cc"
+      "bytes": 2334,
+      "sha256": "456fb8908401c855ba21581bc430eb6a6b228994b35c940ab65dca6aff836c85"
     },
     "airi/apps/stage-tamagotchi/src/shared/wow-companion-equipment-offer.ts": {
-      "bytes": 1544,
-      "sha256": "1c5877284507220541281fb1537f093ef63350f99bdf603e9ed6bae65342a0e3"
+      "bytes": 1545,
+      "sha256": "eca9142e73ccd325b6a660ac8fbd955b708f95f839135a7d7b44b8f8e18e90f5"
     },
     "airi/apps/stage-tamagotchi/src/shared/wow-companion-equipment-swaps.ts": {
       "bytes": 2005,
@@ -6848,12 +7086,28 @@
       "sha256": "62ea25b65887b1389fd9ff2071a537799f0c0b7fd158353143a351ab55e9da58"
     },
     "airi/apps/stage-tamagotchi/src/shared/wow-companion-http.test.ts": {
-      "bytes": 3793,
-      "sha256": "5627a8057082bb9c4c0288764f9731965cc68949d9c81214bd00f36e6e56ffed"
+      "bytes": 4027,
+      "sha256": "ad16687fb8387f1e9428359d3e28873fd25c7cfd8c672aa7a7ee9c5feb9b6e84"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/wow-companion-level-history.ts": {
+      "bytes": 1102,
+      "sha256": "be92ed9ce2db63ffddc4b7dea71089e5a1a5296a1196f9df9817799013cd7ea0"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/wow-companion-loadout.test-helper.ts": {
+      "bytes": 2966,
+      "sha256": "676674fa47aa8b48ba4e684b85ab3f2e00fdc802dfa33b6cd0db2334a4593f3a"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/wow-companion-loadout.test.ts": {
+      "bytes": 2303,
+      "sha256": "eb442a77a4432d6094728edd235812532d21414f461649faa1755f19a6348059"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/wow-companion-loadout.ts": {
+      "bytes": 3748,
+      "sha256": "b76adef51bf75297a5f829a41ec6c8003b4c912a798bd6e18cf395149ede6846"
     },
     "airi/apps/stage-tamagotchi/src/shared/wow-companion.ts": {
-      "bytes": 5569,
-      "sha256": "8db68e2dbe04f9fe56618dff4423d9bc7f5722ccedff704a56084654a56ef921"
+      "bytes": 7204,
+      "sha256": "e49343e4a2ecca9b670f9f136003f9213116fcce269772ac279288d4fda84b58"
     },
     "airi/apps/stage-tamagotchi/src/test/setup-live2d.browser.ts": {
       "bytes": 536,
@@ -7519,9 +7773,45 @@
       "bytes": 18043,
       "sha256": "c48bc77a4a50719c0340bd8b25b14fd55c98628c5c29b9bd49048321a8986436"
     },
+    "airi/docs/ai/adr/wow-companion-compact-grid.md": {
+      "bytes": 1341,
+      "sha256": "a9fe85b87b58204a1a80d202bcbe24d8ce0f1220f19bc3bb7301ab804c0eff78"
+    },
+    "airi/docs/ai/adr/wow-companion-current-loadout.md": {
+      "bytes": 2519,
+      "sha256": "d4e2e91fec2b021b954e61557f0f9c91e467397cc1292d6f3b847d6dc6d43810"
+    },
+    "airi/docs/ai/adr/wow-companion-expanded-menu-width.md": {
+      "bytes": 599,
+      "sha256": "c4b3dee27df41f8f05eda371edc7869637fb3e5718680f6eada11fda5683af81"
+    },
+    "airi/docs/ai/adr/wow-companion-fast-equipment-offers.md": {
+      "bytes": 3552,
+      "sha256": "ca84a6511f4df0c60096178132b93f2306574e15dfbb6c41f408e3849941b12d"
+    },
+    "airi/docs/ai/adr/wow-companion-player-address.md": {
+      "bytes": 2381,
+      "sha256": "26996db400f36bc6bd407ca4e76dfa6c081c14d99316ceab3bc4a08c54ec2492"
+    },
+    "airi/docs/ai/adr/wow-companion-proactive-speech.md": {
+      "bytes": 3184,
+      "sha256": "27876204f4a6694bc98e6df265fab238252560eab8cbad3adab6ee5b8645a418"
+    },
+    "airi/docs/ai/adr/wow-companion-product-name.md": {
+      "bytes": 443,
+      "sha256": "bab9a2a7dc851c0b3477b7113bc57576daf9dd53b488ccc2c4dba776c8a79f03"
+    },
+    "airi/docs/ai/adr/wow-companion-stable-profile.md": {
+      "bytes": 2279,
+      "sha256": "7c6810e69fc446ebb7d28b5fe82acc8e30a2b1eb84b4707776c57311f57ee8be"
+    },
+    "airi/docs/ai/adr/wow-companion-window-icon.md": {
+      "bytes": 464,
+      "sha256": "b79dbe1e33a3b25712c01b02af79924b63dd7f7eaab95296f0576e97e2815b11"
+    },
     "airi/docs/ai/adr/wow-companion.md": {
-      "bytes": 21440,
-      "sha256": "b6f62d797f5b1848c45aeb3cf8ebd1f7dd2ecd04d2179d57e3c1e88991e4e4f5"
+      "bytes": 28008,
+      "sha256": "80f420baa645c8f0128bb404b21de52a6dece4e0ad35678b4ef3a3ad8c9f9d2c"
     },
     "airi/docs/ai/audits/ui-components.csv": {
       "bytes": 142684,
@@ -11408,12 +11698,12 @@
       "sha256": "11833c89a749516b3d428c75981085513e612090331079508843d9f110a4b98e"
     },
     "airi/packages/i18n/src/locales/en/tamagotchi/stage.yaml": {
-      "bytes": 8187,
-      "sha256": "4026a09ad6c550083c11c271980125adae412d05b6b5f4c77356534531edda6c"
+      "bytes": 8226,
+      "sha256": "08110426634d4fa2599d0b833144685568990caa2123947d7a779dfe75b50e30"
     },
     "airi/packages/i18n/src/locales/en/wow-companion.yaml": {
-      "bytes": 11611,
-      "sha256": "57bed6237eff36abe032bb845c55bbbc078b5f8d647235f323d2b211444a8517"
+      "bytes": 18253,
+      "sha256": "9d46b6d487d1fee01b680d3523eee59b261e9af812cbeedac0829d7afd4af5a4"
     },
     "airi/packages/i18n/src/locales/es/base.yaml": {
       "bytes": 4518,
@@ -11768,12 +12058,12 @@
       "sha256": "c00bfc49d762ce64938137c139809edb60772bdc8a225b6e6075d539d7608d2f"
     },
     "airi/packages/i18n/src/locales/zh-Hans/tamagotchi/stage.yaml": {
-      "bytes": 7818,
-      "sha256": "ece958085ebcfd716f82d30d996c6ebd24e3c659c006a66a755ed0c622d41d1e"
+      "bytes": 7865,
+      "sha256": "6e84c4c03d4e4b4e001ae1d12da7ef584d28671d3a09e0877b96fdb7d871d2b2"
     },
     "airi/packages/i18n/src/locales/zh-Hans/wow-companion.yaml": {
-      "bytes": 11429,
-      "sha256": "8c6e3b04fe390265bd1606cdf9a72c417f43f98d31c002aeeb29bedabfbe5b7f"
+      "bytes": 17620,
+      "sha256": "3d86a0b54a743056f0276d5fee1f227c874079f6575f6000fc3fd003c2ba6d5f"
     },
     "airi/packages/i18n/src/locales/zh-Hant/base.yaml": {
       "bytes": 4105,
@@ -24006,6 +24296,110 @@
     "airi/vitest.config.ts": {
       "bytes": 332,
       "sha256": "9a19d4f0fbb7c17f454414f213f1852520d57b04c8b99b7db797fc75499bf933"
+    },
+    "assets/sylvanas-companion/.gitignore": {
+      "bytes": 254,
+      "sha256": "ea76b5b7461e7fee3570bb90ac33574e10440952b180750457ef473ff6d48cbc"
+    },
+    "assets/sylvanas-companion/README.md": {
+      "bytes": 5485,
+      "sha256": "1cd2646ad6787627112bf391bae151d95b3e78c75b86745f7ecc2417561d5114"
+    },
+    "assets/sylvanas-companion/output/airi-loader-report.json": {
+      "bytes": 639,
+      "sha256": "87220e0f64fd5693a001caa8b018264792adb25db6c6ac887ff998ea4e36de37"
+    },
+    "assets/sylvanas-companion/output/grip-closeup-idle.png": {
+      "bytes": 407723,
+      "sha256": "ca833f0e0696eb38ea5f0060d8e6cb4b95f3e9f6af056209d719a28cbbaa7058"
+    },
+    "assets/sylvanas-companion/output/grip-closeup-ready.png": {
+      "bytes": 298249,
+      "sha256": "e9fc622ed4c820148726d14cf67bb0122ef2e106aac1179f2b86afeef6b15db6"
+    },
+    "assets/sylvanas-companion/output/portrait.png": {
+      "bytes": 246592,
+      "sha256": "a882d3982f4e282f63094c0c76577df13b22c908639d6600fd8b732dd91dbfe1"
+    },
+    "assets/sylvanas-companion/output/sylvanas-companion.spine.zip": {
+      "bytes": 2692372,
+      "sha256": "fb8b7c47f23ed5043bb91c252b793e264ce84ce9e2d244c8cd67e24c0d8bb385"
+    },
+    "assets/sylvanas-companion/output/validation-report.json": {
+      "bytes": 7060,
+      "sha256": "05b8b6a7e922e900f6fded0bdae2ca02df06b559893bed50f0435ec27968af07"
+    },
+    "assets/sylvanas-companion/package.json": {
+      "bytes": 512,
+      "sha256": "2233366b5421098f2705b80fe25b4e767e2f289a0b7c26f63475943b5aa9c902"
+    },
+    "assets/sylvanas-companion/pnpm-lock.yaml": {
+      "bytes": 12014,
+      "sha256": "0d771c4d4a3852f7842f33f61b541eac79cdf8ed4057966ff7b3a249622ad635"
+    },
+    "assets/sylvanas-companion/preview/SPINE-RUNTIME-LICENSE.txt": {
+      "bytes": 1468,
+      "sha256": "435774fb793b0f67892899fc934f98009e64fd90ad3ab964117274e279a0f50e"
+    },
+    "assets/sylvanas-companion/preview/app.js": {
+      "bytes": 9461,
+      "sha256": "29b70711def938eb535f52cd45e4ca9fe800403cf188fa21a95ddb5cb84e8c21"
+    },
+    "assets/sylvanas-companion/preview/index.html": {
+      "bytes": 5969,
+      "sha256": "1dede51704d8002b6c783997ef592500f5518be5d17f2961d673a56f63eda3e1"
+    },
+    "assets/sylvanas-companion/source/arm-right-grip-clean.png": {
+      "bytes": 1290059,
+      "sha256": "13016a940d83551c307194800122f87dfa876a482e46ca24008c656ab1a7ab58"
+    },
+    "assets/sylvanas-companion/source/atlas-regions.json": {
+      "bytes": 43419,
+      "sha256": "a9f70ab8b4ee03c356e857a576d825255f999da6a0772f84a397decb6cf7b331"
+    },
+    "assets/sylvanas-companion/source/grip-landmarks.json": {
+      "bytes": 314,
+      "sha256": "e23247e37409e956ccecb66123571bc24d8777a1d04e8b274157eeff7efb66e8"
+    },
+    "assets/sylvanas-companion/source/prompt-grip-clean.txt": {
+      "bytes": 1834,
+      "sha256": "18f46314d694cf5ba30da1dce00a228b6668f293591aaf3632dcc79e2cc04351"
+    },
+    "assets/sylvanas-companion/source/prompt-grip.txt": {
+      "bytes": 2107,
+      "sha256": "4ec3f901eb7c0e9f260e15718e5d448cbc50562f9fd7a3de31ca6f8bdd046e60"
+    },
+    "assets/sylvanas-companion/source/prompt.txt": {
+      "bytes": 3526,
+      "sha256": "1ec0966a95185a105cd8dfc976a1155b888e49d22c38b14a97ff9010b66881e8"
+    },
+    "assets/sylvanas-companion/source/rig-layout.json": {
+      "bytes": 1974,
+      "sha256": "6a0b0ce56e32edc171ad922206e225dfd13a5bf8d99bf2b4c775e5756deec451"
+    },
+    "assets/sylvanas-companion/source/sylvanas-atlas.png": {
+      "bytes": 1329856,
+      "sha256": "f2ccd913607ca3d48fdace62748cf4740d317996169f9c3bad9423a1fdfbbe0b"
+    },
+    "assets/sylvanas-companion/tools/build-rig.mjs": {
+      "bytes": 29810,
+      "sha256": "533d1a4564741eed8425e3aa4f063a3a378fde3efe73d1d2399afcfa063e09e1"
+    },
+    "assets/sylvanas-companion/tools/check-airi-loader.mjs": {
+      "bytes": 1810,
+      "sha256": "a56dd40e3ffcd5b71091a0acbd71ce622cab543d145de70e77635649e00f2e3b"
+    },
+    "assets/sylvanas-companion/tools/prepare-grip-region.py": {
+      "bytes": 2069,
+      "sha256": "3933c29df102d4426018e113d4166fb053585af107aac37b59624839853e0c73"
+    },
+    "assets/sylvanas-companion/tools/serve-preview.py": {
+      "bytes": 904,
+      "sha256": "8164e046730ac156cebb971a0876280874564ec2e9f36e4a944e3a1f526fb569"
+    },
+    "assets/sylvanas-companion/tools/validate-rig.mjs": {
+      "bytes": 21564,
+      "sha256": "277e728f6f05af924c2bf0a3d973a39f542e694290f025e8f25bbebd9a1b2f3a"
     }
   },
   "airiGitFileModes": {
@@ -24027,7 +24421,11 @@
     "airi/packages/ui-transitions/netlify.toml": "100755",
     "airi/scripts/build-airi-docs.sh": "100755"
   },
-  "updatedAt": "2026-10-24T15:20:15.825939+00:00",
-  "companionVersion": "2.6.0",
-  "foreverAddonVersion": "1.3.0"
+  "updatedAt": "2026-10-26T08:58:56.979021+00:00",
+  "companionVersion": "2.12.4",
+  "foreverAddonVersion": "1.7.1",
+  "retailAddonVersion": "2.10.1",
+  "bridgeVersion": "2.11.1",
+  "repositoryTextLineEndings": "Synced text retains each tracked file's dominant line ending. New text uses LF. Delivery archives preserve source bytes.",
+  "deliveryArchive": "WOWAddons/WoWCompanion-2.12.4-source.zip"
 }

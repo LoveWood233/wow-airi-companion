@@ -217,7 +217,7 @@ class EquipmentSwapBoundaryTests(unittest.TestCase):
         state = CompanionState()
         state.ingest(snapshot())
         before = state.view()
-        pixels = pixels_for_frame(unchecked_frame(swap(r="user")), 2)
+        pixels = pixels_for_frame(unchecked_frame(swap(r="user")), 1)
         capture = Mock()
         capture.grab.return_value = pixels
         stop = Mock()

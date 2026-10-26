@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, onTestFinished, vi } from 'vitest'
 import { cleanup, render } from 'vitest-browser-vue'
 import { page, userEvent } from 'vitest/browser'
 import { defineComponent, h, nextTick, ref } from 'vue'
@@ -6,6 +6,8 @@ import { defineComponent, h, nextTick, ref } from 'vue'
 import SpeechCaptionBubble from './speech-caption-bubble.vue'
 
 import { stageOpaqueAttribute } from '../../composables/use-stage-painted-mask'
+import { i18n } from '../../modules/i18n'
+import { equipmentPromptActions } from '../../stores/wow-companion-equipment-prompt'
 
 import '@unocss/reset/tailwind.css'
 import '@proj-airi/ui/main.css'
@@ -46,6 +48,29 @@ afterEach(() => {
 })
 
 describe('spoken caption bubble', () => {
+  it.each(['en', 'zh-Hans'] as const)('renders the desktop equipment choices and hint with real %s translations', async (locale) => {
+    const previousLocale = i18n.global.locale.value
+    i18n.global.locale.value = locale
+    onTestFinished(() => {
+      i18n.global.locale.value = previousLocale
+    })
+    const translate = (key: string): string => i18n.global.t(key)
+    const prompt = { id: 'offer-localized', text: 'New equipment', phase: 'choosing' as const, deadline: Date.now() + 10_000 }
+    const options = equipmentPromptActions(prompt, translate)
+    const { screen, onChoose, actions } = renderCaption(prompt.text, 375, 600, options)
+    const accept = locale === 'en' ? 'Yes' : '好'
+    const decline = locale === 'en' ? 'No thanks' : '不用'
+    await expect.element(screen.getByRole('button', { name: accept, exact: true })).toBeVisible()
+    await expect.element(screen.getByRole('button', { name: decline, exact: true })).toBeVisible()
+    await expect.element(screen.getByRole('status')).toHaveTextContent(locale === 'en' ? 'Choose within 10 seconds.' : '请在 10 秒内选择。')
+    await expect.element(screen.getByRole('status')).toHaveTextContent(locale === 'en' ? 'Secondary-stat losses remain explicit.' : '每次换装均由你确认。')
+    expect(screen.getByRole('status').element().textContent).not.toContain('wow-companion.')
+    await screen.getByRole('button', { name: accept, exact: true }).click()
+    expect(onChoose).toHaveBeenCalledExactlyOnceWith(prompt.id, 'accept')
+    actions.value = equipmentPromptActions({ ...prompt, phase: 'accepted' }, translate)
+    await expect.element(screen.getByRole('button', { name: accept, exact: true })).not.toBeInTheDocument()
+  })
+
   it('shows only the current sentence and disappears when its owner clears the text', async () => {
     const { screen, text } = renderCaption()
     expect(screen.getByRole('status').query()).toBeNull()

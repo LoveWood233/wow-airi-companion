@@ -163,7 +163,7 @@ export class CompanionBridgeRuntime {
           owned.done = true
           if (this.owned === owned && this.status === 'running') {
             this.owned = undefined
-            this.fail('The WoW bridge exited. AIRI will retry after 30 seconds.')
+            this.fail('The WoW bridge exited. 魔兽陪伴精灵 will retry after 30 seconds.')
           }
           resolveExit()
         }
@@ -201,7 +201,7 @@ export class CompanionBridgeRuntime {
     catch (error) {
       await this.releaseOwned()
       if (!signal.aborted)
-        this.fail(`${errorMessageFrom(error) ?? 'The WoW bridge could not start.'} AIRI will retry after 30 seconds.`)
+        this.fail(`${errorMessageFrom(error) ?? 'The WoW bridge could not start.'} 魔兽陪伴精灵 will retry after 30 seconds.`)
       throw signal.aborted ? new Error('The WoW bridge start was cancelled.') : new Error(this.error ?? 'The WoW bridge could not start.')
     }
   }
@@ -237,12 +237,12 @@ export class CompanionBridgeRuntime {
     }
     const result = safeParse(healthSchema, value)
     const version = result.success && /^2\.(\d+)\.\d+$/.exec(result.output.version)
-    // Retail 2.1 and 2.2 remain supported through WCP1. Forever requires its own WCF1 service from release 2.3.
-    if (!response.ok || !result.success || !version || Number(version[1]) < (game === 'forever' ? 3 : 1)
+    // Full equipment snapshots require the bridge's gear decoder.
+    if (!response.ok || !result.success || !version || Number(version[1]) < 11
       || result.output.protocol !== gameProfiles[game].protocol
       || (result.output.game !== undefined && result.output.game !== game)
       || (game === 'forever' && result.output.game !== game)) {
-      throw new Error(`Port ${port} is occupied by an incompatible service. Use the ${game} WoW bridge for this profile.`)
+      throw new Error(`Port ${port} is occupied by an incompatible service. Use WoW bridge 2.11 or later for the ${game} profile.`)
     }
     return true
   }
@@ -268,7 +268,7 @@ export class CompanionBridgeRuntime {
     }
     if (await this.isFile(join(source, 'server.py')))
       return { script: join(source, 'server.py'), config: join(source, filename) }
-    throw new Error('WoW bridge files are missing. Restore WOWAddons beside the AIRI source, or reinstall the companion desktop package.')
+    throw new Error('WoW bridge files are missing. Restore WOWAddons beside the 魔兽陪伴精灵 source, or reinstall the companion desktop package.')
   }
 
   private async findPython(signal: AbortSignal) {
@@ -296,7 +296,7 @@ export class CompanionBridgeRuntime {
         }
       }
     }
-    throw new Error('Python 3.10 or newer was not found. Install Python with PATH enabled, then restart AIRI.')
+    throw new Error('Python 3.10 or newer was not found. Install Python with PATH enabled, then restart 魔兽陪伴精灵.')
   }
 
   private async isFile(path: string) {

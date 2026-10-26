@@ -1,5 +1,5 @@
 {
-  "v": 2,
+  "v": 3,
   "session": "1700000000-12500-273973",
   "seq": 4,
   "tick": 0,
@@ -8,6 +8,8 @@
   "realm": "Realm",
   "level": 29,
   "class": "MAGE",
+  "faction": "Alliance",
+  "race": "人类",
   "spec": 64,
   "map": 84,
   "zone": "Stormwind",

@@ -7,6 +7,8 @@ local records, cursor, current, currentPart, equipmentPhase = {}, 0, nil, 0, fal
 local heldFrame, dropped = nil, 0
 local swaps, swapCursor, dataOpportunity = {}, 0, 0
 local offer, offerOpportunity = nil, 0
+local gear, gearPart, gearReplay = nil, 0, false
+local comparisons, comparisonCursor, currentComparison, comparisonPart, comparisonReplay = {}, 0, nil, 0, false
 local alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 local keys = { "v", "id", "session", "guid", "itemID", "itemGUID", "link", "name", "type", "subtype", "equipLoc", "quality", "itemLevel", "requiredLevel", "stats", "tooltip", "quantity", "observedAt", "source", "infoComplete", "statsComplete", "tooltipComplete", "truncated" }
 
@@ -28,9 +30,9 @@ local function Value(value)
     return "null"
 end
 
-function Transfer.JSON(record)
+local function FieldsJSON(record, fieldKeys)
     local result = {}
-    for _, key in ipairs(keys) do
+    for _, key in ipairs(fieldKeys) do
         local value = record[key]
         local encoded
         if key == "stats" then
@@ -46,6 +48,9 @@ function Transfer.JSON(record)
     end
     return "{" .. table.concat(result, ",") .. "}"
 end
+
+
+function Transfer.JSON(record) return FieldsJSON(record, keys) end
 
 function Transfer.Base64(bytes)
     local result = {}
@@ -94,6 +99,167 @@ function Transfer.Add(record)
         cursor = math.max(0, cursor - 1)
         dropped = dropped + 1
     end
+end
+
+local gearItemKeys = { "itemID", "itemGUID", "link", "name", "type", "subtype", "equipLoc", "quality", "itemLevel", "requiredLevel", "stats", "tooltip", "infoComplete", "statsComplete", "tooltipComplete", "truncated" }
+local function GearItemJSON(item)
+    return FieldsJSON(item, gearItemKeys)
+end
+function Transfer.GearJSON(record)
+    local slots = {}
+    for _, entry in ipairs(record.slots) do
+        slots[#slots + 1] = '{"slot":' .. Value(entry.slot) .. ',"state":' .. Value(entry.state)
+            .. ',"item":' .. (entry.item and GearItemJSON(entry.item) or "null") .. '}'
+    end
+    return '{"v":1,"id":' .. Value(record.id) .. ',"session":' .. Value(record.session)
+        .. ',"guid":' .. Value(record.guid) .. ',"observedAt":' .. Value(record.observedAt)
+        .. ',"reason":' .. Value(record.reason) .. ',"slots":[' .. table.concat(slots, ",") .. ']}'
+end
+function Transfer.EncodeGear(record)
+    if type(record) ~= "table" or type(record.slots) ~= "table" or #record.slots ~= 19 then return nil, "invalid gear slots" end
+    for slot, entry in ipairs(record.slots) do
+        if entry.slot ~= slot or (entry.state ~= "equipped" and entry.state ~= "empty" and entry.state ~= "unknown")
+            or ((entry.state == "equipped") ~= (type(entry.item) == "table")) then return nil, "invalid gear slot state" end
+        local item = entry.item
+        if item then
+            local body = GearItemJSON(item)
+            while #body > 8192 and #item.tooltip > 0 do
+                table.remove(item.tooltip)
+                item.truncated, item.tooltipComplete = true, false
+                body = GearItemJSON(item)
+            end
+            while #body > 8192 and #item.stats > 0 do
+                table.remove(item.stats)
+                item.truncated, item.statsComplete = true, false
+                body = GearItemJSON(item)
+            end
+            if #body > 8192 then return nil, "gear item exceeds 8192 bytes" end
+        end
+    end
+    local body = Transfer.GearJSON(record)
+    if #body > 196608 then return nil, "gear snapshot exceeds 196608 bytes" end
+    local count, frames = math.ceil(#body / 240), {}
+    for part = 1, count do
+        local payload = '{"v":1,"kind":"gear","s":' .. Value(record.session) .. ',"g":' .. Value(record.guid)
+            .. ',"id":' .. Value(record.id) .. ',"p":' .. part .. ',"n":' .. count
+            .. ',"d":' .. Escape(Transfer.Base64(string.sub(body, (part - 1) * 240 + 1, part * 240))) .. '}'
+        if #payload > 504 then return nil, "gear fragment exceeds 504 bytes" end
+        frames[part] = Protocol.Frame(payload)
+    end
+    return frames, body
+end
+function Transfer.SetGear(record)
+    if not record then gear, gearPart, gearReplay = nil, 0, false; return end
+    local frames = Transfer.EncodeGear(record)
+    if not frames then dropped = dropped + 1; return false end
+    -- Only the latest coherent loadout is kept. Its fragments replay until a newer capture replaces it.
+    gear, gearPart, gearReplay = { frames = frames, fresh = true }, 0, false
+    -- Restart only interrupted old replay streams, so their later pass cannot resume beyond a receiver TTL.
+    if current and not current.fresh then current, currentPart = nil, 0 end
+    if currentComparison and not currentComparison.fresh then currentComparison, comparisonPart = nil, 0 end
+    return true
+end
+local function NextGear()
+    gearPart = gearPart % #gear.frames + 1
+    heldFrame = gear.frames[gearPart]
+    if gearPart == #gear.frames then gear.fresh = false; gearReplay = false end
+end
+
+local comparisonKeys = { "v", "id", "session", "guid", "class", "spec", "primary", "observedAt", "slot", "usable", "specMatch", "current", "candidate" }
+local comparisonItemKeys = { "itemID", "name", "itemLevel", "equipLoc", "type", "subtype", "stats", "complex", "complete" }
+local function ComparisonItem(item)
+    if not item then return "null" end
+    local values = {}
+    for _, key in ipairs(comparisonItemKeys) do
+        local encoded = Value(item[key])
+        if key == "stats" then
+            local entries = {}
+            for _, stat in ipairs(item.stats) do entries[#entries+1] = '{"key":'..Value(stat.key)..',"value":'..Value(stat.value)..'}' end
+            encoded = "["..table.concat(entries,",").."]"
+        end
+        values[#values+1] = Escape(key)..":"..encoded
+    end
+    return "{"..table.concat(values,",").."}"
+end
+function Transfer.ComparisonJSON(record)
+    local values = {}
+    for _, key in ipairs(comparisonKeys) do
+        local encoded = (key=="current" or key=="candidate") and ComparisonItem(record[key]) or Value(record[key])
+        values[#values+1] = Escape(key)..":"..encoded
+    end
+    return "{"..table.concat(values,",").."}"
+end
+local function ComparisonText(value,maximum)
+    if type(value)~="string" or #value>maximum or string.find(value,"[%z\1-\31\127]") or string.find(value,"\194[\128-\159]") then return false end
+    local index=1
+    while index<=#value do
+        local first,second=string.byte(value,index,index+1)
+        local width=first<128 and 1 or first>=194 and first<=223 and 2 or first>=224 and first<=239 and 3 or first>=240 and first<=244 and 4
+        if not width or index+width-1>#value then return false end
+        for offset=1,width-1 do local byte=string.byte(value,index+offset); if byte<128 or byte>191 then return false end end
+        if (first==224 and second<160) or (first==237 and second>=160) or (first==240 and second<144) or (first==244 and second>=144) then return false end
+        index=index+width
+    end
+    return true
+end
+local function ComparisonNumber(value,minimum,maximum,integer)
+    return type(value)=="number" and value==value and value>=minimum and value<=maximum and (not integer or value==math.floor(value))
+end
+local function ValidComparisonItem(item,candidate)
+    if type(item)~="table" or not ComparisonNumber(item.itemID,candidate and 1 or 0,2147483647,true)
+        or not ComparisonNumber(item.itemLevel,item.itemID==0 and -1 or 0,100000)
+        or type(item.complete)~="boolean" or type(item.complex)~="boolean" or type(item.stats)~="table" or #item.stats>32 then return false end
+    for _,key in ipairs({"name","equipLoc","type","subtype"}) do
+        if not ComparisonText(item[key],128) or (item.complete and item.itemID~=0 and item[key]=="") then return false end
+    end
+    if candidate and item.name=="" then return false end
+    if item.itemID==0 and (item.itemLevel~=-1 or #item.stats~=0) then return false end
+    local seen={}
+    for _,stat in ipairs(item.stats) do
+        if not ComparisonText(stat.key,64) or stat.key=="" or seen[stat.key] or not ComparisonNumber(stat.value,-1e12,1e12) then return false end
+        seen[stat.key]=true
+    end
+    return true
+end
+function Transfer.EncodeComparison(record)
+    if type(record)~="table" or record.v~=1 or not ComparisonNumber(record.id,1,2147483647,true)
+        or not ComparisonText(record.session,40) or not string.match(record.session,"^[A-Za-z0-9_-]+$")
+        or not ComparisonText(record.guid,48) or not string.match(record.guid,"^[A-Za-z0-9_-]+$")
+        or not ComparisonText(record.class,32) or not string.match(record.class,"^[A-Z_]+$")
+        or not ComparisonNumber(record.spec,0,2147483647,true) or (record.primary~=0 and record.primary~=1 and record.primary~=2 and record.primary~=4)
+        or not ComparisonNumber(record.observedAt,0,4102444800,true) or not ComparisonNumber(record.slot,0,19,true)
+        or type(record.usable)~="boolean" or (record.specMatch~=nil and type(record.specMatch)~="boolean")
+        or not ValidComparisonItem(record.candidate,true) or (record.slot==0)~=(record.current==nil)
+        or (record.current and not ValidComparisonItem(record.current,false)) then return nil,"invalid comparison facts" end
+    local body=Transfer.ComparisonJSON(record)
+    if #body>4096 then return nil,"comparison exceeds 4096 bytes" end
+    local frames,count={},math.ceil(#body/240)
+    for part=1,count do
+        local payload='{"v":1,"kind":"cmp","s":'..Value(record.session)..',"g":'..Value(record.guid)
+            ..',"id":'..Value(record.id)..',"p":'..part..',"n":'..count
+            ..',"d":'..Escape(Transfer.Base64(string.sub(body,(part-1)*240+1,part*240)))..'}'
+        if #payload>504 then return nil,"comparison fragment exceeds 504 bytes" end
+        frames[part]=Protocol.Frame(payload)
+    end
+    return frames,body
+end
+function Transfer.AddComparison(record)
+    local frames=Transfer.EncodeComparison(record)
+    if not frames then dropped=dropped+1; return false end
+    -- Fresh comparisons precede new acquisition details. Never strand an old partial stream beyond the receiver TTL.
+    if current and current.id~=record.id and currentPart>0 then
+        for index,entry in ipairs(records) do if entry==current then table.remove(records,index); break end end
+        current,currentPart=nil,0
+        cursor=math.max(0,cursor-1)
+        dropped=dropped+1
+    end
+    comparisons[#comparisons+1]={id=record.id,frames=frames,fresh=true,expires=(GetTime() or 0)+600}
+    if #comparisons>6 then
+        local index=currentComparison==comparisons[1] and 2 or 1
+        table.remove(comparisons,index); dropped=dropped+1
+        comparisonCursor=math.max(0,comparisonCursor-1)
+    end
+    return true
 end
 
 local swapKeys = { "v", "kind", "s", "g", "id", "e", "st", "r", "at", "slot", "item", "old" }
@@ -157,7 +323,7 @@ function Transfer.EncodeOffer(result)
         or not Integer(result.item, 1, 2147483647) or not Integer(result.old, 0, 2147483647)
         or not PlainName(result.n) or not Level(result.il, 0) or not Level(result.ol, -1)
         or (result.old == 0 and result.ol ~= -1) or (result.old ~= 0 and result.ol < 0)
-        or result.il <= result.ol
+        or result.il < result.ol
         or not Integer(result["until"], 1, 4102444800) then return nil end
     local values, allowed = {}, {}
     for _, key in ipairs(offerKeys) do values[#values + 1] = Escape(key) .. ":" .. Value(result[key]); allowed[key] = true end
@@ -180,6 +346,12 @@ function Transfer.Advance()
     heldFrame = nil
     if not equipmentPhase then return end
     local now = GetTime() or 0
+    for index=#comparisons,1,-1 do
+        if comparisons[index].expires<=now then
+            if currentComparison==comparisons[index] then currentComparison,comparisonPart=nil,0 end
+            table.remove(comparisons,index); comparisonCursor=math.max(0,comparisonCursor-1)
+        end
+    end
     for index = #swaps, 1, -1 do
         if swaps[index].expires <= now then table.remove(swaps, index); swapCursor = math.max(0, swapCursor - 1) end
     end
@@ -194,12 +366,12 @@ function Transfer.Advance()
     offerOpportunity = offerOpportunity + 1
     -- Offers use one in three data slots. Results use one in four of the remaining slots.
     -- Even with both, 35 equipment parts finish within 140 seconds, below the 180s receiver TTL.
-    if offer and (offerOpportunity % 3 == 1 or (#records == 0 and #swaps == 0)) then
+    if offer and (offerOpportunity % 3 == 1 or (#records == 0 and #swaps == 0 and #comparisons == 0 and not gear)) then
         heldFrame = offer.frame
         return
     end
     dataOpportunity = dataOpportunity + 1
-    if #swaps > 0 and (#records == 0 or dataOpportunity % 4 == 0) then
+    if #swaps > 0 and ((#records == 0 and #comparisons == 0 and not gear) or dataOpportunity % 4 == 0) then
         local nextSwap
         for _, entry in ipairs(swaps) do if entry.fresh then nextSwap = entry; break end end
         if not nextSwap then
@@ -207,6 +379,37 @@ function Transfer.Advance()
             nextSwap = swaps[swapCursor]
         end
         heldFrame, nextSwap.fresh = nextSwap.frame, false
+        return
+    end
+    local freshComparison = false
+    for _, entry in ipairs(comparisons) do if entry.fresh then freshComparison = true; break end end
+    if freshComparison and currentComparison and not currentComparison.fresh then currentComparison, comparisonPart = nil, 0 end
+    local freshEquipment = current and current.fresh or false
+    for _, entry in ipairs(records) do if entry.fresh then freshEquipment = true; break end end
+    if gear and not freshComparison and not freshEquipment then
+        -- Gear gets all remaining data slots for its first pass, then alternates with ordinary replays.
+        if gear.fresh or gearReplay or (#records == 0 and #comparisons == 0) then
+            NextGear()
+            if not gear.fresh then gearReplay = false end
+            return
+        end
+        gearReplay = true
+    end
+    if not currentComparison then
+        for _,entry in ipairs(comparisons) do if entry.fresh then currentComparison=entry; break end end
+        local freshEquipment=false
+        for _,entry in ipairs(records) do if entry.fresh then freshEquipment=true; break end end
+        if not currentComparison and not current and not freshEquipment and #comparisons>0 and (comparisonReplay or #records==0) then
+            comparisonCursor=comparisonCursor % #comparisons+1
+            currentComparison=comparisons[comparisonCursor]
+            comparisonReplay=false
+        end
+        if currentComparison then comparisonPart=0 end
+    end
+    if currentComparison then
+        comparisonPart=comparisonPart+1
+        heldFrame=currentComparison.frames[comparisonPart]
+        if comparisonPart>=#currentComparison.frames then currentComparison.fresh=false; currentComparison,comparisonPart=nil,0 end
         return
     end
     if not current then
@@ -220,11 +423,11 @@ function Transfer.Advance()
     if not current then return end
     currentPart = currentPart + 1
     heldFrame = current.frames[currentPart]
-    if currentPart >= #current.frames then current.fresh = false; current, currentPart = nil, 0 end
+    if currentPart >= #current.frames then current.fresh = false; current, currentPart = nil, 0; comparisonReplay=true end
 end
 
 function Transfer.Current(stateFrame) return heldFrame or stateFrame end
 
 function Transfer.Status()
-    return string.format("装备传输：缓存 %d/6 · 换装结果 %d/10 · 过载/编码跳过 %d · 状态与数据每秒交替", #records, #swaps, dropped)
+    return string.format("装备传输：缓存 %d/6 · 比较 %d/6 · 换装结果 %d/10 · 全身装备 %s · 过载/编码跳过 %d · 状态与数据每0.25秒交替", #records, #comparisons, #swaps, gear and (gearPart .. "/" .. #gear.frames) or "无", dropped)
 end

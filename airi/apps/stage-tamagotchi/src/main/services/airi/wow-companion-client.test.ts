@@ -18,6 +18,10 @@ function status(cursor: number): BridgeStatus {
     ageSeconds: null,
     eventCursor: cursor,
     events: [],
+    equipmentComparisons: [],
+    equipmentComparisonError: null,
+    equipmentLoadout: null,
+    equipmentLoadoutError: null,
     config: { x: 8, y: 8, cellSize: 2, pollMs: 500, paused: false },
     error: null,
   }

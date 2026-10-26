@@ -267,7 +267,7 @@ C_Container.GetContainerItemInfo=function(bag,slot) if bag==0 and slot==1 then r
         ns = lua.table()
         load = lua.eval(b"function(source,name,ns) assert(loadstring(source))(name,ns) end")
         addon = ROOT.name.encode()
-        for filename in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "ConfirmEquip.lua", "Telemetry.lua", ROOT.name + ".lua"):
+        for filename in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", ROOT.name + ".lua"):
             load((ROOT / filename).read_bytes(), addon, ns)
         lua.globals().Fire(b"ADDON_LOADED", addon)
         lua.globals().Fire(b"PLAYER_ENTERING_WORLD")
@@ -284,7 +284,7 @@ C_Container.GetContainerItemInfo=function(bag,slot) if bag==0 and slot==1 then r
 
         first = pixels()
         payload_length = struct.unpack("<H", first[4:6])[0]
-        self.assertEqual(json.loads(first[8:8 + payload_length])["kind"], "eq")
+        self.assertEqual(json.loads(first[8:8 + payload_length])["kind"], "cmp")
         lua.globals().Fire(b"PLAYER_LEVEL_UP", 30)
         self.assertEqual(pixels(), first)
         lua.globals().Heartbeat()

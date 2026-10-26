@@ -2,7 +2,7 @@
 local addonName, ns = ...
 local ConfirmEquip = {}
 ns.ConfirmEquip = ConfirmEquip
-local owner, settings, emit, say, publishOffer, popupKey
+local owner, settings, emit, say, publishOffer, publishComparison, popupKey
 local queue, current, seen = {}, nil, {}
 local online, nextResult, skipped = false, 0, 0
 local nextPromptAt, nextOffer = 0, 0
@@ -99,7 +99,9 @@ local function Eligible(record)
     if not Number(record.itemLevel) or not Number(record.requiredLevel) or not String(record.name) then return false end
     local level = Query(UnitLevel, "player")
     if not Number(level) or level < record.requiredLevel then return false end
-    return C_Item and Query(C_Item.IsEquippableItem, record.link) == true and Query(C_Item.IsUsableItem, record.link) == true
+    -- Passive equipment does not need an item-use action. Capture/Validate also
+    -- require current spec compatibility and complete, rechecked upgrade facts.
+    return C_Item and Query(C_Item.IsEquippableItem, record.link) == true
 end
 local function Choose(record)
     local candidates = slots[record.equipLoc]
@@ -139,7 +141,7 @@ local function Choose(record)
         guard[slot] = old
         if not chosen or old.level < chosen.level then chosen = old end
     end
-    if not chosen or record.itemLevel <= chosen.level then return nil end
+    if not chosen or record.itemLevel < chosen.level then return nil end
     return chosen, guard
 end
 local function Offer(entry, status)
@@ -214,6 +216,10 @@ local function Validate(entry)
             if locked == true then return nil, "locked" elseif locked ~= false then return nil, "restricted" end
         end
     end
+    local comparison,assessment=ns.EquipmentCompare.Capture(owner,entry.record,entry.old.slot)
+    if comparison.spec~=entry.comparison.spec or comparison.primary~=entry.comparison.primary
+        or comparison.class~=entry.comparison.class or not ns.EquipmentCompare.CanOffer(assessment) then return nil,"changed" end
+    entry.assessment,entry.comparison=assessment,comparison
     return Find(entry.record)
 end
 local function Verify(entry, fromClick)
@@ -296,8 +302,9 @@ local function Cancel(_, entry, reason)
     elseif reason == "clicked" then Finish(entry, "declined", "user")
     else Finish(entry, "failed", "unavailable") end
 end
-function ConfirmEquip.Initialize(state, config, callback, printer, proposalCallback)
+function ConfirmEquip.Initialize(state, config, callback, printer, proposalCallback, comparisonCallback)
     owner, settings, emit, say, publishOffer = state, config, callback, printer, proposalCallback
+    publishComparison=comparisonCallback
     queue, current, seen, online, nextResult, skipped = {}, nil, {}, false, 0, 0
     nextPromptAt, nextOffer = 0, 0
     if type(settings.confirmEquip) ~= "boolean" then settings.confirmEquip = true end
@@ -315,14 +322,18 @@ function ConfirmEquip.Initialize(state, config, callback, printer, proposalCallb
         end }
 end
 function ConfirmEquip.Add(record)
-    if settings.confirmEquip ~= true or seen[record.id] then return end
+    if seen[record.id] then return end
     seen[record.id] = true
-    if not Eligible(record) then skipped = skipped + 1; return end
+    local comparison,assessment=ns.EquipmentCompare.Capture(owner,record)
+    local published=publishComparison and publishComparison(comparison)
+    if settings.confirmEquip ~= true or published~=true or not ns.EquipmentCompare.CanOffer(assessment) then skipped=skipped+1; return false end
+    if not Eligible(record) then skipped = skipped + 1; return false end
     local old, guard = Choose(record)
-    if not old or not Find(record) then skipped = skipped + 1; return end
-    if #queue + (current and 1 or 0) >= 6 then skipped = skipped + 1; return end
-    queue[#queue + 1] = { record = record, old = old, guard = guard, phase = "queued", expires = Clock() + 120 }
+    if not old or old.slot~=comparison.slot or not Find(record) then skipped = skipped + 1; return false end
+    if #queue + (current and 1 or 0) >= 6 then skipped = skipped + 1; return false end
+    queue[#queue + 1] = { record = record, old = old, guard = guard, comparison=comparison, assessment=assessment, phase = "queued", expires = Clock() + 120 }
     ConfirmEquip.Tick()
+    return true
 end
 function ConfirmEquip.Tick()
     if current and current.phase == "await" then
@@ -356,8 +367,13 @@ function ConfirmEquip.Tick()
     entry.phase, entry.hidden = "prompt", nil
     local remaining = entry.expires - Clock()
     StaticPopupDialogs[popupKey].timeout = math.min(120, remaining)
-    local text = string.format("发现更高装等或空槽装备，是否换装？\n\n%s：%s（装等 %s）\n替换为：%s（装等 %s）\n\n仅按装等筛选，不代表伤害提升。\n套装、特效、附魔与属性搭配未计入收益，请先核对物品提示。\n点击后可能仍需处理游戏原生绑定、退款或交易确认。\n剩余最多 %d 秒，请在游戏内点击确认。",
-        slotNames[entry.old.slot], entry.old.name, entry.old.id == 0 and "—" or tostring(entry.old.level), entry.record.name, tostring(entry.record.itemLevel), math.floor(remaining))
+    local tradeoff=entry.assessment.reason=="primary_upgrade_tradeoff"
+    local explanation=tradeoff and "装等和当前主属性提高，但副属性有取舍，综合收益未确定。请核对后决定。"
+        or "已核对专精、类型及量化属性：无属性下降且至少一项提升，或对应栏位为空。"
+    local text = string.format("%s，是否换装？\n\n%s：%s（装等 %s）\n替换为：%s（装等 %s）\n\n%s\n%s\n套装、特效、附魔仍需自行复核。\n点击后可能仍需处理游戏原生绑定、退款或交易确认。\n剩余最多 %d 秒，请在游戏内点击确认。",
+        tradeoff and "发现主属性提高但副属性有取舍的装备" or "发现同类属性明确提升或可用空槽装备",
+        slotNames[entry.old.slot], entry.old.name, entry.old.id == 0 and "—" or tostring(entry.old.level), entry.record.name, tostring(entry.record.itemLevel),
+        explanation,ns.EquipmentCompare.Describe(entry.comparison),math.floor(remaining))
     local dialog = StaticPopup_Show(popupKey, text, nil, entry)
     if not dialog and not entry.done then Finish(entry, "failed", "unavailable")
     elseif dialog and entry == current and not entry.done and entry.phase == "prompt" and not entry.hidden then
@@ -383,9 +399,15 @@ function ConfirmEquip.OnEvent(event)
     if event ~= "PLAYER_REGEN_DISABLED" and event ~= "PLAYER_DEAD" then ConfirmEquip.Tick() end
 end
 function ConfirmEquip.Command(arg)
-    if arg == "on" then settings.confirmEquip = true; say("确认换装询问已开启，只处理此后新观察到的装备。")
+    local target=string.match(arg,"^check%s+(%d+)$")
+    if arg=="check" or target then
+        if settings.confirmEquip~=true then say("确认换装询问已关闭，请先使用 equip on。"); return end
+        local accepted,unready=ns.Equipment.Review(ConfirmEquip.Add,target and tonumber(target))
+        say(string.format("背包装备复查：提出 %d 件，资料未就绪 %d 件；未写入新的装备获取历史。",accepted,unready))
+        return
+    elseif arg == "on" then settings.confirmEquip = true; say("确认换装询问已开启，只处理此后新观察到的装备。")
     elseif arg == "off" then settings.confirmEquip = false; CancelAll("disabled"); say("确认换装询问已关闭。")
-    elseif arg ~= "status" then say("用法：equip on | off | status"); return end
+    elseif arg ~= "status" then say("用法：equip on | off | status | check [物品ID]"); return end
     say(ConfirmEquip.Status())
 end
 function ConfirmEquip.Status()

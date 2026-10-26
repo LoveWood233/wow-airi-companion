@@ -3,6 +3,7 @@ import type { AiriCard } from '@proj-airi/stage-ui/stores/modules/airi-card'
 import type { ControlsIslandDock } from './use-controls-island-placement'
 
 import en from '@proj-airi/i18n/locales/en'
+import zhHans from '@proj-airi/i18n/locales/zh-Hans'
 
 import { useAiriCardStore } from '@proj-airi/stage-ui/stores/modules/airi-card'
 import { useArtistryStore } from '@proj-airi/stage-ui/stores/modules/artistry'
@@ -13,7 +14,7 @@ import { useSettings } from '@proj-airi/stage-ui/stores/settings'
 import { useSettingsStageModel } from '@proj-airi/stage-ui/stores/settings/stage-model'
 import { useTheme } from '@proj-airi/ui'
 import { createPinia } from 'pinia'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, onTestFinished, vi } from 'vitest'
 import { render } from 'vitest-browser-vue'
 import { page } from 'vitest/browser'
 import { computed, defineComponent, h, nextTick, ref } from 'vue'
@@ -21,7 +22,7 @@ import { createI18n } from 'vue-i18n'
 
 import ControlsIsland from './index.vue'
 
-import { electronOpenSettings } from '../../../../shared/eventa'
+import { electronAuthStartLogin, electronOpenSettings } from '../../../../shared/eventa'
 import { controlsIslandPlacementKey } from './use-controls-island-placement'
 
 import '@unocss/reset/tailwind.css'
@@ -29,6 +30,7 @@ import 'virtual:uno.css'
 
 const isOutside = ref(false)
 const openSettings = vi.fn().mockResolvedValue(undefined)
+const startSigningIn = vi.fn().mockResolvedValue(undefined)
 const authState = vi.hoisted(() => ({
   credits: { value: 0 },
   isAuthenticated: { value: false },
@@ -43,7 +45,13 @@ const authState = vi.hoisted(() => ({
 
 vi.mock('@proj-airi/electron-vueuse', () => ({
   useElectronEventaContext: () => ref({ on: vi.fn(() => vi.fn()), emit: vi.fn() }),
-  useElectronEventaInvoke: (event: unknown) => event === electronOpenSettings ? openSettings : vi.fn().mockResolvedValue(false),
+  useElectronEventaInvoke: (event: unknown) => {
+    if (event === electronOpenSettings)
+      return openSettings
+    if (event === electronAuthStartLogin)
+      return startSigningIn
+    return vi.fn().mockResolvedValue(false)
+  },
   useElectronMouseInElement: () => ({ isOutside }),
 }))
 
@@ -73,7 +81,7 @@ const sizes = ['small', 'large', 'auto'] as const
 
 function mountControlsIsland(dock: ControlsIslandDock, size: typeof sizes[number] = 'auto', dockRef = ref(dock), initializeProfile = false) {
   const pinia = createPinia()
-  const i18n = createI18n({ legacy: false, locale: 'en', messages: { en } })
+  const i18n = createI18n({ legacy: false, locale: 'en', messages: { en, 'zh-Hans': zhHans } })
   const component = initializeProfile
     ? defineComponent({
         setup() {
@@ -129,6 +137,7 @@ function mountControlsIsland(dock: ControlsIslandDock, size: typeof sizes[number
 beforeEach(() => {
   isOutside.value = false
   openSettings.mockClear()
+  startSigningIn.mockClear()
   authState.credits.value = 0
   authState.isAuthenticated.value = false
   authState.needsLogin.value = false
@@ -136,6 +145,77 @@ beforeEach(() => {
 })
 
 describe('controls Island overflow', () => {
+  it.each(docks.flatMap(dock => (['en', 'zh-Hans'] as const).map(locale => ({ dock, locale }))))('shows the full expanded menu at the native minimum width for $dock in $locale', async ({ dock, locale }) => {
+    await page.viewport(204, 308)
+    const { i18n, screen } = mountControlsIsland(dock, 'large')
+    i18n.global.locale.value = locale
+    const label = (key: string) => i18n.global.t(`tamagotchi.stage.controls-island.${key}`)
+    await screen.getByLabelText(label('expand'), { exact: true }).click()
+    const island = screen.getByTestId('controls-island').element() as HTMLElement
+    const menu = screen.getByTestId('controls-menu').element() as HTMLElement
+    const menuViewport = menu.querySelector<HTMLElement>('[data-reka-scroll-area-viewport]')!
+    await expect.poll(() => menuViewport.scrollWidth).toBeGreaterThan(menuViewport.clientWidth)
+
+    // A restored 204px native window clips the menu. The desktop now widens that window to 300px.
+    await page.viewport(300, 308)
+    await expect.poll(() => menuViewport.scrollWidth - menuViewport.clientWidth).toBeLessThanOrEqual(1)
+    await expect.poll(() => island.getBoundingClientRect().left).toBeGreaterThanOrEqual(8)
+    await expect.poll(() => island.getBoundingClientRect().right).toBeLessThanOrEqual(292)
+    const buttons = Array.from(menu.querySelectorAll<HTMLButtonElement>('button'))
+      .filter(button => button.getBoundingClientRect().width > 0 && getComputedStyle(button).visibility !== 'hidden')
+    expect(buttons.length).toBeGreaterThanOrEqual(10)
+    for (const button of buttons) {
+      const bounds = button.getBoundingClientRect()
+      expect(bounds.left).toBeGreaterThanOrEqual(8)
+      expect(bounds.right).toBeLessThanOrEqual(292)
+      expect(bounds.top).toBeGreaterThanOrEqual(8)
+      expect(bounds.bottom).toBeLessThanOrEqual(300)
+    }
+    const card = screen.getByRole('button', { name: label('open-wow-companion'), exact: true }).element() as HTMLElement
+    expect(card.scrollWidth).toBeLessThanOrEqual(card.clientWidth)
+    await screen.getByTestId('controls-island').screenshot({ path: `__screenshots__/expanded-menu-300-${dock}-${locale}.png` })
+  })
+
+  it.each([
+    { authenticated: false, locale: 'en', theme: 'light' },
+    { authenticated: true, locale: 'zh-Hans', theme: 'dark' },
+  ] as const)('opens the Retail information card in $locale while authenticated=$authenticated', async ({ authenticated, locale, theme }) => {
+    await page.viewport(375, 600)
+    const { auth, i18n, screen } = mountControlsIsland('bottom-right')
+    auth.isAuthenticated.value = authenticated
+    if (authenticated) {
+      auth.user.value = {
+        createdAt: new Date('2020-01-01'),
+        email: 'user@example.test',
+        emailVerified: true,
+        id: 'user',
+        name: 'Companion user',
+        updatedAt: new Date('2020-01-01'),
+      }
+    }
+    i18n.global.locale.value = locale
+    const { themeMode } = useTheme()
+    const previousTheme = themeMode.value
+    onTestFinished(() => {
+      themeMode.value = previousTheme
+    })
+    themeMode.value = theme
+    const label = (key: string) => i18n.global.t(`tamagotchi.stage.controls-island.${key}`)
+    await screen.getByLabelText(label('expand'), { exact: true }).click()
+    const card = screen.getByRole('button', { name: label('open-wow-companion'), exact: true })
+    await expect.element(card).toBeVisible()
+    const menu = screen.getByTestId('controls-menu').element()
+    expect(menu.querySelector('button')?.textContent).toContain(label('open-wow-companion'))
+    expect(Array.from(menu.querySelectorAll('button')).some(button => button.textContent?.trim() === label('login'))).toBe(false)
+    const island = screen.getByTestId('controls-island').element() as HTMLElement
+    expect(island.getBoundingClientRect().left).toBeGreaterThanOrEqual(8)
+    expect(island.getBoundingClientRect().right).toBeLessThanOrEqual(367)
+    await screen.getByTestId('controls-island').screenshot({ path: `__screenshots__/wow-info-card-${locale}-${theme}.png` })
+    await card.click()
+    expect(openSettings).toHaveBeenCalledExactlyOnceWith({ route: '/settings/wow-companion' })
+    expect(startSigningIn).not.toHaveBeenCalled()
+  })
+
   for (const dock of docks) {
     for (const size of sizes) {
       // ROOT CAUSE:
@@ -160,7 +240,8 @@ describe('controls Island overflow', () => {
         expect(main.getBoundingClientRect().right).toBe(mainBefore.right)
         await expect.poll(() => scrollOwners(island)).toHaveLength(0)
         const naturalHeight = island.getBoundingClientRect().height
-        const naturalWidth = island.getBoundingClientRect().width
+        // Overflow APIs round to CSS pixels. Use the same units for the one-pixel boundary probes.
+        const naturalWidth = island.scrollWidth
         const menuHeight = menu.querySelector<HTMLElement>('.w-max')!.offsetHeight
         const isTop = dock.startsWith('top')
         const isLeft = dock.endsWith('left')
@@ -189,9 +270,10 @@ describe('controls Island overflow', () => {
           expect(island.getBoundingClientRect().left).toBeGreaterThanOrEqual(8)
           if (width < naturalWidth + 16) {
             const owner = Array.from(island.querySelectorAll<HTMLElement>('[data-reka-scroll-area-viewport]'))
-              .find(viewport => viewport.scrollWidth > viewport.clientWidth)!
-            owner.scrollLeft = owner.scrollWidth
-            expect(owner.scrollLeft).toBeGreaterThan(0)
+              .find(viewport => viewport.scrollWidth > viewport.clientWidth)
+            expect(owner, `Expected horizontal overflow at ${width}px`).toBeDefined()
+            owner!.scrollLeft = owner!.scrollWidth
+            expect(owner!.scrollLeft).toBeGreaterThan(0)
           }
         }
 
@@ -288,15 +370,15 @@ describe('controls Island overflow', () => {
   })
 
   // ROOT CAUSE:
-  // Authentication content can grow after the right-docked Island has been
+  // Translated menu content can grow after the right-docked Island has been
   // aligned, which changes the horizontal overflow range.
   //
-  // Before the patch, the right edge moved out of view after the user signed in.
+  // Before the patch, longer text moved the right edge out of view.
   //
   // We fixed this by observing content geometry and realigning the dock edge.
-  it('issue #2400 realigns the right dock after authentication content grows', async () => {
+  it('issue #2400 realigns the right dock after the information-card label grows', async () => {
     await page.viewport(450, 600)
-    const { auth, i18n, screen } = mountControlsIsland('bottom-right')
+    const { i18n, screen } = mountControlsIsland('bottom-right')
     const label = (key: string) => i18n.global.t(`tamagotchi.stage.controls-island.${key}`)
 
     await screen.getByLabelText(label('expand'), { exact: true }).click()
@@ -306,16 +388,15 @@ describe('controls Island overflow', () => {
     await expect.poll(() => viewport.scrollLeft).toBeGreaterThan(0)
     const previousScrollWidth = viewport.scrollWidth
 
-    auth.credits.value = 999999999
-    auth.isAuthenticated.value = true
-    auth.user.value = {
-      createdAt: new Date('2020-01-01'),
-      email: 'user@example.com',
-      emailVerified: true,
-      id: 'user',
-      name: 'A very long authenticated user name that changes the island width',
-      updatedAt: new Date('2020-01-01'),
-    }
+    const previousLabel = label('open-wow-companion')
+    onTestFinished(() => {
+      i18n.global.mergeLocaleMessage('en', {
+        tamagotchi: { stage: { 'controls-island': { 'open-wow-companion': previousLabel } } },
+      })
+    })
+    i18n.global.mergeLocaleMessage('en', {
+      tamagotchi: { stage: { 'controls-island': { 'open-wow-companion': 'World of Warcraft character information and equipment history' } } },
+    })
 
     await expect.poll(() => viewport.scrollWidth).toBeGreaterThan(previousScrollWidth)
     await expect.poll(() => viewport.scrollLeft).toBe(viewport.scrollWidth - viewport.clientWidth)
@@ -606,9 +687,9 @@ it('assigns sideways overflow to the necessary menu axes without nested scrollin
   const viewport = menu.querySelector<HTMLElement>('[data-reka-scroll-area-viewport]')!
   const outer = island.querySelector<HTMLElement>('[data-reka-scroll-area-viewport]')!
   await expect.poll(() => scrollOwners(island)).toHaveLength(0)
-  // Extra auth-row spacing exercises content growth with native layout intact.
-  const login = menu.querySelector<HTMLButtonElement>('button')!
-  login.style.paddingBlock = '3rem'
+  // Extra information-row spacing exercises content growth with native layout intact.
+  const informationCard = menu.querySelector<HTMLButtonElement>('button')!
+  informationCard.style.paddingBlock = '3rem'
   await expect.poll(() => content.offsetHeight).toBeGreaterThan(main.offsetHeight + 20)
   const menuHeight = content.offsetHeight
   const narrowWidth = main.offsetWidth + 12 + content.offsetWidth - 20 + 16

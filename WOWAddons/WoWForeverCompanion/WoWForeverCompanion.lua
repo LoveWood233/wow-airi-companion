@@ -3,7 +3,7 @@ local addonName, ns = ...
 local Protocol, Telemetry, Money = ns.Protocol, ns.Telemetry, ns.Money
 local Equipment, Transfer, ConfirmEquip = ns.Equipment, ns.Transfer, ns.ConfirmEquip
 local Public = Protocol.Public
-local state, config, db, ticker, pendingLevel
+local state, config, db, ticker, transmissionTicker, pendingLevel
 local ready, online, combat, dead = false, false, false, false
 local refreshTimers = {}
 local defaults = { telemetry = true, x = 8, y = 8, cell = 1 }
@@ -85,6 +85,9 @@ local function Sample()
     state.account, state.moneyEpoch, state.copper, state.earned, state.spent = Money.Sample(guid, online)
     state.name = Text(Call(UnitName, "player"), state.name or "", 48)
     state.realm = Text(Call(GetRealmName), state.realm or "", 48)
+    -- Never infer faction from race or retain either identity field when its API is unavailable.
+    state.faction = Protocol.Faction(Call(UnitFactionGroup, "player"))
+    state.race = Protocol.Race(Call(UnitRace, "player"))
     local level = Number(Call(UnitLevel, "player"), state.level or 0, 255)
     if pendingLevel then level = math.max(level, pendingLevel) end
     state.level = level
@@ -133,22 +136,30 @@ local function Initialize()
     config.x = Number(config.x, 8, 16000)
     config.y = Number(config.y, 8, 16000)
     config.cell = math.max(1, math.min(6, Number(config.cell, 1, 6)))
+    -- Migrate existing large grids once; later explicit cell choices survive reloads.
+    if config.compactLayoutVersion ~= 1 then
+        config.cell, config.compactLayoutVersion = 1, 1
+    end
     local timestamp = Number(Call(GetServerTime) or Call(time), 0)
     local uptime = Number((Call(GetTime) or 0) * 1000, 0)
-    state = { v = 2, session = string.format("%d-%d-%d", timestamp, uptime, math.random(100000, 999999)), seq = 0, tick = 0, guid = "", name = "", realm = "", level = 0, class = "", spec = 0, map = 0, zone = "当前位置暂不可用", combat = false, dead = false, online = false }
+    state = { v = 3, session = string.format("%d-%d-%d", timestamp, uptime, math.random(100000, 999999)), seq = 0, tick = 0, guid = "", name = "", realm = "", level = 0, class = "", spec = 0, map = 0, zone = "当前位置暂不可用", combat = false, dead = false, online = false }
     Telemetry.Initialize(config)
     ConfirmEquip.Initialize(state, config, Transfer.AddSwap, Print, function(offer)
         Transfer.SetOffer(offer)
         if ready then Export() end
-    end)
+    end, Transfer.AddComparison)
     Equipment.Initialize(state, function(record)
         Transfer.Add(record)
         ConfirmEquip.Add(record)
-    end)
+    end, Transfer.SetGear)
     ready = true
     ticker = C_Timer.NewTicker(1, function()
         state.tick = (state.tick + 1) % 2147483647
         ConfirmEquip.Tick()
+        Export()
+    end)
+    -- Keep business heartbeats at one second while each data frame remains visible for 250 ms.
+    transmissionTicker = C_Timer.NewTicker(0.25, function()
         Transfer.Advance()
         Export()
     end)
@@ -156,18 +167,19 @@ local function Initialize()
 end
 
 local events = CreateFrame("Frame")
-for _, event in ipairs({ "ADDON_LOADED", "PLAYER_ENTERING_WORLD", "PLAYER_LEAVING_WORLD", "PLAYER_LOGOUT", "PLAYER_MONEY", "PLAYER_LEVEL_UP", "ZONE_CHANGED_NEW_AREA", "ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "PLAYER_SPECIALIZATION_CHANGED", "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "PLAYER_DEAD", "PLAYER_ALIVE", "PLAYER_UNGHOST", "UI_SCALE_CHANGED", "DISPLAY_SIZE_CHANGED", "BAG_UPDATE_DELAYED", "PLAYER_EQUIPMENT_CHANGED", "ITEM_PUSH", "GET_ITEM_INFO_RECEIVED", "ITEM_DATA_LOAD_RESULT" }) do events:RegisterEvent(event) end
+for _, event in ipairs({ "ADDON_LOADED", "PLAYER_ENTERING_WORLD", "PLAYER_LEAVING_WORLD", "PLAYER_LOGOUT", "PLAYER_MONEY", "PLAYER_LEVEL_UP", "ZONE_CHANGED_NEW_AREA", "ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "PLAYER_SPECIALIZATION_CHANGED", "NEUTRAL_FACTION_SELECT_RESULT", "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "PLAYER_DEAD", "PLAYER_ALIVE", "PLAYER_UNGHOST", "UI_SCALE_CHANGED", "DISPLAY_SIZE_CHANGED", "BAG_UPDATE_DELAYED", "PLAYER_EQUIPMENT_CHANGED", "ITEM_PUSH", "GET_ITEM_INFO_RECEIVED", "ITEM_DATA_LOAD_RESULT" }) do events:RegisterEvent(event) end
 events:SetScript("OnEvent", function(_, event, arg1, arg2)
     if event == "ADDON_LOADED" then if arg1 == addonName then Initialize() end; return end
     if not ready then return end
     ConfirmEquip.OnEvent(event, arg1, arg2)
-    Equipment.OnEvent(event, arg1, arg2)
+    if event ~= "PLAYER_ENTERING_WORLD" then Equipment.OnEvent(event, arg1, arg2) end
     if event == "PLAYER_ENTERING_WORLD" then
         online = true
         local isCombat, isDead = Call(InCombatLockdown), Call(UnitIsDeadOrGhost, "player")
         if type(isCombat) == "boolean" then combat = isCombat end
         if type(isDead) == "boolean" then dead = isDead end
         ScheduleRefresh()
+        Equipment.OnEvent(event, arg1, arg2)
     elseif event == "PLAYER_LEAVING_WORLD" or event == "PLAYER_LOGOUT" then
         CancelRefreshTimers()
         online = false
@@ -208,8 +220,8 @@ SlashCmdList.WOWFOREVERCOMPANION = function(message)
         config.x, config.y = x, y
         Telemetry.UpdateLayout(); Export()
         Print(string.format("遥测位置：%d, %d；请同步桌面端坐标。", x, y))
-    elseif command == "cell" then
-        local cell = tonumber(arg)
+    elseif command == "cell" or command == "compact" then
+        local cell = command == "compact" and 1 or tonumber(arg)
         if not cell or cell ~= math.floor(cell) or cell < 1 or cell > 6 then Print("用法：/wowf cell 1（1–6 整数像素）"); return end
         config.cell = cell
         Telemetry.UpdateLayout(); Export()
@@ -231,7 +243,7 @@ SlashCmdList.WOWFOREVERCOMPANION = function(message)
         Print(Money.Format(state.copper) .. " · 累计收入 " .. Money.Format(state.earned) .. " · 累计支出 " .. Money.Format(state.spent))
     else
         Print("/wowf telemetry 遥测；status 状态；selftest 编码自检")
-        Print("equip on | off | status：开启、关闭或查看逐件确认换装")
-        Print("/wowf pos 8 8 位置；cell 1 像素尺寸；reset 重置设置")
+        Print("equip on | off | status；equip check [物品ID]：复查当前背包装备")
+        Print("/wowf pos 8 8 位置；compact 最小网格；cell 1 像素尺寸；reset 重置设置")
     end
 end

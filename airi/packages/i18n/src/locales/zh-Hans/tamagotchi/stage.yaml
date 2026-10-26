@@ -47,6 +47,7 @@ docs:
   'expand': 展开
   'collapse': 折叠
   'login': 登录
+  'open-wow-companion': 魔兽世界信息卡
   'logging-in': 登录中...
   'account': 账号
   'logout': 退出登录

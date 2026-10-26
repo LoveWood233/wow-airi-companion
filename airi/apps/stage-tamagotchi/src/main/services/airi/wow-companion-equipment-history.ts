@@ -107,7 +107,7 @@ export class CompanionEquipmentHistory {
       if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT')
         return
       this.blocked = true
-      this.storageError = `Cannot load WoW equipment history (${this.filePath}). Restore the file and restart AIRI: ${errorMessageFrom(error) ?? 'Unknown read error'}`
+      this.storageError = `Cannot load WoW equipment history (${this.filePath}). Restore the file and restart 魔兽陪伴精灵: ${errorMessageFrom(error) ?? 'Unknown read error'}`
     }
   }
 
@@ -147,7 +147,7 @@ export class CompanionEquipmentHistory {
       this.storageError = null
     }
     catch (error) {
-      this.storageError = `Cannot save WoW equipment history (${this.filePath}). Changes are only in memory. AIRI will retry: ${errorMessageFrom(error) ?? 'Unknown write error'}`
+      this.storageError = `Cannot save WoW equipment history (${this.filePath}). Changes are only in memory. 魔兽陪伴精灵 will retry: ${errorMessageFrom(error) ?? 'Unknown write error'}`
     }
     finally {
       // Cleanup cannot replace the write error that explains the unsaved history.

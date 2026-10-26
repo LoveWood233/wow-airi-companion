@@ -10,6 +10,8 @@ import { useRouter } from 'vue-router'
 
 import WowCompanionEquipmentSwaps from './wow-companion-equipment-swaps.vue'
 import WowCompanionEquipment from './wow-companion-equipment.vue'
+import WowCompanionLevelHistory from './wow-companion-level-history.vue'
+import WowCompanionLoadout from './wow-companion-loadout.vue'
 
 import { defaultSettings } from '../../shared/wow-companion'
 import { useWowCompanionStore } from '../stores/wow-companion'
@@ -24,7 +26,7 @@ const companion = useWowCompanionStore()
 const profile = companion.profiles[game]
 const consciousness = useConsciousnessStore()
 const settings = reactive<CompanionSettings>({ ...defaultSettings, enabled: game === 'retail' })
-const capture = reactive<CaptureSettings>({ x: 8, y: 8, cellSize: 1, pollMs: 500, paused: false })
+const capture = reactive<CaptureSettings>({ x: 8, y: 8, cellSize: 1, pollMs: 100, paused: false })
 const busy = ref(false)
 const message = ref('')
 const actionError = ref('')
@@ -215,6 +217,18 @@ onMounted(() => companion.start())
           </div>
           <div>
             <p :class="['text-xs text-neutral-500']">
+              {{ tn('faction') }}
+            </p><p>{{ snapshot.faction === null ? tn('identity-unknown') : tn(`factions.${snapshot.faction}`) }}</p>
+          </div>
+          <div>
+            <p :class="['text-xs text-neutral-500']">
+              {{ tn('race') }}
+            </p><p :class="['break-words']">
+              {{ snapshot.race ?? tn('identity-unknown') }}
+            </p>
+          </div>
+          <div>
+            <p :class="['text-xs text-neutral-500']">
               {{ tn('activity') }}
             </p><p>{{ tn(snapshot.dead ? 'dead' : snapshot.combat ? 'combat' : 'exploring') }}</p>
           </div>
@@ -230,7 +244,9 @@ onMounted(() => companion.start())
       </div>
     </SettingsCard>
 
-    <WowCompanionEquipment :game="game" :bridge="bridge" :history="profile.state.equipmentHistory" />
+    <WowCompanionLevelHistory :game="game" :history="profile.state.levelHistory" :current="status === 'live' && !error && snapshot?.online ? snapshot : null" />
+    <WowCompanionLoadout :game="game" :history="profile.state.equipmentLoadouts" :current="status === 'live' && !error && snapshot?.online ? snapshot : null" :error="bridge?.equipmentLoadoutError ?? null" />
+    <WowCompanionEquipment :game="game" :bridge="bridge" :history="profile.state.equipmentHistory" :comparisons="profile.state.equipmentComparisons" />
     <WowCompanionEquipmentSwaps :bridge="bridge" :current="isCurrent && !error && Boolean(snapshot?.online)" />
 
     <SettingsCard>
@@ -387,7 +403,7 @@ onMounted(() => companion.start())
         <FieldInput v-model="capture.x" type="number" :label="tn('capture-x')" :disabled="busy" />
         <FieldInput v-model="capture.y" type="number" :label="tn('capture-y')" :disabled="busy" />
         <FieldInput v-model="capture.cellSize" type="number" :label="tn('cell-size')" :disabled="busy" />
-        <FieldInput v-model="capture.pollMs" type="number" :label="tn('poll-ms')" :disabled="busy" />
+        <FieldInput v-model="capture.pollMs" type="number" :min="100" :max="5000" :step="100" :label="tn('poll-ms')" :disabled="busy" />
         <FieldCheckbox v-model="capture.paused" :label="tn('pause-capture')" :disabled="busy" />
       </div>
       <p :class="['my-4 text-sm text-neutral-500']">

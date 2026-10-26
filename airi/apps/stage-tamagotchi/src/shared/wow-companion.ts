@@ -1,30 +1,40 @@
 import type { InferOutput } from 'valibot'
 
+import type { EquipmentComparisonsState } from './wow-companion-equipment-comparisons'
 import type { EquipmentHistoryState } from './wow-companion-equipment-history'
 import type { GoldState } from './wow-companion-gold'
+import type { LevelHistoryState } from './wow-companion-level-history'
+import type { EquipmentLoadoutsState } from './wow-companion-loadout'
 
-import { array, boolean, finite, integer, literal, looseObject, maxLength, maxValue, minValue, nullable, number, object, optional, picklist, pipe, string } from 'valibot'
+import { array, boolean, check, finite, integer, literal, looseObject, maxLength, maxValue, minLength, minValue, nullable, number, object, optional, picklist, pipe, string } from 'valibot'
 
 import { equipmentSchema } from './wow-companion-equipment'
+import { equipmentComparisonSchema } from './wow-companion-equipment-comparisons'
 import { equipmentOfferSchema } from './wow-companion-equipment-offer'
 import { equipmentSwapsSchema } from './wow-companion-equipment-swaps'
 import { copperSchema, moneyIdSchema } from './wow-companion-gold'
+import { equipmentLoadoutSchema } from './wow-companion-loadout'
 
 const count = pipe(number(), integer(), minValue(0), maxValue(Number.MAX_SAFE_INTEGER))
 const label = pipe(string(), maxLength(256))
+const encoder = new TextEncoder()
+const raceLabel = pipe(string(), minLength(1), check(value => encoder.encode(value).length <= 48, 'Race exceeds 48 UTF-8 bytes'), check(value => [...value].every((character) => {
+  const point = character.codePointAt(0)!
+  return point >= 32 && (point < 127 || point > 159) && (point < 0xD800 || point > 0xDFFF)
+}), 'Race contains invalid text'))
 
 /** A fixed profile selects the local decoder, settings, and ledger. Renderer input cannot select paths or ports. */
 export const gameVersionSchema = picklist(['retail', 'forever'])
 export type GameVersion = InferOutput<typeof gameVersionSchema>
 
 export const gameProfiles = {
-  retail: { port: 18765, protocol: 'WCP1', captureFile: 'bridge-config.json', settingsNamespace: 'wow-companion', goldFile: 'wow-companion-gold-v1.json', historyFile: 'wow-companion-equipment-history-v1.json' },
-  forever: { port: 18766, protocol: 'WCF1', captureFile: 'bridge-config-forever.json', settingsNamespace: 'wow-companion-forever', goldFile: 'wow-companion-forever-gold-v1.json', historyFile: 'wow-companion-forever-equipment-history-v1.json' },
+  retail: { port: 18765, protocol: 'WCP1', captureFile: 'bridge-config.json', settingsNamespace: 'wow-companion', goldFile: 'wow-companion-gold-v1.json', historyFile: 'wow-companion-equipment-history-v1.json', levelsFile: 'wow-companion-level-history-v1.json', comparisonsFile: 'wow-companion-equipment-comparisons-v1.json', loadoutsFile: 'wow-companion-loadouts-v1.json' },
+  forever: { port: 18766, protocol: 'WCF1', captureFile: 'bridge-config-forever.json', settingsNamespace: 'wow-companion-forever', goldFile: 'wow-companion-forever-gold-v1.json', historyFile: 'wow-companion-forever-equipment-history-v1.json', levelsFile: 'wow-companion-forever-level-history-v1.json', comparisonsFile: 'wow-companion-forever-equipment-comparisons-v1.json', loadoutsFile: 'wow-companion-forever-loadouts-v1.json' },
 } as const satisfies Record<GameVersion, object>
 
 /** Validated observations from the local screen decoder. The outer bridge protocol identifies the game. */
 export const snapshotSchema = looseObject({
-  v: literal(2),
+  v: literal(3),
   session: label,
   seq: count,
   tick: count,
@@ -33,6 +43,8 @@ export const snapshotSchema = looseObject({
   realm: label,
   level: pipe(count, maxValue(255)),
   class: label,
+  faction: nullable(picklist(['Alliance', 'Horde', 'Neutral'])),
+  race: nullable(raceLabel),
   spec: count,
   map: count,
   zone: label,
@@ -60,12 +72,12 @@ export const captureSchema = object({
   x: pipe(number(), integer(), minValue(-32768), maxValue(32767)),
   y: pipe(number(), integer(), minValue(-32768), maxValue(32767)),
   cellSize: pipe(number(), integer(), minValue(1), maxValue(12)),
-  pollMs: pipe(number(), integer(), minValue(250), maxValue(5000)),
+  pollMs: pipe(number(), integer(), minValue(100), maxValue(5000)),
   paused: boolean(),
 })
 
 export const bridgeSchema = looseObject({
-  // Retail 2.2 remains a supported bridge. Its status response omits these fields.
+  // The selected profile also checks these labels when the bridge supplies them.
   game: optional(gameVersionSchema),
   protocol: optional(picklist(['WCP1', 'WCF1'])),
   instanceId: label,
@@ -85,6 +97,10 @@ export const bridgeSchema = looseObject({
   // Bridges without offers still provide character observations and equipment history.
   equipmentOffer: optional(nullable(equipmentOfferSchema)),
   equipmentOfferError: optional(nullable(pipe(string(), maxLength(2048)))),
+  equipmentComparisons: pipe(array(equipmentComparisonSchema), maxLength(10)),
+  equipmentComparisonError: nullable(pipe(string(), maxLength(2048))),
+  equipmentLoadout: nullable(equipmentLoadoutSchema),
+  equipmentLoadoutError: nullable(pipe(string(), maxLength(2048))),
   config: captureSchema,
   error: nullable(string()),
 })
@@ -129,6 +145,9 @@ export interface CompanionState {
   updatedAt: number
   gold: GoldState
   equipmentHistory: EquipmentHistoryState
+  levelHistory: LevelHistoryState
+  equipmentComparisons: EquipmentComparisonsState
+  equipmentLoadouts: EquipmentLoadoutsState
 }
 
 export const demoSchema = object({

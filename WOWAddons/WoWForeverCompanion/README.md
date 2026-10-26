@@ -1,10 +1,23 @@
-# 魔兽无限陪伴精灵 · 独立插件 1.3.0
+# 魔兽无限陪伴精灵 · 独立插件 1.7.1
 
 这是为《魔兽世界：无限》准备的独立插件，供 AIRI 的“魔兽世界：无限”设置页读取。保留角色、地图、升级、死亡、金币采集，游戏内保留左上角黑白数据传输码，没有中央状态面板；合格的新装备会出现逐件确认换装窗口。
 
 **当前没有用户的无限客户端，尚未完成实机验收。** 2026-10-24 的开发基线为公开的 Forever UI 源码分支、客户端版本 `1.60.x`、接口号 `16001`。未来下载的客户端可能改变接口和加载方式，安装后必须按下面步骤核对。此目录不需要正式服插件一起安装。
 
 ## 功能与隔离
+
+- 1.7.1 首次加载迁移为每格 1 像素的 **64×64 物理像素**紧凑网格，保留位置与显示开关；之后主动调整的格子尺寸不会在重载时被覆盖。`/wowf compact` 可随时恢复最小布局，仍保留旧 `cell 1–6` 命令。
+
+- 1.7.0 同步正式服的当前全身装备快照，在登录、新获取装备和穿戴变化时读取 19 槽公开信息。空槽、未知和截断分别标记，桥接与 AIRI 使用 2.11.0。无限客户端仍待实机验收。
+
+- 1.6.0 同步正式服的主属性提升、副属性取舍询问，提示明确列出提高和下降。保留游戏内确认，以及复杂装备和核心属性下降的人工判断。传输每 0.25 秒刷新，业务每秒采样，搭配桥接 2.10.0 的 100ms 采集和 AIRI 的 250ms 轮询。
+- `/wowf equip check [物品ID]` 复查当前背包中的完整候选，不伪造新获取记录。资料未缓存时，等待加载后再次执行。无限客户端尚待实机验收。
+
+- 1.5.2 同步正式服实机发现的普通“拾取后绑定”与“腕部”漏识别修复，分离背包与超链接提示测试路径。属性取舍、真正特效及游戏内确认规则保持不变，当前仍待无限客户端实机验证。
+
+- 1.5.1 同步修复装备“可使用”与“可穿戴”混用，以及普通中文槽位、护甲、爆击、品质和制造者文字误判复杂效果的问题。仍保留等级、专精、完整资料、真实复杂效果和游戏内点击检查；无限客户端尚待实机验收。更新后 `/reload`，旧背包装备不会补发成新获取记录。
+
+- 1.4.0 增加角色真实阵营与本地化种族，进入 `v=3` 快照供 AIRI 对话使用。分别读取 `UnitFactionGroup("player")` 和 `UnitRace("player")` 的首项，不由种族推断阵营。
 
 - 1.1.0 增加新获得装备采集：完整实例链接、名称、类型、装等、公开属性及附魔、触发、套装等提示文本。用原有网格轮播分片，不增加屏幕面积。详情见“新获得装备”。
 - 角色 GUID、姓名、服务器、等级、职业、公开可读的专精 ID；专精尚未开放或接口不可用时发送 `0`，不推测天赋。
@@ -21,7 +34,7 @@
 ## 将来如何安装
 
 1. 下载并退出无限客户端。在战网中选择“魔兽世界：无限”，打开该版本的安装位置，找到该客户端实际使用的 `Interface\AddOns`。公开测试资料使用过 `_classic_beta_`，**未来正式开放的目录以实际客户端为准**，不要复制到正式服的 `_retail_`。
-2. 解压 `WoWForeverCompanion-1.3.0.zip`，将整个 `WoWForeverCompanion` 文件夹放入上述 `AddOns`。
+2. 解压 `WoWForeverCompanion-1.7.1.zip`，将整个 `WoWForeverCompanion` 文件夹放入上述 `AddOns`。
 3. 确认没有多套一层目录，以下文件必须直接位于 `AddOns\WoWForeverCompanion\`：
 
 ```text
@@ -37,7 +50,7 @@ WoWForeverCompanion.lua
 README.md
 ```
 
-4. 完整启动游戏，在插件列表启用“魔兽无限陪伴精灵 / AIRI 桥接”，加载 TOC 中的全部模块。同时更新并重启 AIRI 2.6.0 配套二开版本。
+4. 完整启动游戏，在插件列表启用“魔兽无限陪伴精灵 / AIRI 桥接”，加载 TOC 中的全部模块。同时更新并重启 AIRI 2.7.0 配套二开版本；插件、桥接与 AIRI 必须同步更新以支持 `v=3`。
 5. 游戏内输入 `/dump GetBuildInfo()`，核对版本 `1.60.x` 和第 4 项接口号 `16001`。插件不以 `WOW_PROJECT_ID` 区分，因为无限客户端也可能报告 Mainline。其他版本会停止采集并显示提示；请记录输出以便更新兼容层，**不要只改 TOC 来假装兼容**。
 6. 输入 `/wowf selftest` 和 `/wowf status`。正常时编码自检包含 `WCF1 / CRC16 / UTF-8`，状态中有等级、金币、心跳和网格位置。编码自检只验证本地协议，不能证明客户端 API 和画面采集全部正常。
 7. 打开 AIRI，进入“设置 → 魔兽陪伴精灵 → 魔兽世界：无限”，启用该版本连接。首次将每格像素设为 `1`，采集坐标先设为 `(8,8)`，保持网格无遮挡；窗口模式时要加上游戏客户区相对桌面的偏移，推荐无边框窗口模式。
@@ -53,6 +66,7 @@ README.md
 | `/wowf status` | 等级、金币、序号、心跳、负载大小和网格位置 |
 | `/wowf selftest` | WCF1、CRC16、UTF-8 编码自检 |
 | `/wowf pos 8 8` | 设置相对游戏客户区左上角的物理像素位置 |
+| `/wowf compact` | 使用最小 64×64 物理像素网格；保留坐标和开关 |
 | `/wowf cell 1` | 每格 1 像素，对应 64×64 网格；可选整数 1–6 |
 | `/wowf telemetry` | 显示或隐藏数据传输码；隐藏会导致桌面端失联 |
 | `/wowf reset` | 恢复显示设置：网格开启、`x=8`、`y=8`、`cell=1`；保留金币记录 |
@@ -70,7 +84,11 @@ README.md
 | 6–7 | CRC16-CCITT 校验，小端；初始值 `0xFFFF`、多项式 `0x1021` |
 | 8–511 | 最多 504 字节 JSON，剩余补零 |
 
-JSON 保留正式服已有的 `v=2` 快照字段：`session/seq/tick/guid/name/realm/level/class/spec/map/zone/combat/dead/online/account/moneyEpoch/copper/earned/spent`。帧标识负责隔离游戏版本，不增加屏幕面积。业务变化递增 `seq`，每秒递增 `tick`，登录或重载更换 `session`。金币按累计计数传输，桌面漏采几帧后仍可合并插件已观察到的收支；其他短暂事件可能在漏采期间丢失，不是可靠事件队列。
+JSON 使用与正式服一致的 `v=3` 快照字段：`session/seq/tick/guid/name/realm/level/class/faction/race/spec/map/zone/combat/dead/online/account/moneyEpoch/copper/earned/spent`。帧标识负责隔离游戏版本，不增加屏幕面积。业务变化递增 `seq`，每秒递增 `tick`，登录或重载更换 `session`。金币按累计计数传输，桌面漏采几帧后仍可合并插件已观察到的收支；其他短暂事件可能在漏采期间丢失，不是可靠事件队列。
+
+`faction` 与 `race` 是必填且可为 `null` 的 JSON 字段。阵营仅接受 `Alliance`、`Horde`、`Neutral`；中立和未知明确区分。种族为完整的本地化名称，去除颜色标记及 C0/C1 控制字符，非空且最多 48 个 UTF-8 字节；过长或暂不可用时发送 `null`。秘密值、缺失 API、接口错误和切换角色时不会沿用旧阵营/种族。登录和原有采样事件会更新；`NEUTRAL_FACTION_SELECT_RESULT` 后立即读取并在 0.25、1、2、5 秒重试。
+
+固定负载仍为 504 字节。超长时先缩短地图名、服务器名、角色名，仍不足才将 `race` 整体置 `null`，不发送半截种族名。阵营、职业、GUID、会话/金币标识和精确计数不会为凑帧改写。极端组合本身仍超限时明确编码失败，旧快照、画面和心跳不更新，桌面按超时识别失联；不会传送被损坏的身份或计数。
 
 `WoWForeverCompanionDB` 保存显示设置、账号标识、各角色金币计数和最新快照。游戏通常在 `/reload` 或正常退出时写入账号目录的 `SavedVariables\WoWForeverCompanion.lua`，不是实时磁盘接口。备份时先正常退出游戏；勿把正式服的 SavedVariables 复制过来。外部程序不得执行该数据文件中的 Lua。
 
@@ -83,12 +101,12 @@ python -m pip install --target tests/.deps lupa
 python -m unittest discover -s tests -v
 ```
 
-77 项测试覆盖帧标识、长度、CRC 与位序、UTF-8、升级与地图/战斗/死亡事件、现代专精 API 和无专精分支、secret 值过滤、金币基线/收支/重载/换角色/溢出、UI 缩放和 NDui 钩子、64×64 默认布局、独立命令/存档/帧名、错误客户端拒绝采集、缺失可选 API、两份 TOC 的文件完整性，以及下方的装备采集与分片场景。
+99 项测试通过，新增 7 项覆盖三阵营/中文种族、阵营选择重试、秘密/错误/缺失 API 清空、角色切换、完整 UTF-8 名称与控制字符、超限整项降级和编码失败时冻结画面心跳。原有测试覆盖帧标识、长度、CRC 与位序、UTF-8、升级与地图/战斗/死亡事件、现代专精 API 和无专精分支、secret 值过滤、金币基线/收支/重载/换角色/溢出、UI 缩放和 NDui 钩子、64×64 默认布局、独立命令/存档/帧名、错误客户端拒绝采集、缺失可选 API、两份 TOC 的文件完整性，以及下方的装备采集与分片场景。
 
 **这些测试不包含真实无限客户端。开放后还需你协助完成：**
 
 1. 保存 `/dump GetBuildInfo()` 的完整输出，确认插件无 Lua 错误；若提示版本未知，反馈版本与接口号。
-2. 确认只出现传输码、没有中央面板；在 AIRI 无限服页校准并确认实时心跳、角色、地图与金币正确。
+2. 确认只出现传输码、没有中央面板；在 AIRI 无限服页校准并确认实时心跳、角色、地图、金币、阵营和种族正确；联盟、部落及尚未选择阵营的中立角色分别核对。
 3. 实际升级一次、跨区域、死亡再复活，确认 AIRI 事件和陪伴回应只触发一次；战斗免打扰按设置生效。
 4. 完成一次已知收入和支出，检查金币汇总分别增加正确金额；换角色、`/reload` 和正常退出再登录后检查连续性。
 5. 隐藏网格、最小化再恢复，检查离线提示和恢复连接；切换正式服页面，确认数据及账本不会混用。
@@ -96,6 +114,7 @@ python -m unittest discover -s tests -v
 ## 核对来源
 
 - [暴雪 UI 源码镜像：Forever 分支](https://github.com/Gethe/wow-ui-source/tree/forever)
+- [Forever 阵营/种族接口和阵营选择事件定义](https://github.com/Gethe/wow-ui-source/blob/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua)
 - [Forever 专精接口定义](https://github.com/Gethe/wow-ui-source/blob/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpecializationInfoDocumentation.lua)
 - [Forever 地图接口定义](https://github.com/Gethe/wow-ui-source/blob/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/MapDocumentation.lua)
 - [Forever API 实测记录：接口号、Mainline 项目及测试安装目录](https://github.com/Thunderz96/forever-addon-kit)
@@ -184,3 +203,25 @@ API 核对依据（暴雪 UI 的 generated API 文档镜像）：
 AIRI 朗读固定提示并显示气泡。没有语音配置、静音或失败时只显示文字。播报结束后显示“好”“不用”，10 秒未选择自动关闭桌面气泡。选择“好”仅提示返回游戏点击确认；选择“不用”不关闭游戏弹窗。只有游戏内确认按钮执行换装，候选总有效期仍为 120 秒。
 
 此功能按装等或空槽筛选，不推断套装、特效及属性组合收益。新提议占部分数据时隙，网格面积保持不变。
+
+## 自动比较后询问换装（AIRI 二开 2.9.0）
+
+本版新增 `EquipmentCompare.lua`。需要同时更新 AIRI 和桥接至 2.9.0 配套二开版，快照仍为 v3，网格尺寸不变。正式服执行 `/reload` 加载新版；无限服安装后重启客户端。
+
+每次获取新装备时，插件读取当前专精、首选主属性、物品适用专精、可用状态，以及新装备和目标槽旧装备的公开属性。通过独立 `kind=cmp` 分片将这次对比的两件物品事实交给 AIRI。当前装备信息只针对这次候选对应的槽位，不表示完整全身穿戴列表。旧的获取记录不会被伪造为当前穿戴。
+
+插件和 AIRI 使用相同的保守规则：
+
+- 同类、同槽、适合当前专精、资料完整；量化属性没有下降，且至少一项上升，物品等级不低于旧件，才判定明确提升。同装等也能因真实属性提升而被识别。
+- 可使用的空槽物品可以成为提升候选。
+- 不适合专精、不可使用或全部属性更弱时，不询问换装。惩戒圣骑士不会因单手武器装等更高而建议替换双手武器。
+- 套装、饰品、特效、附魔、插槽、未知词条、属性有升有降、换武器类型或资料不完整时，标记需要人工复核，不作自动收益结论。不使用任意属性权重，也不把面板武器 DPS 当作角色输出提升。
+- 仅使用当前专精对应的力量、敏捷或智力。其余两项主属性不影响比较。支持耐力、暴击、急速、精通、全能、武器每秒伤害、护甲等明确量化字段；未知字段必须复核。
+
+只有明确提升才进入原有游戏确认队列。AIRI 独立核对同一份比较事实及当前提议，再显示语音/文字气泡与“好”“不用”。选择“好”仍需回游戏点击“确认换装”。真正执行前，插件重新核对当前专精、装备身份、属性判断、战斗、死亡、锁定和鼠标状态。绑定或退款等原生确认仍由玩家处理。没有新后台输入或桌面直接操控游戏接口。
+
+`cmp` 的 JSON 上限为 4096 字节，每片 240 字节，最多 18 片，每帧仍为 512 字节。不会裁剪比较属性来制造提升证据；无法完整编码时不发出对应换装提议。比较事实不可用、秘密值或不支持的语言提示会保守降级。
+
+比较新记录优先于普通获取详情发送。正常状态/比较或装备数据仍逐秒交替；提议与换装结果保留各自时隙。18 片最大比较在有提议及结果流量时可在 72 秒内发送完成，不含之前其他比较的排队时间。随后最大 35 片普通获取详情仍在其自身 180 秒接收期限内完成。若新比较到来时旧获取详情已经部分发送，源端明确丢弃该旧在途记录并增加 dropped 计数，避免使其超过接收期限。缓存和持续连发不保证每件都能询问；候选仍在原始 120 秒后过期，不会超时后补做换装。
+
+API 依据：[正式服物品接口](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua)、[正式服专精接口](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpecializationInfoDocumentation.lua)、[无限服物品接口](https://github.com/Gethe/wow-ui-source/blob/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua)、[无限服专精接口](https://github.com/Gethe/wow-ui-source/blob/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpecializationInfoDocumentation.lua)。两服 `GetSpecializationInfo` 第六个返回值是首选主属性，`GetItemSpecInfo` 返回物品适用专精表。返回未知时不推断。

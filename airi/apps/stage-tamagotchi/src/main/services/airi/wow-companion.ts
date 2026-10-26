@@ -17,8 +17,11 @@ import { accountNameSchema } from '../../../shared/wow-companion-gold'
 import { onAppBeforeQuit } from '../../libs/bootkit/lifecycle'
 import { createConfig } from '../../libs/electron/persistence'
 import { CompanionBridgeClient } from './wow-companion-client'
+import { CompanionEquipmentComparisons } from './wow-companion-equipment-comparisons'
 import { CompanionEquipmentHistory } from './wow-companion-equipment-history'
 import { CompanionGoldLedger } from './wow-companion-gold'
+import { CompanionLevelHistory } from './wow-companion-level-history'
+import { CompanionLoadouts } from './wow-companion-loadouts'
 import { CompanionBridgeRuntime } from './wow-companion-runtime'
 
 const getSchema = object({ game: gameVersionSchema })
@@ -27,7 +30,7 @@ const captureRequestSchema = object({ game: gameVersionSchema, capture: captureS
 const demoRequestSchema = object({ game: gameVersionSchema, request: demoSchema })
 const accountRequestSchema = object({ game: gameVersionSchema, request: accountNameSchema })
 
-/** Each profile owns one poller, lifecycle generation, settings, gold ledger, and equipment history. */
+/** Each profile owns one poller, lifecycle generation, settings, gold ledger, equipment history, and level history. */
 class CompanionProfile {
   private readonly config
   private settings: CompanionSettings
@@ -35,6 +38,9 @@ class CompanionProfile {
   private readonly runtime: CompanionBridgeRuntime
   readonly gold: CompanionGoldLedger
   private readonly equipmentHistory: CompanionEquipmentHistory
+  private readonly levelHistory: CompanionLevelHistory
+  private readonly equipmentComparisons: CompanionEquipmentComparisons
+  private readonly equipmentLoadouts: CompanionLoadouts
   private stopped = false
   private generation = 0
   private connectionError: string | null = null
@@ -56,6 +62,9 @@ class CompanionProfile {
     })
     this.gold = new CompanionGoldLedger(join(app.getPath('userData'), profile.goldFile))
     this.equipmentHistory = new CompanionEquipmentHistory(join(app.getPath('userData'), profile.historyFile))
+    this.levelHistory = new CompanionLevelHistory(join(app.getPath('userData'), profile.levelsFile))
+    this.equipmentComparisons = new CompanionEquipmentComparisons(join(app.getPath('userData'), profile.comparisonsFile))
+    this.equipmentLoadouts = new CompanionLoadouts(join(app.getPath('userData'), profile.loadoutsFile))
   }
 
   read(): CompanionState {
@@ -67,6 +76,9 @@ class CompanionProfile {
       error: this.settings.enabled ? this.connectionError ?? this.runtime.read().error ?? state.error : null,
       gold: this.gold.read(),
       equipmentHistory: this.equipmentHistory.read(),
+      levelHistory: this.levelHistory.read(),
+      equipmentComparisons: this.equipmentComparisons.read(),
+      equipmentLoadouts: this.equipmentLoadouts.read(),
     }
   }
 
@@ -75,13 +87,16 @@ class CompanionProfile {
   }
 
   async setSettings(next: CompanionSettings) {
-    if (next.enabled !== this.settings.enabled) {
+    const connectionChanged = next.enabled !== this.settings.enabled
+    if (connectionChanged) {
       this.generation++
       this.connectionError = null
       this.client.invalidate()
     }
     this.settings = next
     this.config.update(next)
+    if (connectionChanged)
+      await this.levelHistory.observe(null)
     if (!next.enabled)
       await this.runtime.stop()
     return this.read()
@@ -107,7 +122,7 @@ class CompanionProfile {
     this.generation++
     this.client.dispose()
     clearTimeout(this.timer)
-    await Promise.all([this.gold.flush(), this.equipmentHistory.flush(), this.runtime.dispose()])
+    await Promise.all([this.gold.flush(), this.equipmentHistory.flush(), this.levelHistory.flush(), this.equipmentComparisons.flush(), this.equipmentLoadouts.flush(), this.runtime.dispose()])
   }
 
   private async ensureConnected() {
@@ -120,7 +135,7 @@ class CompanionProfile {
   }
 
   private async poll() {
-    await Promise.all([this.gold.load(), this.equipmentHistory.load()])
+    await Promise.all([this.gold.load(), this.equipmentHistory.load(), this.levelHistory.load(), this.equipmentComparisons.load(), this.equipmentLoadouts.load()])
     const generation = this.generation
     if (this.settings.enabled && !this.stopped) {
       try {
@@ -142,9 +157,9 @@ class CompanionProfile {
       const state = this.client.read()
       const bridge = this.settings.enabled && !this.connectionError ? state.bridge : null
       const error = this.connectionError ?? state.error
-      await Promise.all([this.gold.observe(bridge, error), this.equipmentHistory.observe(bridge, error)])
+      await Promise.all([this.gold.observe(bridge, error), this.equipmentHistory.observe(bridge, error), this.levelHistory.observe(bridge, error), this.equipmentComparisons.observe(bridge, error), this.equipmentLoadouts.observe(bridge, error)])
       if (!this.stopped)
-        this.timer = setTimeout(() => this.poll(), 750)
+        this.timer = setTimeout(() => this.poll(), 250)
     }
   }
 }

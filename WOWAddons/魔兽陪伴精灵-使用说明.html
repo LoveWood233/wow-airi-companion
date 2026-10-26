@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>魔兽陪伴精灵 · 使用说明</title>
+  <style>
+    :root{color-scheme:light;--ink:#253443;--muted:#596979;--line:#dce3e8;--accent:#386453;--paper:#fff;--bg:#f4f6f7}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 "Segoe UI","Microsoft YaHei",sans-serif}main{max-width:880px;margin:40px auto;padding:44px 52px;background:var(--paper);border:1px solid var(--line);border-radius:16px}header{border-bottom:1px solid var(--line);padding-bottom:24px}.eyebrow{color:var(--accent);font-size:12px;letter-spacing:.1em;margin:0 0 8px}h1{font-size:32px;line-height:1.35;margin:0 0 12px}h2{font-size:20px;margin:0 0 12px;line-height:1.5}h2 span{color:var(--accent);font-size:14px;margin-right:10px}p{margin:10px 0}.muted,footer{color:var(--muted);font-size:14px}section{margin-top:30px}ol,ul{margin:10px 0;padding-left:24px}li+li{margin-top:9px}strong{font-weight:650}a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #b68123;outline-offset:4px}code{font:14px/1.6 Consolas,"Microsoft YaHei",monospace;background:#eff3f5;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.note{background:#eef5f1;border-left:3px solid #729b87;padding:12px 16px;border-radius:0 8px 8px 0;font-size:14px}.path{color:var(--accent);font-weight:650}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;vertical-align:top;padding:11px 14px}th{background:#f0f4f5;font-weight:650}td{border-top:1px solid var(--line)}td:first-child{width:115px;white-space:nowrap;font-weight:650}.actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:16px}button{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:6px;background:white;padding:6px 12px;cursor:pointer;color:var(--muted)}details{margin-top:16px}summary{cursor:pointer;font-size:15px;font-weight:650}footer{margin-top:32px;padding-top:18px;border-top:1px solid var(--line)}@media(max-width:620px){main{margin:0;border:0;border-radius:0;padding:28px 20px}h1{font-size:27px}th,td{padding:10px}td:first-child{width:85px;white-space:normal}}@media print{@page{margin:16mm}body{background:white;font-size:11pt}main{max-width:none;margin:0;padding:0;border:0}h1{font-size:24pt}h2{font-size:15pt}section{margin-top:20px}h2,summary{break-after:avoid}tr,.note{break-inside:avoid}.actions button{display:none}a{color:inherit}code{font-size:10pt}footer{font-size:9pt}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">WOW × AIRI · 快速上手</p>
+    <h1>魔兽陪伴精灵使用说明</h1>
+    <p>在魔兽世界中冒险时，让 AIRI 了解你的角色、陪你聊天，并在升级、死亡或获得更好装备时作出回应。</p>
+    <p class="muted">适用于 Windows 版本。源码交付 2.12.4 · 桥接 2.11.1 · 正式服插件 2.10.1 · 无限服插件 1.7.1 · 说明更新于 2026 年 10 月 26 日。</p>
+    <div class="actions"><a href="#start">开始使用 ↓</a><a href="wow-companion-implementation.html#setup">详细安装与配置</a><button type="button" onclick="window.print()">打印 / 保存 PDF</button></div>
+  </header>
+
+  <section id="start">
+    <h2><span>01</span>启动并连接游戏</h2>
+    <ol>
+      <li>在 <code>I:\GameTools\WOWAddons</code> 中双击 <a href="Start-WoWCompanion.cmd">Start-WoWCompanion.cmd</a>，等待 AIRI 角色出现。<strong>AIRI 会管理桥接程序，无需另外手动启动。</strong></li>
+      <li>启动魔兽世界正式服，在角色选择界面的“插件”中启用陪伴插件，再进入角色。</li>
+      <li>点击 AIRI 角色边缘菜单的<strong>展开 → 魔兽世界信息卡</strong>，进入<span class="path">设置 → 魔兽世界正式服</span>。开启“开启陪伴”，点击“保存陪伴偏好”。</li>
+      <li>页面显示自己的角色，并且状态为<strong>真实角色在线</strong>，即可开始使用。</li>
+    </ol>
+    <p class="note">展开菜单需要足够的窗口宽度。新版会在重启时将过窄的角色窗口自动加宽至至少 300 逻辑像素，完整显示三列按钮和魔兽世界信息卡入口。</p>
+    <p class="note">游戏左上角的黑白方格是<strong>数据传输码</strong>。请让它完整可见，避免被窗口或其他界面遮挡；游戏最小化后无法持续读取画面。桥接采集间隔可设为 <strong>100 毫秒</strong>，减少新装备询问的等待。</p>
+  </section>
+
+  <section id="proactive-speech">
+    <h2>装备祝贺和定时语音互动</h2>
+    <p>获取符合提升规则的新装备后，AIRI 会称呼当前角色名，祝贺获得新装备、又能变强了，并保留属性取舍说明和换装询问。选择“好”后，请在游戏内点击“确认换装”。</p>
+    <p>连续非战斗满 1 分钟，AIRI 会主动进行一次简短语音互动，例如询问接下来想去哪里。战斗、死亡、离线、切换角色或静音会重新计时；已有聊天和装备询问优先。离线时间不会积累多次播报。</p>
+    <p>请先在当前 AIRI 角色的“机体模块 → 发声”选好服务、模型与音色，开启魔兽陪伴并取消静音。互动直接调用语音服务，不需要额外聊天大模型请求。语音结束 3 秒后字幕气泡隐藏。</p>
+    <p class="note">本轮更新后，从托盘正常退出 AIRI，再双击 Start-WoWCompanion.cmd。插件无需更新。若文字先出现但声音迟迟未出，可能仍在等待语音合成：本机实测一次 MiMo 请求约 59 秒后返回；程序最长等待 120 秒，装备提醒同时受游戏内提议期限限制。</p>
+  </section>
+
+  <section id="model-settings">
+    <h2>模型配置保存在哪里</h2>
+    <p>通过 Start-WoWCompanion.cmd 启动时，默认将模型、语音与角色记录保存到 <code>%USERPROFILE%\.airi-wow-companion</code>。正常模式与开发模式使用同一目录，避免 AppData 重定向造成配置分流。</p>
+    <p>配置成功后，正常退出、再从同一脚本启动即可沿用。本机已完成迁移，服务商、密钥和所选模型已恢复。其他已有安装首次切换目录前需先备份并迁移一致的数据；脚本遇到已有旧资料会提示，不会静默启动空配置。原目录与备份保留。需要自定义目录时，可通过 PowerShell 脚本的 <code>-UserDataPath</code> 参数指定。</p>
+  </section>
+  <section id="compact-grid">
+    <h2>让传输码少占屏幕</h2>
+    <p>新版默认使用 64×64 物理像素，面积是原 128×128 的四分之一。首次加载时会自动缩小已有传输码，保留原来的位置；随后主动调大的尺寸会保留。</p>
+    <p>更新后，在游戏输入 <code>/reload</code>，并正常退出、重启 AIRI。可用 <code>/wowc compact</code> 切到最小尺寸，无限服使用 <code>/wowf compact</code>。</p>
+    <p class="note">传输码需保持可见。若画面被拉伸而读取失败，检查游戏分辨率及“屏幕位置校准”；必要时使用 <code>/wowc cell 2</code>，并将每格像素设为 2。</p>
+  </section>
+  <section id="current-equipment">
+    <h2>当前穿戴装备与聊天</h2>
+    <p>登录角色、新获得装备，以及换装或脱装后，插件会同步当前全身 19 个槽位。AIRI 按账号与角色保存最新快照，独立于仅保留 10 条的获取历史。</p>
+    <p>在“设置 → 魔兽世界正式服 → 当前穿戴装备”查看角色、更新时间和详情。全身资料需要后台分片传输，等收齐后，再问“我现在穿的装备是什么”“我的腿甲有什么属性”。</p>
+    <p class="note">更新后，在游戏执行 <code>/reload</code>，并正常退出、重启 AIRI。保持传输码无遮挡。未知资料会明确标记；离线聊天引用的是最后保存的快照，不能代表此后发生的变化。</p>
+  </section>
+
+  <section id="models">
+    <h2><span>02</span>首次配置对话与声音</h2>
+    <p>在 AIRI 设置的<strong>服务来源</strong>中配置你使用的平台。进入<strong>机体模块 → 意识</strong>选择聊天服务和默认模型；进入<strong>机体模块 → 发声</strong>选择语音合成服务、模型和声线。想对着角色说话，还需要配置语音识别并允许使用麦克风。</p>
+    <p>配置聊天模型后可与角色对话；配置语音后可朗读回复。角色信息、金币和等级记录不依赖模型。<strong>装备升级询问未配置语音时仍会显示文字气泡。</strong></p>
+    <p class="muted">需要改变说话风格时，可编辑当前角色卡的“系统提示词”。提示词改变表达语气；声音由所选语音服务和音色决定。</p>
+  </section>
+
+  <section id="information">
+    <h2><span>03</span>查看角色信息与记录</h2>
+    <p>通过“魔兽世界信息卡”随时查看以下内容：</p>
+    <p class="note"><strong>角色称呼：</strong>AIRI 会使用最新登录且有有效实时数据的角色名来称呼你，切换角色后自动更新。对话、游戏事件回应和装备气泡均使用这套称呼；数据失效时使用中性称呼，演示角色不覆盖真实角色。</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">内容</th><th scope="col">怎样使用</th></tr></thead>
+      <tbody>
+        <tr><td>角色状态</td><td>查看角色等级、阵营、种族和所在区域。按喜好开启升级祝贺、区域回应、死亡及复活提醒。</td></tr>
+        <tr><td>金币账本</td><td>按插件账号标识汇总已观察角色的金币收入、支出和净变化。首次余额只作起点；转账、邮寄等也算资金流动，因此不等同于纯收益。</td></tr>
+        <tr><td>等级历史</td><td>各角色分别保存等级变化和每级耗时，采用现实时间，包含离线时段。首次记录或未接收数据时的升级会标记为部分记录或时间未知。</td></tr>
+        <tr><td>装备记录</td><td>查看最近获取的装备及其属性，每个游戏版本共保留最近 10 条，超过后移除最旧记录。比较结果对应获取装备时的已装备物品。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="equipment">
+    <h2><span>04</span>收到更好装备，确认后换上</h2>
+    <ol>
+      <li>获得新装备后，保持传输码可见，等待比较资料传到 AIRI。适合当前专精且属性无损提升时，会出现换装询问；有可用语音时同时播报。</li>
+      <li>装等和当前主属性都提高、但部分副属性下降时，也会询问。气泡列出提高与下降的数值，由你决定是否换上。例如“力量 +8，精通 -7”，不会保证伤害一定提高。</li>
+      <li>播报结束后，气泡显示<strong>“好” / “不用”</strong>。没有语音时直接显示选项。点击“不用”，或 10 秒内未选择，气泡关闭。</li>
+      <li>选择<strong>“好”</strong>后，返回游戏，在插件的换装提示中点击<strong>“确认换装”</strong>。游戏允许操作且检查通过后，才会更换装备。</li>
+    </ol>
+    <p class="note">桌面点击“好”之后仍需在游戏内确认。单纯装等更高不一定触发询问；未知属性、复杂特效、套装、附魔和插槽仍需自行比较。战斗等状态也可能暂时无法换装。</p>
+    <p>想重新检查背包里的装备时，在游戏输入 <code>/wowc equip check</code>。只检查某件装备可输入 <code>/wowc equip check 257002</code>，把数字换成对应物品 ID。无限服将命令前缀改为 <code>/wowf</code>。这会重新提出合适的候选，不会伪造一条新装备获取记录。</p>
+    <p class="muted">资料分片需要时间传完。常见 8 片比较资料与提议约需 7 秒，这是传输估算；实际等待还受采集质量、物品资料加载和队列影响。</p>
+  </section>
+
+  <section id="quiet">
+    <h2><span>05</span>免打扰、字幕与退出</h2>
+    <ul>
+      <li><strong>游戏提醒静音：</strong>停止主动回应游戏事件，继续更新角色与统计。可另开“战斗时免打扰”，并调整提醒冷却时间。</li>
+      <li><strong>字幕气泡：</strong>普通语音字幕会在播报结束 3 秒后隐藏；装备询问按上面的 10 秒选择规则关闭。</li>
+      <li><strong>退出与重启：</strong>关闭设置页不影响陪伴。需要完整退出时，在 Windows 系统托盘中右键 AIRI 图标，选择退出，再双击启动脚本。若提示 <code>AIRI is already running</code>，说明旧进程仍在运行。</li>
+    </ul>
+  </section>
+
+  <section id="help">
+    <h2><span>06</span>遇到问题时</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">现象</th><th scope="col">处理方法</th></tr></thead>
+      <tbody>
+        <tr><td>没有角色数据</td><td>确认已进入游戏、开启陪伴，传输码没有遮挡。检查“屏幕位置校准”，使位置和单元格大小与实际画面一致；游戏中输入 <code>/wowc status</code> 可查看插件参数。若每格 1 像素时提示模糊，输入 <code>/wowc cell 2</code>，再把校准的“每格像素”设为 2。新版默认为 64×64 物理像素；可用 <code>/wowc compact</code> 切回最小尺寸。此前 X=8、Y=32 的坐标只适用于当时本机布局，其他窗口位置需自行匹配。窗口移动或换显示器后重新校准。</td></tr>
+        <tr><td>提示需要 v3</td><td>同时使用配套的新版插件、桥接和 AIRI。更新插件后在游戏输入 <code>/reload</code>；仍有问题则完整重启游戏，并从托盘退出后重新启动 AIRI。<a href="wow-companion-implementation.html#setup">查看详细步骤</a>。</td></tr>
+        <tr><td>有文字没声音</td><td>检查语音服务、模型和音色是否已选好，以及 AIRI、游戏提醒和系统音量是否静音。未配置语音时，装备询问仅显示文字属于正常行为。</td></tr>
+        <tr><td>没有装备询问</td><td>先确认“真实角色在线”，将采集间隔设为 100 毫秒，并等待比较资料传完。正式服使用插件 2.10.1、桥接与 AIRI 二开 2.11.1。更新后输入 <code>/reload</code>，并正常退出后重新启动 AIRI。输入 <code>/wowc equip on</code> 开启确认功能，再用 <code>/wowc equip check</code> 复查背包。新版允许装等和主属性都提高、仅副属性下降的合适候选发起询问。等级不足、专精不符、资料不完整或复杂效果仍需复核。登录时背包已有的装备不会自动补发获取询问。</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted">本项目还提供独立的“魔兽世界：无限”设置页与插件包，需分别配置；当前仍待对应客户端实机验证。</p>
+  </section>
+
+  <footer>更多安装、校准与功能细节，请查看 <a href="wow-companion-implementation.html">完整实现与配置说明</a>。本说明可离线打开，也可通过顶部按钮保存为 PDF。</footer>
+</main>
+</body>
+</html>

@@ -17,6 +17,11 @@ GAME_PROTOCOLS = {"retail": "WCP1", "forever": "WCF1"}
 EQUIPMENT_CHUNK_BYTES = 240
 EQUIPMENT_MAX_BYTES = 8192
 EQUIPMENT_MAX_PARTS = 35
+COMPARISON_MAX_BYTES = 4096
+COMPARISON_MAX_PARTS = 18
+LOADOUT_MAX_BYTES = 196608
+LOADOUT_MAX_PARTS = 820
+LOADOUT_ITEM_MAX_BYTES = 8192
 
 
 def frame_magic(protocol: str) -> bytes:
@@ -35,6 +40,14 @@ class EquipmentSwapError(FrameError):
 
 class EquipmentOfferError(FrameError):
     """An intact offer frame failed validation, not the character heartbeat."""
+
+
+class EquipmentComparisonError(FrameError):
+    """An intact comparison fragment failed validation, not the character heartbeat."""
+
+
+class EquipmentLoadoutError(FrameError):
+    """An intact current-equipment fragment failed validation, not the heartbeat."""
 
 
 def load_json(payload: bytes) -> object:
@@ -82,16 +95,16 @@ def _number(value: object, key: str, minimum: float, maximum: float):
     return value
 
 
-def validate_equipment_fragment(value: object) -> dict:
+def _validate_fragment(value: object, kind: str, maximum_parts: int, maximum_bytes: int) -> dict:
     if not isinstance(value, dict) or set(value) != {"v", "kind", "s", "g", "id", "p", "n", "d"}:
         raise FrameError("装备分片字段不完整或含未知字段")
     _integer(value["v"], "v", 1, 1)
-    if value["kind"] != "eq":
+    if value["kind"] != kind:
         raise FrameError("装备分片类型不合法")
     _text(value["s"], "s", 40, identity=True)
     _text(value["g"], "g", 48, identity=True)
     _integer(value["id"], "id", 1, 2147483647)
-    count = _integer(value["n"], "n", 1, EQUIPMENT_MAX_PARTS)
+    count = _integer(value["n"], "n", 1, maximum_parts)
     part = _integer(value["p"], "p", 1, count)
     encoded = _text(value["d"], "d", 320)
     try:
@@ -100,10 +113,187 @@ def validate_equipment_fragment(value: object) -> dict:
         raise FrameError("装备分片 Base64 不合法") from exc
     if (not 1 <= len(raw) <= EQUIPMENT_CHUNK_BYTES
             or (part < count and len(raw) != EQUIPMENT_CHUNK_BYTES)
-            or (part == count and (count - 1) * EQUIPMENT_CHUNK_BYTES + len(raw) > EQUIPMENT_MAX_BYTES)
+            or (part == count and (count - 1) * EQUIPMENT_CHUNK_BYTES + len(raw) > maximum_bytes)
             or base64.b64encode(raw).decode("ascii") != encoded):
         raise FrameError("装备分片长度或 Base64 编码不合法")
     return dict(value)
+
+
+def validate_equipment_fragment(value: object) -> dict:
+    return _validate_fragment(value, "eq", EQUIPMENT_MAX_PARTS, EQUIPMENT_MAX_BYTES)
+
+
+def validate_comparison_fragment(value: object) -> dict:
+    try:
+        return _validate_fragment(value, "cmp", COMPARISON_MAX_PARTS, COMPARISON_MAX_BYTES)
+    except FrameError as exc:
+        raise EquipmentComparisonError(f"装备比较分片无效：{exc}") from exc
+
+
+def validate_loadout_fragment(value: object) -> dict:
+    try:
+        return _validate_fragment(value, "gear", LOADOUT_MAX_PARTS, LOADOUT_MAX_BYTES)
+    except FrameError as exc:
+        raise EquipmentLoadoutError(f"当前装备分片无效：{exc}") from exc
+
+
+def _loadout_text(value: object, key: str, maximum: int, *, nullable=False, identity=False):
+    result = _text(value, key, maximum, nullable=nullable, identity=identity)
+    if result is not None and any(127 <= ord(character) <= 159 for character in result):
+        raise FrameError(f"当前装备字段 {key} 含控制字符")
+    return result
+
+
+def validate_loadout_item(value: object) -> dict:
+    fields = {"itemID", "itemGUID", "link", "name", "type", "subtype", "equipLoc", "quality",
+              "itemLevel", "requiredLevel", "stats", "tooltip", "infoComplete", "statsComplete",
+              "tooltipComplete", "truncated"}
+    if not isinstance(value, dict) or set(value) != fields:
+        raise FrameError("当前装备物品字段不完整或含未知字段")
+    _integer(value["itemID"], "itemID", 1, 2147483647)
+    link = _loadout_text(value["link"], "link", 1024)
+    match = re.search(r"item:(\d+)", link)
+    if match is None or int(match[1]) != value["itemID"]:
+        raise FrameError("当前装备物品链接与标识不一致")
+    for key in ("itemGUID", "name", "type", "subtype", "equipLoc"):
+        label = _loadout_text(value[key], key, 128, nullable=True)
+        if label == "":
+            raise FrameError(f"当前装备字段 {key} 不允许空文字，未知值必须使用 null")
+    for key, maximum in (("quality", 8), ("requiredLevel", 255)):
+        if value[key] is not None:
+            _integer(value[key], key, 0, maximum)
+    if value["itemLevel"] is not None:
+        _number(value["itemLevel"], "itemLevel", 0, 100000)
+    for key in ("infoComplete", "statsComplete", "tooltipComplete", "truncated"):
+        if type(value[key]) is not bool:
+            raise FrameError(f"当前装备字段 {key} 必须是布尔值")
+    stats = value["stats"]
+    if not isinstance(stats, list) or len(stats) > 32:
+        raise FrameError("当前装备属性数量不合法")
+    keys = set()
+    for entry in stats:
+        if not isinstance(entry, dict) or set(entry) != {"key", "value"}:
+            raise FrameError("当前装备属性字段不合法")
+        key = _loadout_text(entry["key"], "stats.key", 64)
+        if not key or key in keys:
+            raise FrameError("当前装备属性标识为空或重复")
+        keys.add(key)
+        _number(entry["value"], "stats.value", -1e12, 1e12)
+    tooltip = value["tooltip"]
+    if not isinstance(tooltip, list) or len(tooltip) > 48:
+        raise FrameError("当前装备说明行数不合法")
+    for line in tooltip:
+        if not _loadout_text(line, "tooltip", 256):
+            raise FrameError("当前装备说明行不能为空")
+    if value["infoComplete"] and (any(not value[key] for key in ("name", "type", "subtype", "equipLoc"))
+                                  or any(value[key] is None for key in ("quality", "itemLevel", "requiredLevel"))):
+        raise FrameError("完整当前装备缺少物品资料")
+    if value["tooltipComplete"] and not tooltip:
+        raise FrameError("完整当前装备说明不能为空")
+    if value["truncated"] and all(value[key] for key in ("infoComplete", "statsComplete", "tooltipComplete")):
+        raise FrameError("截断当前装备必须标明不完整资料")
+    if len(json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode("utf-8")) > LOADOUT_ITEM_MAX_BYTES:
+        raise FrameError("当前装备单件资料超过 8192 字节")
+    return value
+
+
+def validate_equipment_loadout(value: object) -> dict:
+    """Validate all slots together. Unknown and empty slots remain distinct."""
+    fields = {"v", "id", "session", "guid", "observedAt", "reason", "slots"}
+    if not isinstance(value, dict) or set(value) != fields:
+        raise FrameError("当前装备快照字段不完整或含未知字段")
+    _integer(value["v"], "v", 1, 1)
+    _integer(value["id"], "id", 1, 2147483647)
+    _loadout_text(value["session"], "session", 40, identity=True)
+    _loadout_text(value["guid"], "guid", 48, identity=True)
+    _integer(value["observedAt"], "observedAt", 0, 4102444800)
+    if value["reason"] not in ("login", "equipment_acquired", "equipment_changed", "refresh"):
+        raise FrameError("当前装备快照原因不合法")
+    slots = value["slots"]
+    if not isinstance(slots, list) or len(slots) != 19:
+        raise FrameError("当前装备快照必须包含全部 19 个槽位")
+    for expected_slot, entry in enumerate(slots, 1):
+        if not isinstance(entry, dict) or set(entry) != {"slot", "state", "item"}:
+            raise FrameError("当前装备槽位字段不完整或含未知字段")
+        if _integer(entry["slot"], "slot", 1, 19) != expected_slot:
+            raise FrameError("当前装备槽位必须从 1 到 19 排序且不重复")
+        if entry["state"] == "equipped":
+            validate_loadout_item(entry["item"])
+        elif entry["state"] in ("empty", "unknown"):
+            if entry["item"] is not None:
+                raise FrameError("空或未知装备槽位必须使用 null 物品")
+        else:
+            raise FrameError("当前装备槽位状态不合法")
+    return value
+
+
+def _comparison_text(value: object, key: str, maximum: int, *, identity=False):
+    text = _text(value, key, maximum, identity=identity)
+    if any(127 <= ord(character) <= 159 for character in text):
+        raise FrameError(f"装备比较字段 {key} 含控制字符")
+    return text
+
+
+def _comparison_item(value: object, *, candidate: bool):
+    fields = {"itemID", "name", "itemLevel", "equipLoc", "type", "subtype", "stats", "complex", "complete"}
+    if not isinstance(value, dict) or set(value) != fields:
+        raise FrameError("装备比较物品字段不完整或含未知字段")
+    identifier = _integer(value["itemID"], "itemID", 1 if candidate else 0, 2147483647)
+    for key in ("name", "equipLoc", "type", "subtype"):
+        _comparison_text(value[key], key, 128)
+    _number(value["itemLevel"], "itemLevel", 0 if identifier else -1, 100000)
+    for key in ("complex", "complete"):
+        if type(value[key]) is not bool:
+            raise FrameError(f"装备比较字段 {key} 必须是布尔值")
+    stats = value["stats"]
+    if not isinstance(stats, list) or len(stats) > 32:
+        raise FrameError("装备比较属性数量不合法")
+    keys = set()
+    for stat in stats:
+        if not isinstance(stat, dict) or set(stat) != {"key", "value"}:
+            raise FrameError("装备比较属性字段不完整或含未知字段")
+        key = _comparison_text(stat["key"], "stats.key", 64)
+        if not key or key in keys:
+            raise FrameError("装备比较属性标识为空或重复")
+        keys.add(key)
+        _number(stat["value"], "stats.value", -1e12, 1e12)
+    if identifier == 0 and (value["itemLevel"] != -1 or stats):
+        raise FrameError("装备比较空槽必须使用 -1 装等和空属性")
+    if identifier and value["complete"] and any(not value[key] for key in ("name", "equipLoc", "type", "subtype")):
+        raise FrameError("完整装备比较缺少物品资料")
+    return value
+
+
+def validate_equipment_comparison(value: object) -> dict:
+    """Validate observed attributes. The bridge never decides which item is better."""
+    fields = {"v", "id", "session", "guid", "class", "spec", "primary", "observedAt", "slot",
+              "usable", "specMatch", "current", "candidate"}
+    if not isinstance(value, dict) or set(value) != fields:
+        raise FrameError("装备比较记录字段不完整或含未知字段")
+    _integer(value["v"], "v", 1, 1)
+    _integer(value["id"], "id", 1, 2147483647)
+    _comparison_text(value["session"], "session", 40, identity=True)
+    _comparison_text(value["guid"], "guid", 48, identity=True)
+    token = _comparison_text(value["class"], "class", 32)
+    if re.fullmatch(r"[A-Z_]{1,32}", token) is None:
+        raise FrameError("装备比较职业标识不合法")
+    _integer(value["spec"], "spec", 0, MAX_SAFE_INTEGER)
+    primary = _integer(value["primary"], "primary", 0, 4)
+    if primary not in (0, 1, 2, 4):
+        raise FrameError("装备比较主属性标识不合法")
+    _integer(value["observedAt"], "observedAt", 0, 4102444800)
+    slot = _integer(value["slot"], "slot", 0, 19)
+    if type(value["usable"]) is not bool or (value["specMatch"] is not None and type(value["specMatch"]) is not bool):
+        raise FrameError("装备比较可用性或专精匹配标识不合法")
+    if value["current"] is None:
+        if slot != 0:
+            raise FrameError("未知比较槽位必须使用 slot=0")
+    else:
+        if slot == 0:
+            raise FrameError("已知比较槽位必须在 1–19 范围")
+        _comparison_item(value["current"], candidate=False)
+    _comparison_item(value["candidate"], candidate=True)
+    return value
 
 
 def validate_equipment_record(value: object) -> dict:
@@ -204,14 +394,18 @@ def validate_equipment_offer(value: object) -> dict:
             raise FrameError("换装提议装备名为空或含控制字符")
         _number(value["il"], "il", 0, 100000)
         _number(value["ol"], "ol", -1, 100000)
-        if value["il"] <= value["ol"] or (value["ol"] != -1 if value["old"] == 0 else value["ol"] < 0):
-            raise FrameError("换装提议不是装等提升或空槽")
+        if value["il"] < value["ol"] or (value["ol"] != -1 if value["old"] == 0 else value["ol"] < 0):
+            raise FrameError("换装提议低于当前装等或空槽标识无效")
         return dict(value)
     except FrameError as exc:
         raise EquipmentOfferError(str(exc)) from exc
 
 
 def validate_message(value: object) -> dict:
+    if isinstance(value, dict) and value.get("kind") == "gear":
+        return validate_loadout_fragment(value)
+    if isinstance(value, dict) and value.get("kind") == "cmp":
+        return validate_comparison_fragment(value)
     if isinstance(value, dict) and value.get("kind") == "eq":
         return validate_equipment_fragment(value)
     if isinstance(value, dict) and value.get("kind") == "swap":
@@ -224,8 +418,10 @@ def validate_message(value: object) -> dict:
 def validate_snapshot(value: object) -> dict:
     if not isinstance(value, dict):
         raise FrameError("快照必须是 JSON 对象")
+    if type(value.get("v")) is not int or value["v"] != 3:
+        raise FrameError("角色快照需要 v3，请同时更新插件、桥接和 AIRI")
     string_limits = {"session": 64, "guid": 96, "name": 64, "realm": 96, "class": 32, "zone": 192}
-    result = {}
+    result = {"v": 3}
     for key, maximum in string_limits.items():
         item = value.get(key)
         if not isinstance(item, str) or len(item.encode("utf-8")) > maximum or any(ord(c) < 32 for c in item):
@@ -235,7 +431,22 @@ def validate_snapshot(value: object) -> dict:
         raise FrameError("缺少角色或会话标识")
     if not re.fullmatch(r"[A-Z_]{1,32}", result["class"]):
         raise FrameError("职业标识不合法")
-    ranges = {"v": (2, 2), "seq": (0, 2147483647), "tick": (0, 2147483647),
+    if "faction" not in value or value["faction"] not in (None, "Alliance", "Horde", "Neutral"):
+        raise FrameError("字段 faction 必须是 Alliance、Horde、Neutral 或 null")
+    result["faction"] = value["faction"]
+    if "race" not in value:
+        raise FrameError("缺少字段 race；未知种族必须显式传入 null")
+    race = value["race"]
+    if race is not None:
+        try:
+            valid_race = (isinstance(race, str) and 0 < len(race.encode("utf-8")) <= 48
+                          and not any(ord(c) < 32 or 127 <= ord(c) <= 159 for c in race))
+        except UnicodeEncodeError:
+            valid_race = False
+        if not valid_race:
+            raise FrameError("字段 race 必须是非空且最多 48 个 UTF-8 字节的种族名称或 null")
+    result["race"] = race
+    ranges = {"seq": (0, 2147483647), "tick": (0, 2147483647),
               "level": (1, 255), "spec": (0, 65535), "map": (0, 2147483647)}
     for key, (minimum, maximum) in ranges.items():
         item = value.get(key)

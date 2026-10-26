@@ -20,7 +20,7 @@ ROOT = HERE.parent
 MOCK = b'''
 Objects, Frames, Timers, Tickers, Messages = {}, {}, {}, {}, {}
 Screen = {width=2560, height=1600}
-Model = {guid="Player-1-00000001", level=29, name="Adventurer", realm="Realm", class="MAGE", spec=64, map=84, zone="Stormwind", dead=false, combat=false, copper=100000}
+Model = {guid="Player-1-00000001", level=29, name="Adventurer", realm="Realm", class="MAGE", faction="Alliance", race="Human", spec=64, map=84, zone="Stormwind", dead=false, combat=false, copper=100000}
 Secret = setmetatable({}, {__tostring=function() error("secret converted") end})
 function issecretvalue(v) return rawequal(v, Secret) end
 local methods = {}
@@ -69,6 +69,8 @@ function UnitGUID() return Model.guid end
 function GetMoney() if Model.moneyError then error("unavailable") end; return Model.copper end
 function UnitName() return Model.name end
 function UnitClass() return "Mage", Model.class end
+function UnitFactionGroup(unit) assert(unit == "player"); if Model.factionError then error("unavailable") end; return Model.faction, "Localized faction" end
+function UnitRace(unit) assert(unit == "player"); if Model.raceError then error("unavailable") end; return Model.race, "EnglishRace", 1 end
 function UnitLevel() return Model.level end
 function GetRealmName() return Model.realm end
 function GetSpecialization() return 1 end
@@ -80,7 +82,7 @@ function InCombatLockdown() return Model.combat end
 C_Map={GetBestMapForUnit=function() return Model.map end, GetMapInfo=function() return {name=Model.zone} end}
 C_Timer={
   NewTimer=function(delay, callback) local t={delay=delay,callback=callback,Cancel=function(self) self.cancelled=true end}; Timers[#Timers+1]=t; return t end,
-  NewTicker=function(delay, callback) local t={callback=callback}; Tickers[#Tickers+1]=t; return t end
+  NewTicker=function(delay, callback) local t={delay=delay,callback=callback}; Tickers[#Tickers+1]=t; return t end
 }
 function Fire(event, ...)
   for _, frame in ipairs(Frames) do if frame.events[event] then frame.scripts.OnEvent(frame,event,...) end end
@@ -96,7 +98,7 @@ class AddonTest(unittest.TestCase):
         self.lua.execute(MOCK)
         self.ns = self.lua.table()
         self.load = self.lua.eval(b"function(source, name, ns) local f, err = loadstring(source); assert(f, err); return f(name, ns) end")
-        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
+        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
             self.load((ROOT / name).read_bytes(), b"WoWMapCompanion", self.ns)
         self.lua.globals().Fire(b"ADDON_LOADED", b"WoWMapCompanion")
         self.lua.globals().Fire(b"PLAYER_ENTERING_WORLD")
@@ -116,6 +118,125 @@ class AddonTest(unittest.TestCase):
         self.assertEqual(crc, binascii.crc_hqx(payload, 0xFFFF))
         reconstructed = bytes(sum(protocol[b"Bit"](frame, byte * 8 + bit) << (7 - bit) for bit in range(8)) for byte in range(512))
         self.assertEqual(reconstructed, frame)
+
+
+    def test_faction_and_localized_race_are_public_player_values(self):
+        g = self.lua.globals()
+        for faction, race in ((b"Alliance", "人类"), (b"Horde", "兽人"), (b"Neutral", "熊猫人")):
+            with self.subTest(faction=faction):
+                g.Model[b"faction"], g.Model[b"race"] = faction, race.encode()
+                g.Fire(b"ZONE_CHANGED")
+                value = self.snapshot()
+                self.assertEqual(value["v"], 3)
+                self.assertEqual((value["faction"], value["race"]), (faction.decode(), race))
+        # The same race can choose either faction; race is never used as a faction lookup.
+        g.Model[b"faction"] = b"Alliance"
+        g.Fire(b"NEUTRAL_FACTION_SELECT_RESULT", True)
+        self.assertEqual((self.snapshot()["faction"], self.snapshot()["race"]), ("Alliance", "熊猫人"))
+
+    def test_faction_selection_retries_api_until_result_is_available(self):
+        g = self.lua.globals()
+        g.Model[b"faction"] = b"Neutral"
+        g.Fire(b"NEUTRAL_FACTION_SELECT_RESULT", True)
+        before = self.snapshot()
+        g.Model[b"faction"] = b"Horde"
+        g.RetryTimers()
+        self.assertEqual(self.snapshot()["faction"], "Horde")
+        self.assertEqual(self.snapshot()["seq"], before["seq"] + 1)
+
+    def test_unknown_secret_and_failed_identity_values_clear_previous_state(self):
+        g = self.lua.globals()
+        for value in (None, g.Secret, b"", b"unexpected", 42, True):
+            with self.subTest(value=type(value).__name__):
+                g.Model[b"faction"], g.Model[b"race"] = b"Horde", b"Orc"
+                g.Fire(b"ZONE_CHANGED")
+                g.Model[b"faction"] = value
+                # Invalid faction strings are never converted from their localized counterpart.
+                g.Model[b"race"] = value if value != b"unexpected" else None
+                g.Fire(b"PLAYER_DEAD")
+                self.assertIsNone(self.snapshot()["faction"])
+                self.assertIsNone(self.snapshot()["race"])
+        g.Model[b"faction"], g.Model[b"race"] = b"Alliance", b"Human"
+        g.Fire(b"ZONE_CHANGED")
+        g.Model[b"factionError"], g.Model[b"raceError"] = True, True
+        g.Fire(b"ZONE_CHANGED")
+        self.assertIsNone(self.snapshot()["faction"])
+        self.assertIsNone(self.snapshot()["race"])
+        self.lua.execute(b"UnitFactionGroup=nil; UnitRace=nil")
+        g.Fire(b"PLAYER_ENTERING_WORLD")
+        self.assertIsNone(self.snapshot()["faction"])
+        self.assertIsNone(self.snapshot()["race"])
+
+    def test_identity_switch_does_not_reuse_old_faction_or_race(self):
+        g = self.lua.globals()
+        g.Model[b"guid"] = b"Player-1-00000002"
+        g.Model[b"faction"], g.Model[b"race"] = None, None
+        g.Fire(b"PLAYER_ENTERING_WORLD")
+        self.assertEqual(self.snapshot()["guid"], "Player-1-00000002")
+        self.assertIsNone(self.snapshot()["faction"])
+        self.assertIsNone(self.snapshot()["race"])
+        g.Model[b"faction"], g.Model[b"race"] = b"Horde", "血精灵".encode()
+        g.RetryTimers()
+        self.assertEqual((self.snapshot()["faction"], self.snapshot()["race"]), ("Horde", "血精灵"))
+
+    def test_race_utf8_limit_is_all_or_unknown_and_controls_are_removed(self):
+        g = self.lua.globals()
+        for raw, expected in (("熊" * 16, "熊" * 16), ("熊" * 17, None),
+                              ("|cffffffff血\x00\x1f\x7f\x80\x9f精灵|r", "血精灵"),
+                              ("\x00\x80", None), ("   ", None)):
+            with self.subTest(raw=raw):
+                g.Model[b"race"] = raw.encode()
+                g.Fire(b"ZONE_CHANGED")
+                self.assertEqual(self.snapshot()["race"], expected)
+
+    def test_frame_drops_whole_race_only_after_display_labels(self):
+        snapshot = self.lua.globals().WoWMapCompanionDB[b"snapshot"]
+        exact = {b"guid": b"G" * 48, b"session": b"s" * 28, b"account": b"a" * 40,
+                 b"moneyEpoch": b"e" * 40, b"copper": 9007199254740991,
+                 b"earned": 9007199254740991, b"spent": 9007199254740991,
+                 b"faction": b"Alliance", b"class": b"M" * 20}
+        for key, value in exact.items():
+            snapshot[key] = value
+        for key in (b"name", b"realm", b"zone"):
+            snapshot[key] = ("测试" * 100).encode()
+        snapshot[b"seq"], snapshot[b"tick"] = 2147483647, 2147483647
+        snapshot[b"map"], snapshot[b"spec"], snapshot[b"level"] = 10000000, 65535, 255
+        snapshot[b"race"] = ("熊" * 16).encode()
+        frame, payload, _ = self.ns[b"Protocol"][b"Encode"](snapshot)
+        value = json.loads(payload)
+        self.assertEqual((len(frame), len(payload)), (512, 504))
+        self.assertIsNone(value["race"])
+        self.assertEqual((value["name"], value["realm"], value["zone"]), ("", "", ""))
+        for key, expected in exact.items():
+            self.assertEqual(value[key.decode()], expected.decode() if isinstance(expected, bytes) else expected)
+        # A frame that cannot preserve identity/counters must fail, not truncate those fields.
+        snapshot[b"session"] = b"s" * 40
+        frame, reason = self.ns[b"Protocol"][b"Encode"](snapshot)
+        self.assertIsNone(frame)
+        self.assertEqual(reason, b"snapshot exceeds 504 bytes")
+        self.assertEqual(snapshot[b"race"], ("熊" * 16).encode())
+        self.assertEqual(snapshot[b"session"], b"s" * 40)
+
+    def test_failed_export_keeps_saved_snapshot_and_rendered_heartbeat_unchanged(self):
+        g = self.lua.globals()
+        db = g.WoWMapCompanionDB
+        before = db[b"snapshotJSON"]
+        frame = g.Objects[b"WoWCompanionTelemetry"]
+        old_colors = [tuple(frame[b"textures"][i][b"color"].values()) for i in range(1, 4097)]
+        # Synthetic valid-length public strings with large JSON escaping costs exceed the fixed frame.
+        g.Model[b"guid"] = b"\\" * 48
+        g.Model[b"class"] = b"\\" * 20
+        g.Model[b"race"] = ("熊" * 16).encode()
+        g.Model[b"copper"] = 9007199254740991
+        db[b"money"][b"account"] = b"a" * 40
+        db[b"money"][b"characters"][g.Model[b"guid"]] = self.lua.table_from({
+            b"epoch": b"e" * 40, b"earned": 9007199254740991, b"spent": 9007199254740991,
+        })
+        g.Fire(b"PLAYER_ENTERING_WORLD")
+        g.Heartbeat()
+        self.assertEqual(db[b"snapshotJSON"], before)
+        self.assertTrue(any(b"504" in message for message in g.Messages.values()))
+        self.assertEqual([tuple(frame[b"textures"][i][b"color"].values()) for i in range(1, 4097)], old_colors)
 
     def test_level_event_wins_over_temporarily_stale_unit_level(self):
         before = self.snapshot()
@@ -200,7 +321,7 @@ class AddonTest(unittest.TestCase):
         command = g.SlashCmdList[b"WOWMAPCOMPANION"]
         command(b"cell 0")
         command(b"cell 2.5")
-        self.assertEqual(g.WoWMapCompanionDB[b"settings"][b"cell"], 2)
+        self.assertEqual(g.WoWMapCompanionDB[b"settings"][b"cell"], 1)
         command(b"pos 16 24")
         self.assertEqual(g.WoWMapCompanionDB[b"settings"][b"x"], 16)
         command(b"telemetry")
@@ -208,6 +329,53 @@ class AddonTest(unittest.TestCase):
         command(b"reset")
         self.assertTrue(g.Objects[b"WoWCompanionTelemetry"][b"shown"])
         self.assertAlmostEqual(g.Objects[b"WoWCompanionTelemetry"][b"scale"], (768 / 1600) / .7)
+
+    def reload_with_saved_settings(self):
+        self.lua.execute(MOCK)
+        ns = self.lua.table()
+        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
+            self.load((ROOT / name).read_bytes(), b"WoWMapCompanion", ns)
+        self.lua.globals().Fire(b"ADDON_LOADED", b"WoWMapCompanion")
+        self.lua.globals().Fire(b"PLAYER_ENTERING_WORLD")
+
+    def test_compact_migration_preserves_origin_and_hidden_setting(self):
+        g = self.lua.globals()
+        settings = g.WoWMapCompanionDB[b"settings"]
+        settings[b"cell"], settings[b"x"], settings[b"y"], settings[b"telemetry"] = 6, 137, 43, False
+        settings[b"compactLayoutVersion"] = None
+        self.reload_with_saved_settings()
+        self.assertEqual((settings[b"cell"], settings[b"compactLayoutVersion"], settings[b"x"], settings[b"y"], settings[b"telemetry"]), (1, 1, 137, 43, False))
+        self.assert_physical_layout(1, 137, 43)
+        self.assertFalse(g.Objects[b"WoWCompanionTelemetry"][b"shown"])
+
+    def test_explicit_larger_grid_survives_subsequent_reload(self):
+        g = self.lua.globals()
+        g.SlashCmdList[b"WOWMAPCOMPANION"](b"cell 3")
+        self.reload_with_saved_settings()
+        self.assertEqual(g.WoWMapCompanionDB[b"settings"][b"cell"], 3)
+        self.assert_physical_layout(3, 8, 8)
+
+    def test_compact_command_reduces_grid_without_moving_or_enabling_it(self):
+        g = self.lua.globals()
+        command = g.SlashCmdList[b"WOWMAPCOMPANION"]
+        command(b"pos 19 37")
+        command(b"cell 6")
+        command(b"telemetry")
+        command(b"compact")
+        settings = g.WoWMapCompanionDB[b"settings"]
+        self.assertEqual((settings[b"cell"], settings[b"x"], settings[b"y"], settings[b"telemetry"]), (1, 19, 37, False))
+        self.assert_physical_layout(1, 19, 37)
+        self.assertFalse(g.Objects[b"WoWCompanionTelemetry"][b"shown"])
+
+    def test_default_compact_grid_has_no_extra_screen_area(self):
+        self.assert_physical_layout(1, 8, 8)
+        g = self.lua.globals()
+        frame = g.Objects[b"WoWCompanionTelemetry"]
+        self.assertEqual(len(frame[b"textures"]), 4096)
+        last = frame[b"textures"][4096]
+        self.assertEqual((last[b"point"][4] + last[b"width"], -last[b"point"][5] + last[b"height"]), (64, 64))
+        names = [g.rawget(frame, b"name") for frame in g.Frames.values()]
+        self.assertEqual([name for name in names if name], [b"UIParent", b"WoWCompanionTelemetry"])
 
     def test_money_first_balance_and_fast_income_spending_remain_separate(self):
         g = self.lua.globals()
@@ -258,7 +426,7 @@ class AddonTest(unittest.TestCase):
         # Reset client runtime objects while retaining its account-wide SavedVariables table.
         self.lua.execute(MOCK)
         ns = self.lua.table()
-        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
+        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWMapCompanion.lua"):
             self.load((ROOT / name).read_bytes(), b"WoWMapCompanion", ns)
         g.Fire(b"ADDON_LOADED", b"WoWMapCompanion")
         g.Model[b"copper"] = 900000
@@ -327,8 +495,8 @@ class AddonTest(unittest.TestCase):
     def test_money_frame_limit_preserves_identity_and_exact_counters(self):
         g = self.lua.globals()
         snapshot = g.WoWMapCompanionDB[b"snapshot"]
-        exact = {b"guid": b"G" * 48, b"session": b"s" * 40, b"account": b"a" * 40,
-                 b"moneyEpoch": b"e" * 40, b"copper": 9007199254740991,
+        exact = {b"guid": b"G" * 48, b"session": b"s" * 24, b"account": b"a" * 24,
+                 b"moneyEpoch": b"e" * 24, b"copper": 9007199254740991,
                  b"earned": 9007199254740991, b"spent": 9007199254740991}
         for key, value in exact.items():
             snapshot[key] = value
@@ -338,13 +506,15 @@ class AddonTest(unittest.TestCase):
             snapshot[key] = 2147483647
         snapshot[b"class"] = b"M" * 20
         snapshot[b"map"], snapshot[b"spec"], snapshot[b"level"] = 10000000, 65535, 255
+        snapshot[b"race"] = "至高岭牛头人".encode()
         frame, payload, _ = self.ns[b"Protocol"][b"Encode"](snapshot)
         self.assertEqual(len(frame), 512)
         self.assertLessEqual(len(payload), 504)
         value = json.loads(payload)
         for key, expected in exact.items():
             self.assertEqual(value[key.decode()], expected.decode() if isinstance(expected, bytes) else expected)
-        self.assertTrue(value["name"])
+        self.assertEqual(value["faction"], "Alliance")
+        self.assertEqual(value["race"], "至高岭牛头人")
 
     def assert_physical_layout(self, cell, x, y):
         g = self.lua.globals()

@@ -13,11 +13,12 @@ from typing import BinaryIO
 from urllib.parse import parse_qs, urlsplit
 
 from capture import ScreenCapture, to_bmp
-from protocol import COLS, ROWS, GAME_PROTOCOLS, EquipmentOfferError, EquipmentSwapError, FrameError, decode_pixels
+from geometry import AdaptiveCaptureReader
+from protocol import GAME_PROTOCOLS, EquipmentComparisonError, EquipmentOfferError, EquipmentSwapError, EquipmentLoadoutError, FrameError
 from state import CompanionState, validate_config
 
 ROOT = Path(__file__).resolve().parent
-VERSION = "2.6.0"
+VERSION = "2.11.1"
 
 
 def allowed_origin(origin: str | None) -> bool:
@@ -171,6 +172,7 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def capture_loop(state: CompanionState, stop: threading.Event) -> None:
+    reader = AdaptiveCaptureReader()
     try:
         capture = ScreenCapture()
     except (OSError, RuntimeError) as exc:
@@ -185,15 +187,27 @@ def capture_loop(state: CompanionState, stop: threading.Event) -> None:
                 state.capture_error("无法创建 Windows 画面采集器；请检查运行环境")
             else:
                 try:
-                    size = config["cellSize"]
-                    width, height = COLS * size, ROWS * size
-                    pixels = capture.grab(config["x"], config["y"], width, height)
-                    snapshot = decode_pixels(pixels, width, height, size, state.protocol)
+                    try:
+                        snapshot = reader.read(capture, config, state.protocol)
+                    finally:
+                        if reader.image is not None:
+                            pixels = reader.image.pixels
+                            width, height = reader.image.width, reader.image.height
                     with state.lock:
                         # Config/demo may have changed while BitBlt was running.
                         if state.config == config and not state.demo:
                             state.frame_bmp = to_bmp(pixels, width, height)
                             state.ingest(snapshot)
+                except EquipmentLoadoutError as exc:
+                    with state.lock:
+                        if state.config == config and not state.demo:
+                            state.frame_bmp = to_bmp(pixels, width, height)
+                            state.capture_loadout_error(str(exc))
+                except EquipmentComparisonError as exc:
+                    with state.lock:
+                        if state.config == config and not state.demo:
+                            state.frame_bmp = to_bmp(pixels, width, height)
+                            state.capture_comparison_error(str(exc))
                 except EquipmentOfferError as exc:
                     with state.lock:
                         if state.config == config and not state.demo:

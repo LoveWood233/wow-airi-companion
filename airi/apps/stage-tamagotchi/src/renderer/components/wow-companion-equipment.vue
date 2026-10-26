@@ -1,17 +1,21 @@
 <script setup lang="ts">
 import type { BridgeStatus, GameVersion } from '../../shared/wow-companion'
+import type { EquipmentComparisonsState } from '../../shared/wow-companion-equipment-comparisons'
 import type { EquipmentHistoryState } from '../../shared/wow-companion-equipment-history'
 
 import { Button, Collapsible, SettingsCard } from '@proj-airi/ui'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const props = defineProps<{ game: GameVersion, bridge: BridgeStatus | null, history: EquipmentHistoryState }>()
+import WowCompanionEquipmentComparison from './wow-companion-equipment-comparison.vue'
+
+const props = defineProps<{ game: GameVersion, bridge: BridgeStatus | null, history: EquipmentHistoryState, comparisons: EquipmentComparisonsState }>()
 const { t, te, locale } = useI18n()
 const tn = (key: string) => t(`wow-companion.equipment.${key}`)
 const entries = computed(() => [...props.history.entries].reverse().map(entry => ({
   entry,
   item: entry.record,
+  comparison: props.comparisons.entries.find(value => value.account === entry.account && value.comparison.guid === entry.record.guid && value.comparison.session === entry.record.session && value.comparison.id === entry.record.id)?.comparison,
   detailsId: `equipment-${props.game}-${encodeURIComponent(JSON.stringify([entry.account, entry.record.guid, entry.record.session, entry.record.id]))}`,
 })))
 
@@ -34,6 +38,12 @@ function statLabel(key: string) {
     <p v-if="history.storageError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
       {{ tn('storage-error') }} {{ history.storageError }}
     </p>
+    <p v-if="comparisons.storageError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
+      {{ comparisons.storageError }}
+    </p>
+    <p v-if="bridge?.equipmentComparisonError" role="status" :class="['break-words text-sm text-amber-700 dark:text-amber-300']">
+      {{ bridge.equipmentComparisonError }}
+    </p>
     <p v-if="bridge?.equipmentError" role="status" :class="['break-words text-sm text-amber-700 dark:text-amber-300']">
       {{ tn('read-error') }} {{ bridge.equipmentError }}
     </p>
@@ -45,7 +55,7 @@ function statLabel(key: string) {
     </p>
     <div :class="['flex flex-col gap-3']">
       <article
-        v-for="{ entry, item, detailsId } in entries" :key="detailsId"
+        v-for="{ entry, item, comparison, detailsId } in entries" :key="detailsId"
         :aria-label="item.name ?? t('wow-companion.equipment.unnamed', { id: item.itemID })"
         :class="['min-w-0 rounded-xl p-4', 'border border-neutral-200 dark:border-neutral-800', 'flex flex-col gap-3']"
       >
@@ -92,6 +102,7 @@ function statLabel(key: string) {
             </Button>
           </template>
           <div :id="detailsId" :class="['mt-4 flex flex-col gap-4']">
+            <WowCompanionEquipmentComparison :comparison="comparison" :current="bridge?.snapshot ?? null" />
             <dl :class="['grid grid-cols-2 gap-3 text-sm sm:grid-cols-3']">
               <div>
                 <dt :class="['text-xs text-neutral-500 dark:text-neutral-400']">

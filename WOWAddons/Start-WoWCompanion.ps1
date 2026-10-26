@@ -1,5 +1,6 @@
 param(
     [string]$AiriPath = (Join-Path (Split-Path $PSScriptRoot -Parent) 'airi'),
+    [string]$UserDataPath = $env:APP_USER_DATA_PATH,
     [switch]$BridgeOnly,
     [ValidateSet('retail', 'forever')][string]$Game = 'retail',
     [switch]$Dev
@@ -19,8 +20,26 @@ if (-not (Test-Path -LiteralPath (Join-Path $AiriPath 'node_modules'))) {
 }
 $pnpm = Get-Command pnpm.cmd -ErrorAction Stop
 Write-Output 'Starting AIRI. It manages the bridge when the WoW Companion connection is enabled.'
+$oldUserDataPath = $env:APP_USER_DATA_PATH
 Push-Location -LiteralPath $AiriPath
 try {
+    $usingDefaultUserDataPath = [string]::IsNullOrWhiteSpace($UserDataPath)
+    if ($usingDefaultUserDataPath) {
+        $UserDataPath = Join-Path ([Environment]::GetFolderPath('UserProfile')) '.airi-wow-companion'
+    }
+    $resolvedUserDataPath = [System.IO.Path]::GetFullPath($UserDataPath.Trim())
+    if ($usingDefaultUserDataPath) {
+        $oldProfile = Join-Path ([Environment]::GetFolderPath('ApplicationData')) '@proj-airi\stage-tamagotchi'
+        $hasNewData = (Test-Path -LiteralPath (Join-Path $resolvedUserDataPath 'Local Storage') -PathType Container) -or (Test-Path -LiteralPath (Join-Path $resolvedUserDataPath 'app-config.json') -PathType Leaf)
+        $hasOldData = (Test-Path -LiteralPath (Join-Path $oldProfile 'Local Storage') -PathType Container) -or (Test-Path -LiteralPath (Join-Path $oldProfile 'app-config.json') -PathType Leaf)
+        if (-not $hasNewData -and $hasOldData) {
+            throw "Existing AIRI data was found at $oldProfile. Back up and migrate a consistent profile to $resolvedUserDataPath before starting. AppData can show a merged MSIX view, so this launcher will not copy it automatically. To deliberately keep the old directory, pass -UserDataPath '$oldProfile'."
+        }
+    }
+    New-Item -ItemType Directory -Path $resolvedUserDataPath -Force | Out-Null
+    # Keep the profile outside AppData, which packaged launchers can redirect.
+    $env:APP_USER_DATA_PATH = $resolvedUserDataPath
+    Write-Output "AIRI user data: $resolvedUserDataPath"
     if ($Dev) {
         & $pnpm.Source -F '@proj-airi/stage-tamagotchi' dev
         if ($LASTEXITCODE -ne 0) { throw "AIRI exited with code $LASTEXITCODE." }
@@ -49,4 +68,7 @@ try {
     }
     finally { $env:ELECTRON_RUN_AS_NODE = $oldRunAsNode }
 }
-finally { Pop-Location }
+finally {
+    $env:APP_USER_DATA_PATH = $oldUserDataPath
+    Pop-Location
+}

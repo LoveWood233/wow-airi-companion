@@ -4,20 +4,25 @@ from __future__ import annotations
 
 import base64
 import copy
+import hashlib
 import threading
 import time
 import uuid
 from collections import OrderedDict, deque
 from datetime import datetime, timezone
 
-from protocol import (EQUIPMENT_MAX_BYTES, GAME_PROTOCOLS, FrameError, load_json,
+from protocol import (COMPARISON_MAX_BYTES, EQUIPMENT_MAX_BYTES, LOADOUT_MAX_BYTES, GAME_PROTOCOLS, FrameError, load_json,
                       validate_equipment_fragment, validate_equipment_record, validate_equipment_swap,
-                      validate_equipment_offer)
+                      validate_equipment_offer, validate_comparison_fragment, validate_equipment_comparison,
+                      validate_loadout_fragment, validate_equipment_loadout)
 
-DEFAULT_CONFIG = {"x": 8, "y": 8, "cellSize": 2, "pollMs": 500, "paused": False}
+DEFAULT_CONFIG = {"x": 8, "y": 8, "cellSize": 1, "pollMs": 100, "paused": False}
 EQUIPMENT_TTL_SECONDS = 180
 EQUIPMENT_PENDING_LIMIT = 8
 EQUIPMENT_DEDUP_LIMIT = 256
+LOADOUT_TTL_SECONDS = 1200
+LOADOUT_PENDING_LIMIT = 2
+LOADOUT_PENDING_BYTES = LOADOUT_MAX_BYTES * LOADOUT_PENDING_LIMIT
 
 
 def known_zone(snapshot: dict) -> tuple[int, str] | None:
@@ -41,7 +46,7 @@ def validate_config(config: dict, current: dict | None = None) -> dict:
             if type(value) is not bool:
                 raise ValueError("paused 必须是布尔值")
         else:
-            low, high = {"x": (-32768, 32767), "y": (-32768, 32767), "cellSize": (1, 12), "pollMs": (250, 5000)}[key]
+            low, high = {"x": (-32768, 32767), "y": (-32768, 32767), "cellSize": (1, 12), "pollMs": (100, 5000)}[key]
             if type(value) is not int or not low <= value <= high:
                 raise ValueError(f"{key} 必须在 {low}–{high} 范围内")
         result[key] = value
@@ -58,8 +63,7 @@ class CompanionState:
         self.clock = clock
         self.wall_clock = wall_clock
         self.instance_id = str(uuid.uuid4())
-        defaults = {**DEFAULT_CONFIG, "cellSize": 1} if game == "forever" else DEFAULT_CONFIG
-        self.config = validate_config(config or {}, defaults)
+        self.config = validate_config(config or {}, DEFAULT_CONFIG)
         self.snapshot: dict | None = None
         self.events = deque(maxlen=200)
         self.event_id = 0
@@ -83,6 +87,19 @@ class CompanionState:
         self.equipment_offer: dict | None = None
         self.equipment_offer_error: str | None = None
         self.equipment_offer_expires = 0.0
+        # Comparison fragments have separate queues and error state. They cannot evict item observations or refresh their heartbeat.
+        self.equipment_comparisons: list[dict] = []
+        self.equipment_comparison_error: str | None = None
+        self.comparison_pending: dict[int, dict] = {}
+        self.comparison_seen: OrderedDict[int, None] = OrderedDict()
+        self.comparison_rejected: OrderedDict[int, float] = OrderedDict()
+        self.comparison_floor = 0
+        self.equipment_loadout: dict | None = None
+        self.equipment_loadout_error: str | None = None
+        self.loadout_pending: dict[int, dict] = {}
+        self.loadout_rejected: OrderedDict[int, float] = OrderedDict()
+        self.loadout_parts: dict[int, bytes] = {}
+        self.loadout_count = 0
 
     def _clear_equipment(self) -> None:
         self.equipment.clear()
@@ -97,6 +114,18 @@ class CompanionState:
         self.equipment_offer = None
         self.equipment_offer_error = None
         self.equipment_offer_expires = 0.0
+        self.equipment_comparisons.clear()
+        self.equipment_comparison_error = None
+        self.comparison_pending.clear()
+        self.comparison_seen.clear()
+        self.comparison_rejected.clear()
+        self.comparison_floor = 0
+        self.equipment_loadout = None
+        self.equipment_loadout_error = None
+        self.loadout_pending.clear()
+        self.loadout_rejected.clear()
+        self.loadout_parts.clear()
+        self.loadout_count = 0
 
     def _reject_equipment(self, identifier: int) -> None:
         self.equipment_pending.pop(identifier, None)
@@ -106,6 +135,13 @@ class CompanionState:
 
     def _expire_equipment(self) -> None:
         now = self.clock()
+        for identifier, expires in list(self.loadout_rejected.items()):
+            if expires <= now:
+                del self.loadout_rejected[identifier]
+        for identifier, pending in list(self.loadout_pending.items()):
+            if now - pending["started"] >= LOADOUT_TTL_SECONDS:
+                del self.loadout_pending[identifier]
+                self.equipment_loadout_error = "当前装备分片等待超时，已丢弃未完成快照"
         for identifier, expires in list(self.equipment_rejected.items()):
             if expires <= now:
                 del self.equipment_rejected[identifier]
@@ -113,6 +149,140 @@ class CompanionState:
             if now - pending["started"] >= EQUIPMENT_TTL_SECONDS:
                 del self.equipment_pending[identifier]
                 self.equipment_error = "装备分片等待超时，已丢弃未完成记录"
+        for identifier, expires in list(self.comparison_rejected.items()):
+            if expires <= now:
+                del self.comparison_rejected[identifier]
+        for identifier, pending in list(self.comparison_pending.items()):
+            if now - pending["started"] >= EQUIPMENT_TTL_SECONDS:
+                del self.comparison_pending[identifier]
+                self.equipment_comparison_error = "装备比较分片等待超时，已丢弃未完成记录"
+
+    def _reject_loadout(self, identifier: int) -> None:
+        self.loadout_pending.pop(identifier, None)
+        self.loadout_rejected[identifier] = self.clock() + LOADOUT_TTL_SECONDS
+        while len(self.loadout_rejected) > EQUIPMENT_DEDUP_LIMIT:
+            self.loadout_rejected.popitem(last=False)
+
+    def _ingest_equipment_loadout(self, value: dict) -> None:
+        """Publish a complete revision atomically. Acquisition history stays separate."""
+        self._expire_equipment()
+        if self.demo or self._status() != "live" or self.reset_baseline:
+            self.loadout_pending.clear()
+            self.equipment_loadout_error = "当前装备分片需要当前角色的实时状态帧"
+            return
+        try:
+            fragment = validate_loadout_fragment(value)
+            identifier = fragment["id"]
+            if (fragment["s"], fragment["g"]) != (self.snapshot["session"], self.snapshot["guid"]):
+                raise FrameError("忽略其他角色或会话的当前装备分片")
+            raw = base64.b64decode(fragment["d"], validate=True)
+            latest = self.equipment_loadout
+            if latest is not None and identifier <= latest["id"]:
+                if identifier == latest["id"]:
+                    if (fragment["n"] != self.loadout_count
+                            or self.loadout_parts.get(fragment["p"]) != hashlib.sha256(raw).digest()):
+                        raise FrameError("当前装备已完成修订的分片内容冲突，保留原快照")
+                return
+            if identifier in self.loadout_rejected:
+                return
+            pending = self.loadout_pending.get(identifier)
+            if pending is None:
+                if len(self.loadout_pending) >= LOADOUT_PENDING_LIMIT:
+                    oldest = min(self.loadout_pending)
+                    if identifier <= oldest:
+                        raise FrameError("当前装备在途快照已达 2 条，忽略较旧修订")
+                    del self.loadout_pending[oldest]
+                pending = {"started": self.clock(), "count": fragment["n"], "parts": {}}
+                self.loadout_pending[identifier] = pending
+            part = fragment["p"]
+            previous = pending["parts"].get(part)
+            if pending["count"] != fragment["n"] or (previous is not None and previous != raw):
+                self._reject_loadout(identifier)
+                raise FrameError("当前装备分片内容冲突，已丢弃整套快照")
+            used = sum(sum(len(chunk) for chunk in item["parts"].values()) for item in self.loadout_pending.values())
+            if used + (len(raw) if previous is None else 0) > LOADOUT_PENDING_BYTES:
+                self._reject_loadout(identifier)
+                raise FrameError("当前装备在途快照超过内存上限")
+            pending["parts"][part] = raw
+            if len(pending["parts"]) != pending["count"]:
+                return
+            payload = b"".join(pending["parts"][index] for index in range(1, pending["count"] + 1))
+            try:
+                if len(payload) > LOADOUT_MAX_BYTES:
+                    raise FrameError("当前装备快照超过 196608 字节")
+                record = validate_equipment_loadout(load_json(payload))
+                if (record["session"], record["guid"], record["id"]) != (fragment["s"], fragment["g"], identifier):
+                    raise FrameError("当前装备快照与分片标识不一致")
+            except FrameError:
+                self._reject_loadout(identifier)
+                raise
+            self.equipment_loadout = copy.deepcopy(record)
+            self.loadout_parts = {index: hashlib.sha256(chunk).digest() for index, chunk in pending["parts"].items()}
+            self.loadout_count = pending["count"]
+            self.loadout_pending = {revision: item for revision, item in self.loadout_pending.items() if revision > identifier}
+            self.equipment_loadout_error = None
+        except FrameError as exc:
+            self.equipment_loadout_error = str(exc)
+
+    def _reject_comparison(self, identifier: int) -> None:
+        self.comparison_pending.pop(identifier, None)
+        self.comparison_rejected[identifier] = self.clock() + EQUIPMENT_TTL_SECONDS
+        while len(self.comparison_rejected) > EQUIPMENT_DEDUP_LIMIT:
+            self.comparison_rejected.popitem(last=False)
+
+    def _ingest_equipment_comparison(self, value: dict) -> None:
+        """Retain the two observed items, without interpreting their relative value."""
+        self._expire_equipment()
+        if self.demo or self._status() != "live" or self.reset_baseline:
+            self.comparison_pending.clear()
+            self.equipment_comparison_error = "装备比较分片需要当前角色的实时状态帧"
+            return
+        try:
+            fragment = validate_comparison_fragment(value)
+            identifier = fragment["id"]
+            if (fragment["s"], fragment["g"]) != (self.snapshot["session"], self.snapshot["guid"]):
+                raise FrameError("忽略其他角色或会话的装备比较分片")
+            if (identifier <= self.comparison_floor or identifier in self.comparison_seen
+                    or identifier in self.comparison_rejected):
+                return
+            pending = self.comparison_pending.get(identifier)
+            if pending is None:
+                if len(self.comparison_pending) >= EQUIPMENT_PENDING_LIMIT:
+                    raise FrameError("装备比较在途记录已达 8 条，等待现有记录完成")
+                pending = {"started": self.clock(), "count": fragment["n"], "parts": {}}
+                self.comparison_pending[identifier] = pending
+            part = fragment["p"]
+            raw = base64.b64decode(fragment["d"], validate=True)
+            previous = pending["parts"].get(part)
+            if pending["count"] != fragment["n"] or (previous is not None and previous != raw):
+                self._reject_comparison(identifier)
+                raise FrameError("装备比较分片内容冲突，已丢弃整条记录")
+            pending["parts"][part] = raw
+            if len(pending["parts"]) != pending["count"]:
+                return
+            payload = b"".join(pending["parts"][index] for index in range(1, pending["count"] + 1))
+            try:
+                if len(payload) > COMPARISON_MAX_BYTES:
+                    raise FrameError("装备比较记录超过 4096 字节")
+                record = validate_equipment_comparison(load_json(payload))
+                if (record["session"], record["guid"], record["id"]) != (fragment["s"], fragment["g"], identifier):
+                    raise FrameError("装备比较记录与分片标识不一致")
+                if record["class"] != self.snapshot["class"]:
+                    raise FrameError("装备比较职业与当前角色不一致")
+            except FrameError:
+                self._reject_comparison(identifier)
+                raise
+            del self.comparison_pending[identifier]
+            self.comparison_seen[identifier] = None
+            self.comparison_seen = OrderedDict(sorted(self.comparison_seen.items()))
+            while len(self.comparison_seen) > EQUIPMENT_DEDUP_LIMIT:
+                removed, _ = self.comparison_seen.popitem(last=False)
+                self.comparison_floor = max(self.comparison_floor, removed)
+            self.equipment_comparisons = sorted([*self.equipment_comparisons, copy.deepcopy(record)],
+                                                key=lambda item: item["id"])[-10:]
+            self.equipment_comparison_error = None
+        except FrameError as exc:
+            self.equipment_comparison_error = str(exc)
 
     def _ingest_equipment(self, value: dict) -> None:
         """Only complete records from the current live character enter the list."""
@@ -236,6 +406,10 @@ class CompanionState:
                     "equipmentOffer": copy.deepcopy(self.equipment_offer) if status == "live" and not self.demo
                     and self.clock() < self.equipment_offer_expires else None,
                     "equipmentOfferError": self.equipment_offer_error,
+                    "equipmentComparisons": copy.deepcopy(self.equipment_comparisons),
+                    "equipmentComparisonError": self.equipment_comparison_error,
+                    "equipmentLoadout": copy.deepcopy(self.equipment_loadout),
+                    "equipmentLoadoutError": self.equipment_loadout_error,
                     "staleAfterSeconds": 5, "protocol": self.protocol, "game": self.game}
 
     def _event(self, kind: str, title: str, detail: str, snapshot: dict) -> None:
@@ -245,6 +419,12 @@ class CompanionState:
 
     def ingest(self, snapshot: dict) -> None:
         with self.lock:
+            if snapshot.get("kind") == "gear":
+                self._ingest_equipment_loadout(snapshot)
+                return
+            if snapshot.get("kind") == "cmp":
+                self._ingest_equipment_comparison(snapshot)
+                return
             if snapshot.get("kind") == "eq":
                 self._ingest_equipment(snapshot)
                 return
@@ -270,6 +450,8 @@ class CompanionState:
             if not tick_changed and self._status() == "stale":
                 self.reset_baseline = True
                 self.equipment_pending.clear()
+                self.comparison_pending.clear()
+                self.loadout_pending.clear()
                 return
             self.snapshot = copy.deepcopy(snapshot)
             if self.reset_baseline or identity_changed or was_stale:
@@ -299,7 +481,7 @@ class CompanionState:
                 self.last_known_zone = zone
             if snapshot["dead"] != old["dead"]:
                 if snapshot["dead"]:
-                    self._event("death", "角色倒下", "角色已死亡，可以温和安慰，不催促操作", snapshot)
+                    self._event("death", "角色倒下", "角色已死亡", snapshot)
                 else:
                     self._event("revive", "角色复活", "角色已复活，可以继续旅途", snapshot)
             if snapshot["combat"] != old["combat"]:
@@ -313,6 +495,8 @@ class CompanionState:
             if self._status() == "stale":
                 self.reset_baseline = True
                 self.equipment_pending.clear()
+                self.comparison_pending.clear()
+                self.loadout_pending.clear()
 
     def capture_swap_error(self, message: str) -> None:
         with self.lock:
@@ -321,6 +505,14 @@ class CompanionState:
     def capture_offer_error(self, message: str) -> None:
         with self.lock:
             self.equipment_offer_error = message
+
+    def capture_comparison_error(self, message: str) -> None:
+        with self.lock:
+            self.equipment_comparison_error = message
+
+    def capture_loadout_error(self, message: str) -> None:
+        with self.lock:
+            self.equipment_loadout_error = message
 
     def update_config(self, patch: dict) -> dict:
         with self.lock:
@@ -357,8 +549,9 @@ class CompanionState:
             if not enabled:
                 return
             if self.snapshot is None:
-                self.ingest({"v": 2, "session": "demo-session", "seq": 1, "tick": 1, "guid": "DEMO-PLAYER",
+                self.ingest({"v": 3, "session": "demo-session", "seq": 1, "tick": 1, "guid": "DEMO-PLAYER",
                              "name": "演示冒险者", "realm": "无限服演示" if self.game == "forever" else "正式服演示", "level": 29, "class": "MAGE", "spec": 0 if self.game == "forever" else 64,
+                             "faction": "Alliance", "race": "人类",
                              "map": 37, "zone": "艾尔文森林（演示）", "combat": False, "dead": False, "online": True,
                              "account": "demo-account", "moneyEpoch": "demo-epoch", "copper": 1234567, "earned": 0, "spent": 0})
             if action:

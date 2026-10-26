@@ -6,6 +6,8 @@ local Public = ns.Protocol.Public
 local owner, emit, seen, maximumCounts, fallbackLinks, pending, baselineTimer, scanTimer
 local active, initialized, nextID, dropped = false, false, 0, 0
 local RETRIES = { 0.5, 1, 2, 4 }
+local currentEmit, currentTimer, currentRequest, currentRevision, currentMissing
+local currentGeneration = 0
 
 local function Call(fn, ...)
     if type(fn) ~= "function" then return nil end
@@ -190,12 +192,12 @@ Attempt = function(entry)
     if basic == false then pending[entry.id] = nil; return end
     local record = basic and Collect(entry, basic)
     if record and record.infoComplete and record.statsComplete and record.tooltipComplete then
-        pending[entry.id] = nil; emit(record); return
+        pending[entry.id] = nil; emit(record); Equipment.RequestCurrent("equipment_acquired"); return
     end
     entry.attempt = entry.attempt + 1
     if entry.attempt > #RETRIES then
         pending[entry.id] = nil
-        if record then emit(record) else dropped = dropped + 1 end
+        if record then emit(record); Equipment.RequestCurrent("equipment_acquired") else dropped = dropped + 1 end
         return
     end
     Call(C_Item and C_Item.RequestLoadItemDataByID, tonumber(string.match(entry.link, "item:(%d+)")))
@@ -241,13 +243,151 @@ function Equipment.Scan()
     return true
 end
 
-function Equipment.Initialize(state, callback)
+-- A deliberate review shares IDs with acquisitions, but never emits a new acquisition or changes its baseline.
+function Equipment.Review(callback,targetItemID)
+    if not active or not initialized or type(callback)~="function" then return 0,0 end
+    local entries=Entries()
+    if not entries then return 0,1 end
+    local candidates,unready={},0
+    for _, entry in ipairs(entries) do
+        if not entry.inventory and entry.itemGUID then
+            local basic=ItemType(entry)
+            if basic and (not targetItemID or basic.id==targetItemID) then
+                entry.id,entry.observedAt=0,math.floor(Number(Call(GetServerTime),0,4102444800) or 0)
+                local record=Collect(entry,basic)
+                if record.infoComplete and record.statsComplete and record.tooltipComplete and not record.truncated then
+                    local _,assessment=ns.EquipmentCompare.Capture(owner,record)
+                    if ns.EquipmentCompare.CanOffer(assessment) then candidates[#candidates+1]=record end
+                else
+                    unready=unready+1
+                    Call(C_Item and C_Item.RequestLoadItemDataByID,basic.id)
+                end
+            end
+        end
+    end
+    table.sort(candidates,function(a,b)
+        if a.itemLevel~=b.itemLevel then return a.itemLevel>b.itemLevel end
+        return a.itemGUID<b.itemGUID
+    end)
+    local accepted=0
+    for _, record in ipairs(candidates) do
+        if accepted>=6 or nextID>=2147483647 then break end
+        nextID=nextID+1; record.id=nextID
+        if callback(record)==true then accepted=accepted+1 end
+    end
+    return accepted,unready
+end
+
+local function CurrentText(value, limit)
+    return type(value) == "string" and value ~= "" and #value <= limit
+        and not string.find(value, "[%z\1-\31\127]") and not string.find(value, "\194[\128-\159]")
+end
+local function CurrentItem(record)
+    for _, key in ipairs({ "name", "type", "subtype", "equipLoc" }) do
+        if not CurrentText(record[key], 128) then record[key], record.infoComplete = nil, false end
+    end
+    for _, key in ipairs({ "quality", "requiredLevel" }) do
+        local value = record[key]
+        if type(value) ~= "number" or value ~= math.floor(value) then record[key], record.infoComplete = nil, false end
+    end
+    for index = #record.stats, 1, -1 do
+        if not CurrentText(record.stats[index].key, 64) then table.remove(record.stats, index); record.statsComplete = false end
+    end
+    for index = #record.tooltip, 1, -1 do
+        if not CurrentText(record.tooltip[index], 256) then table.remove(record.tooltip, index); record.tooltipComplete = false end
+    end
+    return record
+end
+
+-- Read one public inventory instant. Unknown is distinct from an explicitly empty slot.
+local function InventoryEntry(slot)
+    local location = Location(nil, slot, true)
+    local exists = location and Call(C_Item and C_Item.DoesItemExist, location)
+    if exists == false then return { slot = slot, state = "empty" }, "empty" end
+    if exists ~= true then return { slot = slot, state = "unknown" }, "unknown" end
+    local link = Link(Call(GetInventoryItemLink, "player", slot))
+    if not CurrentText(link, 1024) then return { slot = slot, state = "unknown" }, "unknown" end
+    local guid = Call(C_Item and C_Item.GetItemGUID, location)
+    if not CurrentText(guid, 128) then guid = nil end
+    return { slot = slot, state = "equipped", inventory = true, link = link, itemGUID = guid, quantity = 1 }, link .. "\0" .. (guid or "")
+end
+
+local function CurrentIdentity(request)
+    return active and request and owner.session == request.session and owner.guid == request.guid
+        and Call(UnitGUID, "player") == request.guid
+end
+
+local function ReadCurrent(request)
+    if not CurrentIdentity(request) then return nil end
+    local slots, fingerprints, missing, complete = {}, {}, {}, true
+    local observedAt = math.floor(Number(Call(GetServerTime), 0, 4102444800) or 0)
+    for slot = 1, 19 do
+        local entry, fingerprint = InventoryEntry(slot)
+        fingerprints[slot] = fingerprint
+        local result = { slot = slot, state = entry.state }
+        if entry.state == "equipped" then
+            local itemID = Number(tonumber(string.match(entry.link, "item:(%d+)")), 1, 2147483647)
+            if itemID then
+                local basic = ItemType(entry)
+                if type(basic) ~= "table" then basic = { id = itemID } end
+                entry.observedAt = observedAt
+                result.item = CurrentItem(Collect(entry, basic))
+                if not result.item.infoComplete or not result.item.statsComplete or not result.item.tooltipComplete then
+                    missing[itemID], complete = true, false
+                end
+            else result.state, complete = "unknown", false end
+        elseif entry.state == "unknown" then complete = false end
+        slots[slot] = result
+    end
+    for slot = 1, 19 do
+        local _, fingerprint = InventoryEntry(slot)
+        if fingerprint ~= fingerprints[slot] then return nil end
+    end
+    if not CurrentIdentity(request) then return nil end
+    return { v = 1, session = request.session, guid = request.guid, observedAt = observedAt,
+        reason = request.reason, slots = slots }, complete, missing
+end
+
+local AttemptCurrent
+AttemptCurrent = function(request)
+    if currentRequest ~= request or request.generation ~= currentGeneration or not CurrentIdentity(request) then return end
+    currentTimer = nil
+    local record, complete, missing = ReadCurrent(request)
+    request.attempt = request.attempt + 1
+    if record and (complete or request.attempt > #RETRIES) then
+        if currentRevision >= 2147483647 then currentRequest = nil; dropped = dropped + 1; return end
+        currentRevision = currentRevision + 1
+        record.id, currentMissing, currentRequest = currentRevision, missing, nil
+        currentEmit(record)
+        return
+    end
+    if request.attempt > #RETRIES then currentRequest = nil; return end
+    for itemID in pairs(missing or {}) do Call(C_Item and C_Item.RequestLoadItemDataByID, itemID) end
+    currentTimer = C_Timer.NewTimer(RETRIES[request.attempt], function() AttemptCurrent(request) end)
+end
+
+-- Requests coalesce by event. The finished full inventory owns a separate revision from acquisition IDs.
+function Equipment.RequestCurrent(reason)
+    if not active or type(currentEmit) ~= "function" or not owner or type(owner.guid) ~= "string" or owner.guid == "" then return end
+    if currentTimer then currentTimer:Cancel(); currentTimer = nil end
+    currentGeneration = currentGeneration + 1
+    local request = { generation = currentGeneration, session = owner.session, guid = owner.guid,
+        observedAt = math.floor(Number(Call(GetServerTime), 0, 4102444800) or 0), reason = reason, attempt = 0 }
+    currentRequest = request
+    currentTimer = C_Timer.NewTimer(0.2, function() AttemptCurrent(request) end)
+end
+
+function Equipment.Initialize(state, callback, currentCallback)
+    if currentTimer then currentTimer:Cancel() end
+    currentEmit, currentTimer, currentRequest, currentRevision, currentMissing = currentCallback, nil, nil, 0, {}
+    currentGeneration = currentGeneration + 1
     owner, emit, seen, maximumCounts, fallbackLinks, pending = state, callback, {}, {}, {}, {}
     nextID, dropped, initialized, active = 0, 0, false, false
 end
 
 function Equipment.EnterWorld()
     active = true
+    Equipment.RequestCurrent("login")
     if not initialized then
         Equipment.Scan()
         if baselineTimer then baselineTimer:Cancel() end
@@ -261,10 +401,15 @@ end
 function Equipment.OnEvent(event, itemID, success)
     if event == "PLAYER_LEAVING_WORLD" or event == "PLAYER_LOGOUT" then
         active = false
+        currentGeneration = currentGeneration + 1
+        currentRequest = nil
+        if ns.Transfer and ns.Transfer.SetGear then ns.Transfer.SetGear(nil) end
+        if currentTimer then currentTimer:Cancel(); currentTimer = nil end
         if scanTimer then scanTimer:Cancel() end
     elseif event == "PLAYER_ENTERING_WORLD" then Equipment.EnterWorld()
     elseif event == "BAG_UPDATE_DELAYED" or event == "PLAYER_EQUIPMENT_CHANGED" or event == "ITEM_PUSH" then
         if not active then return end
+        if event == "PLAYER_EQUIPMENT_CHANGED" then Equipment.RequestCurrent("equipment_changed") end
         if scanTimer then scanTimer:Cancel() end
         scanTimer = C_Timer.NewTimer(0.2, function()
             if not initialized then Equipment.EnterWorld() else Equipment.Scan() end
@@ -272,6 +417,11 @@ function Equipment.OnEvent(event, itemID, success)
     elseif event == "GET_ITEM_INFO_RECEIVED" or event == "ITEM_DATA_LOAD_RESULT" then
         itemID, success = Number(itemID, 1, 2147483647), Public(success)
         if not itemID or success ~= true then return end
+        if currentRequest and active then
+            if currentTimer then currentTimer:Cancel() end
+            local request = currentRequest
+            currentTimer = C_Timer.NewTimer(0.05, function() AttemptCurrent(request) end)
+        elseif currentMissing and currentMissing[itemID] then Equipment.RequestCurrent("refresh") end
         for _, entry in pairs(pending) do
             if tonumber(string.match(entry.link, "item:(%d+)")) == itemID then Attempt(entry) end
         end

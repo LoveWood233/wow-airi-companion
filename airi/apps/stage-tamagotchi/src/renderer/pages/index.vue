@@ -54,6 +54,7 @@ import { useFullscreenStore } from '../stores/fullscreen'
 import { useStageWindowLifecycleStore } from '../stores/stage-window-lifecycle'
 import { useToolSelectionStore } from '../stores/tools'
 import { useWowCompanionStore } from '../stores/wow-companion'
+import { equipmentPromptActions } from '../stores/wow-companion-equipment-prompt'
 import { resolveFadeOnHoverInteraction } from '../utils/fade-on-hover'
 import { shouldSampleStageTransparency } from '../utils/stage-three-transparency'
 
@@ -71,17 +72,7 @@ const { isOutside: outsideCaptionDecline } = useElectronMouseInElement(toRef(() 
 const wowCompanion = useWowCompanionStore()
 const { equipmentPrompt } = storeToRefs(wowCompanion)
 const { t } = useI18n()
-const captionActions = computed(() => {
-  const prompt = equipmentPrompt.value
-  if (prompt?.phase !== 'choosing')
-    return undefined
-  return {
-    id: prompt.id,
-    acceptLabel: t('settings.wow-companion.equipment-prompt.accept'),
-    declineLabel: t('settings.wow-companion.equipment-prompt.decline'),
-    hint: `${t('settings.wow-companion.equipment-prompt.timeout')} ${t('settings.wow-companion.equipment-prompt.description')}`,
-  }
-})
+const captionActions = computed(() => equipmentPromptActions(equipmentPrompt.value, t))
 const captionActionsInteractive = computed(() => equipmentPrompt.value?.phase === 'choosing'
   && (!outsideCaptionAccept.value || !outsideCaptionDecline.value || speechCaptionBubbleRef.value?.actionsFocused))
 

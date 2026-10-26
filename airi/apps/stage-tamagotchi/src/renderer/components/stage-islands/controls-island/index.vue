@@ -14,7 +14,6 @@ import { useI18n } from 'vue-i18n'
 import StatusIsland from '../status-island/index.vue'
 import ControlButtonTooltip from './control-button-tooltip.vue'
 import ControlButton from './control-button.vue'
-import ControlsIslandAuthButton from './controls-island-auth-button.vue'
 import ControlsIslandChatButton from './controls-island-chat-button.vue'
 import ControlsIslandFadeOnHover from './controls-island-fade-on-hover.vue'
 import ControlsIslandProfilePicker from './controls-island-profile-picker.vue'
@@ -426,15 +425,27 @@ function resetMainWindowPosition() {
                 </div>
                 <!-- v-show keeps dialogs and listeners of the controls mounted while the list shows. -->
                 <div v-show="menuView === 'controls'" :class="['flex flex-col gap-1']">
-                  <ControlsIslandAuthButton
-                    :active="expanded"
-                    :button-style="adjustStyleClasses.button"
-                    :icon-class="adjustStyleClasses.icon"
-                  />
+                  <button
+                    type="button"
+                    data-testid="controls-island-wow-companion"
+                    :aria-label="t('tamagotchi.stage.controls-island.open-wow-companion')"
+                    :class="[
+                      'mb-1.5 w-full flex items-center gap-2.5 rounded-xl px-3 py-2.5',
+                      'bg-primary-500/10 hover:bg-primary-500/20 dark:bg-primary-400/10 dark:hover:bg-primary-400/20',
+                      'cursor-pointer border-none text-left outline-none transition-colors duration-200',
+                      'focus-visible:outline-2 focus-visible:outline-primary-500',
+                      adjustStyleClasses.button,
+                    ]"
+                    @click="openSettings({ route: '/settings/wow-companion' })"
+                  >
+                    <span aria-hidden="true" :class="['i-solar:gamepad-outline shrink-0 text-primary-500 dark:text-primary-400', adjustStyleClasses.icon]" />
+                    <span :class="['whitespace-nowrap text-sm font-medium text-primary-600 dark:text-primary-400']">
+                      {{ t('tamagotchi.stage.controls-island.open-wow-companion') }}
+                    </span>
+                  </button>
 
                   <!--
-                    The same Notifications row as the mobile menu. It is a plain button like the account card above,
-                    because BasicButton centers its content and does not suit a full-width row.
+                    Full-width rows keep labels left-aligned. BasicButton centers its content.
                   -->
                   <button
                     v-if="notificationsSignedIn"
