@@ -18,6 +18,7 @@ import ControlsIslandChatButton from './controls-island-chat-button.vue'
 import ControlsIslandFadeOnHover from './controls-island-fade-on-hover.vue'
 import ControlsIslandProfilePicker from './controls-island-profile-picker.vue'
 import ControlsIslandSpeechMute from './controls-island-speech-mute.vue'
+import ControlsIslandWowLauncher from './controls-island-wow-launcher.vue'
 import IndicatorMicVolume from './indicator-mic-volume.vue'
 
 import {
@@ -468,6 +469,26 @@ function resetMainWindowPosition() {
                   </button>
 
                   <div :class="['grid grid-cols-3 gap-2']">
+                    <ControlButtonTooltip disable-hoverable-content as-child>
+                      <ControlButton
+                        :button-style="adjustStyleClasses.button"
+                        :aria-label="t('wow-companion.screen-assist.title')"
+                        @click="openSettings({ route: '/settings/wow-screen-assist' })"
+                      >
+                        <div :class="['i-solar:camera-outline text-neutral-800 dark:text-neutral-300', adjustStyleClasses.icon]" />
+                      </ControlButton>
+                      <template #tooltip>{{ t('wow-companion.screen-assist.title') }}</template>
+                    </ControlButtonTooltip>
+                    <ControlButtonTooltip disable-hoverable-content as-child>
+                      <ControlButton
+                        :button-style="adjustStyleClasses.button"
+                        :aria-label="t('wow-companion.launcher.configure')"
+                        @click="openSettings({ route: '/settings/wow-launcher' })"
+                      >
+                        <div :class="['i-solar:play-circle-outline text-neutral-800 dark:text-neutral-300', adjustStyleClasses.icon]" />
+                      </ControlButton>
+                      <template #tooltip>{{ t('wow-companion.launcher.configure') }}</template>
+                    </ControlButtonTooltip>
                     <ControlButtonTooltip disable-hoverable-content>
                       <ControlButton
                         v-track-button="{ name: 'controls_island_action', action: 'toggle_settings' }"
@@ -647,6 +668,8 @@ function resetMainWindowPosition() {
           />
 
           <ControlsIslandChatButton :button-style="adjustStyleClasses.button" :icon-class="adjustStyleClasses.icon" />
+
+          <ControlsIslandWowLauncher :button-style="adjustStyleClasses.button" :icon-class="adjustStyleClasses.icon" />
 
           <ControlButtonTooltip side="inward">
             <ControlButton

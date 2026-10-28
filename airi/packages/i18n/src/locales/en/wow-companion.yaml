@@ -349,3 +349,90 @@ loadout:
   empty-slot: Empty slot
   incomplete: Some item information is incomplete or truncated.
   note: Empty and unknown slots differ. Set descriptions do not prove active bonuses. Character snapshots do not use the ten-acquisition history limit.
+launcher:
+  title: Game launch settings
+  description: Choose Battle.net or a World of Warcraft program. Save a separate path for each game version.
+  configure: Configure game launch
+  target: Launch target
+  targets:
+    battle-net: Battle.net
+    retail: World of Warcraft Retail
+    forever: World of Warcraft Forever
+    classic: World of Warcraft Classic
+  default-summary: 'Quick launch target: {target}'
+  path-label: '{target} program path'
+  path-description: Select the .exe inside the matching game version folder. Choose Battle.net for the generic World of Warcraft Launcher.exe. Shortcuts and scripts are not supported.
+  path-placeholder: Select an .exe file or enter its full path
+  browse: Browse programs
+  make-default: Use this target for quick launch
+  make-default-description: The character toolbar launches this saved target.
+  current-default: This target is selected for quick launch.
+  save: Validate and save
+  clear: Remove saved path
+  retry: Reload settings
+  launch-game: Launch game
+  launch-battle-net: Launch Battle.net
+  quick-launch: Game quick launch
+  quick-launch-description: Start the saved default program. If no program is configured, open launch settings.
+  saved: Program validated and saved.
+  cleared: Saved path removed.
+  launched: Launch request sent.
+  unsaved: Validate and save your changes before you launch this target.
+  launch-note: Battle.net opens its launcher. Game programs can still require login or updates. Each launch checks the saved program again.
+  verified-program: Validated program
+  errors:
+    unsupported-platform: Game quick launch currently supports Windows only.
+    invalid-request: The launch settings are invalid. Select a target and its program again.
+    invalid-path: Enter a complete local program path without command-line arguments.
+    file-not-found: The program was not found. Select its current location.
+    not-executable: Select a Windows .exe program, not a shortcut, script, or folder.
+    invalid-signature: The program does not have a valid Blizzard signature. Select the official program from its installation folder.
+    wrong-product: This program does not match the selected Battle.net or World of Warcraft target.
+    wrong-version: This World of Warcraft program belongs to another game version. Select the matching target or program.
+    unrecognized-version: The game version could not be confirmed. Launch through Battle.net, or update the companion for this version.
+    inspection-failed: The program could not be checked. Check file access and try again.
+    not-configured: No program is saved for this target. Configure and save its path first.
+    storage-error: Launch settings could not be read or saved. Check access to the application data folder.
+    launch-failed: The program could not start. Check its installation and file permissions.
+    busy: A launch operation is already in progress. Wait for it to finish.
+    request-failed: The desktop service did not respond. Try again or restart the companion.
+screen-assist:
+  title: Game screenshot assistance
+  description: Ask your companion to inspect the current Warcraft screen for terrain, quest, or NPC guidance.
+  enabled: Capture when I ask to see the game
+  enabled-description: An explicit request captures one game frame. Ordinary chat does not start this capture.
+  image-use: The screenshot goes to your selected vision provider. The original image is not saved to local chat history.
+  target: Game window
+  target-description: Auto requires one Warcraft window. If several versions are open, select one. Multiple windows of that version must be closed.
+  games:
+    auto: Auto
+    retail: Retail
+    forever: Forever
+    classic: Classic
+  configure-vision: Configure vision model
+  vision-description: Select an image-capable provider and model in Vision settings. No screenshot is taken when you open these settings.
+  examples-title: Ask in chat or by voice
+  examples:
+    terrain: Can you look at the terrain ahead and help me find a way through?
+    quest: The quest marks the NPC here, but I cannot see them. Can you help me find them?
+    scene: Look at my game screen and explain the quest objective.
+  command: 'For an explicit capture, start your message with /look and add your question. Ask again after moving to get a new view.'
+  limits: Windows only. Keep the game visible. A single frame cannot confirm collision, hidden entrances, or quest phases. Advice does not control your character.
+  capturing: Capturing the Warcraft window…
+  analyzing: Reading the game screen…
+  ready: Game screen analyzed. Preparing your reply.
+  errors:
+    unsupported-platform: Game screenshot assistance currently supports Windows only.
+    invalid-request: The selected game version is invalid. Select it again in Game screenshot assistance.
+    game-not-found: No matching Warcraft window was found. Open the game and try again.
+    ambiguous-window: Several matching game windows are open. Select a version or close the extra windows before trying again.
+    minimized-window: The game window is minimized. Restore it and ask again.
+    unverified-game: This game window could not be verified. Use an official supported Warcraft installation.
+    capture-failed: The game screen could not be captured. Keep the game visible and try windowed mode.
+    empty-frame: The capture was empty or black. Keep the game visible and ask again.
+    capture-timeout: Game capture timed out. Wait a moment and ask again.
+    busy: Another game capture is in progress. Wait for it to finish.
+    window-changed: The game window changed during capture. Ask again for a fresh frame.
+    vision-not-configured: Select a vision provider and model before requesting game screenshot assistance.
+    vision-failed: The vision model could not read the screenshot. Check its settings and try again.
+    no-description: The vision model returned no screen description. Try again or select another image-capable model.

@@ -47,6 +47,8 @@ import { setupMcpManager } from './services/airi/mcp-servers'
 import { setupExtensionHost } from './services/airi/plugins'
 import { setupArtistryBridge } from './services/airi/widgets/artistry-bridge'
 import { setupWowCompanion } from './services/airi/wow-companion'
+import { setupWowLauncher } from './services/airi/wow-launcher'
+import { setupWowScreenAssist } from './services/airi/wow-screen-assist'
 import { setupAutoUpdater } from './services/electron/auto-updater'
 import { setupSherpawModelAssetsProtocol } from './services/electron/bundled-sherpaw-assets'
 import { setupGlobalShortcutService } from './services/electron/global-shortcut'
@@ -500,6 +502,8 @@ app.whenReady().then(async () => {
       setupComputerUse(context)
       setupHomeAssistant(context)
       setupWowCompanion(context)
+      setupWowLauncher(context)
+      setupWowScreenAssist(context)
       await setupArtistryBridge({
         widgetsManager: deps.widgetsWindow,
         context,

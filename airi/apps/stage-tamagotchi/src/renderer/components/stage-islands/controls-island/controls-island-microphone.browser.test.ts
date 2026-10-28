@@ -10,6 +10,7 @@ import { createI18n } from 'vue-i18n'
 
 import ControlsIsland from './index.vue'
 
+import { wowLauncherGet } from '../../../../shared/eventa/wow-launcher'
 import { controlsIslandPlacementKey } from './use-controls-island-placement'
 
 import '@unocss/reset/tailwind.css'
@@ -17,7 +18,9 @@ import 'virtual:uno.css'
 
 vi.mock('@proj-airi/electron-vueuse', () => ({
   useElectronEventaContext: () => ref({ on: vi.fn(() => vi.fn()), emit: vi.fn() }),
-  useElectronEventaInvoke: () => vi.fn().mockResolvedValue(false),
+  useElectronEventaInvoke: (event: unknown) => event === wowLauncherGet
+    ? vi.fn().mockResolvedValue({ supported: true, defaultTarget: 'battle-net', paths: { 'battle-net': '', 'retail': '', 'forever': '', 'classic': '' } })
+    : vi.fn().mockResolvedValue(false),
   useElectronMouseInElement: () => ({ isOutside: ref(false) }),
 }))
 

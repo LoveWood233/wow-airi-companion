@@ -32,7 +32,8 @@
     "./types/pinia-action-event": "./src/types/pinia-action-event.ts",
     "./electron-renderer": "./src/electron-renderer.d.ts",
     "./composables": "./src/composables/index.ts",
-    "./webgpu": "./src/webgpu/index.ts"
+    "./webgpu": "./src/webgpu/index.ts",
+    "./wow-knowledge": "./src/wow-knowledge/index.ts"
   },
   "scripts": {
     "test:run": "vitest run --config vitest.config.ts",

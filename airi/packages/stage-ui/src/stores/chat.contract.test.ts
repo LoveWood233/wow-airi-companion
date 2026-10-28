@@ -1954,6 +1954,121 @@ describe('chat store contract', () => {
     expect(speaks).toEqual([true, false])
   })
 
+  it('retrieves Warcraft references after a voice transcript arrives', async () => {
+    const requests: Conversation[] = []
+    llmStreamMock.mockImplementation(async (model: string, chatProvider: GenerationProvider, context: Conversation, options: LlmStreamOptions) => {
+      requests.push(await options.prepareConversation!(context, { model, providerId: options.providerId, request: chatProvider.generation(model) }))
+      await options.onStreamEvent?.({ type: 'finish' })
+    })
+    const store = useChatStore()
+    await store.submit({
+      sessionId: 'session-1',
+      messageId: 'warcraft-voice',
+      text: '',
+      attachments: [{ type: 'audio', mimeType: 'audio/wav', data: 'UklGRg==' }],
+      audioTranscriptPending: true,
+    })
+    await store.settleAudioTranscript({ sessionId: 'session-1', messageId: 'warcraft-voice', transcript: 'DZ是什么职业？' })
+    await vi.waitFor(() => expect(requests).toHaveLength(1))
+
+    expect(JSON.stringify(requests[0])).toContain('wow:knowledge')
+    expect(JSON.stringify(requests[0])).toContain('盗贼')
+    expect(JSON.stringify(sessionMessages)).not.toContain('wow:knowledge')
+  })
+
+  it('adds Warcraft shorthand references to typed and ingested requests without retaining them', async () => {
+    const prompts: string[] = []
+    llmStreamMock.mockImplementation(async (_model: string, _provider: GenerationProvider, messages: Conversation, options: StreamOptions) => {
+      prompts.push(JSON.stringify(messages))
+      await options.onStreamEvent?.({ type: 'finish' })
+    })
+    const store = useChatStore()
+    await store.send({ sessionId: 'session-1', text: 'DZ是什么意思？' })
+    await store.ingest('DZ是什么职业？', { model: 'gpt-test', chatProvider: provider })
+    await store.send({ sessionId: 'session-1', text: '今晚吃什么？' })
+
+    expect(prompts[0]).toContain('wow:knowledge')
+    expect(prompts[0]).toContain('盗贼')
+    expect(prompts[1]).toContain('wow:knowledge')
+    expect(prompts[2]).not.toContain('wow:knowledge')
+    expect(JSON.stringify(sessionMessages)).not.toContain('wow:knowledge')
+    expect(ingestContextMessageMock.mock.calls.some(call => JSON.stringify(call).includes('wow:knowledge'))).toBe(false)
+  })
+
+  it('reads local observations once per owner turn without persisting them or repeating them in tool projections', async () => {
+    const prompts: string[] = []
+    llmStreamMock.mockImplementation(async (model: string, chatProvider: GenerationProvider, context: Conversation, options: LlmStreamOptions) => {
+      const target = { model, providerId: options.providerId, request: chatProvider.generation(model) }
+      prompts.push(JSON.stringify(await options.prepareConversation!(context, target)))
+      await options.prepareConversation!(context, target)
+      await options.onStreamEvent?.({ type: 'finish' })
+    })
+    const store = useChatStore()
+    const observe = vi.fn(async () => 'Fresh game observation')
+    const remove = store.registerRequestContext('wow:screen-assist', observe)
+    await store.send({ sessionId: 'session-1', messageId: 'screen-turn', text: 'Look at my game' })
+    expect(observe).toHaveBeenCalledOnce()
+    expect(observe).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'session-1', turnId: 'screen-turn', text: 'Look at my game' }))
+    expect(prompts[0]).toContain('Fresh game observation')
+    expect(JSON.stringify(sessionMessages)).not.toContain('Fresh game observation')
+    remove()
+    await store.send({ sessionId: 'session-1', text: 'Thanks' })
+    expect(prompts[1]).not.toContain('Fresh game observation')
+  })
+
+  it('does not grant live observations to notices, replay, remote input, scenes, or unscoped ingestion', async () => {
+    llmStreamMock.mockImplementation(async (_model: string, _provider: GenerationProvider, _context: Conversation, options: StreamOptions) => {
+      await options.onStreamEvent?.({ type: 'finish' })
+    })
+    const store = useChatStore()
+    const observe = vi.fn(async () => 'Game pixels')
+    store.registerRequestContext('wow:screen-assist', observe)
+    await store.send({ sessionId: 'session-1', text: 'Look at my game' })
+    observe.mockClear()
+    const originalIndex = sessionMessages['session-1']!.findIndex(message => message.role === 'user')
+    await store.retry({ sessionId: 'session-1', index: originalIndex })
+    await store.notifyConversation('session-1', { source: 'task', text: 'Look at my game' })
+    await store.ingest('Look at my game', { model: 'gpt-test', chatProvider: provider })
+    await store.send({ sessionId: 'session-1', text: 'Look at my game', input: { type: 'input:text', data: { text: 'Look at my game' } } })
+    sessionMetas['scene-session'] = { sessionId: 'scene-session', userId: 'local', characterId: 'default', bindings: ['discord:channel:a'], createdAt: 1, updatedAt: 1 }
+    await store.send({ sessionId: 'scene-session', text: 'Look at my game' })
+    expect(observe).not.toHaveBeenCalled()
+  })
+
+  it('waits for the existing voice transcript before granting an observation', async () => {
+    llmStreamMock.mockImplementation(async (_model: string, _provider: GenerationProvider, _context: Conversation, options: StreamOptions) => {
+      await options.onStreamEvent?.({ type: 'finish' })
+    })
+    const store = useChatStore()
+    const observe = vi.fn(async () => 'Visible cliff')
+    store.registerRequestContext('wow:screen-assist', observe)
+    await store.submit({ sessionId: 'session-1', messageId: 'screen-voice', text: '', audioTranscriptPending: true,
+      attachments: [{ type: 'audio', mimeType: 'audio/wav', data: 'UklGRg==' }] })
+    expect(observe).not.toHaveBeenCalled()
+    await store.settleAudioTranscript({ sessionId: 'session-1', messageId: 'screen-voice', transcript: 'Can I cross this terrain?' })
+    await vi.waitFor(() => expect(observe).toHaveBeenCalledOnce())
+    expect(observe).toHaveBeenCalledWith(expect.objectContaining({ text: 'Can I cross this terrain?' }))
+  })
+
+  it('reads a manually attached image without granting an additional live capture', async () => {
+    visionMocks.configured = true
+    visionMocks.runInference.mockResolvedValue('The attached quest image shows a staircase.')
+    llmStreamMock.mockImplementation(async (_model: string, _provider: GenerationProvider, _context: Conversation, options: StreamOptions) => {
+      await options.onStreamEvent?.({ type: 'finish' })
+    })
+    const store = useChatStore()
+    const observe = vi.fn(async () => 'Live game pixels')
+    store.registerRequestContext('wow:screen-assist', observe)
+    await store.send({
+      sessionId: 'session-1',
+      text: '帮我看看这个任务NPC在哪',
+      attachments: [{ type: 'image', mimeType: 'image/png', data: 'aW1hZ2U=' }],
+    })
+    expect(observe).not.toHaveBeenCalled()
+    expect(visionMocks.runInference).toHaveBeenCalledOnce()
+    expect(visionMocks.runInference).toHaveBeenCalledWith(expect.objectContaining({ imageDataUrl: 'data:image/png;base64,aW1hZ2U=' }))
+  })
+
   it('adds account context only to the signed-in request without retaining it in the registry', async () => {
     const account = {
       id: 'account',

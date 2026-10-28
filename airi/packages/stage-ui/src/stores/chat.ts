@@ -49,9 +49,11 @@ import { createMinecraftContext, createRuntimePromptContext, createUserAccountCo
 import { useChatContextStore } from './chat/context-store'
 import { describeChatImages, replaceToolResultImages } from './chat/image-projection'
 import { composeRecipeSpacePrompt, composeSystemPrompt } from './chat/prompt-recipe'
+import { ChatRequestContexts } from './chat/request-context'
 import { staysLocal } from './chat/session-locality'
 import { useChatSessionStore } from './chat/session-store'
 import { useChatStreamStore } from './chat/stream-store'
+import { currentWowKnowledgeGame, withWowKnowledgeContext } from './chat/wow-knowledge-context'
 import { useContextObservabilityStore } from './devtools/context-observability'
 import { useMemoryStore } from './memory'
 import { useAiriCardStore } from './modules/airi-card'
@@ -249,7 +251,7 @@ const STORED_TOOL_IMAGE = 'A tool image was left out of the history.'
 const UNREADABLE_EARLIER_IMAGE = 'The user attached an image here earlier. The vision model failed to read it.'
 
 export const useChatStore = defineStore('chat', () => {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const runtimePrompt = useAiriRuntimePrompt()
   const authStore = useAuthStore()
   const llmStore = useLLM()
@@ -305,6 +307,7 @@ export const useChatStore = defineStore('chat', () => {
   const activeSendSessionId = shallowRef<string>()
   const activeStreamingMessage = computed(() => chatStream.activeTurns.find(turn => turn.sessionId === activeSendSessionId.value)?.message)
   const pendingQueuedSendCount = shallowRef(0)
+  const requestContexts = new ChatRequestContexts()
   // A turn in a recipe's own session is a background task, so every window can show and stop it.
   // Each task has its own recipe session, and the session keeps its status. Every window reads the list from the session metas.
   const backgroundTasks = computed<BackgroundTask[]>(() => {
@@ -360,6 +363,7 @@ export const useChatStore = defineStore('chat', () => {
 
   /** Stops chat consumers that belong to this window. */
   function dispose() {
+    requestContexts.clear()
     stopLeadershipListener?.()
     stopLeadershipListener = undefined
     chatSession.dispose()
@@ -653,6 +657,7 @@ export const useChatStore = defineStore('chat', () => {
     // The runtime always correlates its turns. A call without correlation has no settle event, so it starts no turn span,
     // and its LLM span starts a trace of its own.
     const correlation = options?.requestCorrelation
+    const knowledgeQuery = { game: currentWowKnowledgeGame(chatContext.getContextsSnapshot()), locale: locale.value }
     const turnSpan = correlation
       ? openTurnSpan({ sessionId: correlation.conversationId, turnId: correlation.turnId })
       : undefined
@@ -670,6 +675,25 @@ export const useChatStore = defineStore('chat', () => {
 
     // Stored messages reference their images and recordings. The provider request carries the bytes.
     context = await inlineConversationAssets(context)
+
+    // Only a new local owner send grants live observations. Notices, remote input, and replay have no grant.
+    const requestKey = correlation ? JSON.stringify([correlation.conversationId, correlation.turnId]) : undefined
+    const observationInput = requestKey ? requests.get(requestKey)?.observationInput : undefined
+    if (requestContexts.size && correlation && observationInput && options?.abortSignal) {
+      const pendingTranscript = liveTranscripts.get(requestKey!)
+      if (pendingTranscript)
+        await waitWithSignal(pendingTranscript.promise, options.abortSignal)
+      options.abortSignal.throwIfAborted()
+      const stored = chatSession.getSessionMessages(correlation.conversationId).find(message => message.id === correlation.turnId)
+      // Voice capture already owns transcription. Never create another audio request to decide whether to capture a screen.
+      const text = observationInput.text.trim() || stored?.audioTranscripts?.filter(Boolean).join('\n') || ''
+      context = await requestContexts.apply(context, {
+        sessionId: correlation.conversationId,
+        turnId: correlation.turnId,
+        text,
+        signal: options.abortSignal,
+      })
+    }
 
     const visionStore = useVisionStore()
     // NOTICE:
@@ -805,7 +829,11 @@ export const useChatStore = defineStore('chat', () => {
 
     // The first request is projected before the LLM span starts, so transcription time stays outside model latency.
     // Its transcripts are stored, so a later projection for another model reuses them.
-    const initialProjection = options?.supportsAudioInput ? providerContext : await prepareTextOnlyAudioContext(providerContext)
+    providerContext = withWowKnowledgeContext(providerContext, knowledgeQuery)
+    const initialProjection = withWowKnowledgeContext(
+      options?.supportsAudioInput ? providerContext : await prepareTextOnlyAudioContext(providerContext),
+      knowledgeQuery,
+    )
     const isInitialTarget = (target: { model: string, providerId?: string }) => target.model === model && target.providerId === options?.providerId
 
     const providerMessages = renderConversationPreview(initialProjection)
@@ -829,7 +857,7 @@ export const useChatStore = defineStore('chat', () => {
       await llmStore.stream(model, chatProvider, providerContext, {
         ...options,
         tools: withRunTools(options?.tools, options?.requestCorrelation),
-        prepareStringContent: prepareTextOnlyAudioContext,
+        prepareStringContent: async conversation => withWowKnowledgeContext(await prepareTextOnlyAudioContext(conversation), knowledgeQuery),
         headers: requestHeaders(options?.providerId),
         resolveStep: resolveStep
           ? async () => {
@@ -842,9 +870,9 @@ export const useChatStore = defineStore('chat', () => {
           if (conversation === providerContext && isInitialTarget(target))
             return initialProjection
           if (target.providerId && await supportsAudioInput(target.providerId, target.model, target.request))
-            return conversation
+            return withWowKnowledgeContext(conversation, knowledgeQuery)
 
-          const projected = await prepareTextOnlyAudioContext(conversation)
+          const projected = withWowKnowledgeContext(await prepareTextOnlyAudioContext(conversation), knowledgeQuery)
           if (projected !== conversation && options?.requestCorrelation?.conversationId)
             contextObservability.captureProviderPromptProjection(options.requestCorrelation.conversationId, renderConversationPreview(projected))
           return projected
@@ -1097,6 +1125,7 @@ export const useChatStore = defineStore('chat', () => {
     sessionId: string
     abort: AbortController
     request: ReturnType<typeof runtime.submit>
+    observationInput?: { text: string }
   }>()
 
   /** Whether this window runs a request of the session. */
@@ -1331,7 +1360,7 @@ export const useChatStore = defineStore('chat', () => {
     }
   }
 
-  function startSend(payload: ChatSendPayload, voice = false, extra: HostSendOptions = {}): ReturnType<typeof runtime.submit> {
+  function startSend(payload: ChatSendPayload, voice = false, extra: HostSendOptions = {}, origin: 'owner' | 'replay' = 'owner'): ReturnType<typeof runtime.submit> {
     const messageId = payload.messageId ?? nanoid()
     const key = JSON.stringify([payload.sessionId, messageId])
     const existing = requests.get(key)
@@ -1353,7 +1382,16 @@ export const useChatStore = defineStore('chat', () => {
         void startRecipe(recipe, { parentSessionId: payload.sessionId, task: `The owner said: ${payload.text}` })
     }).catch(() => {})
 
-    requests.set(key, { sessionId: payload.sessionId, abort, request })
+    requests.set(key, {
+      sessionId: payload.sessionId,
+      abort,
+      request,
+      // A manually chosen image requests attachment analysis, not an additional live screen capture.
+      observationInput: origin === 'owner' && !payload.input && !extra.background
+        && !payload.attachments?.some(attachment => attachment.type === 'image') && isOwnerSend(payload, extra)
+        ? { text: payload.text }
+        : undefined,
+    })
     void request.accepted.catch(() => {})
     void request.done.finally(() => requests.delete(key)).catch(() => {})
 
@@ -1435,7 +1473,7 @@ export const useChatStore = defineStore('chat', () => {
       ...retryContent,
       replyToMessageId: sourceMessage?.replyToMessageId,
       tools: payload.tools ?? sourceMessage?.tools?.filter(tool => !requiresToolSelection(tool.name)),
-    }, false, sourceMessage?.notice ? { notice: { source: sourceMessage.notice.source } } : {})
+    }, false, sourceMessage?.notice ? { notice: { source: sourceMessage.notice.source } } : {}, 'replay')
 
     try {
       await request.accepted
@@ -1562,6 +1600,9 @@ export const useChatStore = defineStore('chat', () => {
     getPendingQueuedSendSnapshot,
     openTurnSpan,
     openStandaloneTurnSpan,
+
+    // Registration stays in this renderer. It neither replicates callbacks nor changes synchronized state.
+    registerRequestContext: requestContexts.register.bind(requestContexts),
 
     clearHooks: runtime.hooks.clearHooks,
 

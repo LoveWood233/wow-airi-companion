@@ -349,3 +349,90 @@ loadout:
   empty-slot: 空槽位
   incomplete: 部分物品资料未完整读取或已截断。
   note: 空槽位与未知不同；套装效果文字不代表效果已激活。每角色的装备快照不受最近 10 条获取记录限制。
+launcher:
+  title: 游戏启动配置
+  description: 选择战网或魔兽世界启动程序，为不同游戏版本分别保存路径。
+  configure: 配置游戏启动
+  target: 启动目标
+  targets:
+    battle-net: 战网
+    retail: 魔兽世界正式服
+    forever: 魔兽世界无限服
+    classic: 魔兽世界怀旧服
+  default-summary: '快捷启动目标：{target}'
+  path-label: '{target}程序路径'
+  path-description: 请选择对应游戏版本安装子目录内的 .exe；通用 World of Warcraft Launcher.exe 请配置在战网目标下。不支持快捷方式和脚本。
+  path-placeholder: 选择 .exe 文件或填写完整路径
+  browse: 浏览程序
+  make-default: 将此目标设为快捷启动默认项
+  make-default-description: 角色工具栏的启动按钮将启动此处保存的目标。
+  current-default: 此目标已设为快捷启动默认项。
+  save: 校验并保存
+  clear: 移除已保存路径
+  retry: 重新读取配置
+  launch-game: 启动游戏
+  launch-battle-net: 启动战网
+  quick-launch: 游戏快捷启动
+  quick-launch-description: 启动已保存的默认程序；尚未配置时打开启动设置。
+  saved: 程序校验通过，配置已保存。
+  cleared: 已移除保存的程序路径。
+  launched: 已发送启动请求。
+  unsaved: 请先校验并保存修改，再启动此目标。
+  launch-note: 战网目标会打开战网；游戏程序仍可能要求登录或更新。每次启动前都会重新检查保存的程序。
+  verified-program: 已通过校验的程序
+  errors:
+    unsupported-platform: 游戏快捷启动目前仅支持 Windows。
+    invalid-request: 启动配置无效，请重新选择目标和程序。
+    invalid-path: 请填写完整的本地程序路径，不要包含命令行参数。
+    file-not-found: 找不到程序，请重新选择当前安装位置。
+    not-executable: 请选择 Windows .exe 程序，不能选择快捷方式、脚本或文件夹。
+    invalid-signature: 无法验证程序的暴雪官方签名，请选择安装目录中的官方程序。
+    wrong-product: 此程序不是所选目标对应的战网或魔兽世界程序。
+    wrong-version: 此魔兽世界程序属于其他版本，请选择对应目标或正确程序。
+    unrecognized-version: 无法确认游戏版本，请通过战网启动，或更新陪伴精灵以适配此版本。
+    inspection-failed: 无法完成程序检查，请确认文件可访问后重试。
+    not-configured: 尚未配置此目标，请先选择程序并保存。
+    storage-error: 无法读取或保存启动配置，请检查应用数据目录的访问权限。
+    launch-failed: 程序启动失败，请检查安装是否完整及文件访问权限。
+    busy: 正在处理启动操作，请稍候。
+    request-failed: 桌面服务未响应，请重试或重新启动陪伴精灵。
+screen-assist:
+  title: 游戏截图辅助
+  description: 主动请精灵查看当前魔兽画面，辅助判断地形、理解任务和寻找 NPC。
+  enabled: 请求查看游戏时截图
+  enabled-description: 明确请求查看画面时截取一帧游戏窗口，普通聊天不会触发此截图。
+  image-use: 截图会发送给你选择的视觉模型服务，原图不保存到本地聊天记录。
+  target: 游戏窗口
+  target-description: 自动识别要求只打开一个魔兽窗口。多个版本同时运行时请选择版本；同版本多开时请先关闭多余窗口。
+  games:
+    auto: 自动识别
+    retail: 正式服
+    forever: 无限服
+    classic: 怀旧服
+  configure-vision: 配置视觉模型
+  vision-description: 请在视觉设置中选择支持图片分析的服务和模型。打开此配置页不会截图。
+  examples-title: 在聊天中输入或说出
+  examples:
+    terrain: 你帮我看看我面前这个地形，我走得过去吗？
+    quest: 任务显示 NPC 在这里，但是我到了没看见，你能带我过去吗？
+    scene: 帮我看看游戏画面，这个任务目标是什么意思？
+  command: '也可以用 /look 加问题明确触发截图，例如“/look 帮我找一下附近的入口”。移动后再次提问，精灵会查看新画面。'
+  limits: 目前支持 Windows，请保持游戏窗口可见。单张截图不能确认碰撞、隐藏入口或任务相位；精灵提供建议，不会操控角色。
+  capturing: 正在截取魔兽世界窗口…
+  analyzing: 正在分析游戏画面…
+  ready: 游戏画面分析完成，正在组织回答。
+  errors:
+    unsupported-platform: 游戏截图辅助目前仅支持 Windows。
+    invalid-request: 游戏版本选项无效，请在游戏截图辅助设置中重新选择。
+    game-not-found: 未找到对应的魔兽世界窗口，请打开游戏后再试。
+    ambiguous-window: 检测到多个对应的游戏窗口，请选择版本或关闭多余窗口后再试。
+    minimized-window: 游戏窗口已最小化，请恢复窗口后再次提问。
+    unverified-game: 无法验证此游戏窗口，请使用受支持的魔兽世界官方安装程序。
+    capture-failed: 无法截取游戏画面，请保持游戏可见，或尝试窗口模式。
+    empty-frame: 截图为空或黑屏，请保持游戏可见后再次提问。
+    capture-timeout: 游戏截图超时，请稍候再次提问。
+    busy: 正在处理另一项游戏截图，请等待完成。
+    window-changed: 截图期间游戏窗口发生变化，请再次提问以获取新画面。
+    vision-not-configured: 请先选择视觉模型服务和模型，再使用游戏截图辅助。
+    vision-failed: 视觉模型未能完成截图分析，请检查模型配置后重试。
+    no-description: 视觉模型没有返回画面描述，请重试或选择其他支持图片分析的模型。

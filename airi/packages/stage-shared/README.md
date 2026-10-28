@@ -22,6 +22,15 @@ The `speaker-model` entrypoint pins the CAM++ speaker embedding pack. The render
 import { speakerModel } from '@proj-airi/stage-shared/speaker-model'
 ```
 
+The `wow-knowledge` entrypoint owns local Warcraft reference retrieval. It separates game versions and language communities.
+See [the knowledge guide](src/wow-knowledge/README.md) for sources, data layout, and extension rules.
+
+```ts
+import { createWowKnowledgeContext } from '@proj-airi/stage-shared/wow-knowledge'
+
+const context = createWowKnowledgeContext({ text: '怀旧服DZ是什么意思', locale: 'zh-Hans' })
+```
+
 ## Do not use this package
 
 Keep Electron IPC definitions in the Electron application. Keep UI state and actions in `@proj-airi/stage-ui`. Keep Extension runtime and manifest behavior in `@proj-airi/plugin-sdk`.

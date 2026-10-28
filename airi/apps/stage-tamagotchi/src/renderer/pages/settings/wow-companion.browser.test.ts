@@ -563,6 +563,11 @@ describe('woW companion faction and race', () => {
   })
 
   it('sends the death identity and persona-aware banter rules to the reaction boundary', async () => {
+    const previousLocale = i18n.global.locale.value
+    i18n.global.locale.value = 'en'
+    onTestFinished(() => {
+      i18n.global.locale.value = previousLocale
+    })
     const state = liveState()
     if (!state.bridge?.snapshot)
       throw new Error('Expected snapshot')
@@ -611,6 +616,10 @@ describe('woW companion faction and race', () => {
     expect(instructions).toContain('Address the user by this exact character name: "深烘拿铁".')
     expect(instructions).not.toContain('warm sentence')
     expect(instructions).not.toContain('gentle support')
+    const knowledge = request.messageOverride?.appendSystemInstructions?.find(text => text.startsWith('Warcraft reference knowledge'))
+    expect(knowledge).toContain('Community: en.')
+    expect(knowledge).toContain('en-wipe')
+    expect(knowledge).not.toContain('zh-meme-horde-worthless')
   })
 })
 
@@ -637,7 +646,7 @@ describe('woW companion current player address', () => {
     await expect.poll(() => JSON.stringify(address())).toContain('新旅人')
     expect(JSON.stringify(address())).not.toContain('Previous character')
     expect(address()).toHaveLength(1)
-    expect(address()?.[0]).toMatchObject({ contextId: 'wow-current-player-address', lane: 'wow:player-address' })
+    expect(address()?.[0]).toMatchObject({ contextId: 'wow-current-player-address', lane: 'wow:player-address', content: { game: 'retail' } })
 
     state.bridge.snapshot.name = '暮色行者'
     mockStates(state)
@@ -723,6 +732,7 @@ describe('woW companion current player address', () => {
     await companion.refresh('retail')
     await expect.poll(address).toContain('No current online Warcraft character name is available.')
     expect(address()).not.toContain('Only current name')
+    expect(contexts.getContextsSnapshot()['wow-companion-player-address']?.[0]?.content).toEqual({ game: null })
   })
 
   it.each((['en', 'zh-Hans'] as const).flatMap(locale => [{ locale, tradeoff: false }, { locale, tradeoff: true }]))('uses the current name and translated equipment choices in $locale with tradeoff=$tradeoff without a voice session', async ({ locale, tradeoff }) => {

@@ -23,6 +23,7 @@ import { createI18n } from 'vue-i18n'
 import ControlsIsland from './index.vue'
 
 import { electronAuthStartLogin, electronOpenSettings } from '../../../../shared/eventa'
+import { wowLauncherGet } from '../../../../shared/eventa/wow-launcher'
 import { controlsIslandPlacementKey } from './use-controls-island-placement'
 
 import '@unocss/reset/tailwind.css'
@@ -46,6 +47,8 @@ const authState = vi.hoisted(() => ({
 vi.mock('@proj-airi/electron-vueuse', () => ({
   useElectronEventaContext: () => ref({ on: vi.fn(() => vi.fn()), emit: vi.fn() }),
   useElectronEventaInvoke: (event: unknown) => {
+    if (event === wowLauncherGet)
+      return vi.fn().mockResolvedValue({ supported: true, defaultTarget: 'battle-net', paths: { 'battle-net': '', 'retail': '', 'forever': '', 'classic': '' } })
     if (event === electronOpenSettings)
       return openSettings
     if (event === electronAuthStartLogin)

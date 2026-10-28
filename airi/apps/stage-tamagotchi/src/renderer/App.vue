@@ -78,6 +78,7 @@ import {
   useTamagotchiPluginToolsStore,
 } from './stores/tools'
 import { useWowCompanionStore } from './stores/wow-companion'
+import { useWowScreenAssistStore } from './stores/wow-screen-assist'
 import { resolveInitialRendererRoutePath, resolveRendererWindowContext } from './window-context'
 
 const { isDark: dark } = useTheme()
@@ -362,6 +363,7 @@ const fullStageRuntime = windowContext.stageRuntime === 'full'
   ? createFullStageRuntime()
   : null
 const wowCompanion = useWowCompanionStore()
+const wowScreenAssist = isMainWindow ? useWowScreenAssistStore() : null
 // A minimal chat window shows the live reply of the turn that the main window runs.
 // The full runtime starts the whole context bridge, which includes this view.
 const chatStreamView = !fullStageRuntime && (initialRoutePath === '/chat' || isFloatingChatWindow)
@@ -409,6 +411,7 @@ onMounted(async () => {
   await fullStageRuntime?.initialize()
   if (isMainWindow)
     wowCompanion.start(true)
+  wowScreenAssist?.start()
   await chatStreamView?.initializeStreamView()
 })
 
@@ -421,6 +424,7 @@ watch(themeColorsHueDynamic, () => {
 }, { immediate: true })
 
 onUnmounted(() => {
+  wowScreenAssist?.stop()
   wowCompanion.stop()
   stopIOTraceRecordingBridge?.()
   stopModelAssetStatus()
