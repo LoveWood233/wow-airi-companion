@@ -22,7 +22,7 @@
 ## Title-ruRU: Спутник WoW · Forever
 ## Notes-ruRU: Передача данных персонажа и подтверждение смены экипировки в игре.
 ## Author: WoWForeverCompanion
-## Version: 1.9.0
+## Version: 1.10.0
 ## SavedVariables: WoWForeverCompanionDB
 
 Localization.lua

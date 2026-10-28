@@ -373,6 +373,32 @@ def validate_equipment_swap(value: object) -> dict:
         raise EquipmentSwapError(str(exc)) from exc
 
 
+def validate_macro(value: object) -> dict:
+    fields = {"v", "kind", "s", "g", "q", "id", "st", "r", "hash", "bytes", "focus", "input", "chat", "combat"}
+    if not isinstance(value, dict) or set(value) != fields or value["kind"] != "macro":
+        raise FrameError("Invalid macro frame")
+    _integer(value["v"], "v", 1, 1)
+    _text(value["s"], "s", 40, identity=True)
+    _text(value["g"], "g", 48, identity=True)
+    _integer(value["q"], "q", 1, MAX_SAFE_INTEGER)
+    _integer(value["hash"], "hash", 0, 4294967295)
+    _integer(value["bytes"], "bytes", 0, 1048576)
+    if value["id"] != "" and (not isinstance(value["id"], str) or not re.fullmatch(r"[0-9a-f]{32}", value["id"])):
+        raise FrameError("Invalid macro request ID")
+    if value["st"] not in ("idle", "ready", "edited", "saved", "error", "closed"):
+        raise FrameError("Invalid macro state")
+    if value["r"] not in ("", "empty", "length", "control", "command", "lua", "combat", "conflict", "full", "save", "saved"):
+        raise FrameError("Invalid macro reason")
+    for key in ("focus", "input", "chat", "combat"):
+        if type(value[key]) is not bool:
+            raise FrameError("Invalid macro focus or combat value")
+    if (value["focus"] or value["chat"]) and not value["input"]:
+        raise FrameError("Inconsistent macro focus")
+    if value["focus"] and value["chat"]:
+        raise FrameError("Conflicting input focus")
+    return dict(value)
+
+
 def validate_equipment_offer(value: object) -> dict:
     """A game confirmation is telemetry. Desktop choices cannot execute it."""
     fields = {"v", "kind", "s", "g", "id", "q", "st", "slot", "item", "n", "il", "old", "ol", "until"}
@@ -402,6 +428,8 @@ def validate_equipment_offer(value: object) -> dict:
 
 
 def validate_message(value: object) -> dict:
+    if isinstance(value, dict) and value.get("kind") == "macro":
+        return validate_macro(value)
     if isinstance(value, dict) and value.get("kind") == "gear":
         return validate_loadout_fragment(value)
     if isinstance(value, dict) and value.get("kind") == "cmp":

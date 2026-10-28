@@ -9,6 +9,7 @@ import { computerUseTools } from './builtin/computer-use'
 import { imageJournalTools } from './builtin/image-journal'
 import { weatherTools } from './builtin/weather'
 import { widgetsTools } from './builtin/widgets'
+import { wowMacroImportTools } from './builtin/wow-macro-import'
 
 export const computerUseToolReferences = [
   { name: 'computer_use' },
@@ -42,13 +43,14 @@ export const useTamagotchiBuiltinToolsStore = defineStore('tamagotchi-builtin-to
       widgetsTools().then(tools => ({ tools, icon: TOOL_ICONS.widgets })),
       weatherTools().then(tools => ({ tools, icon: TOOL_ICONS.weather })),
       computerUseTools().then(tools => ({ tools, icon: TOOL_ICONS.computerUse })),
+      wowMacroImportTools().then(tools => ({ tools, icon: TOOL_ICONS.computerUse })),
     ])
 
     llmToolsStore.removeToolsByIds(...registeredToolIds())
     llmToolsStore.addTools(...groups.flatMap(({ tools, icon }) => tools.map(tool => ({
       ...tool,
       icon,
-      defaultActive: false,
+      defaultActive: tool.function.name === 'wow_import_macro',
       requiresExplicitSelection: computerUseToolReferences.some(reference => reference.name === tool.function.name),
       id: `${toolIdPrefix}${tool.function.name}`,
     } satisfies ExecutableTool))))

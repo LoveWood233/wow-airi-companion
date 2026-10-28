@@ -1,6 +1,7 @@
 import type { createContext } from '@moeru/eventa/adapters/electron/main'
 
 import type { CaptureSettings, CompanionSettings, CompanionState, DemoRequest, GameVersion } from '../../../shared/wow-companion'
+import type { MacroImportRequest } from '../../../shared/wow-macro-import'
 
 import process from 'node:process'
 
@@ -12,9 +13,11 @@ import { app } from 'electron'
 import { object, parse } from 'valibot'
 
 import { wowCompanionDemo, wowCompanionGet, wowCompanionSetAccountName, wowCompanionSetCapture, wowCompanionSetSettings } from '../../../shared/eventa/wow-companion'
+import { wowMacroImport } from '../../../shared/eventa/wow-macro-import'
 import { captureSchema, defaultSettings, demoSchema, gameProfiles, gameVersionSchema, settingsSchema } from '../../../shared/wow-companion'
 import { companionError } from '../../../shared/wow-companion-errors'
 import { accountNameSchema } from '../../../shared/wow-companion-gold'
+import { macroImportSchema } from '../../../shared/wow-macro-import'
 import { onAppBeforeQuit } from '../../libs/bootkit/lifecycle'
 import { createConfig } from '../../libs/electron/persistence'
 import { CompanionBridgeClient } from './wow-companion-client'
@@ -24,12 +27,14 @@ import { CompanionGoldLedger } from './wow-companion-gold'
 import { CompanionLevelHistory } from './wow-companion-level-history'
 import { CompanionLoadouts } from './wow-companion-loadouts'
 import { CompanionBridgeRuntime } from './wow-companion-runtime'
+import { WindowsGameCapture } from './wow-screen-assist-windows'
 
 const getSchema = object({ game: gameVersionSchema })
 const settingsRequestSchema = object({ game: gameVersionSchema, settings: settingsSchema })
 const captureRequestSchema = object({ game: gameVersionSchema, capture: captureSchema })
 const demoRequestSchema = object({ game: gameVersionSchema, request: demoSchema })
 const accountRequestSchema = object({ game: gameVersionSchema, request: accountNameSchema })
+let importingMacro = false
 
 /** Each profile owns one poller, lifecycle generation, settings, gold ledger, equipment history, and level history. */
 class CompanionProfile {
@@ -85,6 +90,32 @@ class CompanionProfile {
 
   start() {
     void this.poll()
+  }
+
+  async importMacro(request: MacroImportRequest) {
+    if (importingMacro || !this.settings.enabled || this.stopped)
+      return { ok: false, code: 'busy-or-disabled' }
+    importingMacro = true
+    try {
+      const platform = new WindowsGameCapture()
+      const windows = (await platform.discover()).filter(window => window.game === this.game)
+      if (windows.length !== 1)
+        return { ok: false, code: 'game-window-ambiguous-or-missing' }
+      const window = windows[0]!
+      await platform.verify(window, this.game)
+      if (!this.settings.enabled || this.stopped)
+        return { ok: false, code: 'disabled' }
+      await this.runtime.ensureReady()
+      if (!this.settings.enabled || this.stopped)
+        return { ok: false, code: 'disabled' }
+      return await this.runtime.runMacroImport(request, window)
+    }
+    catch {
+      return { ok: false, code: 'desktop-import-failed' }
+    }
+    finally {
+      importingMacro = false
+    }
   }
 
   async setSettings(next: CompanionSettings) {
@@ -175,6 +206,10 @@ export function setupWowCompanion(context: ReturnType<typeof createContext>['con
     forever: new CompanionProfile('forever'),
   }
   const disposers = [
+    defineInvokeHandler(context, wowMacroImport, (input) => {
+      const request = parse(macroImportSchema, input)
+      return profiles[request.game].importMacro(request)
+    }),
     defineInvokeHandler(context, wowCompanionGet, (input) => {
       const { game } = parse(getSchema, input)
       return profiles[game].read()

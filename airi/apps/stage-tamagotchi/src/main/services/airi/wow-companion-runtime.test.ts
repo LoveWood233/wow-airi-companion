@@ -106,6 +106,38 @@ describe('managed WoW bridge runtime', () => {
     await writeFile(join(source, 'mode.txt'), mode)
   }
 
+  integration('passes macro text through stdin without executing it as a command', async () => {
+    await prepareOwned()
+    await writeFile(join(source, 'macro_import.py'), `import json,sys,pathlib
+request=json.loads(sys.stdin.readline())
+pathlib.Path(__file__).with_name('macro-request.json').write_text(json.dumps(request))
+print(json.dumps({'ok':True,'code':'saved','macroName':'WCP Import'}),flush=True)
+`)
+    const request = { game: 'retail' as const, body: '/run print("$HOME $(whoami) `test`")' }
+    const window = { handle: '123', processId: 456, processStartedAt: '789', path: 'test.exe', title: 'test', visible: true, minimized: false }
+    const result = await runtime.runMacroImport(request, window)
+    expect(result).toEqual({ ok: true, code: 'saved', macroName: 'WCP Import' })
+    expect(JSON.parse(await readFile(join(source, 'macro-request.json'), 'utf8'))).toEqual({ ...request, window })
+  })
+
+  integration('cancels macro input by closing the parent lease on stop', async () => {
+    await prepareOwned()
+    await writeFile(join(source, 'macro_import.py'), `import json,sys,pathlib
+json.loads(sys.stdin.readline())
+pathlib.Path(__file__).with_name('macro-started').write_text('started')
+sys.stdin.read()
+pathlib.Path(__file__).with_name('macro-stopped').write_text('stopped')
+print(json.dumps({'ok':False,'code':'cancelled'}),flush=True)
+`)
+    const window = { handle: '123', processId: 456, processStartedAt: '789', path: 'test.exe', title: 'test', visible: true, minimized: false }
+    const operation = runtime.runMacroImport({ game: 'retail', body: '/cast Test' }, window)
+    const rejected = expect(operation).rejects.toThrow('macro-import-cancelled-or-failed')
+    await vi.waitFor(async () => expect(await readFile(join(source, 'macro-started'), 'utf8')).toBe('started'))
+    await runtime.stop()
+    await rejected
+    expect(await readFile(join(source, 'macro-stopped'), 'utf8')).toBe('stopped')
+  })
+
   it('reuses a compatible external bridge and never stops it', async () => {
     await serve(health)
     await Promise.all([runtime.ensureReady(), runtime.ensureReady()])

@@ -32,12 +32,12 @@ describe('useTamagotchiBuiltinToolsStore', async () => {
     setActivePinia(createPinia())
   })
 
-  it('registers built-in executors as request-selected tools', async () => {
+  it('makes macro import available in chat while keeping general computer control request-selected', async () => {
     const toolsStore = useLlmToolsStore()
 
     await useTamagotchiBuiltinToolsStore().refresh()
 
-    expect(toolsStore.activeTools).toEqual([])
+    expect(toolsStore.activeTools.map(tool => tool.function.name)).toEqual(['wow_import_macro'])
     expect(toolsStore.tools.map(tool => ({
       id: tool.id,
       defaultActive: tool.defaultActive,
@@ -47,6 +47,7 @@ describe('useTamagotchiBuiltinToolsStore', async () => {
       { id: 'tamagotchi:get_weather', defaultActive: false },
       { id: 'tamagotchi:computer_use', defaultActive: false },
       { id: 'tamagotchi:computer_use_read_image', defaultActive: false },
+      { id: 'tamagotchi:wow_import_macro', defaultActive: true },
     ])
     expect(toolsStore.tools.filter(tool => tool.requiresExplicitSelection).map(tool => tool.function.name)).toEqual(['computer_use', 'computer_use_read_image'])
     expect(toolsStore.getToolsByNames('get_weather')[0]?.function.name).toBe('get_weather')

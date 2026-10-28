@@ -22,7 +22,7 @@
 ## Title-ruRU: Спутник WoW · Retail
 ## Notes-ruRU: Передача данных персонажа и подтверждение смены экипировки в игре.
 ## Author: WoWMapCompanion
-## Version: 2.12.0
+## Version: 2.13.0
 ## SavedVariables: WoWMapCompanionDB
 
 Localization.lua

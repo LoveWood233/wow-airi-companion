@@ -1,6 +1,9 @@
+import type { Buffer } from 'node:buffer'
 import type { ChildProcessWithoutNullStreams } from 'node:child_process'
 
 import type { GameVersion } from '../../../shared/wow-companion'
+import type { MacroImportRequest } from '../../../shared/wow-macro-import'
+import type { GameCaptureWindow } from './wow-screen-assist-runtime'
 
 import process from 'node:process'
 
@@ -12,10 +15,11 @@ import { setTimeout as delay } from 'node:timers/promises'
 import { promisify } from 'node:util'
 
 import { errorMessageFrom } from '@moeru/std'
-import { integer, literal, looseObject, minLength, minValue, number, optional, picklist, pipe, safeParse, string } from 'valibot'
+import { integer, literal, looseObject, minLength, minValue, number, optional, parse, picklist, pipe, safeParse, string } from 'valibot'
 
 import { gameProfiles, gameVersionSchema } from '../../../shared/wow-companion'
 import { companionError } from '../../../shared/wow-companion-errors'
+import { macroImportResultSchema } from '../../../shared/wow-macro-import'
 
 const execFileAsync = promisify(execFile)
 const healthSchema = looseObject({
@@ -64,6 +68,7 @@ export class CompanionBridgeRuntime {
   private stopping: Promise<void> | undefined
   private abort: AbortController | undefined
   private owned: OwnedProcess | undefined
+  private macroAbort: AbortController | undefined
 
   /** The loopback address is fixed in AIRI. Tests use an isolated local HTTP server. */
   constructor(private readonly options: RuntimeOptions, private readonly baseUrl = `http://127.0.0.1:${gameProfiles[options.game ?? 'retail'].port}`) {
@@ -108,6 +113,7 @@ export class CompanionBridgeRuntime {
   stop() {
     this.generation++
     this.abort?.abort()
+    this.macroAbort?.abort()
     if (this.stopping)
       return this.stopping
     const active = this.active
@@ -204,6 +210,73 @@ export class CompanionBridgeRuntime {
       if (!signal.aborted)
         this.fail(companionError('bridge-retry', { detail: errorMessageFrom(error) ?? companionError('bridge-unavailable') }))
       throw signal.aborted ? new Error(companionError('bridge-cancelled')) : new Error(this.error ?? companionError('bridge-unavailable'))
+    }
+  }
+
+  /**
+   * Runs one fixed import workflow. Closing stdin cancels native input after a shutdown or settings change.
+   *
+   * Call stack:
+   * wowMacroImport (IPC) -> CompanionProfile.importMacro -> runMacroImport -> macro_import.py
+   */
+  async runMacroImport(request: MacroImportRequest, window: GameCaptureWindow) {
+    if (this.disposed || this.options.platform !== 'win32' || this.macroAbort)
+      throw new Error('macro-import-unavailable')
+    const controller = new AbortController()
+    this.macroAbort = controller
+    const generation = this.generation
+    try {
+      const resources = await this.findResources()
+      const python = await this.findPython(controller.signal)
+      controller.signal.throwIfAborted()
+      if (generation !== this.generation)
+        throw new Error('macro-import-cancelled')
+      const script = join(dirname(resources.script), 'macro_import.py')
+      if (!await this.isFile(script))
+        throw new Error('macro-import-files-missing')
+      const result = await new Promise<string>((resolveResult, reject) => {
+        const child = spawn(python, [script], {
+          windowsHide: true,
+          shell: false,
+          stdio: ['pipe', 'pipe', 'pipe'],
+          env: { ...process.env, PYTHONUTF8: '1', PYTHONUNBUFFERED: '1' },
+        })
+        let output = ''
+        const cancel = () => child.stdin.end()
+        const timeout = setTimeout(() => {
+          cancel()
+          child.kill()
+          reject(new Error('macro-import-timeout'))
+        }, 130_000)
+        controller.signal.addEventListener('abort', cancel, { once: true })
+        child.stdout.on('data', (chunk: Buffer) => {
+          output += chunk.toString('utf8')
+          if (output.length > 8192) {
+            cancel()
+            child.kill()
+          }
+        })
+        child.stderr.resume()
+        child.stdin.on('error', () => { /* Exit reports a failed or cancelled child. */ })
+        child.once('error', reject)
+        child.once('close', (code) => {
+          clearTimeout(timeout)
+          controller.signal.removeEventListener('abort', cancel)
+          if (code === 0 && !controller.signal.aborted && output.length <= 8192)
+            resolveResult(output)
+          else
+            reject(new Error('macro-import-cancelled-or-failed'))
+        })
+        // The stream remains open as a lifetime lease. Macro text is data, never a process argument or shell script.
+        child.stdin.write(`${JSON.stringify({ ...request, window })}\n`)
+        if (controller.signal.aborted)
+          cancel()
+      })
+      return parse(macroImportResultSchema, JSON.parse(result))
+    }
+    finally {
+      if (this.macroAbort === controller)
+        this.macroAbort = undefined
     }
   }
 

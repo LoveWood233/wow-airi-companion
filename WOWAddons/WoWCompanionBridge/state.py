@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 from protocol import (COMPARISON_MAX_BYTES, EQUIPMENT_MAX_BYTES, LOADOUT_MAX_BYTES, GAME_PROTOCOLS, FrameError, load_json,
                       validate_equipment_fragment, validate_equipment_record, validate_equipment_swap,
                       validate_equipment_offer, validate_comparison_fragment, validate_equipment_comparison,
-                      validate_loadout_fragment, validate_equipment_loadout)
+                      validate_loadout_fragment, validate_equipment_loadout, validate_macro)
 
 DEFAULT_CONFIG = {"x": 8, "y": 8, "cellSize": 1, "pollMs": 100, "paused": False}
 EQUIPMENT_TTL_SECONDS = 180
@@ -87,6 +87,8 @@ class CompanionState:
         self.equipment_offer: dict | None = None
         self.equipment_offer_error: str | None = None
         self.equipment_offer_expires = 0.0
+        self.macro_import = None
+        self.macro_import_at = None
         # Comparison fragments have separate queues and error state. They cannot evict item observations or refresh their heartbeat.
         self.equipment_comparisons: list[dict] = []
         self.equipment_comparison_error: str | None = None
@@ -102,6 +104,8 @@ class CompanionState:
         self.loadout_count = 0
 
     def _clear_equipment(self) -> None:
+        self.macro_import = None
+        self.macro_import_at = None
         self.equipment.clear()
         self.equipment_pending.clear()
         self.equipment_seen.clear()
@@ -411,6 +415,8 @@ class CompanionState:
                     "equipmentOffer": copy.deepcopy(self.equipment_offer) if status == "live" and not self.demo
                     and self.clock() < self.equipment_offer_expires else None,
                     "equipmentOfferError": self.equipment_offer_error,
+                    "macroImport": copy.deepcopy(self.macro_import) if status == "live" and not self.demo
+                    and not self.error and self.macro_import_at is not None and self.clock() - self.macro_import_at < 2.5 else None,
                     "equipmentComparisons": copy.deepcopy(self.equipment_comparisons),
                     "equipmentComparisonError": self.equipment_comparison_error,
                     "equipmentLoadout": copy.deepcopy(self.equipment_loadout),
@@ -424,6 +430,16 @@ class CompanionState:
 
     def ingest(self, snapshot: dict) -> None:
         with self.lock:
+            if snapshot.get("kind") == "macro":
+                value = validate_macro(snapshot)
+                if self.demo or self._status() != "live" or self.reset_baseline or self.error:
+                    return
+                if (value["s"], value["g"]) != (self.snapshot["session"], self.snapshot["guid"]):
+                    return
+                if self.macro_import and value["q"] <= self.macro_import["q"]:
+                    return
+                self.macro_import, self.macro_import_at = value, self.clock()
+                return
             if snapshot.get("kind") == "gear":
                 self._ingest_equipment_loadout(snapshot)
                 return

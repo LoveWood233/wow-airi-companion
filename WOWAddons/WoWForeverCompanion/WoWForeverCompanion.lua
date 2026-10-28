@@ -163,6 +163,7 @@ local function Initialize()
     local uptime = Number((Call(GetTime) or 0) * 1000, 0)
     state = { v = 3, session = string.format("%d-%d-%d", timestamp, uptime, math.random(100000, 999999)), seq = 0, tick = 0, guid = "", name = "", realm = "", level = 0, class = "", spec = 0, map = 0, zone = L("当前位置暂不可用"), combat = false, dead = false, online = false }
     Telemetry.Initialize(config)
+    Transfer.SetMacroState(state)
     ConfirmEquip.Initialize(state, config, Transfer.AddSwap, Print, function(offer)
         Transfer.SetOffer(offer)
         if ready then Export() end

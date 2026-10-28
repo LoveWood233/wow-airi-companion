@@ -342,10 +342,23 @@ function Transfer.SetOffer(result)
     if previous and heldFrame == previous then heldFrame = frame end
 end
 
+local macroState, macroOpportunity
+function Transfer.SetMacroState(state) macroState, macroOpportunity = state, 0 end
+
 function Transfer.Advance()
     equipmentPhase = not equipmentPhase
     heldFrame = nil
     if not equipmentPhase then return end
+    macroOpportunity = (macroOpportunity or 0) + 1
+    local importer = WoWCompanionMacroImport
+    if macroState and importer and type(importer.Telemetry) == "function" and macroOpportunity % 2 == 0 then
+        local ok, value = pcall(importer.Telemetry)
+        if ok and type(value) == "table" then
+            value.v, value.kind, value.s, value.g = 1, "macro", macroState.session, macroState.guid
+            local payload = FieldsJSON(value, {"v", "kind", "s", "g", "q", "id", "st", "r", "hash", "bytes", "focus", "input", "chat", "combat"})
+            if #payload <= 504 then heldFrame = Protocol.Frame(payload); return end
+        end
+    end
     local now = GetTime() or 0
     for index=#comparisons,1,-1 do
         if comparisons[index].expires<=now then

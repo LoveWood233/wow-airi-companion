@@ -400,7 +400,8 @@ Equipment does not trigger an automatic spoken notification. Demo data never ent
 ## Confirmed equipment swaps (2.5.0)
 
 The addon asks the player inside the game. Only the acceptance button starts an equipment action.
-Desktop chat, voice replies, and screen frames cannot accept a proposal. The transport remains one-way.
+Desktop chat, voice replies, and screen frames cannot accept an equipment proposal. The pixel transport remains game-to-desktop.
+Macro import uses a separate desktop input workflow described below. It cannot accept an equipment proposal.
 The addon checks the exact item instance and destination again before the action.
 It reports success only after it observes the candidate GUID in the intended equipment slot.
 Native binding, refund, and trade confirmation dialogs remain under player control.
@@ -476,4 +477,23 @@ Item and sequence IDs range from 1 through 2147483647. Slots range from 1 throug
 
 The bridge orders states by `q` within the current character session. Status exposes closed states until expiry so the desktop can dismiss its prompt. After expiry, the bridge retains the last value internally to reject older frames. Duplicate frames do not refresh the heartbeat or expiry. Status adds optional `equipmentOffer` and `equipmentOfferError`. Only live screen observations expose an unexpired offer. Older bridges without this extension remain supported for existing features.
 
-The desktop reads fixed localized text through the configured voice. With no voice, muting, or voice failure, it shows text. After playback drains, it shows Yes and No thanks for ten seconds. Yes instructs the player to confirm in game. Decline and timeout only dismiss the desktop prompt. No keyboard input, game commands, or reverse transport is added.
+The desktop reads fixed localized text through the configured voice. With no voice, muting, or voice failure, it shows text. After playback drains, it shows Yes and No thanks for ten seconds. Yes instructs the player to confirm in game. Decline and timeout only dismiss the desktop prompt. Equipment offers do not add keyboard input, game commands, or reverse transport.
+
+## Macro import receipts (bridge 2.13.0)
+
+The optional WoWMacroImport addon reports `v=1`, `kind=macro`, session `s`, GUID `g`, and increasing publication serial `q`.
+It also reports request `id` (empty or 32 lowercase hexadecimal characters), state `st`, reason `r`, body `hash`, and UTF-8 `bytes`.
+Booleans `focus`, `input`, `chat`, and `combat` describe the import editor, any keyboard focus, the standard chat editor, and combat lockdown.
+States are `idle`, `ready`, `edited`, `saved`, `error`, and `closed`.
+The hash starts at 5381. For each UTF-8 byte, apply `(hash * 33 + byte) % 4294967296`.
+Body normalization converts CRLF and CR into LF and removes leading and trailing ASCII whitespace.
+
+Each companion addon allocates one in two data slots to these receipts when the importer exists.
+Normal state slots remain unchanged. No receipt refreshes the character heartbeat.
+The bridge accepts only increasing serials for the current live session and GUID.
+It exposes a receipt for less than 2.5 seconds after its last new serial, with no capture error, pause, or demo state.
+Identity and capture configuration changes clear receipts.
+
+The desktop uses an independent native input helper to open `/import-marco <id>`, paste text, and submit with Ctrl+Enter.
+It requires a verified game window, live combat state, matching editor receipts, and a saved-body readback.
+This adds no game-to-desktop command endpoint and does not execute the saved macro.
