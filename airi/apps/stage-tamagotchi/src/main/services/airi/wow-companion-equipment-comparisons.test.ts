@@ -105,7 +105,7 @@ describe('persistent equipment comparisons', () => {
     const history = new CompanionEquipmentComparisons(file)
     await history.observe(observation())
     await history.flush()
-    expect(history.read().storageError).toContain('Cannot load WoW equipment comparisons')
+    expect(history.read().storageError).toContain('comparisons-read')
     expect(await readFile(file, 'utf8')).toBe('{corrupt')
   })
 
@@ -116,7 +116,7 @@ describe('persistent equipment comparisons', () => {
     await history.load()
     await writeFile(obstacle, 'occupied')
     await history.observe(observation())
-    expect(history.read().storageError).toContain('Cannot save WoW equipment comparisons')
+    expect(history.read().storageError).toContain('comparisons-write')
     expect(history.read().entries).toHaveLength(1)
     await rm(obstacle)
     await history.observe(null)

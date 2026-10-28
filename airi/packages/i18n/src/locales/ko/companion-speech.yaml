@@ -1,0 +1,28 @@
+unknown: 알 수 없음
+error: 알 수 없는 오류가 발생했습니다.
+streaming-description: 저지연 스트리밍 음성
+preview-text: 안녕하세요, 당신의 동반자예요.
+providers-empty: 설정된 음성 제공자 없음
+providers-setup: 음성 제공자 설정
+model: 모델
+model-description: 음성 생성에 사용할 모델을 입력하세요.
+model-manual-error: 모델 검색에 실패하면 이름을 직접 입력하세요.
+model-manual-empty: 모델이 없으면 이름을 직접 입력하세요.
+voice-title: 목소리 설정
+voice-description: 동반자가 말하는 목소리를 조정하세요.
+current-voice: '현재 목소리: {voice}'
+voices-error: 목소리를 불러오지 못했습니다
+pitch: 음높이
+pitch-description: 목소리의 높낮이를 조정하세요.
+ssml: SSML 활성화
+ssml-description: 음성 합성 마크업으로 음성 출력을 제어합니다.
+voice-name: 목소리 이름
+voice-name-description: 사용자 지정 목소리의 이름을 입력하세요.
+voice-name-placeholder: '목소리 이름(예: alloy, echo)'
+monolingual-v1: 단일 언어 v1
+multilingual-v1: 다국어 v1
+multilingual-v2: 다국어 v2
+custom-ssml: 사용자 지정 SSML 사용
+custom-ssml-description: 일반 텍스트 대신 SSML을 직접 입력하세요.
+ssml-placeholder: SSML 텍스트 입력…
+stop: 중지

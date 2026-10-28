@@ -2,6 +2,7 @@
 import { clearModelCache, formatBytes, getModelCacheSize, isModelCached } from '@proj-airi/stage-ui/libs/inference'
 import { Button, GhostButton } from '@proj-airi/ui'
 import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const cacheSize = ref(0)
 const loading = ref(true)
@@ -44,6 +45,8 @@ async function handleClearCache() {
 }
 
 onMounted(refresh)
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -57,10 +60,10 @@ onMounted(refresh)
     <div flex items-center justify-between>
       <div>
         <h3 m-0 text-sm font-medium>
-          Model Cache
+          {{ translateCompanion('companion-extra.model-cache-6532cf') }}
         </h3>
         <p m-0 text-xs text-neutral-500>
-          Downloaded inference models stored in browser cache
+          {{ translateCompanion('companion-extra.downloaded-inference-models-stored-in-browser-6b33b9') }}
         </p>
       </div>
       <div
@@ -104,7 +107,7 @@ onMounted(refresh)
     <!-- Loading state -->
     <div v-else flex items-center gap-2 py-2 text-sm text-neutral-500>
       <div i-svg-spinners:ring-resize />
-      <span>Checking cache...</span>
+      <span>{{ translateCompanion('companion-extra.checking-cache-177e32') }}</span>
     </div>
 
     <!-- Actions -->
@@ -112,7 +115,7 @@ onMounted(refresh)
       <GhostButton
 
         size="sm"
-        label="Refresh"
+        :label="translateCompanion('companion-extra.refresh-56e3ba')"
         icon="i-solar:refresh-linear"
         :disabled="loading"
         @click="refresh"

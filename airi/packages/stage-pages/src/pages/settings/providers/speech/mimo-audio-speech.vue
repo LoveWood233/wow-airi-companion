@@ -76,22 +76,22 @@ const isVoiceDesignModel = computed(() => model.value === 'mimo-v2.5-tts-voicede
 const isVoiceCloneModel = computed(() => model.value === 'mimo-v2.5-tts-voiceclone')
 const stylePromptLabel = computed(() => {
   if (isVoiceCloneModel.value)
-    return 'Style prompt (optional)'
+    return t('companion-providers.style-optional')
   if (isVoiceDesignModel.value)
-    return 'Voice design prompt'
-  return 'Style prompt'
+    return t('companion-providers.voice-design-prompt')
+  return t('companion-providers.style-prompt')
 })
 
 const stylePromptDescription = computed(() => {
   if (isVoiceCloneModel.value) {
-    return 'Optional natural-language control sent as the user message. Leave it empty for pure voice cloning.'
+    return t('companion-providers.clone-style-description')
   }
 
   if (isVoiceDesignModel.value) {
-    return 'Natural-language control sent as the user message. MiMo voice design requires this prompt and does not use a preset voice.'
+    return t('companion-providers.design-style-description')
   }
 
-  return 'Natural-language control sent as the user message. You can leave it empty for a neutral delivery.'
+  return t('companion-providers.preset-style-description')
 })
 
 const stylePrompt = computed({
@@ -125,7 +125,7 @@ onMounted(async () => {
 async function handleGenerateSpeech(input: string, voiceId: string, _useSSML: boolean, modelId?: string) {
   const provider = await providersStore.getProviderInstance<SpeechProvider<string>>(providerId)
   if (!provider) {
-    throw new Error('Failed to initialize speech provider')
+    throw new Error(t('companion-providers.speech-provider-error'))
   }
 
   const providerConfig = providerStore.getProviderConfig(providerId)
@@ -138,7 +138,7 @@ async function handleGenerateSpeech(input: string, voiceId: string, _useSSML: bo
   }
 
   if (modelToUse === 'mimo-v2.5-tts-voiceclone' && !voiceSample.value.trim()) {
-    throw new Error('Voice clone model requires a base64 audio sample in data URI format.')
+    throw new Error(t('companion-providers.voice-sample-required'))
   }
 
   const voiceToUse = modelToUse === 'mimo-v2.5-tts-voiceclone'
@@ -171,23 +171,23 @@ const {
     <template #voice-settings>
       <FieldCombobox
         v-model="model"
-        label="Model"
-        description="Select the MiMo TTS model to use for speech generation"
+        :label="t('settings.model-select.live2d-report.model.title')"
+        :description="t('companion-providers.mimo-model-description')"
         :options="modelOptions"
-        placeholder="Select a MiMo model..."
+        :placeholder="t('companion-providers.mimo-model-placeholder')"
       />
       <FieldTextArea
         v-model="stylePrompt"
         :label="stylePromptLabel"
         :description="stylePromptDescription"
-        placeholder="Describe the tone, pacing, emotion, and delivery style..."
+        :placeholder="t('companion-providers.voice-style-placeholder')"
         :required="!isVoiceCloneModel"
       />
       <FieldTextArea
         v-if="isVoiceCloneModel"
         v-model="voiceSample"
-        label="Voice sample (data URI)"
-        description="Paste the base64 voice sample as data:{MIME_TYPE};base64,$BASE64_AUDIO. MiMo supports mp3 and wav samples up to 10 MB."
+        :label="t('companion-providers.voice-sample-label')"
+        :description="t('companion-providers.voice-sample-description')"
         placeholder="data:audio/wav;base64,UklGRpyG..."
         :required="isVoiceCloneModel"
       />
@@ -199,20 +199,20 @@ const {
         :generate-speech="handleGenerateSpeech"
         :api-key-configured="apiKeyConfigured"
         :voices-loading="speechStore.voiceCatalogStatus[providerId]?.loading ?? false"
-        default-text="Hello! This is a test of the Xiaomi MiMo Speech."
+        :default-text="t('companion-providers.mimo-test-text')"
       />
     </template>
 
     <template #advanced-settings>
       <Alert type="info">
         <template #title>
-          MiMo model behavior
+          {{ t('companion-providers.mimo-behavior-title') }}
         </template>
         <template #content>
           <div class="whitespace-pre-wrap break-words text-sm space-y-1">
-            <div>`mimo-v2.5-tts` uses the preset voice list below.</div>
-            <div>`mimo-v2.5-tts-voicedesign` uses the style prompt to design a new voice and does not accept `audio.voice`.</div>
-            <div>`mimo-v2.5-tts-voiceclone` uses the pasted voice sample and ignores the preset voice selector.</div>
+            <div>{{ t('companion-providers.mimo-preset-description') }}</div>
+            <div>{{ t('companion-providers.mimo-design-description') }}</div>
+            <div>{{ t('companion-providers.mimo-clone-description') }}</div>
           </div>
         </template>
       </Alert>

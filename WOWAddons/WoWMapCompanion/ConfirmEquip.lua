@@ -1,5 +1,6 @@
 -- Only the game confirmation button may start an equipment action.
 local addonName, ns = ...
+local L = ns.L or function(text) return text end
 local ConfirmEquip = {}
 ns.ConfirmEquip = ConfirmEquip
 local owner, settings, emit, say, publishOffer, publishComparison, popupKey
@@ -12,9 +13,9 @@ local slots = { INVTYPE_HEAD = { 1 }, INVTYPE_NECK = { 2 }, INVTYPE_SHOULDER = {
     INVTYPE_TRINKET = { 13, 14 }, INVTYPE_CLOAK = { 15 }, INVTYPE_WEAPONMAINHAND = { 16 },
     INVTYPE_WEAPONOFFHAND = { 17 }, INVTYPE_SHIELD = { 17 }, INVTYPE_HOLDABLE = { 17 },
     INVTYPE_2HWEAPON = { 16 }, INVTYPE_RANGED = { 16 }, INVTYPE_RANGEDRIGHT = { 16 } }
-local slotNames = { [1] = "头部", [2] = "项链", [3] = "肩部", [5] = "胸部", [6] = "腰部",
-    [7] = "腿部", [8] = "脚部", [9] = "手腕", [10] = "手部", [11] = "戒指 1", [12] = "戒指 2",
-    [13] = "饰品 1", [14] = "饰品 2", [15] = "披风", [16] = "主手", [17] = "副手", [18] = "远程" }
+local slotNames = { [1] = L("头部"), [2] = L("项链"), [3] = L("肩部"), [5] = L("胸部"), [6] = L("腰部"),
+    [7] = L("腿部"), [8] = L("脚部"), [9] = L("手腕"), [10] = L("手部"), [11] = L("戒指 1"), [12] = L("戒指 2"),
+    [13] = L("饰品 1"), [14] = L("饰品 2"), [15] = L("披风"), [16] = L("主手"), [17] = L("副手"), [18] = L("远程") }
 local function Query(fn, ...)
     if type(fn) ~= "function" then return nil, false end
     local ok, value = pcall(fn, ...)
@@ -41,7 +42,7 @@ local function Inventory(slot)
     if not C_Item then return nil end
     local location = Location(nil, slot)
     local exists = location and Query(C_Item.DoesItemExist, location)
-    if exists == false then return { id = 0, slot = slot, level = -1, name = "空槽" } end
+    if exists == false then return { id = 0, slot = slot, level = -1, name = L("空槽") } end
     if exists ~= true then return nil end
     local link = Query(GetInventoryItemLink, "player", slot)
     local guid = Query(C_Item.GetItemGUID, location)
@@ -197,9 +198,9 @@ local function Finish(entry, status, reason)
     emit({ v = 1, kind = "swap", s = entry.record.session, g = entry.record.guid, id = nextResult,
         e = entry.record.id, st = status, r = reason, at = math.floor(at), slot = entry.old.slot,
         item = entry.record.itemID, old = entry.old.id })
-    if status == "equipped" then say("已确认穿戴：" .. entry.record.name)
-    elseif status == "failed" and reason == "timeout" then say("未能确认换装结果，请检查穿戴栏；不会再次自动执行。")
-    elseif status == "failed" then say("本次换装已停止（" .. reason .. "），请检查装备与角色状态。") end
+    if status == "equipped" then say(L("已确认穿戴：") .. entry.record.name)
+    elseif status == "failed" and reason == "timeout" then say(L("未能确认换装结果，请检查穿戴栏；不会再次自动执行。"))
+    elseif status == "failed" then say(L("本次换装已停止（") .. reason .. L("），请检查装备与角色状态。")) end
 end
 local function Validate(entry)
     if not Identity(entry.record) then return nil, "changed" end
@@ -227,7 +228,7 @@ local function Verify(entry, fromClick)
     local location = Location(nil, entry.old.slot)
     if location and Query(C_Item.GetItemGUID, location) == entry.record.itemGUID then
         Finish(entry, "equipped", "confirmed")
-        if not fromClick and Query(GetCursorInfo) ~= nil then say("换装已核实，鼠标上若有旧装备请自行放回背包；不会异步移动光标物品。") end
+        if not fromClick and Query(GetCursorInfo) ~= nil then say(L("换装已核实，鼠标上若有旧装备请自行放回背包；不会异步移动光标物品。")) end
         return true
     end
     return false
@@ -281,7 +282,7 @@ local function Accept(_, entry)
     ok = pcall(PickupInventoryItem, entry.old.slot)
     if not ok then Finish(entry, "failed", "restricted"); return end
     -- Native binding, refund and trade dialogs remain entirely player controlled.
-    if not entry.done and not Verify(entry, true) then say("已提交换装，请处理游戏原生确认（如有）；正在核对穿戴结果。") end
+    if not entry.done and not Verify(entry, true) then say(L("已提交换装，请处理游戏原生确认（如有）；正在核对穿戴结果。")) end
     -- Only this same click can return the approved old item to the now-empty source.
     -- If a native confirmation completes later, never manipulate its cursor in an event.
     if entry.outcome == "equipped" and entry.old.id ~= 0 and Identity(entry.record)
@@ -294,7 +295,7 @@ local function Accept(_, entry)
             pcall(C_Container.PickupContainerItem, found.bag, found.slot)
         end
     end
-    if Query(GetCursorInfo) ~= nil then say("若鼠标上仍有装备，请自行放回背包；插件不会清理或丢弃光标物品。") end
+    if Query(GetCursorInfo) ~= nil then say(L("若鼠标上仍有装备，请自行放回背包；插件不会清理或丢弃光标物品。")) end
 end
 local function Cancel(_, entry, reason)
     if entry ~= current or entry.done or entry.hiding or entry.phase ~= "prompt" then return end
@@ -310,7 +311,7 @@ function ConfirmEquip.Initialize(state, config, callback, printer, proposalCallb
     if type(settings.confirmEquip) ~= "boolean" then settings.confirmEquip = true end
     popupKey = string.upper(addonName) .. "_CONFIRM_EQUIP"
     if type(StaticPopupDialogs) ~= "table" then return end
-    StaticPopupDialogs[popupKey] = { text = "%s", button1 = "确认换装", button2 = "保留原装备", timeout = 120,
+    StaticPopupDialogs[popupKey] = { text = "%s", button1 = L("确认换装"), button2 = L("保留原装备"), timeout = 120,
         whileDead = false, hideOnEscape = true, enterClicksFirstButton = false, preferredIndex = 3,
         OnAccept = Accept, OnCancel = Cancel,
         OnHide = function(_, entry)
@@ -368,10 +369,10 @@ function ConfirmEquip.Tick()
     local remaining = entry.expires - Clock()
     StaticPopupDialogs[popupKey].timeout = math.min(120, remaining)
     local tradeoff=entry.assessment.reason=="primary_upgrade_tradeoff"
-    local explanation=tradeoff and "装等和当前主属性提高，但副属性有取舍，综合收益未确定。请核对后决定。"
-        or "已核对专精、类型及量化属性：无属性下降且至少一项提升，或对应栏位为空。"
-    local text = string.format("%s，是否换装？\n\n%s：%s（装等 %s）\n替换为：%s（装等 %s）\n\n%s\n%s\n套装、特效、附魔仍需自行复核。\n点击后可能仍需处理游戏原生绑定、退款或交易确认。\n剩余最多 %d 秒，请在游戏内点击确认。",
-        tradeoff and "发现主属性提高但副属性有取舍的装备" or "发现同类属性明确提升或可用空槽装备",
+    local explanation=tradeoff and L("装等和当前主属性提高，但副属性有取舍，综合收益未确定。请核对后决定。")
+        or L("已核对专精、类型及量化属性：无属性下降且至少一项提升，或对应栏位为空。")
+    local text = string.format(L("%s，是否换装？\n\n%s：%s（装等 %s）\n替换为：%s（装等 %s）\n\n%s\n%s\n套装、特效、附魔仍需自行复核。\n点击后可能仍需处理游戏原生绑定、退款或交易确认。\n剩余最多 %d 秒，请在游戏内点击确认。"),
+        tradeoff and L("发现主属性提高但副属性有取舍的装备") or L("发现同类属性明确提升或可用空槽装备"),
         slotNames[entry.old.slot], entry.old.name, entry.old.id == 0 and "—" or tostring(entry.old.level), entry.record.name, tostring(entry.record.itemLevel),
         explanation,ns.EquipmentCompare.Describe(entry.comparison),math.floor(remaining))
     local dialog = StaticPopup_Show(popupKey, text, nil, entry)
@@ -401,15 +402,15 @@ end
 function ConfirmEquip.Command(arg)
     local target=string.match(arg,"^check%s+(%d+)$")
     if arg=="check" or target then
-        if settings.confirmEquip~=true then say("确认换装询问已关闭，请先使用 equip on。"); return end
+        if settings.confirmEquip~=true then say(L("确认换装询问已关闭，请先使用 equip on。")); return end
         local accepted,unready=ns.Equipment.Review(ConfirmEquip.Add,target and tonumber(target))
-        say(string.format("背包装备复查：提出 %d 件，资料未就绪 %d 件；未写入新的装备获取历史。",accepted,unready))
+        say(string.format(L("背包装备复查：提出 %d 件，资料未就绪 %d 件；未写入新的装备获取历史。"),accepted,unready))
         return
-    elseif arg == "on" then settings.confirmEquip = true; say("确认换装询问已开启，只处理此后新观察到的装备。")
-    elseif arg == "off" then settings.confirmEquip = false; CancelAll("disabled"); say("确认换装询问已关闭。")
-    elseif arg ~= "status" then say("用法：equip on | off | status | check [物品ID]"); return end
+    elseif arg == "on" then settings.confirmEquip = true; say(L("确认换装询问已开启，只处理此后新观察到的装备。"))
+    elseif arg == "off" then settings.confirmEquip = false; CancelAll("disabled"); say(L("确认换装询问已关闭。"))
+    elseif arg ~= "status" then say(L("用法：equip on | off | status | check [物品ID]")); return end
     say(ConfirmEquip.Status())
 end
 function ConfirmEquip.Status()
-    return string.format("确认换装：%s · 等待 %d/6 · 条件不足跳过 %d · 仅游戏内逐件确认", settings.confirmEquip and "开启" or "关闭", #queue + (current and 1 or 0), skipped)
+    return string.format(L("确认换装：%s · 等待 %d/6 · 条件不足跳过 %d · 仅游戏内逐件确认"), settings.confirmEquip and L("开启") or L("关闭"), #queue + (current and 1 or 0), skipped)
 end

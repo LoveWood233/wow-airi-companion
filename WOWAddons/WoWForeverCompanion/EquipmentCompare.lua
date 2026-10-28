@@ -1,5 +1,6 @@
 -- Compare public item facts conservatively. No rating weights or simulated damage claims.
 local _, ns = ...
+local L = ns.L or function(text) return text end
 local Compare = {}
 ns.EquipmentCompare = Compare
 local Public = ns.Protocol.Public
@@ -71,6 +72,35 @@ local metadata={}
 for _, name in ipairs({"灵魂绑定","拾取绑定","拾取后绑定","装备后绑定","账号绑定","战团绑定","双手","单手","主手","副手","头部","颈部","肩部","背部","披风","胸部","手腕","腕部","手","手部","腰部","腿部","脚","脚部","手指","Soulbound","Binds when picked up","Binds when equipped","Two-Hand","One-Hand","Main Hand","Off Hand","Head","Neck","Shoulder","Back","Chest","Wrist","Hands","Waist","Legs","Feet","Finger"}) do metadata[name]=true end
 for _, name in ipairs({"锤","斧","剑","法杖","长柄武器","匕首","拳套","弓","枪械","弩","魔杖",
     "Mace","Axe","Sword","Staff","Polearm","Dagger","Fist Weapon","Bow","Gun","Crossbow","Wand"}) do metadata[name]=true end
+-- Read the client's own localized labels rather than translating tooltip data.
+for key in pairs(knownStats) do
+    local name=Plain(_G[key])
+    if name then statNames[name]=true end
+end
+for _, key in ipairs({"ITEM_SOULBOUND","ITEM_BIND_ON_PICKUP","ITEM_BIND_ON_EQUIP","ITEM_ACCOUNTBOUND",
+    "ITEM_BNETACCOUNTBOUND","ITEM_WARBOUND","INVTYPE_2HWEAPON","INVTYPE_WEAPON","INVTYPE_WEAPONMAINHAND",
+    "INVTYPE_WEAPONOFFHAND","INVTYPE_HEAD","INVTYPE_NECK","INVTYPE_SHOULDER","INVTYPE_CLOAK","INVTYPE_CHEST",
+    "INVTYPE_WRIST","INVTYPE_HAND","INVTYPE_WAIST","INVTYPE_LEGS","INVTYPE_FEET","INVTYPE_FINGER"}) do
+    local name=Plain(_G[key])
+    if name then metadata[name]=true end
+end
+local localizedNumericPatterns={}
+for _, key in ipairs({"ITEM_LEVEL","DURABILITY_TEMPLATE","ITEM_MIN_LEVEL","WEAPON_SPEED","DAMAGE_TEMPLATE","DPS_TEMPLATE","ARMOR_TEMPLATE"}) do
+    local template=Plain(_G[key])
+    if template then
+        local parts,index,numeric={},1,false
+        while index<=#template do
+            local token=string.match(string.sub(template,index),"^%%[%d$]*[%.%d]*[dfs]")
+            if token then parts[#parts+1]="[%d,%.]+"; numeric=true; index=index+#token
+            else
+                local char=string.sub(template,index,index)
+                parts[#parts+1]=char==" " and "%s*" or string.gsub(char,"([%(%)%.%%%+%-%*%?%[%]%^%$])","%%%1")
+                index=index+1
+            end
+        end
+        if numeric then localizedNumericPatterns[#localizedNumericPatterns+1]="^"..table.concat(parts).."$" end
+    end
+end
 local function SimpleLine(value,item)
     local input=value
     value=Plain(value)
@@ -82,6 +112,7 @@ local function SimpleLine(value,item)
     if value=="品质：" or value=="品质:" or value=="Quality:" then return true end
     if string.match(value,"^<由[^<>]+制造>$") or string.match(value,"^<Made by [^<>]+>$")
         or string.match(value,"^<Crafted by [^<>]+>$") then return true end
+    for _, pattern in ipairs(localizedNumericPatterns) do if string.match(value,pattern) then return true end end
     local name=string.match(value,"^[%+%-]?[%d,%.]+%s*(.+)$")
     if name and statNames[name] then return true end
     return string.match(value,"^[%d,%.]+%s*点护甲$")
@@ -147,7 +178,7 @@ end
 local function Inventory(slot)
     local location=ItemLocation and Call(ItemLocation.CreateFromEquipmentSlot,ItemLocation,slot)
     local exists=location and Call(C_Item and C_Item.DoesItemExist,location)
-    if exists==false then return {itemID=0,name="空槽",itemLevel=-1,equipLoc="",type="",subtype="",stats={},complex=false,complete=true} end
+    if exists==false then return {itemID=0,name=L("空槽"),itemLevel=-1,equipLoc="",type="",subtype="",stats={},complex=false,complete=true} end
     if exists~=true then return nil end
     local link=Call(GetInventoryItemLink,"player",slot)
     if type(link)~="string" then return nil end
@@ -197,14 +228,14 @@ function Compare.Describe(value)
             if knownStats[stat.key] and (not primaryValues[stat.key] or primaryValues[stat.key]==value.primary) then pair[2][stat.key]=stat.value end
         end
     end
-    local labels={ITEM_MOD_STRENGTH_SHORT="力量",ITEM_MOD_AGILITY_SHORT="敏捷",ITEM_MOD_INTELLECT_SHORT="智力",
-        ITEM_MOD_STAMINA_SHORT="耐力",ITEM_MOD_CRIT_RATING_SHORT="爆击",ITEM_MOD_HASTE_RATING_SHORT="急速",
-        ITEM_MOD_MASTERY_RATING_SHORT="精通",ITEM_MOD_VERSATILITY="全能",RESISTANCE0_NAME="护甲",
-        ITEM_MOD_ARMOR_SHORT="护甲",ITEM_MOD_DAMAGE_PER_SECOND_SHORT="武器每秒伤害",ITEM_MOD_LIFESTEAL_SHORT="吸血",
-        ITEM_MOD_AVOIDANCE_SHORT="闪避",ITEM_MOD_SPEED_SHORT="速度",ITEM_MOD_DODGE_RATING_SHORT="躲闪",
-        ITEM_MOD_PARRY_RATING_SHORT="招架",ITEM_MOD_BLOCK_RATING_SHORT="格挡",ITEM_MOD_DEFENSE_SKILL_RATING_SHORT="防御",
-        ITEM_MOD_HIT_RATING_SHORT="命中",ITEM_MOD_EXPERTISE_RATING_SHORT="精准",ITEM_MOD_ATTACK_POWER_SHORT="攻击强度",
-        ITEM_MOD_SPELL_POWER_SHORT="法术强度"}
+    local labels={ITEM_MOD_STRENGTH_SHORT=L("力量"),ITEM_MOD_AGILITY_SHORT=L("敏捷"),ITEM_MOD_INTELLECT_SHORT=L("智力"),
+        ITEM_MOD_STAMINA_SHORT=L("耐力"),ITEM_MOD_CRIT_RATING_SHORT=L("爆击"),ITEM_MOD_HASTE_RATING_SHORT=L("急速"),
+        ITEM_MOD_MASTERY_RATING_SHORT=L("精通"),ITEM_MOD_VERSATILITY=L("全能"),RESISTANCE0_NAME=L("护甲"),
+        ITEM_MOD_ARMOR_SHORT=L("护甲"),ITEM_MOD_DAMAGE_PER_SECOND_SHORT=L("武器每秒伤害"),ITEM_MOD_LIFESTEAL_SHORT=L("吸血"),
+        ITEM_MOD_AVOIDANCE_SHORT=L("闪避"),ITEM_MOD_SPEED_SHORT=L("速度"),ITEM_MOD_DODGE_RATING_SHORT=L("躲闪"),
+        ITEM_MOD_PARRY_RATING_SHORT=L("招架"),ITEM_MOD_BLOCK_RATING_SHORT=L("格挡"),ITEM_MOD_DEFENSE_SKILL_RATING_SHORT=L("防御"),
+        ITEM_MOD_HIT_RATING_SHORT=L("命中"),ITEM_MOD_EXPERTISE_RATING_SHORT=L("精准"),ITEM_MOD_ATTACK_POWER_SHORT=L("攻击强度"),
+        ITEM_MOD_SPELL_POWER_SHORT=L("法术强度")}
     local keys,known={},{}
     for key in pairs(old) do keys[#keys+1]=key; known[key]=true end
     for key in pairs(new) do if not known[key] then keys[#keys+1]=key end end
@@ -212,10 +243,10 @@ function Compare.Describe(value)
     local gains,losses={},{}
     for _, key in ipairs(keys) do
         local before,after=old[key] or 0,new[key] or 0
-        local text=string.format("%s %s→%s",labels[key] or key,string.format("%.6g",before),string.format("%.6g",after))
+        local text=string.format("%s %s→%s",_G[key] or labels[key] or key,string.format("%.6g",before),string.format("%.6g",after))
         if after>before+0.000001 then gains[#gains+1]=text elseif after<before-0.000001 then losses[#losses+1]=text end
     end
-    return "提高："..(#gains>0 and table.concat(gains,"、") or "无").."\n下降："..(#losses>0 and table.concat(losses,"、") or "无")
+    return L("提高：")..(#gains>0 and table.concat(gains,"、") or L("无"))..L("\n下降：")..(#losses>0 and table.concat(losses,"、") or L("无"))
 end
 function Compare.Capture(owner,record,forcedSlot)
     local currentSpec,primary

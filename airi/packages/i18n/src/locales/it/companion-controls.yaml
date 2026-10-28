@@ -1,0 +1,101 @@
+click-here-to-set-up-your-transcription-providers: Fai clic qui per configurare i fornitori di trascrizione
+enter-the-transcription-model-to-use-e-g-whisper-1-gpt-4o-transcribe: Inserisci un modello di trascrizione, per esempio {models}.
+input-level: Livello di ingresso
+probability-of-speech: Probabilità di parlato
+adjust-the-threshold-for-speech-detection: Regola la soglia di rilevamento del parlato
+pause-before-stop: Pausa prima dell'arresto
+how-long-silence-must-last-before-speech-is-considered-finished: Durata del silenzio necessaria per considerare il parlato terminato
+model-based: Basato sul modello
+use-ai-models-for-more-accurate-speech-detection: Usa modelli IA per rilevare il parlato con maggiore precisione
+loading: Caricamento…
+inference-error: Errore di inferenza
+activated: Attivato
+probability: 'Probabilità:'
+voice-activity: Attività vocale
+last-2-seconds: Ultimi 2 secondi
+speaking: Sta parlando
+voice-detected: Voce rilevata
+speech-threshold: Soglia del parlato
+reset-value-to-default: Ripristina valore predefinito
+head-rotation: Rotazione della testa
+angle-x: Angolo X
+angle-y: Angolo Y
+angle-z: Angolo Z
+left-eye-open-close: Occhio sinistro aperto/chiuso
+right-eye-open-close: Occhio destro aperto/chiuso
+left-eye-smiling: Sorriso dell'occhio sinistro
+right-eye-smiling: Sorriso dell'occhio destro
+eyebrows: Sopracciglia
+left-eyebrow-left-right: 'Sopracciglio sinistro: sinistra/destra'
+right-eyebrow-left-right: 'Sopracciglio destro: sinistra/destra'
+left-eyebrow-y-up-down: Sopracciglio sinistro Y (su/giù)
+left-eyebrow-y: Sopracciglio sinistro Y
+right-eyebrow-y-up-down: Sopracciglio destro Y (su/giù)
+right-eyebrow-y: Sopracciglio destro Y
+left-eyebrow-angle: Angolo del sopracciglio sinistro
+right-eyebrow-angle: Angolo del sopracciglio destro
+left-eyebrow-form-deformation: Forma del sopracciglio sinistro (deformazione)
+left-eyebrow-form: Forma del sopracciglio sinistro
+right-eyebrow-form-deformation: Forma del sopracciglio destro (deformazione)
+right-eyebrow-form: Forma del sopracciglio destro
+mouth: Bocca
+mouth-open-close: Bocca aperta/chiusa
+mouth-form-deformation: Forma della bocca (deformazione)
+mouth-form: Forma della bocca
+face: Viso
+cheek: Guancia
+body-rotation-x: Rotazione del corpo X
+body-rotation-y: Rotazione del corpo Y
+body-rotation-z: Rotazione del corpo Z
+breath: Respiro
+model-position: Posizione del modello
+directional-light-rotation-x: Rotazione della luce direzionale - X
+directional-light-rotation-y: Rotazione della luce direzionale - Y
+directional-light-color: Colore della luce direzionale
+directional-light-intensity: Intensità della luce direzionale
+ambient-light-intensity: Intensità della luce ambientale
+ambient-light-color: Colore della luce ambientale
+hemisphere-light-intensity: Intensità della luce emisferica
+hemisphere-sky-color: Colore del cielo emisferico
+hemisphere-ground-color: Colore del terreno emisferico
+tips: Suggerimenti!
+camera-fov: Campo visivo della camera
+directional-light-x: Luce direzionale - X
+directional-light-y: Luce direzionale - Y
+directional-light-z: Luce direzionale - Z
+albedo-glow: Bagliore dell'albedo
+godot-stage-experimental: Scena Godot (sperimentale)
+godot-view: Vista Godot
+camera-x: Camera X
+camera-y: Camera Y
+camera-z: Camera Z
+camera-yaw: Rotazione orizzontale della camera
+camera-pitch: Inclinazione verticale della camera
+transcription-provider-inactive: Nessun fornitore di trascrizione attivo.
+transcription-provider-unavailable: La configurazione del fornitore di trascrizione non è disponibile.
+microphone-access-denied: Accesso al microfono negato.
+speech-detection-failed: Rilevamento del parlato non riuscito.
+speaking-detected: Parlato rilevato
+volume-based: Basato sul volume
+select-model-before-godot-view: Seleziona un modello VRM prima di regolare la vista della scena Godot.
+godot-view-unavailable: Nessuna vista della scena Godot ricevuta. Controlla la connessione Godot.
+godot-no-snapshot: Nessuna istantanea della scena Godot ricevuta
+revision: Revisione {revision} · {reason}
+hemisphere: Emisfero
+skybox: Skybox
+rotation-x-degrees: Rotazione X (gradi)
+rotation-y-degrees: Rotazione Y (gradi)
+intensity: Intensità
+scale: Scala
+rotation: Rotazione
+glow: Bagliore
+mouth-vowel: Bocca {vowel}
+blink: Battito delle palpebre
+wink-left: Occhiolino (sinistra)
+wink-right: Occhiolino (destra)
+smile: Sorriso
+anger: Rabbia
+sad: Triste
+surprise: Sorpresa
+troubled: Preoccupato
+serious: Serio

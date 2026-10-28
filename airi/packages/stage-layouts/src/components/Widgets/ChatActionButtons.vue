@@ -37,6 +37,8 @@ const sendModeLabels = computed<Record<SendMode, string>>(() => ({
   'ctrl-enter': t('stage.send-mode.ctrl-enter'),
   'double-enter': t('stage.send-mode.double-enter'),
 }))
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -100,8 +102,8 @@ const sendModeLabels = computed<Record<SendMode, string>>(() => ({
     </ChatToolbarButton>
     <ChatToolbarButton
       data-testid="about-button"
-      title="About"
-      aria-label="About"
+      :title="translateCompanion('companion-extra.about-6b21fb')"
+      :aria-label="translateCompanion('companion-extra.about-6b21fb')"
       @click="aboutOpen = true"
     >
       <div class="i-solar:info-circle-outline size-5" />

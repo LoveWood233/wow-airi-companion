@@ -1,0 +1,101 @@
+click-here-to-set-up-your-transcription-providers: Нажмите для настройки поставщиков распознавания речи
+enter-the-transcription-model-to-use-e-g-whisper-1-gpt-4o-transcribe: Введите модель распознавания речи, например {models}.
+input-level: Уровень входного сигнала
+probability-of-speech: Вероятность речи
+adjust-the-threshold-for-speech-detection: Настройте порог обнаружения речи
+pause-before-stop: Пауза перед завершением
+how-long-silence-must-last-before-speech-is-considered-finished: Длительность тишины для определения конца речи
+model-based: По модели
+use-ai-models-for-more-accurate-speech-detection: Используйте модели ИИ для точного обнаружения речи
+loading: Загрузка…
+inference-error: Ошибка выполнения модели
+activated: Активировано
+probability: 'Вероятность:'
+voice-activity: Голосовая активность
+last-2-seconds: Последние 2 секунды
+speaking: Речь
+voice-detected: Обнаружена речь
+speech-threshold: Порог речи
+reset-value-to-default: Восстановить значение по умолчанию
+head-rotation: Поворот головы
+angle-x: Угол X
+angle-y: Угол Y
+angle-z: Угол Z
+left-eye-open-close: Открытие левого глаза
+right-eye-open-close: Открытие правого глаза
+left-eye-smiling: Улыбка левого глаза
+right-eye-smiling: Улыбка правого глаза
+eyebrows: Брови
+left-eyebrow-left-right: Сдвиг левой брови влево/вправо
+right-eyebrow-left-right: Сдвиг правой брови влево/вправо
+left-eyebrow-y-up-down: Положение левой брови Y (вверх/вниз)
+left-eyebrow-y: Положение левой брови Y
+right-eyebrow-y-up-down: Положение правой брови Y (вверх/вниз)
+right-eyebrow-y: Положение правой брови Y
+left-eyebrow-angle: Угол левой брови
+right-eyebrow-angle: Угол правой брови
+left-eyebrow-form-deformation: Форма левой брови (деформация)
+left-eyebrow-form: Форма левой брови
+right-eyebrow-form-deformation: Форма правой брови (деформация)
+right-eyebrow-form: Форма правой брови
+mouth: Рот
+mouth-open-close: Открытие рта
+mouth-form-deformation: Форма рта (деформация)
+mouth-form: Форма рта
+face: Лицо
+cheek: Щёки
+body-rotation-x: Поворот тела X
+body-rotation-y: Поворот тела Y
+body-rotation-z: Поворот тела Z
+breath: Дыхание
+model-position: Положение модели
+directional-light-rotation-x: Поворот направленного света X
+directional-light-rotation-y: Поворот направленного света Y
+directional-light-color: Цвет направленного света
+directional-light-intensity: Яркость направленного света
+ambient-light-intensity: Яркость окружающего света
+ambient-light-color: Цвет окружающего света
+hemisphere-light-intensity: Яркость полусферического света
+hemisphere-sky-color: Цвет неба полусферы
+hemisphere-ground-color: Цвет земли полусферы
+tips: Советы
+camera-fov: Поле зрения камеры
+directional-light-x: Направленный свет X
+directional-light-y: Направленный свет Y
+directional-light-z: Направленный свет Z
+albedo-glow: Свечение основного цвета
+godot-stage-experimental: Сцена Godot (экспериментальная)
+godot-view: Вид Godot
+camera-x: Камера X
+camera-y: Камера Y
+camera-z: Камера Z
+camera-yaw: Поворот камеры по горизонтали
+camera-pitch: Наклон камеры
+transcription-provider-inactive: Нет активного поставщика распознавания речи.
+transcription-provider-unavailable: Настройки поставщика распознавания речи недоступны.
+microphone-access-denied: Доступ к микрофону запрещён.
+speech-detection-failed: Не удалось обнаружить речь.
+speaking-detected: Обнаружена речь
+volume-based: По громкости
+select-model-before-godot-view: Выберите модель VRM перед настройкой вида сцены Godot.
+godot-view-unavailable: Вид сцены Godot не получен. Проверьте соединение с Godot.
+godot-no-snapshot: Снимок вида сцены Godot ещё не получен
+revision: Редакция {revision} · {reason}
+hemisphere: Полусфера
+skybox: Небесный куб
+rotation-x-degrees: Поворот X (градусы)
+rotation-y-degrees: Поворот Y (градусы)
+intensity: Яркость
+scale: Масштаб
+rotation: Поворот
+glow: Свечение
+mouth-vowel: Рот {vowel}
+blink: Моргание
+wink-left: Подмигивание слева
+wink-right: Подмигивание справа
+smile: Улыбка
+anger: Гнев
+sad: Грусть
+surprise: Удивление
+troubled: Смущение
+serious: Серьёзность

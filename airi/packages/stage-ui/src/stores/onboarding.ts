@@ -3,11 +3,10 @@ import type {} from 'pinia-plugin-synced'
 import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
 
-import { useAuthStore } from './auth'
 import { useProviderConfigStore } from './providers/config'
 
-const essentialProviderIds = ['openai', 'azure-openai', 'anthropic', 'google-generative-ai', 'openrouter-ai', 'ollama', 'deepseek', 'openai-compatible', 'official-provider'] as const
-const credentialBasedEssentialProviderIds = ['openai', 'azure-openai', 'anthropic', 'google-generative-ai', 'openrouter-ai', 'deepseek'] as const
+const essentialProviderIds = ['openai', 'azure-openai', 'anthropic', 'google-generative-ai', 'openrouter-ai', 'ollama', 'deepseek', 'mimo', 'openai-compatible'] as const
+const credentialBasedEssentialProviderIds = ['openai', 'azure-openai', 'anthropic', 'google-generative-ai', 'openrouter-ai', 'deepseek', 'mimo'] as const
 
 function hasNonEmptyText(value: unknown): boolean {
   return typeof value === 'string' && value.trim().length > 0
@@ -85,7 +84,6 @@ const useOnboardingStateStore = defineStore('onboarding-state', () => {
 
 export const useOnboardingStore = defineStore('onboarding', () => {
   const providerStore = useProviderConfigStore()
-  const authStore = useAuthStore()
   const onboardingStateStore = useOnboardingStateStore()
   const closeRequestId = computed(() => onboardingStateStore.closeRequestId)
   const hasCompletedSetup = computed(() => onboardingStateStore.hasCompletedSetup)
@@ -122,9 +120,7 @@ export const useOnboardingStore = defineStore('onboarding', () => {
   // Check if first-time setup should be shown
   const skipOnboardingPath = ['/auth/callback']
   const needsOnboarding = computed(() =>
-    !authStore.isAuthenticated
-    && !authStore.token
-    && !hasSkippedSetup.value
+    !hasSkippedSetup.value
     && !hasCompletedSetup.value
     && !hadEssentialProviderConfiguredAtStartup
     && !skipOnboardingPath.includes(document.location.pathname),

@@ -9,7 +9,6 @@ import type {
   ProviderConfigData,
 } from './types'
 
-import { isCustomProvidersDisabled } from '@proj-airi/stage-shared'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref } from 'vue'
 
@@ -50,7 +49,7 @@ const {
 
 // Popular providers for first-time setup
 const popularProviders = computed(() => {
-  const popular = ['openai', 'azure-openai', 'anthropic', 'amazon-bedrock', 'google-generative-ai', 'groq', 'nvidia', 'openrouter-ai', 'ollama', 'deepseek', 'player2', 'openai-compatible']
+  const popular = ['deepseek', 'mimo', 'openai-compatible', 'ollama', 'openai', 'azure-openai', 'anthropic', 'amazon-bedrock', 'google-generative-ai', 'groq', 'nvidia', 'openrouter-ai', 'player2']
   return allChatProvidersMetadata.value
     .filter(provider => popular.includes(provider.id))
     .sort((a, b) => popular.indexOf(a.id) - popular.indexOf(b.id))
@@ -125,9 +124,6 @@ const allSteps = computed<OnboardingStep[]>(() => {
     {
       id: 'welcome',
       component: StepWelcome,
-      props: () => ({
-        customProviderSetupEnabled: !isCustomProvidersDisabled(),
-      }),
     },
     {
       id: 'provider-selection',
@@ -224,13 +220,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="onboarding-step-container" min-h-0 flex flex-1 flex-col>
+  <div :class="['onboarding-step-container min-h-0', 'flex flex-1 flex-col']">
     <Transition :name="direction === 'next' ? 'slide-next' : 'slide-prev'" mode="out-in">
       <component
         :is="currentStep.component"
         v-if="currentStep"
         :key="currentStep.id"
-        class="flex flex-1 flex-col"
+        :class="['flex flex-1 flex-col']"
         v-bind="currentStepProps"
         :on-next="requestNextStep"
         :on-previous="requestPreviousStep"

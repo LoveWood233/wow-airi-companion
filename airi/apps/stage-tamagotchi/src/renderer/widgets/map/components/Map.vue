@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 interface MapPoint {
   x: number
@@ -99,6 +100,8 @@ function pointStyle(point: MapPoint) {
     top: `${point.y}%`,
   }
 }
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -131,7 +134,7 @@ function pointStyle(point: MapPoint) {
         </div>
         <div :class="['text-right']">
           <div :class="['text-xs', 'uppercase', 'tracking-[0.2em]', 'text-neutral-400']">
-            ETA
+            {{ translateCompanion('companion-extra.eta-3044d4') }}
           </div>
           <div :class="['text-3xl', 'font-semibold', 'leading-none']">
             {{ props.eta }}
@@ -188,7 +191,7 @@ function pointStyle(point: MapPoint) {
       <div :class="['grid', 'grid-cols-3', 'gap-2', 'text-xs']">
         <div :class="['rounded-xl', 'bg-white/8', 'px-3', 'py-2', 'text-neutral-200', 'shadow-[inset_0_0_0_1px_rgba(148,163,184,0.15)]']">
           <div :class="['text-[0.65rem]', 'uppercase', 'tracking-widest', 'text-neutral-400']">
-            Origin
+            {{ translateCompanion('companion-extra.origin-44ab85') }}
           </div>
           <div :class="['mt-1', 'truncate', 'font-semibold']">
             {{ props.originLabel }}
@@ -196,7 +199,7 @@ function pointStyle(point: MapPoint) {
         </div>
         <div :class="['rounded-xl', 'bg-white/8', 'px-3', 'py-2', 'text-neutral-200', 'shadow-[inset_0_0_0_1px_rgba(148,163,184,0.15)]']">
           <div :class="['text-[0.65rem]', 'uppercase', 'tracking-widest', 'text-neutral-400']">
-            Destination
+            {{ translateCompanion('companion-extra.destination-d42713') }}
           </div>
           <div :class="['mt-1', 'truncate', 'font-semibold']">
             {{ props.destinationLabel }}
@@ -204,7 +207,7 @@ function pointStyle(point: MapPoint) {
         </div>
         <div :class="['rounded-xl', 'bg-white/8', 'px-3', 'py-2', 'text-neutral-200', 'shadow-[inset_0_0_0_1px_rgba(148,163,184,0.15)]']">
           <div :class="['text-[0.65rem]', 'uppercase', 'tracking-widest', 'text-neutral-400']">
-            Distance
+            {{ translateCompanion('companion-extra.distance-423208') }}
           </div>
           <div :class="['mt-1', 'truncate', 'font-semibold']">
             {{ props.distance }}

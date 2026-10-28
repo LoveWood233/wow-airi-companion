@@ -11,6 +11,7 @@ import { errorMessageFrom } from '@moeru/std'
 import { array, check, literal, maxLength, minLength, object, parse, pipe, regex, safeParse, string } from 'valibot'
 
 import { snapshotSchema } from '../../../shared/wow-companion'
+import { companionError } from '../../../shared/wow-companion-errors'
 import { accountNameSchema, copperSchema, moneyIdSchema } from '../../../shared/wow-companion-gold'
 
 const labelSchema = pipe(string(), maxLength(256))
@@ -140,7 +141,7 @@ export class CompanionGoldLedger {
         return
       const account = this.ledger.accounts.find(account => account.account === request.account)
       if (!account)
-        throw new Error('Unknown WoW gold account')
+        throw new Error(companionError('gold-account-unknown'))
       account.name = request.name
       this.dirty = true
       await this.save(true)
@@ -170,7 +171,7 @@ export class CompanionGoldLedger {
       if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT')
         return
       this.blocked = true
-      this.storageError = `Cannot load WoW gold ledger (${this.filePath}). Restore the file and restart 魔兽陪伴精灵: ${errorMessageFrom(error) ?? 'Unknown read error'}`
+      this.storageError = companionError('gold-read', { path: this.filePath, detail: errorMessageFrom(error) ?? '' })
     }
   }
 
@@ -255,7 +256,7 @@ export class CompanionGoldLedger {
       this.storageError = null
     }
     catch (error) {
-      this.storageError = `Cannot save WoW gold ledger (${this.filePath}). Changes are only in memory; 魔兽陪伴精灵 will retry: ${errorMessageFrom(error) ?? 'Unknown write error'}`
+      this.storageError = companionError('gold-write', { path: this.filePath, detail: errorMessageFrom(error) ?? '' })
     }
     finally {
       // The original write error remains visible if temporary-file cleanup also fails.

@@ -1,0 +1,557 @@
+allow-visible-on-all-workspaces:
+  title: Visibilidade entre áreas de trabalho
+  description: Mostrar a janela em todas as áreas de trabalho, apenas no macOS.
+microphone-permission:
+  prompt:
+    title: Permitir acesso ao microfone?
+    description: O Companheiro de WoW usa seu microfone para entrada de voz e transcrição. A escolha permanece ativa até ser redefinida nas configurações.
+    allow: Permitir
+    deny: Negar
+  states:
+    not-determined: Não definido
+    granted: Permitido
+    denied: Negado
+  settings:
+    title: Microfone
+    description: Controle se o Companheiro de WoW pode usar o microfone. Redefinir a escolha interrompe a captura atual e solicita permissão no próximo uso.
+    revoke: Revogar acesso
+    reset: Redefinir decisão
+spotlight:
+  errors:
+    unknown: Erro desconhecido
+    prefix: 'Ocorreu um problema: {message}'
+    shortcutRegistrationFailed: Não foi possível registrar o atalho de comandos rápidos.
+pages:
+  modules:
+    mcp-server:
+      description: Conectar e gerenciar servidor e ferramentas MCP
+      title: Servidor MCP
+  system:
+    general:
+      hide-app-icon:
+        title: Ocultar ícone na barra de tarefas / Dock
+        description: Manter o Companheiro de WoW apenas na bandeja. Use o menu dela para abrir janelas ou sair. As alterações são aplicadas imediatamente.
+        load-error: Não conseguiu carregar a configuração do ícone do aplicativo.
+        save-error: Não conseguiu atualizar a configuração do ícone do aplicativo.
+    sections:
+      section:
+        window-shortcuts:
+          title: Atalhos de teclado
+    window-shortcuts:
+      description: Modifique os atalhos da janela.
+      title: Atalhos de janela
+      empty: Não definido
+      spotlight:
+        title: Atalho de comandos rápidos
+        description: Clique no atalho e pressione uma nova combinação. Pressione Esc para cancelar.
+      push-to-talk:
+        title: Atalho de Pressione para falar
+        description: Segure este atalho em qualquer aplicativo enquanto fala com o Companheiro de WoW. Para alterá-lo, clique e pressione uma nova combinação. Esc cancela.
+        inactive: O atalho funciona apenas com o modo Pressione para falar em Audição e o microfone ligado.
+      actions:
+        recording: Pressione as teclas
+        reset: Redefinir
+      errors:
+        load: Falha ao carregar atalho
+        conflict: Atalho já em uso.
+        failed: Falha ao atualizar atalho
+        requiresModifier: 'Use pelo menos uma destas teclas: Cmd, Ctrl, Alt ou Super.'
+        requiresHoldModifier: Use Cmd, Ctrl, Alt, Super ou uma tecla de função como F13. Apenas Shift não basta.
+        denied: O Companheiro de WoW não consegue ler teclas globais. Autorize-o nas configurações de Acessibilidade e tente novamente.
+        unsupported: O sistema não detecta a liberação de um atalho global.
+      toggle-move:
+        label: Alternar movimento
+      toggle-resize:
+        label: Alternar redimensionamento
+      toggle-ignore-mouse-event:
+        label: Alternar passagem de cliques
+      press-keys: Pressione as teclas…
+    developer:
+      sections:
+        section:
+          use-window-mouse:
+            title: UseWindowMouse Tool
+            description: Teste a posição do cursor da janela Electron
+devtools:
+  title: Desenvolvedor
+  pages:
+    context-flow:
+      title: Fluxo de contexto
+    presence-bubble:
+      title: Bolha de presença
+      description: Leve a bolha acima do personagem e observe-a na janela principal .
+      override:
+        title: Leva a bolha daqui.
+        description: Enquanto isto está fora do palco não mostra bolhas a menos que um turno de conversa esteja em andamento.
+      thinking:
+        title: Raciocínio
+        description: Mostra os pontos. Tem prioridade sobre o conteúdo não lido.
+      unread:
+        title: Mensagens não lidas
+        description: Mostra-se como um painel na cabeça, com marca e contagem.
+      main-window-note: As alterações aparecem na janela principal Companheiro de WoW.
+    live2d-ambient-light:
+      title: Luz Ambiental Live2D
+      description: Tune screen sampling e o Live2D color-light shader
+      controls:
+        title: Fonte de luz e saída
+      enabled:
+        title: Luz ambiental
+        description: Aplicar o filtro de luz ambiente no modelo ativo Live2D.
+      source:
+        title: Fonte de luz
+        options:
+          screen-capture: Captura de tela
+          forced-color: Coloração forçada
+      mode:
+        title: Modo de iluminação
+        options:
+          window-gradient: Gradiente da janela
+          global: Ambiente global
+      forced-color:
+        title: Cor de ensaio
+        description: Aplique esta cor sem captura de tela.
+      strength:
+        title: Força de luz
+        description: Defina a quantidade de efeito global. 1 é o visual concebido, e até 3 torna o revestimento de luz e a luz do fundo mais forte.
+      squint:
+        title: Desfocar em mudanças brilhantes
+        description: Limite os olhos quando a tela brilha mais rápido do que o personagem se adaptou. Uma tela que permanece brilhante deixa os olhos abertos. O 0 desliga isto.
+      main-window-note: As alterações aparecem na janela principal Companheiro de WoW.
+      diagnostics:
+        title: Diagnóstico de captura
+        waiting: Esperando pelo diagnóstico da janela principal do Companheiro de WoW.
+        status:
+          disabled: Desativado
+          starting: Começando
+          capturing: Captura
+          forced-color: Coloração forçada
+          error: Erro
+        capture:
+          title: Estado de captura
+          description: Inscreva a tela selecionada, as dimensões de captura e as coordenadas de exclusão.
+          display: Dispositivos e limites
+          video-size: Vídeo fonte
+          sample-size: Quadro de amostra
+          window-bounds: Os limites das janelas Companheiro de WoW
+          excluded-region: Região excluída
+          exposure: Exposição à tela
+          behind-luminance: Luz por trás do personagem
+          updated: Última atualização
+        preview:
+          title: Captura em escala reduzida
+          description: O retângulo vermelho marca a janela Companheiro de WoW. O retângulo rasgado marca a área que os mapas de luz cobrem.
+          unavailable: Nenhum quadro capturado está disponível.
+        pixels:
+          title: Decisões de pixels
+          total: Total
+          accepted: Aceitação
+          excluded: Pintado
+          transparent: Transparência
+          see-through: Visão transparente
+        maps:
+          title: Mapa de luz
+          window: Cada mapa cobre a janela Companheiro de WoW e meia janela de cada lado. O contorno marca a janela.
+          unavailable: Não há ambiente disponível.
+          target: Medidos
+          applied: Aplicado após o esfregamento
+          surround:
+            title: Mapa de arredores
+            description: Grande borbulho da tela ao redor e atrás da janela. Carrega a cor da luz e do lado de onde vem.
+          contact:
+            title: Mapa de contacto
+            description: Um estreito borboleta do mesmo conteúdo. Este mapa impulsiona o revestimento de luz e a borda de retroiluminação.
+      sampling:
+        title: Amostragem de tela
+        capture-interval:
+          title: Intervalo de captura
+          description: Estabelecer o tempo entre as amostras de tela. O fluxo de captura corre a esta velocidade.
+        response-time:
+          title: Tempo de resposta
+          description: Defina a rapidez com que as cores da amostra se adaptam a uma mudança de tela.
+        sample-width:
+          title: Tamanho da amostra
+          description: Defina a largura do quadro de captura em escala descendente. Um quadro mais amplo coloca mais detalhes nos mapas de luz. A altura segue a sua exposição.
+        neutral-color-weight:
+          title: Peso de cor neutro
+          description: Defina o peso mínimo para cores com baixa saturação. O conteúdo colorido conta para mais do que o cinza.
+      shader:
+        title: Resposta do Shader
+        dark-base:
+          title: Pavimento de brilho
+          description: Coloque o brilho do modelo sobre uma tela preta. Uma tela branca mostra o modelo como desenhado, e uma tela mais escura diminui-o em direção a este andar.
+        base-curve:
+          title: Curva de brilho
+          description: Defina como o brilho do modelo aumenta entre o chão e a obra de arte. Por cima de 1, uma tela com meia luz mantém o modelo mais próximo do chão.
+        local-share:
+          title: Partilha de luz local
+          description: Defina quanto do brilho do modelo segue a luz ao seu lado, em vez de toda a tela. A 0 o modelo mantém um brilho onde quer que a janela esteja.
+        tint:
+          title: Tintão
+          description: Defina a quantidade de tons de tela que o modelo requer. Em 0 apenas o brilho da tela atinge o modelo.
+        color-boost:
+          title: Aumentar a cor com luz escura
+          description: Defina a quantidade de cor extra que o modelo recebe da luz fraca, mas saturada. O brilho permanece onde a luz o colocou, e nenhum canal cai abaixo do modelo não iluminado.
+        wrap-intensity:
+          title: Intensidade de revestimento leve
+          description: Defina a intensidade com que a cor do fundo sangra na borda do modelo.
+        wrap-saturation:
+          title: Saturação de revestimento leve
+          description: Defina a quantidade de tinta da tela que a luz envolta mantém. 0 adiciona luz branca do mesmo brilho. 1 adiciona a cor da tela completa.
+        backlight:
+          title: Luz de fundo
+          description: Defina a intensidade com que a luz por trás do personagem ilumina a borda fina ao longo de toda a borda.
+        wrap-diffuse:
+          title: Largura de envelope leve
+          description: Defina até que ponto a cor de fundo envolta atinge o interior da borda do modelo.
+        translucent-wrap:
+          title: Redução do envolvimento em peças translúcidas
+          description: Escalar o revestimento leve e a borda pelo quadrado do modelo alfa. As partes desenhadas com alfa parcial já mostram o desktop através de si mesmas.
+      preview-shader:
+        title: Previsão do Shader
+        description: Execute o shader real sobre um cartão de teste, com o ambiente ao vivo e as configurações acima.
+        window-mapping: O filtro toma esta tela como toda a janela do palco, então a prévia não é uma cópia pixel-acurada do palco.
+        filtered: Saída de sombreamento
+        unavailable: A previsão precisa de WebGL, e esta janela não pode criar um contexto.
+        environment:
+          live: A luz vem do último instantâneo que a janela principal da Companheiro de WoW publicou.
+          neutral: Ainda não chegou nenhuma imagem instantânea, por isso a visualização usa o ambiente neutro.
+        regions:
+          title: Regiões dos cartões de ensaio
+          body: O corpo largo carrega uma rampa de tom de sRGB {low} a {high}. Brilhantismo, contraste, croma e show de cabeça ao longo dele.
+          bars: As barras são {first}, {second}, {third}, {fourth} e {fifth} pixels de largura. Eles mostram o quão longe o envolvente de luz alcança uma forma fina.
+          patches: Os dois parches são desenhados em {strong} e {weak} alfa, que é o que a opção de envoltura translúcida atua.
+    editor:
+      title: Editor Companheiro de WoW
+      description: Abre a janela independente do editor Companheiro de WoW
+      button: Editor aberto
+    lag-visualizer:
+      title: Visualização de lag
+    live2d-motion:
+      title: Controle de movimento Live2D
+      description: Controle o movimento dos olhos, cabeça e corpo do Live2D.
+      actions:
+        back: Voltar
+      system-audio:
+        title: Sincronização de áudio de lábios do sistema
+        description: Captura áudio de outros jogadores. As mesmas unidades de entrada usam Beat Sync e movimentos bucais Live2D.
+        signal: Sinais de entrada
+        mouth-open: Boca aberta
+        input-volume-threshold: Limite de volume de entrada
+        random-close-delay: O atraso aleatório
+        random-close-probability: Probabilidade aleatória próxima
+        actions:
+          start: Iniciar a entrada
+          stop: Parar a entrada
+      panels:
+        direct-control: Controle direto
+        preview: Previsão do modelo
+        timeline: Linha de tempo
+        inference: Modelo de inferência
+      preview:
+        groups:
+          expression: Expressão
+          offset: Compensamento de posição
+        values:
+          squint: Esquiva
+          mouth-form: Formulário
+          mouth-open: Abrir
+      joystick-label: Joystick de movimento Live2D
+      wave:
+        toggle: Modo de embarcação
+      instructions: Arraste o joystick, ou use as teclas de flecha para X/Y. R adiciona um ligeiro piscar. F adiciona um olhar mais forte. C fecha os olhos. O W/S altera a forma da boca. O espaço abre a boca. A A/D move o corpo em X. O Q/E inclina a cabeça. As chaves liberadas retornam suavemente ao centro.
+      parameter-note: O joystick controla X/Y. Mapas R para 1/3 de miragem. Mapas F para 2/3 de mirilho. Mapas C para olhos completamente fechados. Mapas W/S para a forma oral ±1. Mapas espaciais à boca aberta 1. Mapa A/D do corpo X ±10°. Mapas de Q/E para a direcção Z ± 30°.
+      input:
+        keyboard: Quadros de teclado
+        controller: Controlador
+      input-actions:
+        move-body-head: Mova corpo e cabeça
+        tilt-head: Cabeça inclinada
+        blink: Blink
+        open-mouth: Boca aberta
+        mouth-shape: Mudar a forma da boca
+      eye-view:
+        title: Vista de olho fechado
+        description: Escolha um alvo. Os olhos contram o movimento da cabeça para continuar a olhar para ele.
+        pad-label: Objetivo de visão de olho fechado
+        actions:
+          enable: Permitir fixação
+          disable: Desativar a fixação
+          center: Alvo central
+        counter:
+          label: Força de contração da cabeça
+          description: Quão fortemente os olhos compensam o movimento da cabeça X/Y.
+        values:
+          target: Alvo
+          output: Output de olhos
+      editor:
+        title: Editor de movimento
+        instructions: A curva cinzenta é a fonte. Adicionar superposições de movimento ou quadros-chave de visualização-alvo. Escolha uma pista, e depois arrasta os pontos.
+        play: Reproduzir cronograma
+        pause: Linha de tempo de pausa
+        undo: Desfeito
+        redo: Redo
+        crop-to-view: Colheita para visualização
+        reset-view: Vista de redefinição
+        export-project: Projeto de exportação
+        import-project: Projeto de importação
+        import-error: Este arquivo não é um projeto de movimento Companheiro de WoW Live2D válido.
+        playback:
+          label: Controle de reprodução da linha do tempo
+          start: Vai começar.
+          step-backward: Passo para trás .
+          step-forward: Passa para a frente
+          end: Vai até o fim .
+          timecode: Código horário atual e total
+        input-actions:
+          play: Jogar
+          stop: Parar
+          start: Vai começar.
+          end: Vai até o fim .
+          step-backward: Passo para trás .
+          step-forward: Passa para a frente
+          restart-recording: Recordo outra vez
+          clear-timeline: Linha de tempo clara
+          previous-track: Selecione a faixa anterior
+          next-track: Selecione a seguinte faixa
+        timeline-label: Linha de tempo dos movimentos
+        timeline-help: Arraste a regra para esfregar. Usa a roda para zoomar. Mantém o Shift e arrasta para a panela. Clique duas vezes em uma curva selecionada para adicionar um ponto. Cada chave de visualização-alvo mantém até a próxima chave.
+        overlay-count: Superposições {count}
+        controls:
+          add: Adicionar
+          replace: Substituição
+          create-keyframes: Criar keyframes
+          weight: Peso
+          remove: Remover
+        tracks:
+          viewTargetX: Visualizar o alvo X
+          viewTargetY: Visualizar o alvo Y
+          eyeX: Olho X
+          eyeY: Olho Y
+          eyeOpen: Olho aberto
+          headX: Cabeça X
+          headY: Cabeça Y
+          headZ: Cabeça Z
+          bodyX: Corpo X
+          bodyY: Corpo Y
+          bodyZ: Corpo Z
+          mouthForm: Forma da boca
+          mouthOpen: Boca aberta
+      var:
+        title: Gerador de câmbio VAR
+        description: Ajusta o movimento gravado, então gera uma nova sequência ociosa.
+        actions:
+          fit: Movimento de corrente adequado
+          refit: Refazer o movimento da corrente
+          generate: Gerar movimento
+          stop: Geração de paragem
+          new-seed: Semente nova
+        order:
+          label: Ordem VAR
+          description: Cadros passados usados para cada previsão.
+        residual:
+          label: Força residual
+          description: A variação gerada. O zero é determinista.
+        diagnostics:
+          source: Origem
+          model: Modelo
+          fit: Apto
+          run: Gerenciado
+        status:
+          no-source: Importar ou gravar primeiro uma moção
+          source-ready: amostras {count} · {duration}s
+          fit-failed: O VAR falhou.
+        values:
+          frames: Estruturas {count}
+          model: canais {channels} · termos {features}
+          fit: Estruturas {frames} · RMSE {error} · {duration}ms
+          run: sementes {seed} · {duration}
+      ar-hmm:
+        title: Gerador de movimento ocioso AR-HMM
+        description: Aprende estados de movimento e transições para variados movimentos ociosos.
+        actions:
+          fit: Movimento adequado
+          refit: Refazer
+          generate: Gerar
+          stop: Parar
+          new-seed: Semente nova
+        states:
+          label: Estados ocultos
+          description: Padrões de movimento que o modelo pode aprender.
+        order:
+          label: Ordem de AR
+          description: Cadros anteriores usados em cada estado.
+        residual:
+          label: Força da inovação
+          description: Variação dentro de cada estado.
+        diagnostics:
+          source: Origem
+          model: Modelo
+          fit: Apto
+          states: Ocupação do Estado
+          run: Gerenciado
+        status:
+          no-source: Importar ou gravar primeiro uma moção
+          source-ready: amostras {count} · {duration}s
+          fit-failed: A combinação AR-HMM falhou.
+        values:
+          count: Os estados {count}
+          frames: Estruturas {count}
+          model: '{states} estados · {channels} canais · {features} termos'
+          fit: log p/frame {likelihood} · {duration}ms
+          states: '{occupancy} · habitação {dwell}s'
+          run: Estado {state} · sementes {seed} · {duration}
+      output-filter:
+        title: Filtro de saída do gerador
+        description: Limpa a saída do gerador e mantém pequenas mudanças antes que a primavera receba cada pose.
+        actions:
+          enable: Ativar o filtro
+          disable: Desativar o filtro
+          reset: Estado de reinicialização
+        smoothing:
+          label: EMA suavizante
+          description: Combina cada alvo aceito com a saída anterior. Valores mais elevados removem mais nervosismo, mas adicionam mais atraso.
+        cutoff:
+          label: Mudança de corte
+          description: Mantém um canal até que a sua alteração cumulativa normalizada atinja este valor.
+        diagnostics:
+          status: Estatuto
+          input-change: Mudança bruta MAE
+          output-change: Mudança filtrada MAE
+          cutoff-tracks: Canais mantidos
+        status:
+          waiting: À espera de um gerador .
+          filtering: Produção de gerador de filtragem
+          bypassed: Transmissão de saída do gerador bruto
+      breath:
+        title: Respiração manual
+        description: Controla o ParamBreath com tempo de inalação, exalação e permanência ajustável, sem adicionar dados respiratórios às gravações.
+        actions:
+          enable: Permitir a respiração
+          disable: Desativação da respiração
+          reset: Ciclo de reinicialização
+        cycle:
+          label: Tempo de respiração
+          description: Estabelece o tempo para uma inalação e exalação, antes que a exalação permaneça.
+        inhale:
+          label: Parte de inalação
+          description: Estabelece a parte da duração da respiração utilizada para inalação. O tempo restante é a expiração.
+        dwell:
+          label: Residência exaltada
+          description: Mantém o ParamBreath no mínimo antes da próxima inalação.
+        minimum:
+          label: Minima
+          description: Estabelece o valor mais baixo para o ParamBreath.
+        maximum:
+          label: Máximo
+          description: Fica o valor mais alto escrito para o ParamBreath.
+        diagnostics:
+          stage: Palco
+          phase: Progresso do ciclo
+          output: Output ParamBreath
+        stage:
+          inhale: Inhalação
+          exhale: Exalação
+          dwell: Residência exaltada
+      spring:
+        follow:
+          label: Segue .
+          description: Quão rápido o movimento segue o joystick.
+        inertia:
+          label: Inércia
+          description: Quanto impulso mantém o movimento.
+      groups:
+        eyes: Olhos
+        head: Cabeça
+        body: Corpo
+      recording:
+        actions:
+          record: Registo
+          stop-recording: Parar gravação
+          play: Jogar
+          stop-playback: Parar a reprodução
+          export: Exportar
+          import: Importar
+        status:
+          empty: Nenhum registo de movimento
+          recording: Movimento de gravação
+          playing: Movimento de jogo
+          ready: '{count} amostras · {duration}'
+        import-error: Este arquivo não é um registro de movimento Companheiro de WoW Live2D válido.
+    performance-visualizer:
+      title: Visualizador de desempenho
+      description: Inspeccionar as métricas de desempenho ao vivo e os diagnósticos de tempo de execução
+      resource-events:
+        title: Eventos recentes em matéria de recursos
+        description: O mais recente evento recebido primeiro. O tempo é milissegundos desde que o renderizado da fonte começou.
+        empty: Nenhum evento de recursos registrado. Carregar ou alternar um modelo VRM enquanto o rastreamento estiver habilitado.
+        columns:
+          time: Tempo (ms))
+          phase: Fase
+          reason: Razão
+          textures: Texturas
+          geometries: Geometria
+          meshes: Retalhos de madeira
+          materials: Materiais
+      controls:
+        enable-all:
+          label: Habilitar todas as métricas disponíveis
+          description: Ativar cada métrica que este navegador suporta.
+        start-recording: Iniciar gravação
+        stop-recording: Detenção de gravação ({seconds}s))
+        export-last-recording: Último registo de exportação
+      metrics:
+        fps:
+          label: FPS
+          description: Frequência de quadros de animação durante os últimos 10 segundos. Cada amostra é 1000 dividido pelo intervalo do quadro em milissegundos.
+        frame-duration:
+          label: Tempo de quadro (ms))
+          description: Tempo entre os quadros de animação durante os últimos 10 segundos.
+        long-task:
+          label: Tarefas longas
+          description: tarefas de linha principal que demorem pelo menos 50 ms.
+          unsupported: Este navegador não expõe o tempo de tarefas longas.
+        memory:
+          label: Acúmulo JS (MB))
+          description: Utilização de JavaScript na performance do Chromium.memoria API.
+          unsupported: Este navegador não expõe o uso de pilhas de JavaScript.
+      recording:
+        title: Última gravação
+        duration: Duração {duration} ms
+        limit: A gravação termina após 60 segundos.
+      history:
+        title: História do FPS
+        latest: Últimas
+        minimum: Minutos
+        maximum: Max
+        seconds-ago: '- {seconds} s'
+        end: 0 s
+        empty: Nenhuma amostra de FPS. Permitir que o FPS recolha amostras.
+      overlay:
+        title: Desempenho
+        move: Mover superposição de desempenho
+        reset-position: Reset posição de sobreposição
+        record: Registo
+        stop: Parar
+        export: Último registo de exportação
+        average: Avg
+    markdown-stress:
+      title: Teste intensivo de Markdown
+      description: Análise e renderização de marcas de estresse com cargas úteis pesadas de chat
+    io-tracer:
+      title: IO Tracer
+      recording:
+        title: Registrar automaticamente os traços de IO
+        description: Salve os intervalos de IO terminados como linhas JSON na pasta de dados do aplicativo para que os agentes de codificação possam analisá-los. Os arquivos com mais de sete dias são removidos.
+    widgets-calling:
+      title: Chamadas de widget
+screen-capture:
+  permissions-prompt:
+    title: Captura de tela
+    description: Para capturar telas ou janelas, são necessárias permissões de gravação de tela e áudio do sistema.
+    open-preferences: Abrir configurações do sistema
+    dismiss: Dispensar
+    instructions:
+      step-1: Abra as configurações do sistema e selecione Privacidade e Segurança na barra lateral.
+      step-2: Nas seções de gravação da tela e do áudio do sistema, ative as opções do Companheiro de WoW.
+      step-2-note: Se o Companheiro de WoW não aparecer, adicione-o pelo botão + e selecione-o na pasta Aplicativos.

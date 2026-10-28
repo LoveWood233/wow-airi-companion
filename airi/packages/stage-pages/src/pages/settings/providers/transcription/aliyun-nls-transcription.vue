@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ServerEvent, ServerEvents } from '@proj-airi/stage-ui/libs/providers/providers/aliyun-nls'
+import type { AliyunRealtimeSpeechExtraOptions } from '@proj-airi/stage-ui/libs/providers/providers/aliyun-nls/provider'
 import type { HearingTranscriptionResult } from '@proj-airi/stage-ui/stores/modules/hearing'
 import type { RemovableRef } from '@vueuse/core'
 import type { TranscriptionProviderWithExtraOptions } from '@xsai-ext/providers/utils'
@@ -25,15 +26,6 @@ import { computed, onBeforeUnmount, onMounted, reactive, ref, shallowRef } from 
 const providerId = 'aliyun-nls-transcription'
 const defaultModel = 'aliyun-nls-v1'
 const SAMPLE_RATE = 16000
-
-const regionOptions = [
-  { label: 'cn-shanghai', value: 'cn-shanghai' },
-  { label: 'cn-beijing', value: 'cn-beijing' },
-  { label: 'cn-shenzhen', value: 'cn-shenzhen' },
-  { label: 'cn-shanghai (internal)', value: 'cn-shanghai-internal' },
-  { label: 'cn-beijing (internal)', value: 'cn-beijing-internal' },
-  { label: 'cn-shenzhen (internal)', value: 'cn-shenzhen-internal' },
-]
 
 const hearingStore = useHearingStore()
 const providersStore = useProviderStore()
@@ -123,6 +115,14 @@ const {
   handleResetSettings,
   forceValid,
 } = useProviderValidation(providerId)
+
+const regionOptions = computed(() => [
+  ...['cn-shanghai', 'cn-beijing', 'cn-shenzhen'].map(region => ({ label: region, value: region })),
+  ...['cn-shanghai', 'cn-beijing', 'cn-shenzhen'].map(region => ({
+    label: t('companion-providers.internal-region', { region }),
+    value: `${region}-internal`,
+  })),
+])
 
 async function initializeAudioGraph(stream: MediaStream) {
   const context = new AudioContext({
@@ -217,9 +217,9 @@ async function startStreaming() {
   })
 
   try {
-    const provider = await providersStore.getProviderInstance<TranscriptionProviderWithExtraOptions<string, any>>(providerId)
+    const provider = await providersStore.getProviderInstance<TranscriptionProviderWithExtraOptions<string, AliyunRealtimeSpeechExtraOptions>>(providerId)
     if (!provider)
-      throw new Error('Failed to initialize Aliyun NLS provider.')
+      throw new Error(t('companion-providers.aliyun-provider-error'))
 
     const result = await hearingStore.transcription(
       providerId,
@@ -251,7 +251,7 @@ async function startStreaming() {
     )
 
     if (result.mode !== 'stream')
-      throw new Error('Aliyun NLS returned a non-streaming result unexpectedly.')
+      throw new Error(t('companion-providers.aliyun-stream-error'))
 
     activeTranscription.value = result
     transcriptionTextPromise.value = result.text
@@ -368,26 +368,26 @@ onBeforeUnmount(async () => {
         >
           <FieldInput
             v-model="credentials.accessKeyId"
-            label="Access Key ID"
+            :label="t('companion-providers.access-key-id')"
             placeholder="LTAI..."
           />
 
           <FieldInput
             v-model="credentials.accessKeySecret"
-            label="Access Key Secret"
+            :label="t('companion-providers.access-key-secret')"
             type="password"
             placeholder="****************"
           />
 
           <FieldInput
             v-model="credentials.appKey"
-            label="App Key"
-            placeholder="请输入 AppKey"
+            :label="t('companion-providers.app-key')"
+            :placeholder="t('companion-providers.app-key-placeholder')"
           />
 
           <FieldCombobox
             v-model="credentials.region"
-            label="Region"
+            :label="t('settings.pages.providers.provider.microsoft-speech.fields.field.region.label')"
             :options="regionOptions"
             layout="vertical"
           />
@@ -425,26 +425,22 @@ onBeforeUnmount(async () => {
           <div class="flex flex-wrap items-center justify-between gap-3">
             <div class="space-x-3">
               <Button :disabled="!canStart" @click="startStreaming">
-                {{ isRecording ? 'Streaming...' : 'Start Realtime Transcription' }}
+                {{ isRecording ? t('companion-providers.streaming') : t('companion-providers.start-realtime-transcription') }}
               </Button>
               <Button :disabled="!canStop" @click="stopStreaming">
-                Stop
+                {{ t('settings.pages.modules.beat_sync.sections.audio_source.actions.stop') }}
               </Button>
               <Button
                 v-if="isStreaming"
                 :disabled="!canAbort"
                 @click="abortStreaming"
               >
-                Abort Session
+                {{ t('companion-providers.abort-session') }}
               </Button>
             </div>
             <div class="text-sm text-neutral-500 dark:text-neutral-400">
-              <span v-if="isRecording" class="rounded bg-red-500/10 px-2 py-0.5 text-xs text-red-500">
-                Recording
-              </span>
-              <span v-else-if="isStreaming" class="rounded bg-blue-500/10 px-2 py-0.5 text-xs text-blue-500">
-                Connected
-              </span>
+              <span v-if="isRecording" class="rounded bg-red-500/10 px-2 py-0.5 text-xs text-red-500"> {{ t('settings.pages.modules.home-assistant.states.generic.recording') }} </span>
+              <span v-else-if="isStreaming" class="rounded bg-blue-500/10 px-2 py-0.5 text-xs text-blue-500"> {{ t('settings.pages.providers.provider.comfyui.settings.connection.connected') }} </span>
             </div>
           </div>
 
@@ -455,18 +451,18 @@ onBeforeUnmount(async () => {
 
         <div class="border border-neutral-200/80 rounded-xl bg-neutral-50/60 p-4 dark:border-neutral-700 dark:bg-neutral-900/40">
           <h2 class="text-lg font-semibold">
-            Transcripts
+            {{ t('settings.pages.modules.hearing.sections.section.auto-send.title') }}
           </h2>
           <div v-if="currentPartial" class="mt-3 text-sm text-neutral-500 dark:text-neutral-400">
             <div class="text-xs text-neutral-400 tracking-wide uppercase dark:text-neutral-500">
-              Partial
+              {{ t('companion-providers.partial-result') }}
             </div>
             <div class="mt-1 font-medium">
               {{ currentPartial }}
             </div>
           </div>
           <div v-if="!transcripts.length && !currentPartial" class="mt-3 text-sm text-neutral-400 dark:text-neutral-600">
-            Waiting for audio...
+            {{ t('companion-providers.waiting-for-audio') }}
           </div>
           <ul class="mt-4 text-sm space-y-3">
             <li
@@ -485,7 +481,7 @@ onBeforeUnmount(async () => {
                   {{ sentence.text }}
                 </div>
                 <div v-if="!sentence.final" class="text-xs text-neutral-400">
-                  Awaiting final result...
+                  {{ t('companion-providers.awaiting-final-result') }}
                 </div>
               </div>
             </li>

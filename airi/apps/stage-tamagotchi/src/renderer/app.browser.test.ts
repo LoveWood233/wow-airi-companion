@@ -4,6 +4,7 @@ import type { BrowserWindow, IpcMain, IpcMainEvent, IpcRendererEvent, WebContent
 
 import type { PluginCapabilityPayload } from '../shared/eventa/plugin/capabilities'
 
+import messages from '@proj-airi/i18n/locales'
 import localforage from 'localforage'
 
 import { defineInvoke, defineInvokeHandler } from '@moeru/eventa'
@@ -14,6 +15,8 @@ import { getElectronEventaContext, resetElectronEventaContextForTesting } from '
 import { parseEvent, stringifyEvent } from '@proj-airi/server-sdk'
 import { artistrySyncConfig } from '@proj-airi/stage-shared'
 import { setupSynced, usePiniaSynced } from '@proj-airi/stage-ui/libs/pinia'
+import { configureAnalyticsAdapter } from '@proj-airi/stage-ui/libs/product-signals'
+import { useAuthStore } from '@proj-airi/stage-ui/stores/auth'
 import { useCharacterOrchestratorStore } from '@proj-airi/stage-ui/stores/character'
 import { useChatStore } from '@proj-airi/stage-ui/stores/chat'
 import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
@@ -259,7 +262,14 @@ async function renderStage(routePath: string, search: string) {
   }
 
   const initializeCharacter = vi.fn()
+  const initializeAccount = vi.fn()
   pinia.use(({ store }) => {
+    if (store.$id === 'auth') {
+      store.$onAction(({ name }) => {
+        if (name === 'initialize')
+          initializeAccount()
+      })
+    }
     if (store.$id === 'character-orchestrator') {
       store.$onAction(({ name }) => {
         if (name === 'initialize')
@@ -290,6 +300,7 @@ async function renderStage(routePath: string, search: string) {
       return () => readyToMount.value ? h(App) : null
     },
   })
+  const translation = createI18n({ legacy: false, locale: 'en', messages, missingWarn: false, fallbackWarn: false })
   const screen = await render(Host, {
     global: {
       config: { errorHandler: error => errors.push(error) },
@@ -297,7 +308,7 @@ async function renderStage(routePath: string, search: string) {
         pinia,
         synced.vue,
         PiniaColada,
-        createI18n({ legacy: false, locale: 'en', messages: { en: {} }, missingWarn: false, fallbackWarn: false }),
+        translation,
         router,
       ],
     },
@@ -328,10 +339,12 @@ async function renderStage(routePath: string, search: string) {
     errors,
     getWindowLifecycleState,
     initializeCharacter,
+    initializeAccount,
     leader,
     listProviders: defineInvoke(bridge.main, pluginProtocolListProviders),
     pinia,
     reports,
+    translation,
     runtime: rendererRuntime,
   }
 }
@@ -348,6 +361,45 @@ afterEach(() => {
 })
 
 describe('renderer startup', () => {
+  it('updates the window title and document language when the user switches language', async () => {
+    const stage = await renderStage('/chat', '?stage-runtime=minimal&synced-leader=false')
+    await expect.poll(() => document.title).toBe('WoW Companion')
+    stage.translation.global.locale.value = 'fr'
+    await expect.poll(() => document.title).toBe('Compagnon WoW')
+    expect(document.documentElement.lang).toBe('fr')
+    stage.translation.global.locale.value = 'zh-Hant'
+    await expect.poll(() => document.title).toBe('魔獸陪伴精靈')
+    expect(document.documentElement.lang).toBe('zh-TW')
+    expect(stage.errors).toEqual([])
+  }, 15000)
+
+  it('preserves saved credentials without starting a hosted account session', async () => {
+    vi.stubEnv('VITE_ENABLE_ANALYTICS', 'true')
+    const telemetryAdapter = vi.fn(async () => ({
+      capture: () => true,
+      getIdentitySnapshot: () => null,
+      identify: () => {},
+      registerBuildInfo: () => {},
+      resetIdentity: () => {},
+      setCaptureEnabled: () => true,
+    }))
+    configureAnalyticsAdapter(telemetryAdapter)
+    localStorage.setItem('auth/v1/token', 'saved-cloud-token')
+    localStorage.setItem('auth/v1/refresh-token', 'saved-refresh-token')
+    localStorage.setItem('settings/providers/configured', JSON.stringify({
+      deepseek: { id: 'deepseek', definitionId: 'deepseek', config: { apiKey: 'saved-provider-key', baseUrl: 'https://api.deepseek.com/' }, status: 'configured', configuredBy: 'user' },
+    }))
+    const stage = await renderStage('/', '?synced-leader=true')
+
+    await expect.poll(() => stage.reports, { timeout: 5000 }).toHaveLength(1)
+    expect(stage.initializeAccount).not.toHaveBeenCalled()
+    expect(telemetryAdapter).not.toHaveBeenCalled()
+    expect(useAuthStore(stage.pinia).token).toBeNull()
+    expect(localStorage.getItem('auth/v1/token')).toBe('saved-cloud-token')
+    expect(localStorage.getItem('auth/v1/refresh-token')).toBe('saved-refresh-token')
+    expect(useProviderConfigStore(stage.pinia).getProviderConfig('deepseek')).toMatchObject({ apiKey: 'saved-provider-key' })
+    expect(stage.errors).toEqual([])
+  }, 15000)
   // ROOT CAUSE:
   //
   // The full runtime awaited a mouse RPC after its main-process handler was removed.

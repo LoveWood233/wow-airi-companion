@@ -12,8 +12,8 @@ withDefaults(defineProps<{
   buildInfo?: AboutBuildInfo
   links?: AboutLink[]
 }>(), {
-  title: 'Project',
-  highlight: 'AIRI',
+  title: '',
+  highlight: '',
   subtitle: '',
   links: undefined,
 })

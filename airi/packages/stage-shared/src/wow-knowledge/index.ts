@@ -22,8 +22,9 @@ function mentions(text: string, alias: string) {
     return text.trim() === term
   // These product labels also have common English meanings. A sentence needs Warcraft context before they select a version.
   if (['retail', 'forever', 'classic'].includes(term) && text.trim() !== term
-    && !/魔兽|正式服|无限服|怀旧服|经典旧世|\b(?:wow|warcraft|realm|server|raid|dungeon|rogue)\b/u.test(text))
+    && !/魔兽|正式服|无限服|怀旧服|经典旧世|\b(?:wow|warcraft|realm|server|raid|dungeon|rogue)\b/u.test(text)) {
     return false
+  }
   const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   // Latin abbreviations remain valid beside Chinese text, but not inside longer Latin words or identifiers.
   const left = /^[a-z0-9_]/.test(term) ? '(?<![a-z0-9_])' : ''

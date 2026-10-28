@@ -41,6 +41,7 @@ docs:
   'logging-in': 正在登入…
   'account': 帳戶
   'logout': 登出
+  open-wow-companion: 魔獸世界資訊卡
 'chat-window':
   style:
     title: 聊天視窗樣式
@@ -49,6 +50,7 @@ docs:
     floating-free: 浮動，位於螢幕任意位置
     floating-danmaku: 浮動，訊息串流
     pinned: 保持在最上層
+    fullscreen: 全屏，在角色旁
   resize: 拖曳以調整聊天大小
   move: 拖曳以移動聊天
   fold: 隱藏聊天
@@ -86,6 +88,7 @@ notice:
     preparing: 準備中…
     read-more: 閱讀更多
     preview-title: 這是什麼？
+    value: '0'
 about:
   subtitle: 桌面版本
   current-version: 目前版本
@@ -95,6 +98,7 @@ about:
     title: 連結
     home: 首頁
     documentation: 文件
+    github: GitHub
   update:
     lane:
       label: 更新通道
@@ -131,3 +135,148 @@ about:
       title: 有可用更新
       description: 有新版本（v{version}）可用。
       no-release-notes-markdown: _未提供版本資訊。_
+fullscreen-island:
+  settings: 設定
+  chat: 聊天
+  switch-to-dark-mode: 切換到暗色模式
+  switch-to-system-mode: 跟隨系統主題
+  switch-to-light-mode: 切換到亮色模式
+  exit: 退出全屏
+fullscreen-surface:
+  resize: 拖動調整面板寬度
+computer-use-tool-call:
+  help: 幫助
+  status:
+    completed: 已完成
+    failed: 失敗
+  display: 顯示器
+  built-in: 內建
+  primary: 主顯示器
+  logical-size: 邏輯尺寸
+  pixel-size: 畫素尺寸
+  backend: 截圖後端
+  fallback: 回退原因
+  file: 檔案
+  window: 視窗
+  region: 區域
+  main: 主視窗
+  hidden: 不可見
+  displays: '{count} 個顯示器'
+  windows: '{count} 個視窗'
+  found: 找到 “{query}”
+  matches: '{count} 處'
+  not-found: 沒有找到 “{query}”
+  clicked-text: 點了 “{query}”
+  options: 選項
+  typed: 逐字輸入
+  pasted: 貼上
+  pressed: 按下
+  repeat: × {count}
+  interval: 間隔 {ms} 毫秒
+  hold: 按住 {ms} 毫秒
+  steps: 按順序執行 {count} 步
+  focused: 聚焦到 “{query}”
+  app: 應用
+  process: 程序
+  control: 控制元件
+  title: 標題
+  value: 當前內容
+  ax-path: 輔助功能路徑
+  moved: 移到
+  clicked: 點選
+  dragged: 拖拽
+  requested: 請求位置
+  on-screen: 螢幕位置
+  start: 起點
+  end: 終點
+  final: 實際終點
+  duration: '{ms} 毫秒'
+  normalized: 歸一化座標
+  click-count: × {count}
+  relative:
+    screen: 相對螢幕
+    window: 相對視窗
+    display: 相對顯示器
+  buttons:
+    left: 左鍵
+    right: 右鍵
+    middle: 中鍵
+  clicks:
+    single: 單擊
+    double: 雙擊
+  delivery:
+    path: 送達方式
+    verified: 已驗證效果
+    not-verified: 效果未驗證
+    disturbance: 打擾
+    mouse: 滑鼠
+    focus: 焦點
+    clipboard: 剪貼簿
+    attempt: 第 {index} 次嘗試
+    attempt-succeeded: 成功
+    attempt-failed: 失敗
+  paths:
+    foreground_system_events: 前臺系統事件
+    window_targeted_keyboard: 發往視窗的鍵盤事件
+    ax_focus: 輔助功能聚焦
+  disturbances:
+    none: 未打擾
+    temporary: 暫時
+    foreground: 切到前臺
+    unknown: 未知
+  activated: 切到 {app}
+  in-front: 已在前臺
+  front-is: 前臺是 {app}
+  front-unknown: 沒能確認前臺應用
+  permissions:
+    title: 系統許可權
+    names:
+      screen_recording: 螢幕錄製
+      screen_capture_kit: ScreenCaptureKit
+      accessibility: 輔助功能
+      automation_to_system_events: 自動化（System Events）
+    states:
+      granted: 已授權
+      missing: 未授權
+      denied: 已拒絕
+      unknown: 未知
+  media:
+    commands:
+      play: 播放
+      pause: 暫停
+      toggle: 播放或暫停
+      next: 下一首
+      previous: 上一首
+    verified: 已驗證
+    not-verified: 未驗證
+    playing: 正在播放
+    paused: 已暫停
+    nothing: 沒有在播放
+    liked: 已喜歡
+    rate: '{rate} 倍速'
+computer-use-read-image-tool-call:
+  description: 視覺模型的描述
+  failed: 視覺模型沒能讀出這張圖
+tool-call-screenshot:
+  view-full: 檢視大圖
+weather-tool-call:
+  feels-like: 體感
+  humidity: 溼度
+  wind: 風速
+  precipitation: 降水機率
+  high: 最高
+  low: 最低
+  conditions:
+    clear-day: 晴
+    clear-night: 晴
+    partly-cloudy-day: 多雲
+    partly-cloudy-night: 多雲
+    overcast: 陰
+    fog: 霧
+    drizzle: 毛毛雨
+    sleet: 雨夾雪
+    rain: 雨
+    extreme-rain: 大雨
+    snow: 雪
+    extreme-snow: 大雪
+    thunderstorm: 雷暴

@@ -11,6 +11,7 @@ import { errorMessageFrom } from '@moeru/std'
 import { array, check, integer, literal, maxLength, maxValue, minLength, minValue, nullable, number, parse, pipe, regex, safeParse, strictObject, string } from 'valibot'
 
 import { snapshotSchema } from '../../../shared/wow-companion'
+import { companionError } from '../../../shared/wow-companion-errors'
 import { moneyIdSchema } from '../../../shared/wow-companion-gold'
 import { equipmentLoadoutSchema } from '../../../shared/wow-companion-loadout'
 
@@ -166,7 +167,7 @@ export class CompanionLoadouts {
       if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT')
         return
       this.blocked = true
-      this.storageError = `Cannot load WoW equipment snapshots. Restore ${this.filePath} and restart 魔兽陪伴精灵: ${errorMessageFrom(error) ?? 'Unknown read error'}`
+      this.storageError = companionError('loadouts-read', { path: this.filePath, detail: errorMessageFrom(error) ?? '' })
       this.projection = undefined
     }
   }
@@ -193,7 +194,7 @@ export class CompanionLoadouts {
       }
     }
     catch (error) {
-      this.storageError = `Cannot save WoW equipment snapshots. 魔兽陪伴精灵 will retry: ${errorMessageFrom(error) ?? 'Unknown write error'}`
+      this.storageError = companionError('loadouts-write', { path: this.filePath, detail: errorMessageFrom(error) ?? '' })
       this.projection = undefined
     }
     finally {

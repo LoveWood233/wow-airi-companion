@@ -2,6 +2,7 @@
 import type { AboutBuildInfo, AboutLink } from './types'
 
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const props = withDefaults(defineProps<{
   title?: string
@@ -10,15 +11,15 @@ const props = withDefaults(defineProps<{
   buildInfo?: AboutBuildInfo
   links?: AboutLink[]
 }>(), {
-  title: 'Project',
-  highlight: 'AIRI',
+  title: '',
+  highlight: '',
   subtitle: '',
   links: () => ([
-    { label: 'Home', href: 'https://airi.moeru.ai/docs/', icon: 'i-solar:home-smile-outline' },
-    { label: 'Documentations', href: 'https://airi.moeru.ai/docs/en/docs/overview/', icon: 'i-solar:document-add-outline' },
-    { label: 'GitHub', href: 'https://github.com/moeru-ai/airi', icon: 'i-simple-icons:github' },
+    { label: 'GitHub', href: 'https://github.com/LoveWood233/wow-airi-companion', icon: 'i-simple-icons:github' },
   ]),
 })
+
+const { t } = useI18n()
 
 const hasBuildInfo = computed(() => {
   const info = props.buildInfo
@@ -34,7 +35,7 @@ const hasBuildInfo = computed(() => {
     <div class="mb-14 text-center font-sans-rounded">
       <div class="text-5xl">
         <span class="text-neutral-400 dark:text-neutral-100/65">{{ title }}</span>
-        <span class="text-pink-400 dark:text-pink-300/90">&nbsp;{{ highlight }}</span>
+        <span class="text-pink-400 dark:text-pink-300/90">&nbsp;{{ highlight || t('companion-ui.app.name') }}</span>
       </div>
       <div v-if="subtitle" class="mt-2 text-base text-neutral-500 dark:text-neutral-400">
         {{ subtitle }}
@@ -45,12 +46,12 @@ const hasBuildInfo = computed(() => {
 
     <div v-if="hasBuildInfo" :class="['flex-1']">
       <div :class="['text-neutral-500 dark:text-neutral-400']">
-        Application build information
+        {{ t('companion-ui.about.build-info') }}
       </div>
       <div :class="['mt-4', 'grid grid-cols-[120px_1fr]', 'gap-2', 'text-sm']">
         <template v-if="buildInfo?.version">
           <div :class="['text-neutral-500 dark:text-neutral-400']">
-            Version
+            {{ t('companion-ui.about.version') }}
           </div>
           <div :class="['font-mono']">
             {{ buildInfo.version }}
@@ -58,7 +59,7 @@ const hasBuildInfo = computed(() => {
         </template>
         <template v-if="buildInfo?.branch">
           <div :class="['text-neutral-500 dark:text-neutral-400']">
-            Branch
+            {{ t('companion-ui.about.branch') }}
           </div>
           <div :class="['font-mono']">
             {{ buildInfo.branch }}
@@ -66,7 +67,7 @@ const hasBuildInfo = computed(() => {
         </template>
         <template v-if="buildInfo?.commit">
           <div :class="['text-neutral-500 dark:text-neutral-400']">
-            Commit
+            {{ t('companion-ui.about.commit') }}
           </div>
           <div :class="['font-mono']">
             {{ buildInfo.commit }}
@@ -74,7 +75,7 @@ const hasBuildInfo = computed(() => {
         </template>
         <template v-if="buildInfo?.builtOn">
           <div :class="['text-neutral-500 dark:text-neutral-400']">
-            Built on
+            {{ t('companion-ui.about.built-on') }}
           </div>
           <div :class="['font-mono']">
             {{ buildInfo.builtOn }}
@@ -87,7 +88,7 @@ const hasBuildInfo = computed(() => {
 
     <div :class="['my-10']">
       <div :class="['text-neutral-500 dark:text-neutral-400']">
-        About
+        {{ t('companion-ui.about.about') }}
       </div>
       <div :class="['mt-4 flex flex-col gap-2']">
         <a

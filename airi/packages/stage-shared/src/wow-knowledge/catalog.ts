@@ -10,6 +10,7 @@ import retailChinese from './data/retail/locales/zh-CN.json'
 import sharedGeneral from './data/shared/general.json'
 import sharedEnglish from './data/shared/locales/en.json'
 import sharedChinese from './data/shared/locales/zh-CN.json'
+
 import { knowledgeEntrySchema } from './schema'
 
 const bundles: { game: KnowledgeGame | 'shared', locale: KnowledgeLocale, entries: unknown }[] = [

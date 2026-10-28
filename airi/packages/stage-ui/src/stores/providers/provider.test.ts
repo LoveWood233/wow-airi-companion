@@ -296,6 +296,20 @@ describe('provider store synchronization boundary', () => {
     // Login merge replaced the persisted OpenAI key and left providerInstanceCache
     // holding a client built from the previous key. Later chat returned that
     // client until reload.
+    const network = vi.spyOn(globalThis, 'fetch').mockImplementation(async (input) => {
+      const url = String(input instanceof Request ? input.url : input)
+      if (url.includes('/chat/completions')) {
+        return Response.json({
+          id: 'chatcmpl-test',
+          object: 'chat.completion',
+          created: 0,
+          model: 'gpt-4o-mini',
+          choices: [{ index: 0, message: { role: 'assistant', content: 'pong' }, finish_reason: 'stop' }],
+          usage: { prompt_tokens: 1, completion_tokens: 1, total_tokens: 2 },
+        })
+      }
+      return Response.json({ object: 'list', data: [{ id: 'gpt-4o-mini' }] })
+    })
     const store = useProviderStore()
     const configStore = useProviderConfigStore()
     const openaiConfig = {
@@ -323,9 +337,11 @@ describe('provider store synchronization boundary', () => {
         apiKey: 'sk-new',
         baseUrl: 'https://api.openai.com/v1/',
       })
+      expect(network).toHaveBeenCalled()
     }
     finally {
       restore()
+      network.mockRestore()
     }
   })
 

@@ -10,8 +10,8 @@ animations:
 dialogs:
   onboarding:
     official:
-      title: AIRI 公式プロバイダー
-    title: AIRI へようこそ！
+      title: WoW コンパニオン 公式プロバイダー
+    title: WoW コンパニオン へようこそ！
     description: まず最初のAIプロバイダーを設定しましょう。
     selectProvider: AIプロバイダーを選択
     configureProvider: 設定 {provider}
@@ -35,13 +35,14 @@ dialogs:
     retry: 再試行
     credentialsSafeLabel: API キーや認証情報を安全に保管してください！
     credentialsSafeLocal: >-
-      AIRI はお使いの PC 上で完全ローカルに動作するため、AI/LLM プロバイダーの認証情報を収集することは一切ありません。ただし、API キーは機密情報ですので、安全に管理し第三者と共有しないでください。
+      WoW コンパニオン はお使いの PC 上で完全ローカルに動作するため、AI/LLM
+      プロバイダーの認証情報を収集することは一切ありません。ただし、API キーは機密情報ですので、安全に管理し第三者と共有しないでください。
     credentialsSafeOpenSource: >-
-      AIRI は {github} 上のオープンソースプロジェクトです。認証情報の取り扱いを確認したい場合は、ソースコードをご覧ください。
+      WoW コンパニオン は {github} 上のオープンソースプロジェクトです。認証情報の取り扱いを確認したい場合は、ソースコードをご覧ください。
     enableChatCheck: >-
-      AIRI が利用可能な最初のチャットモデルに「ping」シグナルを送信して利用可能性をチェックすることを許可する
+      WoW コンパニオン が利用可能な最初のチャットモデルに「ping」シグナルを送信して利用可能性をチェックすることを許可する
     start: 始めましょう！
-    loginPrompt: 最高の体験を得るためにログインして AIRI 公式プロバイダーを使用してください。
+    loginPrompt: 最高の体験を得るためにログインして WoW コンパニオン 公式プロバイダーを使用してください。
     loginAction: ログイン
     setupWithoutSigningIn: 独自のプロバイダーを設定
     pricingLink: 料金体系
@@ -57,11 +58,12 @@ dialogs:
       notificationsTitle: 通知
       notificationsDescription: リマインダーや重要なステータス更新を許可します。
       microphoneTitle: マイク
-      microphoneDescription: AIRI が音声入力と文字起こしにマイクを使用することを許可します。
+      microphoneDescription: WoW コンパニオン が音声入力と文字起こしにマイクを使用することを許可します。
       requestAction: アクセスをリクエスト
       optionalHint: これらの権限を許可しない場合でも続行できます。
       stateGranted: 許可済み
       stateNotGranted: 未許可
+    flux: Flux
   bug-report:
     title: バグ報告 (´;ω;`)ヾ(･∀･`)
     subtitle: 不具合が発生してしまい申し訳ありません。よろしければ、何が起きたか教えていただけますか？
@@ -94,7 +96,7 @@ analytics:
   notice:
     title: 利用状況の分析
     description: >-
-      AIRI はアプリの使用状況を理解し安定性を向上させるため、匿名で利用状況データを収集します。個人データは一切収集されません。
+      WoW コンパニオン はアプリの使用状況を理解し安定性を向上させるため、匿名で利用状況データを収集します。個人データは一切収集されません。
     privacyPrefix: 閲覧
     privacyLink: プライバシーポリシー
     onboardingHint: 分析機能は 設定 > システム > 一般 でいつでもオフにできます。
@@ -108,9 +110,11 @@ model-select:
   panel-callout:
     support-status-header: 2D および 3D モデルの両方をサポートしています
     support-status: >
-      {select-button} をクリックしてモデルを選択またはインポートします。現在、{zip} (Live2D および Spine モデル用)、{vrm} (VRM モデル用)、{mmd} (MMD モデル用、テクスチャと一緒に圧縮したもの) に対応しています。
+      {select-button} をクリックしてモデルを選択またはインポートします。現在、{zip} (Live2D および Spine
+      モデル用)、{vrm} (VRM モデル用)、{mmd} (MMD モデル用、テクスチャと一緒に圧縮したもの) に対応しています。
     model-type-example: >
-      Neuro-sama は Live2D Inc. が開発したフレームワークによる 2D モデルを使用しており、Grok Ani (Grok Companion 内) はオープンフォーマットである VRM / MMD の 3D モデルを使用しています。
+      Neuro-sama は Live2D Inc. が開発したフレームワークによる 2D モデルを使用しており、Grok Ani (Grok
+      Companion 内) はオープンフォーマットである VRM / MMD の 3D モデルを使用しています。
   select-model:
     title: モデルを選択
     button: モデルを選択
@@ -118,6 +122,17 @@ model-select:
     import: インポート
     remove: 削除
     confirm: 確定
+    sync:
+      upload: クラウドにアップロード
+      delete-cloud: クラウドから削除
+      status:
+        local-only: このデバイスのみ
+        queued: アップロード待ち
+        uploading: アップロード中
+        synced: クラウドに同期済み
+        cloud-only: クラウドに保存済み、未ダウンロード
+        downloading: ダウンロード中
+        failed: 同期に失敗
   live2d-report:
     title: インポート前の確認
     description: モデルのデータと、アーカイブ内で見つかった問題を確認してください。
@@ -128,6 +143,8 @@ model-select:
       files: '{count} 個のファイル'
       types:
         unknown: 不明
+        cubism: Cubism {version} ({format})
+        cubism-compatible: Cubism 3+ ({format})
     resources:
       title: リソース
       motions: モーション
@@ -165,26 +182,30 @@ live2d:
   scale-and-position:
     title: スケールと位置
     scale: スケール
+    x: X
+    y: Y
   switch-to-vrm:
     title: 3Dアバターに切り替えますか？
     change-to-vrm: 3Dアバター設定 (VRM) に切り替えるにはここをクリック
   theme-color-from-model:
     title: モデルから色を抽出
     description: >
-      現在レンダリング中のキャンバスからアクセントカラーを抽出します。色をクリックして AIRI に適用します。希望の色にならない場合は、モデルのポーズを変えて再度抽出をお試しください。
+      現在レンダリング中のキャンバスからアクセントカラーを抽出します。色をクリックして WoW コンパニオン
+      に適用します。希望の色にならない場合は、モデルのポーズを変えて再度抽出をお試しください。
     button-extract:
       title: 抽出
   animation:
     title: アニメーション
     motion-driver:
       title: モーションドライバー
-      description: 待機中の体や目の動きを AIRI が生成する方法を選択してください。
+      description: 待機中の体や目の動きを WoW コンパニオン が生成する方法を選択してください。
       options:
         universal:
           title: 汎用
           description: モデルのモーション、待機中の目の動き、マウス追跡を使用します。
         magic:
           description: 付属の MAGIC データセットからモーションを生成します。
+          title: MAGIC
       magic:
         profile:
           title: MAGIC プロファイル
@@ -220,7 +241,7 @@ live2d:
       description: 外部タイマーを使用してまばたきアニメーションを強制します
     blink-mode:
       title: まばたきモード
-      description: 既存のモデルまばたき、または AIRI の強制まばたきタイマーを選択します。
+      description: 既存のモデルまばたき、または WoW コンパニオン の強制まばたきタイマーを選択します。
     idle-motion:
       title: アイドルモーション
       no-motion: 利用可能なモーションがありません
@@ -233,6 +254,9 @@ live2d:
       title: レンダリングスケール
     fps:
       description: レンダリングフレームレートの制限
+      title: FPS
+      options:
+        unlimited: ∞
     shadow: 影
     reset-parameters: パラメータをデフォルトに戻す
   clear-model-cache: モデルキャッシュを消去
@@ -243,6 +267,13 @@ live2d:
       無効化しても SDK の表情およびまばたきプリセットは保持されます。
     no-expression: このモデルで利用可能な表情はありません。
     reset: すべての表情をリセット
+    description: 表情を一時的に有効にするか、WoW コンパニオンが使用できるかを選択します。
+    parameter-count: '{count}個のパラメーター'
+    actions:
+      activate: '{name}を有効化'
+      deactivate: '{name}を無効化'
+      show-to-airi: WoW コンパニオンによる{name}の使用を許可
+      hide-from-airi: WoW コンパニオンから{name}を隠す
 microphone: マイク
 models: モデル
 pages:
@@ -275,7 +306,7 @@ pages:
     connections:
       tab: 連携済みアカウント
       title: 連携済みアカウント
-      description: これらのプロバイダー経由で AIRI にログインします。連携を解除してアクセス権を取り消すか、再連携して別のアカウントに切り替えます。
+      description: これらのプロバイダー経由で WoW コンパニオン にログインします。連携を解除してアクセス権を取り消すか、再連携して別のアカウントに切り替えます。
       status:
         linked: 連携済み
         notLinked: 未連携
@@ -292,7 +323,8 @@ pages:
         listFailed: 連携済みアカウントを取得できませんでした。
         unlinkFailed: このアカウントの連携を解除できませんでした。
         linkFailed: 連携フローを開始できませんでした。
-        accountAlreadyLinkedToDifferentUser: この OAuth アカウントは別の AIRI アカウントにすでに連携されています。別のプロバイダーを選択するか、もう一方のアカウントから連携を解除してください。
+        accountAlreadyLinkedToDifferentUser: この OAuth アカウントは別の WoW コンパニオン
+          アカウントにすでに連携されています。別のプロバイダーを選択するか、もう一方のアカウントから連携を解除してください。
         oauthCallbackFailed: この OAuth アカウントを接続できませんでした。再試行するか別のプロバイダーを選択してください。
         lastAccount: これは唯一のログイン方法です。連携を解除する前にパスワードを設定してください。
     security:
@@ -334,6 +366,7 @@ pages:
           confirmEmail:
             label: 確認のためメールアドレスを入力してください
             mismatch: メールアドレスが一致しません。
+            placeholder: ''
           confirm: 確認メールを送信
           deleteNow: 永久に削除
           confirmPhrase: 確認のため DELETE と入力してください
@@ -346,9 +379,11 @@ pages:
           reauthenticate: もう一度ログインしてから、ここに戻って削除を確定してください。メールは送信されません。
           fallback: 削除できませんでした。後ほど再試行してください。
           subscriptionActive: サブスクリプションがまだ有効です。先に Capacitor ページで解約してから、アカウントを削除してください。
+    capacitorEntry: Capacitor
   card:
     wake-word-conflicts:
-      title: '共有するウェイクワードの発音に応答するキャラクターを選択してください | {count} 個の共有ウェイクワードの発音に応答するキャラクターを選択してください'
+      title: '共有するウェイクワードの発音に応答するキャラクターを選択してください | {count}
+        個の共有ウェイクワードの発音に応答するキャラクターを選択してください'
       description: 2 枚のカードが同じ発音を使っています。応答するキャラクターを選択するまで、誰も応答しません。
       action: 応答するキャラクターを選択
     sync:
@@ -360,7 +395,7 @@ pages:
         pending: アップロード待機中
         refused: アップロードされていません。アカウントのカード保存容量が不足しているため、このカードはこのデバイスに残ります。
       conflict_copy_name: '{name}（競合コピー）'
-      conflict_notice: 別のデバイスが同じキャラクターを変更しました。AIRI はこのデバイスのバージョンをコピーとして保存しました。
+      conflict_notice: 別のデバイスが同じキャラクターを変更しました。WoW コンパニオン はこのデバイスのバージョンをコピーとして保存しました。
       history:
         tab: 履歴
         empty: このカードにはまだ履歴がありません。
@@ -436,7 +471,7 @@ pages:
     delete: 削除
     delete_card: カードを削除
     delete_confirmation: このカードを削除してもよろしいですか？
-    description: AIRIキャラクターカードプリセットを使用する
+    description: WoW コンパニオンキャラクターカードプリセットを使用する
     description_label: 説明
     drop_here: アップロードするにはここにドラッグ
     create_card: 新しいカードを作成
@@ -504,6 +539,7 @@ pages:
         invalid_artistry_json: 'アートプロバイダー（Artistry provider）のオプションに無効な JSON が含まれています。'
       none: なし
       none_disabled: なし（無効）
+      no_model: モデルなし
     modules: モジュール
     name_asc: 名前(A-Z)
     name_desc: 名前(Z-A)
@@ -521,7 +557,7 @@ pages:
       model: 発話/モデル
       voice: 発話/音声
     systemprompt: システムプロンプト
-    title: AIRIカード
+    title: WoW コンパニオンカード
     try_different_search: 別の検索ワードを試してください
     export: エクスポート
     exported: カードパックをエクスポートしました
@@ -530,13 +566,27 @@ pages:
     import_missing_file: カードパックに必須ファイルが不足しています
     import_invalid_file: 無効なカードパックファイルです
     upload: アップロード
-    upload_desc: ここをクリックするか AIRI カードパックをドラッグ＆ドロップしてインポートします
+    upload_desc: ここをクリックするか WoW コンパニオン カードパックをドラッグ＆ドロップしてインポートします
+    view-card: カードを表示
+    model_not_bound: モデル未選択
+    gallery: ギャラリー
+    pinned_background: 固定した背景
+    pinned_background_description: このキャラクターがアクティブなときに表示する画像を選択します。
+    select_background: 背景を選択
+    refresh_gallery: ギャラリーを更新
+    gallery_empty: 画像はまだありません。チャットでキャラクターが作成した画像がここに表示されます。
+    gallery_delete_confirm: この画像を日記から削除しますか？
+    active_background: 使用中の背景
+    set_as_background: 背景に設定
+    download: ダウンロード
+    show_less: 表示を減らす
+    view_all_history: 全{count}バージョンを表示
   memory:
     description: 記憶が保存され、整理される場所
     title: 記憶
   data:
     title: データ
-    description: AIRIデータの保存、エクスポート、およびリセットの管理
+    description: WoW コンパニオンデータの保存、エクスポート、およびリセットの管理
     sections:
       chats:
         title: チャット セッション
@@ -554,6 +604,7 @@ pages:
         empty: ダウンロード済みの音声モデルはありません。
         wake-word-model: ウェイクワードモデル
         refresh: 更新
+        voiceprint-model: 声紋モデル
       modules:
         title: モジュール
         description: モジュールの設定と認証情報をリセットします。
@@ -571,11 +622,11 @@ pages:
         delete: すべてのデータを削除
       desktop-folder:
         title: アプリデータフォルダを開く
-        description: ファイルマネージャーで AIRI のデータフォルダを開きます。
+        description: ファイルマネージャーで WoW コンパニオン のデータフォルダを開きます。
         open: フォルダを開く
       desktop:
         title: デスクトップの設定と状態をリセット
-        description: AIRIデスクトップの設定と実行時の状態を消去します。
+        description: WoW コンパニオンデスクトップの設定と実行時の状態を消去します。
         center: デスクトップウィンドウを画面中央に配置
         reset: デスクトップのデータをリセット
     confirmations:
@@ -601,8 +652,10 @@ pages:
       section:
         live2d:
           description: Live2Dモデルと設定を構成
+          title: Live2D
         vrm:
           description: 3D VRMモデルと設定を構成
+          title: VRM
         scene: シーン
   modules:
     beat_sync:
@@ -672,13 +725,15 @@ pages:
           name: Nano Banana (プレビュー)
           description: Google AI Studio を使用して画像やリアクションをプレビューします。
       card:
-        description: AIRI が画像やグラフィックコンテンツを生成する方法を設定します。
-        comfyui_empty: ComfyUI ワークフローが設定されていません。設定 → プロバイダー → ComfyUI に移動してワークフローテンプレートを読み込んでください。
+        description: WoW コンパニオン が画像やグラフィックコンテンツを生成する方法を設定します。
+        comfyui_empty: ComfyUI ワークフローが設定されていません。設定 → プロバイダー → ComfyUI
+          に移動してワークフローテンプレートを読み込んでください。
         exposed_fields: '{count} 個のフィールドが公開されています'
         open_on_replicate: Replicate で開く
         instruction_sync:
           title: ComfyUI プロンプト同期
-          description: 指定されたプロンプトはワークフロー {workflowName} の準備ができています。適用すると現在のプロンプト指示が上書きされ、AI がこの特定のテンプレートの使用方法を認識できるようになります。
+          description: 指定されたプロンプトはワークフロー {workflowName}
+            の準備ができています。適用すると現在のプロンプト指示が上書きされ、AI がこの特定のテンプレートの使用方法を認識できるようになります。
           apply: 推奨プロンプトを適用
           keep: 現状維持
       provider: アートプロバイダー
@@ -745,23 +800,27 @@ pages:
             temperature_label: 温度
             temperature_enabled: 温度をカスタマイズ
             top_p_enabled: Top P をカスタマイズ
-            sampling_override_description: 初期設定では無効です。モデルがこのパラメーターに対応している場合のみ有効にしてください。同時に指定できるサンプリングパラメーターが 1 つだけのモデルもあります。
-            temperature_description: モデルの出力のランダムさを調整します。0.2 などの低い値では予測しやすく、正確で分析的な出力になります。1.0 などの高い値では創造性や多様性が増します。
-            top_p_description: 核サンプリングでモデルの出力の多様性を調整します。0.2 などの低い値では確率の高いトークンだけを選びます。1.0 などの高い値では、より幅広い候補を含めます。
+            sampling_override_description: 初期設定では無効です。モデルがこのパラメーターに対応している場合のみ有効にしてください。同時に指定できるサンプリングパラメーターが
+              1 つだけのモデルもあります。
+            temperature_description: モデルの出力のランダムさを調整します。0.2
+              などの低い値では予測しやすく、正確で分析的な出力になります。1.0 などの高い値では創造性や多様性が増します。
+            top_p_description: 核サンプリングでモデルの出力の多様性を調整します。0.2 などの低い値では確率の高いトークンだけを選びます。1.0
+              などの高い値では、より幅広い候補を含めます。
             subtitle: プロバイダーからデフォルトモデルを選択
             title: モデル
+            top_p_label: Top P
           model-options:
             title: モデルオプション
             thinking:
               label: 思考 (Thinking)
               required-description: このモデルでは思考機能が必須です。
-              provider-default-description: AIRI にはこのモデルの推論設定がありません。OpenRouter の初期設定が適用されます。
+              provider-default-description: WoW コンパニオン にはこのモデルの推論設定がありません。OpenRouter の初期設定が適用されます。
       title: 意識
     description: 思考、視覚、音声合成、ゲームなど。
     gaming-factorio:
       description: Factorioをプレイ！
       enable: Factorio連携を有効にする
-      enable-description: AIRIがFactorioゲームと通信できるようにする
+      enable-description: WoW コンパニオンがFactorioゲームと通信できるようにする
       server-address: サーバーアドレス
       server-address-description: FactorioサーバーのIPアドレスまたはホスト名
       server-address-placeholder: サーバーアドレスを入力 (例： localhostまたは192.168.1.100)
@@ -771,6 +830,7 @@ pages:
       username-description: Factorioサーバーでのユーザー名
       username-placeholder: Factorioユーザー名を入力
       configured: Factorioは適切に設定されています！
+      title: Factorio
     gaming-minecraft:
       description: Minecraftをプレイ！
       enable: Minecraft連携を有効にする
@@ -780,7 +840,8 @@ pages:
       read-only:
         title: 読み取り専用シェル
         description: >-
-          現在のステージでは Minecraft がパッシブシェルとして表示されます。実行状態とトラフィックはここに表示されますが、サービスの設定は Minecraft サービスファイル内に残ります。
+          現在のステージでは Minecraft がパッシブシェルとして表示されます。実行状態とトラフィックはここに表示されますが、サービスの設定は
+          Minecraft サービスファイル内に残ります。
       setup:
         title: セットアップ
         description: >-
@@ -801,6 +862,7 @@ pages:
         no-runtime-context: Bot からコンテキストがまだ記録されていません
         last-context-seconds: '直近の Bot コンテキスト: {seconds} 秒前'
         last-context-stale: '直近の Bot コンテキスト: 期限切れ'
+      title: Minecraft
     hearing:
       description: 音声認識の動作を設定する
       title: 聴覚
@@ -831,34 +893,36 @@ pages:
           microphone:
             title: マイク
             label: マイク
-            description: 聴覚用のマイクを有効にしてください。入力モードによって AIRI が聞き取るタイミングを決めます。
+            description: 聴覚用のマイクを有効にしてください。入力モードによって WoW コンパニオン が聞き取るタイミングを決めます。
             error: マイクを利用できません
           input-device:
             label: 入力デバイス
-            description: AIRI が使用するマイクを選択してください。
+            description: WoW コンパニオン が使用するマイクを選択してください。
             playground-description: 聴覚とテスト画面はこのマイクを使用します。
             placeholder: マイクを選択
           auto-send:
             title: 文字起こし
             description: 音声を文字に変換した後の動作を選択してください。
             label: 自動送信
-            label-description: AIRI は待ち時間の後に文字起こしをチャットへ送信します。先に内容を確認・編集するには無効にしてください。送信ごとにトークンを消費します。
+            label-description: WoW コンパニオン
+              は待ち時間の後に文字起こしをチャットへ送信します。先に内容を確認・編集するには無効にしてください。送信ごとにトークンを消費します。
             delay: 送信までの待ち時間
-            delay-description: AIRI が文字起こしを送信するまでの待ち時間です。
+            delay-description: WoW コンパニオン が文字起こしを送信するまでの待ち時間です。
             immediate: すぐに
           input-mode:
             title: 入力モード
-            description: マイクが有効な間、AIRI が聞き取りを始める方法を選択してください。
+            description: マイクが有効な間、WoW コンパニオン が聞き取りを始める方法を選択してください。
             label: 聞き取りを開始
             always-on: 常時有効
-            always-on-description: AIRI は常に聞き取り、話しかけると応答します。
+            always-on-description: WoW コンパニオン は常に聞き取り、話しかけると応答します。
             push-to-talk: 押して話す
-            push-to-talk-description: '「押して話す」キーを押している間だけ AIRI が聞き取ります。マイクも押している間だけ有効になります。'
+            push-to-talk-description: '「押して話す」キーを押している間だけ WoW コンパニオン が聞き取ります。マイクも押している間だけ有効になります。'
             push-to-talk-unavailable: ここでは利用できません。このデバイスのアプリには「押して話す」キーがありません。
             stranded-title: ここでは「押して話す」を利用できません
-            stranded-description: このデバイスには「押して話す」キーがないため、AIRI は聞き取りません。話しかけるには「常時有効」か「ウェイクワード」を選択してください。
+            stranded-description: このデバイスには「押して話す」キーがないため、WoW コンパニオン
+              は聞き取りません。話しかけるには「常時有効」か「ウェイクワード」を選択してください。
             wake-word: ウェイクワード
-            wake-word-description: マイクは有効なままですが、キャラクターのウェイクワードを話した後だけ AIRI が聞き取ります。
+            wake-word-description: マイクは有効なままですが、キャラクターのウェイクワードを話した後だけ WoW コンパニオン が聞き取ります。
             wake-word-status:
               no-words: ウェイクワードを設定したキャラクターがいません。チャットでキャラクターに設定を依頼してください。
               unconfigured: マイクを有効にすると、ウェイクワードの検出が始まります。
@@ -867,9 +931,11 @@ pages:
               error: 'ウェイクワードモデルを利用できません：{error}'
           end-judge:
             title: 発話の終わり
-            description: 話が途切れると、チャットモデルが文字起こしを読み、話し終えたかを判断します。まだ途中なら、AIRI は続きを話せるよう 3 秒長く待ちます。
+            description: 話が途切れると、チャットモデルが文字起こしを読み、話し終えたかを判断します。まだ途中なら、WoW コンパニオン は続きを話せるよう 3
+              秒長く待ちます。
             enabled: 話し終えたかを判定
-            enabled-description: 話が途切れるたびに、その文字起こしが修正用のモデルに送信されます。オフにすると、AIRI は少し間があいた時点で発話を終了します。
+            enabled-description: 話が途切れるたびに、その文字起こしが修正用のモデルに送信されます。オフにすると、WoW コンパニオン
+              は少し間があいた時点で発話を終了します。
           rephrase:
             title: 文字起こしの修正
             description: チャットモデルが認識ミスや不要なつなぎ言葉を修正してから、文字起こしを下書きにします。元のテキストも保持されます。
@@ -896,26 +962,146 @@ pages:
           confidence-threshold:
             title: 信頼度しきい値
             description: >-
-              Whisper のハルシネーション（幻覚）を軽減するため、信頼度の低い認識セグメントをフィルタリングします。値が 0 に近いほど厳格になります。左へスライドすると無効になります。Whisper API プロバイダー（OpenAI、Groq など）でのみ有効です。
+              Whisper のハルシネーション（幻覚）を軽減するため、信頼度の低い認識セグメントをフィルタリングします。値が 0
+              に近いほど厳格になります。左へスライドすると無効になります。Whisper API プロバイダー（OpenAI、Groq
+              など）でのみ有効です。
             disabled: オフ
             verbose-json-note: >-
               注意: プロバイダーが verbose_json レスポンスに対応していない場合、この設定は効果がありません。
             verbose-json-unsupported: >-
-              お使いのプロバイダーは verbose_json セグメントを返しません。最新の文字起こしセグメントに対する信頼度フィルターは適用されません。
+              お使いのプロバイダーは verbose_json
+              セグメントを返しません。最新の文字起こしセグメントに対する信頼度フィルターは適用されません。
+      voiceprint:
+        title: 声紋
+        description: WoW コンパニオンが認識できるように声を登録します。
+        intro: 声紋は、声紋モデルが発話から計算する数値の一覧です。音声は含みませんが、個人の識別に使えます。
+        privacy: WoW
+          コンパニオンは声紋をこのデバイスにのみ保存します。カードのエクスポートに含めず、アップロードもしません。削除するには、このページの「声紋を削除」か、データ設定の「すべてのデータを削除」を使ってください。
+        download: 初回登録時に約28 MBの声紋モデルをダウンロードします。
+        speaker-recognition:
+          label: 話者認識
+          description: 発話またはウェイクワードで始まった音声入力を声紋と比較し、スコアを入力のIOトレースに記録します。「押して話す」の入力は採点しません。どの声でも入力を開始でき、チャットモデルにスコアは渡しません。WoW
+            コンパニオンの聞き取り中は声紋モデルをメモリに保持します。
+          needs-voiceprint: 話者認識を有効にするには声を登録してください。
+        status:
+          none: 声紋は未登録です。
+          enrolled: 登録日：{date}、発話時間：{seconds}秒。
+          outdated: 声紋モデルが変更されました。声紋を使うには再登録してください。
+        instructions: 周囲に他の人がいない状態でマイクに近づき、「録音を開始」を押して、次の文章を普段の声で読み上げてください。
+        sentence-1: 今日は天気を確認して、メッセージを読み、残りの一日の予定を立てたいです。
+        sentence-2: 普段は夜、部屋が静かで時間に余裕があるときにWoW コンパニオンと話します。
+        sentence-3: 私が話していることが分かるように、私の声を覚えてください。
+        progress: '録音済み：{seconds}秒。登録には{min}秒以上が必要です。'
+        start: 録音を開始
+        again: 再登録
+        finish: 完了
+        cancel: キャンセル
+        delete: 声紋を削除
+        enrolling: 声紋を計算中…
+        result:
+          enrolled: 声紋を保存しました。
+          cancelled: 登録をキャンセルしました。
+          too-short: 録音は{seconds}秒でした。登録には{min}秒以上が必要です。もう一度録音してください。
+          error: 登録に失敗しました：{error}
     memory-long-term:
       description: 長期記憶固有の設定と管理
       title: 長期記憶
+      enable: 長期記憶を使う
+      enable-description: キャラクターが会話の内容を覚えます。無効にすると何も記憶しません。
+      memories:
+        title: 記憶
+        description: 各キャラクターの秘密は、他のキャラクターには見えません。共有すると全員が知ることになり、取り消せません。秘密は削除できますが、書き換えはできません。
+        empty: 記憶はまだありません。
+        forget: '{name}を忘れる'
+        make_general: '{name}を全キャラクターと共有'
+        general: 共有した秘密
+        entry:
+          title: 記憶
+          description: 各キャラクターの秘密と、共有している秘密です。
+      recipes:
+        title: レシピ
+        empty: レシピはまだありません。
+        sources:
+          user: 自分が作成
+          model: キャラクターの提案
+        pending: 承認待ちです。一度承認すると、次回からは確認しません。
+        approve: 承認
+        remove: 削除
+        add:
+          name: 名前
+          description: 使用する状況
+          instructions: 実行する内容
+          keywords:
+            label: 合言葉
+            description: 合言葉を話すと、キャラクターがこのレシピを使います。
+          submit: 追加
+        decision:
+          question: 質問
+          type:
+            label: 回答の方法
+            noul: はい / いいえ
+            choice: 選択肢を1つ選ぶ
+          yes_means: 「はい」の意味
+          no_means: 「いいえ」の意味
+          option: この選択肢の意味
+          add_option: 選択肢を追加
+          remove_option: 削除
+          action:
+            label: 次の動作
+            reply: 通常どおり応答
+            stay_quiet: 応答せずに読む
+            hint: メモを考慮して応答
+            recipe: 次に別のレシピを使う
+          hint_text: 考慮するメモ
+          target_recipe: レシピ
+          keywords: 合言葉を話した後にだけ、キャラクターが判断します。
+          note: 合言葉の後、キャラクターが会話を読み、回答を1つ選び、それに従って動作します。
+        entry:
+          title: レシピ
+          description: キャラクターのスキル、開始のきっかけ、承認を待っている提案です。
+        add_button: レシピを追加
+        types:
+          title: レシピの種類を選択
+          instructions:
+            title: 手順
+            description: 適切な場面や合言葉を聞いたときに、キャラクターが使う手順です。
+          decision:
+            title: 判断
+            description: 合言葉の後、応答する前にキャラクターが質問に答えます。各回答には対応する動作があります。
+        styles:
+          instructions: 手順
+          decision: 判断
+        cancel: キャンセル
+        edit: 編集
+        save: 保存
+        enabled: '{name}を使う'
+        keywords_summary: 合言葉：{words}
+        tabs:
+          conversation: 会話中
+          auto_run: 自動実行
+          conversation_description: 会話用のレシピです。メッセージを送信したときにだけ動作します。
+          auto_run_description: きっかけを受け取ると自動で開始するレシピです。実行ごとにモデルを呼び出します。
+        background:
+          label: バックグラウンドで実行
+          description: 調査など時間のかかる作業向けです。バックグラウンドで処理し、結果を届けます。
+          tag: バックグラウンド
+        grants: 承認により許可する操作：{what}
+        proposals:
+          label: キャラクターによるレシピの提案を許可
+          description: 依頼したレシピは提案として保存します。承認してから動作します。
+        model_flow: 実行時の動作はキャラクターが判断します
     memory-short-term:
       description: 短期記憶固有の設定と管理
       title: 短期記憶
     messaging-discord:
       description: Discordでのチャットとボイスチャット
       enable: Discord連携を有効にする
-      enable-description: AIRIがDiscordを介して対話できるようにする
+      enable-description: WoW コンパニオンがDiscordを介して対話できるようにする
       token: ボットトークン
       token-description: あなたのDiscordボットトークン
       token-placeholder: Discordボットトークンを入力
       configured: Discordは適切に設定されています！
+      title: Discord
     speech:
       description: 音声合成
       sections:
@@ -950,7 +1136,9 @@ pages:
             search_voices_results: 結果{total}個中{count}個の音声が見つかりました
             unsupported_voice_warning_title: サポートされている音声がありません
             unsupported_voice_warning_content: >-
-              別のモデルまたはプロバイダーを試してください。このモデルのすべての音声をできるだけ早くサポートできるように取り組んでいます。 緊急に必要な場合は、GitHubの https://github.com/moeru-ai/airi/issues でお知らせください。
+              別のモデルまたはプロバイダーを試してください。このモデルのすべての音声をできるだけ早くサポートできるように取り組んでいます。
+              緊急に必要な場合は、GitHubの https://github.com/moeru-ai/airi/issues
+              でお知らせください。
             show_less: 表示を減らす
             show_more: もっと表示
             title: プロバイダー
@@ -990,11 +1178,12 @@ pages:
         description: 視覚推論に使うプロバイダー固有のリクエストフラグを設定してください。
         thinking:
           label: 思考（Ollama）
-          description: '有効時は Ollama への視覚リクエストに `think: true` を含めます。無効時は `think: false` を含めます。'
+          description: '有効時は Ollama への視覚リクエストに `think: true` を含めます。無効時は `think: false`
+            を含めます。'
     x:
       description: X / Twitterの閲覧と使用
       enable: X / Twitter連携を有効にする
-      enable-description: AIRIがX / Twitterと対話できるようにする
+      enable-description: WoW コンパニオンがX / Twitterと対話できるようにする
       api-key: APIキー
       api-key-description: あなたのX / Twitter APIキー
       api-key-placeholder: あなたのX / Twitter APIキーを入力
@@ -1008,6 +1197,7 @@ pages:
       access-token-secret-description: あなたのX / Twitterアクセストークンシークレット
       access-token-secret-placeholder: あなたのX / Twitterアクセストークンシークレットを入力
       configured: X / Twitterは適切に設定されています！
+      title: X / Twitter
     stickers:
       frequency: スタンプの頻度
       frequency-description: 指定した割合の応答でスタンプを許可します。場面に合うかどうかはキャラクターが判断します。
@@ -1016,6 +1206,10 @@ pages:
         50: ときどき（50%）
         75: よく（75%）
         100: 適した場面では毎回（100%）
+        '25': たまに（25%）
+        '50': ときどき（50%）
+        '75': よく使う（75%）
+        '100': 適切な場面では毎回（100%）
       title: スタンプ
       description: チャットの応答に画像でのリアクションを追加
       enable: スタンプを有効にする
@@ -1077,12 +1271,13 @@ pages:
         airi-agree: 'はい'
         airi-disagree: 遠慮します
     home-assistant:
-      description: AIRI が Home Assistant のデバイスを読み取り、操作できるようにします。
+      description: WoW コンパニオン が Home Assistant のデバイスを読み取り、操作できるようにします。
       enable: Home Assistant を有効にする
-      enable-description: AIRI にデバイスの読み取りと操作を許可
+      enable-description: WoW コンパニオン にデバイスの読み取りと操作を許可
       base-url:
         label: アドレス
         description: Home Assistant インスタンスのアドレスです。
+        placeholder: http://homeassistant.local:8123
       token:
         label: 長期アクセストークン
         placeholder: Home Assistant のプロフィールからトークンを貼り付け
@@ -1106,15 +1301,15 @@ pages:
         failed-policy-rollback: 保存が拒否されました。デバイスの一覧がツールを実行するウィンドウに届かなかったため、モデルはどのデバイスにもアクセスできません。もう一度お試しください。
       access:
         label: デバイスへのアクセス
-        description: AIRI が読み取り、操作できるデバイスを選択してください。
+        description: WoW コンパニオン が読み取り、操作できるデバイスを選択してください。
         mode-all: すべてのデバイス
         mode-allow: 許可リスト
         mode-deny: ブロックリスト
-        all-hint: AIRI はすべてのデバイスにアクセスできます。制限するにはリストを選択してください。
+        all-hint: WoW コンパニオン はすべてのデバイスにアクセスできます。制限するにはリストを選択してください。
         rule-allow: 選択したデバイスだけにアクセスできます。
         rule-deny: 選択したデバイスを除き、すべてにアクセスできます。
         selected-count: '{count} 個を選択済み'
-        empty-warning: デバイスを 1 つ以上選択してください。選択するまで AIRI はどのデバイスにもアクセスできません。
+        empty-warning: デバイスを 1 つ以上選択してください。選択するまで WoW コンパニオン はどのデバイスにもアクセスできません。
         search: デバイスを検索
         reload: デバイスを再読み込み
         loading: デバイスを読み込み中…
@@ -1195,6 +1390,7 @@ pages:
           windy-variant: 強風と曇り
           unknown: 不明
           unavailable: 利用不可
+          ok: OK
         lawn_mower:
           returning: 帰還中
         update:
@@ -1253,18 +1449,19 @@ pages:
         water_heater: 給湯器
         weather: 天気
         zone: ゾーン
+      title: Home Assistant
     web-search:
       title: Web 検索
-      description: AIRI が Web を検索して最新の情報を取得できるようにします
+      description: WoW コンパニオン が Web を検索して最新の情報を取得できるようにします
       enable: Web 検索を有効化
-      enable-description: 会話中に AIRI が Web 検索を行うことを許可します
+      enable-description: 会話中に WoW コンパニオン が Web 検索を行うことを許可します
       api-key: Tavily API キー
       api-key-description: Web 検索機能は Tavily によって提供されています。tavily.com で無料の API キーを取得できます。
       api-key-placeholder: Tavily API キーを入力
       configured: Web 検索を利用する準備が整いました！
     mcp-server:
       title: MCP サーバー
-      description: MCP サーバーを設定し、そのツールを AIRI に導入します。
+      description: MCP サーバーを設定し、そのツールを WoW コンパニオン に導入します。
       config-path: 設定ファイルのパス
       runtime-title: 実行ステータス
       empty: MCP サーバーがまだありません。下の「サーバーを追加」をクリックして作成するか、「JSON を編集」から設定を貼り付けてください。
@@ -1304,16 +1501,18 @@ pages:
           placeholder: '例: filesystem'
         transport:
           label: 種別
-          description: AIRI がこのサーバーに接続する方法です。
+          description: WoW コンパニオン がこのサーバーに接続する方法です。
           stdio: ローカルプロセス
           http: リモート URL
         url:
           description: サーバーの Streamable HTTP エンドポイントです。
           placeholder: 例：https://example.com/api/mcp
+          label: URL
         headers:
           label: ヘッダー
           description: 認証トークンなど、各リクエストとともに送るヘッダーです。
           value-placeholder: Bearer トークン
+          key-placeholder: Authorization
         command:
           label: コマンド
           description: stdio 経由で実行される実行ファイル。
@@ -1321,6 +1520,10 @@ pages:
         args:
           label: 引数
           description: 順序通りに 1 行に 1 つずつ入力します。
+          placeholder: |-
+            -y
+            some-package-name
+            /tmp
         cwd:
           label: 作業ディレクトリ
           description: プロセスの作業ディレクトリとして使用されるオプションのフォルダ。
@@ -1359,6 +1562,22 @@ pages:
         opened: ファイルマネージャーで {path} を開きました
         json-applied: JSON をフォームに適用しました。「保存して再起動」をクリックしてディスクに保存してください。
         restarted: すべて再起動しました! {started} が開始しました。 {failed} が失敗しました。 {skipped} がスキップされました。
+    tool-cards:
+      title: ツールカード
+      description: チャットモデルがツールや応答のために作成するカード
+      enable: ツールの結果をカードにする
+      enable-description: ウィジェットもカードもないツールの呼び出しが終わると、チャットモデルが結果のカードを作成します。過去のメッセージでは呼び出しを展開したときに作成します。新しいカードごとにモデルを使用します。
+      reply-cards: 応答にカードを描く
+      reply-cards-description: 換算や比較など、文章よりカードが適切な場合、チャットモデルが応答にカードを描きます。カードはその応答に属し、保存されません。
+      page-description: ウィジェットのないツール用にチャットモデルが作ったカードテンプレートです。削除すると、次の呼び出し時か、既存の呼び出しを展開したときに再作成します。
+      empty: カードはまだありません。ウィジェットのないツールが完了すると、ここに表示されます。
+      source-tool: 提供元：アプリのツール
+      source-mcp: 提供元：MCPサーバー {server}
+      used: 最終使用：{date}
+      show-template: テンプレートを表示
+      hide-template: テンプレートを非表示
+      delete: 削除
+      deleted: '{name}のテンプレートを削除しました。次のツール呼び出し時か、既存の呼び出しを展開したときに再作成します。'
   flux:
     buy: 購入
     currency: 通貨
@@ -1389,6 +1608,7 @@ pages:
       title: Flux パッケージ
       buy: 購入
       description: 選択可能な Flux パッケージ。
+    title: Flux
   capacitor:
     statusError: Capacitor を読み込めませんでした。後でもう一度お試しください。
     packagesError: Capacitor の一覧を読み込めませんでした。後でもう一度お試しください。
@@ -1410,6 +1630,13 @@ pages:
       pending: 支払いを受け付けました。まもなく Capacitor が充電されます。
       canceled: 購入をキャンセルしました。
       error: エラーが発生しました。後ほど再試行してください。
+    title: Capacitor
+    ofQuota: '/ {quota} Flux'
+    change: Capacitorを変更
+    quota:
+      day: '毎日{quota} Flux'
+      week: '毎週{quota} Flux'
+      month: '毎月{quota} Flux'
   providers:
     catalog:
       edit:
@@ -1434,7 +1661,8 @@ pages:
               field:
                 web-search:
                   label: ウェブ検索
-                  description: 対応する OpenAI モデルが必要に応じて検索できます。API キーを使用し、検索料金が発生する場合があります。Responses API が必要です。
+                  description: 対応する OpenAI モデルが必要に応じて検索できます。API キーを使用し、検索料金が発生する場合があります。Responses
+                    API が必要です。
                 api-protocol:
                   label: API プロトコル
                   description: このプロバイダーとモデルが対応する API を選択してください。
@@ -1445,7 +1673,8 @@ pages:
                 base-url:
                   label: ベース URL
                   description: >-
-                    サービス接続アドレス。通常は http://localhost:11434/v1 などです。
+                    リモートサービスへの接続に使うベースURLです。例：http://localhost:11434/v1 または
+                    https://example.com/v1。
                   placeholder: ベース URL...
                 download-model:
                   label: モデルをダウンロード
@@ -1500,7 +1729,8 @@ pages:
                   openai-compatible-check-connectivity:
                     label: Ollama の追加設定が必要です
                     content: >-
-                      接続テストに失敗しました。Ollama の場合、接続を許可するために起動時に環境変数 <code>OLLAMA_HOST</code> を設定する必要があります。ドキュメントのガイドをご覧ください。
+                      Ollamaへの接続確認に失敗しました。OllamaアプリまたはCLIサーバーの起動時に、環境変数<code>OLLAMA_HOST</code>を明示的に設定してください。詳しくは<a
+                      href="https://airi.moeru.ai/docs/en/docs/manual/integrations/providers/chat/ollama">Ollama連携ガイド</a>をご覧ください。
     common:
       continueAnyway: 続行する
       goToModelSelection: モデルを選択 →
@@ -1567,7 +1797,8 @@ pages:
     helpinfo:
       title: ここを初めて利用しますか？
       description: >
-        AIRIが正常に思考し動作するためには、少なくとも1つの{chat}プロバイダーの設定が必要です。 これはAIRIシステム内に存在するキャラクターの脳と考えることができます。
+        WoW コンパニオンが正常に思考し動作するためには、少なくとも1つの{chat}プロバイダーの設定が必要です。 これはWoW
+        コンパニオンシステム内に存在するキャラクターの脳と考えることができます。
     explained:
       chat: テキスト生成モデルプロバイダー。例： OpenRouter, OpenAI, Ollama。
       Speech: 音声 (テキスト読み上げ) モデルプロバイダー。例： ElevenLabs, Azure Speech。
@@ -1587,7 +1818,7 @@ pages:
         asset:
           title: モデルファイル
           unknown: ファイルを確認中…
-          bundled: AIRI に付属
+          bundled: WoW コンパニオン に付属
           installed: このデバイスに保存済み
           missing: 使用時にダウンロード
           downloading: ダウンロード中…
@@ -1595,8 +1826,10 @@ pages:
           download: 今すぐダウンロード
           cancel: キャンセル
           remove: ダウンロードを削除
+        title: Sherpaw
       apple-vision:
         description: macOS 27 以降で Apple Foundation Models を使い、デバイス上で画像を理解します。API キーは不要です。
+        title: Apple Vision
       apple-speech-transcription:
         title: Apple 音声認識
         description: macOS 26 以降のデバイス上での音声認識。API キーは不要です。
@@ -1604,23 +1837,30 @@ pages:
           locale:
             label: 言語地域 (Locale)
             description: en-US や zh-CN など、正確な Apple Speech のロケールを使用します。
+            placeholder: en-US
       app-local-audio-transcription:
         title: アプリ (ローカル)
+        description: https://github.com/moeru-ai/xsai-transformers
       app-local-audio-speech:
         title: アプリ (ローカル)
+        description: https://github.com/moeru-ai/xsai-transformers
       browser-local-audio-transcription:
         title: ブラウザ (ローカル)
+        description: https://github.com/moeru-ai/xsai-transformers
       browser-local-audio-speech:
         title: ブラウザ (ローカル)
+        description: https://github.com/moeru-ai/xsai-transformers
       amazon-bedrock:
         description: aws.amazon.com/bedrok
         config:
           api-key:
             label: Bedrock API キー
             description: Amazon Bedrock API キー (AWS コンソール → Bedrock → API Keys で作成)
+            placeholder: bedrock-...
           region:
             label: AWS リージョン
             description: 'Bedrock が有効な AWS リージョン (例: us-east-1, us-west-2)'
+        title: Amazon Bedrock
       anthropic:
         helpinfo:
           title: 始める前に
@@ -1634,6 +1874,8 @@ pages:
             part5: >-
               このプロバイダーを使用する必要がある場合は、 Serverless Function で実行される専用のプロキシバックエンド、
             part6: またはCORS制限をバイパスするためのCORSバイパスサービスが必要です。
+        description: anthropic.com
+        title: Anthropic {'|'} Claude
       cloudflare-workers-ai:
         fields:
           field:
@@ -1643,6 +1885,8 @@ pages:
               placeholder: あなたのCloudflareアカウントID
             api-key:
               placeholder: Cloudflare APIキーを入力
+        description: cloudflare.com
+        title: Cloudflare Workers AI
       common:
         status:
           validating: 検証中
@@ -1665,7 +1909,10 @@ pages:
               description: 読み上げの抑揚の変化幅を調整します
               label: 抑揚
         callout_origin_title: ブラウザーからエンジンに接続
-        callout_origin: ブラウザーはこの端末のエンジンにのみ接続できます。別の端末のエンジンにはデスクトップアプリを使ってください。エンジン側でもこのサイトを許可する必要があります。--cors_policy_mode all、または --allow_origin とこのアドレスで設定してください。
+        callout_origin: ブラウザーはこの端末のエンジンにのみ接続できます。別の端末のエンジンにはデスクトップアプリを使ってください。エンジン側でもこのサイトを許可する必要があります。--cors_policy_mode
+          all、または --allow_origin とこのアドレスで設定してください。
+        description: voicevox.hiroshiba.jp
+        title: VOICEVOX
       aivis-speech:
         fields:
           field:
@@ -1673,7 +1920,10 @@ pages:
               description: 話し方のスタイルの強さを調整します
               label: 感情表現の強さ
         callout_origin_title: ブラウザーからエンジンに接続
-        callout_origin: ブラウザーはこの端末のエンジンにのみ接続できます。別の端末のエンジンにはデスクトップアプリを使ってください。エンジン側でもこのサイトを許可する必要があります。ポート 10101 の設定ページで設定してください。
+        callout_origin: ブラウザーはこの端末のエンジンにのみ接続できます。別の端末のエンジンにはデスクトップアプリを使ってください。エンジン側でもこのサイトを許可する必要があります。ポート
+          10101 の設定ページで設定してください。
+        description: aivis-project.com
+        title: AivisSpeech
       speech-noop:
         title: なし
         description: 音声を再生しません。
@@ -1704,20 +1954,25 @@ pages:
             server_url:
               label: サーバー URL
               description: 稼働中の ComfyUI のアドレス
+              placeholder: http://localhost:8188
           cors:
             title: CORS により要求がブロックされました
-            description: ComfyUI はデフォルトで他のアプリからのリクエストをブロックします。AIRI が接続できるようにするには、`--enable-cors-header "*"` フラグを付けて ComfyUI を起動する必要があります。
+            description: ComfyUI はデフォルトで他のアプリからのリクエストをブロックします。WoW コンパニオン
+              が接続できるようにするには、`--enable-cors-header "*"` フラグを付けて ComfyUI
+              を起動する必要があります。
+            command: python main.py --enable-cors-header "*"
           workflows:
             title: ワークフローテンプレート
             upload: ワークフローをアップロード
             cancel_upload: キャンセル
-            empty: ワークフローがまだアップロードされていません。「ワークフローをアップロード」をクリックして ComfyUI から workflow_api.json をインポートしてください。
+            empty: ワークフローがまだアップロードされていません。「ワークフローをアップロード」をクリックして ComfyUI から
+              workflow_api.json をインポートしてください。
             exposed_parameters: 公開パラメータ
             summary: '{nodes} ノード · {fields} フィールドが公開中'
             remove: 削除
             config_snippet: アート設定スニペット
             copy_json: JSON をコピー
-            paste_hint: この内容を AIRI カードのアート設定に貼り付けることで、これらのノードを上書きできます。
+            paste_hint: この内容を WoW コンパニオン カードのアート設定に貼り付けることで、これらのノードを上書きできます。
           upload:
             prompt: workflow_api.json ファイルをドラッグ＆ドロップまたは選択
             invalid_json: 無効な JSON です
@@ -1739,12 +1994,15 @@ pages:
           default_model:
             label: デフォルトモデル
             description: キャラクターカードで指定がない場合に使用されるフォールバックの owner/model 文字列。
+            placeholder: black-forest-labs/flux-schnell
           aspect_ratio:
             label: アスペクト比
             description: 'デフォルトの画像比率 (例: 16:9 1:1 9:16)'
+            placeholder: 16:9
           inference_steps:
             label: 推論ステップ数
             description: ノイズ除去プロセスのステップ数 (低いと高速、高いと高品質)
+          title: Replicate.ai
       nanobanana:
         settings:
           heading: Nano Banana (Google AIスタジオ)
@@ -1752,6 +2010,7 @@ pages:
           api_key:
             label: API キー
             description: Google AI Studio の API キー
+            placeholder: AIpk...
           preferred_model:
             label: 優先モデル
             description: 使用する特定の Gemini 画像生成プレビューモデル
@@ -1760,11 +2019,16 @@ pages:
             description: 生成される画像の希望解像度
           model_options:
             nano_banana: ナノバナナ(Gemini 2.5フラッシュ画像)
+            nano_banana_2: Nano Banana 2 (Gemini 3.1 Flash Image)
+            nano_banana_pro: Nano Banana Pro (Gemini 3 Pro Image)
+          title: Nano Banana
       deepseek:
         fields:
           field:
             thinking-mode:
               description: DeepSeek 推論モデルがチャットリクエストで思考モードを使用するかどうかを制御します。
+        description: deepseek.com
+        title: DeepSeek
       elevenlabs:
         fields:
           field:
@@ -1802,6 +2066,8 @@ pages:
           title: 音声合成実験場
           validation:
             error-missing-api-key: 音声をテストするにはAPIキーを入力してください。
+        description: elevenlabs.io
+        title: ElevenLabs
       kokoro-local:
         description: Kokoro-82M を使用したローカルテキスト読み上げ。
         fields:
@@ -1834,10 +2100,12 @@ pages:
               description: 音声サービスリージョン
               label: リージョン
         title: Microsoft / Azure 音声
+        description: speech.microsoft.com
       index-tts-vllm:
         title: Bilibili/IndexTTS
         callout_indextts2_unavailable_title: 限定的なサポート
         callout_indextts2_unavailable: IndexTTS2 は現在未対応です。IndexTTS をご利用ください。
+        description: https://index-tts.github.io/
       minimax-speech:
         errors:
           provider-initialization-failed: MiniMax 音声プロバイダーの初期化に失敗しました。
@@ -1850,11 +2118,13 @@ pages:
         playground:
           default-text: こんにちは！これは MiniMax 音声合成のテストです。
         title: MiniMax 音声
+        description: minimax.io
       openai-compatible:
         description: OpenAI互換
         title: OpenAI互換
       n1n:
         description: n1n.ai - 高性能 AI API を提供。
+        title: n1n
       volcengine:
         fields:
           field:
@@ -1862,6 +2132,7 @@ pages:
               description: コンソールで取得できるプロジェクトのApp ID
               label: アプリ ID
         title: 火山エンジン (Volcengine)
+        description: volcengine.com
       volcengine-coding-plan:
         description: Volcengineコーディングプラン
         models:
@@ -1875,22 +2146,127 @@ pages:
         title: BytePlusコーディングプラン
       browser-web-speech-api:
         description: ブラウザ組み込み STT (Chrome/Edge/Safari が必要)
+        title: Web Speech API
       prompt-api:
         description: Prompt API を使用すると、自然言語リクエストを Chrome の基盤モデルに送信できます。
+        title: Prompt API
       official:
         title: 公式プロバイダー
-        description: AIRI 公式の AI プロバイダー。
+        description: WoW コンパニオン 公式の AI プロバイダー。
         speech-title: 公式音声プロバイダー
-        speech-description: AIRI 公式のテキスト読み上げプロバイダー。
+        speech-description: WoW コンパニオン 公式のテキスト読み上げプロバイダー。
         speech-streaming-title: 公式リアルタイム (Streaming) 音声プロバイダー
-        speech-streaming-description: AIRI 公式の超低遅延テキスト読み上げプロバイダー (双方向 WebSocket)。
+        speech-streaming-description: WoW コンパニオン 公式の超低遅延テキスト読み上げプロバイダー (双方向 WebSocket)。
         transcription-title: 公式文字起こしプロバイダー
-        transcription-description: AIRI 公式の音声認識プロバイダー。
+        transcription-description: WoW コンパニオン 公式の音声認識プロバイダー。
       transcriptions:
         playground:
           title: 文字起こし実験場
       aihubmix:
         description: https://aihubmix.com (10% オフ)
+        title: AIHubMix
+      alibaba-cloud-model-studio:
+        description: bailian.console.aliyun.com
+        title: Alibaba Cloud Model Studio
+      deepgram-tts:
+        description: deepgram.com
+        title: Deepgram
+      fireworks:
+        description: fireworks.ai
+        title: Fireworks.ai
+      google-gemini-audio-speech:
+        description: aistudio.google.com
+        title: Google Gemini
+      azure-ai-foundry:
+        description: Azure AI Foundry
+        title: Azure AI Foundry
+      minimax:
+        description: minimaxi.com
+        title: MiniMax
+      minimax-global:
+        description: minimax.io
+        title: MiniMax Global
+      mimo:
+        description: api.xiaomimimo.com
+        title: Xiaomi MiMo
+      mistral:
+        description: mistral.ai
+        title: Mistral
+      moonshot:
+        description: moonshot.ai
+        title: Moonshot AI
+      modelscope:
+        description: modelscope.cn
+        title: ModelScope
+      novita:
+        description: novita.ai
+        title: Novita
+      ollama:
+        description: ollama.ai
+        title: Ollama
+      openai:
+        description: openai.com
+        title: OpenAI
+      azure-openai:
+        description: Azure OpenAI API
+        title: Azure OpenAI
+      nvidia:
+        description: build.nvidia.com
+        title: NVIDIA NIM
+      openpaths:
+        description: openpaths.io
+        title: OpenPaths
+      openrouter:
+        description: openrouter.ai
+        title: OpenRouter
+      openrouter-audio-speech:
+        description: openrouter.ai
+        title: OpenRouter
+      perplexity:
+        description: perplexity.ai
+        title: Perplexity
+      player2:
+        description: player2.game
+        title: Player2
+      together:
+        description: together.ai
+        title: Together.ai
+      google-generative-ai:
+        description: gemini.google.com
+        title: Google Gemini
+      groq:
+        description: groq.com
+        title: Groq
+      featherless:
+        description: featherless.ai
+        title: Featherless AI
+      lm-studio:
+        description: lmstudio.ai
+        title: LM Studio
+      vllm:
+        description: vllm.ai
+        title: vLLM
+      byteplus:
+        description: byteplus.com
+        title: BytePlus
+      xai:
+        description: x.ai
+        title: xAI
+      zai:
+        description: z.ai
+        title: Z.ai
+      302-ai:
+        description: 302.AI
+        title: 302.AI
+      comet-api:
+        description: CometAPI.com
+        title: Comet API
+      cerebras:
+        description: cerebras.ai
+        title: Cerebras
+      aliyun-nls:
+        description: Aliyun NLS
+        title: Aliyun NLS
     title: プロバイダー
   connection:
     description: WebSocket サーバーの接続設定
@@ -1898,30 +2274,35 @@ pages:
     websocket-url:
       description: 'WebSocket サーバーの完全なアドレス (例: ws://localhost:6121/ws)'
       label: WebSocket サーバーアドレス
+      placeholder: ws://localhost:6121/ws
     server-hostname:
       label: Expose On Network
-      description: Choose whether the AIRI gateway only listens on this device or can be reached from your local network.
+      description: Choose whether the WoW コンパニオン gateway only listens on this device
+        or can be reached from your local network.
     server-auth-token:
       label: 認証トークン
       description: >-
-        Security token required by remote clients that connect to this gateway. When left empty, AIRI generates a new token automatically.
+        Security token required by remote clients that connect to this gateway.
+        When left empty, WoW コンパニオン generates a new token automatically.
       placeholder: 自動生成
     qr:
       title: Connect from Stage Pocket
       description: >-
-        Scan this QR code from Stage Pocket to try all reachable local network addresses and save the first working one.
+        Scan this QR code from Stage Pocket to try all reachable local network
+        addresses and save the first working one.
       refresh: 更新
-      image-alt: AIRI server channel connection QR code
+      image-alt: WoW コンパニオン server channel connection QR code
       candidates: 利用可能なアドレス
       token-hint: >-
-        The QR code includes the auth token so Stage Pocket can authenticate after connecting. Do not share it publicly.
+        The QR code includes the auth token so Stage Pocket can authenticate
+        after connecting. Do not share it publicly.
       errors:
         title: QR コードを生成できませんでした
         unavailable: 接続用 QR コードを準備できませんでした。
     qr-scan:
       title: クイック接続
       description: たまごっちから QR コードをスキャンしてすばやく接続します
-      instructions: カメラを AIRI 接続用 QR コードに向けてください。
+      instructions: カメラを WoW コンパニオン 接続用 QR コードに向けてください。
       action: スキャン
       success:
         title: 接続アドレスを保存しました
@@ -1947,7 +2328,19 @@ pages:
       features:
         character_card_sync:
           title: キャラクターカードのクラウド同期
-          description: ログイン中にキャラクターカードをアカウントと同期し、他のデバイスでも使えるようにします。初期設定では無効です。削除したカードはアカウントの履歴に 30 日間残ります。
+          description: ログイン中にキャラクターカードをアカウントと同期し、他のデバイスでも使えるようにします。初期設定では無効です。削除したカードはアカウントの履歴に
+            30 日間残ります。
+        display_model_sync:
+          title: モデルのクラウド同期
+          description: ログイン中に、読み込んだLive2D・VRMモデルをアカウントへアップロードし、他のデバイスでも使えるようにします。初期設定は無効です。
+        fullscreen_workspace:
+          title: 全画面ワークスペース
+          description: 画面全体のワークスペースに設定とチャットを開き、左側にキャラクターを表示します。初期設定は無効です。
+          window_mode:
+            title: ウィンドウモード
+            description: ワークスペースを開く場所を選択します。
+            single_window: 単一ウィンドウ：キャラクターの画面をワークスペースに拡張
+            multi_window: 別ウィンドウ：キャラクターをデスクトップに残す
     color-scheme:
       description: ステージの配色を変更します。
       title: 配色
@@ -2047,12 +2440,15 @@ pages:
               performance-playground:
                 title: パフォーマンスプレイグラウンド
                 description: VRM の表情と TTS リップシンクのテストエリア
+              tool-payloads-as-json:
+                title: ツールのデータをJSONで表示
+                description: チャットツールの引数と結果をJSONツリーで表示します。応答内のカードでも元データを表示できます。
         theme-presets:
           presets:
             default:
               colors:
-                color-1: AIRIグリーン
-              description: AIRIによって用意された、デフォルトの緑がかったテーマカラー！
+                color-1: WoW コンパニオングリーン
+              description: WoW コンパニオンによって用意された、デフォルトの緑がかったテーマカラー！
               title: デフォルトカラー
             morandi:
               colors:
@@ -2153,7 +2549,7 @@ sections:
 theme:
   title: テーマ
   description: |
-    AIRIの基本テーマをライトモードまたはダークモードに切り替えます。
+    WoW コンパニオンの基本テーマをライトモードまたはダークモードに切り替えます。
   auto: システム
   light: ライト
   dark: ダーク
@@ -2209,6 +2605,8 @@ spine:
   scale-and-position:
     title: 拡大縮小と位置
     scale: スケール
+    x: X
+    y: Y
   theme-color-from-model:
     title: モデルからテーマカラーを抽出
     button-extract:
@@ -2239,6 +2637,8 @@ mmd:
     title: 拡大縮小と位置
     scale: スケール
     rotation: 回転
+    x: X
+    y: Y
   theme-color-from-model:
     title: モデルからテーマカラーを抽出
     button-extract:
@@ -2263,14 +2663,16 @@ mmd:
     play-once: モーションをプレビュー
     remove: モーションを削除
     description: >-
-      VMD モーションファイルをインポートし、ループアイドルモーションとして設定するか、単発のジェスチャーとして再生できます。感情をモーションに紐付けることで、表情と一緒にジェスチャーを再生できます。
+      VMD
+      モーションファイルをインポートし、ループアイドルモーションとして設定するか、単発のジェスチャーとして再生できます。感情をモーションに紐付けることで、表情と一緒にジェスチャーを再生できます。
   morphs:
     title: モーフ (Morphs)
     auto: (自動)
     revert: 自動に戻す
     no-morphs: このモデルで利用可能なモーフはありません。
     description: >-
-      レンダラーは標準的な日本語モーフ名 (あいうえお, まばたき) を自動的に検出します。モデルが非標準的な名前を使用している場合は、ここでスロットを上書きしてください。
+      レンダラーは標準的な日本語モーフ名 (あいうえお, まばたき)
+      を自動的に検出します。モデルが非標準的な名前を使用している場合は、ここでスロットを上書きしてください。
   materials:
     title: マテリアル
     no-materials: このモデルで利用可能なマテリアルはありません。
@@ -2282,6 +2684,8 @@ tachie:
   scale-and-position:
     title: 拡大縮小と位置
     scale: スケール
+    x: X
+    y: Y
   theme-color-from-model:
     title: モデルからテーマカラーを抽出
     button-extract:
@@ -2293,7 +2697,8 @@ tachie:
 websocket-secure-enabled:
   title: セキュア WebSocket (WSS) を有効にする
   description: >-
-    開発モードでモバイル（pocket）のHTTPS接続を許可するために、WSS（WebSocket Secure）を有効にします。これにより自己署名証明書が自動的に生成されます。
+    開発モードでモバイル（pocket）のHTTPS接続を許可するために、WSS（WebSocket
+    Secure）を有効にします。これにより自己署名証明書が自動的に生成されます。
 wip:
   title: 開発中
   description: >-

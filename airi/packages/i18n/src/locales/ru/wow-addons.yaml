@@ -1,0 +1,143 @@
+title: Центр аддонов WoW
+description: Находите совместимые аддоны CurseForge и устанавливайте их для каждого клиента World of Warcraft.
+game-version: Версия игры
+games:
+  retail: Актуальная версия
+  classic: Классическая версия
+  forever: Вечная версия
+view: Список аддонов
+browse: Обзор
+installed: Установленные
+loading: Загрузка аддонов…
+retry: Повторить
+refresh: Обновить
+search-label: Поиск аддонов
+search-placeholder: Название аддона или ключевое слово
+search: Найти
+category: Категория
+sort-label: Сортировка
+sort:
+  popular: Популярные
+  updated: Недавно обновлённые
+  downloads: По числу загрузок
+current-version: 'Совместимая версия игры: {version}'
+authors: 'Авторы: {authors}'
+downloads: 'Загрузок: {count}'
+no-results: Нет совместимых аддонов с такими фильтрами.
+previous: Назад
+next: Далее
+pagination: 'Страница {page} из {pages} · Аддонов: {total}'
+installed-description: Аддоны выбранного клиента, которыми управляет Спутник WoW.
+none-installed: Спутник WoW ещё не установил аддоны для этого клиента.
+choose-update: Выбрать обновление
+close: Закрыть сведения о файле
+loading-files: Загрузка совместимых файлов…
+no-files: Нет файлов для выбранной версии игры.
+compatible-files: Совместимый файл
+file-details: Сведения о файле аддона
+required-dependencies: Идентификаторы обязательных аддонов
+no-dependencies: Нет
+dependencies-hint: Обязательные зависимости устанавливаются вместе с аддоном.
+current-file: Этот файл уже установлен.
+install: Установить
+update: Обновить
+install-success: Установка завершена. Перезапустите WoW или перезагрузите интерфейс, чтобы загрузить аддон.
+release:
+  stable: Стабильная
+  beta: Бета
+  alpha: Альфа
+setup:
+  title: Подключите CurseForge для просмотра аддонов
+  description: Добавьте ключ API CurseForge в настройках. Каталог загрузится после сохранения действующего ключа.
+  action: Настроить ключ API
+  client-title: 'Настройте клиент {game}'
+  client-description: Выберите папку клиента и совместимую версию игры в настройках аддонов.
+  configure-client: Настроить клиент
+settings:
+  title: Настройки аддонов
+  description: Перед установкой аддонов настройте ключ API CurseForge и каждый клиент WoW.
+  key-title: Доступ к CurseForge
+  key-label: Новый ключ API CurseForge
+  key-description: Оставьте поле пустым, чтобы сохранить текущий ключ. Сохранённый ключ здесь не отображается.
+  key-configured: Ключ API настроен
+  key-missing: Ключ API не настроен
+  key-instructions: Откройте официальное руководство API и перейдите к форме заявки. Укажите сведения о проекте и дождитесь письма Overwolf. Затем вставьте одобренный ключ API сюда.
+  key-link: Руководство по получению ключа API
+  save-key-first: Сначала сохраните ключ API. Затем выберите совместимую версию игры для каждого клиента.
+  directory: Папка клиента WoW
+  directory-description: Выберите папку с исполняемым файлом WoW. Аддоны устанавливаются в её подпапку Interface/AddOns.
+  browse: Обзор
+  browse-game: 'Выбрать папку {game}'
+  version-type: Совместимая версия игры
+  choose-version: Выберите версию игры из API
+  no-version-types: CurseForge не вернул поддерживаемые версии игры для этого издания.
+  retry-metadata: Перезагрузить версии игры
+  install-target: Папка установки аддонов
+  reload-hint: Перед установкой закройте WoW. После установки перезапустите WoW или перезагрузите интерфейс.
+  save: Сохранить настройки
+  cancel: Отмена
+  back: Назад в центр аддонов
+  saved: Настройки сохранены.
+categories:
+  all: Все категории
+  combat: Бой
+  bags-inventory: Сумки и инвентарь
+  bags: Сумки
+  inventory: Инвентарь
+  classes: Классы
+  class: Классы
+  action-bars: Панели команд
+  artwork: Оформление
+  auction-economy: Аукцион и экономика
+  auction: Аукцион
+  buffs-debuffs: Положительные и отрицательные эффекты
+  chat-communication: Чат и общение
+  damage-dealer: Нанесение урона
+  guild: Гильдия
+  libraries: Библиотеки
+  map-minimap: Карта и мини-карта
+  map: Карта
+  miscellaneous: Разное
+  professions: Профессии
+  quests-leveling: Задания и развитие
+  quests: Задания
+  raid-boss-encounters: Рейды и боссы
+  tooltip: Подсказки
+  unit-frames: Рамки персонажей
+  pvp: Бой между игроками
+errors:
+  unknown: Запрос не выполнен. Повторите попытку.
+  curseforge-api-key-required: Добавьте ключ API CurseForge в настройках аддонов.
+  curseforge-unauthorized: CurseForge отклонил ключ API. Проверьте ключ в настройках аддонов.
+  curseforge-rate-limited: CurseForge ограничил число запросов. Подождите и повторите попытку.
+  curseforge-timeout: CurseForge не ответил вовремя. Повторите попытку.
+  curseforge-invalid-response: CurseForge вернул недопустимый ответ. Повторите попытку.
+  curseforge-response-too-large: Ответ CurseForge превышает допустимый размер.
+  curseforge-request-failed: Запрос CurseForge не выполнен. Проверьте соединение и повторите попытку.
+  curseforge-invalid-request: Недопустимый запрос. Проверьте выбранную версию игры и повторите попытку.
+  curseforge-too-many-files: У аддона слишком много файлов для безопасной загрузки. Выберите другой аддон.
+  curseforge-too-many-redirects: Слишком много перенаправлений при загрузке. Повторите попытку позже.
+  curseforge-not-found: CurseForge не нашёл аддон или файл. Обновите список аддонов.
+  curseforge-disposed: Служба аддонов остановлена. Снова откройте центр аддонов и повторите попытку.
+  curseforge-incompatible-version: Файл аддона несовместим с выбранной версией игры.
+  curseforge-distribution-disabled: Автор запретил установку аддона через сторонние программы.
+  curseforge-download-unavailable: В CurseForge нет загрузки для этого файла аддона.
+  curseforge-unsafe-download-url: Адрес загрузки не прошёл проверку.
+  curseforge-download-integrity: Файл аддона не прошёл проверку целостности. Повторите попытку.
+  wow-addons-settings-invalid: Проверьте настройки аддонов и повторите попытку.
+  wow-addons-directory-required: Укажите папку клиента WoW в настройках аддонов.
+  wow-addons-version-required: Выберите совместимую версию игры в настройках аддонов.
+  wow-addons-busy: Выполняется другая операция с аддоном. Дождитесь её завершения.
+  wow-addons-key-storage-unavailable: Защищённое хранилище ключей недоступно. Перезапустите Спутник WoW и повторите попытку.
+  wow-addons-key-unreadable: Спутник WoW не может прочитать сохранённый ключ API. Сохраните ключ снова.
+  wow-addons-required-dependency: Не удалось установить обязательную зависимость аддона. Повторите попытку.
+  wow-addons-unmanaged-conflict: Папка стороннего аддона уже существует. Переместите её перед установкой.
+  wow-addons-folder-conflict: Папка аддона конфликтует с другим аддоном. Переместите её перед установкой.
+  wow-addons-unsafe-archive: Архив аддона содержит небезопасные пути. Установка невозможна.
+  wow-addons-install-failed: Установка не выполнена. Проверьте папку клиента и повторите попытку.
+  wow-addons-invalid-directory: Папка клиента недопустима или недоступна. Проверьте путь в настройках аддонов.
+  wow-addons-invalid-archive: Архив аддона повреждён или небезопасен. Установка невозможна.
+  wow-addons-directory-conflict: Существующая папка аддона мешает установке. Переместите её и повторите попытку.
+  wow-addons-request-failed: Операция с аддоном не выполнена. Проверьте папку клиента и повторите попытку.
+  wow-addons-dependency-limit: У аддона слишком много вложенных зависимостей для безопасной установки.
+  wow-addons-stopped: Операция с аддоном остановлена. Снова откройте центр аддонов и повторите попытку.

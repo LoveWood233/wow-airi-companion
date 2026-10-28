@@ -1,0 +1,143 @@
+title: Centre des extensions WoW
+description: Trouvez des extensions CurseForge compatibles et installez-les dans chaque client World of Warcraft.
+game-version: Édition du jeu
+games:
+  retail: Version actuelle
+  classic: Classic
+  forever: Forever
+view: Vue des extensions
+browse: Découvrir
+installed: Installées
+loading: Chargement des extensions…
+retry: Réessayer
+refresh: Actualiser
+search-label: Rechercher des extensions
+search-placeholder: Nom ou mot-clé de l’extension
+search: Rechercher
+category: Catégorie
+sort-label: Trier par
+sort:
+  popular: Popularité
+  updated: Mises à jour récentes
+  downloads: Nombre de téléchargements
+current-version: 'Version du jeu compatible : {version}'
+authors: 'Par {authors}'
+downloads: '{count} téléchargements'
+no-results: Aucune extension compatible ne correspond à ces filtres.
+previous: Précédent
+next: Suivant
+pagination: 'Page {page} sur {pages} · {total} extensions'
+installed-description: Cette liste contient les extensions gérées par Compagnon WoW pour le client sélectionné.
+none-installed: Compagnon WoW n’a installé aucune extension pour ce client.
+choose-update: Choisir une mise à jour
+close: Fermer les détails du fichier
+loading-files: Chargement des fichiers compatibles…
+no-files: Aucun fichier ne correspond à la version du jeu configurée.
+compatible-files: Fichier compatible
+file-details: Détails du fichier de l’extension
+required-dependencies: Identifiants des extensions requises
+no-dependencies: Aucune
+dependencies-hint: Les dépendances requises sont installées avec cette extension.
+current-file: Ce fichier est déjà installé.
+install: Installer
+update: Mettre à jour
+install-success: Installation terminée. Redémarrez WoW ou rechargez l’interface pour charger l’extension.
+release:
+  stable: Stable
+  beta: Bêta
+  alpha: Alpha
+setup:
+  title: Connecter CurseForge pour parcourir les extensions
+  description: Ajoutez votre clé API CurseForge dans les paramètres. Le catalogue se charge après l’enregistrement d’une clé valide.
+  action: Configurer la clé API
+  client-title: 'Configurez votre client {game}'
+  client-description: Sélectionnez le dossier du client et une version du jeu compatible dans les paramètres des extensions.
+  configure-client: Configurer le client
+settings:
+  title: Paramètres des extensions
+  description: Configurez votre clé API CurseForge et chaque client WoW avant d’installer des extensions.
+  key-title: Accès à CurseForge
+  key-label: Nouvelle clé API CurseForge
+  key-description: Laissez ce champ vide pour conserver la clé enregistrée. Celle-ci n’apparaît jamais dans ce formulaire.
+  key-configured: Clé API configurée
+  key-missing: Clé API non configurée
+  key-instructions: Ouvrez le guide officiel de l’API et suivez le lien vers le formulaire. Renseignez votre projet et attendez le courriel d’Overwolf. Copiez ensuite votre clé approuvée ici.
+  key-link: Lire le guide de demande de clé API
+  save-key-first: Enregistrez d’abord votre clé API. Sélectionnez ensuite la version du jeu compatible avec chaque client.
+  directory: Dossier du client WoW
+  directory-description: Sélectionnez le dossier contenant l’exécutable WoW. Les extensions s’installent dans son sous-dossier Interface/AddOns.
+  browse: Parcourir
+  browse-game: 'Parcourir le dossier de {game}'
+  version-type: Version du jeu compatible
+  choose-version: Sélectionner une version du jeu fournie par l’API
+  no-version-types: CurseForge n’a renvoyé aucune version prise en charge pour cette édition.
+  retry-metadata: Recharger les versions du jeu
+  install-target: Les extensions s’installent dans
+  reload-hint: Fermez WoW avant l’installation. Ensuite, redémarrez WoW ou rechargez l’interface.
+  save: Enregistrer les paramètres
+  cancel: Annuler
+  back: Revenir au centre des extensions
+  saved: Paramètres enregistrés.
+categories:
+  all: Toutes les catégories
+  combat: Combat
+  bags-inventory: Sacs et inventaire
+  bags: Sacs
+  inventory: Inventaire
+  classes: Classes
+  class: Classes
+  action-bars: Barres d’action
+  artwork: Graphismes
+  auction-economy: Enchères et économie
+  auction: Enchères
+  buffs-debuffs: Améliorations et affaiblissements
+  chat-communication: Discussion et communication
+  damage-dealer: Dégâts
+  guild: Guilde
+  libraries: Bibliothèques
+  map-minimap: Carte et minicarte
+  map: Carte
+  miscellaneous: Divers
+  professions: Métiers
+  quests-leveling: Quêtes et progression
+  quests: Quêtes
+  raid-boss-encounters: Raids et boss
+  tooltip: Infobulles
+  unit-frames: Cadres d’unités
+  pvp: JcJ
+errors:
+  unknown: La requête a échoué. Réessayez.
+  curseforge-api-key-required: Ajoutez une clé API CurseForge dans les paramètres des extensions.
+  curseforge-unauthorized: CurseForge a refusé la clé API. Vérifiez-la dans les paramètres des extensions.
+  curseforge-rate-limited: CurseForge limite les requêtes. Attendez, puis réessayez.
+  curseforge-timeout: CurseForge n’a pas répondu à temps. Réessayez.
+  curseforge-invalid-response: CurseForge a renvoyé une réponse invalide. Réessayez.
+  curseforge-response-too-large: La réponse de CurseForge dépasse la taille prise en charge.
+  curseforge-request-failed: La requête CurseForge a échoué. Vérifiez votre connexion, puis réessayez.
+  curseforge-invalid-request: La requête est invalide. Vérifiez la version du jeu configurée, puis réessayez.
+  curseforge-too-many-files: Cette extension contient trop de fichiers pour être chargée en toute sécurité. Sélectionnez une autre extension.
+  curseforge-too-many-redirects: Le téléchargement comporte trop de redirections. Réessayez plus tard.
+  curseforge-not-found: CurseForge ne trouve pas cette extension ou ce fichier. Actualisez la liste des extensions.
+  curseforge-disposed: Le service des extensions s’est arrêté. Rouvrez le centre des extensions, puis réessayez.
+  curseforge-incompatible-version: Ce fichier ne correspond pas à la version du jeu configurée.
+  curseforge-distribution-disabled: L’auteur n’autorise pas l’installation de cette extension par des outils tiers.
+  curseforge-download-unavailable: CurseForge ne propose aucun téléchargement pour ce fichier d’extension.
+  curseforge-unsafe-download-url: L’adresse de téléchargement n’a pas passé la validation.
+  curseforge-download-integrity: La vérification d’intégrité du téléchargement a échoué. Réessayez.
+  wow-addons-settings-invalid: Vérifiez les paramètres des extensions, puis réessayez.
+  wow-addons-directory-required: Définissez le dossier du client WoW dans les paramètres des extensions.
+  wow-addons-version-required: Sélectionnez une version du jeu compatible dans les paramètres des extensions.
+  wow-addons-busy: Une autre opération sur les extensions est en cours. Attendez sa fin.
+  wow-addons-key-storage-unavailable: Le stockage sécurisé des clés est indisponible. Redémarrez Compagnon WoW, puis réessayez.
+  wow-addons-key-unreadable: Compagnon WoW ne peut pas lire la clé API enregistrée. Enregistrez-la à nouveau.
+  wow-addons-required-dependency: Une dépendance requise n’a pas pu être installée. Réessayez.
+  wow-addons-unmanaged-conflict: Un dossier d’extension non géré existe déjà. Déplacez-le avant d’installer cette extension.
+  wow-addons-folder-conflict: Un dossier entre en conflit avec une autre extension. Déplacez-le avant l’installation.
+  wow-addons-unsafe-archive: L’archive contient des chemins dangereux et ne peut pas être installée.
+  wow-addons-install-failed: L’installation a échoué. Vérifiez le dossier du client, puis réessayez.
+  wow-addons-invalid-directory: Le dossier du client est invalide ou indisponible. Vérifiez son chemin dans les paramètres des extensions.
+  wow-addons-invalid-archive: L’archive est invalide ou dangereuse et ne peut pas être installée.
+  wow-addons-directory-conflict: Un dossier d’extension existant entre en conflit avec cette installation. Déplacez-le avant de réessayer.
+  wow-addons-request-failed: L’opération sur l’extension a échoué. Vérifiez le dossier du client, puis réessayez.
+  wow-addons-dependency-limit: L’extension nécessite trop de dépendances imbriquées pour être installée en toute sécurité.
+  wow-addons-stopped: L’opération sur l’extension s’est arrêtée. Rouvrez le centre des extensions, puis réessayez.

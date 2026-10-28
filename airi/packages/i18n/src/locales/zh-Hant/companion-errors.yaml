@@ -1,0 +1,30 @@
+bridge-local-address: 魔獸橋接服務必須使用本機 HTTP 位址。
+bridge-stopped: 魔獸橋接服務已停止。
+bridge-cancelled: 已取消啟動魔獸橋接服務。
+bridge-retry: 魔獸陪伴精靈將在 30 秒後重試。{detail}
+bridge-windows: 自動畫面擷取需要 Windows。本機橋接服務無法在此系統上啟動。
+bridge-exited: 魔獸橋接服務已結束。
+bridge-start-failed: 無法啟動魔獸橋接服務。請檢查橋接檔案和擷取設定。{detail}
+bridge-start-exited: 魔獸橋接服務在啟動時結束。請檢查連接埠是否被占用。
+bridge-timeout: 魔獸橋接服務未能在 10 秒內就緒。請檢查 Python 和本機擷取設定。
+bridge-port-unavailable: 本機魔獸橋接連接埠沒有回應。重試前請檢查連接埠 {port}。
+bridge-port-incompatible: 連接埠 {port} 被不相容的服務占用。請關閉該服務或更新魔獸橋接服務。
+bridge-profile-incompatible: 連接埠 {port} 被不相容的服務占用。請為 {game} 設定使用 2.11 或更新版本的魔獸橋接服務。
+bridge-files-missing: 缺少魔獸橋接檔案。請將 WOWAddons 還原到魔獸陪伴精靈原始碼旁邊，或重新安裝桌面軟體套件。
+bridge-python-missing: 找不到 Python 3.10 或更新版本。請安裝 Python 並啟用 PATH，然後重新啟動魔獸陪伴精靈。
+bridge-unavailable: 魔獸橋接服務無法使用。
+bridge-http: 魔獸橋接服務傳回 HTTP {status}。
+bridge-response-profile: 魔獸橋接回應與 {game} 設定不符。
+connection-disabled: 請先啟用此遊戲的陪伴連線，再傳送擷取或示範命令。
+connection-changed: 命令完成前，陪伴連線已變更。
+gold-account-unknown: 找不到本機金幣帳戶。
+gold-read: 無法載入金幣帳本（{path}）。請還原檔案並重新啟動魔獸陪伴精靈。{detail}
+gold-write: 無法儲存金幣帳本（{path}）。變更僅保留在記憶體中，魔獸陪伴精靈將會重試。{detail}
+levels-read: 無法載入等級歷史（{path}）。請還原檔案並重新啟動魔獸陪伴精靈。{detail}
+levels-write: 無法儲存等級歷史（{path}）。變更僅保留在記憶體中，魔獸陪伴精靈將會重試。{detail}
+equipment-read: 無法載入裝備取得歷史（{path}）。請還原檔案並重新啟動魔獸陪伴精靈。{detail}
+equipment-write: 無法儲存裝備取得歷史（{path}）。變更僅保留在記憶體中，魔獸陪伴精靈將會重試。{detail}
+comparisons-read: 無法載入裝備比較紀錄（{path}）。請還原檔案並重新啟動魔獸陪伴精靈。{detail}
+comparisons-write: 無法儲存裝備比較紀錄（{path}）。變更僅保留在記憶體中，魔獸陪伴精靈將會重試。{detail}
+loadouts-read: 無法載入已裝備快照（{path}）。請還原檔案並重新啟動魔獸陪伴精靈。{detail}
+loadouts-write: 無法儲存已裝備快照（{path}）。變更僅保留在記憶體中，魔獸陪伴精靈將會重試。{detail}

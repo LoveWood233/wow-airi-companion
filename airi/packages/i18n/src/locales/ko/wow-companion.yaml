@@ -1,0 +1,449 @@
+title: 와우 동반자
+description: 아제로스에서 함께하세요. 캐릭터 상태를 읽고 중요한 순간에 반응합니다.
+product:
+  about-title: 와우 동반자 정보
+  description: 월드 오브 워크래프트 동반자, 음성 대화 및 애드온 관리.
+  version: 버전
+  project: 프로젝트
+  third-party: 타사 라이선스
+  license-note: 이 소프트웨어는 오픈 소스 구성 요소를 사용합니다. 저작권 고지와 라이선스는 소스 및 배포 파일에 포함되어 있습니다.
+  local-provider-note: 설정에서 대화 및 음성 서비스를 구성하세요. 애플리케이션 계정은 필요하지 않습니다.
+connection: 게임 연결
+last-seen: 마지막 관측
+demo-warning: 모의 데이터입니다. 실제 캐릭터의 상태가 아닙니다.
+model-required: 캐릭터 응답을 사용하려면 와우 동반자에서 대화 제공자와 모델을 선택하세요. 음성은 기존 설정을 사용합니다.
+start-bridge: 연결을 활성화하면 와우 동반자가 로컬 브리지를 시작합니다. 애드온 격자를 화면에 표시하세요. Windows에서는 Python 3.10 이상이 필요합니다.
+player: 캐릭터
+level: 레벨
+zone-label: 위치
+class-spec: 직업 / 전문화 ID
+faction: 진영
+race: 종족
+identity-unknown: 알 수 없음
+factions:
+  Alliance: 얼라이언스
+  Horde: 호드
+  Neutral: 중립
+activity: 활동 상태
+freshness: 관측 상태
+dead: 사망
+combat: 전투 중
+exploring: 탐험 중
+current: 현재 상태
+historical: 마지막으로 확인한 상태
+no-character: 아직 캐릭터를 관측하지 못했습니다. 브리지와 캡처 좌표를 확인하세요.
+preferences: 동반자 환경 설정
+preferences-description: 이 페이지를 닫아도 연결은 유지됩니다. 기본 캐릭터 창에서만 응답을 생성합니다.
+options:
+  enabled: 동반자 활성화
+  muted: 게임 반응 음소거
+  quietInCombat: 전투 중 방해 금지
+  levelUp: 레벨 업 축하
+  zone: 새로운 지역에 반응
+  death: 사망에 반응
+  revive: 부활 환영
+  allowDemo: 데모 이벤트에 캐릭터 응답 허용
+hints:
+  enabled: 캐릭터가 현재 게임 상태를 참조할 수 있도록 합니다.
+  muted: 자발적인 게임 응답 없이 대화 맥락을 계속 갱신합니다.
+  quietInCombat: 중요한 이벤트 하나를 전투가 끝날 때까지 보관합니다. 30초가 지나면 버립니다.
+  levelUp: 같은 캐릭터 세션에서 레벨이 높아졌는지 감지합니다.
+  zone: 대기 시간을 지키면서 새로운 지도나 지역에 반응합니다.
+  death: 선택한 캐릭터의 말투로 짧게 반응합니다. 적절한 경우 진영이나 종족에 대한 농담을 곁들입니다.
+  revive: 캐릭터가 되살아나면 반응합니다.
+  allowDemo: 기본적으로 꺼져 있습니다. 테스트 응답은 설정된 모델과 음성을 사용합니다.
+cooldown: 반응 사이의 최소 간격(초)
+cooldown-description: 0~300초. 대기 중에는 최근 이벤트 하나만 보관합니다.
+capture: 화면 보정
+capture-description: 기본 격자는 셀당 물리 픽셀 하나를 사용하며 크기는 64 × 64픽셀입니다. 이 흑백 형식의 최소 크기입니다. 좌표는 바탕 화면의 물리 픽셀입니다.
+capture-x: 격자 왼쪽(X)
+capture-y: 격자 위쪽(Y)
+cell-size: 셀 크기(픽셀)
+poll-ms: 캡처 간격(밀리초)
+pause-capture: 캡처 일시 중지
+capture-help: /wowc compact로 64 × 64 격자를 표시하고 /wowc status로 시작 좌표를 확인하세요. 격자를 가리지 마세요. 한 픽셀 셀이 흐리면 /wowc cell 2를 실행하고 여기서 셀 크기를 2로 설정하세요.
+save-preferences: 환경 설정 저장
+save-capture: 보정 적용
+saved: 저장했습니다.
+failed: 작업에 실패했습니다.
+demo: 연결 테스트
+demo-description: 게임에 로그인하지 않고 테스트합니다. 위에서 명시적으로 허용하기 전까지 데모 이벤트는 캐릭터 맥락에 포함되지 않습니다.
+demo-label: 데모
+start-demo: 데모 시작
+stop-demo: 실시간 캡처로 돌아가기
+actions:
+  level_up: 레벨 업 시뮬레이션
+  zone: 지역 변경
+  death: 사망 시뮬레이션
+  revive: 부활 시뮬레이션
+  combat: 전투 상태 전환
+events: 최근 게임 이벤트
+events-description: 관측 기록이며 응답 전달 확인은 아닙니다. 음소거되거나 필터링된 이벤트도 여기에 표시됩니다.
+no-events: 아직 이벤트가 없습니다.
+gold:
+  title: 골드 장부
+  description: 애드온의 로컬 계정별로 자금 이동을 기록합니다. 게임 연결에 따라 합계가 갱신되고 이 컴퓨터에 저장됩니다.
+  current-balance: 현재 캐릭터 소지금
+  current-unavailable: 현재 소지금을 확인할 수 없습니다. 실제 캐릭터를 접속한 상태로 유지하고 실시간 캡처를 사용하세요.
+  empty: 아직 실제 자금 관측이 없습니다. 업데이트된 애드온과 브리지를 설치한 뒤 각 캐릭터로 로그인하세요.
+  storage-error: 장부를 불러오거나 저장하지 못했습니다. 디스크의 합계가 확인되지 않았습니다. 저장 오류와 여유 공간을 확인하세요.
+  unnamed-account: 애드온 로컬 계정
+  account-id: 계정 ID
+  account-name: 계정 이름표
+  account-name-placeholder: 예：주 계정
+  account-name-help: 최대 64자입니다. 비워 두면 이름표를 삭제합니다.
+  save-name: 이름표 저장
+  character-count: '기록된 캐릭터: {count}'
+  since: 데스크톱 추적 시작
+  earned: 총 유입
+  spent: 총 유출
+  net: 순변동
+  balance: 기록된 캐릭터 잔액
+  character: 캐릭터
+  realm: 서버
+  character-balance: 마지막 잔액
+  last-seen: 마지막 관측
+  characters-description: 이 계정에서 마지막으로 확인한 잔액과 기록된 자금 이동입니다.
+  identity-note: 애드온에 저장된 로컬 ID로 계정을 구분합니다. 와우 동반자는 로그인 계정을 읽지 않습니다. ID마다 이름표를 지정하세요.
+  flow-note: 초기 잔액은 유입에 포함하지 않습니다. 우편, 거래, 은행 입출금 및 캐릭터 간 송금은 자금 이동으로 기록합니다.
+  balance-note: 관측된 캐릭터의 마지막 잔액만 포함하며 모두 현재 금액인 것은 아닙니다. 전투부대 은행 잔액은 제외됩니다.
+  demo-note: 데모 데이터는 장부에 포함하지 않습니다. 자금 변경은 대화 맥락만 갱신하며 자발적인 음성 응답을 만들지 않습니다.
+  money: '{sign}{gold}골드 {silver}실버 {copper}코퍼'
+status:
+  disabled: 동반자 꺼짐
+  disconnected: 브리지 사용 불가
+  waiting: 게임 대기 중
+  live: 캐릭터 실시간 관측
+  stale: 캡처 데이터가 오래됨
+  demo: 데모 데이터
+  paused: 캡처 일시 중지됨
+versions:
+  label: 월드 오브 워크래프트 버전
+  isolation: 버전마다 설정, 보정, 이벤트, 골드 기록, 장비 및 레벨 기록이 분리됩니다. 페이지를 전환하면 저장하지 않은 변경 사항을 버립니다.
+  retail:
+    name: 월드 오브 워크래프트 본 서버
+    description: 본 서버의 동반자 설정과 골드 기록입니다.
+    capture-help: /wowc compact로 64 × 64 격자를 표시하고 /wowc status로 시작 좌표를 확인하세요. 창 테두리와 다른 모니터는 좌표에 영향을 줍니다. 격자를 가리지 마세요. 흐리면 /wowc cell 2를 실행하고 셀 크기를 2로 설정하세요.
+  forever:
+    name: '월드 오브 워크래프트: Forever'
+    description: Forever 전용 동반자 설정과 골드 기록입니다.
+    preview: 클라이언트 출시 전에 준비된 버전입니다. 실제 호환성은 출시 후 확인해야 합니다. 연결은 기본적으로 꺼져 있습니다.
+    capture-help: Forever 애드온을 설치한 뒤 /wowf compact로 64 × 64 격자를 표시하세요. /wowf status로 시작 좌표를 확인하세요. 격자를 가리지 마세요. 흐리면 /wowf cell 2를 실행하고 셀 크기를 2로 설정하세요.
+level-history:
+  title: 캐릭터 레벨 기록
+  description: 와우 동반자는 캐릭터별 레벨 관측을 이 컴퓨터에 저장합니다. 경과 시간은 실제 시계를 사용하며 오프라인 시간도 포함합니다.
+  empty: 아직 레벨 기록이 없습니다. 실제 캐릭터를 연결하면 현재 레벨부터 기록을 시작합니다.
+  storage-error: 레벨 기록을 불러오거나 저장하지 못했습니다. 디스크 저장이 확인되지 않았습니다. 오류와 여유 공간을 확인하세요.
+  current-character: 현재 캐릭터
+  account: 로컬 계정 ID
+  current-level: '마지막 관측 레벨: {level}'
+  first-seen: 첫 기록
+  complete-count: 완전히 측정된 단일 레벨 구간
+  average: 완전한 구간의 평균
+  show-records: 레벨 기록 표시
+  hide-records: 레벨 기록 숨기기
+  table-description: 저장된 모든 레벨 변경을 최신순으로 표시합니다. 시각은 이 컴퓨터의 현지 시간대를 사용합니다.
+  level-change: 레벨 변경
+  recorded-at: 기록 시각
+  duration: 해당 레벨 소요 시간
+  source-title: 관측 내용
+  unknown-duration: 알 수 없음
+  partial: 이전 레벨을 처음 관측한 이후의 시간입니다. 해당 레벨의 전체 소요 시간이 아닙니다.
+  offline-note: 오프라인, 다른 캐릭터 플레이, 와우 동반자를 종료한 시간도 포함합니다. 다시 시작해도 기록은 유지됩니다.
+  observation-note: 와우 동반자는 놓친 레벨 업 시각을 복원할 수 없습니다. 첫 관측이나 공백 후 발견한 변경으로 정확한 시각을 알 수는 없습니다.
+  average-note: 완전히 측정된 단일 레벨 구간만 평균에 사용합니다. 부분 구간, 놓친 변경, 레벨 하락 및 시계 변경은 제외합니다.
+  duration-days: '{days}일 {hours}시간 {minutes}분 {seconds}초'
+  duration-hours: '{hours}시간 {minutes}분 {seconds}초'
+  duration-minutes: '{minutes}분 {seconds}초'
+  duration-seconds: '{seconds}초'
+  source:
+    baseline: 첫 관측입니다. 이전 레벨 업 시각은 알 수 없습니다.
+    live: 실시간 캡처 중 레벨 업을 관측했습니다.
+    gap: 공백 후 또는 여러 레벨의 변경을 발견했습니다. 각 레벨 업 시각은 알 수 없습니다.
+    decrease: 레벨 하락을 관측했습니다. 레벨 업 구간을 적용하지 않습니다.
+    clock-change: 컴퓨터 시계가 변경되어 이 구간을 측정할 수 없습니다.
+equipment:
+  title: 장비 획득 기록
+  description: 와우 동반자는 이 게임 버전의 최근 기록 10개를 이 컴퓨터에 저장합니다. 10개가 되면 새 기록마다 가장 오래된 기록을 삭제합니다.
+  empty: 아직 장비 기록이 없습니다. 가방에 이미 있던 아이템은 새 획득으로 기록하지 않습니다.
+  bridge-update: 이 브리지는 캐릭터 데이터만 제공합니다. 이전 독립 브리지를 중지하고 와우 동반자를 다시 시작하여 업데이트된 브리지로 장비를 읽으세요.
+  capture-note: 빠른 장비 질문에는 100ms 캡처 간격을 사용하세요. 간격이 길면 장비 데이터 조각을 반복해서 놓칠 수 있습니다.
+  historical: 과거 기록
+  character: 캐릭터
+  realm: 서버
+  received: 와우 동반자 수신 시각
+  storage-error: 장비 기록을 불러오거나 저장하지 못했습니다. 디스크 저장이 확인되지 않았습니다. 오류와 여유 공간을 확인하세요.
+  unnamed: '아이템 {id}'
+  unavailable: 사용 불가
+  item-level: 아이템 레벨
+  observed: 관측 시각
+  completeness: 데이터 수집 상태
+  infoComplete: 아이템 상세 정보
+  statsComplete: 수치 능력치
+  tooltipComplete: 툴팁
+  complete: 읽음
+  incomplete: 불완전
+  truncated: 일부 텍스트가 줄어듦
+  show-details: 장비 상세 정보 표시
+  hide-details: 장비 상세 정보 숨기기
+  quality: 품질
+  required-level: 필요 레벨
+  slot: 장비 칸
+  attributes: 수치 능력치
+  no-stats: 게임이 이 아이템의 수치 능력치를 반환하지 않았습니다.
+  tooltip: 효과, 보너스 및 세트 설명
+  effect-note: 툴팁은 아이템 설명입니다. 세트 보너스나 효과가 현재 활성화되어 있다는 증거는 아닙니다.
+  item-link: 아이템 링크
+  session-note: 재시작, 캐릭터 변경, 캡처 초기화 및 데모 전환 후에도 기록은 유지됩니다. 가방 추가에는 구매, 우편 및 은행 인출도 포함됩니다.
+  history-note: 기록은 현재 장비를 나타내지 않으며 실시간 대화 맥락에 사용되지 않습니다. 장비 질문은 현재 실시간 세션의 유효한 제안을 사용합니다.
+  read-error: 일부 장비 데이터를 사용할 수 없습니다.
+  qualities:
+    '0': 하급
+    '1': 일반
+    '2': 고급
+    '3': 희귀
+    '4': 영웅
+    '5': 전설
+    '6': 유물
+    '7': 계승품
+    '8': 와우 토큰
+  stats:
+    ITEM_MOD_STRENGTH_SHORT: 힘
+    ITEM_MOD_AGILITY_SHORT: 민첩성
+    ITEM_MOD_INTELLECT_SHORT: 지능
+    ITEM_MOD_STAMINA_SHORT: 체력
+    ITEM_MOD_SPIRIT_SHORT: 정신력
+    ITEM_MOD_CRIT_RATING_SHORT: 치명타 및 극대화
+    ITEM_MOD_HASTE_RATING_SHORT: 가속
+    ITEM_MOD_MASTERY_RATING_SHORT: 특화
+    ITEM_MOD_VERSATILITY: 유연성
+    ITEM_MOD_VERSATILITY_SHORT: 유연성
+    ITEM_MOD_ARMOR_SHORT: 방어도
+    RESISTANCE0_NAME: 방어도
+    ITEM_MOD_ATTACK_POWER_SHORT: 전투력
+    ITEM_MOD_SPELL_POWER_SHORT: 주문력
+    ITEM_MOD_DAMAGE_PER_SECOND_SHORT: 초당 공격력
+    ITEM_MOD_CR_AVOIDANCE_SHORT: 광역회피
+    ITEM_MOD_CR_LIFESTEAL_SHORT: 생기흡수
+    ITEM_MOD_CR_SPEED_SHORT: 이동 속도
+    ITEM_MOD_LIFESTEAL_SHORT: 생기흡수
+    ITEM_MOD_AVOIDANCE_SHORT: 광역회피
+    ITEM_MOD_SPEED_SHORT: 이동 속도
+    ITEM_MOD_DODGE_RATING_SHORT: 회피
+    ITEM_MOD_PARRY_RATING_SHORT: 무기 막기
+    ITEM_MOD_BLOCK_RATING_SHORT: 방패 막기
+    ITEM_MOD_DEFENSE_SKILL_RATING_SHORT: 방어 숙련
+    ITEM_MOD_HIT_RATING_SHORT: 적중
+    ITEM_MOD_EXPERTISE_RATING_SHORT: 숙련
+equipment-swaps:
+  title: 장비 교체 결과
+  description: 명확한 개선, 빈 장비 칸, 아이템 레벨과 주 능력치가 높아지는 경우 교체를 제안합니다. 보조 능력치 손실도 표시합니다. 교체마다 확인이 필요합니다.
+  confirmation: 게임 안에서 확인하세요. 와우 동반자에서 예를 선택하면 다음 단계를 표시합니다. 장비를 바꾸거나 게임에 입력을 보내지 않습니다.
+  empty: 이 캐릭터 세션에는 장비 교체 확인 결과가 없습니다.
+  bridge-update: 이 브리지는 장비 교체 결과를 제공하지 않습니다. 애드온과 브리지를 업데이트한 뒤 와우 동반자를 다시 시작하세요.
+  read-error: 일부 장비 교체 결과를 사용할 수 없습니다.
+  historical: 마지막으로 확인한 결과입니다. 연결이나 결과 데이터를 사용할 수 없는 동안 와우 동반자는 이를 실시간 맥락에 사용하지 않습니다.
+  observed: 결과 시각
+  previous: 이전 아이템
+  empty-slot: 빈 칸
+  expired-reason: 질문이 만료되었습니다. 애드온이 교체를 실행하지 않았습니다.
+  scope-note: 과거 작업 기록이며 현재 장비를 나타내지 않습니다. 아이템 레벨이 높다고 능력치나 세트 효과가 좋아지는 것은 아닙니다.
+  status:
+    equipped: 교체 확인됨
+    declined: 거절됨
+    failed: 확인되지 않음
+    expired: 질문 만료됨
+  reason:
+    confirmed: 게임에서 승인한 뒤 애드온이 장비 교체를 확인했습니다.
+    user: 게임에서 교체를 거절했습니다.
+    timeout: 애드온이 결과를 확인하지 못했습니다. 게임에서 장비를 확인하세요.
+    combat: 전투로 요청이 중단되었습니다. 전투가 끝난 뒤 새 요청을 확인하세요.
+    changed: 아이템이나 대상 칸이 변경되어 요청을 중지했습니다.
+    unavailable: 필요한 아이템 정보나 게임 기능을 사용할 수 없었습니다.
+    locked: 아이템이 잠겨 있어 요청을 중지했습니다.
+    cursor: 커서에 아이템이 있어 요청을 중지했습니다.
+    dead: 캐릭터가 사망하여 요청을 중지했습니다.
+    restricted: 게임에서 동작을 제한하여 요청을 중지했습니다.
+    disabled: 장비 교체 확인이 비활성화되어 요청을 중지했습니다.
+    left_world: 캐릭터가 세계를 떠나 요청을 중지했습니다.
+  slots:
+    '1': 머리
+    '2': 목
+    '3': 어깨
+    '4': 속옷
+    '5': 가슴
+    '6': 허리
+    '7': 다리
+    '8': 발
+    '9': 손목
+    '10': 손
+    '11': 손가락 1
+    '12': 손가락 2
+    '13': 장신구 1
+    '14': 장신구 2
+    '15': 등
+    '16': 주 장비
+    '17': 보조 장비
+    '18': 원거리
+    '19': 휘장
+equipment-prompt:
+  message: '새 장비 {name} 획득을 축하해요! 더 강해질 기회네요. {reason} 장비를 교체할까요?'
+  message-player: '{player}, 새 장비 {name} 획득을 축하해요! 더 강해질 기회네요. {reason} 장비를 교체할까요?'
+  message-player-tradeoff: '{player}, 새 장비 {name} 획득을 축하해요! 주 능력치를 높일 수 있어요. {reason} 장비를 교체할까요?'
+  reason:
+    stats: '비교 결과 기록된 능력치가 명확히 좋아집니다(아이템 레벨 {oldLevel} → {newLevel}).'
+    empty: 대상 장비 칸이 비어 있습니다.
+    tradeoff: '아이템 레벨 {oldLevel} → {newLevel}, {primary} {oldPrimary} → {newPrimary}, 단 {decreases}. 능력치에 장단점이 있어 전체 이득은 보장되지 않습니다.'
+    separator: ', '
+  accepted: 게임에서 '교체 확인'을 클릭하세요. 와우 동반자는 게임에 입력을 보내지 않습니다.
+  accept: 예
+  decline: 아니요, 괜찮아요
+  timeout: 10초 안에 선택하세요. 선택하지 않으면 알림이 닫힙니다. 장비 교체에는 게임 안에서의 확인이 필요합니다.
+  description: 명확한 개선이나 아이템 레벨과 주 능력치 상승이 있으면 교체를 제안합니다. 보조 능력치 손실은 명시됩니다. 교체마다 확인이 필요합니다.
+idle-interaction:
+  title: 전투 밖에서의 동반자 대화
+  messages:
+    '0': '{player}, 다음 모험은 어디로 떠나고 싶어요?'
+    '1': '{player}, 이 조용한 순간을 즐겨요. 물도 마시고 조금 쉬어요. 곁에 있을게요.'
+    '2': '{player}, 다음에는 어떤 장비를 바꾸고 싶어요?'
+    '3': '{player}, 아제로스에서 가장 좋아하는 풍경은 어디예요?'
+comparison:
+  title: 획득 장비 비교
+  missing: 일치하는 비교 데이터를 받지 못했습니다. 아이템 레벨만으로 업그레이드를 판단할 수 없습니다.
+  historical: '획득 당시 관측한 장비와 전문화:'
+  stale-spec: 과거 비교입니다. 현재 캐릭터나 전문화가 다르거나 확인할 수 없습니다.
+  type: 장비 유형
+  empty-slot: 빈 칸
+  attribute: 능력치
+  difference: 변동
+  item-level: 아이템 레벨
+  unknown: 알 수 없음
+  limitation: 아이템 레벨과 주 능력치가 높아지면 보조 능력치가 낮아져도 확인을 요청합니다. 특수 효과, 세트, 보석 홈 및 불완전한 정보는 검토가 필요합니다.
+  verdict:
+    upgrade: 명확한 개선
+    not_upgrade: 이 캐릭터의 업그레이드가 아님
+    review: 검토 필요
+  reason:
+    empty_slot: 사용 가능한 아이템으로 빈 칸을 채움
+    stats_upgrade: 기록된 능력치 손실 없이 비교 능력치가 개선됨
+    unusable: 현재 사용할 수 없는 아이템
+    wrong_spec: 관측한 전문화에 맞지 않는 아이템
+    weaker_stats: 비교 능력치가 더 낮음
+    equivalent: 개선되는 비교 능력치가 없음
+    incomplete: 비교 데이터가 불완전하거나 지원하지 않는 능력치를 포함함
+    unknown_spec: 전문화 적합성을 알 수 없음
+    weapon_change: 장비 유형이 다름
+    complex_item: 효과나 장비 조합 검토가 필요함
+    stat_tradeoff: 능력치에 장단점이 있음
+    primary_upgrade_tradeoff: 아이템 레벨과 주 능력치는 높아지지만 보조 능력치에 손실이 있습니다. 직접 확인하고 결정하세요.
+    no_target: 대상 칸을 확인할 수 없음
+loadout:
+  title: 착용 중인 아이템
+  description: 로그인, 새 장비 획득 및 장비 교체 시 19개 칸을 모두 갱신합니다. 와우 동반자는 캐릭터마다 최신 스냅샷을 보관합니다.
+  characters: 저장된 캐릭터
+  waiting: 이번 로그인에서 완전한 장비 스냅샷을 기다리고 있습니다. 기존 기록은 과거 상태로 남습니다.
+  empty: 아직 착용 장비 스냅샷을 받지 못했습니다. 업데이트된 애드온으로 로그인하고 전송 격자를 표시하세요.
+  received: 수신 시각
+  observed: 관측 시각
+  historical: 마지막으로 기록된 스냅샷이며, 장비를 계속 실시간으로 보여 주는 화면은 아닙니다.
+  unknown: 알 수 없음 / 사용 불가
+  empty-slot: 빈 칸
+  incomplete: 일부 아이템 정보가 불완전하거나 줄어들었습니다.
+  note: 빈 칸과 알 수 없는 칸은 다릅니다. 세트 설명은 보너스 활성화를 증명하지 않습니다. 캐릭터 스냅샷에는 획득 기록 10개 제한을 적용하지 않습니다.
+launcher:
+  title: 게임 실행 설정
+  description: Battle.net 또는 World of Warcraft 응용 프로그램을 선택하십시오. 각 게임 버전의 애플리케이션 파일
+    위치를 저장하십시오.
+  configure: 게임 실행 구성
+  target: 실행할 프로그램
+  targets:
+    battle-net: Battle.net
+    retail: World of Warcraft Retail
+    forever: World of Warcraft Forever
+    classic: World of Warcraft Classic
+  default-summary: '빠른 실행 대상: {target}'
+  path-label: '{target} 프로그램 경로'
+  path-description: 이 게임 버전의 폴더에서 .exe 파일을 선택하십시오. World of Warcraft Launcher.exe를
+    위해 Battle.net을 선택하십시오. 단축키나 스크립트를 선택하지 마십시오.
+  path-placeholder: .exe 파일을 선택하거나 전체 경로를 입력하세요
+  browse: 프로그램 찾아보기
+  make-default: 이 프로그램을 빠른 실행에 사용
+  make-default-description: 캐릭터 도구 모음에서 이 저장된 프로그램을 실행합니다.
+  current-default: 이 프로그램이 빠른 실행 대상으로 선택되었습니다.
+  save: 확인 후 저장
+  clear: 저장된 경로 삭제
+  retry: 설정 다시 불러오기
+  launch-game: 게임 실행
+  launch-battle-net: Battle.net 실행
+  quick-launch: 게임 빠른 실행
+  quick-launch-description: 저장된 기본 응용 프로그램을 시작하십시오. 응용 프로그램이 구성되지 않은 경우 시작 설정을 열십시오.
+  saved: 프로그램을 확인하고 저장했습니다.
+  cleared: 저장된 경로를 삭제했습니다.
+  launched: 실행 요청을 보냈습니다.
+  unsaved: 이 프로그램을 실행하기 전에 변경 사항을 확인하고 저장하세요.
+  launch-note: 배틀닷넷은 애플리케이션을 오픈합니다. 게임은 여전히 로그인이나 업데이트가 필요할 수 있습니다. 저장된 응용 프로그램은
+    시작 전에 확인됩니다.
+  verified-program: 확인된 프로그램
+  errors:
+    unsupported-platform: 이 응용 프로그램에서 게임을 시작하려면 Windows가 필요합니다.
+    invalid-request: 시작 설정은 유효하지 않습니다. 게임과 응용 프로그램을 다시 선택하십시오.
+    invalid-path: 로컬 애플리케이션 파일의 전체 위치를 입력하십시오. 명령 줄 논증을 추가하지 마십시오.
+    file-not-found: 프로그램이 발견되지 않았습니다. 현재 위치를 선택하세요.
+    not-executable: Windows .exe 프로그램을 선택하세요. 바로 가기, 스크립트, 폴더는 선택하지 마세요.
+    invalid-signature: 유효한 Blizzard 서명이 없는 프로그램입니다. 설치 폴더에서 공식 프로그램을 선택하세요.
+    wrong-product: 이 응용 프로그램은 선택된 Battle.net 또는 World of Warcraft 옵션과 일치하지 않습니다.
+    wrong-version: 이 World of Warcraft 응용 프로그램은 다른 게임 버전입니다. 올바른 게임 버전이나 응용 프로그램을 선택하십시오.
+    unrecognized-version: 게임 버전은 확인할 수 없었습니다. Battle.net을 통해 시작하거나 이 버전의 동반자를 업데이트하십시오.
+    inspection-failed: 프로그램을 확인할 수 없었습니다. 파일 접근을 확인하고 다시 시도해보세요.
+    not-configured: 이 옵션에 대한 응용 프로그램은 저장되지 않습니다. 먼저 파일 위치를 설정하고 저장하세요.
+    storage-error: 시작 설정을 읽고 저장할 수 없습니다. 응용 프로그램 데이터 폴더에 대한 접근을 확인합니다.
+    launch-failed: 신청을 시작할 수 없습니다. 설치 및 파일 권한 확인
+    busy: 이미 신청이 시작되었습니다. 끝낼 때까지 기다려
+    request-failed: 데스크톱 서비스는 응답하지 않았습니다. 다시 시도하거나 동반자를 다시 시작하십시오.
+screen-assist:
+  title: 게임 화면 분석 도움
+  description: 동료가 워크래프트 스크린샷을 지형, 게임 퀘스트 또는 NPC 가이드라인을 확인해 주시기 바랍니다.
+  enabled: 게임 화면을 봐 달라고 요청할 때 캡처
+  enabled-description: 명시적으로 요청하면 게임 화면 한 장을 캡처합니다. 일반 대화에서는 캡처하지 않습니다.
+  image-use: 캡처 이미지는 선택한 시각 서비스 제공자에게 전송됩니다. 원본 이미지는 로컬 대화 기록에 저장되지 않습니다.
+  target: 게임 창
+  target-description: 자동 선택에는 Warcraft 창이 하나만 있어야 합니다. 여러 버전을 열었다면 하나를 선택하고 해당 버전의 추가 창을 닫으세요.
+  games:
+    auto: 자동
+    retail: Retail
+    forever: Forever
+    classic: Classic
+  configure-vision: 시각 모델 설정
+  vision-description: 시각 설정에서 이미지를 지원하는 제공자와 모델을 선택하세요. 이 설정 화면을 열어도 캡처하지 않습니다.
+  examples-title: 채팅 또는 음성으로 요청
+  examples:
+    terrain: 앞의 지형을 보고 지나갈 길을 찾는 데 도와줄래?
+    quest: 퀘스트는 NPC가 여기에 있다고 표시하는데 보이지 않아. 찾는 걸 도와줄래?
+    scene: 내 게임 화면을 보고 퀘스트 목표를 설명해 줘.
+  command: 캡처를 요청하려면 메시지를 /look 으로 시작하고 질문을 덧붙이세요. 게임에서 이동한 뒤 다시 요청하면 새 화면을 확인합니다.
+  limits: Windows만 지원합니다. 게임 창을 보이게 유지하세요. 한 장의 이미지로 충돌 판정, 숨겨진 입구, 퀘스트 위상을 확정할 수
+    없습니다. 조언은 캐릭터를 조작하지 않습니다.
+  capturing: Warcraft 창 캡처 중…
+  analyzing: 게임 화면 분석 중…
+  ready: 게임 화면을 분석했습니다. 답변 준비 중.
+  errors:
+    unsupported-platform: 게임 스크린샷 지원은 Windows가 필요합니다.
+    invalid-request: 선택된 게임 버전은 유효하지 않습니다. 스크린샷 도움말 설정에서 다시 선택하십시오.
+    game-not-found: 워크래프트와 일치하는 창은 발견되지 않았습니다. 게임을 열고 다시 시도해 보세요.
+    ambiguous-window: 몇 개의 일치하는 게임 창이 열려 있습니다. 게임 버전을 선택하거나 추가 창을 닫고 다시 시도하십시오.
+    minimized-window: 게임 창은 최소화됩니다. 복원하고 다시 물어봐
+    unverified-game: 이 게임 창을 확인할 수 없습니다. 공식 지원된 워크래프트 설치를 사용하세요.
+    capture-failed: 게임 스크린샷을 찍을 수 없어요 게임을 눈에 띄게 유지하고 윈도우 모드를 시도하십시오.
+    empty-frame: 스크린샷은 빈거나 검은색입니다. 게임을 볼 수 있게 하고 다시 물어봐
+    capture-timeout: 스크린샷 작업이 끝났습니다. 잠깐만 기다려 다시 물어봐
+    busy: 또 다른 스크린샷이 진행중입니다. 끝낼 때까지 기다려
+    window-changed: 스크린샷을 찍는 동안 게임 창이 바뀌었습니다. 새로운 스크린샷을 다시 요청하세요.
+    vision-not-configured: 게임 화면 분석을 요청하기 전에 시각 제공자와 모델을 선택하세요.
+    vision-failed: 이미지 분석 인공지능 모델은 스크린샷을 읽을 수 없습니다. 모델 설정을 확인하고 다시 시도하십시오.
+    no-description: 이미지 분석 인공지능 모델은 어떤 설명도 반환하지 않았습니다. 다시 시도하거나 이미지를 지원하는 다른 모델을 선택하십시오.
+
+coordinates:
+  title: 지도 좌표
+  value: X {x} · Y {y}
+  unavailable: 현재 관측에서 사용할 수 없음
+  note: 현재 지도 내 좌표(0~100)입니다. 일부 지역에서는 좌표를 제공하지 않습니다.

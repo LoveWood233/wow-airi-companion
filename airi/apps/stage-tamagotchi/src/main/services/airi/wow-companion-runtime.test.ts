@@ -117,7 +117,7 @@ describe('managed WoW bridge runtime', () => {
     expect(runtime.read().status).toBe('external')
     await runtime.dispose()
     expect((await fetch(`${baseUrl}/health`)).ok).toBe(true)
-    await expect(runtime.ensureReady()).rejects.toThrow('has stopped')
+    await expect(runtime.ensureReady()).rejects.toThrow('bridge-stopped')
   })
 
   it.each([
@@ -130,14 +130,14 @@ describe('managed WoW bridge runtime', () => {
     { ...health, protocol: 'OTHER' },
   ])('rejects incompatible listeners without replacing them: $version $service $protocol', async (value) => {
     await serve(value)
-    await expect(runtime.ensureReady()).rejects.toThrow('incompatible service')
+    await expect(runtime.ensureReady()).rejects.toThrow('incompatible')
     expect(runtime.read().status).toBe('error')
     await runtime.dispose()
     expect(await (await fetch(`${baseUrl}/health`)).json()).toEqual(value)
   })
 
   it('reports missing files and retains the error during retry backoff', async () => {
-    await expect(runtime.ensureReady()).rejects.toThrow('files are missing')
+    await expect(runtime.ensureReady()).rejects.toThrow('bridge-files-missing')
     const error = runtime.read().error
     await writeFile(join(source, 'server.py'), '')
     await expect(runtime.ensureReady()).rejects.toThrow(error ?? '')
@@ -164,7 +164,7 @@ describe('managed WoW bridge runtime', () => {
     await runtime.dispose()
     runtime = new CompanionBridgeRuntime({ appPath, resourcesPath, userDataPath, platform: 'win32', game: selected }, baseUrl)
     await serve(value)
-    await expect(runtime.ensureReady()).rejects.toThrow('incompatible service')
+    await expect(runtime.ensureReady()).rejects.toThrow('incompatible')
     expect(await (await fetch(`${baseUrl}/health`)).json()).toEqual(value)
   })
 
@@ -174,14 +174,14 @@ describe('managed WoW bridge runtime', () => {
     await mkdir(aliases, { recursive: true })
     await writeFile(join(aliases, 'python.exe'), 'not executable')
     vi.stubEnv('PATH', aliases)
-    await expect(runtime.ensureReady()).rejects.toThrow('Python 3.10 or newer was not found')
+    await expect(runtime.ensureReady()).rejects.toThrow('bridge-python-missing')
     expect(runtime.read().status).toBe('error')
   })
 
   it('cancels a start requested just before stop and allows a later start', async () => {
     await serve(health)
     const start = runtime.ensureReady()
-    const rejected = expect(start).rejects.toThrow('cancelled')
+    const rejected = expect(start).rejects.toThrow('bridge-cancelled')
     await runtime.stop()
     await rejected
     await runtime.ensureReady()
@@ -202,7 +202,7 @@ describe('managed WoW bridge runtime', () => {
     await runtime.ensureReady()
     const firstStop = runtime.stop()
     const enable = runtime.ensureReady()
-    const rejected = expect(enable).rejects.toThrow('cancelled')
+    const rejected = expect(enable).rejects.toThrow('bridge-cancelled')
     const secondStop = runtime.stop()
     await Promise.all([firstStop, secondStop, rejected])
     expect(runtime.read().status).toBe('stopped')
@@ -213,7 +213,7 @@ describe('managed WoW bridge runtime', () => {
   it('rejects automatic capture on unsupported systems', async () => {
     await runtime.dispose()
     runtime = new CompanionBridgeRuntime({ appPath, resourcesPath, userDataPath, platform: 'linux' }, baseUrl)
-    await expect(runtime.ensureReady()).rejects.toThrow('requires Windows')
+    await expect(runtime.ensureReady()).rejects.toThrow('bridge-windows')
   })
 
   integration('starts one owned helper and preserves source settings across stop and restart', async () => {
@@ -253,7 +253,7 @@ describe('managed WoW bridge runtime', () => {
   integration('reports an early exit and backs off before retrying', async () => {
     await prepareOwned('fail')
     await expect(runtime.ensureReady()).rejects.toThrow('controlled start failure')
-    await expect(runtime.ensureReady()).rejects.toThrow('30 seconds')
+    await expect(runtime.ensureReady()).rejects.toThrow('bridge-retry')
     expect(await readFile(join(source, 'starts.txt'), 'utf8')).toBe('start\r\n')
     await writeFile(join(source, 'mode.txt'), '')
     const now = Date.now()
@@ -299,7 +299,7 @@ describe('managed WoW bridge runtime', () => {
   integration('cancels startup without leaving a listener behind', async () => {
     await prepareOwned('delay')
     const start = runtime.ensureReady()
-    const rejected = expect(start).rejects.toThrow('cancelled')
+    const rejected = expect(start).rejects.toThrow('bridge-cancelled')
     await expect.poll(async () => readFile(join(source, 'starts.txt'), 'utf8')).toBe('start\r\n')
     await runtime.dispose()
     await rejected
@@ -312,7 +312,7 @@ describe('managed WoW bridge runtime', () => {
     await runtime.ensureReady()
     await fetch(`${baseUrl}/crash`)
     await expect.poll(() => runtime.read().status).toBe('error')
-    await expect(runtime.ensureReady()).rejects.toThrow('30 seconds')
+    await expect(runtime.ensureReady()).rejects.toThrow('bridge-retry')
     const now = Date.now()
     vi.spyOn(Date, 'now').mockReturnValue(now + 31_000)
     await runtime.ensureReady()

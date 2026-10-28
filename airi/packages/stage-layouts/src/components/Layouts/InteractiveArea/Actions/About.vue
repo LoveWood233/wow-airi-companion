@@ -25,12 +25,14 @@ const edition = isStageTamagotchi()
   : isStageCapacitor()
     ? t('base.edition.mobile')
     : t('base.edition.web')
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
   <button
     v-if="!hideTrigger"
-    title="About"
+    :title="translateCompanion('companion-extra.about-6b21fb')"
     :class="[
       'w-fit p-2',
       'flex justify-center md:items-center self-end',

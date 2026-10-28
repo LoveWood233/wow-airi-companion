@@ -1,0 +1,30 @@
+bridge-local-address: 와우 브리지는 로컬 HTTP 주소를 사용해야 합니다.
+bridge-stopped: 와우 브리지가 중지되었습니다.
+bridge-cancelled: 와우 브리지 시작을 취소했습니다.
+bridge-retry: 와우 동반자가 30초 후에 다시 시도합니다. {detail}
+bridge-windows: 와우 자동 캡처에는 Windows가 필요합니다. 이 시스템에서는 로컬 브리지를 시작할 수 없습니다.
+bridge-exited: 와우 브리지가 종료되었습니다.
+bridge-start-failed: 와우 브리지를 시작하지 못했습니다. 파일과 캡처 설정을 확인하세요. {detail}
+bridge-start-exited: 와우 브리지가 시작 중 종료되었습니다. 포트가 사용 중인지 확인하세요.
+bridge-timeout: 와우 브리지가 10초 안에 준비되지 않았습니다. Python과 로컬 캡처 설정을 확인하세요.
+bridge-port-unavailable: 로컬 와우 브리지 포트가 응답하지 않았습니다. 다시 시도하기 전에 {port} 포트를 확인하세요.
+bridge-port-incompatible: 호환되지 않는 서비스가 {port} 포트를 사용 중입니다. 해당 서비스를 종료하거나 와우 브리지를 업데이트하세요.
+bridge-profile-incompatible: 호환되지 않는 서비스가 {port} 포트를 사용 중입니다. {game} 프로필에는 와우 브리지 2.11 이상을 사용하세요.
+bridge-files-missing: 와우 브리지 파일이 없습니다. 와우 동반자 소스 옆에 WOWAddons를 복원하거나 데스크톱 패키지를 다시 설치하세요.
+bridge-python-missing: Python 3.10 이상을 찾지 못했습니다. PATH 추가 옵션을 켜고 Python을 설치한 뒤 와우 동반자를 다시 시작하세요.
+bridge-unavailable: 와우 브리지를 사용할 수 없습니다.
+bridge-http: 와우 브리지가 HTTP {status}를 반환했습니다.
+bridge-response-profile: 와우 브리지 응답이 {game} 프로필과 일치하지 않습니다.
+connection-disabled: 캡처나 데모 명령을 사용하기 전에 이 게임의 동반자 연결을 켜세요.
+connection-changed: 명령이 완료되기 전에 동반자 연결이 변경되었습니다.
+gold-account-unknown: 로컬 골드 계정을 찾지 못했습니다.
+gold-read: 골드 장부({path}) 불러오기에 실패했습니다. 파일을 복원하고 와우 동반자를 다시 시작하세요. {detail}
+gold-write: 골드 장부({path}) 저장에 실패했습니다. 변경 사항은 메모리에만 있습니다. 와우 동반자가 다시 시도합니다. {detail}
+levels-read: 레벨 기록({path}) 불러오기에 실패했습니다. 파일을 복원하고 와우 동반자를 다시 시작하세요. {detail}
+levels-write: 레벨 기록({path}) 저장에 실패했습니다. 변경 사항은 메모리에만 있습니다. 와우 동반자가 다시 시도합니다. {detail}
+equipment-read: 장비 기록({path}) 불러오기에 실패했습니다. 파일을 복원하고 와우 동반자를 다시 시작하세요. {detail}
+equipment-write: 장비 기록({path}) 저장에 실패했습니다. 변경 사항은 메모리에만 있습니다. 와우 동반자가 다시 시도합니다. {detail}
+comparisons-read: 장비 비교({path}) 불러오기에 실패했습니다. 파일을 복원하고 와우 동반자를 다시 시작하세요. {detail}
+comparisons-write: 장비 비교({path}) 저장에 실패했습니다. 변경 사항은 메모리에만 있습니다. 와우 동반자가 다시 시도합니다. {detail}
+loadouts-read: 장비 스냅샷({path}) 불러오기에 실패했습니다. 파일을 복원하고 와우 동반자를 다시 시작하세요. {detail}
+loadouts-write: 장비 스냅샷({path}) 저장에 실패했습니다. 변경 사항은 메모리에만 있습니다. 와우 동반자가 다시 시도합니다. {detail}

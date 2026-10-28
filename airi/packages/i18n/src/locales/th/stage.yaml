@@ -4,7 +4,7 @@ character-switcher:
   empty: ยังไม่มีตัวละคร
   failed: สลับตัวละครไม่สำเร็จ ลองอีกครั้ง
 mobile-tools:
-  sign-in: เข้าสู่ระบบ AIRI
+  sign-in: เข้าสู่ระบบ เพื่อนคู่ใจ WoW
   account-description: บัญชีและการกำหนดค่า
   sound: เสียง
   character-voice: เสียงของตัวละคร
@@ -18,6 +18,8 @@ mobile-tools:
   view: มุมมอง
   close-view: บันทึกและปิดการควบคุมมุมมอง
   hearing: การฟัง
+  menu: เมนู
+  menu-unread: เมนู, {count} ข่าวที่ไม่ได้อ่าน
 chat:
   provider-configuration:
     title: ยังไม่ได้ตั้งค่าผู้ให้บริการแชท
@@ -53,7 +55,7 @@ chat:
     system-default: ค่าเริ่มต้นของระบบ
     listen: ฟังต่อเนื่อง
     push-to-talk: กดเพื่อพูด
-    push-to-talk-unavailable: อุปกรณ์นี้ไม่มีปุ่มกดเพื่อพูด AIRI จึงไม่ฟัง เปลี่ยนโหมดการป้อนเสียงได้ในการตั้งค่าการฟัง
+    push-to-talk-unavailable: อุปกรณ์นี้ไม่มีปุ่มกดเพื่อพูด เพื่อนคู่ใจ WoW จึงไม่ฟัง เปลี่ยนโหมดการป้อนเสียงได้ในการตั้งค่าการฟัง
     wake-word: ฟังคำปลุก
     hearing-settings: การตั้งค่าการฟังเพิ่มเติม…
     options-hint: วางเคอร์เซอร์หรือคลิกขวาเพื่อดูตัวเลือก
@@ -91,16 +93,16 @@ chat:
     empty: แบ่งปันความคิดหรือรูปภาพ
     use-vision: ใช้โมเดลการมองเห็นกับรูปภาพในแชท
     use-vision-description: เลือกผู้ให้บริการและโมเดลด้านล่าง โมเดลนี้จะอ่านรูปภาพที่แนบมาก่อนที่โมเดลแชทจะตอบ ถ้าไม่มีโมเดลการมองเห็น รูปภาพจะถูกส่งไปยังโมเดลแชทโดยตรง
-    attach: 'แนบรูปภาพ'
-    remove: 'ลบ {name}'
-    unsupported: 'ใช้รูปภาพ PNG, JPEG, WebP หรือ GIF'
-    too-large: 'รูปภาพแต่ละรูปต้องมีขนาดไม่เกิน 3 MB'
-    too-many: 'แนบรูปภาพได้ครั้งละไม่เกิน {count} รูป'
-    total-too-large: 'รูปภาพที่แนบทั้งหมดรวมกันต้องมีขนาดไม่เกิน 3 MB'
-    read-failed: 'อ่านรูปภาพนี้ไม่ได้ ลองอีกครั้ง'
-    no-description: 'โมเดลการมองเห็นไม่ได้ส่งคำอธิบายรูปภาพกลับมา ตรวจสอบที่ การตั้งค่า → โมดูล → การมองเห็น แล้วลองอีกครั้ง'
-    reading: 'กำลังอ่านรูปภาพ…'
-    description: 'รูปภาพที่แนบ'
+    attach: แนบรูปภาพ
+    remove: ลบ {name}
+    unsupported: ใช้รูปภาพ PNG, JPEG, WebP หรือ GIF
+    too-large: รูปภาพแต่ละรูปต้องมีขนาดไม่เกิน 3 MB
+    too-many: แนบรูปภาพได้ครั้งละไม่เกิน {count} รูป
+    total-too-large: รูปภาพที่แนบทั้งหมดรวมกันต้องมีขนาดไม่เกิน 3 MB
+    read-failed: อ่านรูปภาพนี้ไม่ได้ ลองอีกครั้ง
+    no-description: โมเดลการมองเห็นไม่ได้ส่งคำอธิบายรูปภาพกลับมา ตรวจสอบที่ การตั้งค่า → โมดูล → การมองเห็น แล้วลองอีกครั้ง
+    reading: กำลังอ่านรูปภาพ…
+    description: รูปภาพที่แนบ
   actions:
     reply: ตอบกลับ
     retry: ลองอีกครั้ง
@@ -110,6 +112,7 @@ chat:
     character-name:
       core-system: ระบบหลัก
       you: คุณ
+      airi: เพื่อนคู่ใจ WoW
   reply:
     cancel: ยกเลิกการตอบกลับ
     message: ข้อความ
@@ -121,7 +124,7 @@ chat:
     archive: เก็บถาวร
     pin: ปักหมุด
     actions: แสดงการทำงาน
-    row: 'บทสนทนา {n}'
+    row: บทสนทนา {n}
   sessions:
     delete-short: ลบ
     confirm-delete-short: ยืนยันการลบ
@@ -134,6 +137,84 @@ chat:
     cloud-badge: ซิงค์กับคลาวด์แล้ว
     new-chat-fallback: แชทใหม่
     delete: ลบบทสนทนา
+  notice:
+    label: รายงานหลังจาก {name}
+  background-tasks:
+    label: กิจกรรมหลัง
+    stop: หยุด {name}
+    dismiss: ปฏิเสธ {name}
+    status:
+      running: การทํางาน
+      done: ทําแล้ว
+      failed: ยังไม่จบ
+      interrupted: หยุด
+  judgment:
+    running: การตัดสิน {name}
+    judged: การตัดสิน {name}
+    invalid: ไม่สามารถตัดสิน {name}
+  judgment-tool-call:
+    answer: ตอบ
+    next: แล้ว
+    reply: ตอบตามปกติ
+    stay-quiet: อยู่เงียบ
+    hint: 'ตอบด้วย: {text}'
+    recipe-steps: ใช้สูตร {name}
+    recipe-decision: ผู้ตัดสิน {name}
+    recipe-background: สูตร {name}
+  recipe:
+    using: ใช้สูตร {name}
+    loaded: สูตรที่ใช้ {name}
+    started: ส่งตามสูตร {name}
+    pending: สูตร {name} รอรับการอนุมัติ
+    disabled: สูตร {name} ปิด
+    unknown: สูตร {name} ไม่พบ
+    refused: สูตร {name} ไม่เริ่ม
+    failed: สูตร {name} ไม่เริ่ม
+  recipe-tool-call:
+    task: หน้าที่
+    usable: สูตรที่คุณสามารถใช้ได้ตอนนี้
+    pending: สูตรนี้รอการอนุมัติของคุณ
+    disabled: สูตรนี้ปิดแล้ว
+    unknown: ไม่มีสูตรไหนมีชื่อนี้
+    refused: สูตรไม่ได้เริ่ม
+  invoked-skill:
+    steps: สูตรที่ใช้ {name}
+    background: ส่งตามสูตร {name}
+    decision: สูตรที่ใช้ {name}
+    question: คําถาม
+    yes: ใช่
+    no: ไม่
+  home-assistant-tool-call:
+    shown: แสดง {count} ของอุปกรณ์ {total}
+  web-search-tool-call:
+    results: ผลการค้นหา "{query}" · {count}
+  tool-calls:
+    running-one: การใช้ {name}
+    failed-one: '{name} ไม่ได้จบ'
+    combo-running: คอมโบ ×{count}
+    combo: '{count}-ฮิต คอมโบ'
+    combo-failed: '{count}-ฮิตคอมโบ, {failed}พลาด'
+    arguments: ข้อโต้เถียง
+    result: ผล
+    copy: สําเนาข้อมูลสด
+    copied: สําเนา
+    raw: ข้อมูลสด
+    other: ข้อมูลอื่นๆ
+    widget: วิดเจต
+    rerun: วิ่งอีกครั้ง
+    card-making: ทําบัตรสําหรับเครื่องมือนี้...
+    card-remaking: ทําบัตรใหม่...
+    card-regenerate: ทําบัตรใหม่
+    card-failed: ไม่สามารถทําการ์ดสําหรับเครื่องมือนี้
+    card-retry: ลองอีกที
+    state:
+      executing: การวิ่ง
+      done: ทําแล้ว
+      error: ผิดพลาด
+  reply-card:
+    drawing: การวาดบัตร...
+    raw: ข้อมูลสด
+    card: บัตร
 render-error:
   title: '{renderer} แสดงโมเดลนี้ไม่ได้'
   description: เลือกโมเดลแล้ว แต่เวทีแสดงโมเดลนี้ไม่ได้
@@ -174,6 +255,8 @@ theme:
 send-mode:
   title: ปุ่มส่ง
   double-enter: กด Enter สองครั้ง
+  enter: เข้าไป
+  ctrl-enter: Ctrl + Enter
 speech-output:
   mute: ปิดเสียงพูด
   unmute: เปิดเสียงพูด
@@ -189,14 +272,14 @@ viewers:
   debug-menu:
     emotions: อารมณ์
     emotions-btn:
-      angry: '😠 โกรธ'
-      awkward: '😳 เขิน'
-      happy: '😄 มีความสุข'
-      neutral: '🙂 ปกติ'
-      question: '🤔 สงสัย'
-      sad: '😫 เศร้า'
-      surprised: '🤯 ประหลาดใจ'
-      think: '🤨 ครุ่นคิด'
+      angry: 😠 โกรธ
+      awkward: 😳 เขิน
+      happy: 😄 มีความสุข
+      neutral: 🙂 ปกติ
+      question: 🤔 สงสัย
+      sad: 😫 เศร้า
+      surprised: 🤯 ประหลาดใจ
+      think: 🤨 ครุ่นคิด
     vrm:
       camera: กล้อง
       model:
@@ -216,6 +299,7 @@ promo-banner:
       eventName: เช็กอินเพื่อรับละอองดาว กรอบอวาตาร์ และของขวัญฉลองเปิดตัว
       reward: ละอองดาวสูงสุด 120 หน่วย
       cta: เช็กอิน
+      date: 03/28 - 04/10
     build:
       watermark: ก่อสร้าง
       fallbackLabel: โบนัสก่อสร้าง
@@ -223,6 +307,7 @@ promo-banner:
       eventName: ทำภารกิจก่อสร้างให้สำเร็จเพื่อรับคูปองโบนัสและวัสดุสองเท่า
       reward: คูปองเสบียง 5 ใบ + วัสดุอัปเกรด
       cta: ดูภารกิจ
+      date: 03/30 - 04/12
     spring:
       watermark: ฤดูใบไม้ผลิ
       fallbackLabel: สุ่มรางวัลฤดูใบไม้ผลิ
@@ -230,6 +315,7 @@ promo-banner:
       eventName: ร่วมสุ่มรางวัลฤดูใบไม้ผลิเพื่อปลดล็อกฟองคำพูด เครื่องราง และเฟอร์นิเจอร์ตามธีม
       reward: สุ่มครั้งแรกครึ่งราคา + เครื่องรางหายาก
       cta: สุ่มเลย
+      date: 04/01 - 04/18
     coupon:
       watermark: พูดคุย
       fallbackLabel: คูปอง
@@ -237,6 +323,7 @@ promo-banner:
       eventName: ทำกิจกรรมสนทนาให้สำเร็จเพื่อรับคูปองสำหรับส่วนขยายและแพ็กเสียง
       reward: ลด 6 เมื่อซื้อ 30 / ลด 15 เมื่อซื้อ 68
       cta: รับคูปอง
+      date: 04/02 - 04/20
     home:
       watermark: บ้าน
       fallbackLabel: ธีมห้อง
@@ -244,6 +331,7 @@ promo-banner:
       eventName: ปลดล็อกธีมหน้าต่าง โต๊ะ และโคมไฟกลางคืนเพื่อเปลี่ยนบรรยากาศห้อง
       reward: ตั๋วสุ่มธีมฟรีเมื่อเช็กอิน
       cta: ดูธีม
+      date: 04/05 - 04/22
 waiting: กำลังรอ
 websocket-status:
   connected: เชื่อมต่อแล้ว
@@ -255,7 +343,7 @@ computer-use:
 status:
   preparing: กำลังเตรียมไมโครโฟน
   listening: กำลังฟัง
-  paused: หยุดฟังชั่วคราวขณะที่ AIRI พูด
+  paused: หยุดฟังชั่วคราวขณะที่ เพื่อนคู่ใจ WoW พูด
   transcribing: กำลังถอดเสียง
   hearing-error: ถอดเสียงไม่ได้
   no-transcript: เสียงพูดที่จดจำได้จะแสดงที่นี่
@@ -266,3 +354,29 @@ status:
   sign-in-unconfirmed: ยืนยันเซสชันของคุณไม่ได้ โปรดเข้าสู่ระบบอีกครั้ง
   dismiss: ปิด
   configure-hearing: เลือกและตั้งค่าผู้ให้บริการการฟังในการตั้งค่า
+avatar-model-missing:
+  title: ไม่มีตัวอย่างที่เลือก
+  unavailable-title: รุ่นนี้ไม่ได้อยู่ในเครื่องนี้
+  description: เลือกแบบที่แสดง {name} บนเวที
+  select: เลือกแบบ
+notifications:
+  title: ประกาศ
+  open: ประกาศเปิด
+  open-unread: ประกาศเปิด, {count} ไม่อ่าน
+  mark-all-read: หมายเลขทั้งหมดตามที่อ่าน
+  empty: ยังไม่มีการแจ้งความ
+  loading: ประกาศการบรรทุก
+  back: ย้อนหลัง
+  error: ประกาศไม่ได้บรรจุ
+  retry: พยายามอีกครั้ง
+  just-now: เพิ่งตอนนี้
+  kinds:
+    flux-granted:
+      title: คุณได้รับ {amount} Flux
+    subscription-renewed:
+      title: '{plan} ล่าสุด'
+      body: ใช้ได้จนถึง {periodEnd}
+    subscription-payment-failed:
+      title: การชําระเงินต่ออายุล้มเหลว
+      body: เราจะลองอีกครั้งกับ {retryAt} ปรับปรุงวิธีการชําระเงินของคุณ เพื่อเก็บ {plan}
+      body-no-retry: ปรับปรุงวิธีการชําระเงินของคุณ เพื่อเก็บ {plan}

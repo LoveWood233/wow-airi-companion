@@ -115,7 +115,7 @@ describe('companion gold ledger', () => {
     expect(restarted.read().accounts[0]?.lastSeen).toBeGreaterThanOrEqual(restarted.read().accounts[0]?.firstSeen ?? 0)
     await restarted.setAccountName({ account: 'account-1', name: '' })
     expect(restarted.read().accounts[0]?.name).toBe('')
-    await expect(restarted.setAccountName({ account: 'unknown', name: 'Other' })).rejects.toThrow('Unknown WoW gold account')
+    await expect(restarted.setAccountName({ account: 'unknown', name: 'Other' })).rejects.toThrow('gold-account-unknown')
     expect(() => restarted.setAccountName({ account: 'account-1', name: 'a'.repeat(65) })).toThrow()
   })
 
@@ -173,7 +173,7 @@ describe('companion gold ledger', () => {
     await broken.setAccountName({ account: 'account-1', name: 'Cannot save' })
     await broken.flush()
     expect(broken.read().accounts).toEqual([])
-    expect(broken.read().storageError).toContain('Cannot load WoW gold ledger')
+    expect(broken.read().storageError).toContain('gold-read')
     expect(await readFile(path, 'utf8')).toBe(original)
   })
 
@@ -182,7 +182,7 @@ describe('companion gold ledger', () => {
     await ledger.observe(live({ earned: 700, spent: 100, copper: 600 }))
     await ledger.setAccountName({ account: 'account-1', name: 'Main' })
     expect(ledger.read().accounts[0]).toMatchObject({ name: 'Main', earned: '700', spent: '100' })
-    expect(ledger.read().storageError).toContain('Cannot save WoW gold ledger')
+    expect(ledger.read().storageError).toContain('gold-write')
 
     await rename(path, join(directory, 'blocked-destination'))
     await ledger.observe(null, 'Bridge disconnected')

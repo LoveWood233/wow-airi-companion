@@ -1,0 +1,30 @@
+bridge-local-address: Cầu nối WoW phải dùng địa chỉ HTTP cục bộ.
+bridge-stopped: Cầu nối WoW đã dừng.
+bridge-cancelled: Đã hủy khởi động cầu nối WoW.
+bridge-retry: Bạn đồng hành WoW sẽ thử lại sau 30 giây. {detail}
+bridge-windows: Chụp WoW tự động cần Windows. Cầu nối cục bộ không thể khởi chạy trên hệ thống này.
+bridge-exited: Cầu nối WoW đã thoát.
+bridge-start-failed: Không thể khởi chạy cầu nối WoW. Kiểm tra tệp và cài đặt chụp. {detail}
+bridge-start-exited: Cầu nối WoW thoát khi khởi động. Kiểm tra xem cổng có bị chiếm không.
+bridge-timeout: Cầu nối WoW chưa sẵn sàng sau 10 giây. Kiểm tra Python và cài đặt chụp cục bộ.
+bridge-port-unavailable: Cổng cầu nối WoW cục bộ không phản hồi. Kiểm tra cổng {port} trước khi thử lại.
+bridge-port-incompatible: Dịch vụ không tương thích đang chiếm cổng {port}. Đóng dịch vụ đó hoặc cập nhật cầu nối WoW.
+bridge-profile-incompatible: Dịch vụ không tương thích đang chiếm cổng {port}. Dùng cầu nối WoW 2.11 trở lên cho cấu hình {game}.
+bridge-files-missing: Thiếu tệp cầu nối WoW. Khôi phục WOWAddons cạnh mã nguồn Bạn đồng hành WoW hoặc cài lại ứng dụng máy tính.
+bridge-python-missing: Không tìm thấy Python 3.10 trở lên. Cài Python và thêm vào PATH, rồi khởi động lại Bạn đồng hành WoW.
+bridge-unavailable: Cầu nối WoW không khả dụng.
+bridge-http: Cầu nối WoW trả về HTTP {status}.
+bridge-response-profile: Phản hồi cầu nối WoW không khớp cấu hình {game}.
+connection-disabled: Bật kết nối đồng hành cho trò chơi này trước khi dùng lệnh chụp hoặc mô phỏng.
+connection-changed: Kết nối đồng hành thay đổi trước khi lệnh hoàn tất.
+gold-account-unknown: Không tìm thấy tài khoản vàng cục bộ.
+gold-read: Không thể tải sổ vàng ({path}). Khôi phục tệp rồi khởi động lại Bạn đồng hành WoW. {detail}
+gold-write: Không thể lưu sổ vàng ({path}). Thay đổi chỉ ở trong bộ nhớ. Bạn đồng hành WoW sẽ thử lại. {detail}
+levels-read: Không thể tải lịch sử cấp độ ({path}). Khôi phục tệp rồi khởi động lại Bạn đồng hành WoW. {detail}
+levels-write: Không thể lưu lịch sử cấp độ ({path}). Thay đổi chỉ ở trong bộ nhớ. Bạn đồng hành WoW sẽ thử lại. {detail}
+equipment-read: Không thể tải lịch sử trang bị ({path}). Khôi phục tệp rồi khởi động lại Bạn đồng hành WoW. {detail}
+equipment-write: Không thể lưu lịch sử trang bị ({path}). Thay đổi chỉ ở trong bộ nhớ. Bạn đồng hành WoW sẽ thử lại. {detail}
+comparisons-read: Không thể tải so sánh trang bị ({path}). Khôi phục tệp rồi khởi động lại Bạn đồng hành WoW. {detail}
+comparisons-write: Không thể lưu so sánh trang bị ({path}). Thay đổi chỉ ở trong bộ nhớ. Bạn đồng hành WoW sẽ thử lại. {detail}
+loadouts-read: Không thể tải bản chụp trang bị ({path}). Khôi phục tệp rồi khởi động lại Bạn đồng hành WoW. {detail}
+loadouts-write: Không thể lưu bản chụp trang bị ({path}). Thay đổi chỉ ở trong bộ nhớ. Bạn đồng hành WoW sẽ thử lại. {detail}

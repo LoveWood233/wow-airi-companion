@@ -1,0 +1,79 @@
+web-speech-unavailable-title: Web Speech APIを利用できません
+web-speech-unavailable-description: このブラウザーはWeb Speech APIの音声認識に対応していません。別の文字起こしプロバイダーか、音声認識に対応したブラウザーを選んでください。
+web-speech-native-title: ブラウザー内蔵の無料文字起こし
+web-speech-native-description: ブラウザーの音声認識を使います。処理方法はブラウザーとその設定によって異なります。APIキーは不要です。
+web-speech-no-api-key: APIキーは不要です。Web Speech APIは無料で、ブラウザーに組み込まれています。
+recognition-language: 認識する言語
+recognition-language-description: 音声認識の言語を選択
+continuous-recognition: 連続認識
+continuous-recognition-description: フレーズごとに停止せず、聞き取りを続ける
+interim-results-title: 途中結果を表示
+interim-results-description: 発話中の認識結果をリアルタイムで表示
+transcription-test: 音声文字起こしテスト
+transcription-test-description: 選択した音声デバイスでWeb Speech APIをテストします。聴覚の標準プロバイダーにかかわらず、常にWeb Speech APIを使用します。
+web-speech-unavailable: このブラウザーではWeb Speech APIを利用できません
+audio-input-device: 音声入力デバイス
+audio-test-device-description: テストする音声入力デバイスを選択
+audio-input-placeholder: 音声入力デバイスを選択
+audio-test-device-required: テストする音声入力デバイスを選択してください
+transcription-error: 文字起こしエラー
+streaming-description: ストリーミングモード：発話中のテキストをリアルタイムで表示します（Web Speech API）
+transcription-result: 文字起こしの結果
+streaming-transcription: 現在の文字起こし（ストリーミング）：
+final-transcription: 確定した文字起こし：
+transcription-empty: 文字起こしはまだありません。「音声文字起こしテストを開始」を押して、マイクに話してください。
+provider-label: プロバイダー：
+language-label: 言語：
+mode-label: モード：
+streaming-mode: ストリーミング（リアルタイム）
+continuous-label: 連続認識：
+interim-results-label: 途中結果：
+stop-test: テストを停止
+transcribing: 文字起こし中…
+start-transcription-test: 音声文字起こしテストを開始
+mimo-model-description: 音声生成に使うMiMo TTSモデルを選択
+mimo-model-placeholder: MiMoモデルを選択…
+voice-style-placeholder: 声の調子、速度、感情、話し方を記述…
+voice-sample-label: 音声サンプル（データURI）
+voice-sample-description: base64の音声サンプルをデータURIとして貼り付けてください。MiMoは最大10 MBのMP3・WAVサンプルに対応しています。
+mimo-test-text: こんにちは！ Xiaomi MiMoの音声テストです。
+mimo-behavior-title: MiMoモデルの動作
+mimo-preset-description: '`mimo-v2.5-tts`は、下のプリセット音声一覧を使います。'
+mimo-design-description: '`mimo-v2.5-tts-voicedesign`はスタイルプロンプトで新しい声を作り、`audio.voice`は受け付けません。'
+mimo-clone-description: '`mimo-v2.5-tts-voiceclone`は貼り付けた音声サンプルを使い、プリセット音声の選択を無視します。'
+style-optional: スタイルプロンプト（任意）
+voice-design-prompt: 声のデザイン用プロンプト
+style-prompt: スタイルプロンプト
+clone-style-description: ユーザーメッセージとして送信する任意の自然言語の指示です。声の複製だけを行うには空欄にしてください。
+design-style-description: ユーザーメッセージとして送信する自然言語の指示です。MiMoの声のデザインには必須で、プリセット音声は使いません。
+preset-style-description: ユーザーメッセージとして送信する自然言語の指示です。標準的な話し方にするには空欄にしてください。
+speech-provider-error: 音声プロバイダーを初期化できませんでした
+voice-sample-required: 声の複製モデルには、データURI形式のbase64音声サンプルが必要です。
+resource-name: リソース名
+resource-name-description: https://<prefix>.services.ai.azure.com の接頭辞
+model-id: モデルID
+model-id-description: Azure AI FoundryのモデルID
+api-version: APIバージョン
+api-version-placeholder: 例：2025-04-01-preview
+api-version-description: モデルのスナップショット用APIバージョン
+gemini-model-description: 音声生成に使うGemini TTSモデルを選択
+gemini-model-placeholder: Geminiモデルを選択…
+speech-temperature-description: 音声生成のランダム性を調整します。低い値では予測しやすく、高い値では創造的な音声になります。
+gemini-test-text: こんにちは！ Google Geminiの音声テストです。
+access-key-id: アクセスキーID
+access-key-secret: アクセスキーのシークレット
+app-key: アプリキー
+app-key-placeholder: AppKeyを入力
+abort-session: セッションを中止
+partial-result: 途中結果
+waiting-for-audio: 音声を待機中…
+awaiting-final-result: 確定結果を待機中…
+streaming: ストリーミング中…
+start-realtime-transcription: リアルタイム文字起こしを開始
+aliyun-provider-error: Aliyun NLSプロバイダーを初期化できませんでした。
+aliyun-stream-error: Aliyun NLSが予期せずストリーミング以外の結果を返しました。
+onboarding-api-key-description: 選択したプロバイダーのAPIキーを入力してください。
+onboarding-base-url-description: プロバイダーのAPIのベースURLを入力してください。
+unknown-error: 不明なエラー
+azure-api-key: Azure OpenAI APIキー
+internal-region: '{region}（内部）'

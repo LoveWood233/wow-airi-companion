@@ -351,7 +351,7 @@ function exportProject() {
   const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }))
   const anchor = document.createElement('a')
   anchor.href = url
-  anchor.download = `airi-live2d-motion-project-${Date.now()}.json`
+  anchor.download = `wow-companion-live2d-motion-project-${Date.now()}.json`
   anchor.click()
   URL.revokeObjectURL(url)
 }

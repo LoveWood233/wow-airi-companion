@@ -5,6 +5,7 @@ import { useResizeObserver, useScreenSafeArea } from '@vueuse/core'
 import { DialogContent, DialogOverlay, DialogPortal, DialogRoot, DialogTitle, VisuallyHidden } from 'reka-ui'
 import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot } from 'vaul-vue'
 import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import Onboarding from './onboarding.vue'
 
@@ -30,6 +31,8 @@ const screenSafeArea = useScreenSafeArea()
 
 useResizeObserver(document.documentElement, () => screenSafeArea.update())
 onMounted(() => screenSafeArea.update())
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -38,7 +41,7 @@ onMounted(() => screenSafeArea.update())
       <DialogOverlay class="fixed inset-0 z-9999 bg-black/50 backdrop-blur-sm data-[state=closed]:animate-fadeOut data-[state=open]:animate-fadeIn" :style="props.instantOpen ? { animation: 'none' } : undefined" />
       <DialogContent class="fixed left-1/2 top-1/2 z-9999 h-[min(100dvh,48rem)] max-h-full max-w-2xl w-[92dvw] flex flex-col overflow-hidden rounded-2xl bg-white p-6 shadow-xl outline-none backdrop-blur-md scrollbar-none -translate-x-1/2 -translate-y-1/2 data-[state=closed]:animate-contentHide data-[state=open]:animate-contentShow dark:bg-neutral-900" :style="props.instantOpen ? { animation: 'none' } : undefined">
         <VisuallyHidden>
-          <DialogTitle>Onboarding</DialogTitle>
+          <DialogTitle>{{ translateCompanion('companion-extra.onboarding-8d49e0') }}</DialogTitle>
         </VisuallyHidden>
         <div class="min-h-0 min-w-0 w-full flex flex-1 flex-col">
           <Onboarding :extra-steps="props.extraSteps" @configured="emit('configured')" @skipped="emit('skipped')" />

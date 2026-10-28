@@ -15,6 +15,7 @@ import { errorMessageFrom } from '@moeru/std'
 import { integer, literal, looseObject, minLength, minValue, number, optional, picklist, pipe, safeParse, string } from 'valibot'
 
 import { gameProfiles, gameVersionSchema } from '../../../shared/wow-companion'
+import { companionError } from '../../../shared/wow-companion-errors'
 
 const execFileAsync = promisify(execFile)
 const healthSchema = looseObject({
@@ -68,7 +69,7 @@ export class CompanionBridgeRuntime {
   constructor(private readonly options: RuntimeOptions, private readonly baseUrl = `http://127.0.0.1:${gameProfiles[options.game ?? 'retail'].port}`) {
     const address = new URL(baseUrl)
     if (address.protocol !== 'http:' || address.hostname !== '127.0.0.1' || address.username || address.password)
-      throw new Error('The WoW bridge must use a local HTTP address.')
+      throw new Error(companionError('bridge-local-address'))
   }
 
   /** Returns lifecycle diagnostics, not a live game observation. */
@@ -81,13 +82,13 @@ export class CompanionBridgeRuntime {
     const generation = this.generation
     await this.stopping
     if (this.disposed)
-      throw new Error('The WoW bridge runtime has stopped.')
+      throw new Error(companionError('bridge-stopped'))
     if (generation !== this.generation)
-      throw new Error('The WoW bridge start was cancelled.')
+      throw new Error(companionError('bridge-cancelled'))
     if (this.active)
       return this.active
     if (Date.now() < this.retryAt)
-      throw new Error(this.error ?? 'The WoW bridge will retry after 30 seconds.')
+      throw new Error(this.error ?? companionError('bridge-retry', { detail: '' }))
     const controller = new AbortController()
     this.abort = controller
     const operation = this.connect(controller.signal)
@@ -145,7 +146,7 @@ export class CompanionBridgeRuntime {
       this.status = 'starting'
       this.error = null
       if (this.options.platform !== 'win32')
-        throw new Error('Automatic WoW capture requires Windows. The local bridge cannot start on this system.')
+        throw new Error(companionError('bridge-windows'))
       const resources = await this.findResources()
       signal.throwIfAborted()
       const python = await this.findPython(signal)
@@ -163,12 +164,12 @@ export class CompanionBridgeRuntime {
           owned.done = true
           if (this.owned === owned && this.status === 'running') {
             this.owned = undefined
-            this.fail('The WoW bridge exited. 魔兽陪伴精灵 will retry after 30 seconds.')
+            this.fail(companionError('bridge-retry', { detail: companionError('bridge-exited') }))
           }
           resolveExit()
         }
         child.once('error', (error) => {
-          owned.stderr = errorMessageFrom(error) ?? 'Unable to start Python.'
+          owned.stderr = errorMessageFrom(error) ?? ''
           finish()
         })
         child.once('exit', finish)
@@ -186,23 +187,23 @@ export class CompanionBridgeRuntime {
         await delay(200, undefined, { signal })
         signal.throwIfAborted()
         if (owned.done)
-          throw new Error(`The WoW bridge could not start. Check its files and capture settings. ${owned.stderr.trim()}`)
+          throw new Error(companionError('bridge-start-failed', { detail: owned.stderr.trim() }))
         if (await this.healthy(signal)) {
           signal.throwIfAborted()
           if (owned.done)
-            throw new Error('The WoW bridge exited during startup. Check whether its port is occupied.')
+            throw new Error(companionError('bridge-start-exited'))
           this.status = 'running'
           this.error = null
           return
         }
       } while (Date.now() < deadline)
-      throw new Error('The WoW bridge did not become ready within 10 seconds. Check Python and the local capture settings.')
+      throw new Error(companionError('bridge-timeout'))
     }
     catch (error) {
       await this.releaseOwned()
       if (!signal.aborted)
-        this.fail(`${errorMessageFrom(error) ?? 'The WoW bridge could not start.'} 魔兽陪伴精灵 will retry after 30 seconds.`)
-      throw signal.aborted ? new Error('The WoW bridge start was cancelled.') : new Error(this.error ?? 'The WoW bridge could not start.')
+        this.fail(companionError('bridge-retry', { detail: errorMessageFrom(error) ?? companionError('bridge-unavailable') }))
+      throw signal.aborted ? new Error(companionError('bridge-cancelled')) : new Error(this.error ?? companionError('bridge-unavailable'))
     }
   }
 
@@ -226,14 +227,14 @@ export class CompanionBridgeRuntime {
         && 'code' in error.cause && error.cause.code === 'ECONNREFUSED') {
         return false
       }
-      throw new Error(`The local WoW bridge port did not respond. Check port ${port} before retrying.`)
+      throw new Error(companionError('bridge-port-unavailable', { port }))
     }
     let value: unknown
     try {
       value = await response.json()
     }
     catch {
-      throw new Error(`Port ${port} is occupied by an incompatible service. Close that service or update the WoW bridge.`)
+      throw new Error(companionError('bridge-port-incompatible', { port }))
     }
     const result = safeParse(healthSchema, value)
     const version = result.success && /^2\.(\d+)\.\d+$/.exec(result.output.version)
@@ -242,7 +243,7 @@ export class CompanionBridgeRuntime {
       || result.output.protocol !== gameProfiles[game].protocol
       || (result.output.game !== undefined && result.output.game !== game)
       || (game === 'forever' && result.output.game !== game)) {
-      throw new Error(`Port ${port} is occupied by an incompatible service. Use WoW bridge 2.11 or later for the ${game} profile.`)
+      throw new Error(companionError('bridge-profile-incompatible', { port, game }))
     }
     return true
   }
@@ -268,7 +269,7 @@ export class CompanionBridgeRuntime {
     }
     if (await this.isFile(join(source, 'server.py')))
       return { script: join(source, 'server.py'), config: join(source, filename) }
-    throw new Error('WoW bridge files are missing. Restore WOWAddons beside the 魔兽陪伴精灵 source, or reinstall the companion desktop package.')
+    throw new Error(companionError('bridge-files-missing'))
   }
 
   private async findPython(signal: AbortSignal) {
@@ -296,7 +297,7 @@ export class CompanionBridgeRuntime {
         }
       }
     }
-    throw new Error('Python 3.10 or newer was not found. Install Python with PATH enabled, then restart 魔兽陪伴精灵.')
+    throw new Error(companionError('bridge-python-missing'))
   }
 
   private async isFile(path: string) {

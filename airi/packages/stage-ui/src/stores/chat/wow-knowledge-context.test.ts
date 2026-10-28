@@ -15,7 +15,7 @@ function references(value: Conversation) {
     : [])
 }
 
-describe('Warcraft request knowledge', () => {
+describe('warcraft request knowledge', () => {
   it('explains Chinese shorthand offline without changing stored history', () => {
     const source = conversation('DZ是什么意思？')
     const before = structuredClone(source)

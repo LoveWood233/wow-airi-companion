@@ -4,7 +4,7 @@ character-switcher:
   empty: Aucun personnage pour le moment
   failed: Impossible de changer de personnage. Réessayez.
 mobile-tools:
-  sign-in: Se connecter à AIRI
+  sign-in: Se connecter à Compagnon WoW
   account-description: Compte et préférences
   sound: Son
   character-voice: Voix du personnage
@@ -17,10 +17,14 @@ mobile-tools:
   view: Vue
   close-view: Enregistrer et fermer les contrôles de vue
   hearing: Audition
+  application: Application
+  menu: Menu
+  menu-unread: Menu, {count} notifications non lues
 chat:
   provider-configuration:
     title: Le fournisseur de conversation n’est pas configuré
-    description: Sélectionnez et vérifiez un fournisseur dans les paramètres avant d’envoyer un message.
+    description: Sélectionnez et vérifiez un fournisseur dans les paramètres avant
+      d’envoyer un message.
     action: Ouvrir les paramètres du fournisseur
   voice-message:
     recording: Enregistrement en cours
@@ -32,7 +36,9 @@ chat:
   voice-composer:
     audio: Message vocal
     transcription: Dictée
-    hold-hint: Maintenez le bouton pour enregistrer. Cliquez pour alterner entre message vocal et dictée. Appuyez sur Entrée pour enregistrer sans maintenir le bouton.
+    hold-hint: Maintenez le bouton pour enregistrer. Cliquez pour alterner entre
+      message vocal et dictée. Appuyez sur Entrée pour enregistrer sans
+      maintenir le bouton.
     listening: À l’écoute…
     lock: Glissez vers le haut pour verrouiller
     cancel-hint: Glissez vers la gauche pour annuler
@@ -44,14 +50,17 @@ chat:
     discard: Supprimer le message vocal
     failed: La saisie vocale a échoué
     configure-title: Configurer l’Audition
-    configure-description: Sélectionnez un fournisseur et un modèle de transcription dans Audition pour utiliser la dictée.
+    configure-description: Sélectionnez un fournisseur et un modèle de transcription
+      dans Audition pour utiliser la dictée.
     configure-action: Ouvrir l’Audition
     mode: Saisie vocale
     auto-send: Envoyer à l’arrêt de l’enregistrement
     system-default: Par défaut du système
     listen: Écouter en continu
     push-to-talk: Appuyer pour parler
-    push-to-talk-unavailable: Cet appareil n’a pas de touche pour parler, donc AIRI n’écoute pas. Changez le mode de saisie dans les paramètres d’Audition.
+    push-to-talk-unavailable: Cet appareil n’a pas de touche pour parler, donc
+      Compagnon WoW n’écoute pas. Changez le mode de saisie dans les paramètres
+      d’Audition.
     wake-word: Écouter les mots d’activation
     hearing-settings: Autres paramètres d’Audition…
     options-hint: Survolez ou faites un clic droit pour voir les options
@@ -59,6 +68,8 @@ chat:
     stop: Arrêter l’enregistrement
     stop-send: Arrêter et envoyer
     play: Lire l’enregistrement
+    input-device: Microphone
+    pause: Mettre en pause
   voice-preview:
     processing: Finalisation de la transcription
     device: Périphérique d’entrée audio
@@ -73,6 +84,7 @@ chat:
     start: Démarrer l’enregistrement
     stop: Terminer l’enregistrement
     failed: L’opération audio a échoué.
+    silence: Silence
   voice-draft:
     title: Brouillon vocal
     discard: Supprimer le brouillon
@@ -86,7 +98,9 @@ chat:
   images:
     empty: Partagez une pensée ou une image.
     use-vision: Utiliser le modèle de vision pour les images du chat
-    use-vision-description: Choisissez un fournisseur et un modèle ci-dessous. Il lit les images jointes avant la réponse du modèle de chat. Sans modèle de vision, les images vont directement au modèle de chat.
+    use-vision-description: Choisissez un fournisseur et un modèle ci-dessous. Il
+      lit les images jointes avant la réponse du modèle de chat. Sans modèle de
+      vision, les images vont directement au modèle de chat.
     attach: 'Joindre des images'
     remove: 'Retirer {name}'
     unsupported: 'Utilisez des images PNG, JPEG, WebP ou GIF.'
@@ -94,7 +108,8 @@ chat:
     too-many: 'Joignez jusqu’à {count} images à la fois.'
     total-too-large: 'La taille totale des images jointes ne doit pas dépasser 3 Mo.'
     read-failed: 'Impossible de lire cette image. Réessayez.'
-    no-description: 'Le modèle de vision n’a renvoyé aucune description d’image. Vérifiez Paramètres → Modules → Vision et réessayez.'
+    no-description: 'Le modèle de vision n’a renvoyé aucune description d’image.
+      Vérifiez Paramètres → Modules → Vision et réessayez.'
     reading: 'Lecture des images…'
     description: 'Image jointe'
   actions:
@@ -106,9 +121,11 @@ chat:
     character-name:
       core-system: Système central
       you: Vous
+      airi: Compagnon WoW
   reply:
     cancel: Annuler la réponse
     replying-to: Réponse à {name}
+    message: Message
   reasoning: Raisonnement
   swipe-demo:
     show-label: Afficher les libellés
@@ -116,6 +133,7 @@ chat:
     archive: Archiver
     pin: Épingler
     actions: Afficher les actions
+    row: Conversation {n}
   sessions:
     delete-short: Supprimer
     confirm-delete-short: Confirmer la suppression
@@ -127,6 +145,85 @@ chat:
     cloud-badge: Synchronisé dans le cloud
     new-chat-fallback: Nouvelle conversation
     delete: Supprimer conversation
+    title: Conversations
+  notice:
+    label: Rapport en arrière-plan de {name}
+  background-tasks:
+    label: Tâches en arrière-plan
+    stop: Arrêter {name}
+    dismiss: Fermer {name}
+    status:
+      running: En cours
+      done: Terminé
+      failed: Non terminé
+      interrupted: Arrêté
+  judgment:
+    running: Évaluation de {name}
+    judged: '{name} évalué'
+    invalid: Impossible d’évaluer {name}
+  judgment-tool-call:
+    answer: Réponse
+    next: Ensuite
+    reply: Répondre normalement
+    stay-quiet: Garder le silence
+    hint: 'Répondre en tenant compte de : {text}'
+    recipe-steps: Utiliser la recette {name}
+    recipe-decision: Évaluer {name}
+    recipe-background: Transmettre à la recette {name}
+  recipe:
+    using: Utilisation de la recette {name}
+    loaded: Recette {name} utilisée
+    started: Transmis à la recette {name}
+    pending: La recette {name} attend votre approbation
+    disabled: La recette {name} est désactivée
+    unknown: Recette {name} introuvable
+    refused: La recette {name} n’a pas démarré
+    failed: La recette {name} n’a pas démarré
+  recipe-tool-call:
+    task: Tâche
+    usable: Recettes utilisables maintenant
+    pending: Cette recette attend votre approbation.
+    disabled: Cette recette est désactivée.
+    unknown: Aucune recette ne porte ce nom.
+    refused: La recette n’a pas pu démarrer.
+  invoked-skill:
+    steps: Recette {name} utilisée
+    background: Transmis à la recette {name}
+    decision: Recette {name} utilisée
+    question: Question
+    yes: Oui
+    no: Non
+  home-assistant-tool-call:
+    shown: '{count} appareils affichés sur {total}'
+  web-search-tool-call:
+    results: Résultats pour « {query} » · {count}
+  tool-calls:
+    running-one: Utilisation de {name}
+    failed-one: '{name} n’a pas terminé'
+    combo-running: Combo ×{count}
+    combo: Combo de {count} actions
+    combo-failed: Combo de {count} actions, {failed} échecs
+    arguments: Arguments
+    result: Résultat
+    copy: Copier les données brutes
+    copied: Copié
+    raw: Données brutes
+    other: Autres données
+    widget: Widget
+    rerun: Exécuter à nouveau
+    card-making: Création d’une carte pour cet outil…
+    card-remaking: Création d’une nouvelle carte…
+    card-regenerate: Créer une nouvelle carte
+    card-failed: Impossible de créer une carte pour cet outil
+    card-retry: Réessayer
+    state:
+      executing: En cours
+      done: Terminé
+      error: Échec
+  reply-card:
+    drawing: Dessin d’une carte…
+    raw: Données brutes
+    card: Carte
 render-error:
   title: '{renderer} n’a pas pu afficher ce modèle'
   description: Le modèle est sélectionné, mais la scène n’a pas pu l’afficher.
@@ -138,12 +235,14 @@ startup:
   failed: Échec du démarrage
   failed-resource: 'Impossible de charger : {resource}'
   recover: Réessayez. Si l’échec se reproduit, ouvrez les détails ci-dessous.
-  recover-model: Réessayez ou continuez sans personnage. Vous pouvez choisir un autre modèle plus tard.
+  recover-model: Réessayez ou continuez sans personnage. Vous pouvez choisir un
+    autre modèle plus tard.
   details: Que s’est-il passé ?
   close-details: Fermer les détails
   retry: Réessayer
   continue-without-model: Continuer quand même
-  model-timeout: Le modèle du personnage a mis trop de temps à charger. Vérifiez votre connexion et réessayez.
+  model-timeout: Le modèle du personnage a mis trop de temps à charger. Vérifiez
+    votre connexion et réessayez.
   resources:
     auth: paramètres du compte
     modelIndex: liste des modèles
@@ -154,6 +253,7 @@ startup:
     modelSelection: paramètres du modèle
     audio: paramètres audio
     model: modèle du personnage
+    route: page
 message: Dites quelque chose...
 theme:
   title: Thème
@@ -207,7 +307,8 @@ promo-banner:
       watermark: Lune
       fallbackLabel: Cadeau de la Lune
       title: Connexion sur 7 jours
-      eventName: Connectez-vous pour récupérer de la poussière d’étoiles, des cadres d’avatar et des cadeaux de lancement.
+      eventName: Connectez-vous pour récupérer de la poussière d’étoiles, des cadres
+        d’avatar et des cadeaux de lancement.
       date: 28/03 - 10/04
       reward: Jusqu’à 120 poussières d’étoiles
       cta: Se connecter
@@ -215,7 +316,8 @@ promo-banner:
       watermark: Version
       fallbackLabel: Bonus de construction
       title: Bonus de boîte de ravitaillement
-      eventName: Terminez des tâches de construction pour obtenir des bons bonus et des matériaux doublés.
+      eventName: Terminez des tâches de construction pour obtenir des bons bonus et
+        des matériaux doublés.
       date: 30/03 - 12/04
       reward: 5 bons de ravitaillement + matériaux d’amélioration
       cta: Voir les tâches
@@ -223,22 +325,26 @@ promo-banner:
       watermark: Printemps
       fallbackLabel: Tirage de printemps
       title: Capsule Carnaval
-      eventName: Participez au tirage au printemps pour débloquer des bulles, des charmes et des meubles à thème.
+      eventName: Participez au tirage au printemps pour débloquer des bulles, des
+        charmes et des meubles à thème.
       date: 01/04 - 18/04
       reward: Premier tirage à moitié prix + charme rare
       cta: Tirer au sort Maintenant
     coupon:
       watermark: Discussion
       title: Coupon de recharge
-      eventName: Terminez des interactions de chat pour récupérer des coupons pour l’extension et les packs vocaux.
+      eventName: Terminez des interactions de chat pour récupérer des coupons pour
+        l’extension et les packs vocaux.
       date: 02/04 - 20/04
       reward: Économisez 6% sur 30 / Économisez 15% sur 68
       cta: Récupérer le coupon
+      fallbackLabel: Coupon
     home:
       watermark: Accueil
       fallbackLabel: Thème de la chambre
       title: Mise à jour du thème de printemps
-      eventName: Débloquez des thèmes de fenêtre, bureau et lampe de nuit pour rafraîchir votre chambre.
+      eventName: Débloquez des thèmes de fenêtre, bureau et lampe de nuit pour
+        rafraîchir votre chambre.
       date: 05/04 - 22/04
       reward: Ticket de tirage de thème gratuit à la connexion
       cta: Voir le thème
@@ -249,11 +355,12 @@ websocket-status:
   open-settings: Ouvrir les paramètres de connexion
 computer-use:
   label: Utiliser l’ordinateur
-  description: Autoriser cette fenêtre de chat à examiner et contrôler les applications natives de cet ordinateur.
+  description: Autoriser cette fenêtre de chat à examiner et contrôler les
+    applications natives de cet ordinateur.
 status:
   preparing: Préparation du microphone
   listening: Écoute en cours
-  paused: Écoute en pause pendant qu’AIRI parle
+  paused: Écoute en pause pendant qu’Compagnon WoW parle
   transcribing: Transcription en cours
   hearing-error: Impossible de transcrire l’audio
   no-transcript: Le texte reconnu apparaîtra ici.
@@ -264,3 +371,30 @@ status:
   sign-in-unconfirmed: Impossible de confirmer votre session. Reconnectez-vous.
   dismiss: Ignorer
   configure-hearing: Sélectionnez et configurez un fournisseur d’Audition dans les paramètres.
+avatar-model-missing:
+  title: Aucun modèle sélectionné
+  unavailable-title: Ce modèle n’est pas sur cet appareil
+  description: Sélectionnez un modèle pour afficher {name} sur la scène.
+  select: Choisir un modèle
+notifications:
+  title: Notifications
+  open: Ouvrir les notifications
+  open-unread: Ouvrir les notifications, {count} non lues
+  mark-all-read: Tout marquer comme lu
+  empty: Aucune notification pour le moment
+  loading: Chargement des notifications
+  back: Retour
+  error: Impossible de charger les notifications.
+  retry: Réessayer
+  just-now: À l’instant
+  kinds:
+    flux-granted:
+      title: Vous avez reçu {amount} Flux
+    subscription-renewed:
+      title: '{plan} renouvelé'
+      body: Actif jusqu’au {periodEnd}.
+    subscription-payment-failed:
+      title: Échec du paiement de renouvellement
+      body: Nous réessaierons le {retryAt}. Mettez à jour votre moyen de paiement pour
+        conserver {plan}.
+      body-no-retry: Mettez à jour votre moyen de paiement pour conserver {plan}.

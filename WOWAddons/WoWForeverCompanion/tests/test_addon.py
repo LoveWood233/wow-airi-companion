@@ -192,8 +192,9 @@ class AddonTest(unittest.TestCase):
 
     def test_frame_drops_whole_race_only_after_display_labels(self):
         snapshot = self.lua.globals().WoWForeverCompanionDB[b"snapshot"]
-        exact = {b"guid": b"G" * 48, b"session": b"s" * 28, b"account": b"a" * 40,
-                 b"moneyEpoch": b"e" * 40, b"copper": 9007199254740991,
+        # Budget 22 bytes for the paired coordinates while retaining the exact 504-byte boundary.
+        exact = {b"guid": b"G" * 48, b"session": b"s" * 28, b"account": b"a" * 29,
+                 b"moneyEpoch": b"e" * 29, b"px": 10000, b"py": 10000, b"copper": 9007199254740991,
                  b"earned": 9007199254740991, b"spent": 9007199254740991,
                  b"faction": b"Alliance", b"class": b"M" * 20}
         for key, value in exact.items():
@@ -393,9 +394,9 @@ class AddonTest(unittest.TestCase):
         self.assertEqual(plain, camelot)
         self.assertIn("## Interface: 16001", plain)
         self.assertIn("## SavedVariables: WoWForeverCompanionDB", plain)
-        self.assertIn("## Version: 1.7.1", plain)
+        self.assertIn("## Version: 1.9.0", plain)
         lua_files = [line.strip() for line in plain.splitlines() if line.strip().endswith(".lua")]
-        self.assertEqual(lua_files, ["Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"])
+        self.assertEqual(lua_files, ["Localization.lua", "Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"])
         for filename in lua_files:
             self.assertTrue((ROOT / filename).is_file())
 

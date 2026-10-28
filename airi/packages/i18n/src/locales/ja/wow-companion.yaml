@@ -1,0 +1,450 @@
+title: WoW コンパニオン
+description: アゼロスで一緒に過ごしましょう。キャラクターの状態を読み取り、大切な瞬間に反応します。
+product:
+  about-title: WoW コンパニオンについて
+  description: World of Warcraftでの付き添い、音声チャット、アドオン管理。
+  version: バージョン
+  project: プロジェクト
+  third-party: サードパーティーのライセンス
+  license-note: このソフトウェアはオープンソースのコンポーネントを使用しています。著作権表示とライセンスはソースおよび配布ファイルに含まれています。
+  local-provider-note: 設定でチャットと音声サービスを設定してください。アプリのアカウントは不要です。
+connection: ゲームへの接続
+last-seen: 最後の観測
+demo-warning: これはシミュレーションデータです。実際のキャラクターの状態ではありません。
+model-required: キャラクターの応答を有効にするには、WoW コンパニオンでチャットプロバイダーとモデルを選択してください。音声は現在の設定を使用します。
+start-bridge: 接続を有効にすると、WoW コンパニオンがローカルブリッジを起動します。アドオンのグリッドを表示してください。WindowsではPython 3.10以降が必要です。
+player: キャラクター
+level: レベル
+zone-label: 現在地
+class-spec: クラス / 専門化ID
+faction: 陣営
+race: 種族
+identity-unknown: 不明
+factions:
+  Alliance: アライアンス
+  Horde: ホード
+  Neutral: 中立
+activity: 行動状態
+freshness: 観測状態
+dead: 死亡
+combat: 戦闘中
+exploring: 探索中
+current: 現在の状態
+historical: 最後に確認した状態
+no-character: キャラクターをまだ観測していません。ブリッジとキャプチャ座標を確認してください。
+preferences: コンパニオンの設定
+preferences-description: このページを閉じても接続は続きます。応答を生成するのはメインのキャラクターウィンドウだけです。
+options:
+  enabled: コンパニオンを有効にする
+  muted: ゲームへの反応をミュート
+  quietInCombat: 戦闘中は静かにする
+  levelUp: レベルアップを祝う
+  zone: 新しい場所にコメントする
+  death: 死亡時に反応する
+  revive: 復活を迎える
+  allowDemo: デモイベントへの応答を許可
+hints:
+  enabled: 現在のゲーム状態をキャラクターが参照できるようにします。
+  muted: 自発的なゲームへの応答を止め、コンテキストの更新を続けます。
+  quietInCombat: 重要なイベントを1件、戦闘終了まで保留します。30秒経過したイベントは破棄します。
+  levelUp: 同じキャラクターセッション内でレベルの上昇を検出します。
+  zone: 待機時間を守りながら、新しいマップやエリアに反応します。
+  death: 選択したキャラクターの口調で短く反応します。適切な場合は陣営や種族の冗談を交えます。
+  revive: キャラクターが復活したときに反応します。
+  allowDemo: 初期設定は無効です。テスト応答は設定済みのモデルと音声を使用します。
+cooldown: 反応の最小間隔（秒）
+cooldown-description: 0〜300秒。待機中に保留できるのは直近のイベント1件だけです。
+capture: 画面の位置調整
+capture-description: 標準のグリッドは1セルが物理1ピクセルで、全体は64 × 64ピクセルです。この白黒形式の最小サイズです。座標はデスクトップの物理ピクセルです。
+capture-x: グリッドの左端（X）
+capture-y: グリッドの上端（Y）
+cell-size: セルのサイズ（ピクセル）
+poll-ms: キャプチャ間隔（ミリ秒）
+pause-capture: キャプチャを一時停止
+capture-help: /wowc compactで64 × 64のグリッドを表示し、/wowc statusで原点を確認してください。グリッドを隠さないでください。1ピクセルのセルがぼやける場合は/wowc cell 2を実行し、ここでもセルのサイズを2に設定してください。
+save-preferences: 設定を保存
+save-capture: 位置調整を適用
+saved: 保存しました。
+failed: 操作に失敗しました。
+demo: 接続テスト
+demo-description: ゲームにログインせずにテストします。上で明示的に許可するまで、デモイベントはキャラクターのコンテキストに入りません。
+demo-label: デモ
+start-demo: デモを開始
+stop-demo: ライブキャプチャに戻る
+actions:
+  level_up: レベルアップを再現
+  zone: エリアを変更
+  death: 死亡を再現
+  revive: 復活を再現
+  combat: 戦闘状態を切り替え
+events: 最近のゲームイベント
+events-description: これは観測記録です。応答の配信確認ではありません。ミュートまたは除外されたイベントも表示されます。
+no-events: イベントはまだありません。
+gold:
+  title: ゴールド台帳
+  description: アドオンのローカルアカウントごとに資金の移動を記録します。合計はゲーム接続中に更新され、このコンピューターに保存されます。
+  current-balance: 現在のキャラクターの所持金
+  current-unavailable: 現在の所持金を取得できません。実際のキャラクターをオンラインにし、ライブキャプチャを続けてください。
+  empty: 実際の所持金をまだ観測していません。更新済みのアドオンとブリッジを導入し、各キャラクターでログインしてください。
+  storage-error: 台帳の読み込みまたは保存に失敗しました。ディスク上の合計は未確認です。エラーと空き容量を確認してください。
+  unnamed-account: アドオンのローカルアカウント
+  account-id: アカウントID
+  account-name: アカウントのラベル
+  account-name-placeholder: 例：メインアカウント
+  account-name-help: 最大64文字。空欄にするとラベルを削除します。
+  save-name: ラベルを保存
+  character-count: '記録済みキャラクター数: {count}'
+  since: デスクトップでの記録開始日時
+  earned: 総入金
+  spent: 総出金
+  net: 純増減
+  balance: 記録済みキャラクターの残高
+  character: キャラクター
+  realm: レルム
+  character-balance: 最後の残高
+  last-seen: 最後の観測
+  characters-description: このアカウントの最後に確認した残高と記録済みの資金移動です。
+  identity-note: アカウントはアドオンが保存したローカルIDで識別します。WoW コンパニオンはログインアカウントを読みません。各IDにラベルを付けて識別してください。
+  flow-note: 初期残高は入金に含みません。郵便、取引、銀行への預入・引出、キャラクター間送金は資金移動に含みます。
+  balance-note: 残高は観測済みキャラクターの最後の記録です。すべてが現在の金額とは限りません。ウォーバンド銀行の残高は含みません。
+  demo-note: デモデータは台帳に入りません。資金の変化はチャットのコンテキストを更新しますが、自発的な音声応答は発生しません。
+  money: '{sign}{gold}ゴールド {silver}シルバー {copper}カッパー'
+status:
+  disabled: コンパニオン無効
+  disconnected: ブリッジ利用不可
+  waiting: ゲームを待機中
+  live: キャラクターをライブ観測中
+  stale: キャプチャが古くなっています
+  demo: デモデータ
+  paused: キャプチャ一時停止中
+versions:
+  label: World of Warcraftのバージョン
+  isolation: 設定、位置調整、イベント、ゴールド、装備履歴、レベル履歴はバージョンごとに独立しています。ページを切り替えると未保存の変更を破棄します。
+  retail:
+    name: World of Warcraft リテール
+    description: リテール用のコンパニオン設定とゴールド記録です。
+    capture-help: /wowc compactで64 × 64のグリッドを表示し、/wowc statusで原点を確認してください。ウィンドウの枠や別のモニターで座標は変わります。グリッドを隠さないでください。ぼやける場合は/wowc cell 2を実行し、セルのサイズを2にしてください。
+  forever:
+    name: 'World of Warcraft: Forever'
+    description: Forever専用のコンパニオン設定とゴールド記録です。
+    preview: このバージョンはクライアント公開前の準備版です。実際の互換性は公開後に確認が必要です。接続は初期状態で無効です。
+    capture-help: Foreverアドオンを導入後、/wowf compactで64 × 64のグリッドを表示し、/wowf statusで原点を確認してください。グリッドを隠さないでください。ぼやける場合は/wowf cell 2を実行し、セルのサイズを2にしてください。
+level-history:
+  title: キャラクターのレベル履歴
+  description: WoW コンパニオンは各キャラクターのレベル観測をこのコンピューターに保存します。経過時間は実時間で計測し、オフライン時間も含みます。
+  empty: レベル履歴はまだありません。実際のキャラクターに接続すると、現在のレベルから記録を開始します。
+  storage-error: レベル履歴の読み込みまたは保存に失敗しました。ディスクへの保存は未確認です。エラーと空き容量を確認してください。
+  current-character: 現在のキャラクター
+  account: ローカルアカウントID
+  current-level: '最後に観測したレベル: {level}'
+  first-seen: 最初の記録
+  complete-count: 完全に計測できた1レベル分の区間数
+  average: 完全な区間の平均時間
+  show-records: レベル履歴を表示
+  hide-records: レベル履歴を非表示
+  table-description: 保存済みのレベル変化を新しい順に表示します。時刻はこのコンピューターのタイムゾーンで表示します。
+  level-change: レベル変化
+  recorded-at: 記録日時
+  duration: このレベルの所要時間
+  source-title: 観測内容
+  unknown-duration: 不明
+  partial: 前のレベルを最初に観測してからの時間です。そのレベルの全所要時間ではありません。
+  offline-note: オフライン、別のキャラクターでのプレイ、WoW コンパニオンを閉じた時間も含みます。再起動後も記録は残ります。
+  observation-note: WoW コンパニオンは観測できなかったレベルアップ時刻を復元できません。初回観測や中断後の変化だけでは、正確な時刻は分かりません。
+  average-note: 平均には完全に計測できた1レベル分の区間だけを使います。部分区間、見逃した変化、レベル低下、時計変更は除外します。
+  duration-days: '{days}日 {hours}時間 {minutes}分 {seconds}秒'
+  duration-hours: '{hours}時間 {minutes}分 {seconds}秒'
+  duration-minutes: '{minutes}分 {seconds}秒'
+  duration-seconds: '{seconds}秒'
+  source:
+    baseline: 初回観測です。それ以前のレベルアップ時刻は不明です。
+    live: ライブキャプチャ中にレベルアップを観測しました。
+    gap: 中断後または複数レベル分の変化を検出しました。各レベルアップ時刻は不明です。
+    decrease: レベル低下を観測しました。レベルアップの区間は計測しません。
+    clock-change: コンピューターの時計が変更されました。この区間は計測できません。
+equipment:
+  title: 装備の入手履歴
+  description: WoW コンパニオンはこのゲームバージョンの最新10件をこのコンピューターに保存します。10件を超えると、古い記録から削除します。
+  empty: 装備履歴はまだありません。バッグ内にすでにあったアイテムは新しい入手に含みません。
+  bridge-update: このブリッジはキャラクターデータのみを提供しています。古い単独ブリッジを停止し、WoW コンパニオンを再起動して更新済みブリッジで装備を読み取ってください。
+  capture-note: 素早い装備確認には100ミリ秒のキャプチャ間隔を使ってください。長い間隔では装備データの断片を繰り返し見逃す場合があります。
+  historical: 過去の記録
+  character: キャラクター
+  realm: レルム
+  received: WoW コンパニオンの受信日時
+  storage-error: 装備履歴の読み込みまたは保存に失敗しました。ディスクへの保存は未確認です。エラーと空き容量を確認してください。
+  unnamed: 'アイテム {id}'
+  unavailable: 取得不可
+  item-level: アイテムレベル
+  observed: 観測日時
+  completeness: データの取得状況
+  infoComplete: アイテム詳細
+  statsComplete: 数値属性
+  tooltipComplete: ツールチップ
+  complete: 取得済み
+  incomplete: 未完了
+  truncated: 一部のテキストを短縮しました
+  show-details: 装備の詳細を表示
+  hide-details: 装備の詳細を非表示
+  quality: 品質
+  required-level: 必要レベル
+  slot: 装備スロット
+  attributes: 数値属性
+  no-stats: このアイテムの数値属性がゲームから返されませんでした。
+  tooltip: 効果、ボーナス、セットの説明
+  effect-note: ツールチップはアイテムの説明です。セットボーナスや効果が現在有効であることを示すものではありません。
+  item-link: アイテムリンク
+  session-note: 再起動、キャラクター変更、キャプチャのリセット、デモ切替後も記録は残ります。バッグへの追加には購入、郵便、銀行からの引出も含みます。
+  history-note: 履歴は現在の装備を示さず、ライブチャットのコンテキストにも使いません。装備の質問は現在のライブセッションの有効な提案を使います。
+  read-error: 一部の装備データを取得できません。
+  qualities:
+    '0': 低品質
+    '1': コモン
+    '2': アンコモン
+    '3': レア
+    '4': エピック
+    '5': レジェンダリー
+    '6': アーティファクト
+    '7': エアルーム
+    '8': WoWトークン
+  stats:
+    ITEM_MOD_STRENGTH_SHORT: 筋力
+    ITEM_MOD_AGILITY_SHORT: 敏捷性
+    ITEM_MOD_INTELLECT_SHORT: 知力
+    ITEM_MOD_STAMINA_SHORT: スタミナ
+    ITEM_MOD_SPIRIT_SHORT: 精神力
+    ITEM_MOD_CRIT_RATING_SHORT: クリティカル
+    ITEM_MOD_HASTE_RATING_SHORT: ヘイスト
+    ITEM_MOD_MASTERY_RATING_SHORT: マスタリー
+    ITEM_MOD_VERSATILITY: 汎用性
+    ITEM_MOD_VERSATILITY_SHORT: 汎用性
+    ITEM_MOD_ARMOR_SHORT: 防御力
+    RESISTANCE0_NAME: 防御力
+    ITEM_MOD_ATTACK_POWER_SHORT: 攻撃力
+    ITEM_MOD_SPELL_POWER_SHORT: 呪文力
+    ITEM_MOD_DAMAGE_PER_SECOND_SHORT: 秒間ダメージ
+    ITEM_MOD_CR_AVOIDANCE_SHORT: 範囲ダメージ軽減
+    ITEM_MOD_CR_LIFESTEAL_SHORT: 生命吸収
+    ITEM_MOD_CR_SPEED_SHORT: 移動速度
+    ITEM_MOD_LIFESTEAL_SHORT: 生命吸収
+    ITEM_MOD_AVOIDANCE_SHORT: 範囲ダメージ軽減
+    ITEM_MOD_SPEED_SHORT: 移動速度
+    ITEM_MOD_DODGE_RATING_SHORT: 回避
+    ITEM_MOD_PARRY_RATING_SHORT: 受け流し
+    ITEM_MOD_BLOCK_RATING_SHORT: ブロック
+    ITEM_MOD_DEFENSE_SKILL_RATING_SHORT: 防御
+    ITEM_MOD_HIT_RATING_SHORT: 命中
+    ITEM_MOD_EXPERTISE_RATING_SHORT: 熟練度
+equipment-swaps:
+  title: 装備変更の結果
+  description: 明確な強化、空きスロット、高いアイテムレベルと主要属性の増加がある場合に変更を提案します。副属性の低下も表示します。変更には毎回確認が必要です。
+  confirmation: ゲーム内で確認してください。WoW コンパニオンで「はい」を選ぶと次の手順を表示します。装備の変更やゲームへの入力は行いません。
+  empty: このキャラクターセッションには装備確認の結果がありません。
+  bridge-update: このブリッジは装備変更の結果を提供していません。アドオンとブリッジを更新し、WoW コンパニオンを再起動してください。
+  read-error: 一部の装備変更の結果を取得できません。
+  historical: 最後に確認した結果です。接続や結果データを利用できない間は、WoW コンパニオンのライブコンテキストに使いません。
+  observed: 結果の時刻
+  previous: 以前のアイテム
+  empty-slot: 空きスロット
+  expired-reason: 質問が期限切れになりました。アドオンは変更を実行しませんでした。
+  scope-note: これらは過去の操作記録です。現在の装備ではありません。高いアイテムレベルが属性やセット効果の向上を保証するわけではありません。
+  status:
+    equipped: 変更を確認済み
+    declined: 拒否
+    failed: 未確認
+    expired: 質問の期限切れ
+  reason:
+    confirmed: ゲーム内の承認後、アドオンが装備変更を確認しました。
+    user: ゲーム内で変更を拒否しました。
+    timeout: アドオンが結果を確認できませんでした。ゲーム内で装備を確認してください。
+    combat: 戦闘によってリクエストを中断しました。戦闘終了後に新しいリクエストを確認してください。
+    changed: アイテムまたは対象スロットが変わったため、リクエストを停止しました。
+    unavailable: 必要なアイテム情報またはゲーム機能を利用できませんでした。
+    locked: アイテムがロックされていたため、リクエストを停止しました。
+    cursor: カーソルがアイテムを持っていたため、リクエストを停止しました。
+    dead: キャラクターが死亡していたため、リクエストを停止しました。
+    restricted: ゲームが操作を制限したため、リクエストを停止しました。
+    disabled: 装備確認が無効だったため、リクエストを停止しました。
+    left_world: キャラクターがワールドを離れたため、リクエストを停止しました。
+  slots:
+    '1': 頭
+    '2': 首
+    '3': 肩
+    '4': シャツ
+    '5': 胴
+    '6': 腰
+    '7': 脚
+    '8': 足
+    '9': 手首
+    '10': 手
+    '11': 指輪1
+    '12': 指輪2
+    '13': 装身具1
+    '14': 装身具2
+    '15': 背中
+    '16': メインハンド
+    '17': オフハンド
+    '18': 遠距離
+    '19': タバード
+equipment-prompt:
+  message: '新しい装備「{name}」の入手、おめでとう！ さらに強くなるチャンスだね。{reason} 装備を変更する？'
+  message-player: '{player}、新しい装備「{name}」の入手、おめでとう！ さらに強くなるチャンスだね。{reason} 装備を変更する？'
+  message-player-tradeoff: '{player}、新しい装備「{name}」の入手、おめでとう！ 主要属性を強化できるよ。{reason} 装備を変更する？'
+  reason:
+    stats: '比較した記録上の属性が明確に向上しています（アイテムレベル {oldLevel} → {newLevel}）。'
+    empty: 対象の装備スロットは空いています。
+    tradeoff: 'アイテムレベル {oldLevel} → {newLevel}、{primary} {oldPrimary} → {newPrimary}、ただし{decreases}。属性には利点と欠点があります。総合的な強化は保証されません。'
+    separator: '、'
+  accepted: ゲーム内の「変更を確認」をクリックしてください。WoW コンパニオンはゲームへの入力を行いません。
+  accept: はい
+  decline: 今はやめておく
+  timeout: 10秒以内に選択してください。選択しないと通知を閉じます。装備変更にはゲーム内の確認が必要です。
+  description: 明確な強化や、アイテムレベルと主要属性の増加がある場合に変更を提案します。副属性の低下も明示します。毎回確認が必要です。
+idle-interaction:
+  title: 戦闘外でのコンパニオンとの会話
+  messages:
+    '0': '{player}、次の冒険はどこに行きたい？'
+    '1': '{player}、穏やかな時間を楽しもう。水を飲んで、少し休んでね。そばにいるよ。'
+    '2': '{player}、次はどの装備を新しくしたい？'
+    '3': '{player}、アゼロスで一番好きな景色はどこ？'
+comparison:
+  title: 入手時の比較
+  missing: 対応する比較データを受信していません。アイテムレベルだけでは強化を判断できません。
+  historical: '入手時に観測した装備と専門化:'
+  stale-spec: これは過去の比較です。現在のキャラクターまたは専門化が異なるか、取得できません。
+  type: 装備の種類
+  empty-slot: 空きスロット
+  attribute: 属性
+  difference: 変化
+  item-level: アイテムレベル
+  unknown: 不明
+  limitation: アイテムレベルと主要属性が上がる場合、副属性が下がっても確認を求めます。特殊効果、セット、ソケット、不完全な情報は別途確認してください。
+  verdict:
+    upgrade: 明確な強化
+    not_upgrade: このキャラクターの強化にはなりません
+    review: 確認が必要
+  reason:
+    empty_slot: 使用可能なアイテムで空きスロットを埋めます
+    stats_upgrade: 比較属性が向上し、記録上の低下はありません
+    unusable: このアイテムは現在使用できません
+    wrong_spec: 観測した専門化に適合しません
+    weaker_stats: 比較属性が低下します
+    equivalent: 向上する比較属性がありません
+    incomplete: 比較データが不完全か、未対応の属性を含んでいます
+    unknown_spec: 専門化への適合性が不明です
+    weapon_change: 装備の種類が異なります
+    complex_item: 効果や装備の組み合わせの確認が必要です
+    stat_tradeoff: 属性に利点と欠点があります
+    primary_upgrade_tradeoff: アイテムレベルと主要属性は向上しますが、副属性に低下があります。確認して判断してください。
+    no_target: 対象スロットを取得できません
+loadout:
+  title: 装備中のアイテム
+  description: ログイン、装備入手、装備変更時に全19スロットを更新します。WoW コンパニオンはキャラクターごとに最新のスナップショットを保存します。
+  characters: 保存済みキャラクター
+  waiting: 今回のログインの完全な装備スナップショットを待っています。既存の記録は過去の状態として残ります。
+  empty: 装備スナップショットをまだ受信していません。更新済みのアドオンでログインし、転送グリッドを表示してください。
+  received: 受信日時
+  observed: 観測日時
+  historical: 最後に記録したスナップショットです。装備を常時ライブ表示するものではありません。
+  unknown: 不明 / 取得不可
+  empty-slot: 空きスロット
+  incomplete: 一部のアイテム情報が不完全か、短縮されています。
+  note: 空きスロットと不明なスロットは異なります。セットの説明だけでは有効なボーナスは分かりません。このスナップショットには入手履歴の10件制限を適用しません。
+launcher:
+  title: ゲーム起動設定
+  description: Battle.net または World of Warcraft アプリケーションを選択してください.
+    各ゲームバージョンのアプリケーションファイルの位置を保存します.
+  configure: ゲーム起動を設定
+  target: 起動するプログラム
+  targets:
+    battle-net: Battle.net
+    retail: World of Warcraft Retail
+    forever: World of Warcraft Forever
+    classic: World of Warcraft Classic
+  default-summary: クイック起動：{target}
+  path-label: '{target} のプログラムパス'
+  path-description: このゲームバージョンのフォルダで .exe ファイルを選択してください. World of Warcraft
+    Launcher.exeについては, Battle.net を選択してください. ショートカットやスクリプトを選択しないでください.
+  path-placeholder: .exe ファイルを選択するか、完全なパスを入力
+  browse: プログラムを参照
+  make-default: このプログラムをクイック起動に使用
+  make-default-description: キャラクターのツールバーから、この保存済みプログラムを起動します。
+  current-default: クイック起動にこのプログラムが選択されています。
+  save: 確認して保存
+  clear: 保存したパスを削除
+  retry: 設定を再読み込み
+  launch-game: ゲームを起動
+  launch-battle-net: Battle.net を起動
+  quick-launch: ゲームのクイック起動
+  quick-launch-description: 保存したデフォルトアプリケーションを起動します. アプリケーションが設定されていない場合は,起動設定を開く.
+  saved: プログラムを確認して保存しました。
+  cleared: 保存したパスを削除しました。
+  launched: 起動リクエストを送信しました。
+  unsaved: 起動する前に変更内容を確認して保存してください。
+  launch-note: Battle.netはアプリケーションを開設します ゲームにはログインや更新が必要です. 保存されたアプリケーションは,各起動前にチェックされます.
+  verified-program: 確認済みプログラム
+  errors:
+    unsupported-platform: このアプリケーションからゲームを始めるには Windowsが必要です
+    invalid-request: 起動設定は無効です ゲームとそのアプリケーションを再び選択します.
+    invalid-path: ローカルアプリケーションファイルの完全な位置を入力します. コマンドラインの引数を追加しないでください.
+    file-not-found: プログラムが見つかりませんでした 現在の位置を選択します.
+    not-executable: Windows の .exe プログラムを選択してください。ショートカット、スクリプト、フォルダーは選択しないでください。
+    invalid-signature: 有効な Blizzard の署名がありません。インストール先フォルダーから公式プログラムを選択してください。
+    wrong-product: このアプリケーションは選択された Battle.net または World of Warcraft オプションに一致しません.
+    wrong-version: このWorld of Warcraftアプリケーションは別のゲームバージョンのものです
+      適切なゲームバージョンまたはアプリケーションを選択してください.
+    unrecognized-version: ゲームバージョンは確認できなかった. Battle.net で開始するか,このバージョンのサポートを更新します.
+    inspection-failed: プログラムを確認できなかった. ファイルアクセスを確認して また試してみてください
+    not-configured: このオプションにはアプリケーションが保存されていません. まずファイル位置を設定して保存します
+    storage-error: 起動設定を読み取ったり保存したりできません. アプリケーションデータフォルダーへのアクセスを確認する.
+    launch-failed: 申請を開始できない. インストールとファイル許可を確認する
+    busy: 申し込みが始まっています 終わるまで待って
+    request-failed: デスクトップサービスは反応しませんでした また試すか 仲間を再起動する
+screen-assist:
+  title: ゲーム画面の確認支援
+  description: ウォークラフトのスクリーンショットを 地形,ゲームクエスト,またはNPCガイドを調べてください
+  enabled: ゲーム画面の確認を頼んだときに撮影する
+  enabled-description: 明示的な依頼でゲーム画面を1枚撮影します。通常の会話では撮影しません。
+  image-use: 画像は選択した画像認識サービスに送信されます。元画像はローカルのチャット履歴に保存されません。
+  target: ゲームウィンドウ
+  target-description: 自動選択には Warcraft
+    のウィンドウが1つ必要です。複数のバージョンを開いている場合は1つを選び、同じバージョンの余分なウィンドウを閉じてください。
+  games:
+    auto: 自動
+    retail: Retail
+    forever: Forever
+    classic: Classic
+  configure-vision: 画像認識モデルを設定
+  vision-description: 視覚設定で画像対応のサービスとモデルを選択してください。この設定画面を開いても撮影しません。
+  examples-title: チャットまたは音声で依頼
+  examples:
+    terrain: 前の地形を見て、通れる道を探すのを手伝ってくれる？
+    quest: クエストではここに NPC がいるはずなのに見えません。探すのを手伝ってくれる？
+    scene: ゲーム画面を見て、クエストの目標を説明して。
+  command: 撮影を依頼するには、メッセージを /look で始めて質問を続けてください。ゲーム内で移動した後は、もう一度依頼すると新しい画面を確認します。
+  limits: Windows
+    のみ対応。ゲームを表示したままにしてください。1枚の画像では当たり判定、隠れた入口、クエストのフェーズを確認できません。助言でキャラクターを操作することはありません。
+  capturing: Warcraft ウィンドウを撮影中…
+  analyzing: ゲーム画面を分析中…
+  ready: ゲーム画面を分析しました。返答を準備中。
+  errors:
+    unsupported-platform: ゲームのスクリーンショット支援は Windowsが必要です.
+    invalid-request: 選択したゲームバージョンは無効です. スクリーンショット支援設定で再び選択します.
+    game-not-found: ウォークラフトと一致する窓が見つかりませんでした ゲームを開いてもう一度やってみてください.
+    ambiguous-window: 数匹のゲームウィンドウが開いている. ゲームバージョンを選択するか,追加ウィンドウを閉じて再試してください.
+    minimized-window: ゲームの窓は最小限に抑えられている. 復元して 再問する
+    unverified-game: このゲームウィンドウを検証できない. 公式にサポートされているウォークラフトのインストールを使用します
+    capture-failed: ゲームのスクリーンショットを撮れない ゲームを目に見えるままにして 窓付きモードを試してみてください
+    empty-frame: スクリーンショットは空か黒です. ゲームを目に見えるままにして また聞いてみてください
+    capture-timeout: スクリーンショット操作が終了しました ちょっと待って もう一度聞いてくれ
+    busy: もう1つのスクリーンショットが進行中です 終わるまで待って
+    window-changed: スクリーンショット撮影中にゲームウィンドウが変わった. 新しいスクリーンショットをもう一度お願いします
+    vision-not-configured: ゲーム画面の確認を依頼する前に、画像認識サービスとモデルを選択してください。
+    vision-failed: 画像分析 AIモデルはスクリーンショットを読み取れない. モデルの設定を確認してもう一度試してみてください.
+    no-description: 画像分析AIモデルは説明を返さなかった. また試してみるか 画像をサポートする別のモデルを選択するか.
+
+coordinates:
+  title: マップ座標
+  value: X {x} · Y {y}
+  unavailable: この観測では取得できません
+  note: 現在のマップ内の座標（0〜100）。一部のエリアでは取得できません。

@@ -41,6 +41,7 @@ docs:
   'logging-in': 로그인 중...
   'account': 계정
   'logout': 로그아웃
+  open-wow-companion: 와우 정보 카드
 'chat-window':
   style:
     title: 채팅 창 스타일
@@ -49,6 +50,7 @@ docs:
     floating-free: 화면 어디에나 떠 있는 창
     floating-danmaku: 떠 있는 메시지 피드
     pinned: 항상 위에 표시
+    fullscreen: 캐릭터 옆에 전체 화면으로 표시
   resize: 드래그하여 채팅 크기 조절
   move: 드래그하여 채팅 이동
   fold: 채팅 숨기기
@@ -86,6 +88,7 @@ notice:
     preparing: 준비 중…
     read-more: 더 보기
     preview-title: 이게 뭐죠?
+    value: '0'
 about:
   subtitle: 데스크탑 버전
   current-version: 현재 버전
@@ -132,3 +135,148 @@ about:
       title: 업데이트 사용 가능
       description: 새로운 버전 (v{version})이 이용 가능해요.
       no-release-notes-markdown: _릴리스 노트가 제공되지 않았습니다._
+fullscreen-island:
+  settings: 설정
+  chat: 대화
+  switch-to-dark-mode: 어두운 모드로 전환
+  switch-to-system-mode: 시스템 테마 따르기
+  switch-to-light-mode: 밝은 모드로 전환
+  exit: 전체 화면 종료
+fullscreen-surface:
+  resize: 드래그하여 패널 크기 조절
+computer-use-tool-call:
+  help: 도움말
+  status:
+    completed: 완료됨
+    failed: 실패
+  display: 디스플레이
+  built-in: 내장
+  primary: 기본
+  logical-size: 논리 크기
+  pixel-size: 픽셀 크기
+  backend: 캡처 백엔드
+  fallback: 대체 방식 사용 이유
+  file: 파일
+  window: 창
+  region: 영역
+  main: 주요
+  hidden: 숨김
+  displays: 디스플레이 1개 | 디스플레이 {count}개
+  windows: 창 1개 | 창 {count}개
+  found: "'{query}' 찾음"
+  matches: 일치 1개 | 일치 {count}개
+  not-found: "'{query}'을 찾지 못함"
+  clicked-text: "'{query}' 클릭함"
+  options: 옵션
+  typed: 입력함
+  pasted: 붙여넣음
+  pressed: 누름
+  repeat: × {count}
+  interval: '{ms}ms마다'
+  hold: '{ms}ms 동안 누름'
+  steps: 1단계 순서대로 실행 | {count}단계 순서대로 실행
+  focused: "'{query}'에 초점 이동"
+  app: 앱
+  process: 프로세스
+  control: 컨트롤
+  title: 제목
+  value: 내용
+  ax-path: 접근성 경로
+  moved: 포인터 이동 위치
+  clicked: 클릭함
+  dragged: 드래그함
+  requested: 요청함
+  on-screen: 화면상
+  start: 시작
+  end: 끝
+  final: 최종 지점
+  duration: '{ms} ms'
+  normalized: 정규화된 좌표
+  click-count: × {count}
+  relative:
+    screen: 화면 기준
+    window: 창 기준
+    display: 디스플레이 기준
+  buttons:
+    left: 왼쪽 버튼
+    right: 오른쪽 버튼
+    middle: 가운데 버튼
+  clicks:
+    single: 한 번 클릭
+    double: 두 번 클릭
+  delivery:
+    path: 입력 전달
+    verified: 효과 확인됨
+    not-verified: 효과 확인 안 됨
+    disturbance: 작업 간섭
+    mouse: 마우스
+    focus: 초점
+    clipboard: 클립보드
+    attempt: 시도 {index}
+    attempt-succeeded: 성공
+    attempt-failed: 실패
+  paths:
+    foreground_system_events: 전경 시스템 이벤트
+    window_targeted_keyboard: 창에 보낸 키보드 이벤트
+    ax_focus: 접근성 초점
+  disturbances:
+    none: 없음
+    temporary: 일시적
+    foreground: 맨 앞으로 가져옴
+    unknown: 알 수 없음
+  activated: '{app}으로 전환함'
+  in-front: 현재 맨 앞에 있음
+  front-is: '{app}이 맨 앞에 있음'
+  front-unknown: 맨 앞의 앱을 확인하지 못함
+  permissions:
+    title: 시스템 권한
+    names:
+      screen_recording: 화면 녹화
+      screen_capture_kit: ScreenCaptureKit
+      accessibility: 접근성
+      automation_to_system_events: 자동화(System Events)
+    states:
+      granted: 허용됨
+      missing: 허용되지 않음
+      denied: 거부됨
+      unknown: 알 수 없음
+  media:
+    commands:
+      play: 재생
+      pause: 일시 중지
+      toggle: 재생 또는 일시 중지
+      next: 다음 트랙
+      previous: 이전 트랙
+    verified: 확인됨
+    not-verified: 확인 안 됨
+    playing: 재생 중
+    paused: 일시 중지됨
+    nothing: 재생 중인 항목 없음
+    liked: 좋아요 표시됨
+    rate: '{rate}배속'
+computer-use-read-image-tool-call:
+  description: 시각 모델의 설명
+  failed: 시각 모델이 이 이미지를 읽지 못했습니다
+tool-call-screenshot:
+  view-full: 원래 크기로 보기
+weather-tool-call:
+  feels-like: 체감 온도
+  humidity: 습도
+  wind: 바람
+  precipitation: 강수 확률
+  high: 최고
+  low: 최저
+  conditions:
+    clear-day: 맑음
+    clear-night: 맑음
+    partly-cloudy-day: 구름 조금
+    partly-cloudy-night: 구름 조금
+    overcast: 흐림
+    fog: 안개
+    drizzle: 이슬비
+    sleet: 진눈깨비
+    rain: 비
+    extreme-rain: 폭우
+    snow: 눈
+    extreme-snow: 폭설
+    thunderstorm: 뇌우

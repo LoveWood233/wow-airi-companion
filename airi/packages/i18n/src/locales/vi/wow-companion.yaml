@@ -1,0 +1,476 @@
+title: Bạn đồng hành WoW
+description: Hãy cùng nhau ở Azeroth. Đọc tình trạng nhân vật và phản ứng vào những khoảnh khắc quan trọng.
+product:
+  about-title: Về Bạn đồng hành WoW
+  description: Đồng hành trong World of Warcraft, trò chuyện bằng giọng nói và quản lý addon.
+  version: Phiên bản
+  project: Dự án
+  third-party: Giấy phép bên thứ ba
+  license-note: Phần mềm này sử dụng các thành phần mã nguồn mở. Thông báo bản quyền và giấy phép của họ vẫn ở trong các tập tin nguồn và phân phối.
+  local-provider-note: Cấu hình dịch vụ trò chuyện và giọng nói trong cài đặt. Không cần tài khoản ứng dụng.
+connection: Kết nối trò chơi
+last-seen: Quan sát gần nhất
+demo-warning: Đây là dữ liệu mô phỏng. Nó không mô tả một nhân vật thực sự.
+model-required: Chọn nhà cung cấp trò chuyện và mô hình trong Bạn đồng hành WoW để bật câu trả lời của nhân vật. Giọng nói dùng cài đặt hiện có.
+start-bridge: Bạn đồng hành WoW khởi chạy cầu nối cục bộ khi bật kết nối này. Giữ lưới addon hiển thị. Windows cần Python 3.10 trở lên.
+player: Nhân vật
+level: Cấp độ
+zone-label: Vị trí
+class-spec: ID lớp / chuyên môn
+faction: Phe
+race: Chủng tộc
+identity-unknown: Không rõ
+factions:
+  Alliance: Liên Minh
+  Horde: Horde
+  Neutral: Trung lập
+activity: Hoạt động
+freshness: Quan sát
+dead: Đã chết
+combat: Đang chiến đấu
+exploring: Đang khám phá
+current: Hiện tại
+historical: Trạng thái gần nhất
+no-character: Chưa có dữ liệu nhân vật. Hãy kiểm tra cầu nối và tọa độ chụp.
+preferences: Tùy chọn đồng hành
+preferences-description: Kết nối tiếp tục khi bạn đóng trang này. Chỉ cửa sổ nhân vật chính tạo ra câu trả lời.
+options:
+  enabled: Bật bạn đồng hành
+  muted: Tắt tiếng phản ứng trò chơi
+  quietInCombat: Giữ im lặng khi chiến đấu
+  levelUp: Chúc mừng lên cấp
+  zone: Bình luận về địa điểm mới
+  death: Phản ứng khi tử trận
+  revive: Chào đón hồi sinh
+  allowDemo: Cho phép nhân vật trả lời sự kiện mô phỏng
+hints:
+  enabled: Giữ trạng thái trò chơi hiện tại sẵn sàng cho nhân vật.
+  muted: Tiếp tục cập nhật ngữ cảnh mà không có câu trả lời trò chơi chủ động.
+  quietInCombat: Giữ một sự kiện quan trọng đến khi hết chiến đấu. Bỏ sự kiện sau 30 giây.
+  levelUp: Khám phá một cấp độ cao hơn trong cùng một phiên nhân vật.
+  zone: Phản ứng với một bản đồ hoặc khu vực mới, tùy thuộc vào việc làm mát.
+  death: Phản ứng ngắn gọn trong giọng nói của nhân vật được chọn, với nhóm trò chơi hoặc trò đùa chủng tộc khi thích hợp.
+  revive: Phản ứng khi nhân vật trở lại cuộc sống.
+  allowDemo: Mặc định tắt. Câu trả lời thử nghiệm dùng mô hình và giọng nói đã cấu hình.
+cooldown: Khoảng giây tối thiểu giữa các phản ứng
+cooldown-description: Từ 0 đến 300 giây. Chỉ có một sự kiện gần đây chờ đợi trong thời gian làm mát.
+capture: Hiệu chỉnh màn hình
+capture-description: Lưới mặc định dùng một pixel vật lý mỗi ô, kích thước 64 × 64 pixel. Đây là kích thước nhỏ nhất của định dạng đen trắng này. Tọa độ dùng pixel vật lý trên màn hình.
+capture-x: Cạnh trái lưới (X)
+capture-y: Cạnh trên lưới (Y)
+cell-size: Kích thước ô theo pixel
+poll-ms: Khoảng chụp theo mili giây
+pause-capture: Tạm dừng chụp
+capture-help: Dùng /wowc compact để hiện lưới 64 × 64 và /wowc status để đọc tọa độ gốc. Không che lưới. Nếu ô một pixel bị nhòe, dùng /wowc cell 2 rồi đặt kích thước ô ở đây thành 2.
+save-preferences: Lưu tùy chọn
+save-capture: Áp dụng hiệu chỉnh
+saved: Đã lưu.
+failed: Thao tác thất bại.
+demo: Kiểm tra kết nối
+demo-description: Thử mà không đăng nhập trò chơi. Sự kiện mô phỏng không vào ngữ cảnh nhân vật cho đến khi bạn cho phép ở trên.
+demo-label: Mô phỏng
+start-demo: Bắt đầu mô phỏng
+stop-demo: Quay lại chụp thực tế
+actions:
+  level_up: Mô phỏng lên cấp
+  zone: Đổi khu vực
+  death: Mô phỏng tử trận
+  revive: Mô phỏng hồi sinh
+  combat: Đổi trạng thái chiến đấu
+events: Sự kiện trò chơi gần đây
+events-description: Đây là những quan sát, không phải biên nhận giao hàng. Các sự kiện bị mờ hoặc lọc vẫn còn hiển thị ở đây.
+no-events: Chưa có sự kiện.
+gold:
+  title: Sổ vàng
+  description: Theo dõi dòng tiền theo tài khoản addon địa phương. Tổng cập nhật với kết nối trò chơi và vẫn được lưu trên máy tính này.
+  current-balance: Tiền của nhân vật hiện tại
+  current-unavailable: Tiền hiện tại không có sẵn. Giữ một nhân vật thực sự trực tuyến với chụp trực tiếp để đọc cân bằng.
+  empty: Vẫn chưa có quan sát tiền thật. Thiết lập thêm và cầu cập nhật, sau đó đăng nhập vào mỗi ký tự để bắt đầu sổ cái.
+  storage-error: sổ cái không tải hoặc lưu. Những tổng số này không được xác nhận trên đĩa. Kiểm tra lỗi lưu trữ và không gian đĩa có sẵn.
+  unnamed-account: Tài khoản addon cục bộ
+  account-id: ID tài khoản
+  account-name: Nhãn tài khoản
+  account-name-placeholder: 'Ví dụ: tài khoản chính'
+  account-name-help: Có tới 64 ký tự. Để trống để loại bỏ nhãn.
+  save-name: Lưu nhãn
+  character-count: 'Các ký tự ghi lại: {count}'
+  since: Bắt đầu theo dõi từ
+  earned: Tổng tiền vào
+  spent: Tổng tiền ra
+  net: Thay đổi ròng
+  balance: Số dư nhân vật đã ghi
+  character: Nhân vật
+  realm: Máy chủ
+  character-balance: Số dư gần nhất
+  last-seen: Quan sát gần nhất
+  characters-description: Số dư và dòng chảy được ghi nhận cuối cùng cho tài khoản này.
+  identity-note: Tài khoản sử dụng ID địa phương được lưu bởi addon. Bạn đồng hành WoW không đọc tài khoản đăng nhập của bạn Đánh dấu mỗi thẻ để xác định nó.
+  flow-note: Số dư ban đầu không được tính là dòng chảy. Bưu điện, giao dịch, tiền gửi ngân hàng, rút tiền và chuyển tiền giữa các nhân vật của bạn được tính theo dòng tiền.
+  balance-note: Các cân bằng chỉ bao gồm các nhân vật được quan sát, mỗi nhân vật ở quan sát cuối cùng của nó. Không phải tất cả đều hiện tại. Các số dư ngân hàng Warband được loại trừ.
+  demo-note: Dữ liệu demo vẫn nằm ngoài sổ cái này. Tiền thay đổi cập nhật ngữ cảnh trò chuyện mà không có câu trả lời bằng giọng nói chủ động.
+  money: '{sign}{gold}g {silver}s {copper}c'
+status:
+  disabled: Đã tắt bạn đồng hành
+  disconnected: Cầu nối không khả dụng
+  waiting: Đang chờ trò chơi
+  live: Nhân vật trực tiếp
+  stale: Dữ liệu chụp đã cũ
+  demo: Dữ liệu mô phỏng
+  paused: Đã tạm dừng chụp
+versions:
+  label: Phiên bản World of Warcraft
+  isolation: Mỗi phiên bản có cài đặt riêng biệt, hiệu chuẩn, sự kiện, hồ sơ vàng, lịch sử thiết bị và lịch sử cấp độ. Thay đổi các trang loại bỏ các chỉnh sửa chưa được lưu.
+  retail:
+    name: World of Warcraft Retail
+    description: Cài đặt đồng hành và hồ sơ vàng cho Retail.
+    capture-help: Sử dụng /wowc compact cho lưới 64 × 64, sau đó /wowc status để đọc nguồn gốc của nó. Biên giới cửa sổ và các màn hình khác thay đổi tọa độ máy tính để bàn. Giữ lưới không bị cản trở. Nếu các tế bào một pixel mờ, sử dụng /wowc cell 2 và đặt kích thước tế bào lên 2.
+  forever:
+    name: 'World of Warcraft: Forever'
+    description: Cài đặt đồng hành độc lập và hồ sơ vàng cho Forever.
+    preview: Phiên bản này được chuẩn bị trước khi phát hành. Sự tương thích trực tiếp yêu cầu kiểm tra sau khi phát hành. Kết nối bị vô hiệu hóa theo mặc định.
+    capture-help: Sau khi cài đặt addon Forever, sử dụng /wowf compact cho lưới 64 × 64. Sử dụng /wowf status để đọc nguồn gốc của nó. Giữ lưới không bị cản trở. Nếu các tế bào một pixel bị mờ, hãy sử dụng /wowf cell 2 và đặt kích thước tế bào lên 2.
+level-history:
+  title: Lịch sử cấp độ nhân vật
+  description: Bạn đồng hành WoW lưu các quan sát cấp độ cho mỗi ký tự trên máy tính này. Thời gian trôi qua sử dụng đồng hồ thế giới thực và bao gồm thời gian offline.
+  empty: Không có lịch sử cấp độ nào. Kết nối một nhân vật thực sự để bắt đầu một bản ghi từ cấp độ hiện tại của nó.
+  storage-error: Lịch sử cấp độ không tải hoặc lưu. Không xác nhận lưu trữ đĩa. Kiểm tra lỗi và không gian đĩa có sẵn.
+  current-character: Nhân vật hiện tại
+  account: ID tài khoản cục bộ
+  current-level: 'Mức quan sát cuối cùng: {level}'
+  first-seen: Lần ghi đầu tiên
+  complete-count: Khoảng thời gian đủ một cấp
+  average: Thời gian trung bình của khoảng đầy đủ
+  show-records: Hiện lịch sử cấp độ
+  hide-records: Ẩn lịch sử cấp độ
+  table-description: Tất cả các thay đổi cấp lưu, mới nhất trước. Thời gian sử dụng vùng thời gian địa phương của máy tính này.
+  level-change: Thay đổi cấp độ
+  recorded-at: Thời điểm ghi
+  duration: Thời gian ở cấp này
+  source-title: Quan sát
+  unknown-duration: Không rõ
+  partial: Thời gian kể từ lần quan sát đầu tiên của mức trước. Đây không phải là thời gian đầy đủ cho cấp độ đó.
+  offline-note: Khoảng thời gian bao gồm thời gian offline, trên các ký tự khác, và với Bạn đồng hành WoW đóng. Các hồ sơ vẫn còn sau khi khởi động lại.
+  observation-note: Bạn đồng hành WoW không thể phục hồi thời gian nâng cấp bị bỏ lỡ. Một quan sát đầu tiên hoặc một sự thay đổi được tìm thấy sau khi có khoảng cách không chứng minh thời gian nâng cấp.
+  average-note: Tỷ lệ trung bình chỉ sử dụng khoảng thời gian một cấp độ hoàn chỉnh. Các khoảng thời gian một phần, thay đổi bị bỏ qua, mức giảm và thay đổi đồng hồ được loại trừ.
+  duration-days: '{days}d {hours}h {minutes}m {seconds}'
+  duration-hours: '{hours}h {minutes}m {seconds}s'
+  duration-minutes: '{minutes}m {seconds}'
+  duration-seconds: '{seconds}'
+  source:
+    baseline: Quan sát đầu tiên. Thời gian nâng cấp trước đó là không rõ.
+    live: Sự gia tăng mức độ được quan sát trong thời gian bắt sống.
+    gap: Sự thay đổi được tìm thấy sau một khoảng trống hoặc qua nhiều cấp độ. Thời gian nâng cấp là không rõ.
+    decrease: Giảm mức được quan sát thấy. Không có khoảng thời gian nâng cấp áp dụng.
+    clock-change: Đồng hồ máy tính đã thay đổi. Khoảng thời gian này không thể đo được.
+equipment:
+  title: Lịch sử nhận trang bị
+  description: Bạn đồng hành WoW giữ 10 hồ sơ mới nhất cho phiên bản trò chơi này trên máy tính này. Một khi có 10 bản ghi, mỗi bản ghi mới sẽ loại bỏ bản ghi cũ nhất.
+  empty: Không có lịch sử thiết bị. Các mặt hàng túi hiện có không phải là một việc mua lại mới.
+  bridge-update: Cầu nối này chỉ cung cấp dữ liệu nhân vật. Dừng cầu nối độc lập cũ rồi khởi động lại Bạn đồng hành WoW để đọc trang bị bằng cầu nối mới.
+  capture-note: Sử dụng khoảng thời gian chụp 100 ms cho các câu hỏi thiết bị nhanh chóng. Thời gian dài hơn có thể lặp đi lặp lại bỏ lỡ các mảnh thiết bị.
+  historical: Bản ghi lịch sử
+  character: Nhân vật
+  realm: Máy chủ
+  received: Được nhận bởi Bạn đồng hành WoW
+  storage-error: Lịch sử thiết bị không tải hoặc lưu. Không xác nhận lưu trữ đĩa. Kiểm tra lỗi và không gian đĩa có sẵn.
+  unnamed: Điểm {id}
+  unavailable: Không khả dụng
+  item-level: Cấp vật phẩm
+  observed: Thời điểm quan sát
+  completeness: Tình trạng dữ liệu
+  infoComplete: Chi tiết vật phẩm
+  statsComplete: Chỉ số dạng số
+  tooltipComplete: Chú giải vật phẩm
+  complete: Đã đọc
+  incomplete: Chưa đầy đủ
+  truncated: Một phần văn bản đã bị rút ngắn
+  show-details: Hiện chi tiết trang bị
+  hide-details: Ẩn chi tiết trang bị
+  quality: Phẩm chất
+  required-level: Cấp yêu cầu
+  slot: Ô trang bị
+  attributes: Chỉ số dạng số
+  no-stats: Trò chơi không trả lại bất kỳ thuộc tính số nào cho mục này.
+  tooltip: Hiệu ứng, chỉ số thưởng và mô tả bộ trang bị
+  effect-note: Chú giải mô tả vật phẩm. Nội dung đó không chứng minh hiệu ứng hoặc thưởng bộ trang bị đang hoạt động.
+  item-link: Liên kết vật phẩm
+  session-note: Các bản ghi vẫn tồn tại sau khi khởi động lại, thay đổi nhân vật, chụp thiết lập lại và chuyển đổi demo. Thùng bổ sung có thể bao gồm mua hàng, thư và rút tiền ngân hàng.
+  history-note: Lịch sử không mô tả trang bị hiện tại và không cung cấp ngữ cảnh trò chuyện trực tiếp. Câu hỏi trang bị dùng đề xuất hợp lệ trong phiên thực tế hiện tại.
+  read-error: Một số dữ liệu thiết bị không có sẵn.
+  qualities:
+    '0': Kém
+    '1': Thông thường
+    '2': Không thường gặp
+    '3': Hiếm
+    '4': Sử thi
+    '5': Huyền thoại
+    '6': Cổ vật
+    '7': Gia truyền
+    '8': Thẻ WoW
+  stats:
+    ITEM_MOD_STRENGTH_SHORT: Sức mạnh
+    ITEM_MOD_AGILITY_SHORT: Nhanh nhẹn
+    ITEM_MOD_INTELLECT_SHORT: Trí tuệ
+    ITEM_MOD_STAMINA_SHORT: Thể lực
+    ITEM_MOD_SPIRIT_SHORT: Tinh thần
+    ITEM_MOD_CRIT_RATING_SHORT: Chí mạng
+    ITEM_MOD_HASTE_RATING_SHORT: Tốc độ hành động
+    ITEM_MOD_MASTERY_RATING_SHORT: Tinh thông
+    ITEM_MOD_VERSATILITY: Đa dụng
+    ITEM_MOD_VERSATILITY_SHORT: Đa dụng
+    ITEM_MOD_ARMOR_SHORT: Giáp
+    RESISTANCE0_NAME: Giáp
+    ITEM_MOD_ATTACK_POWER_SHORT: Sức tấn công
+    ITEM_MOD_SPELL_POWER_SHORT: Sức mạnh phép thuật
+    ITEM_MOD_DAMAGE_PER_SECOND_SHORT: Sát thương mỗi giây
+    ITEM_MOD_CR_AVOIDANCE_SHORT: Né sát thương diện rộng
+    ITEM_MOD_CR_LIFESTEAL_SHORT: Hút máu
+    ITEM_MOD_CR_SPEED_SHORT: Tốc độ
+    ITEM_MOD_LIFESTEAL_SHORT: Hút máu
+    ITEM_MOD_AVOIDANCE_SHORT: Né sát thương diện rộng
+    ITEM_MOD_SPEED_SHORT: Tốc độ
+    ITEM_MOD_DODGE_RATING_SHORT: Né tránh
+    ITEM_MOD_PARRY_RATING_SHORT: Đỡ đòn
+    ITEM_MOD_BLOCK_RATING_SHORT: Chặn đòn
+    ITEM_MOD_DEFENSE_SKILL_RATING_SHORT: Phòng thủ
+    ITEM_MOD_HIT_RATING_SHORT: Chính xác
+    ITEM_MOD_EXPERTISE_RATING_SHORT: Thông thạo
+equipment-swaps:
+  title: Kết quả thay trang bị
+  description: Addon hỏi về nâng cấp rõ ràng, ô trống, hoặc cấp vật phẩm cao hơn với chỉ số chính tăng và chỉ số phụ giảm. Mỗi lần thay đều cần xác nhận.
+  confirmation: Hãy xác nhận trong trò chơi. Chọn Có trong Bạn đồng hành WoW chỉ hiện bước tiếp theo, không thay trang bị hay gửi thao tác vào trò chơi.
+  empty: Không có kết quả xác nhận thiết bị trong phiên diễn văn này.
+  bridge-update: Cầu này không cung cấp kết quả thay đổi thiết bị. Cập nhật addon và bridge, sau đó khởi động lại Bạn đồng hành WoW.
+  read-error: Một số kết quả thiết bị không có sẵn.
+  historical: Kết quả cuối cùng được biết. Bạn đồng hành WoW không sử dụng chúng như bối cảnh trực tiếp trong khi dữ liệu kết nối hoặc kết quả không có sẵn.
+  observed: Thời điểm có kết quả
+  previous: Vật phẩm trước
+  empty-slot: Ô trống
+  expired-reason: Câu hỏi đã hết hạn. Người bổ sung không thực hiện sự thay đổi.
+  scope-note: Các bản ghi mô tả hành động trước đây, không phải trang bị hiện tại. Cấp vật phẩm cao hơn không đảm bảo chỉ số hay hiệu ứng bộ tốt hơn.
+  status:
+    equipped: Đã xác nhận thay đổi
+    declined: Đã từ chối
+    failed: Chưa xác nhận
+    expired: Câu hỏi hết hạn
+  reason:
+    confirmed: Người bổ sung đã xác nhận sự thay đổi thiết bị sau khi bạn chấp thuận trò chơi.
+    user: Anh từ chối thay đổi trò chơi.
+    timeout: Bộ bổ sung không xác nhận kết quả. Kiểm tra thiết bị của bạn trong trò chơi.
+    combat: Chiến đấu đã làm gián đoạn yêu cầu. Hãy xác nhận yêu cầu mới sau khi chiến đấu kết thúc.
+    changed: Điểm mục hoặc điểm đến thay đổi. Việc yêu cầu dừng lại.
+    unavailable: Thông tin mục yêu cầu hoặc chức năng trò chơi không có sẵn.
+    locked: Vật phẩm đã bị khóa. Việc yêu cầu dừng lại.
+    cursor: Cursor giữ một mục. Việc yêu cầu dừng lại.
+    dead: Nhân vật đã chết. Việc yêu cầu dừng lại.
+    restricted: Trò chơi hạn chế hành động. Việc yêu cầu dừng lại.
+    disabled: Việc xác nhận thiết bị đã bị vô hiệu. Việc yêu cầu dừng lại.
+    left_world: Nhân vật đã rời khỏi thế giới. Việc yêu cầu dừng lại.
+  slots:
+    '1': Đầu
+    '2': Cổ
+    '3': Vai
+    '4': Áo trong
+    '5': Ngực
+    '6': Eo
+    '7': Chân
+    '8': Bàn chân
+    '9': Cổ tay
+    '10': Bàn tay
+    '11': Nhẫn 1
+    '12': Nhẫn 2
+    '13': Trang sức 1
+    '14': Trang sức 2
+    '15': Lưng
+    '16': Tay chính
+    '17': Tay phụ
+    '18': Tầm xa
+    '19': Áo choàng hiệu
+equipment-prompt:
+  message: Chúc mừng cho thiết bị mới của bạn, {name}! Điều này cho bạn một cơ hội khác để phát triển mạnh hơn. {reason} Bạn muốn thay thiết bị?
+  message-player: '{player}, chúc mừng về thiết bị mới của bạn, {name}! Điều này cho bạn một cơ hội khác để phát triển mạnh hơn. {reason} Bạn muốn thay thiết bị?'
+  message-player-tradeoff: '{player}, chúc mừng về thiết bị mới của bạn, {name}! Nó có thể cải thiện tình trạng cơ bản của bạn. {reason} Bạn muốn thay thiết bị?'
+  reason:
+    stats: Các thuộc tính được ghi nhận của nó cải thiện rõ ràng sau khi so sánh ({oldLevel} → {newLevel} cấp mục).
+    empty: Vị trí đích của nó trống rỗng.
+    tradeoff: Cấp vật phẩm {oldLevel} → {newLevel}, {primary} {oldPrimary} → {newPrimary}, nhưng {decreases}. Các chỉ số có đánh đổi. Không đảm bảo lợi ích tổng thể.
+    separator: ', '
+  accepted: Hãy nhấp “Xác nhận thay đổi” trong trò chơi. Bạn đồng hành WoW không gửi thao tác vào trò chơi.
+  accept: Có
+  decline: Không, cảm ơn
+  timeout: Chọn trong 10 giây. Nếu không chọn, lời nhắc này sẽ đóng. Việc thay trang bị vẫn cần xác nhận trong trò chơi.
+  description: Nâng cấp rõ ràng hoặc cấp vật phẩm và chỉ số chính cao hơn có thể yêu cầu thay. Chỉ số phụ giảm luôn được nêu rõ. Mỗi lần thay cần bạn xác nhận.
+idle-interaction:
+  title: Sự tương tác của người đồng hành bên ngoài chiến đấu
+  messages:
+    '0': '{player}, bạn muốn cuộc phiêu lưu tiếp theo của bạn đưa bạn đến đâu?'
+    '1': '{player}, tận hưởng khoảnh khắc yên tĩnh này. Uống nước và nghỉ ngơi. Tôi sẽ ở bên cạnh anh.'
+    '2': '{player}, bạn muốn thay thế thiết bị nào tiếp theo?'
+    '3': '{player}, khung cảnh nào ở Azeroth là yêu thích của bạn?'
+comparison:
+  title: So sánh khi nhận vật phẩm
+  missing: Không có sự so sánh được nhận thấy. Chỉ riêng cấp độ mặt hàng không thể thiết lập một nâng cấp.
+  historical: 'Thiết bị và chuyên môn hóa được quan sát khi mua lại:'
+  stale-spec: Đây là một so sánh lịch sử. Bản chất hoặc chuyên môn hiện tại khác nhau hoặc không có sẵn.
+  type: Loại trang bị
+  empty-slot: Ô trống
+  attribute: Chỉ số
+  difference: Thay đổi
+  item-level: Cấp vật phẩm
+  unknown: Không rõ
+  limitation: Cấp vật phẩm và chỉ số chính tăng có thể yêu cầu xác nhận dù chỉ số phụ giảm. Hiệu ứng đặc biệt, bộ trang bị, lỗ ngọc và thông tin chưa đủ vẫn cần kiểm tra.
+  verdict:
+    upgrade: Cải thiện rõ ràng
+    not_upgrade: Không nâng cấp cho nhân vật này
+    review: Cần kiểm tra
+  reason:
+    empty_slot: Vật phẩm dùng được lấp ô trống
+    stats_upgrade: Các thuộc tính so sánh cải thiện mà không có mất thuộc tính được ghi nhận
+    unusable: Khoản hiện không thể sử dụng
+    wrong_spec: Điểm không phù hợp với chuyên môn được quan sát
+    weaker_stats: Các thuộc tính so sánh thấp hơn
+    equivalent: Không cải thiện thuộc tính so sánh
+    incomplete: Dữ liệu so sánh không đầy đủ hoặc chứa các thuộc tính không được hỗ trợ
+    unknown_spec: Sự phù hợp của chuyên môn không được biết
+    weapon_change: Các loại thiết bị khác nhau
+    complex_item: Các hiệu ứng hoặc kết hợp thiết bị cần xem xét
+    stat_tradeoff: Các chỉ số có đánh đổi
+    primary_upgrade_tradeoff: Cấp vật phẩm và chỉ số chính cao hơn, nhưng chỉ số phụ có đánh đổi. Bạn quyết định bằng cách xác nhận.
+    no_target: Không có vị trí mục tiêu
+loadout:
+  title: Vật phẩm đang trang bị
+  description: Đăng nhập, nhận trang bị và thay trang bị sẽ cập nhật đủ 19 ô. Bạn đồng hành WoW lưu bản chụp mới nhất của mỗi nhân vật.
+  characters: Nhân vật đã lưu
+  waiting: Chờ cho hình ảnh toàn bộ thiết bị đăng nhập này. Các hồ sơ hiện có vẫn là lịch sử.
+  empty: Vẫn chưa có ảnh chụp được. Nhập vào với phần bổ sung được cập nhật và giữ lưới chuyển nhượng hiển thị.
+  received: Đã nhận
+  observed: Đã quan sát
+  historical: Đây là bản chụp gần nhất đã lưu, không phải chế độ xem trang bị trực tiếp liên tục.
+  unknown: Không rõ / không khả dụng
+  empty-slot: Ô trống
+  incomplete: Một số thông tin về mặt hàng là không đầy đủ hoặc bị rút ngắn.
+  note: Ô trống khác với ô chưa rõ. Mô tả bộ trang bị không chứng minh thưởng đang hoạt động. Bản chụp nhân vật không bị giới hạn theo lịch sử mười lần nhận vật phẩm.
+launcher:
+  title: Cài đặt khởi chạy trò chơi
+  description: Chọn Battle.net hoặc ứng dụng World of Warcraft. Chữ vị trí tệp ứng
+    dụng cho mỗi phiên bản trò chơi.
+  configure: Cấu hình khởi chạy trò chơi
+  target: Chương trình cần chạy
+  targets:
+    battle-net: Battle.net
+    retail: World of Warcraft Retail
+    forever: World of Warcraft Forever
+    classic: World of Warcraft Classic
+  default-summary: 'Khởi chạy nhanh: {target}'
+  path-label: Đường dẫn chương trình {target}
+  path-description: Chọn tệp .exe trong thư mục cho phiên bản trò chơi này. Đối
+    với World of Warcraft Launcher.exe, chọn Battle.net. Đừng chọn lối tắt hoặc
+    kịch bản.
+  path-placeholder: Chọn tệp .exe hoặc nhập đường dẫn đầy đủ
+  browse: Duyệt chương trình
+  make-default: Dùng chương trình này để khởi chạy nhanh
+  make-default-description: Thanh công cụ của nhân vật khởi chạy chương trình đã lưu này.
+  current-default: Chương trình này đã được chọn để khởi chạy nhanh.
+  save: Kiểm tra và lưu
+  clear: Xóa đường dẫn đã lưu
+  retry: Tải lại cài đặt
+  launch-game: Khởi chạy trò chơi
+  launch-battle-net: Khởi chạy Battle.net
+  quick-launch: Khởi chạy nhanh trò chơi
+  quick-launch-description: Bắt đầu ứng dụng mặc định được lưu. Nếu không có ứng
+    dụng nào được cấu hình, mở cài đặt khởi động.
+  saved: Đã kiểm tra và lưu chương trình.
+  cleared: Đã xóa đường dẫn đã lưu.
+  launched: Đã gửi yêu cầu khởi chạy.
+  unsaved: Kiểm tra và lưu thay đổi trước khi khởi chạy chương trình này.
+  launch-note: Battle.net mở ứng dụng của nó. Trò chơi vẫn có thể yêu cầu đăng
+    nhập hoặc cập nhật. Ứng dụng lưu được kiểm tra trước mỗi khởi động.
+  verified-program: Chương trình đã kiểm tra
+  errors:
+    unsupported-platform: Bắt đầu trò chơi từ ứng dụng này đòi hỏi Windows.
+    invalid-request: Cài đặt khởi động không hợp lệ. Chọn game và ứng dụng của nó một lần nữa.
+    invalid-path: Nhập vị trí đầy đủ của tệp ứng dụng địa phương. Không thêm các lập
+      luận dòng lệnh.
+    file-not-found: Chương trình không được tìm thấy. Chọn vị trí hiện tại của nó.
+    not-executable: Chọn chương trình Windows dạng .exe. Không chọn lối tắt, tập
+      lệnh hoặc thư mục.
+    invalid-signature: Chương trình không có chữ ký Blizzard hợp lệ. Chọn chương
+      trình chính thức trong thư mục cài đặt.
+    wrong-product: Ứng dụng này không phù hợp với tùy chọn Battle.net hoặc World of
+      Warcraft được chọn.
+    wrong-version: Ứng dụng World of Warcraft này là cho một phiên bản trò chơi
+      khác. Chọn phiên bản trò chơi hoặc ứng dụng đúng.
+    unrecognized-version: Phiên bản game không thể kiểm tra được. Bắt đầu thông qua
+      Battle.net hoặc cập nhật đồng hành cho phiên bản này.
+    inspection-failed: Chương trình không thể kiểm tra được. Kiểm tra truy cập tệp và thử lại.
+    not-configured: Không có ứng dụng nào được lưu cho tùy chọn này. Định cấu hình
+      và lưu vị trí tập tin đầu tiên.
+    storage-error: Không thể đọc hoặc lưu cài đặt khởi động. Kiểm tra truy cập vào
+      thư mục dữ liệu ứng dụng.
+    launch-failed: Không thể khởi động ứng dụng. Kiểm tra cài đặt và quyền tập tin.
+    busy: Việc nộp đơn đã bắt đầu rồi. Chờ cho nó kết thúc.
+    request-failed: Dịch vụ máy tính để bàn không trả lời. Hãy thử lại hoặc khởi
+      động lại đồng hành.
+screen-assist:
+  title: Trợ giúp qua ảnh chụp trò chơi
+  description: Hãy yêu cầu bạn đồng hành của bạn xem ảnh chụp màn hình Warcraft
+    cho địa hình, nhiệm vụ trò chơi hoặc hướng dẫn NPC.
+  enabled: Chụp khi tôi yêu cầu xem trò chơi
+  enabled-description: Yêu cầu rõ ràng sẽ chụp một ảnh trò chơi. Trò chuyện thông
+    thường không bắt đầu chụp.
+  image-use: Ảnh chụp được gửi đến nhà cung cấp thị giác đã chọn. Ảnh gốc không
+    được lưu trong lịch sử trò chuyện cục bộ.
+  target: Cửa sổ trò chơi
+  target-description: Chế độ tự động cần đúng một cửa sổ Warcraft. Nếu mở nhiều
+    phiên bản, hãy chọn một và đóng các cửa sổ thừa của phiên bản đó.
+  games:
+    auto: Tự động
+    retail: Retail
+    forever: Forever
+    classic: Classic
+  configure-vision: Cấu hình mô hình thị giác
+  vision-description: Chọn nhà cung cấp và mô hình hỗ trợ hình ảnh trong cài đặt
+    Thị giác. Mở phần cài đặt này không chụp ảnh màn hình.
+  examples-title: Hỏi qua chat hoặc giọng nói
+  examples:
+    terrain: Bạn có thể nhìn địa hình phía trước và giúp tôi tìm đường đi qua không?
+    quest: Nhiệm vụ đánh dấu NPC ở đây nhưng tôi không thấy. Bạn giúp tôi tìm NPC
+      được không?
+    scene: Nhìn màn hình trò chơi và giải thích mục tiêu nhiệm vụ giúp tôi.
+  command: Để yêu cầu chụp ảnh, bắt đầu tin nhắn bằng /look rồi thêm câu hỏi. Sau
+    khi di chuyển trong trò chơi, hãy hỏi lại để lấy ảnh mới.
+  limits: Chỉ hỗ trợ Windows. Giữ cửa sổ trò chơi hiển thị. Một ảnh không thể xác
+    nhận va chạm, lối vào ẩn hoặc pha nhiệm vụ. Lời khuyên không điều khiển nhân
+    vật.
+  capturing: Đang chụp cửa sổ Warcraft…
+  analyzing: Đang phân tích màn hình trò chơi…
+  ready: Đã phân tích màn hình. Đang chuẩn bị trả lời.
+  errors:
+    unsupported-platform: Hỗ trợ chụp màn hình trò chơi yêu cầu Windows.
+    invalid-request: Phiên bản trò chơi được chọn là không hợp lệ. Chọn nó một lần
+      nữa trong cài đặt hỗ trợ chụp màn hình.
+    game-not-found: Không tìm thấy cửa sổ nào phù hợp với Warcraft. Mở game và thử lại.
+    ambiguous-window: Một số cửa sổ trò chơi phù hợp đã mở. Chọn phiên bản trò chơi
+      hoặc đóng cửa sổ bổ sung và thử lại.
+    minimized-window: Chiếc cửa sổ trò chơi được giảm thiểu. Khôi phục nó và hỏi lại.
+    unverified-game: Tôi không thể xác minh cửa sổ trò chơi này. Sử dụng một cài đặt
+      Warcraft chính thức được hỗ trợ.
+    capture-failed: Không thể chụp ảnh màn hình trò chơi. Giữ trò chơi hiển thị và
+      thử chế độ cửa sổ.
+    empty-frame: Chụp màn hình trống hoặc đen. Giữ trò chơi hiển thị và hỏi lại.
+    capture-timeout: Việc chụp màn hình đã hết thời gian. Chờ một chút và hỏi lại.
+    busy: Một bức ảnh màn hình khác đang diễn ra. Chờ cho nó kết thúc.
+    window-changed: Chiếc cửa sổ trò chơi đã thay đổi khi chụp ảnh màn hình. Hãy hỏi
+      lại một bức ảnh màn hình mới.
+    vision-not-configured: Chọn nhà cung cấp và mô hình thị giác trước khi yêu cầu
+      trợ giúp qua ảnh trò chơi.
+    vision-failed: Mô hình AI phân tích hình ảnh không thể đọc ảnh chụp màn hình.
+      Kiểm tra cài đặt mô hình và thử lại.
+    no-description: Mô hình phân tích hình ảnh AI không trả lời mô tả. Hãy thử lại
+      hoặc chọn một mô hình khác hỗ trợ hình ảnh.
+
+coordinates:
+  title: Tọa độ trên bản đồ
+  value: X {x} · Y {y}
+  unavailable: Không có tọa độ trong lần quan sát này
+  note: Tọa độ trong bản đồ hiện tại (0–100). Một số khu vực không cung cấp tọa độ.

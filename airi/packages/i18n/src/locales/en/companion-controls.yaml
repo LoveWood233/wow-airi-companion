@@ -1,0 +1,101 @@
+click-here-to-set-up-your-transcription-providers: Click here to set up your Transcription providers
+enter-the-transcription-model-to-use-e-g-whisper-1-gpt-4o-transcribe: Enter a transcription model, for example {models}.
+input-level: Input Level
+probability-of-speech: Probability of Speech
+adjust-the-threshold-for-speech-detection: Adjust the threshold for speech detection
+pause-before-stop: Pause Before Stop
+how-long-silence-must-last-before-speech-is-considered-finished: How long silence must last before speech is considered finished
+model-based: Model Based
+use-ai-models-for-more-accurate-speech-detection: Use AI models for more accurate speech detection
+loading: Loading...
+inference-error: Inference error
+activated: Activated
+probability: 'Probability:'
+voice-activity: Voice Activity
+last-2-seconds: Last 2 seconds
+speaking: Speaking
+voice-detected: Voice detected
+speech-threshold: Speech threshold
+reset-value-to-default: Reset value to default
+head-rotation: Head Rotation
+angle-x: Angle X
+angle-y: Angle Y
+angle-z: Angle Z
+left-eye-open-close: Left Eye Open/Close
+right-eye-open-close: Right Eye Open/Close
+left-eye-smiling: Left Eye Smiling
+right-eye-smiling: Right Eye Smiling
+eyebrows: Eyebrows
+left-eyebrow-left-right: Left eyebrow Left/Right
+right-eyebrow-left-right: Right eyebrow Left/Right
+left-eyebrow-y-up-down: Left Eyebrow Y (Up/Down)
+left-eyebrow-y: Left Eyebrow Y
+right-eyebrow-y-up-down: Right Eyebrow Y (Up/Down)
+right-eyebrow-y: Right Eyebrow Y
+left-eyebrow-angle: Left Eyebrow Angle
+right-eyebrow-angle: Right Eyebrow Angle
+left-eyebrow-form-deformation: Left Eyebrow Form (Deformation)
+left-eyebrow-form: Left Eyebrow Form
+right-eyebrow-form-deformation: Right Eyebrow Form (Deformation)
+right-eyebrow-form: Right Eyebrow Form
+mouth: Mouth
+mouth-open-close: Mouth Open/Close
+mouth-form-deformation: Mouth Form (Deformation)
+mouth-form: Mouth Form
+face: Face
+cheek: Cheek
+body-rotation-x: Body rotation X
+body-rotation-y: Body rotation Y
+body-rotation-z: Body rotation Z
+breath: Breath
+model-position: Model Position
+directional-light-rotation-x: Directional Light Rotation - X
+directional-light-rotation-y: Directional Light Rotation - Y
+directional-light-color: Directional Light Color
+directional-light-intensity: Directional Light Intensity
+ambient-light-intensity: Ambient Light Intensity
+ambient-light-color: Ambient Light Color
+hemisphere-light-intensity: Hemisphere Light Intensity
+hemisphere-sky-color: Hemisphere Sky Color
+hemisphere-ground-color: Hemisphere Ground Color
+tips: Tips!
+camera-fov: Camera FOV
+directional-light-x: Directional Light - X
+directional-light-y: Directional Light - Y
+directional-light-z: Directional Light - Z
+albedo-glow: Albedo Glow
+godot-stage-experimental: Godot Stage (Experimental)
+godot-view: Godot View
+camera-x: Camera X
+camera-y: Camera Y
+camera-z: Camera Z
+camera-yaw: Camera Yaw
+camera-pitch: Camera Pitch
+transcription-provider-inactive: No transcription provider is active.
+transcription-provider-unavailable: The transcription provider configuration is unavailable.
+microphone-access-denied: Microphone access was denied.
+speech-detection-failed: Speech detection failed.
+speaking-detected: Speaking detected
+volume-based: Volume based
+select-model-before-godot-view: Select a VRM model before adjusting the Godot stage view.
+godot-view-unavailable: No Godot stage view was received. Check the Godot connection.
+godot-no-snapshot: No Godot stage view snapshot received
+revision: Revision {revision} · {reason}
+hemisphere: Hemisphere
+skybox: Skybox
+rotation-x-degrees: Rotation X (degrees)
+rotation-y-degrees: Rotation Y (degrees)
+intensity: Intensity
+scale: Scale
+rotation: Rotation
+glow: Glow
+mouth-vowel: Mouth {vowel}
+blink: Blink
+wink-left: Wink (left)
+wink-right: Wink (right)
+smile: Smile
+anger: Anger
+sad: Sad
+surprise: Surprise
+troubled: Troubled
+serious: Serious

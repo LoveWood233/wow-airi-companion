@@ -39,7 +39,7 @@ export function setupOnboardingWindowManager(params: {
 
   const reusableWindow = createReusableWindow(async () => {
     const newWindow = new BrowserWindow({
-      title: 'Welcome to AIRI',
+      title: params.i18n.t('companion-ui.titles.onboarding', { name: params.i18n.t('companion-ui.app.name') }),
       width: 1000,
       height: 650,
       minWidth: 400,

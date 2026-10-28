@@ -1,0 +1,28 @@
+unknown: 未知
+error: 发生未知错误。
+streaming-description: 低延迟流式语音
+preview-text: 你好，我是你的陪伴精灵。
+providers-empty: 尚未配置语音服务
+providers-setup: 配置语音服务
+model: 模型
+model-description: 输入用于生成语音的模型。
+model-manual-error: 模型发现失败时可手动输入名称。
+model-manual-empty: 未返回模型时可手动输入名称。
+voice-title: 声音设置
+voice-description: 调整陪伴精灵说话的声音。
+current-voice: 当前声音：{voice}
+voices-error: 无法加载声音
+pitch: 音调
+pitch-description: 调整声音的高低。
+ssml: 启用 SSML
+ssml-description: 使用语音合成标记语言控制语音输出。
+voice-name: 声音名称
+voice-name-description: 输入自定义声音的名称。
+voice-name-placeholder: 声音名称，例如 alloy 或 echo
+monolingual-v1: 单语言 v1
+multilingual-v1: 多语言 v1
+multilingual-v2: 多语言 v2
+custom-ssml: 使用自定义 SSML
+custom-ssml-description: 直接输入 SSML 标记，而不是纯文本。
+ssml-placeholder: 输入 SSML 文本…
+stop: 停止

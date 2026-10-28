@@ -1,0 +1,28 @@
+unknown: Неизвестно
+error: Произошла неизвестная ошибка.
+streaming-description: Потоковая речь с низкой задержкой
+preview-text: Привет, я твой спутник.
+providers-empty: Сервисы речи не настроены
+providers-setup: Настроить сервис речи
+model: Модель
+model-description: Введите модель для генерации речи.
+model-manual-error: Если поиск не удался, введите имя модели вручную.
+model-manual-empty: Если модели не найдены, введите имя вручную.
+voice-title: Настройки голоса
+voice-description: Настройте голос своего спутника.
+current-voice: 'Текущий голос: {voice}'
+voices-error: Не удалось загрузить голоса
+pitch: Высота голоса
+pitch-description: Настройте высоту голоса.
+ssml: Включить SSML
+ssml-description: Используйте речевую разметку для управления голосом.
+voice-name: Имя голоса
+voice-name-description: Введите имя своего голоса.
+voice-name-placeholder: Имя голоса, например alloy или echo
+monolingual-v1: Один язык v1
+multilingual-v1: Несколько языков v1
+multilingual-v2: Несколько языков v2
+custom-ssml: Использовать свой SSML
+custom-ssml-description: Введите код SSML вместо обычного текста.
+ssml-placeholder: Введите текст SSML…
+stop: Остановить

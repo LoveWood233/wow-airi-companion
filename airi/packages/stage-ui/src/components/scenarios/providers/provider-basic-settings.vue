@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 defineProps<{
   title?: string
   description?: string
   onReset?: () => void
 }>()
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -19,7 +23,7 @@ defineProps<{
       </div>
       <button
         v-if="onReset"
-        title="Reset settings"
+        :title="translateCompanion('companion-extra.reset-settings-9ba8d6')"
         flex items-center justify-center rounded-full p-2
         transition="all duration-250 ease-in-out"
         text="neutral-500 dark:neutral-400"

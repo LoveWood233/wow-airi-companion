@@ -120,7 +120,7 @@ describe('persistent equipped-item snapshots', () => {
     await writeFile(file, '{broken', 'utf8')
     const store = new CompanionLoadouts(file)
     await store.observe(loadoutBridgeFixture())
-    expect(store.read().storageError).toContain('Cannot load')
+    expect(store.read().storageError).toContain('loadouts-read')
     expect(store.read().entries).toHaveLength(0)
     expect(await readFile(file, 'utf8')).toBe('{broken')
   })

@@ -26,21 +26,21 @@ export const launcherSaveSchema = strictObject({
 export const launcherLaunchSchema = strictObject({ target: optional(launcherTargetSchema) })
 export type LauncherSaveRequest = InferOutput<typeof launcherSaveSchema>
 
-export type LauncherErrorCode =
-  | 'unsupported-platform'
-  | 'invalid-request'
-  | 'invalid-path'
-  | 'file-not-found'
-  | 'not-executable'
-  | 'invalid-signature'
-  | 'wrong-product'
-  | 'wrong-version'
-  | 'unrecognized-version'
-  | 'inspection-failed'
-  | 'not-configured'
-  | 'storage-error'
-  | 'launch-failed'
-  | 'busy'
+export type LauncherErrorCode
+  = | 'unsupported-platform'
+    | 'invalid-request'
+    | 'invalid-path'
+    | 'file-not-found'
+    | 'not-executable'
+    | 'invalid-signature'
+    | 'wrong-product'
+    | 'wrong-version'
+    | 'unrecognized-version'
+    | 'inspection-failed'
+    | 'not-configured'
+    | 'storage-error'
+    | 'launch-failed'
+    | 'busy'
 
 export interface LauncherState extends LauncherConfig {
   supported: boolean

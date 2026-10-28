@@ -77,6 +77,7 @@ export function safelistSettingsEntryIcons(): string[] {
     'i-solar:layers-bold-duotone',
     'i-solar:box-minimalistic-bold-duotone',
     'i-solar:filters-bold-duotone',
+    'i-solar:widget-add-bold-duotone',
   ]
 }
 

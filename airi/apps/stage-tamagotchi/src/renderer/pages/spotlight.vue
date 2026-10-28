@@ -116,7 +116,7 @@ function handleKeydown(event: KeyboardEvent) {
         :disabled="sending"
         autofocus
         type="text"
-        placeholder="Ask AIRI…"
+        :placeholder="t('companion-ui.chat.ask', { name: t('companion-ui.app.name') })"
         :class="[
           'relative z-1',
           'w-full bg-transparent',

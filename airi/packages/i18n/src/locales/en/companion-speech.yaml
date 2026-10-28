@@ -1,0 +1,28 @@
+unknown: Unknown
+error: An unknown error occurred.
+streaming-description: Low latency streaming speech
+preview-text: Hello, I am your companion.
+providers-empty: No speech providers configured
+providers-setup: Set up a speech provider
+model: Model
+model-description: Enter the model to use for speech generation.
+model-manual-error: Enter a model name if discovery fails.
+model-manual-empty: Enter a model name if no models are returned.
+voice-title: Voice settings
+voice-description: Customize how your companion speaks.
+current-voice: 'Current voice: {voice}'
+voices-error: Could not load voices
+pitch: Pitch
+pitch-description: Adjust the pitch of the voice.
+ssml: Enable SSML
+ssml-description: Use speech markup to control voice output.
+voice-name: Voice name
+voice-name-description: Enter the name of your custom voice.
+voice-name-placeholder: Voice name, for example alloy or echo
+monolingual-v1: Monolingual v1
+multilingual-v1: Multilingual v1
+multilingual-v2: Multilingual v2
+custom-ssml: Use custom SSML
+custom-ssml-description: Enter raw SSML instead of plain text.
+ssml-placeholder: Enter SSML text…
+stop: Stop

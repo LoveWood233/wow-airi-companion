@@ -1,0 +1,45 @@
+app:
+  name: WoW Companion
+titles:
+  main: '{name}'
+  settings: WoW Companion · Settings
+  about: About {name}
+  editor: WoW Companion · Editor
+  onboarding: Welcome to {name}
+  dashboard: WoW Companion · Dashboard
+  overlay: WoW Companion · Desktop overlay
+chat:
+  ask: Ask {name}…
+errors:
+  screen-capture: No screen-capture source is available. Check the
+    screen-recording permission for {name}.
+about:
+  version: Version
+  branch: Branch
+  commit: Commit
+  built-on: Built on
+  about: About
+  build-info: Application build information
+menu:
+  file: File
+  edit: Edit
+  view: View
+  window: Window
+  close: Close window
+  quit: Quit
+  undo: Undo
+  redo: Redo
+  cut: Cut
+  copy: Copy
+  paste: Paste
+  select-all: Select all
+  reload: Reload
+  force-reload: Force reload
+  devtools: Developer tools
+  actual-size: Actual size
+  zoom-in: Zoom in
+  zoom-out: Zoom out
+  fullscreen: Toggle fullscreen
+  minimize: Minimize
+  zoom: Zoom window
+  front: Bring all to front

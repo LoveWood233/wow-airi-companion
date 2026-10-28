@@ -10,6 +10,7 @@ import type { ModelSettingsRuntimeSnapshot } from './runtime'
 
 import { Callout } from '@proj-airi/ui'
 import { computed, ref, shallowRef, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { Container, PropertyNumber } from '../../../data-pane'
 import { cloneStageViewStateForDraft, resolveGodotCameraPositionRange } from './runtime'
@@ -26,14 +27,17 @@ interface GodotModelSettingsEmits {
 }
 
 const props = defineProps<GodotModelSettingsProps>()
+
 const emit = defineEmits<GodotModelSettingsEmits>()
+
+const { t } = useI18n()
 
 const statusText = computed(() => {
   if (props.runtimeSnapshot.phase === 'no-model')
-    return 'Select a VRM model before adjusting Godot stage view controls.'
+    return t('companion-controls.select-model-before-godot-view')
 
   if (!props.viewSnapshot)
-    return 'Godot stage view snapshot has not been received. Check the Electron/Godot bridge and Godot view-state payload parsing.'
+    return t('companion-controls.godot-view-unavailable')
 
   return undefined
 })
@@ -56,7 +60,7 @@ const snapshotMeta = computed(() => {
   if (!snapshot)
     return undefined
 
-  return `Revision ${snapshot.state.revision} · ${snapshot.reason}`
+  return t('companion-controls.revision', { revision: snapshot.state.revision, reason: snapshot.reason })
 })
 const cameraPositionConfig = computed(() => ({
   min: -cameraPositionRange.value,
@@ -203,7 +207,7 @@ const cameraFov = createNumberModel(
 <template>
   <Callout
     v-if="statusText || viewError"
-    label="Godot Stage (Experimental)"
+    :label="t('companion-controls.godot-stage-experimental')"
     :theme="statusTheme"
   >
     <p v-if="viewError">
@@ -215,7 +219,7 @@ const cameraFov = createNumberModel(
   </Callout>
 
   <Container
-    title="Godot View"
+    :title="t('companion-controls.godot-view')"
     icon="i-solar:camera-bold-duotone"
     :class="[
       'rounded-xl',
@@ -225,7 +229,7 @@ const cameraFov = createNumberModel(
   >
     <div :class="['flex items-center justify-between gap-2 px-2 pb-2']">
       <div :class="['text-xs text-neutral-500 dark:text-neutral-400']">
-        {{ snapshotMeta ?? 'No Godot stage view snapshot received' }}
+        {{ snapshotMeta ?? t('companion-controls.godot-no-snapshot') }}
       </div>
     </div>
 
@@ -239,32 +243,32 @@ const cameraFov = createNumberModel(
       <PropertyNumber
         v-model="cameraPositionX"
         :config="cameraPositionConfig"
-        label="Camera X"
+        :label="t('companion-controls.camera-x')"
       />
       <PropertyNumber
         v-model="cameraPositionY"
         :config="cameraPositionConfig"
-        label="Camera Y"
+        :label="t('companion-controls.camera-y')"
       />
       <PropertyNumber
         v-model="cameraPositionZ"
         :config="cameraPositionConfig"
-        label="Camera Z"
+        :label="t('companion-controls.camera-z')"
       />
       <PropertyNumber
         v-model="cameraYaw"
         :config="cameraYawConfig"
-        label="Camera Yaw"
+        :label="t('companion-controls.camera-yaw')"
       />
       <PropertyNumber
         v-model="cameraPitch"
         :config="cameraPitchConfig"
-        label="Camera Pitch"
+        :label="t('companion-controls.camera-pitch')"
       />
       <PropertyNumber
         v-model="cameraFov"
         :config="cameraFovConfig"
-        label="Camera FOV"
+        :label="t('companion-controls.camera-fov')"
       />
     </div>
   </Container>

@@ -477,7 +477,9 @@ function resetMainWindowPosition() {
                       >
                         <div :class="['i-solar:camera-outline text-neutral-800 dark:text-neutral-300', adjustStyleClasses.icon]" />
                       </ControlButton>
-                      <template #tooltip>{{ t('wow-companion.screen-assist.title') }}</template>
+                      <template #tooltip>
+                        {{ t('wow-companion.screen-assist.title') }}
+                      </template>
                     </ControlButtonTooltip>
                     <ControlButtonTooltip disable-hoverable-content as-child>
                       <ControlButton
@@ -487,7 +489,9 @@ function resetMainWindowPosition() {
                       >
                         <div :class="['i-solar:play-circle-outline text-neutral-800 dark:text-neutral-300', adjustStyleClasses.icon]" />
                       </ControlButton>
-                      <template #tooltip>{{ t('wow-companion.launcher.configure') }}</template>
+                      <template #tooltip>
+                        {{ t('wow-companion.launcher.configure') }}
+                      </template>
                     </ControlButtonTooltip>
                     <ControlButtonTooltip disable-hoverable-content>
                       <ControlButton

@@ -1,0 +1,44 @@
+app:
+  name: เพื่อนคู่ใจ WoW
+titles:
+  main: '{name}'
+  settings: เพื่อนคู่ใจ WoW · การตั้งค่า
+  about: เกี่ยวกับ {name}
+  editor: เพื่อนคู่ใจ WoW · ตัวแก้ไข
+  onboarding: ยินดีต้อนรับสู่ {name}
+  dashboard: เพื่อนคู่ใจ WoW · แดชบอร์ด
+  overlay: เพื่อนคู่ใจ WoW · โอเวอร์เลย์เดสก์ท็อป
+chat:
+  ask: ถาม {name}…
+errors:
+  screen-capture: ไม่มีแหล่งจับภาพหน้าจอ โปรดตรวจสอบสิทธิ์บันทึกหน้าจอของ {name}
+about:
+  version: เวอร์ชัน
+  branch: สาขา
+  commit: คอมมิต
+  built-on: วันที่สร้าง
+  about: เกี่ยวกับ
+  build-info: ข้อมูลการสร้างแอป
+menu:
+  file: ไฟล์
+  edit: แก้ไข
+  view: มุมมอง
+  window: หน้าต่าง
+  close: ปิดหน้าต่าง
+  quit: ออก
+  undo: เลิกทำ
+  redo: ทำซ้ำ
+  cut: ตัด
+  copy: คัดลอก
+  paste: วาง
+  select-all: เลือกทั้งหมด
+  reload: โหลดใหม่
+  force-reload: บังคับโหลดใหม่
+  devtools: เครื่องมือสำหรับนักพัฒนา
+  actual-size: ขนาดจริง
+  zoom-in: ขยาย
+  zoom-out: ย่อ
+  fullscreen: สลับเต็มหน้าจอ
+  minimize: ย่อหน้าต่าง
+  zoom: ขยายหน้าต่าง
+  front: นำทั้งหมดมาไว้ด้านหน้า

@@ -4,7 +4,7 @@ character-switcher:
   empty: 아직 캐릭터가 없습니다
   failed: 캐릭터를 전환하지 못했습니다. 다시 시도하세요.
 mobile-tools:
-  sign-in: AIRI에 로그인
+  sign-in: 와우 동반자에 로그인
   account-description: 계정 및 환경설정
   sound: 소리
   character-voice: 캐릭터 음성
@@ -18,6 +18,8 @@ mobile-tools:
   view: 보기
   close-view: 보기 설정을 저장하고 닫기
   hearing: 청력
+  menu: 메뉴
+  menu-unread: 메뉴, 읽지 않은 알림 {count}개
 chat:
   provider-configuration:
     title: 채팅 제공업체가 설정되지 않았습니다
@@ -53,7 +55,7 @@ chat:
     system-default: 시스템 기본값
     listen: 계속 듣기
     push-to-talk: 눌러서 말하기
-    push-to-talk-unavailable: 이 기기에는 눌러서 말하기 키가 없어 AIRI가 듣지 않습니다. 청력 설정에서 입력 모드를 변경하세요.
+    push-to-talk-unavailable: 이 기기에는 눌러서 말하기 키가 없어 와우 동반자가 듣지 않습니다. 청력 설정에서 입력 모드를 변경하세요.
     wake-word: 호출어 듣기
     hearing-settings: 청력 설정 더 보기…
     options-hint: 마우스를 올리거나 오른쪽 클릭하여 옵션 보기
@@ -90,7 +92,8 @@ chat:
   images:
     empty: 생각이나 사진을 공유해 보세요.
     use-vision: 채팅 이미지에 시각 모델 사용
-    use-vision-description: 아래에서 제공자와 모델을 선택하세요. 채팅 모델이 답하기 전에 첨부 이미지를 읽습니다. 시각 모델이 없으면 이미지를 채팅 모델에 직접 보냅니다.
+    use-vision-description: 아래에서 제공자와 모델을 선택하세요. 채팅 모델이 답하기 전에 첨부 이미지를 읽습니다. 시각 모델이
+      없으면 이미지를 채팅 모델에 직접 보냅니다.
     attach: '이미지 첨부'
     remove: '{name} 제거'
     unsupported: 'PNG, JPEG, WebP 또는 GIF 이미지를 사용하세요.'
@@ -110,6 +113,7 @@ chat:
     character-name:
       core-system: 코어
       you: 당신
+      airi: 와우 동반자
   reply:
     cancel: 답장 취소
     message: 메시지
@@ -134,6 +138,84 @@ chat:
     cloud-badge: 클라우드에 동기화됨
     new-chat-fallback: 새 채팅
     delete: 대화 삭제
+  notice:
+    label: '{name}의 백그라운드 보고'
+  background-tasks:
+    label: 백그라운드 작업
+    stop: '{name} 중지'
+    dismiss: '{name} 닫기'
+    status:
+      running: 작업 중
+      done: 완료
+      failed: 미완료
+      interrupted: 중지됨
+  judgment:
+    running: '{name} 판단 중'
+    judged: '{name} 판단 완료'
+    invalid: '{name}을 판단하지 못함'
+  judgment-tool-call:
+    answer: 답변
+    next: 다음
+    reply: 평소처럼 응답
+    stay-quiet: 응답하지 않음
+    hint: '다음을 고려하여 응답: {text}'
+    recipe-steps: 레시피 {name} 사용
+    recipe-decision: '{name} 판단'
+    recipe-background: 레시피 {name}에 전달
+  recipe:
+    using: 레시피 {name} 사용 중
+    loaded: 레시피 {name} 사용 완료
+    started: 레시피 {name}에 전달됨
+    pending: 레시피 {name} 승인 대기 중
+    disabled: 레시피 {name} 꺼짐
+    unknown: 레시피 {name}을 찾을 수 없음
+    refused: 레시피 {name}이 시작되지 않음
+    failed: 레시피 {name}이 시작되지 않음
+  recipe-tool-call:
+    task: 작업
+    usable: 지금 사용할 수 있는 레시피
+    pending: 이 레시피는 승인을 기다리고 있습니다.
+    disabled: 이 레시피는 꺼져 있습니다.
+    unknown: 이 이름의 레시피가 없습니다.
+    refused: 레시피를 시작하지 못했습니다.
+  invoked-skill:
+    steps: 레시피 {name} 사용 완료
+    background: 레시피 {name}에 전달됨
+    decision: 레시피 {name} 사용 완료
+    question: 질문
+    yes: 예
+    no: 아니요
+  home-assistant-tool-call:
+    shown: 기기 {total}개 중 {count}개 표시
+  web-search-tool-call:
+    results: "'{query}' 검색 결과 · {count}개"
+  tool-calls:
+    running-one: '{name} 사용 중'
+    failed-one: '{name}이 완료되지 않음'
+    combo-running: 콤보 ×{count}
+    combo: '{count}회 콤보'
+    combo-failed: '{count}회 콤보, {failed}회 실패'
+    arguments: 인수
+    result: 결과
+    copy: 원본 데이터 복사
+    copied: 복사됨
+    raw: 원본 데이터
+    other: 기타 데이터
+    widget: 위젯
+    rerun: 다시 실행
+    card-making: 이 도구의 카드 만드는 중…
+    card-remaking: 새 카드 만드는 중…
+    card-regenerate: 새 카드 만들기
+    card-failed: 이 도구의 카드를 만들지 못함
+    card-retry: 다시 시도
+    state:
+      executing: 실행 중
+      done: 완료
+      error: 실패
+  reply-card:
+    drawing: 카드 그리는 중…
+    raw: 원본 데이터
+    card: 카드
 render-error:
   title: '{renderer}에서 이 모델을 렌더링할 수 없습니다'
   description: 모델이 선택되었지만 스테이지에 표시할 수 없습니다.
@@ -175,6 +257,7 @@ send-mode:
   title: 전송 키
   enter: 엔터
   double-enter: Enter 두 번
+  ctrl-enter: Ctrl + Enter
 speech-output:
   mute: 음성 음소거
   unmute: 음소거 해제
@@ -217,6 +300,7 @@ promo-banner:
       eventName: 출석하고 별가루, 아바타 프레임, 출시 기념 선물을 받으세요.
       reward: 최대 별가루 120개
       cta: 로그인
+      date: 03/28 - 04/10
     build:
       watermark: 빌드
       fallbackLabel: 빌드 보너스
@@ -224,6 +308,7 @@ promo-banner:
       eventName: 건설 과제를 완료하고 보너스 교환권과 두 배의 재료를 받으세요.
       reward: 보급 교환권 5장 + 업그레이드 재료
       cta: 작업 보기
+      date: 03/30 - 04/12
     spring:
       watermark: 봄
       fallbackLabel: 봄 추첨
@@ -231,6 +316,7 @@ promo-banner:
       eventName: 봄 추첨에 참여해 말풍선, 장식, 테마 가구를 잠금 해제하세요.
       reward: 첫 추첨 반값 + 희귀 장식
       cta: 지금 추첨하기
+      date: 04/01 - 04/18
     coupon:
       watermark: 대화
       fallbackLabel: 쿠폰
@@ -238,6 +324,7 @@ promo-banner:
       eventName: 채팅 상호작용을 완료하고 확장 및 음성 팩 쿠폰을 받으세요.
       reward: 30에 6 할인 / 68에 15 할인
       cta: 쿠폰 받기
+      date: 04/02 - 04/20
     home:
       watermark: 홈
       fallbackLabel: 방 테마
@@ -245,6 +332,7 @@ promo-banner:
       eventName: ........
       reward: 출석 시 무료 테마 추첨권
       cta: 테마 보기
+      date: 04/05 - 04/22
 waiting: 대기 중
 websocket-status:
   connected: 연결됨
@@ -256,7 +344,7 @@ computer-use:
 status:
   preparing: 마이크 준비 중
   listening: 듣는 중
-  paused: AIRI가 말하는 동안 듣기 일시 중지
+  paused: 와우 동반자가 말하는 동안 듣기 일시 중지
   transcribing: 전사 중
   hearing-error: 오디오를 전사할 수 없습니다
   no-transcript: 인식된 음성이 여기에 표시됩니다.
@@ -267,3 +355,29 @@ status:
   sign-in-unconfirmed: 세션을 확인할 수 없습니다. 다시 로그인하세요.
   dismiss: 무시
   configure-hearing: 설정에서 청력 제공자를 선택하고 구성하세요.
+avatar-model-missing:
+  title: 선택된 모델 없음
+  unavailable-title: 이 모델이 기기에 없습니다
+  description: 무대에 {name}을 표시할 모델을 선택하세요.
+  select: 모델 선택
+notifications:
+  title: 알림
+  open: 알림 열기
+  open-unread: 알림 열기, 읽지 않음 {count}개
+  mark-all-read: 모두 읽음으로 표시
+  empty: 아직 알림이 없습니다
+  loading: 알림 불러오는 중
+  back: 뒤로
+  error: 알림을 불러오지 못했습니다.
+  retry: 다시 시도
+  just-now: 방금
+  kinds:
+    flux-granted:
+      title: '{amount} Flux를 받았습니다'
+    subscription-renewed:
+      title: '{plan} 갱신됨'
+      body: '{periodEnd}까지 유효합니다.'
+    subscription-payment-failed:
+      title: 갱신 결제 실패
+      body: '{retryAt}에 다시 시도합니다. {plan}을 유지하려면 결제 수단을 업데이트하세요.'
+      body-no-retry: '{plan}을 유지하려면 결제 수단을 업데이트하세요.'

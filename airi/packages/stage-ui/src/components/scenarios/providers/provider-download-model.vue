@@ -2,6 +2,7 @@
 import type { Availability } from 'xsai-chromium-prompt'
 
 import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   label?: string
@@ -27,6 +28,8 @@ async function download() {
   const resultAvailability = await props.download(p => progress.value = p)
   availability.value = resultAvailability
 }
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -56,7 +59,7 @@ async function download() {
         </div>
       </div>
       <button rounded-lg bg="blue-100 dark:blue-900" px-4 py-2 @click="download">
-        Download
+        {{ translateCompanion('companion-extra.download-a479c9') }}
       </button>
     </div>
   </div>

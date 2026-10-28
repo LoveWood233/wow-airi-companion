@@ -1,0 +1,86 @@
+save-to-computer-0c61d6: Сохранить на компьютер
+failed-47cb70: (ошибка)
+saved-to-long-term-memory-40f70f: Сохранено в долговременную память
+some-modules-haven-t-been-available-yet-2baa21: Некоторые модули ещё недоступны…
+all-modules-are-ready-22de94: Все модули готовы!
+settings-3cc1d5: настройки
+preparing-resources-ff2c87: Подготовка ресурсов…
+loading-b04ba4: Загрузка…
+drag-here-to-move-dc8629: ПЕРЕТАЩИТЕ ЗДЕСЬ ДЛЯ ПЕРЕМЕЩЕНИЯ
+drag-to-move-0d84b3: Перетащите для перемещения
+dashboard-d87f47: Панель управления
+stale-86c16f: ⚠ УСТАРЕЛО
+tutorial-2701a9: Руководство
+wind-142b57: Ветер
+chance-of-rain-73cb4e: Вероятность дождя
+humidity-65adb9: Влажность
+eta-3044d4: Расчётное время прибытия
+origin-44ab85: Пункт отправления
+destination-d42713: Пункт назначения
+distance-423208: Расстояние
+awaiting-first-generation-0991d8: Ожидание первой генерации…
+generated-prompt-368db9: Созданный запрос
+remix-id-72babb: Идентификатор ремикса
+time-6c82e6: Время
+cuipp-backend-linked-034bcf: СЕРВЕР CUIPP ПОДКЛЮЧЁН
+loading-extension-ui-7c266d: Загрузка интерфейса расширения…
+this-module-is-registered-but-it-did-not-decl-c98d1d: Модуль зарегистрирован, но ещё не указал источник iframe для отображения.
+kit-91bf6f: Комплект
+type-3deb74: Тип
+runtime-c4740e: Среда выполнения
+revision-3beb9a: Редакция
+iframe-353fb2: Iframe
+options-for-character-26b5b4: Настройки персонажа
+connect-b65463: Подключить
+bookmark-441da1: Добавить в закладки
+like-c7e02c: Нравится
+chat-2ced57: Чат
+settings-c7f73b: Настройки
+provider-catalog-03da1c: Каталог поставщиков
+search-configured-ee69cd: Поиск настроенных…
+customize-options-b884b3: Настроить параметры
+search-supported-providers-496667: Поиск поддерживаемых поставщиков…
+no-providers-d239f8: Нет поставщиков
+no-audio-detected-680bfe: Звук не обнаружен
+please-make-sure-that-the-correct-permissions-b47bf6: Проверьте разрешения и убедитесь, что источник звука воспроизводит звук.
+reset-settings-9ba8d6: Сбросить настройки
+godot-stage-experimental-a81b5e: Сцена Godot (экспериментальная)
+godot-stage-experimental-is-running-bd3516: Сцена Godot (экспериментальная) работает…
+step-dc416e: Шаг
+of-de04fa: из
+back-b52b36: Назад
+download-image-d6f34a: Скачать изображение
+no-preview-e49000: Нет предпросмотра
+remove-background-e19463: Удалить фон
+add-custom-background-6613e1: Добавить свой фон
+preview-f1fbb2: Предпросмотр
+blur-900aa9: Размытие
+select-a-background-568528: Выберите фон
+background-picker-c52c7c: Выбор фона
+options-for-display-models-71073d: Настройки моделей отображения
+loading-display-models-121bc7: Загрузка моделей отображения…
+unavailable-preview-unavailable-preview-d9e79c: Предпросмотр недоступен
+preview-unavailable-preview-unavailable-8186d8: Предпросмотр недоступен
+model-name-981e71: Название модели…
+models-f3798f: Модели
+tachie-model-audit-report-ae0296: Отчёт проверки модели Tachie
+close-bbfa77: Закрыть
+status-11dc9e: 'Состояние:'
+emotions-55b719: 'Эмоции:'
+canvas-3809d6: 'Холст:'
+detected-8a1687: 'Обнаружено:'
+critical-issues-2d5aeb: Критические проблемы
+warnings-1430f9: Предупреждения
+ignored-032e96: 'Пропущено:'
+cancel-77dfd2: Отмена
+onboarding-8d49e0: Начальная настройка
+no-failed-checks-82f623: Нет неудачных проверок.
+download-a479c9: Скачать
+voice-3091c8: Голос
+enter-the-voice-id-for-your-openai-compatible-04dd5f: Введите идентификатор голоса для API, совместимого с OpenAI
+model-cache-6532cf: Кеш моделей
+downloaded-inference-models-stored-in-browser-6b33b9: Загруженные модели выполнения хранятся в кеше браузера
+checking-cache-177e32: Проверка кеша…
+refresh-56e3ba: Обновить
+about-6b21fb: О программе
+transparent-0491f7: Прозрачный

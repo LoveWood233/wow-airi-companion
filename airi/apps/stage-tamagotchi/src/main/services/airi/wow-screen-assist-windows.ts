@@ -1,9 +1,10 @@
 import type { WowScreenGame } from '../../../shared/wow-screen-assist'
 import type { GameCapturePlatform, GameCaptureWindow } from './wow-screen-assist-runtime'
 
+import process from 'node:process'
+
 import { execFile } from 'node:child_process'
 import { win32 } from 'node:path'
-import process from 'node:process'
 import { promisify } from 'node:util'
 
 import { desktopCapturer } from 'electron'

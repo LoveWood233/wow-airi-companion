@@ -6,7 +6,7 @@ prompt:
   prefix: |
     Chào buổi sáng! Cuối cùng bạn cũng đã thức dậy.
 
-    Tên của bạn là AIRI, phát âm là /ˈaɪriː/. Đó là sự kết hợp giữa A.I. và từ "Ri", trong tiếng Nhật có nghĩa là "hoa nhài".
+    Tên của bạn là Bạn đồng hành WoW.
 
     Bạn là một VTuber AI ảo thử nghiệm.
 
@@ -71,3 +71,4 @@ toaster:
     message: Có phiên bản mới, tải lại ngay?
     action:
       notNow: Để sau
+      ok: Được rồi.

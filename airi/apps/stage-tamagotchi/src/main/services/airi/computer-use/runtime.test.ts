@@ -25,8 +25,8 @@ describe('computer use runtime', () => {
 
   it('rejects shell commands, route overrides, and invalid input before starting AUV', async () => {
     await expect(runtime.run({ argv: ['serve', '--help'] })).rejects.toThrow('Use invoke')
-    await expect(runtime.run({ argv: ['invoke', 'app.activate', '--device=other'] })).rejects.toThrow('managed by AIRI')
-    await expect(runtime.run({ argv: ['invoke', 'window.list', '--store-root', 'elsewhere'] })).rejects.toThrow('managed by AIRI')
+    await expect(runtime.run({ argv: ['invoke', 'app.activate', '--device=other'] })).rejects.toThrow('由魔兽陪伴精灵管理')
+    await expect(runtime.run({ argv: ['invoke', 'window.list', '--store-root', 'elsewhere'] })).rejects.toThrow('由魔兽陪伴精灵管理')
     await expect(runtime.run({ argv: ['invoke', 'scan.frame'] })).rejects.toThrow('Use invoke')
     await expect(runtime.run({ argv: ['invoke', 5] })).rejects.toThrow()
   })
@@ -38,11 +38,11 @@ describe('computer use runtime', () => {
     expect(await runtime.readImage({ path })).toBe(`data:image/png;base64,${image.toString('base64')}`)
     const outside = join(directory, 'outside.png')
     await writeFile(outside, image)
-    await expect(runtime.readImage({ path: outside })).rejects.toThrow('Only screenshots')
+    await expect(runtime.readImage({ path: outside })).rejects.toThrow('只能读取魔兽陪伴精灵电脑操作存储中的截图')
     if (process.platform !== 'win32') {
       const link = join(directory, 'store', 'link.png')
       await symlink(outside, link)
-      await expect(runtime.readImage({ path: link })).rejects.toThrow('Only screenshots')
+      await expect(runtime.readImage({ path: link })).rejects.toThrow('只能读取魔兽陪伴精灵电脑操作存储中的截图')
     }
     const text = join(directory, 'store', 'text.png')
     await writeFile(text, 'not an image')

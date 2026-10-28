@@ -1,0 +1,79 @@
+web-speech-unavailable-title: Web Speech API ไม่พร้อมใช้งาน
+web-speech-unavailable-description: เบราว์เซอร์นี้ไม่รองรับการรู้จำเสียง Web Speech API โปรดเลือกผู้ให้บริการถอดเสียงรายอื่นหรือเบราว์เซอร์ที่รองรับ
+web-speech-native-title: ถอดเสียงฟรีด้วยเบราว์เซอร์
+web-speech-native-description: ใช้การรู้จำเสียงของเบราว์เซอร์ การประมวลผลขึ้นอยู่กับเบราว์เซอร์และการตั้งค่า ไม่ต้องใช้คีย์ API
+web-speech-no-api-key: ไม่ต้องใช้คีย์ API เพราะ Web Speech API ฟรีและมีอยู่ในเบราว์เซอร์
+recognition-language: ภาษาสำหรับรู้จำเสียง
+recognition-language-description: เลือกภาษาสำหรับรู้จำเสียงพูด
+continuous-recognition: รู้จำเสียงต่อเนื่อง
+continuous-recognition-description: ฟังต่อเนื่องแทนการหยุดหลังจบแต่ละวลี
+interim-results-title: แสดงผลลัพธ์ชั่วคราว
+interim-results-description: แสดงผลลัพธ์บางส่วนทันทีขณะพูด
+transcription-test: ทดสอบถอดเสียงเป็นข้อความ
+transcription-test-description: ทดสอบถอดเสียง Web Speech API ด้วยอุปกรณ์เสียงที่เลือก การทดสอบนี้ใช้ Web Speech API เสมอ ไม่ว่าคุณจะตั้งผู้ให้บริการฟังรายใดเป็นค่าเริ่มต้น
+web-speech-unavailable: เบราว์เซอร์นี้ใช้ Web Speech API ไม่ได้
+audio-input-device: อุปกรณ์รับเสียง
+audio-test-device-description: เลือกอุปกรณ์รับเสียงสำหรับทดสอบ
+audio-input-placeholder: เลือกอุปกรณ์รับเสียง
+audio-test-device-required: โปรดเลือกอุปกรณ์รับเสียงสำหรับทดสอบ
+transcription-error: ข้อผิดพลาดในการถอดเสียง
+streaming-description: 'โหมดสตรีม: ข้อความถอดเสียงจะแสดงทันทีขณะพูด (Web Speech API)'
+transcription-result: ผลการถอดเสียง
+streaming-transcription: 'ข้อความถอดเสียงปัจจุบัน (สตรีม):'
+final-transcription: 'ข้อความถอดเสียงสุดท้าย:'
+transcription-empty: ยังไม่มีข้อความถอดเสียง คลิกเริ่มทดสอบถอดเสียงแล้วพูดใส่ไมโครโฟน
+provider-label: 'ผู้ให้บริการ:'
+language-label: 'ภาษา:'
+mode-label: 'โหมด:'
+streaming-mode: สตรีม (ตามเวลาจริง)
+continuous-label: 'ต่อเนื่อง:'
+interim-results-label: 'ผลลัพธ์ชั่วคราว:'
+stop-test: หยุดทดสอบ
+transcribing: กำลังถอดเสียง…
+start-transcription-test: เริ่มทดสอบถอดเสียง
+mimo-model-description: เลือกโมเดล MiMo TTS สำหรับสร้างเสียงพูด
+mimo-model-placeholder: เลือกโมเดล MiMo…
+voice-style-placeholder: อธิบายน้ำเสียง จังหวะ อารมณ์ และวิธีพูด…
+voice-sample-label: ตัวอย่างเสียง (data URI)
+voice-sample-description: วางตัวอย่างเสียง base64 ในรูปแบบ data URI โดย MiMo รองรับ MP3 และ WAV ขนาดไม่เกิน 10 MB
+mimo-test-text: สวัสดี นี่คือการทดสอบเสียงพูด Xiaomi MiMo
+mimo-behavior-title: การทำงานของโมเดล MiMo
+mimo-preset-description: '`mimo-v2.5-tts` ใช้รายการเสียงสำเร็จรูปด้านล่าง'
+mimo-design-description: '`mimo-v2.5-tts-voicedesign` ใช้พรอมป์สไตล์เพื่อออกแบบเสียงใหม่ และไม่รับ `audio.voice`'
+mimo-clone-description: '`mimo-v2.5-tts-voiceclone` ใช้ตัวอย่างเสียงที่วางไว้ และไม่ใช้ตัวเลือกเสียงสำเร็จรูป'
+style-optional: พรอมป์สไตล์ (ไม่บังคับ)
+voice-design-prompt: พรอมป์ออกแบบเสียง
+style-prompt: พรอมป์สไตล์
+clone-style-description: คำสั่งภาษาธรรมชาติที่ส่งเป็นข้อความผู้ใช้ ไม่บังคับ เว้นว่างเพื่อโคลนเสียงอย่างเดียว
+design-style-description: คำสั่งภาษาธรรมชาติที่ส่งเป็นข้อความผู้ใช้ การออกแบบเสียง MiMo ต้องใช้พรอมป์นี้และไม่ใช้เสียงสำเร็จรูป
+preset-style-description: คำสั่งภาษาธรรมชาติที่ส่งเป็นข้อความผู้ใช้ เว้นว่างสำหรับน้ำเสียงเป็นกลาง
+speech-provider-error: เริ่มผู้ให้บริการเสียงพูดไม่สำเร็จ
+voice-sample-required: โมเดลโคลนเสียงต้องใช้ตัวอย่างเสียง base64 ในรูปแบบ data URI
+resource-name: ชื่อทรัพยากร
+resource-name-description: คำนำหน้าที่ใช้ใน https://<prefix>.services.ai.azure.com
+model-id: รหัสโมเดล
+model-id-description: รหัสโมเดลใน Azure AI Foundry
+api-version: เวอร์ชัน API
+api-version-placeholder: เช่น 2025-04-01-preview
+api-version-description: เวอร์ชัน API สำหรับสแนปช็อตโมเดล
+gemini-model-description: เลือกโมเดล Gemini TTS สำหรับสร้างเสียงพูด
+gemini-model-placeholder: เลือกโมเดล Gemini…
+speech-temperature-description: ควบคุมความสุ่มในการสร้างเสียงพูด ค่าต่ำทำให้คาดเดาได้มากขึ้น ค่าสูงทำให้สร้างสรรค์มากขึ้น
+gemini-test-text: สวัสดี นี่คือการทดสอบเสียงพูด Google Gemini
+access-key-id: รหัสคีย์การเข้าถึง
+access-key-secret: คีย์ลับการเข้าถึง
+app-key: คีย์แอป
+app-key-placeholder: ป้อน AppKey
+abort-session: ยกเลิกเซสชัน
+partial-result: บางส่วน
+waiting-for-audio: กำลังรอเสียง…
+awaiting-final-result: กำลังรอผลลัพธ์สุดท้าย…
+streaming: กำลังสตรีม…
+start-realtime-transcription: เริ่มถอดเสียงตามเวลาจริง
+aliyun-provider-error: เริ่มผู้ให้บริการ Aliyun NLS ไม่สำเร็จ
+aliyun-stream-error: Aliyun NLS ส่งผลลัพธ์ที่ไม่ใช่สตรีมโดยไม่คาดคิด
+onboarding-api-key-description: ป้อนคีย์ API ของผู้ให้บริการที่เลือก
+onboarding-base-url-description: ป้อน URL หลักของ API ผู้ให้บริการ
+unknown-error: ข้อผิดพลาดที่ไม่ทราบสาเหตุ
+azure-api-key: คีย์ API ของ Azure OpenAI
+internal-region: '{region} (ภายใน)'

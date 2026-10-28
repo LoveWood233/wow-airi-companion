@@ -4,6 +4,7 @@ import { useBackgroundStore } from '@proj-airi/stage-ui/stores/background'
 import { useAiriCardStore } from '@proj-airi/stage-ui/stores/modules/airi-card'
 import { ScrollableArea } from '@proj-airi/ui'
 import { computed, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { widgetsHideWindow, widgetsRemove } from '../../../../shared/eventa'
 
@@ -130,6 +131,8 @@ async function handleClose() {
     await removeWidget({ id: props.id })
   }
 }
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -208,7 +211,7 @@ async function handleClose() {
           <div v-else-if="status !== 'generating'" class="p-8 text-center text-white/20">
             <div class="i-iconify-material-symbols:image-not-supported-outline mb-2 text-4xl" />
             <div class="text-sm">
-              Awaiting first generation...
+              {{ translateCompanion('companion-extra.awaiting-first-generation-0991d8') }}
             </div>
           </div>
         </div>
@@ -273,7 +276,7 @@ async function handleClose() {
           <div :class="['space-y-4']">
             <div class="space-y-1">
               <div class="text-[9px] text-white/30 font-bold uppercase">
-                Generated Prompt
+                {{ translateCompanion('companion-extra.generated-prompt-368db9') }}
               </div>
               <div class="border border-white/5 rounded bg-white/5 p-2 text-white/80 leading-relaxed italic">
                 {{ currentImage?.prompt || prompt || 'No prompt available for this frame.' }}
@@ -283,7 +286,7 @@ async function handleClose() {
             <div class="grid grid-cols-2 gap-2">
               <div class="border border-white/5 rounded bg-white/5 p-2">
                 <div class="mb-1 text-[8px] text-white/30 font-bold uppercase">
-                  Remix ID
+                  {{ translateCompanion('companion-extra.remix-id-72babb') }}
                 </div>
                 <div class="text-white/90">
                   #{{ currentImage?.remixId || remixId || '000000' }}
@@ -291,7 +294,7 @@ async function handleClose() {
               </div>
               <div class="border border-white/5 rounded bg-white/5 p-2">
                 <div class="mb-1 text-[8px] text-white/30 font-bold uppercase">
-                  Time
+                  {{ translateCompanion('companion-extra.time-6c82e6') }}
                 </div>
                 <div class="text-white/90">
                   {{ renderTime || '--.--s' }}
@@ -314,7 +317,7 @@ async function handleClose() {
 
           <div class="pointer-events-none flex select-none items-center gap-2 text-[9px] text-white opacity-30">
             <div class="size-1.5 animate-pulse rounded-full bg-green-500" />
-            <span>CUIPP BACKEND LINKED</span>
+            <span>{{ translateCompanion('companion-extra.cuipp-backend-linked-034bcf') }}</span>
           </div>
         </div>
       </div>

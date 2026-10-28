@@ -12,6 +12,7 @@ import { array, check, integer, literal, maxLength, maxValue, minValue, number, 
 
 import { snapshotSchema } from '../../../shared/wow-companion'
 import { equipmentComparisonSchema } from '../../../shared/wow-companion-equipment-comparisons'
+import { companionError } from '../../../shared/wow-companion-errors'
 import { moneyIdSchema } from '../../../shared/wow-companion-gold'
 
 const entrySchema = strictObject({
@@ -106,7 +107,7 @@ export class CompanionEquipmentComparisons {
       if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT')
         return
       this.blocked = true
-      this.storageError = `Cannot load WoW equipment comparisons (${this.filePath}). Restore the file and restart 魔兽陪伴精灵: ${errorMessageFrom(error) ?? 'Unknown read error'}`
+      this.storageError = companionError('comparisons-read', { path: this.filePath, detail: errorMessageFrom(error) ?? '' })
     }
   }
 
@@ -146,7 +147,7 @@ export class CompanionEquipmentComparisons {
       this.storageError = null
     }
     catch (error) {
-      this.storageError = `Cannot save WoW equipment comparisons (${this.filePath}). Changes are only in memory. 魔兽陪伴精灵 will retry: ${errorMessageFrom(error) ?? 'Unknown write error'}`
+      this.storageError = companionError('comparisons-write', { path: this.filePath, detail: errorMessageFrom(error) ?? '' })
     }
     finally {
       // Cleanup cannot replace the write error that explains the unsaved history.

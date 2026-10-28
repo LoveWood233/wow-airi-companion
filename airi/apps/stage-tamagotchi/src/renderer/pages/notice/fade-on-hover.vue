@@ -81,6 +81,8 @@ async function handleAction(action: 'confirm' | 'cancel' | 'close') {
     window.close()
   }
 }
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -105,7 +107,7 @@ async function handleAction(action: 'confirm' | 'cancel' | 'close') {
             :duration="250"
             class="inline-flex items-center gap-2 rounded-full bg-primary-50 px-3 py-1 text-[11px] text-primary-900 font-semibold tracking-[0.14em] uppercase dark:bg-primary-500 dark:text-primary-100"
           >
-            Tutorial
+            {{ translateCompanion('companion-extra.tutorial-2701a9') }}
             <div class="h-1.5 w-1.5 rounded-full bg-primary-300 shadow-[0_0_12px_rgba(0,0,0,0.35)]" />
           </div>
         </div>

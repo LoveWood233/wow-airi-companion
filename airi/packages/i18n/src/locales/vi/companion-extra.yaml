@@ -1,0 +1,86 @@
+save-to-computer-0c61d6: Lưu vào máy tính
+failed-47cb70: (thất bại)
+saved-to-long-term-memory-40f70f: Đã lưu vào bộ nhớ dài hạn
+some-modules-haven-t-been-available-yet-2baa21: Một số mô-đun chưa sẵn sàng…
+all-modules-are-ready-22de94: Tất cả mô-đun đã sẵn sàng!
+settings-3cc1d5: cài đặt
+preparing-resources-ff2c87: Đang chuẩn bị tài nguyên…
+loading-b04ba4: Đang tải…
+drag-here-to-move-dc8629: KÉO TẠI ĐÂY ĐỂ DI CHUYỂN
+drag-to-move-0d84b3: Kéo để di chuyển
+dashboard-d87f47: Bảng điều khiển
+stale-86c16f: ⚠ DỮ LIỆU CŨ
+tutorial-2701a9: Hướng dẫn
+wind-142b57: Gió
+chance-of-rain-73cb4e: Khả năng mưa
+humidity-65adb9: Độ ẩm
+eta-3044d4: Thời gian đến dự kiến
+origin-44ab85: Điểm xuất phát
+destination-d42713: Điểm đến
+distance-423208: Khoảng cách
+awaiting-first-generation-0991d8: Đang chờ lần tạo đầu tiên…
+generated-prompt-368db9: Lời nhắc đã tạo
+remix-id-72babb: ID bản phối lại
+time-6c82e6: Thời gian
+cuipp-backend-linked-034bcf: ĐÃ KẾT NỐI MÁY CHỦ CUIPP
+loading-extension-ui-7c266d: Đang tải giao diện tiện ích…
+this-module-is-registered-but-it-did-not-decl-c98d1d: Mô-đun đã được đăng ký nhưng chưa khai báo nguồn iframe để hiển thị.
+kit-91bf6f: Bộ
+type-3deb74: Loại
+runtime-c4740e: Môi trường thực thi
+revision-3beb9a: Bản sửa
+iframe-353fb2: Iframe
+options-for-character-26b5b4: Tùy chọn nhân vật
+connect-b65463: Kết nối
+bookmark-441da1: Đánh dấu
+like-c7e02c: Thích
+chat-2ced57: Trò chuyện
+settings-c7f73b: Cài đặt
+provider-catalog-03da1c: Danh mục nhà cung cấp
+search-configured-ee69cd: Tìm trong mục đã cấu hình…
+customize-options-b884b3: Tùy chỉnh tùy chọn
+search-supported-providers-496667: Tìm nhà cung cấp được hỗ trợ…
+no-providers-d239f8: Không có nhà cung cấp
+no-audio-detected-680bfe: Không phát hiện âm thanh
+please-make-sure-that-the-correct-permissions-b47bf6: Hãy kiểm tra quyền truy cập và bảo đảm nguồn âm thanh đang phát tiếng.
+reset-settings-9ba8d6: Đặt lại cài đặt
+godot-stage-experimental-a81b5e: Sân khấu Godot (thử nghiệm)
+godot-stage-experimental-is-running-bd3516: Sân khấu Godot (thử nghiệm) đang chạy…
+step-dc416e: Bước
+of-de04fa: trên
+back-b52b36: Quay lại
+download-image-d6f34a: Tải ảnh
+no-preview-e49000: Không có bản xem trước
+remove-background-e19463: Xóa nền
+add-custom-background-6613e1: Thêm nền tùy chỉnh
+preview-f1fbb2: Xem trước
+blur-900aa9: Làm mờ
+select-a-background-568528: Chọn nền
+background-picker-c52c7c: Bộ chọn nền
+options-for-display-models-71073d: Tùy chọn mô hình hiển thị
+loading-display-models-121bc7: Đang tải mô hình hiển thị…
+unavailable-preview-unavailable-preview-d9e79c: Bản xem trước không khả dụng
+preview-unavailable-preview-unavailable-8186d8: Bản xem trước không khả dụng
+model-name-981e71: Tên mô hình…
+models-f3798f: Mô hình
+tachie-model-audit-report-ae0296: Báo cáo kiểm tra mô hình Tachie
+close-bbfa77: Đóng
+status-11dc9e: 'Trạng thái:'
+emotions-55b719: 'Cảm xúc:'
+canvas-3809d6: 'Khung vẽ:'
+detected-8a1687: 'Đã phát hiện:'
+critical-issues-2d5aeb: Vấn đề nghiêm trọng
+warnings-1430f9: Cảnh báo
+ignored-032e96: 'Đã bỏ qua:'
+cancel-77dfd2: Hủy
+onboarding-8d49e0: Thiết lập ban đầu
+no-failed-checks-82f623: Không có kiểm tra thất bại.
+download-a479c9: Tải xuống
+voice-3091c8: Giọng nói
+enter-the-voice-id-for-your-openai-compatible-04dd5f: Nhập ID giọng nói cho API tương thích OpenAI
+model-cache-6532cf: Bộ nhớ đệm mô hình
+downloaded-inference-models-stored-in-browser-6b33b9: Mô hình suy luận đã tải được lưu trong bộ nhớ đệm trình duyệt
+checking-cache-177e32: Đang kiểm tra bộ nhớ đệm…
+refresh-56e3ba: Làm mới
+about-6b21fb: Giới thiệu
+transparent-0491f7: Trong suốt

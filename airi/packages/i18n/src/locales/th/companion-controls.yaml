@@ -1,0 +1,101 @@
+click-here-to-set-up-your-transcription-providers: คลิกที่นี่เพื่อตั้งค่าผู้ให้บริการถอดเสียง
+enter-the-transcription-model-to-use-e-g-whisper-1-gpt-4o-transcribe: ป้อนโมเดลถอดเสียง เช่น {models}
+input-level: ระดับเสียงเข้า
+probability-of-speech: ความน่าจะเป็นของเสียงพูด
+adjust-the-threshold-for-speech-detection: ปรับเกณฑ์ตรวจจับเสียงพูด
+pause-before-stop: ช่วงเงียบก่อนหยุด
+how-long-silence-must-last-before-speech-is-considered-finished: ระยะเวลาเงียบก่อนถือว่าพูดจบ
+model-based: ใช้โมเดล
+use-ai-models-for-more-accurate-speech-detection: ใช้โมเดล AI เพื่อตรวจจับเสียงพูดแม่นยำขึ้น
+loading: กำลังโหลด…
+inference-error: ข้อผิดพลาดการประมวลผลโมเดล
+activated: เปิดใช้งานแล้ว
+probability: 'ความน่าจะเป็น:'
+voice-activity: กิจกรรมเสียงพูด
+last-2-seconds: 2 วินาทีล่าสุด
+speaking: กำลังพูด
+voice-detected: ตรวจพบเสียงพูด
+speech-threshold: เกณฑ์เสียงพูด
+reset-value-to-default: คืนค่าเริ่มต้น
+head-rotation: การหมุนศีรษะ
+angle-x: มุมแกน X
+angle-y: มุมแกน Y
+angle-z: มุมแกน Z
+left-eye-open-close: ลืมและหลับตาซ้าย
+right-eye-open-close: ลืมและหลับตาขวา
+left-eye-smiling: ยิ้มด้วยตาซ้าย
+right-eye-smiling: ยิ้มด้วยตาขวา
+eyebrows: คิ้ว
+left-eyebrow-left-right: เลื่อนคิ้วซ้ายซ้าย/ขวา
+right-eyebrow-left-right: เลื่อนคิ้วขวาซ้าย/ขวา
+left-eyebrow-y-up-down: คิ้วซ้าย Y (ขึ้น/ลง)
+left-eyebrow-y: คิ้วซ้าย Y
+right-eyebrow-y-up-down: คิ้วขวา Y (ขึ้น/ลง)
+right-eyebrow-y: คิ้วขวา Y
+left-eyebrow-angle: มุมคิ้วซ้าย
+right-eyebrow-angle: มุมคิ้วขวา
+left-eyebrow-form-deformation: รูปคิ้วซ้าย (การเปลี่ยนรูป)
+left-eyebrow-form: รูปคิ้วซ้าย
+right-eyebrow-form-deformation: รูปคิ้วขวา (การเปลี่ยนรูป)
+right-eyebrow-form: รูปคิ้วขวา
+mouth: ปาก
+mouth-open-close: การอ้าและหุบปาก
+mouth-form-deformation: รูปปาก (การเปลี่ยนรูป)
+mouth-form: รูปปาก
+face: ใบหน้า
+cheek: แก้ม
+body-rotation-x: การหมุนลำตัวแกน X
+body-rotation-y: การหมุนลำตัวแกน Y
+body-rotation-z: การหมุนลำตัวแกน Z
+breath: การหายใจ
+model-position: ตำแหน่งโมเดล
+directional-light-rotation-x: การหมุนแสงทิศทางแกน X
+directional-light-rotation-y: การหมุนแสงทิศทางแกน Y
+directional-light-color: สีแสงทิศทาง
+directional-light-intensity: ความเข้มแสงทิศทาง
+ambient-light-intensity: ความเข้มแสงแวดล้อม
+ambient-light-color: สีแสงแวดล้อม
+hemisphere-light-intensity: ความเข้มแสงครึ่งทรงกลม
+hemisphere-sky-color: สีท้องฟ้าของแสงครึ่งทรงกลม
+hemisphere-ground-color: สีพื้นของแสงครึ่งทรงกลม
+tips: คำแนะนำ
+camera-fov: ขอบเขตการมองของกล้อง
+directional-light-x: แสงทิศทาง X
+directional-light-y: แสงทิศทาง Y
+directional-light-z: แสงทิศทาง Z
+albedo-glow: การเรืองแสงสีพื้นฐาน
+godot-stage-experimental: ฉาก Godot (ทดลอง)
+godot-view: มุมมอง Godot
+camera-x: กล้อง X
+camera-y: กล้อง Y
+camera-z: กล้อง Z
+camera-yaw: มุมหมุนแนวนอนของกล้อง
+camera-pitch: มุมก้มเงยของกล้อง
+transcription-provider-inactive: ยังไม่มีผู้ให้บริการถอดเสียงที่เปิดใช้งาน
+transcription-provider-unavailable: การตั้งค่าผู้ให้บริการถอดเสียงไม่พร้อมใช้งาน
+microphone-access-denied: ไม่ได้รับอนุญาตให้ใช้ไมโครโฟน
+speech-detection-failed: ตรวจจับเสียงพูดไม่สำเร็จ
+speaking-detected: ตรวจพบการพูด
+volume-based: ใช้ระดับเสียง
+select-model-before-godot-view: เลือกโมเดล VRM ก่อนปรับมุมมองฉาก Godot
+godot-view-unavailable: ยังไม่ได้รับมุมมองฉาก Godot โปรดตรวจสอบการเชื่อมต่อ Godot
+godot-no-snapshot: ยังไม่ได้รับภาพข้อมูลมุมมองฉาก Godot
+revision: รุ่นแก้ไข {revision} · {reason}
+hemisphere: แสงครึ่งทรงกลม
+skybox: สกายบ็อกซ์
+rotation-x-degrees: หมุนแกน X (องศา)
+rotation-y-degrees: หมุนแกน Y (องศา)
+intensity: ความเข้ม
+scale: ขนาด
+rotation: การหมุน
+glow: การเรืองแสง
+mouth-vowel: ปาก {vowel}
+blink: กะพริบตา
+wink-left: ขยิบตาซ้าย
+wink-right: ขยิบตาขวา
+smile: ยิ้ม
+anger: โกรธ
+sad: เศร้า
+surprise: ประหลาดใจ
+troubled: กังวล
+serious: จริงจัง

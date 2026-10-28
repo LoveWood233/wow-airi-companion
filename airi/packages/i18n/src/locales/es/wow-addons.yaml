@@ -1,0 +1,143 @@
+title: Centro de complementos de WoW
+description: Busca complementos compatibles de CurseForge e instálalos en cada cliente de World of Warcraft.
+game-version: Edición del juego
+games:
+  retail: Versión actual
+  classic: Classic
+  forever: Forever
+view: Vista de complementos
+browse: Descubrir
+installed: Instalados
+loading: Cargando complementos…
+retry: Reintentar
+refresh: Actualizar
+search-label: Buscar complementos
+search-placeholder: Nombre del complemento o palabra clave
+search: Buscar
+category: Categoría
+sort-label: Ordenar por
+sort:
+  popular: Populares
+  updated: Actualizados recientemente
+  downloads: Más descargados
+current-version: 'Versión del juego compatible: {version}'
+authors: 'De {authors}'
+downloads: '{count} descargas'
+no-results: No hay complementos compatibles con estos filtros.
+previous: Anterior
+next: Siguiente
+pagination: 'Página {page} de {pages} · {total} complementos'
+installed-description: Esta lista contiene los complementos que gestiona Compañero de WoW para el cliente seleccionado.
+none-installed: Compañero de WoW no ha instalado complementos para este cliente.
+choose-update: Elegir actualización
+close: Cerrar detalles del archivo
+loading-files: Cargando archivos compatibles…
+no-files: No hay archivos compatibles con la versión del juego configurada.
+compatible-files: Archivo compatible
+file-details: Detalles del archivo del complemento
+required-dependencies: ID de complementos necesarios
+no-dependencies: Ninguno
+dependencies-hint: Las dependencias necesarias se instalan junto con este complemento.
+current-file: Este archivo ya está instalado.
+install: Instalar
+update: Actualizar
+install-success: Instalación completada. Reinicia WoW o recarga la interfaz para cargar el complemento.
+release:
+  stable: Estable
+  beta: Beta
+  alpha: Alfa
+setup:
+  title: Conecta CurseForge para explorar complementos
+  description: Añade tu clave API de CurseForge en los ajustes. El catálogo se carga al guardar una clave válida.
+  action: Configurar clave API
+  client-title: 'Configura tu cliente de {game}'
+  client-description: Selecciona la carpeta del cliente y una versión del juego compatible en los ajustes de complementos.
+  configure-client: Configurar cliente
+settings:
+  title: Ajustes de complementos
+  description: Configura tu clave API de CurseForge y cada cliente de WoW antes de instalar complementos.
+  key-title: Acceso a CurseForge
+  key-label: Nueva clave API de CurseForge
+  key-description: Deja el campo vacío para conservar la clave guardada. La clave guardada nunca aparece en este formulario.
+  key-configured: Clave API configurada
+  key-missing: Clave API sin configurar
+  key-instructions: Abre la guía oficial de la API y sigue el enlace al formulario. Introduce los datos del proyecto y espera el correo de Overwolf. Después, copia aquí la clave aprobada.
+  key-link: Leer la guía para solicitar una clave API
+  save-key-first: Guarda primero tu clave API. Después, selecciona la versión del juego compatible con cada cliente.
+  directory: Carpeta del cliente de WoW
+  directory-description: Selecciona la carpeta que contiene el ejecutable de WoW. Los complementos se instalan en Interface/AddOns dentro de ella.
+  browse: Examinar
+  browse-game: 'Examinar carpeta de {game}'
+  version-type: Versión del juego compatible
+  choose-version: Selecciona una versión del juego de la API
+  no-version-types: CurseForge no devolvió versiones compatibles con esta edición.
+  retry-metadata: Recargar versiones del juego
+  install-target: Los complementos se instalan en
+  reload-hint: Cierra WoW antes de instalar. Tras la instalación, reinicia WoW o recarga la interfaz.
+  save: Guardar ajustes
+  cancel: Cancelar
+  back: Volver al centro de complementos
+  saved: Ajustes guardados.
+categories:
+  all: Todas las categorías
+  combat: Combate
+  bags-inventory: Bolsas e inventario
+  bags: Bolsas
+  inventory: Inventario
+  classes: Clases
+  class: Clases
+  action-bars: Barras de acción
+  artwork: Diseño gráfico
+  auction-economy: Subastas y economía
+  auction: Subastas
+  buffs-debuffs: Beneficios y perjuicios
+  chat-communication: Chat y comunicación
+  damage-dealer: Daño
+  guild: Hermandad
+  libraries: Bibliotecas
+  map-minimap: Mapa y minimapa
+  map: Mapa
+  miscellaneous: Varios
+  professions: Profesiones
+  quests-leveling: Misiones y subida de nivel
+  quests: Misiones
+  raid-boss-encounters: Bandas y encuentros con jefes
+  tooltip: Información emergente
+  unit-frames: Marcos de unidades
+  pvp: JcJ
+errors:
+  unknown: La solicitud falló. Inténtalo de nuevo.
+  curseforge-api-key-required: Añade una clave API de CurseForge en los ajustes de complementos.
+  curseforge-unauthorized: CurseForge rechazó la clave API. Compruébala en los ajustes de complementos.
+  curseforge-rate-limited: CurseForge ha limitado las solicitudes. Espera e inténtalo de nuevo.
+  curseforge-timeout: CurseForge no respondió a tiempo. Inténtalo de nuevo.
+  curseforge-invalid-response: CurseForge devolvió una respuesta no válida. Inténtalo de nuevo.
+  curseforge-response-too-large: La respuesta de CurseForge supera el tamaño admitido.
+  curseforge-request-failed: La solicitud a CurseForge falló. Comprueba la conexión e inténtalo de nuevo.
+  curseforge-invalid-request: La solicitud no es válida. Comprueba la versión del juego configurada e inténtalo de nuevo.
+  curseforge-too-many-files: Este complemento tiene demasiados archivos para cargarlos con seguridad. Selecciona otro complemento.
+  curseforge-too-many-redirects: La descarga tiene demasiadas redirecciones. Inténtalo más tarde.
+  curseforge-not-found: CurseForge no encuentra este complemento o archivo. Actualiza la lista de complementos.
+  curseforge-disposed: El servicio de complementos se detuvo. Abre de nuevo el centro de complementos e inténtalo otra vez.
+  curseforge-incompatible-version: Este archivo no es compatible con la versión del juego configurada.
+  curseforge-distribution-disabled: El autor no permite instalar este complemento mediante herramientas de terceros.
+  curseforge-download-unavailable: CurseForge no ofrece una descarga para este archivo del complemento.
+  curseforge-unsafe-download-url: La dirección de descarga no superó la validación.
+  curseforge-download-integrity: La descarga del complemento no superó la comprobación de integridad. Inténtalo de nuevo.
+  wow-addons-settings-invalid: Comprueba los ajustes de complementos e inténtalo de nuevo.
+  wow-addons-directory-required: Establece la carpeta del cliente de WoW en los ajustes de complementos.
+  wow-addons-version-required: Selecciona una versión del juego compatible en los ajustes de complementos.
+  wow-addons-busy: Hay otra operación de complementos en curso. Espera a que termine.
+  wow-addons-key-storage-unavailable: El almacenamiento seguro de claves no está disponible. Reinicia Compañero de WoW e inténtalo de nuevo.
+  wow-addons-key-unreadable: Compañero de WoW no puede leer la clave API guardada. Vuelve a guardarla.
+  wow-addons-required-dependency: No se pudo instalar una dependencia necesaria. Inténtalo de nuevo.
+  wow-addons-unmanaged-conflict: Ya existe una carpeta de complemento sin gestionar. Muévela antes de instalar este complemento.
+  wow-addons-folder-conflict: Una carpeta entra en conflicto con otro complemento. Muévela antes de instalar este complemento.
+  wow-addons-unsafe-archive: El archivo del complemento contiene rutas inseguras y no se puede instalar.
+  wow-addons-install-failed: La instalación falló. Comprueba la carpeta del cliente e inténtalo de nuevo.
+  wow-addons-invalid-directory: La carpeta del cliente no es válida o no está disponible. Comprueba la ruta en los ajustes de complementos.
+  wow-addons-invalid-archive: El archivo del complemento no es válido o no es seguro y no se puede instalar.
+  wow-addons-directory-conflict: Una carpeta de complemento existente entra en conflicto con esta instalación. Muévela antes de reintentar.
+  wow-addons-request-failed: La operación del complemento falló. Comprueba la carpeta del cliente e inténtalo de nuevo.
+  wow-addons-dependency-limit: El complemento necesita demasiadas dependencias anidadas para instalarse con seguridad.
+  wow-addons-stopped: La operación del complemento se detuvo. Abre de nuevo el centro de complementos e inténtalo otra vez.

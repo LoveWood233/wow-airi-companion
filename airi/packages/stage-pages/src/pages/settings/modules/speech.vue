@@ -66,7 +66,8 @@ const {
 
 const voiceSearchQuery = ref('')
 const useSSML = ref(false)
-const testText = ref('Hello, my name is AI Assistant')
+const defaultPreviewText = computed(() => t('companion-speech.preview-text'))
+const testText = ref(defaultPreviewText.value)
 const ssmlText = ref('')
 const isGenerating = ref(false)
 const audioUrl = ref('')
@@ -75,6 +76,11 @@ const errorMessage = ref('')
 let lastOfficialTtsExposureKey = ''
 
 const STREAMING_MODEL_OPTION_PREFIX = 'streaming:'
+
+watch(defaultPreviewText, (value, previous) => {
+  if (testText.value === previous)
+    testText.value = value
+})
 
 const selectableSpeechSources = computed(() => {
   const configuredSources = moduleSpeechProvidersMetadata.value
@@ -85,7 +91,7 @@ const selectableSpeechSources = computed(() => {
     .map(metadata => ({
       id: metadata.id,
       providerId: metadata.id,
-      title: metadata.localizedName || 'Unknown',
+      title: metadata.localizedName || t('companion-speech.unknown'),
       description: metadata.localizedDescription,
     }))
 
@@ -96,7 +102,7 @@ const selectableSpeechSources = computed(() => {
       .map(metadata => ({
         id: metadata.id,
         providerId: metadata.id,
-        title: metadata.localizedName || 'Unknown',
+        title: metadata.localizedName || t('companion-speech.unknown'),
         description: metadata.localizedDescription,
       })),
   ]
@@ -110,7 +116,7 @@ const displayedSpeechSource = computed({
   },
   set: (value: string) => {
     void selectSpeechSource(value).catch((error) => {
-      errorMessage.value = errorMessageFrom(error) ?? 'An unknown error occurred'
+      errorMessage.value = errorMessageFrom(error) ?? t('companion-speech.error')
     })
   },
 })
@@ -139,7 +145,7 @@ const displayedProviderModels = computed(() => {
       ...model,
       id: streamingModelOptionId(model.id),
       name: model.name,
-      description: model.description || 'Low-latency streaming TTS',
+      description: model.description || t('companion-speech.streaming-description'),
     })),
   ]
 })
@@ -150,7 +156,7 @@ const displayedSpeechModel = computed({
     : activeSpeechModel.value,
   set: (value: string) => {
     void selectSpeechModel(value).catch((error) => {
-      errorMessage.value = errorMessageFrom(error) ?? 'An unknown error occurred'
+      errorMessage.value = errorMessageFrom(error) ?? t('companion-speech.error')
     })
   },
 })
@@ -356,7 +362,7 @@ onMounted(async () => {
   }
   catch (error) {
     // Closing a renderer rejects pending RPCs even after its page unmounts.
-    errorMessage.value = errorMessageFrom(error) ?? 'An unknown error occurred'
+    errorMessage.value = errorMessageFrom(error) ?? t('companion-speech.error')
   }
 })
 
@@ -378,7 +384,7 @@ watch(activeSpeechProvider, async (newProvider) => {
   catch (error) {
     // An obsolete provider request must not replace the current form error.
     if (newProvider === activeSpeechProvider.value)
-      errorMessage.value = errorMessageFrom(error) ?? 'An unknown error occurred'
+      errorMessage.value = errorMessageFrom(error) ?? t('companion-speech.error')
   }
 })
 
@@ -405,7 +411,7 @@ async function generateTestSpeech() {
   if (useSSML.value && !ssmlText.value.trim())
     return
 
-  const provider = await providersStore.getProviderInstance(activeSpeechProvider.value) as SpeechProviderWithExtraOptions<string, any>
+  const provider = await providersStore.getProviderInstance(activeSpeechProvider.value) as SpeechProviderWithExtraOptions<string, Record<string, unknown>>
   if (!provider) {
     console.error('Failed to initialize speech provider')
     return
@@ -523,7 +529,7 @@ async function generateTestSpeech() {
   }
   catch (error) {
     console.error('Error generating speech:', error)
-    errorMessage.value = errorMessageFrom(error) || 'An unknown error occurred'
+    errorMessage.value = errorMessageFrom(error) || t('companion-speech.error')
   }
   finally {
     isGenerating.value = false
@@ -584,7 +590,7 @@ async function updateCustomModelName(value: string | undefined) {
     await persistSelection()
   }
   catch (error) {
-    errorMessage.value = errorMessageFrom(error) ?? 'An unknown error occurred'
+    errorMessage.value = errorMessageFrom(error) ?? t('companion-speech.error')
   }
 }
 
@@ -661,9 +667,8 @@ async function handleDeleteProvider(providerId: string) {
             >
               <div i-solar:warning-circle-line-duotone class="text-2xl text-amber-500 dark:text-amber-400" />
               <div class="flex flex-col">
-                <span class="font-medium">No Speech Providers Configured</span>
-                <span class="text-sm text-neutral-400 dark:text-neutral-500">Click here to set up your speech
-                  providers</span>
+                <span class="font-medium">{{ t('companion-speech.providers-empty') }}</span>
+                <span class="text-sm text-neutral-400 dark:text-neutral-500">{{ t('companion-speech.providers-setup') }}</span>
               </div>
               <div i-solar:arrow-right-line-duotone class="ml-auto text-xl text-neutral-400 dark:text-neutral-500" />
             </RouterLink>
@@ -688,8 +693,8 @@ async function handleDeleteProvider(providerId: string) {
           <div v-if="activeSpeechProvider === 'openai-compatible-audio-speech'">
             <FieldInput
               :model-value="activeSpeechModel || ''"
-              label="Model"
-              description="Enter the TTS model to use for speech generation"
+              :label="t('companion-speech.model')"
+              :description="t('companion-speech.model-description')"
               placeholder="tts-1"
               @update:model-value="updateCustomModelName"
             />
@@ -714,8 +719,8 @@ async function handleDeleteProvider(providerId: string) {
 
               <FieldInput
                 :model-value="activeSpeechModel || ''"
-                label="Model"
-                description="Enter model name manually if model discovery fails"
+                :label="t('companion-speech.model')"
+                :description="t('companion-speech.model-manual-error')"
                 :placeholder="t('settings.pages.modules.consciousness.sections.section.provider-model-selection.manual_model_placeholder')"
                 @update:model-value="updateCustomModelName"
               />
@@ -734,8 +739,8 @@ async function handleDeleteProvider(providerId: string) {
 
               <FieldInput
                 :model-value="activeSpeechModel || ''"
-                label="Model"
-                description="Enter model name manually when no models are returned"
+                :label="t('companion-speech.model')"
+                :description="t('companion-speech.model-manual-empty')"
                 :placeholder="t('settings.pages.modules.consciousness.sections.section.provider-model-selection.manual_model_placeholder')"
                 @update:model-value="updateCustomModelName"
               />
@@ -768,12 +773,12 @@ async function handleDeleteProvider(providerId: string) {
         <div flex="~ col gap-4">
           <div>
             <h2 class="text-lg text-neutral-500 md:text-2xl dark:text-neutral-400">
-              Voice Configuration
+              {{ t('companion-speech.voice-title') }}
             </h2>
             <div class="flex flex-col items-start gap-1 text-neutral-400 md:flex-row md:items-center md:justify-between dark:text-neutral-500">
-              <span>Customize how your AI assistant speaks</span>
+              <span>{{ t('companion-speech.voice-description') }}</span>
               <span v-if="currentSpeechVoiceId" class="text-sm text-neutral-400 font-medium dark:text-neutral-400">
-                Current voice: {{ currentSpeechVoiceId }}
+                {{ t('companion-speech.current-voice', { voice: currentSpeechVoiceId }) }}
               </span>
             </div>
           </div>
@@ -831,7 +836,7 @@ async function handleDeleteProvider(providerId: string) {
           <ErrorContainer
             v-else-if="speechProviderError"
             class="mb-2"
-            title="Error loading voices"
+            :title="t('companion-speech.voices-error')"
             :error="speechProviderError"
           />
 
@@ -855,16 +860,16 @@ async function handleDeleteProvider(providerId: string) {
           <div flex="~ col gap-4">
             <FieldRange
               v-model="pitch"
-              label="Pitch"
-              description="Tune the pitch of the voice"
+              :label="t('companion-speech.pitch')"
+              :description="t('companion-speech.pitch-description')"
               :min="-100" :max="100" :step="1"
               :format-value="value => `${value}%`"
             />
             <!-- SSML Support -->
             <FieldCheckbox
               v-model="ssmlEnabled"
-              label="Enable SSML"
-              description="Enable Speech Synthesis Markup Language for more control over speech output"
+              :label="t('companion-speech.ssml')"
+              :description="t('companion-speech.ssml-description')"
             />
           </div>
 
@@ -876,9 +881,9 @@ async function handleDeleteProvider(providerId: string) {
             <FieldInput
               type="text"
               :model-value="activeSpeechVoiceId || ''"
-              label="Voice Name"
-              description="Enter the voice name for your custom voice"
-              placeholder="Enter voice name (e.g., 'alloy', 'echo')"
+              :label="t('companion-speech.voice-name')"
+              :description="t('companion-speech.voice-name-description')"
+              :placeholder="t('companion-speech.voice-name-placeholder')"
               @change="commitCustomVoiceSelection"
               @update:model-value="updateCustomVoiceName"
             />
@@ -886,7 +891,7 @@ async function handleDeleteProvider(providerId: string) {
             <!-- Model selection for ElevenLabs -->
             <div v-if="activeSpeechProvider === 'elevenlabs'">
               <label class="mb-1 block text-sm font-medium">
-                Model
+                {{ t('companion-speech.model') }}
               </label>
               <select
                 v-model="displayedSpeechModel"
@@ -897,13 +902,13 @@ async function handleDeleteProvider(providerId: string) {
                 ]"
               >
                 <option value="eleven_monolingual_v1">
-                  Monolingual v1
+                  {{ t('companion-speech.monolingual-v1') }}
                 </option>
                 <option value="eleven_multilingual_v1">
-                  Multilingual v1
+                  {{ t('companion-speech.multilingual-v1') }}
                 </option>
                 <option value="eleven_multilingual_v2">
-                  Multilingual v2
+                  {{ t('companion-speech.multilingual-v2') }}
                 </option>
               </select>
             </div>
@@ -925,8 +930,8 @@ async function handleDeleteProvider(providerId: string) {
         <div flex="~ col gap-4">
           <FieldCheckbox
             v-model="useSSML"
-            label="Use Custom SSML"
-            description="Enable to input raw SSML instead of plain text"
+            :label="t('companion-speech.custom-ssml')"
+            :description="t('companion-speech.custom-ssml-description')"
           />
 
           <template v-if="!useSSML">
@@ -939,7 +944,7 @@ async function handleDeleteProvider(providerId: string) {
           <template v-else>
             <textarea
               v-model="ssmlText"
-              placeholder="Enter SSML text..."
+              :placeholder="t('companion-speech.ssml-placeholder')"
               border="neutral-100 dark:neutral-800 solid 2 focus:neutral-200 dark:focus:neutral-700"
               transition="all duration-250 ease-in-out"
               bg="neutral-100 dark:neutral-800 focus:neutral-50 dark:focus:neutral-900"
@@ -966,7 +971,7 @@ async function handleDeleteProvider(providerId: string) {
             >
               <div flex="~ row" items-center gap-2>
                 <div i-solar:stop-circle-bold-duotone />
-                <span>Stop</span>
+                <span>{{ t('companion-speech.stop') }}</span>
               </div>
             </button>
           </div>

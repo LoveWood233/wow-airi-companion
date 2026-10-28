@@ -79,7 +79,7 @@ export function setupSpotlightWindowManager(params: {
 
   function showNotification(body: string, onClick?: () => void) {
     const notification = new Notification({
-      title: 'AIRI',
+      title: params.i18n.t('companion-ui.titles.main', { name: params.i18n.t('companion-ui.app.name') }),
       body,
       ...(onClick && !isMacOS ? { timeoutType: 'never' as const } : {}),
     })

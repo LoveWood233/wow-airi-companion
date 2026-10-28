@@ -19,6 +19,7 @@ import type { OverlayState } from './desktop-overlay-polling'
 import { electron } from '@proj-airi/electron-eventa'
 import { useElectronEventaInvoke } from '@proj-airi/electron-vueuse'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { electronMcpApplyAndRestart, electronMcpCallTool, electronMcpGetRuntimeStatus, electronMcpListTools, getDesktopOverlayReadinessContract } from '../../shared/eventa'
 import { pointInOverlay, rectIntersectsOverlay, screenRectToLocal, screenToLocal } from './desktop-overlay-coordinates'
@@ -230,6 +231,8 @@ onUnmounted(() => {
   controller.stop()
   delete window.__AIRI_DESKTOP_OVERLAY_SMOKE__
 })
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -239,7 +242,7 @@ onUnmounted(() => {
       v-if="hasSnapshot && isStale"
       :class="['stale-badge']"
     >
-      ⚠ STALE
+      {{ translateCompanion('companion-extra.stale-86c16f') }}
     </div>
 
     <!-- Ghost pointer dot -->

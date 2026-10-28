@@ -1,0 +1,89 @@
+save-to-computer-0c61d6: Guardar en el equipo
+failed-47cb70: (falló)
+saved-to-long-term-memory-40f70f: Guardado en la memoria a largo plazo
+some-modules-haven-t-been-available-yet-2baa21: Algunos módulos aún no están disponibles…
+all-modules-are-ready-22de94: ¡Todos los módulos están listos!
+settings-3cc1d5: ajustes
+preparing-resources-ff2c87: Preparando recursos…
+loading-b04ba4: Cargando…
+drag-here-to-move-dc8629: ARRASTRA AQUÍ PARA MOVER
+drag-to-move-0d84b3: Arrastra para mover
+dashboard-d87f47: Panel de control
+stale-86c16f: ⚠ DESACTUALIZADO
+tutorial-2701a9: Tutorial
+wind-142b57: Viento
+chance-of-rain-73cb4e: Probabilidad de lluvia
+humidity-65adb9: Humedad
+eta-3044d4: Llegada estimada
+origin-44ab85: Origen
+destination-d42713: Destino
+distance-423208: Distancia
+awaiting-first-generation-0991d8: Esperando la primera generación…
+generated-prompt-368db9: Instrucción generada
+remix-id-72babb: ID de remix
+time-6c82e6: Hora
+cuipp-backend-linked-034bcf: SERVIDOR CUIPP CONECTADO
+loading-extension-ui-7c266d: Cargando la interfaz de la extensión…
+this-module-is-registered-but-it-did-not-decl-c98d1d: Este módulo está
+  registrado, pero aún no ha indicado la dirección de iframe que se debe
+  mostrar.
+kit-91bf6f: Kit
+type-3deb74: Tipo
+runtime-c4740e: Entorno de ejecución
+revision-3beb9a: Revisión
+iframe-353fb2: Iframe
+options-for-character-26b5b4: Opciones del personaje
+connect-b65463: Conectar
+bookmark-441da1: Guardar en marcadores
+like-c7e02c: Me gusta
+chat-2ced57: Chat
+settings-c7f73b: Ajustes
+provider-catalog-03da1c: Catálogo de proveedores
+search-configured-ee69cd: Buscar entre los configurados…
+customize-options-b884b3: Personalizar opciones
+search-supported-providers-496667: Buscar proveedores compatibles…
+no-providers-d239f8: No hay proveedores
+no-audio-detected-680bfe: No se detectó audio
+please-make-sure-that-the-correct-permissions-b47bf6: Comprueba que los permisos
+  estén concedidos y que la fuente de audio esté reproduciendo sonido.
+reset-settings-9ba8d6: Restablecer ajustes
+godot-stage-experimental-a81b5e: Escenario Godot (experimental)
+godot-stage-experimental-is-running-bd3516: El escenario Godot (experimental) está en ejecución…
+step-dc416e: Paso
+of-de04fa: de
+back-b52b36: Atrás
+download-image-d6f34a: Descargar imagen
+no-preview-e49000: Sin vista previa
+remove-background-e19463: Eliminar fondo
+add-custom-background-6613e1: Añadir fondo personalizado
+preview-f1fbb2: Vista previa
+blur-900aa9: Desenfoque
+select-a-background-568528: Seleccionar fondo
+background-picker-c52c7c: Selector de fondo
+options-for-display-models-71073d: Opciones de modelos de personaje
+loading-display-models-121bc7: Cargando modelos de personaje…
+unavailable-preview-unavailable-preview-d9e79c: Vista previa no disponible
+preview-unavailable-preview-unavailable-8186d8: Vista previa no disponible
+model-name-981e71: Nombre del modelo…
+models-f3798f: Modelos
+tachie-model-audit-report-ae0296: Informe de comprobación del modelo Tachie
+close-bbfa77: Cerrar
+status-11dc9e: 'Estado:'
+emotions-55b719: 'Emociones:'
+canvas-3809d6: 'Lienzo:'
+detected-8a1687: 'Detectado:'
+critical-issues-2d5aeb: Problemas críticos
+warnings-1430f9: Advertencias
+ignored-032e96: 'Ignorado:'
+cancel-77dfd2: Cancelar
+onboarding-8d49e0: Configuración inicial
+no-failed-checks-82f623: No hay comprobaciones fallidas.
+download-a479c9: Descargar
+voice-3091c8: Voz
+enter-the-voice-id-for-your-openai-compatible-04dd5f: Introduce el ID de voz para tu API compatible con OpenAI
+model-cache-6532cf: Caché de modelos
+downloaded-inference-models-stored-in-browser-6b33b9: Modelos de inferencia descargados y guardados en la caché del navegador
+checking-cache-177e32: Comprobando caché…
+refresh-56e3ba: Actualizar
+about-6b21fb: Acerca de
+transparent-0491f7: Transparente

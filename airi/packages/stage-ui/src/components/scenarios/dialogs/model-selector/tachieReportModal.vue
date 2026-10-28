@@ -6,6 +6,7 @@ import { useMediaQuery, useResizeObserver, useScreenSafeArea } from '@vueuse/cor
 import { DialogContent, DialogOverlay, DialogPortal, DialogRoot, DialogTitle } from 'reka-ui'
 import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot } from 'vaul-vue'
 import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 defineProps<{
   report: TachieValidationReport | null
@@ -32,6 +33,8 @@ function confirm() {
   emit('confirm')
   open.value = false
 }
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -55,10 +58,10 @@ function confirm() {
       >
         <div :class="['mb-4', 'flex items-center justify-between gap-2']">
           <DialogTitle class="text-lg text-neutral-900 font-semibold dark:text-neutral-100">
-            Tachie Model Audit Report
+            {{ translateCompanion('companion-extra.tachie-model-audit-report-ae0296') }}
           </DialogTitle>
           <Button size="sm" @click="close">
-            Close
+            {{ translateCompanion('companion-extra.close-bbfa77') }}
           </Button>
         </div>
 
@@ -75,23 +78,23 @@ function confirm() {
             <div v-else-if="report.status === 'WARNING'" i-solar:danger-bold-duotone text-2xl />
             <div v-else i-solar:close-circle-bold-duotone text-2xl />
             <div :class="['flex flex-col']">
-              <span>Status: {{ report.status }}</span>
+              <span>{{ translateCompanion('companion-extra.status-11dc9e') }} {{ report.status }}</span>
               <span class="text-xs opacity-80">{{ report.fileName }}</span>
             </div>
           </div>
 
           <div :class="['grid grid-cols-2 gap-2', 'rounded bg-neutral-100/50 p-2 text-sm dark:bg-neutral-800/50']">
             <div>
-              Emotions: <span class="font-mono">{{ report.detected.length }}</span>
+              {{ translateCompanion('companion-extra.emotions-55b719') }} <span class="font-mono">{{ report.detected.length }}</span>
             </div>
             <div>
-              Canvas:
+              {{ translateCompanion('companion-extra.canvas-3809d6') }}
               <span class="font-mono">
                 {{ report.canvas ? `${report.canvas.width}×${report.canvas.height}` : 'Unavailable' }}
               </span>
             </div>
             <div class="col-span-2">
-              Detected:
+              {{ translateCompanion('companion-extra.detected-8a1687') }}
               <span class="font-mono">{{ report.detected.map(entry => entry.emotion).join(', ') || 'None' }}</span>
             </div>
           </div>
@@ -99,7 +102,7 @@ function confirm() {
           <div v-if="report.errors.length > 0" :class="['flex flex-col gap-1']">
             <div class="flex items-center gap-1 text-red-600 font-bold dark:text-red-400">
               <div i-solar:bug-bold-duotone />
-              Critical Issues
+              {{ translateCompanion('companion-extra.critical-issues-2d5aeb') }}
             </div>
             <ul :class="['list-none p-0', 'flex flex-col gap-1']">
               <li
@@ -115,7 +118,7 @@ function confirm() {
           <div v-if="report.warnings.length > 0" :class="['flex flex-col gap-1']">
             <div class="flex items-center gap-1 text-yellow-600 font-bold dark:text-yellow-400">
               <div i-solar:danger-bold-duotone />
-              Warnings
+              {{ translateCompanion('companion-extra.warnings-1430f9') }}
             </div>
             <ul :class="['list-none p-0', 'flex flex-col gap-1']">
               <li
@@ -129,12 +132,12 @@ function confirm() {
           </div>
 
           <div v-if="report.ignoredEntries.length > 0" class="text-xs text-neutral-500 dark:text-neutral-400">
-            Ignored: {{ report.ignoredEntries.join(', ') }}
+            {{ translateCompanion('companion-extra.ignored-032e96') }} {{ report.ignoredEntries.join(', ') }}
           </div>
 
           <div :class="['mt-2', 'flex justify-end gap-2']">
             <Button @click="close">
-              Cancel
+              {{ translateCompanion('companion-extra.cancel-77dfd2') }}
             </Button>
             <Button v-if="report.status !== 'INVALID'" @click="confirm">
               {{ report.status === 'WARNING' ? 'Import Anyway' : 'Confirm Import' }}
@@ -159,10 +162,10 @@ function confirm() {
         <DrawerHandle />
         <div :class="['mb-4', 'flex items-center justify-between gap-2']">
           <div class="text-lg text-neutral-900 font-semibold dark:text-neutral-100">
-            Tachie Model Audit Report
+            {{ translateCompanion('companion-extra.tachie-model-audit-report-ae0296') }}
           </div>
           <Button size="sm" @click="close">
-            Close
+            {{ translateCompanion('companion-extra.close-bbfa77') }}
           </Button>
         </div>
 
@@ -200,7 +203,7 @@ function confirm() {
               {{ report.status === 'WARNING' ? 'Import Anyway' : 'Confirm Import' }}
             </Button>
             <Button @click="close">
-              Cancel
+              {{ translateCompanion('companion-extra.cancel-77dfd2') }}
             </Button>
           </div>
         </div>

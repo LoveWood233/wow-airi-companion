@@ -41,6 +41,7 @@ docs:
   'logging-in': サインイン中…
   'account': アカウント
   'logout': サインアウト
+  open-wow-companion: WoW情報カード
 'chat-window':
   style:
     title: チャットウィンドウのスタイル
@@ -49,6 +50,7 @@ docs:
     floating-free: フローティング、画面の好きな位置
     floating-danmaku: フローティング、メッセージフィード
     pinned: 常に最前面に表示
+    fullscreen: キャラクターの隣に全画面表示
   resize: ドラッグしてチャットのサイズを変更
   move: ドラッグしてチャットを移動
   fold: チャットを非表示
@@ -86,6 +88,7 @@ notice:
     preparing: 準備中…
     read-more: 続きを読む
     preview-title: これは何？
+    value: '0'
 about:
   subtitle: デスクトップ版
   current-version: 現在のバージョン
@@ -95,6 +98,7 @@ about:
     title: リンク
     home: ホーム
     documentation: ドキュメント
+    github: GitHub
   update:
     lane:
       label: アップデート チャンネル
@@ -131,3 +135,148 @@ about:
       title: 利用可能なアップデートがあります
       description: 新しいバージョン({version})が利用可能です。
       no-release-notes-markdown: _リリースノートがありません。_
+fullscreen-island:
+  settings: 設定
+  chat: チャット
+  switch-to-dark-mode: ダークモードに切り替え
+  switch-to-system-mode: システムのテーマに従う
+  switch-to-light-mode: ライトモードに切り替え
+  exit: 全画面を終了
+fullscreen-surface:
+  resize: ドラッグしてパネルのサイズを変更
+computer-use-tool-call:
+  help: ヘルプ
+  status:
+    completed: 完了
+    failed: 失敗
+  display: ディスプレイ
+  built-in: 内蔵
+  primary: メイン
+  logical-size: 論理サイズ
+  pixel-size: ピクセルサイズ
+  backend: キャプチャ方式
+  fallback: 代替方式を使用した理由
+  file: ファイル
+  window: ウィンドウ
+  region: 領域
+  main: メイン
+  hidden: 非表示
+  displays: ディスプレイ1台 | ディスプレイ{count}台
+  windows: ウィンドウ1個 | ウィンドウ{count}個
+  found: 「{query}」が見つかりました
+  matches: 一致1件 | 一致{count}件
+  not-found: 「{query}」が見つかりません
+  clicked-text: 「{query}」をクリックしました
+  options: オプション
+  typed: 入力しました
+  pasted: 貼り付けました
+  pressed: キーを押しました
+  repeat: × {count}
+  interval: '{ms}ミリ秒ごと'
+  hold: '{ms}ミリ秒間押下'
+  steps: 手順1件を順に実行 | 手順{count}件を順に実行
+  focused: 「{query}」にフォーカスしました
+  app: アプリ
+  process: プロセス
+  control: コントロール
+  title: タイトル
+  value: 内容
+  ax-path: アクセシビリティのパス
+  moved: ポインターの移動先
+  clicked: クリックしました
+  dragged: ドラッグしました
+  requested: 要求しました
+  on-screen: 画面上
+  start: 開始
+  end: 終了
+  final: 終点
+  duration: '{ms} ms'
+  normalized: 正規化座標
+  click-count: × {count}
+  relative:
+    screen: 画面を基準
+    window: ウィンドウを基準
+    display: ディスプレイを基準
+  buttons:
+    left: 左ボタン
+    right: 右ボタン
+    middle: 中央ボタン
+  clicks:
+    single: シングルクリック
+    double: ダブルクリック
+  delivery:
+    path: 入力の送信
+    verified: 効果を確認済み
+    not-verified: 効果は未確認
+    disturbance: 操作への影響
+    mouse: マウス
+    focus: フォーカス
+    clipboard: クリップボード
+    attempt: 試行{index}
+    attempt-succeeded: 成功
+    attempt-failed: 失敗
+  paths:
+    foreground_system_events: 前面へのシステムイベント
+    window_targeted_keyboard: ウィンドウに送信したキーイベント
+    ax_focus: アクセシビリティのフォーカス
+  disturbances:
+    none: なし
+    temporary: 一時的
+    foreground: 前面に表示
+    unknown: 不明
+  activated: '{app}に切り替えました'
+  in-front: 現在前面に表示中
+  front-is: '{app}が前面です'
+  front-unknown: 前面のアプリを確認できませんでした
+  permissions:
+    title: システムの権限
+    names:
+      screen_recording: 画面収録
+      screen_capture_kit: ScreenCaptureKit
+      accessibility: アクセシビリティ
+      automation_to_system_events: オートメーション（System Events）
+    states:
+      granted: 許可済み
+      missing: 未許可
+      denied: 拒否
+      unknown: 不明
+  media:
+    commands:
+      play: 再生
+      pause: 一時停止
+      toggle: 再生 / 一時停止
+      next: 次の曲
+      previous: 前の曲
+    verified: 確認済み
+    not-verified: 未確認
+    playing: 再生中
+    paused: 一時停止中
+    nothing: 再生中のメディアはありません
+    liked: お気に入り登録済み
+    rate: '{rate}倍速'
+computer-use-read-image-tool-call:
+  description: 画像認識モデルによる説明
+  failed: 画像認識モデルがこの画像を読み取れませんでした
+tool-call-screenshot:
+  view-full: 原寸で表示
+weather-tool-call:
+  feels-like: 体感温度
+  humidity: 湿度
+  wind: 風
+  precipitation: 降水確率
+  high: 最高
+  low: 最低
+  conditions:
+    clear-day: 晴れ
+    clear-night: 晴れ
+    partly-cloudy-day: 晴れ時々曇り
+    partly-cloudy-night: 晴れ時々曇り
+    overcast: 曇り
+    fog: 霧
+    drizzle: 霧雨
+    sleet: みぞれ
+    rain: 雨
+    extreme-rain: 大雨
+    snow: 雪
+    extreme-snow: 大雪
+    thunderstorm: 雷雨

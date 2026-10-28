@@ -1,7 +1,8 @@
 import type { ExecutableEvidence } from './wow-launcher-windows'
 
-import { EventEmitter } from 'node:events'
 import process from 'node:process'
+
+import { EventEmitter } from 'node:events'
 
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
@@ -29,7 +30,7 @@ function installation(product: string, version = wowEvidence.fileVersion, active
 
 afterEach(() => vi.clearAllMocks())
 
-describe('Windows launcher identity', () => {
+describe('windows launcher identity', () => {
   it('accepts a verified Retail installation with a region in the Branch column', () => {
     expect(validateLauncherEvidence('retail', retailPath, wowEvidence, installation('WoW')).target).toBe('retail')
   })
@@ -97,7 +98,7 @@ describe('Windows launcher identity', () => {
   })
 })
 
-describe('Windows process launch', () => {
+describe('windows process launch', () => {
   it('passes a spaced executable path as one executable and never constructs a shell command', async () => {
     const child = Object.assign(new EventEmitter(), { unref: vi.fn() })
     os.spawn.mockReturnValue(child)
@@ -144,7 +145,7 @@ describe('Windows process launch', () => {
   })
 })
 
-describe.runIf(process.platform === 'win32')('Windows path inspection', () => {
+describe.runIf(process.platform === 'win32')('windows path inspection', () => {
   it.each([
     ['Wow.exe', 'invalid-path'],
     ['https://example.com/Wow.exe', 'invalid-path'],

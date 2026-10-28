@@ -1,0 +1,101 @@
+click-here-to-set-up-your-transcription-providers: Configurer les fournisseurs de transcription
+enter-the-transcription-model-to-use-e-g-whisper-1-gpt-4o-transcribe: Saisissez un modèle de transcription, par exemple {models}.
+input-level: Niveau d’entrée
+probability-of-speech: Probabilité de parole
+adjust-the-threshold-for-speech-detection: Réglez le seuil de détection de la parole
+pause-before-stop: Silence avant la fin
+how-long-silence-must-last-before-speech-is-considered-finished: Durée du silence nécessaire pour considérer la parole comme terminée
+model-based: Détection par modèle
+use-ai-models-for-more-accurate-speech-detection: Utilisez des modèles d’IA pour détecter la parole plus précisément
+loading: Chargement…
+inference-error: Erreur d’inférence
+activated: Activé
+probability: 'Probabilité :'
+voice-activity: Activité vocale
+last-2-seconds: 2 dernières secondes
+speaking: Parole en cours
+voice-detected: Voix détectée
+speech-threshold: Seuil de parole
+reset-value-to-default: Rétablir la valeur par défaut
+head-rotation: Rotation de la tête
+angle-x: Angle X
+angle-y: Angle Y
+angle-z: Angle Z
+left-eye-open-close: Ouverture de l’œil gauche
+right-eye-open-close: Ouverture de l’œil droit
+left-eye-smiling: Sourire de l’œil gauche
+right-eye-smiling: Sourire de l’œil droit
+eyebrows: Sourcils
+left-eyebrow-left-right: 'Sourcil gauche: gauche/droite'
+right-eyebrow-left-right: 'Sourcil droit: gauche/droite'
+left-eyebrow-y-up-down: Sourcil gauche Y (haut/bas)
+left-eyebrow-y: Sourcil gauche Y
+right-eyebrow-y-up-down: Sourcil droit Y (haut/bas)
+right-eyebrow-y: Sourcil droit Y
+left-eyebrow-angle: Angle du sourcil gauche
+right-eyebrow-angle: Angle du sourcil droit
+left-eyebrow-form-deformation: Forme du sourcil gauche (déformation)
+left-eyebrow-form: Forme du sourcil gauche
+right-eyebrow-form-deformation: Forme du sourcil droit (déformation)
+right-eyebrow-form: Forme du sourcil droit
+mouth: Bouche
+mouth-open-close: Ouverture de la bouche
+mouth-form-deformation: Forme de la bouche (déformation)
+mouth-form: Forme de la bouche
+face: Visage
+cheek: Joue
+body-rotation-x: Rotation du corps X
+body-rotation-y: Rotation du corps Y
+body-rotation-z: Rotation du corps Z
+breath: Respiration
+model-position: Position du modèle
+directional-light-rotation-x: Rotation de la lumière directionnelle X
+directional-light-rotation-y: Rotation de la lumière directionnelle Y
+directional-light-color: Couleur de la lumière directionnelle
+directional-light-intensity: Intensité de la lumière directionnelle
+ambient-light-intensity: Intensité de la lumière ambiante
+ambient-light-color: Couleur de la lumière ambiante
+hemisphere-light-intensity: Intensité de la lumière hémisphérique
+hemisphere-sky-color: Couleur du ciel hémisphérique
+hemisphere-ground-color: Couleur du sol hémisphérique
+tips: Conseils
+camera-fov: Champ de vision de la caméra
+directional-light-x: Lumière directionnelle X
+directional-light-y: Lumière directionnelle Y
+directional-light-z: Lumière directionnelle Z
+albedo-glow: Lueur de l’albédo
+godot-stage-experimental: Scène Godot (expérimentale)
+godot-view: Vue Godot
+camera-x: Caméra X
+camera-y: Caméra Y
+camera-z: Caméra Z
+camera-yaw: Lacet de la caméra
+camera-pitch: Inclinaison de la caméra
+transcription-provider-inactive: Aucun fournisseur de transcription n’est actif.
+transcription-provider-unavailable: La configuration du fournisseur de transcription est indisponible.
+microphone-access-denied: L’accès au microphone a été refusé.
+speech-detection-failed: La détection de la parole a échoué.
+speaking-detected: Parole détectée
+volume-based: Détection par volume
+select-model-before-godot-view: Sélectionnez un modèle VRM avant de régler la vue de la scène Godot.
+godot-view-unavailable: Aucune vue de la scène Godot n’a été reçue. Vérifiez la connexion à Godot.
+godot-no-snapshot: Aucun instantané de la vue de la scène Godot reçu
+revision: Révision {revision} · {reason}
+hemisphere: Hémisphère
+skybox: Ciel de fond
+rotation-x-degrees: Rotation X (degrés)
+rotation-y-degrees: Rotation Y (degrés)
+intensity: Intensité
+scale: Échelle
+rotation: Rotation
+glow: Lueur
+mouth-vowel: Bouche {vowel}
+blink: Clignement des yeux
+wink-left: Clin d’œil gauche
+wink-right: Clin d’œil droit
+smile: Sourire
+anger: Colère
+sad: Tristesse
+surprise: Surprise
+troubled: Inquiétude
+serious: Sérieux

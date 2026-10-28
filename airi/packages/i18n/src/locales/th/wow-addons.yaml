@@ -1,0 +1,143 @@
+title: ศูนย์แอดออน WoW
+description: ค้นหาแอดออน CurseForge ที่เข้ากันได้ และติดตั้งให้กับไคลเอนต์ World of Warcraft แต่ละรุ่น
+game-version: รุ่นเกม
+games:
+  retail: รุ่นปัจจุบัน
+  classic: รุ่นคลาสสิก
+  forever: รุ่นถาวร
+view: มุมมองแอดออน
+browse: ค้นพบ
+installed: ติดตั้งแล้ว
+loading: กำลังโหลดแอดออน…
+retry: ลองใหม่
+refresh: รีเฟรช
+search-label: ค้นหาแอดออน
+search-placeholder: ชื่อแอดออนหรือคำค้น
+search: ค้นหา
+category: หมวดหมู่
+sort-label: เรียงตาม
+sort:
+  popular: ยอดนิยม
+  updated: อัปเดตล่าสุด
+  downloads: ดาวน์โหลดมากที่สุด
+current-version: 'รุ่นเกมที่เข้ากันได้: {version}'
+authors: โดย {authors}
+downloads: ดาวน์โหลด {count} ครั้ง
+no-results: ไม่พบแอดออนที่เข้ากันได้ตามตัวกรองนี้
+previous: ก่อนหน้า
+next: ถัดไป
+pagination: หน้า {page} จาก {pages} · {total} แอดออน
+installed-description: รายการแอดออนที่เพื่อนคู่ใจ WoW จัดการสำหรับไคลเอนต์ที่เลือก
+none-installed: เพื่อนคู่ใจ WoW ยังไม่ได้ติดตั้งแอดออนให้ไคลเอนต์นี้
+choose-update: เลือกอัปเดต
+close: ปิดรายละเอียดไฟล์
+loading-files: กำลังโหลดไฟล์ที่เข้ากันได้…
+no-files: ไม่มีไฟล์ที่ตรงกับรุ่นเกมที่ตั้งค่าไว้
+compatible-files: ไฟล์ที่เข้ากันได้
+file-details: รายละเอียดไฟล์แอดออน
+required-dependencies: รหัสแอดออนที่จำเป็น
+no-dependencies: ไม่มี
+dependencies-hint: แอดออนที่จำเป็นจะติดตั้งพร้อมแอดออนนี้
+current-file: ติดตั้งไฟล์นี้แล้ว
+install: ติดตั้ง
+update: อัปเดต
+install-success: ติดตั้งเสร็จแล้ว ให้เริ่ม WoW ใหม่หรือโหลดส่วนติดต่อใหม่เพื่อใช้แอดออน
+release:
+  stable: รุ่นเผยแพร่
+  beta: รุ่นเบตา
+  alpha: รุ่นอัลฟา
+setup:
+  title: เชื่อมต่อ CurseForge เพื่อเรียกดูแอดออน
+  description: เพิ่มคีย์ API ของ CurseForge ในการตั้งค่า รายการแอดออนจะโหลดหลังจากบันทึกคีย์ที่ถูกต้อง
+  action: ตั้งค่าคีย์ API
+  client-title: ตั้งค่าไคลเอนต์ {game}
+  client-description: เลือกโฟลเดอร์ไคลเอนต์และรุ่นเกมที่เข้ากันได้ในการตั้งค่าแอดออน
+  configure-client: ตั้งค่าไคลเอนต์
+settings:
+  title: การตั้งค่าแอดออน
+  description: ตั้งค่าคีย์ API ของ CurseForge และไคลเอนต์ WoW แต่ละตัวก่อนติดตั้งแอดออน
+  key-title: การเข้าถึง CurseForge
+  key-label: คีย์ API ของ CurseForge ใหม่
+  key-description: เว้นว่างเพื่อใช้คีย์ที่บันทึกไว้ คีย์เดิมจะไม่แสดงในแบบฟอร์มนี้
+  key-configured: ตั้งค่าคีย์ API แล้ว
+  key-missing: ยังไม่ได้ตั้งค่าคีย์ API
+  key-instructions: เปิดคู่มือ API ทางการแล้วไปยังลิงก์แบบฟอร์มสมัคร กรอกข้อมูลโครงการแล้วรออีเมลจาก Overwolf จากนั้นคัดลอกคีย์ API ที่อนุมัติแล้วมาวางที่นี่
+  key-link: อ่านคู่มือสมัครคีย์ API
+  save-key-first: บันทึกคีย์ API ก่อน แล้วเลือกรุ่นเกมที่เข้ากันได้สำหรับไคลเอนต์แต่ละตัว
+  directory: โฟลเดอร์ไคลเอนต์ WoW
+  directory-description: เลือกโฟลเดอร์ที่มีไฟล์โปรแกรม WoW แอดออนจะติดตั้งใน Interface/AddOns ภายในโฟลเดอร์นี้
+  browse: เรียกดู
+  browse-game: เลือกโฟลเดอร์ {game}
+  version-type: รุ่นเกมที่เข้ากันได้
+  choose-version: เลือกรุ่นเกมจาก API
+  no-version-types: CurseForge ไม่ส่งคืนรุ่นเกมที่รองรับสำหรับรุ่นนี้
+  retry-metadata: โหลดรุ่นเกมใหม่
+  install-target: ติดตั้งแอดออนลงใน
+  reload-hint: ปิด WoW ก่อนติดตั้ง หลังติดตั้งให้เริ่ม WoW ใหม่หรือโหลดส่วนติดต่อใหม่
+  save: บันทึกการตั้งค่า
+  cancel: ยกเลิก
+  back: กลับไปศูนย์แอดออน
+  saved: บันทึกการตั้งค่าแล้ว
+categories:
+  all: ทุกหมวดหมู่
+  combat: การต่อสู้
+  bags-inventory: กระเป๋าและคลังไอเทม
+  bags: กระเป๋า
+  inventory: คลังไอเทม
+  classes: คลาส
+  class: คลาส
+  action-bars: แถบคำสั่ง
+  artwork: งานภาพ
+  auction-economy: ประมูลและเศรษฐกิจ
+  auction: ประมูล
+  buffs-debuffs: บัฟและดีบัฟ
+  chat-communication: แชทและการสื่อสาร
+  damage-dealer: ผู้ทำความเสียหาย
+  guild: กิลด์
+  libraries: ไลบรารี
+  map-minimap: แผนที่และแผนที่ย่อ
+  map: แผนที่
+  miscellaneous: เบ็ดเตล็ด
+  professions: อาชีพ
+  quests-leveling: เควสต์และเก็บเลเวล
+  quests: เควสต์
+  raid-boss-encounters: เรดและบอส
+  tooltip: คำอธิบายไอเทม
+  unit-frames: กรอบตัวละคร
+  pvp: ต่อสู้ระหว่างผู้เล่น
+errors:
+  unknown: คำขอไม่สำเร็จ โปรดลองใหม่
+  curseforge-api-key-required: เพิ่มคีย์ API ของ CurseForge ในการตั้งค่าแอดออน
+  curseforge-unauthorized: CurseForge ปฏิเสธคีย์ API โปรดตรวจสอบคีย์ในการตั้งค่าแอดออน
+  curseforge-rate-limited: CurseForge จำกัดจำนวนคำขอ โปรดรอแล้วลองใหม่
+  curseforge-timeout: CurseForge ไม่ตอบสนองทันเวลา โปรดลองใหม่
+  curseforge-invalid-response: CurseForge ส่งข้อมูลตอบกลับไม่ถูกต้อง โปรดลองใหม่
+  curseforge-response-too-large: ข้อมูลตอบกลับจาก CurseForge เกินขนาดที่รองรับ
+  curseforge-request-failed: คำขอ CurseForge ไม่สำเร็จ โปรดตรวจสอบการเชื่อมต่อแล้วลองใหม่
+  curseforge-invalid-request: คำขอไม่ถูกต้อง โปรดตรวจสอบรุ่นเกมที่ตั้งค่าแล้วลองใหม่
+  curseforge-too-many-files: แอดออนนี้มีไฟล์มากเกินกว่าจะโหลดได้อย่างปลอดภัย โปรดเลือกแอดออนอื่น
+  curseforge-too-many-redirects: การดาวน์โหลดเปลี่ยนเส้นทางมากเกินไป โปรดลองใหม่ภายหลัง
+  curseforge-not-found: CurseForge ไม่พบแอดออนหรือไฟล์นี้ โปรดรีเฟรชรายการแอดออน
+  curseforge-disposed: บริการแอดออนหยุดแล้ว โปรดเปิดศูนย์แอดออนใหม่แล้วลองอีกครั้ง
+  curseforge-incompatible-version: ไฟล์แอดออนไม่ตรงกับรุ่นเกมที่ตั้งค่าไว้
+  curseforge-distribution-disabled: ผู้สร้างไม่อนุญาตให้ติดตั้งแอดออนนี้ผ่านเครื่องมือของบุคคลที่สาม
+  curseforge-download-unavailable: CurseForge ไม่มีไฟล์ดาวน์โหลดของแอดออนนี้
+  curseforge-unsafe-download-url: ที่อยู่ดาวน์โหลดไม่ผ่านการตรวจสอบ
+  curseforge-download-integrity: ไฟล์แอดออนไม่ผ่านการตรวจสอบความสมบูรณ์ โปรดลองใหม่
+  wow-addons-settings-invalid: โปรดตรวจสอบการตั้งค่าแอดออนแล้วลองใหม่
+  wow-addons-directory-required: ตั้งค่าโฟลเดอร์ไคลเอนต์ WoW ในการตั้งค่าแอดออน
+  wow-addons-version-required: เลือกรุ่นเกมที่เข้ากันได้ในการตั้งค่าแอดออน
+  wow-addons-busy: มีการดำเนินการแอดออนอื่นอยู่ โปรดรอให้เสร็จ
+  wow-addons-key-storage-unavailable: ที่เก็บคีย์ปลอดภัยไม่พร้อมใช้งาน โปรดเริ่มเพื่อนคู่ใจ WoW ใหม่แล้วลองอีกครั้ง
+  wow-addons-key-unreadable: เพื่อนคู่ใจ WoW อ่านคีย์ API ที่บันทึกไว้ไม่ได้ โปรดบันทึกคีย์ใหม่
+  wow-addons-required-dependency: ติดตั้งแอดออนที่จำเป็นไม่สำเร็จ โปรดลองใหม่
+  wow-addons-unmanaged-conflict: มีโฟลเดอร์แอดออนที่ไม่ได้จัดการอยู่แล้ว โปรดย้ายออกก่อนติดตั้งแอดออนนี้
+  wow-addons-folder-conflict: โฟลเดอร์แอดออนขัดแย้งกับแอดออนอื่น โปรดย้ายออกก่อนติดตั้ง
+  wow-addons-unsafe-archive: แพ็กแอดออนมีเส้นทางที่ไม่ปลอดภัย จึงติดตั้งไม่ได้
+  wow-addons-install-failed: ติดตั้งไม่สำเร็จ โปรดตรวจสอบโฟลเดอร์ไคลเอนต์แล้วลองใหม่
+  wow-addons-invalid-directory: โฟลเดอร์ไคลเอนต์ไม่ถูกต้องหรือเข้าถึงไม่ได้ โปรดตรวจสอบเส้นทางในการตั้งค่าแอดออน
+  wow-addons-invalid-archive: แพ็กแอดออนไม่ถูกต้องหรือไม่ปลอดภัย จึงติดตั้งไม่ได้
+  wow-addons-directory-conflict: โฟลเดอร์แอดออนเดิมขัดแย้งกับการติดตั้งนี้ โปรดย้ายโฟลเดอร์ที่ขัดแย้งออกแล้วลองใหม่
+  wow-addons-request-failed: ดำเนินการแอดออนไม่สำเร็จ โปรดตรวจสอบโฟลเดอร์ไคลเอนต์แล้วลองใหม่
+  wow-addons-dependency-limit: แอดออนมีการพึ่งพาซ้อนกันมากเกินกว่าจะติดตั้งได้อย่างปลอดภัย
+  wow-addons-stopped: หยุดดำเนินการแอดออนแล้ว โปรดเปิดศูนย์แอดออนใหม่แล้วลองอีกครั้ง

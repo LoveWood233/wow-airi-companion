@@ -1,0 +1,30 @@
+bridge-local-address: The WoW bridge must use a local HTTP address.
+bridge-stopped: The WoW bridge has stopped.
+bridge-cancelled: The WoW bridge start was cancelled.
+bridge-retry: 'WoW Companion will retry after 30 seconds. {detail}'
+bridge-windows: Automatic WoW capture requires Windows. The local bridge cannot start on this system.
+bridge-exited: The WoW bridge exited.
+bridge-start-failed: 'The WoW bridge could not start. Check its files and capture settings. {detail}'
+bridge-start-exited: The WoW bridge exited during startup. Check whether its port is occupied.
+bridge-timeout: The WoW bridge did not become ready within 10 seconds. Check Python and the local capture settings.
+bridge-port-unavailable: 'The local WoW bridge port did not respond. Check port {port} before retrying.'
+bridge-port-incompatible: 'Port {port} is occupied by an incompatible service. Close that service or update the WoW bridge.'
+bridge-profile-incompatible: 'Port {port} is occupied by an incompatible service. Use WoW bridge 2.11 or later for the {game} profile.'
+bridge-files-missing: WoW bridge files are missing. Restore WOWAddons beside the WoW Companion source, or reinstall the desktop package.
+bridge-python-missing: Python 3.10 or newer was not found. Install Python with PATH enabled, then restart WoW Companion.
+bridge-unavailable: The WoW bridge is unavailable.
+bridge-http: 'The WoW bridge returned HTTP {status}.'
+bridge-response-profile: 'The WoW bridge response does not match the {game} profile.'
+connection-disabled: Enable the companion connection for this game before capture or demo commands.
+connection-changed: The companion connection changed before the command completed.
+gold-account-unknown: The local gold account was not found.
+gold-read: 'Cannot load the gold ledger ({path}). Restore the file and restart WoW Companion. {detail}'
+gold-write: 'Cannot save the gold ledger ({path}). Changes are only in memory. WoW Companion will retry. {detail}'
+levels-read: 'Cannot load level history ({path}). Restore the file and restart WoW Companion. {detail}'
+levels-write: 'Cannot save level history ({path}). Changes are only in memory. WoW Companion will retry. {detail}'
+equipment-read: 'Cannot load equipment history ({path}). Restore the file and restart WoW Companion. {detail}'
+equipment-write: 'Cannot save equipment history ({path}). Changes are only in memory. WoW Companion will retry. {detail}'
+comparisons-read: 'Cannot load equipment comparisons ({path}). Restore the file and restart WoW Companion. {detail}'
+comparisons-write: 'Cannot save equipment comparisons ({path}). Changes are only in memory. WoW Companion will retry. {detail}'
+loadouts-read: 'Cannot load equipment snapshots ({path}). Restore the file and restart WoW Companion. {detail}'
+loadouts-write: 'Cannot save equipment snapshots ({path}). Changes are only in memory. WoW Companion will retry. {detail}'

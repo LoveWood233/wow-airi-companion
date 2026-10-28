@@ -397,7 +397,12 @@ class CompanionState:
             self._expire_equipment()
             age = round(max(0, self.clock() - self.fresh_at), 2) if self.fresh_at is not None else None
             status = self._status()
-            return {"instanceId": self.instance_id, "status": status, "source": "demo" if self.demo else "screen", "snapshot": copy.deepcopy(self.snapshot),
+            current_snapshot = copy.deepcopy(self.snapshot)
+            # Keep event observations historical. An expired or paused current
+            # view must not present the last recorded position as live.
+            if current_snapshot is not None and status not in ("live", "demo"):
+                current_snapshot["px"], current_snapshot["py"] = None, None
+            return {"instanceId": self.instance_id, "status": status, "source": "demo" if self.demo else "screen", "snapshot": current_snapshot,
                     "lastSeen": self.last_seen, "ageSeconds": age, "eventCursor": self.event_id,
                     "events": copy.deepcopy([e for e in self.events if after is None or e["id"] > after]),
                     "config": dict(self.config), "error": self.error if status != "live" else None,
@@ -552,7 +557,7 @@ class CompanionState:
                 self.ingest({"v": 3, "session": "demo-session", "seq": 1, "tick": 1, "guid": "DEMO-PLAYER",
                              "name": "演示冒险者", "realm": "无限服演示" if self.game == "forever" else "正式服演示", "level": 29, "class": "MAGE", "spec": 0 if self.game == "forever" else 64,
                              "faction": "Alliance", "race": "人类",
-                             "map": 37, "zone": "艾尔文森林（演示）", "combat": False, "dead": False, "online": True,
+                             "map": 37, "zone": "艾尔文森林（演示）", "px": None, "py": None, "combat": False, "dead": False, "online": True,
                              "account": "demo-account", "moneyEpoch": "demo-epoch", "copper": 1234567, "earned": 0, "spent": 0})
             if action:
                 next_state = dict(self.snapshot)

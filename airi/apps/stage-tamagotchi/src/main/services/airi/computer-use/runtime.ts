@@ -92,7 +92,7 @@ export function createComputerUseRuntime(options: { binaryPath: string, storeRoo
     // The host owns routing and artifact storage. CLI global flags must not replace them.
     const managedFlags = ['--store-root', '--endpoint', '--device', '--device-id', '--run', '--config', '--profile', '--discovery-file', '--pairing-store']
     if (argv.some(arg => managedFlags.some(flag => arg === flag || arg.startsWith(`${flag}=`))))
-      throw new Error('Computer use routing and storage are managed by AIRI.')
+      throw new Error('电脑操作的路由和存储由魔兽陪伴精灵管理。')
 
     return enqueue(async () => {
       const active = await connect()
@@ -142,7 +142,7 @@ export function createComputerUseRuntime(options: { binaryPath: string, storeRoo
       const target = await realpath(path)
       const within = relative(root, target)
       if (!within || isAbsolute(within) || within === '..' || within.startsWith(`..${sep}`))
-        throw new Error('Only screenshots from this AIRI computer-use store can be read.')
+        throw new Error('只能读取魔兽陪伴精灵电脑操作存储中的截图。')
       const info = await stat(target)
       if (!info.isFile() || info.size > 8 * 1024 * 1024)
         throw new Error('Screenshot must be a file smaller than 8 MiB.')

@@ -1,27 +1,32 @@
 electronCallback:
   title:
     loading: Finalizando inicio de sesión
-    openingAiri: Abriendo AIRI
+    openingAiri: Abriendo Compañero de WoW
     signedIn: Has iniciado sesión
     signInFailed: Error al iniciar sesión
-    finishSignInInAiri: Terminar sesión en AIRI
-    openAiriToContinue: Abrir AIRI para continuar
+    finishSignInInAiri: Terminar sesión en Compañero de WoW
+    openAiriToContinue: Abrir Compañero de WoW para continuar
   message:
-    checkingResponse: Comprobando su respuesta de inicio de sesión y preparando el handoff para AIRI.
-    passingToAiri: Estamos transfiriendo tu inicio de sesión a AIRI. Esta página se cerrará en unos instantes.
-    syncedAndSafeToClose: Hemos notificado al cliente de AIRI del que firmó.
+    checkingResponse: Comprobando su respuesta de inicio de sesión y preparando el
+      handoff para Compañero de WoW.
+    passingToAiri: Estamos transfiriendo tu inicio de sesión a Compañero de WoW.
+      Esta página se cerrará en unos instantes.
+    syncedAndSafeToClose: Hemos notificado al cliente de Compañero de WoW del que firmó.
     invalidResponse: No pudimos utilizar esta respuesta de inicio de sesión.
-    loopbackUnreachable: El navegador no pudo acceder a AIRI a través del puerto de devolución de llamada local.
-    tryOpenDirectly: Intentaremos abrir el handoff local directamente. Si esto todavía falla, utilice el botón de abajo.
+    loopbackUnreachable: El navegador no pudo acceder a Compañero de WoW a través
+      del puerto de devolución de llamada local.
+    tryOpenDirectly: Intentaremos abrir el handoff local directamente. Si esto
+      todavía falla, utilice el botón de abajo.
     automaticHandoffFailed: El handoff automático no ha finalizado en esta sesión del navegador.
   label:
     signIn: Iniciar sesión
     safeToClose: Es seguro cerrar la pestaña ahora.
     whyStillHere: '¿Por qué esta pestaña sigue aquí?'
   action:
-    openAiriManually: Abrir AIRI manualmente
+    openAiriManually: Abrir Compañero de WoW manualmente
   hint:
-    closeTabManually: Algunos navegadores no permiten que esta página se cierre automáticamente. Puede cerrarla manualmente.
+    closeTabManually: Algunos navegadores no permiten que esta página se cierre
+      automáticamente. Puede cerrarla manualmente.
 signIn:
   title: Iniciar sesión
   step:
@@ -61,9 +66,12 @@ signIn:
     redirecting: Redirigiendo a {provider}…
   error:
     fallback: Error en el inicio de sesión
-    providerTimeout: El inicio de sesión con el proveedor agotó el tiempo de espera. Vuelve a intentarlo.
+    providerTimeout: El inicio de sesión con el proveedor agotó el tiempo de espera.
+      Vuelve a intentarlo.
     unknown: S produjo un error inesperado
-    socialOnlyNoPassword: Este correo electrónico se registró con Google o GitHub. Inicia sesión con uno de los botones de abajo. Después de iniciar sesión, podrás agregar una contraseña en la configuración de tu cuenta.
+    socialOnlyNoPassword: Este correo electrónico se registró con Google o GitHub.
+      Inicia sesión con uno de los botones de abajo. Después de iniciar sesión,
+      podrás agregar una contraseña en la configuración de tu cuenta.
     passwordMismatch: Las contraseñas no coinciden.
     invalidEmail: Por favor, introduzca una dirección de correo electrónico válida.
   footer:
@@ -77,15 +85,22 @@ verifyEmail:
     success: Correo electrónico verificado
     failed: Falló la verificación
   message:
-    pending: Hemos enviado un enlace de verificación a tu correo electrónico. Ábrelo para terminar de crear su cuenta — esta página continuará automáticamente una vez que haga clic en el enlace.
-    pendingWithAddress: Hemos enviado un enlace de verificación a {email}. Ábrelo para terminar de crear su cuenta — esta página continuará automáticamente una vez que haga clic en el enlace.
-    success: Tu correo electrónico ha sido verificado y has iniciado sesión. Puedes cerrar esta pestaña.
-    failed: No pudimos verificar tu correo electrónico ({error}). Intenta solicitar un nuevo enlace.
+    pending: Hemos enviado un enlace de verificación a tu correo electrónico. Ábrelo
+      para terminar de crear su cuenta — esta página continuará automáticamente
+      una vez que haga clic en el enlace.
+    pendingWithAddress: Hemos enviado un enlace de verificación a {email}. Ábrelo
+      para terminar de crear su cuenta — esta página continuará automáticamente
+      una vez que haga clic en el enlace.
+    success: Tu correo electrónico ha sido verificado y has iniciado sesión. Puedes
+      cerrar esta pestaña.
+    failed: No pudimos verificar tu correo electrónico ({error}). Intenta solicitar
+      un nuevo enlace.
   action:
     backToSignIn: Volver al inicio de sesión
 forgotPassword:
   title: Restablecer contraseña
-  description: Escribe la dirección de email asociada a tu cuenta y te enviaremos un email para iniciar sesión.
+  description: Escribe la dirección de email asociada a tu cuenta y te enviaremos
+    un email para iniciar sesión.
   email:
     label: Correo electrónico
     placeholder: tú{'@'}ejemplo.com
@@ -93,7 +108,8 @@ forgotPassword:
     send: Enviar enlace de reinicio
     backToSignIn: Volver al inicio de sesión
   message:
-    sent: Si {email} coincide con una cuenta, hay un enlace de restablecimiento en camino.
+    sent: Si {email} coincide con una cuenta, hay un enlace de restablecimiento en
+      camino.
   error:
     fallback: No se pudo enviar el correo electrónico de reinicio.
 deleteAccount:
@@ -130,6 +146,7 @@ profile:
     profile: Perfil
     password: Contraseña
     linkedAccounts: Cuentas conectadas
+    avatar: Avatar
   field:
     email: Correo electrónico
     emailVerified: Estado del correo electrónico
@@ -151,11 +168,15 @@ profile:
     newPlaceholder: Mínimo 8 caracteres
     confirmLabel: Confirmar nueva contraseña
     confirmPlaceholder: Repite tu nueva contraseña
-    setDescription: Has iniciado sesión a través de un proveedor social, así que no hay contraseña actual todavía. Te enviaremos un enlace seguro para establecer una.
+    setDescription: Has iniciado sesión a través de un proveedor social, así que no
+      hay contraseña actual todavía. Te enviaremos un enlace seguro para
+      establecer una.
     setLinkSent: Revisa {email} para ver el enlace para establecer tu contraseña.
     setLinkFailed: No se pudo enviar el enlace de configuración de contraseña.
   linkedAccounts:
-    description: Inicia sesión en AIRI a través de estos proveedores. Desvincúlate para revocar el acceso y vuelve a enlazar para cambiar a una cuenta diferente.
+    description: Inicia sesión en Compañero de WoW a través de estos proveedores.
+      Desvincúlate para revocar el acceso y vuelve a enlazar para cambiar a una
+      cuenta diferente.
     status:
       linked: Vinculado
       notLinked: No vinculado
@@ -171,7 +192,8 @@ profile:
       listFailed: No se pudo cargar las cuentas conectadas.
       unlinkFailed: No se pudo desvincular esta cuenta.
       linkFailed: No se pudo iniciar el flujo de vinculación.
-      lastAccount: Este es su único método de inicio de sesión. Establezca primero una contraseña antes de desvincularla.
+      lastAccount: Este es su único método de inicio de sesión. Establezca primero una
+        contraseña antes de desvincularla.
   action:
     saveProfile: Guardar cambios
     changePassword: Cambiar contraseña
@@ -197,6 +219,6 @@ webCallback:
     missingCodeOrState: Falta el código de autorización o estado
     missingFlowState: Falta el estado de flujo OIDC - por favor intente iniciar sesión de nuevo
     tokenExchangeFailed: Fallo en el cambio de token
-    finalizing: Finalizando autenticación con AIRI.
+    finalizing: Finalizando autenticación con Compañero de WoW.
   action:
     tryAgain: Inténtalo de nuevo

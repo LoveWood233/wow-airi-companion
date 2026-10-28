@@ -87,7 +87,7 @@ describe('requests to inspect the current Warcraft view', () => {
   })
 })
 
-describe('Warcraft screenshot evidence prompts', () => {
+describe('warcraft screenshot evidence prompts', () => {
   it('asks for evidence and a limited terrain step without promising traversal', () => {
     const question = '你帮我看看我面前这个地形我走的过去吗'
     const prompt = createScreenAssistVisionPrompt(question, 'terrain')

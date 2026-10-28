@@ -1,0 +1,88 @@
+save-to-computer-0c61d6: Salva sul computer
+failed-47cb70: (non riuscito)
+saved-to-long-term-memory-40f70f: Salvato nella memoria a lungo termine
+some-modules-haven-t-been-available-yet-2baa21: Alcuni moduli non sono ancora disponibili…
+all-modules-are-ready-22de94: Tutti i moduli sono pronti!
+settings-3cc1d5: impostazioni
+preparing-resources-ff2c87: Preparazione delle risorse…
+loading-b04ba4: Caricamento…
+drag-here-to-move-dc8629: TRASCINA QUI PER SPOSTARE
+drag-to-move-0d84b3: Trascina per spostare
+dashboard-d87f47: Pannello di controllo
+stale-86c16f: ⚠ DATI NON AGGIORNATI
+tutorial-2701a9: Guida introduttiva
+wind-142b57: Vento
+chance-of-rain-73cb4e: Probabilità di pioggia
+humidity-65adb9: Umidità
+eta-3044d4: Arrivo previsto
+origin-44ab85: Partenza
+destination-d42713: Destinazione
+distance-423208: Distanza
+awaiting-first-generation-0991d8: In attesa della prima generazione…
+generated-prompt-368db9: Prompt generato
+remix-id-72babb: ID del remix
+time-6c82e6: Ora
+cuipp-backend-linked-034bcf: SERVER CUIPP COLLEGATO
+loading-extension-ui-7c266d: Caricamento dell’interfaccia dell’estensione…
+this-module-is-registered-but-it-did-not-decl-c98d1d: Questo modulo è
+  registrato, ma non ha ancora dichiarato una sorgente iframe da mostrare.
+kit-91bf6f: Kit
+type-3deb74: Tipo
+runtime-c4740e: Ambiente di esecuzione
+revision-3beb9a: Revisione
+iframe-353fb2: Iframe
+options-for-character-26b5b4: Opzioni del personaggio
+connect-b65463: Connetti
+bookmark-441da1: Aggiungi ai preferiti
+like-c7e02c: Mi piace
+chat-2ced57: Chat
+settings-c7f73b: Impostazioni
+provider-catalog-03da1c: Catalogo dei fornitori
+search-configured-ee69cd: Cerca tra quelli configurati…
+customize-options-b884b3: Personalizza le opzioni
+search-supported-providers-496667: Cerca fornitori supportati…
+no-providers-d239f8: Nessun fornitore
+no-audio-detected-680bfe: Nessun audio rilevato
+please-make-sure-that-the-correct-permissions-b47bf6: Verifica che le
+  autorizzazioni siano concesse e che la sorgente audio stia riproducendo suoni.
+reset-settings-9ba8d6: Ripristina le impostazioni
+godot-stage-experimental-a81b5e: Scena Godot (sperimentale)
+godot-stage-experimental-is-running-bd3516: La scena Godot (sperimentale) è in esecuzione…
+step-dc416e: Passaggio
+of-de04fa: di
+back-b52b36: Indietro
+download-image-d6f34a: Scarica immagine
+no-preview-e49000: Nessuna anteprima
+remove-background-e19463: Rimuovi sfondo
+add-custom-background-6613e1: Aggiungi sfondo personalizzato
+preview-f1fbb2: Anteprima
+blur-900aa9: Sfocatura
+select-a-background-568528: Seleziona uno sfondo
+background-picker-c52c7c: Selettore dello sfondo
+options-for-display-models-71073d: Opzioni dei modelli del personaggio
+loading-display-models-121bc7: Caricamento dei modelli del personaggio…
+unavailable-preview-unavailable-preview-d9e79c: Anteprima non disponibile
+preview-unavailable-preview-unavailable-8186d8: Anteprima non disponibile
+model-name-981e71: Nome del modello…
+models-f3798f: Modelli
+tachie-model-audit-report-ae0296: Rapporto di verifica del modello Tachie
+close-bbfa77: Chiudi
+status-11dc9e: 'Stato:'
+emotions-55b719: 'Emozioni:'
+canvas-3809d6: 'Area di disegno:'
+detected-8a1687: 'Rilevato:'
+critical-issues-2d5aeb: Problemi critici
+warnings-1430f9: Avvisi
+ignored-032e96: 'Ignorato:'
+cancel-77dfd2: Annulla
+onboarding-8d49e0: Configurazione iniziale
+no-failed-checks-82f623: Nessuna verifica non riuscita.
+download-a479c9: Scarica
+voice-3091c8: Voce
+enter-the-voice-id-for-your-openai-compatible-04dd5f: Inserisci l’ID della voce per l’API compatibile con OpenAI
+model-cache-6532cf: Cache dei modelli
+downloaded-inference-models-stored-in-browser-6b33b9: Modelli di inferenza scaricati e salvati nella cache del browser
+checking-cache-177e32: Verifica della cache…
+refresh-56e3ba: Aggiorna
+about-6b21fb: Informazioni
+transparent-0491f7: Trasparente

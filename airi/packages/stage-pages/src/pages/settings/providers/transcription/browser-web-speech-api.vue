@@ -20,7 +20,7 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
 const providerId = 'browser-web-speech-api'
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const router = useRouter()
 
 const providersStore = useProviderStore()
@@ -74,20 +74,13 @@ const interimResults = computed({
 })
 
 // Common language options for Web Speech API
-const languageOptions = [
-  { label: 'English (US)', value: 'en-US' },
-  { label: 'English (UK)', value: 'en-GB' },
-  { label: 'Spanish', value: 'es-ES' },
-  { label: 'French', value: 'fr-FR' },
-  { label: 'German', value: 'de-DE' },
-  { label: 'Italian', value: 'it-IT' },
-  { label: 'Portuguese', value: 'pt-BR' },
-  { label: 'Japanese', value: 'ja-JP' },
-  { label: 'Korean', value: 'ko-KR' },
-  { label: 'Chinese (Simplified)', value: 'zh-CN' },
-  { label: 'Chinese (Traditional)', value: 'zh-TW' },
-  { label: 'Russian', value: 'ru-RU' },
-]
+const languageOptions = computed(() => {
+  const names = new Intl.DisplayNames([locale.value], { type: 'language' })
+  return ['en-US', 'en-GB', 'es-ES', 'fr-FR', 'de-DE', 'it-IT', 'pt-BR', 'ja-JP', 'ko-KR', 'zh-CN', 'zh-TW', 'ru-RU'].map(value => ({
+    label: names.of(value) ?? value,
+    value,
+  }))
+})
 
 function ensureProviderSettings() {
   if (!providers.value[providerId]) {
@@ -168,10 +161,10 @@ function stopSTTTest() {
           type="error"
         >
           <template #title>
-            Web Speech API Not Available
+            {{ t('companion-providers.web-speech-unavailable-title') }}
           </template>
           <template #content>
-            Web Speech API is not available in this browser. It requires Chrome, Edge, Safari, or other Chromium-based browsers. This provider cannot be used in your current environment.
+            {{ t('companion-providers.web-speech-unavailable-description') }}
           </template>
         </Alert>
 
@@ -180,10 +173,10 @@ function stopSTTTest() {
           type="info"
         >
           <template #title>
-            Free, Browser-Native Transcription
+            {{ t('companion-providers.web-speech-native-title') }}
           </template>
           <template #content>
-            Web Speech API is a free, browser-native Speech-to-Text solution that requires no API keys or external services. It uses your browser's built-in speech recognition capabilities.
+            {{ t('companion-providers.web-speech-native-description') }}
           </template>
         </Alert>
 
@@ -196,14 +189,14 @@ function stopSTTTest() {
             <div class="border border-blue-200 rounded-lg bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-900/20">
               <div class="flex items-center gap-2 text-blue-700 dark:text-blue-400">
                 <div i-solar:info-circle-line-duotone class="text-sm" />
-                <span class="text-xs font-medium">No API key required - Web Speech API is free and built into your browser</span>
+                <span class="text-xs font-medium">{{ t('companion-providers.web-speech-no-api-key') }}</span>
               </div>
             </div>
 
             <FieldCombobox
               v-model="language"
-              label="Recognition Language"
-              description="Select the language for speech recognition"
+              :label="t('companion-providers.recognition-language')"
+              :description="t('companion-providers.recognition-language-description')"
               :options="languageOptions"
               layout="vertical"
             />
@@ -215,10 +208,10 @@ function stopSTTTest() {
                   type="checkbox"
                   class="border-neutral-300 rounded text-primary-600 dark:border-neutral-700 dark:bg-neutral-900 focus:ring-primary-500"
                 >
-                <span class="text-sm font-medium">Continuous Recognition</span>
+                <span class="text-sm font-medium">{{ t('companion-providers.continuous-recognition') }}</span>
               </label>
               <p class="text-xs text-neutral-500 dark:text-neutral-400">
-                Keep listening continuously instead of stopping after each phrase
+                {{ t('companion-providers.continuous-recognition-description') }}
               </p>
             </div>
 
@@ -229,10 +222,10 @@ function stopSTTTest() {
                   type="checkbox"
                   class="border-neutral-300 rounded text-primary-600 dark:border-neutral-700 dark:bg-neutral-900 focus:ring-primary-500"
                 >
-                <span class="text-sm font-medium">Show Interim Results</span>
+                <span class="text-sm font-medium">{{ t('companion-providers.interim-results-title') }}</span>
               </label>
               <p class="text-xs text-neutral-500 dark:text-neutral-400">
-                Display partial recognition results in real-time as you speak
+                {{ t('companion-providers.interim-results-description') }}
               </p>
             </div>
           </div>
@@ -243,16 +236,16 @@ function stopSTTTest() {
       <div flex="~ col gap-6" class="w-full md:w-[60%]">
         <div w-full rounded-xl bg="neutral-50 dark:[rgba(0,0,0,0.3)]" p-4 flex="~ col gap-4">
           <h2 class="text-lg text-neutral-500 md:text-2xl dark:text-neutral-400">
-            Speech-to-Text Test
+            {{ t('companion-providers.transcription-test') }}
           </h2>
           <div text="sm neutral-400 dark:neutral-500" mb-2>
-            Test Web Speech API transcription with your selected audio device. This test will always use Web Speech API regardless of your default hearing provider.
+            {{ t('companion-providers.transcription-test-description') }}
           </div>
 
           <div v-if="!isWebSpeechAPIAvailable" class="border border-amber-200 rounded-lg bg-amber-50 p-3 dark:border-amber-800 dark:bg-amber-900/20">
             <div class="flex items-center gap-2 text-amber-700 dark:text-amber-400">
               <div i-solar:warning-circle-line-duotone class="text-lg" />
-              <span class="text-sm font-medium">Web Speech API is not available in this browser</span>
+              <span class="text-sm font-medium">{{ t('companion-providers.web-speech-unavailable') }}</span>
             </div>
           </div>
 
@@ -261,10 +254,10 @@ function stopSTTTest() {
             <div class="flex items-center gap-2">
               <FieldCombobox
                 v-model="selectedAudioInput"
-                label="Audio Input Device"
-                description="Select the audio input device for testing"
+                :label="t('companion-providers.audio-input-device')"
+                :description="t('companion-providers.audio-test-device-description')"
                 :options="audioInputOptions"
-                placeholder="Select an audio input device"
+                :placeholder="t('companion-providers.audio-input-placeholder')"
                 layout="vertical"
                 class="flex-1"
               />
@@ -274,7 +267,7 @@ function stopSTTTest() {
             <div v-if="!selectedAudioInput" class="border border-amber-200 rounded-lg bg-amber-50 p-3 dark:border-amber-800 dark:bg-amber-900/20">
               <div class="flex items-center gap-2 text-amber-700 dark:text-amber-400">
                 <div i-solar:warning-circle-line-duotone class="text-lg" />
-                <span class="text-sm font-medium">Please select an audio input device to test</span>
+                <span class="text-sm font-medium">{{ t('companion-providers.audio-test-device-required') }}</span>
               </div>
             </div>
 
@@ -293,11 +286,11 @@ function stopSTTTest() {
                 <div v-else class="mr-2">
                   <div i-solar:microphone-line-duotone text-lg />
                 </div>
-                {{ isTestingSTT ? 'Stop Test' : isTranscribing ? 'Transcribing...' : 'Start Speech-to-Text Test' }}
+                {{ isTestingSTT ? t('companion-providers.stop-test') : isTranscribing ? t('companion-providers.transcribing') : t('companion-providers.start-transcription-test') }}
               </Button>
             </div>
 
-            <ErrorContainer v-if="testTranscriptionError" title="Transcription Error" :error="testTranscriptionError" />
+            <ErrorContainer v-if="testTranscriptionError" :title="t('companion-providers.transcription-error')" :error="testTranscriptionError" />
 
             <div v-if="testStatusMessage" class="border border-primary-200 rounded-lg bg-primary-50 p-3 dark:border-primary-800 dark:bg-primary-900/20">
               <div class="flex items-center gap-2 text-primary-700 dark:text-primary-400">
@@ -310,22 +303,20 @@ function stopSTTTest() {
             <div class="border border-blue-200 rounded-lg bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-900/20">
               <div class="flex items-center gap-2 text-blue-700 dark:text-blue-400">
                 <div i-solar:info-circle-line-duotone class="text-sm" />
-                <span class="text-xs">Streaming mode: Transcription will appear in real-time as you speak (Web Speech API)</span>
+                <span class="text-xs">{{ t('companion-providers.streaming-description') }}</span>
               </div>
             </div>
 
             <div class="space-y-3">
               <div>
-                <label class="mb-1 block text-sm text-neutral-700 font-medium dark:text-neutral-300">
-                  Transcription Result
-                </label>
+                <label class="mb-1 block text-sm text-neutral-700 font-medium dark:text-neutral-300"> {{ t('companion-providers.transcription-result') }} </label>
                 <div
                   v-if="testTranscriptionText || testStreamingText"
                   class="min-h-[100px] border border-neutral-200 rounded-lg bg-white p-3 text-sm dark:border-neutral-700 dark:bg-neutral-900"
                 >
                   <div v-if="testStreamingText" class="text-neutral-600 dark:text-neutral-400">
                     <div class="mb-2 font-medium">
-                      Current transcription (streaming):
+                      {{ t('companion-providers.streaming-transcription') }}
                     </div>
                     <div class="whitespace-pre-wrap">
                       {{ testStreamingText }}
@@ -333,7 +324,7 @@ function stopSTTTest() {
                   </div>
                   <div v-if="testTranscriptionText" class="text-neutral-700 dark:text-neutral-200">
                     <div v-if="testStreamingText" class="mb-2 mt-3 border-t border-neutral-200 pt-2 font-medium dark:border-neutral-700">
-                      Final transcription:
+                      {{ t('companion-providers.final-transcription') }}
                     </div>
                     <div class="whitespace-pre-wrap">
                       {{ testTranscriptionText }}
@@ -344,16 +335,16 @@ function stopSTTTest() {
                   v-else
                   class="min-h-[100px] border border-neutral-300 rounded-lg border-dashed bg-neutral-50 p-3 text-sm text-neutral-400 dark:border-neutral-700 dark:bg-neutral-900/50 dark:text-neutral-500"
                 >
-                  No transcription yet. Click "Start Speech-to-Text Test" and speak into your microphone.
+                  {{ t('companion-providers.transcription-empty') }}
                 </div>
               </div>
 
               <div class="text-xs text-neutral-500 dark:text-neutral-400">
-                <div>Provider: <span class="font-medium">Web Speech API</span></div>
-                <div>Language: <span class="font-medium">{{ language }}</span></div>
-                <div>Mode: <span class="font-medium">Streaming (real-time)</span></div>
-                <div>Continuous: <span class="font-medium">{{ continuous ? 'Yes' : 'No' }}</span></div>
-                <div>Interim Results: <span class="font-medium">{{ interimResults ? 'Yes' : 'No' }}</span></div>
+                <div>{{ t('companion-providers.provider-label') }} <span class="font-medium">Web Speech API</span></div>
+                <div>{{ t('companion-providers.language-label') }} <span class="font-medium">{{ language }}</span></div>
+                <div>{{ t('companion-providers.mode-label') }} <span class="font-medium">{{ t('companion-providers.streaming-mode') }}</span></div>
+                <div>{{ t('companion-providers.continuous-label') }} <span class="font-medium">{{ continuous ? t('settings.pages.data.confirmations.yes') : t('stage.chat.invoked-skill.no') }}</span></div>
+                <div>{{ t('companion-providers.interim-results-label') }} <span class="font-medium">{{ interimResults ? t('settings.pages.data.confirmations.yes') : t('stage.chat.invoked-skill.no') }}</span></div>
               </div>
             </div>
           </div>

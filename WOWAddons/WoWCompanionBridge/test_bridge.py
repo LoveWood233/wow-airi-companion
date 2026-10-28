@@ -17,7 +17,7 @@ def snapshot(**changes):
     result = {"v": 3, "session": "test-session", "seq": 1, "tick": 1, "guid": "Player-1-TEST",
               "name": "旅行者", "realm": "艾泽拉斯", "level": 29, "class": "MAGE", "spec": 64,
               "faction": "Alliance", "race": "人类",
-              "map": 37, "zone": "艾尔文森林", "combat": False, "dead": False, "online": True,
+              "map": 37, "zone": "艾尔文森林", "px": None, "py": None, "combat": False, "dead": False, "online": True,
               "account": "test-account", "moneyEpoch": "test-epoch", "copper": 100000, "earned": 0, "spent": 0}
     result.update(changes)
     return result
@@ -29,6 +29,8 @@ class ProtocolTests(unittest.TestCase):
         if not fixture.exists():
             self.skipTest("需同级 WoWMapCompanion/tests/fixtures")
         expected = json.loads(fixture.with_suffix(".json").read_text(encoding="utf-8"))
+        expected.setdefault("px", None)
+        expected.setdefault("py", None)
         frame = fixture.read_bytes()
         self.assertEqual(decode_frame(frame), expected)
         self.assertEqual(decode_pixels(pixels_for_frame(frame), 128, 128, 2), expected)
@@ -314,7 +316,7 @@ class HttpTests(unittest.TestCase):
         status, _, body = self.request("GET", "/health")
         self.assertEqual(status, 200)
         self.assertEqual(json.loads(body)["protocol"], "WCP1")
-        self.assertEqual(json.loads(body)["version"], "2.11.1")
+        self.assertEqual(json.loads(body)["version"], "2.12.0")
 
     def test_external_origin_and_dns_rebinding_rejected(self):
         self.assertEqual(self.request("GET", "/api/status", headers={"Origin": "https://evil.example"})[0], 403)

@@ -9,18 +9,18 @@ export type WowScreenGame = InferOutput<typeof wowScreenGameSchema>
 export const wowScreenCaptureSchema = strictObject({ game: optional(wowScreenGameSchema) })
 export type WowScreenCaptureRequest = InferOutput<typeof wowScreenCaptureSchema>
 
-export type WowScreenCaptureErrorCode =
-  | 'unsupported-platform'
-  | 'invalid-request'
-  | 'game-not-found'
-  | 'ambiguous-window'
-  | 'minimized-window'
-  | 'unverified-game'
-  | 'capture-failed'
-  | 'empty-frame'
-  | 'capture-timeout'
-  | 'busy'
-  | 'window-changed'
+export type WowScreenCaptureErrorCode
+  = | 'unsupported-platform'
+    | 'invalid-request'
+    | 'game-not-found'
+    | 'ambiguous-window'
+    | 'minimized-window'
+    | 'unverified-game'
+    | 'capture-failed'
+    | 'empty-frame'
+    | 'capture-timeout'
+    | 'busy'
+    | 'window-changed'
 
 /** One request owns one fresh image. The consumer discards it when that chat turn ends. */
 export interface WowScreenImage {

@@ -4,14 +4,13 @@ animations:
   stage-transitions:
     title: Tắt hiệu ứng chuyển cảnh
   use-page-specific-transitions:
-    description: >-
-      Một số trang sẽ có hiệu ứng chuyển cảnh riêng, điều này sẽ ghi đè hiệu ứng chuyển cảnh mặc định
+    description: Một số trang sẽ có hiệu ứng chuyển cảnh riêng, điều này sẽ ghi đè hiệu ứng chuyển cảnh mặc định
     title: Dùng hiệu ứng chuyển cảnh riêng cho từng trang
 dialogs:
   onboarding:
     official:
-      title: Nhà cung cấp chính thức của AIRI
-    title: Chào mừng đến với AIRI!
+      title: Nhà cung cấp chính thức của Bạn đồng hành WoW
+    title: Chào mừng đến với Bạn đồng hành WoW!
     description: Hãy thiết lập nhà cung cấp AI đầu tiên để bắt đầu.
     selectProvider: Chọn nhà cung cấp AI
     configureProvider: Cấu hình {provider}
@@ -34,14 +33,11 @@ dialogs:
     next: Tiếp
     retry: Thử lại
     credentialsSafeLabel: Hãy giữ các khóa API và thông tin xác thực an toàn!
-    credentialsSafeLocal: >-
-      AIRI đang chạy hoàn toàn cục bộ trên PC của bạn và chúng tôi sẽ không bao giờ đánh cắp các thông tin xác thực cho các nhà cung cấp AI / LLM. Nhưng hãy nhớ rằng các khóa API của bạn là thông tin nhạy cảm. Hãy giữ chúng an toàn và không được chia sẽ với bất kỳ ai.
-    credentialsSafeOpenSource: >-
-      AIRI là dự án mã nguồn mở trên {github}, nếu bạn muốn kiểm tra cách chúng tôi xử lý các thông tin xác thực của bạn, bạn có thể kiểm tra code của chúng tôi.
-    enableChatCheck: >-
-      Cho phép AIRI gửi tín hiệu "ping" đến mô hình chat có thể dùng được đầu tiên để kiểm tra tính khả dụng
+    credentialsSafeLocal: Bạn đồng hành WoW đang chạy hoàn toàn cục bộ trên PC của bạn và chúng tôi sẽ không bao giờ đánh cắp các thông tin xác thực cho các nhà cung cấp AI / LLM. Nhưng hãy nhớ rằng các khóa API của bạn là thông tin nhạy cảm. Hãy giữ chúng an toàn và không được chia sẽ với bất kỳ ai.
+    credentialsSafeOpenSource: Bạn đồng hành WoW là dự án mã nguồn mở trên {github}, nếu bạn muốn kiểm tra cách chúng tôi xử lý các thông tin xác thực của bạn, bạn có thể kiểm tra code của chúng tôi.
+    enableChatCheck: Cho phép Bạn đồng hành WoW gửi tín hiệu "ping" đến mô hình chat có thể dùng được đầu tiên để kiểm tra tính khả dụng
     start: Bắt đầu thôi!
-    loginPrompt: Đăng nhập để sử dụng nhà cung cấp AIRI chính thức để có trải nghiệm tốt nhất.
+    loginPrompt: Đăng nhập để sử dụng nhà cung cấp Bạn đồng hành WoW chính thức để có trải nghiệm tốt nhất.
     loginAction: Đăng nhập
     setupWithoutSigningIn: Thiết lập nhà cung cấp của bạn
     pricingLink: Bảng Giá
@@ -49,19 +45,19 @@ dialogs:
     buyFlux: Mua Flux
     select-model: Chọn mô hình
     no-models: Không có mô hình khả dụng
-    no-models-help: >-
-      Vui lòng quay lại bước trước và kiểm tra khóa API, hoặc kiểm tra kết nối mạng.
+    no-models-help: Vui lòng quay lại bước trước và kiểm tra khóa API, hoặc kiểm tra kết nối mạng.
     permissions:
       title: Quản lý quyền
       description: Bạn có thể cấp các quyền cần thiết ngay bây giờ hoặc tiếp tục và thiết lập sau.
       notificationsTitle: Thông báo
       notificationsDescription: Cho phép nhắc nhở và các cập nhật trạng thái quan trọng.
       microphoneTitle: Micrô
-      microphoneDescription: Cho phép AIRI sử dụng micrô để nhập giọng nói và phiên âm.
+      microphoneDescription: Cho phép Bạn đồng hành WoW sử dụng micrô để nhập giọng nói và phiên âm.
       requestAction: Yêu cầu quyền truy cập
       optionalHint: Bạn vẫn có thể tiếp tục ngay cả khi chưa cấp các quyền này.
       stateGranted: Đã cấp quyền
       stateNotGranted: Không được cấp quyền
+    flux: Flux
   bug-report:
     title: Báo lỗi (´;ω;`)ヾ(･∀･`)
     subtitle: Úi, xin lỗi nếu chúng tôi đã làm gì sai. Nếu không phiền thì bạn có thể kể cho chúng tôi biết chuyện gì đã xảy ra không?
@@ -93,8 +89,7 @@ controls-island:
 analytics:
   notice:
     title: Phân tích dữ liệu sử dụng
-    description: >-
-      AIRI thu thập dữ liệu sử dụng một cách ẩn danh để giúp chúng tôi hiểu cách ứng dụng được dùng và cải thiện sự ổn định. Không có dữ liệu cá nhân nào được thu thập.
+    description: Bạn đồng hành WoW thu thập dữ liệu sử dụng một cách ẩn danh để giúp chúng tôi hiểu cách ứng dụng được dùng và cải thiện sự ổn định. Không có dữ liệu cá nhân nào được thu thập.
     privacyPrefix: Đọc
     privacyLink: chính sách quyền riêng tư
     onboardingHint: Bạn có thể tắt phân tích ở Cài đặt > Hệ thống > Chung.
@@ -107,9 +102,9 @@ analytics:
 model-select:
   panel-callout:
     support-status-header: Chúng tôi hỗ trợ cả mô hình 2D và 3D
-    support-status: >
+    support-status: |
       Nhấp vào {select-button} để chọn hoặc nhập các mô hình. Hiện tại, {zip} (cho Live2D và các Spine model), {vrm} (cho các VRM model) và {mmd} (cho các MMD model, được nén cùng texture) đều được hỗ trợ.
-    model-type-example: >
+    model-type-example: |
       Neuro-sama sử dụng mô hình 2D được vận hành bởi framework được phát triển bởi Live2D Inc, trong khi đó Grok Ani (trong Grok Companion) sử dụng mô hình 3D được vận hành bởi VRM /MMD định dạng mở.
   select-model:
     title: Chọn Mô Hình
@@ -118,6 +113,17 @@ model-select:
     import: Nhập
     remove: Xóa
     confirm: Xác nhận
+    sync:
+      upload: Tải lên đám mây
+      delete-cloud: Xóa khỏi đám mây
+      status:
+        local-only: Chỉ có thiết bị này
+        queued: Chờ để tải lên
+        uploading: Tải lên
+        synced: Tích hợp với đám mây
+        cloud-only: Trong đám mây, không tải xuống
+        downloading: Tải xuống
+        failed: Sự đồng bộ hóa thất bại
   live2d-report:
     title: Trước khi nhập
     description: Xem lại dữ liệu mô hình và các vấn đề tìm thấy trong tệp nén.
@@ -128,6 +134,8 @@ model-select:
       files: '{count} tệp'
       types:
         unknown: Không xác định
+        cubism: Cubism {version} ({format})
+        cubism-compatible: Cubism 3+ ({format})
     resources:
       title: Tài nguyên
       motions: Chuyển động
@@ -136,7 +144,7 @@ model-select:
       textures: Kết cấu
       referenced-and-found: '{referenced} được tham chiếu · {found} được tìm thấy'
       referenced: '{count} được tham chiếu'
-      found: 'Tìm thấy {count}'
+      found: Tìm thấy {count}
     issues:
       title: Vấn đề
       errors: '{count} lỗi'
@@ -165,26 +173,29 @@ live2d:
   scale-and-position:
     title: Tỉ lệ và vị trí
     scale: Tỉ lệ
+    x: X
+    y: Y
   switch-to-vrm:
     title: Chuyển sang mô hình 3D?
     change-to-vrm: Bấm vào đây để đổi sang cài đặt mô hình 3D (VRM)
   theme-color-from-model:
     title: Trích xuất màu từ mô hình
-    description: >
-      Xuất các màu nổi bật từ canvas đang render hiện tại. Nhấp vào màu và áp dụng nó lên AIRI. Thử xuất nhiều lần với mô hình theo nhiều tư thế khác nhau nếu màu sắc chưa được như mong muốn.
+    description: |
+      Xuất các màu nổi bật từ canvas đang render hiện tại. Nhấp vào màu và áp dụng nó lên Bạn đồng hành WoW. Thử xuất nhiều lần với mô hình theo nhiều tư thế khác nhau nếu màu sắc chưa được như mong muốn.
     button-extract:
       title: Trích xuất
   animation:
     title: Hoạt ảnh
     motion-driver:
       title: Bộ điều khiển chuyển động
-      description: Chọn cách AIRI tạo chuyển động cơ thể và mắt khi nghỉ.
+      description: Chọn cách Bạn đồng hành WoW tạo chuyển động cơ thể và mắt khi nghỉ.
       options:
         universal:
           title: Đa dụng
           description: Dùng chuyển động của mô hình, chuyển động mắt khi nghỉ và theo dõi chuột.
         magic:
           description: Tạo chuyển động từ bộ dữ liệu MAGIC đi kèm.
+          title: MAGIC
       magic:
         profile:
           title: Hồ sơ MAGIC
@@ -220,7 +231,7 @@ live2d:
       description: Ép hoạt ảnh chớp mắt bằng bộ hẹn giờ ngoài
     blink-mode:
       title: Chế độ chớp mắt
-      description: Chọn mô hình chớp mắt có sẵn hoặc bộ hẹn giờ chớp mắt bắt buộc của AIRI.
+      description: Chọn mô hình chớp mắt có sẵn hoặc bộ hẹn giờ chớp mắt bắt buộc của Bạn đồng hành WoW.
     idle-motion:
       title: Hoạt ảnh nhàn rỗi
       no-motion: Không có hoạt ảnh khả dụng
@@ -233,16 +244,26 @@ live2d:
       title: Tỉ lệ render
     fps:
       description: Giới hạn tốc độ khung hình render
+      title: FPS
+      options:
+        unlimited: ∞
     shadow: Đổ bóng
     reset-parameters: Đặt lại tham số mặc định
   clear-model-cache: Xóa bộ nhớ đệm của mô hình
   expressions:
     title: Biểu cảm
     override-toggle: Hệ thống biểu cảm
-    sdk-preset-preserved-notice: >
+    sdk-preset-preserved-notice: |
       Quản lý biểu cảm SDK và nháy mắt được giữ nguyên khi tắt.
     no-expression: Không có biểu cảm khả dụng cho mô hình này.
     reset: Đặt lại tất cả biểu cảm
+    description: Thiết lập một biểu hiện tạm thời hoặc chọn liệu Bạn đồng hành WoW có thể sử dụng nó hay không.
+    parameter-count: Các tham số {count}
+    actions:
+      activate: Thiết lập {name}
+      deactivate: Thiết lập {name}
+      show-to-airi: Làm cho {name} có sẵn cho Bạn đồng hành WoW
+      hide-from-airi: Cất giấu {name} từ Bạn đồng hành WoW
 microphone: Micro
 models: Mô hình
 pages:
@@ -275,7 +296,7 @@ pages:
     connections:
       tab: Các tài khoản đã được liên kết
       title: Các tài khoản đã được liên kết
-      description: Đăng nhập AIRI thông qua các nhà cung cấp này. Hủy liên kết để thu hồi quyền truy cập, sau đó liên kết lại một lần nữa để chuyển sang tài khoản khác.
+      description: Đăng nhập Bạn đồng hành WoW thông qua các nhà cung cấp này. Hủy liên kết để thu hồi quyền truy cập, sau đó liên kết lại một lần nữa để chuyển sang tài khoản khác.
       status:
         linked: Đã liên kết
         notLinked: Chưa được liên kết
@@ -292,7 +313,7 @@ pages:
         listFailed: Không thể tải các tài khoản đã liên kết.
         unlinkFailed: Không thể hủy liên kết tài khoản này.
         linkFailed: Không thể khởi động liên kết luồng (luồng liên kết).
-        accountAlreadyLinkedToDifferentUser: Tài khoản OAuth này đã được liên kết với một tài khoản AIRI khác. Hãy chọn tài khoản nhà cung cấp khác hoặc hủy liên kết tài khoản đó khỏi tài khoản AIRI kia trước.
+        accountAlreadyLinkedToDifferentUser: Tài khoản OAuth này đã được liên kết với một tài khoản Bạn đồng hành WoW khác. Hãy chọn tài khoản nhà cung cấp khác hoặc hủy liên kết tài khoản đó khỏi tài khoản Bạn đồng hành WoW kia trước.
         oauthCallbackFailed: Không thể kết nối tài khoản OAuth này. Hãy thử lại hoặc chọn tài khoản nhà cung cấp khác.
         lastAccount: Đây là phương thức đăng nhập duy nhất của bạn. Đặt mật khẩu trước khi hủy liên kết.
     security:
@@ -334,6 +355,7 @@ pages:
           confirmEmail:
             label: Nhập email để xác nhận
             mismatch: Email không khớp.
+            placeholder: ''
           confirm: Gửi email xác nhận
           deleteNow: Xóa vĩnh viễn
           confirmPhrase: Nhập DELETE để xác nhận
@@ -346,9 +368,10 @@ pages:
           reauthenticate: Hãy đăng nhập lại, rồi quay lại đây để xác nhận xóa. Sẽ không có email nào được gửi.
           fallback: Không thể xóa. Hãy thử lại sau.
           subscriptionActive: Gói đăng ký vẫn đang hoạt động. Hãy hủy gói trên trang Capacitor trước, rồi xóa tài khoản.
+    capacitorEntry: Capacitor
   card:
     wake-word-conflicts:
-      title: 'Một cách phát âm từ đánh thức dùng chung cần có nhân vật | {count} cách phát âm từ đánh thức dùng chung cần có nhân vật'
+      title: Một cách phát âm từ đánh thức dùng chung cần có nhân vật | {count} cách phát âm từ đánh thức dùng chung cần có nhân vật
       description: Hai thẻ dùng cùng cách phát âm. Không nhân vật nào trả lời cho đến khi bạn chọn một nhân vật.
       action: Chọn nhân vật trả lời
     sync:
@@ -360,7 +383,7 @@ pages:
         pending: Đang chờ tải lên
         refused: Chưa tải lên. Tài khoản không còn chỗ cho thẻ mới nên thẻ này vẫn nằm trên thiết bị này.
       conflict_copy_name: '{name} (bản sao do xung đột)'
-      conflict_notice: Thiết bị khác đã sửa cùng nhân vật. AIRI giữ phiên bản trên thiết bị này dưới dạng bản sao.
+      conflict_notice: Thiết bị khác đã sửa cùng nhân vật. Bạn đồng hành WoW giữ phiên bản trên thiết bị này dưới dạng bản sao.
       history:
         tab: Lịch sử
         empty: Thẻ này chưa có lịch sử.
@@ -408,8 +431,8 @@ pages:
         empty: Không có thẻ nào bị xóa gần đây.
         loading: Đang tải các thẻ đã xóa gần đây…
         load_failed: Không thể tải các thẻ đã xóa gần đây.
-        deleted_when: 'Đã xóa {when}'
-        days_left: 'Còn {days} ngày để khôi phục'
+        deleted_when: Đã xóa {when}
+        days_left: Còn {days} ngày để khôi phục
         restore: Khôi phục
         restore_success: Đã khôi phục {name}.
         restore_failed: Không thể khôi phục thẻ này. Có thể máy chủ không còn lưu nội dung thẻ.
@@ -436,7 +459,7 @@ pages:
     delete: Xóa
     delete_card: Xóa thẻ
     delete_confirmation: Bạn có chắc muốn xóa thẻ này?
-    description: Dùng preset thẻ nhân vật AIRI
+    description: Dùng preset thẻ nhân vật Bạn đồng hành WoW
     description_label: Mô tả
     drop_here: Kéo vào đây để tải lên
     create_card: Tạo thẻ mới
@@ -464,8 +487,7 @@ pages:
         scenario: Bạn vừa tỉnh dậy và quên hết quá khứ.
         systemprompt: Bạn sẽ nhận tin nhắn và trả lời như một con người thực sự.
         posthistoryinstructions: Nhớ bắt chước như một con người.
-      modules_info: >-
-        Cấu hình các module cho thẻ nhân vật này. Nếu không thiết lập, cấu hình mặc định sẽ được sử dụng.
+      modules_info: Cấu hình các module cho thẻ nhân vật này. Nếu không thiết lập, cấu hình mặc định sẽ được sử dụng.
       sections:
         chat: Trò chuyện
         vision: Thị giác
@@ -475,21 +497,18 @@ pages:
       use_default_not_configured: Sử dụng mặc định (chưa cấu hình)
       inherit_global_settings: Kế thừa cài đặt chung
       fields_info:
-        subtitle: >-
-          Bạn có thể thêm chi tiết về nhân vật, giải thích lịch sử, bối cảnh và cách nhân vật nên trả lời.
+        subtitle: Bạn có thể thêm chi tiết về nhân vật, giải thích lịch sử, bối cảnh và cách nhân vật nên trả lời.
         name: Tên chính thức của nhân vật.
         nickname: Có thể đặt biệt danh để ưu tiên dùng.
         description: Mô tả nhân vật này.
         notes: Thêm ghi chú cá nhân nếu muốn.
-        personality: >-
-          Miêu tả tính cách nhân vật. Nhút nhát? Tò mò? Hoặc khác?
+        personality: Miêu tả tính cách nhân vật. Nhút nhát? Tò mò? Hoặc khác?
         scenario: Hoàn cảnh xung quanh? Tình huống hiện tại?
         greetings_field: Lời chào
         greetings: Nhân vật nên chào như thế nào?
         systemprompt: Hướng dẫn AI LLM cách trả lời khi được hỏi.
         posthistoryinstructions: Đặt thông tin mà AI LLM nên đọc sau lịch sử hội thoại.
-        version: >-
-          Phiên bản thẻ, hãy tăng giá trị này nếu bạn đã chỉnh sửa thẻ từ trước.
+        version: Phiên bản thẻ, hãy tăng giá trị này nếu bạn đã chỉnh sửa thẻ từ trước.
         consciousness_model: Chọn mô hình ý thức (mô hình AI) cho nhân vật này.
         speech_model: Chọn mô hình tổng hợp tiếng nói và giọng đọc cho nhân vật này.
       errors:
@@ -501,9 +520,10 @@ pages:
         scenario: 'Lỗi: Phải có kịch bản.'
         systemprompt: 'Lỗi: Hãy cung cấp lời nhắc hệ thống'
         posthistoryinstructions: 'Lỗi: Cần có lịch sử đăng lời nhắc'
-        invalid_artistry_json: 'Các tùy chọn cho nhà cung cấp nghệ thuật (Nghệ thuật provider) chứa JSON không hợp lệ.'
+        invalid_artistry_json: Các tùy chọn cho nhà cung cấp nghệ thuật (Nghệ thuật provider) chứa JSON không hợp lệ.
       none: Không
       none_disabled: Không có (đã tắt)
+      no_model: Không có mô hình
     modules: Mô-đun
     name_asc: Tên (A-Z)
     name_desc: Tên (Z-A)
@@ -521,7 +541,7 @@ pages:
       model: Giọng nói / Mô hình
       voice: Giọng nói / Giọng
     systemprompt: Lời nhắc hệ thống
-    title: Thẻ AIRI
+    title: Thẻ Bạn đồng hành WoW
     try_different_search: Hãy thử từ khóa khác
     export: Xuất
     exported: Đã xuất gói thẻ
@@ -530,13 +550,27 @@ pages:
     import_missing_file: Gói thẻ thiếu các tệp bắt buộc
     import_invalid_file: Tệp gói thẻ không hợp lệ
     upload: Tải lên
-    upload_desc: Nhấp hoặc kéo thả gói thẻ AIRI vào đây để nhập
+    upload_desc: Nhấp hoặc kéo thả gói thẻ Bạn đồng hành WoW vào đây để nhập
+    view-card: Thẻ xem
+    model_not_bound: Không có mô hình được chọn
+    gallery: Phòng trưng bày
+    pinned_background: Hình nền đinh
+    pinned_background_description: Chọn hình ảnh để hiển thị khi nhân vật này hoạt động.
+    select_background: Chọn nền
+    refresh_gallery: Phòng trưng bày tươi mới
+    gallery_empty: Không có hình ảnh nào. Hình ảnh mà nhân vật tạo ra trong trò chuyện xuất hiện ở đây.
+    gallery_delete_confirm: Bạn có chắc bạn muốn xóa hình ảnh này khỏi nhật ký không?
+    active_background: Hình nền hoạt động
+    set_as_background: Thiết lập như nền
+    download: Tải xuống
+    show_less: Cho thấy ít hơn
+    view_all_history: Xem tất cả các phiên bản {count}
   memory:
     description: Nơi lưu trữ và tổ chức ký ức
     title: Bộ nhớ
   data:
     title: Dữ liệu
-    description: Quản lý dữ liệu AIRI đã lưu, xuất và đặt lại
+    description: Quản lý dữ liệu Bạn đồng hành WoW đã lưu, xuất và đặt lại
     sections:
       chats:
         title: Phiên trò chuyện
@@ -554,6 +588,7 @@ pages:
         empty: Chưa tải xuống mô hình giọng nói nào.
         wake-word-model: Mô hình từ đánh thức
         refresh: Làm mới
+        voiceprint-model: Mô hình dấu âm thanh
       modules:
         title: Các Mô-Đun
         description: Đặt lại tùy chọn mô-đun và thông tin xác thực.
@@ -571,16 +606,16 @@ pages:
         delete: Xóa sạch dữ liệu
       desktop-folder:
         title: Mở thư mục dữ liệu ứng dụng
-        description: Mở thư mục dữ liệu của AIRI trong trình quản lý tệp tin của bạn.
+        description: Mở thư mục dữ liệu của Bạn đồng hành WoW trong trình quản lý tệp tin của bạn.
         open: Mở thư mục
       desktop:
         title: Đặt lại thiết lập máy tính
-        description: Xóa các cài đặt và trạng thái thực thi của AIRI trên máy tính.
+        description: Xóa các cài đặt và trạng thái thực thi của Bạn đồng hành WoW trên máy tính.
         center: Đưa cửa sổ desktop về giữa màn hình
         reset: Đặt lại dữ liệu desktop
     confirmations:
       tooltip: Bạn chắc chứ?
-      'yes': 'Đồng ý'
+      yes: Đồng ý
     status:
       exported: Đã xuất phiên trò chuyện.
       imported: Đã nhập phiên trò chuyện.
@@ -601,8 +636,10 @@ pages:
       section:
         live2d:
           description: Cấu hình mô hình Live2D
+          title: Live2D
         vrm:
           description: Cấu hình mô hình 3D VRM
+          title: VRM
         scene: Bối cảnh
   modules:
     beat_sync:
@@ -623,23 +660,19 @@ pages:
           title: Thông số
           parameters:
             adaptive_threshold:
-              description: >-
-                Áp dụng ngưỡng thích ứng dựa trên sự biến thiên tín hiệu theo thời gian.
+              description: Áp dụng ngưỡng thích ứng dựa trên sự biến thiên tín hiệu theo thời gian.
               label: Ngưỡng thích ứng
             buffer_duration:
               description: Thời gian của bộ đệm phân tích nội bộ.
               label: Thời lượng bộ đệm
             envelope_filter_frequency:
-              description: >-
-                Tần số cho bộ lọc bao bì (envelope filter) để làm mượt các thay đổi năng lượng.
+              description: Tần số cho bộ lọc bao bì (envelope filter) để làm mượt các thay đổi năng lượng.
               label: Tần số lọc bao bì
             highpass_filter_frequency:
-              description: >-
-                Tần số cho bộ lọc thông cao giúp giảm tần số thấp như tiếng ồn trầm.
+              description: Tần số cho bộ lọc thông cao giúp giảm tần số thấp như tiếng ồn trầm.
               label: Tần số lọc thông cao
             lowpass_filter_frequency:
-              description: >-
-                Tần số cho bộ lọc thông thấp giúp giảm tần số cao như giọng hát.
+              description: Tần số cho bộ lọc thông thấp giúp giảm tần số cao như giọng hát.
               label: Tần số lọc thông thấp
             min_beat_interval:
               description: BPM tối đa hoặc khoảng thời gian tối thiểu giữa các nhịp được phát hiện.
@@ -672,7 +705,7 @@ pages:
           name: Nano Banana (Bản xem trước)
           description: Sử dụng Google AI Studio để xem trước ảnh và các phản ứng.
       card:
-        description: Cấu hình cách AIRI tạo ảnh và các nội dung đồ họa.
+        description: Cấu hình cách Bạn đồng hành WoW tạo ảnh và các nội dung đồ họa.
         comfyui_empty: ComfyUI workflows chưa được cấu hình. Đi tới Cài đặt → Nhà cung cấp → ComfyUI để tải mẫu workflow.
         exposed_fields: '{count} trường được cung cấp'
         open_on_replicate: Mở bằng Replicate
@@ -750,18 +783,19 @@ pages:
             top_p_description: Điều chỉnh sự đa dạng của đầu ra qua lấy mẫu hạt nhân. Giá trị thấp như 0.2 chỉ chọn các token có xác suất cao. Giá trị cao như 1.0 bao gồm nhiều khả năng hơn.
             subtitle: Chọn một mô hình mặc định từ nhà cung cấp
             title: Mô hình
+            top_p_label: Top P
           model-options:
             title: Tùy chọn mô hình
             thinking:
               label: Suy nghĩ
               required-description: Mô hình này yêu cầu bật suy luận.
-              provider-default-description: AIRI không có cài đặt suy luận cho mô hình này. OpenRouter áp dụng mặc định của dịch vụ.
+              provider-default-description: Bạn đồng hành WoW không có cài đặt suy luận cho mô hình này. OpenRouter áp dụng mặc định của dịch vụ.
       title: Ý thức
     description: Tư duy, thị giác, tổng hợp giọng nói, chơi game, v.v.
     gaming-factorio:
       description: Chơi Factorio!
       enable: Bật tích hợp Factorio
-      enable-description: Cho phép AIRI tương tác với trò chơi Factorio
+      enable-description: Cho phép Bạn đồng hành WoW tương tác với trò chơi Factorio
       server-address: Địa chỉ máy chủ
       server-address-description: Địa chỉ IP hoặc tên máy chủ của máy chủ Factorio
       server-address-placeholder: Nhập địa chỉ máy chủ (ví dụ localhost hoặc 192.168.1.100)
@@ -771,20 +805,18 @@ pages:
       username-description: Tên người dùng của bạn trên máy chủ Factorio
       username-placeholder: Nhập tên người dùng Factorio của bạn
       configured: Đã cấu hình Factorio thành công!
+      title: Factorio
     gaming-minecraft:
       description: Chơi Minecraft!
       enable: Bật tích hợp Minecraft
-      enable-description: >-
-        Bao gồm tự nhận thức về Minecraft trong lượt trò chuyện trên Sân khấu (Stage) và duy trì hiển thị thụ động trong thời gian chạy.
+      enable-description: Bao gồm tự nhận thức về Minecraft trong lượt trò chuyện trên Sân khấu (Stage) và duy trì hiển thị thụ động trong thời gian chạy.
       configured: Đã cấu hình Minecraft thành công!
       read-only:
         title: Shell chỉ đọc
-        description: >-
-          Sân khấu hiện tại hiển thị Minecraft dưới dạng shell thụ động. Trạng thái thời gian chạy và lưu lượng truy cập hiển thị tại đây, nhưng cấu hình dịch vụ vẫn nằm trong tệp dịch vụ Minecraft.
+        description: Sân khấu hiện tại hiển thị Minecraft dưới dạng shell thụ động. Trạng thái thời gian chạy và lưu lượng truy cập hiển thị tại đây, nhưng cấu hình dịch vụ vẫn nằm trong tệp dịch vụ Minecraft.
       setup:
         title: Thiết lập
-        description: >-
-          Bạn có thể tìm thấy các chỉ dẫn cho việc thiết lập bot trong file sau
+        description: Bạn có thể tìm thấy các chỉ dẫn cho việc thiết lập bot trong file sau
       runtime:
         title: Thực thi được quan sát
         connection: Kết nối
@@ -801,6 +833,7 @@ pages:
         no-runtime-context: Chưa ghi nhận ngữ cảnh nào từ bot
         last-context-seconds: 'Ngữ cảnh bot gần nhất: {seconds} giây trước'
         last-context-stale: 'Ngữ cảnh bot gần nhất: Đã cũ'
+      title: Minecraft
     hearing:
       description: Cấu hình nhận diện giọng nói
       title: Nghe
@@ -823,6 +856,7 @@ pages:
           choose-label: Nhân vật trả lời
           answered-by: '{name} trả lời'
           unresolved: Không nhân vật nào trả lời cách phát âm này.
+          choose: '{name} ("{word}")'
       sections:
         section:
           provider-selection:
@@ -830,34 +864,34 @@ pages:
           microphone:
             title: Micrô
             label: Micrô
-            description: Bật micrô cho mô-đun Nghe. Chế độ đầu vào quyết định khi nào AIRI lắng nghe.
+            description: Bật micrô cho mô-đun Nghe. Chế độ đầu vào quyết định khi nào Bạn đồng hành WoW lắng nghe.
             error: Micrô không khả dụng
           input-device:
             label: Thiết bị đầu vào
-            description: Chọn micrô mà AIRI sử dụng.
+            description: Chọn micrô mà Bạn đồng hành WoW sử dụng.
             playground-description: Mô-đun Nghe và khu thử nghiệm dùng micrô này.
             placeholder: Chọn micrô
           auto-send:
             title: Bản chuyển giọng nói thành văn bản
-            description: Chọn cách AIRI xử lý văn bản được nhận dạng từ giọng nói của bạn.
+            description: Chọn cách Bạn đồng hành WoW xử lý văn bản được nhận dạng từ giọng nói của bạn.
             label: Gửi tự động
-            label-description: AIRI gửi bản chuyển giọng nói thành văn bản vào cuộc trò chuyện sau một khoảng trễ. Tắt để đọc và sửa trước. Mỗi tin nhắn gửi đi đều dùng token.
+            label-description: Bạn đồng hành WoW gửi bản chuyển giọng nói thành văn bản vào cuộc trò chuyện sau một khoảng trễ. Tắt để đọc và sửa trước. Mỗi tin nhắn gửi đi đều dùng token.
             delay: Độ trễ gửi
-            delay-description: Thời gian AIRI chờ trước khi gửi bản chuyển giọng nói thành văn bản.
+            delay-description: Thời gian Bạn đồng hành WoW chờ trước khi gửi bản chuyển giọng nói thành văn bản.
             immediate: Ngay lập tức
           input-mode:
             title: Chế độ đầu vào
-            description: Chọn cách AIRI bắt đầu lắng nghe khi micrô bật.
+            description: Chọn cách Bạn đồng hành WoW bắt đầu lắng nghe khi micrô bật.
             label: Bắt đầu lắng nghe
             always-on: Luôn bật
-            always-on-description: AIRI luôn lắng nghe và trả lời khi bạn nói.
+            always-on-description: Bạn đồng hành WoW luôn lắng nghe và trả lời khi bạn nói.
             push-to-talk: Nhấn để nói
-            push-to-talk-description: AIRI chỉ lắng nghe khi bạn giữ phím Nhấn để nói. Micrô chỉ mở trong lúc giữ phím.
+            push-to-talk-description: Bạn đồng hành WoW chỉ lắng nghe khi bạn giữ phím Nhấn để nói. Micrô chỉ mở trong lúc giữ phím.
             push-to-talk-unavailable: Không khả dụng ở đây. Ứng dụng không có phím Nhấn để nói trên thiết bị này.
             stranded-title: Nhấn để nói không khả dụng ở đây
-            stranded-description: Ứng dụng không có phím Nhấn để nói trên thiết bị này nên AIRI không lắng nghe. Chọn Luôn bật hoặc Từ đánh thức để nói với AIRI.
+            stranded-description: Ứng dụng không có phím Nhấn để nói trên thiết bị này nên Bạn đồng hành WoW không lắng nghe. Chọn Luôn bật hoặc Từ đánh thức để nói với Bạn đồng hành WoW.
             wake-word: Từ đánh thức
-            wake-word-description: Micrô vẫn bật nhưng AIRI chỉ lắng nghe sau khi bạn nói từ đánh thức của một nhân vật.
+            wake-word-description: Micrô vẫn bật nhưng Bạn đồng hành WoW chỉ lắng nghe sau khi bạn nói từ đánh thức của một nhân vật.
             wake-word-status:
               no-words: Chưa nhân vật nào có từ đánh thức. Hãy yêu cầu nhân vật đặt từ đánh thức trong cuộc trò chuyện.
               unconfigured: Nhận diện từ đánh thức bắt đầu khi micrô bật.
@@ -866,9 +900,9 @@ pages:
               error: 'Mô hình từ đánh thức không khả dụng: {error}'
           end-judge:
             title: Kết thúc lời nói
-            description: Khi bạn ngừng nói, mô hình trò chuyện sẽ đọc bản chuyển giọng nói thành văn bản và xác định bạn đã nói xong chưa. Nếu chưa, AIRI sẽ đợi thêm 3 giây để bạn nói tiếp.
+            description: Khi bạn ngừng nói, mô hình trò chuyện sẽ đọc bản chuyển giọng nói thành văn bản và xác định bạn đã nói xong chưa. Nếu chưa, Bạn đồng hành WoW sẽ đợi thêm 3 giây để bạn nói tiếp.
             enabled: Kiểm tra xem tôi đã nói xong chưa
-            enabled-description: Bản chuyển giọng nói thành văn bản của mỗi lần ngừng sẽ được gửi đến mô hình viết lại. Khi tắt, AIRI sẽ kết thúc lượt nói của bạn sau một khoảng ngừng ngắn.
+            enabled-description: Bản chuyển giọng nói thành văn bản của mỗi lần ngừng sẽ được gửi đến mô hình viết lại. Khi tắt, Bạn đồng hành WoW sẽ kết thúc lượt nói của bạn sau một khoảng ngừng ngắn.
           rephrase:
             title: Viết lại bản chuyển giọng nói thành văn bản
             description: Mô hình trò chuyện sửa lỗi nhận dạng và bỏ từ đệm trước khi tạo bản nháp. Văn bản gốc vẫn được giữ.
@@ -886,7 +920,7 @@ pages:
             error-title: Lỗi phiên âm
             listening: Đang lắng nghe giọng nói…
             no-transcription: Không nhận diện được giọng nói trong đoạn âm thanh này.
-            segment: 'Đoạn lời nói {number}'
+            segment: Đoạn lời nói {number}
             start: Bắt đầu theo dõi
             stop: Dừng theo dõi
             title: Khu thử nghiệm nhận diện giọng nói
@@ -894,27 +928,139 @@ pages:
             transcription-failed: Phiên âm thất bại.
           confidence-threshold:
             title: Ngưỡng Tự Tin
-            description: >-
-              Lọc các đoạn nhận dạng giọng nói có độ tin cậy thấp để giảm tình trạng ảo tưởng của Whisper. Giá trị càng tiến về 0 thì càng khắt khe hơn; kéo sang trái để vô hiệu. Chỉ hiệu quả với các nhà cung cấp API của Whisper (ví dụ như OpenAI, Groq).
+            description: Lọc các đoạn nhận dạng giọng nói có độ tin cậy thấp để giảm tình trạng ảo tưởng của Whisper. Giá trị càng tiến về 0 thì càng khắt khe hơn; kéo sang trái để vô hiệu. Chỉ hiệu quả với các nhà cung cấp API của Whisper (ví dụ như OpenAI, Groq).
             disabled: Tắt
-            verbose-json-note: >-
-              Lưu ý: Nếu nhà cung cấp của bạn không hỗ trợ phản hồi verbose_json, cài đặt này sẽ không có tác dụng.
-            verbose-json-unsupported: >-
-              Nhà cung cấp của bạn không trả về các đoạn (segment) verbose_json. Lọc kết quả dựa trên độ tin cậy không có tác dụng cho đoạn phiên âm mới nhất.
+            verbose-json-note: 'Lưu ý: Nếu nhà cung cấp của bạn không hỗ trợ phản hồi verbose_json, cài đặt này sẽ không có tác dụng.'
+            verbose-json-unsupported: Nhà cung cấp của bạn không trả về các đoạn (segment) verbose_json. Lọc kết quả dựa trên độ tin cậy không có tác dụng cho đoạn phiên âm mới nhất.
+      voiceprint:
+        title: Voiceprint
+        description: Đăng âm thanh của bạn để Bạn đồng hành WoW có thể nhận ra nó.
+        intro: Một dấu âm là một danh sách số mà mô hình dấu âm tính tính toán từ lời nói của bạn. Nó không chứa âm thanh, nhưng nó có thể xác định bạn.
+        privacy: Bạn đồng hành WoW chỉ giữ dấu âm thanh của bạn trên thiết bị này. Xuất khẩu thẻ không bao gồm nó, và Bạn đồng hành WoW không tải nó lên. Để xóa nó, sử dụng xóa dấu âm thanh trên trang này, hoặc xóa tất cả dữ liệu trong cài đặt Dữ liệu.
+        download: Việc đăng ký đầu tiên tải xuống mô hình âm thanh, khoảng 28 MB.
+        speaker-recognition:
+          label: Nhận thức loa
+          description: So sánh mỗi đầu vào giọng nói mà một bài phát biểu hoặc một lời cảnh báo bắt đầu với dấu âm thanh của bạn, và ghi lại điểm số trong dấu vết IO của đầu vào. Push to Talk inputs không có điểm. Mỗi giọng nói vẫn có thể bắt đầu một đầu vào, và mô hình trò chuyện không nhận điểm số. Trong khi Bạn đồng hành WoW lắng nghe, mô hình dấu âm thanh vẫn còn trong bộ nhớ.
+          needs-voiceprint: Đăng âm thanh của bạn để bật nhận dạng loa.
+        status:
+          none: Anh không có dấu âm thanh.
+          enrolled: Đăng ký trên {date}, từ {seconds} của ngôn ngữ.
+          outdated: Mô hình dấu âm thanh đã thay đổi. Đăng ký lại để sử dụng dấu âm của bạn.
+        instructions: Ở lại một mình gần micro. Nhấp vào Start recording, sau đó đọc những câu này bằng giọng bình thường của bạn.
+        sentence-1: Hôm nay tôi muốn kiểm tra thời tiết, đọc tin nhắn và lên kế hoạch cho ngày còn lại.
+        sentence-2: Tôi thường nói chuyện với Bạn đồng hành WoW vào buổi tối, khi phòng yên tĩnh và tôi có thời gian rảnh rỗi.
+        sentence-3: Xin hãy nhớ giọng nói của tôi, để bạn có thể biết khi nào tôi là người nói.
+        progress: '{seconds} của lời nói. Việc đăng ký cần ít nhất là {min}.'
+        start: Bắt đầu ghi lại
+        again: Đăng lại.
+        finish: Kết thúc
+        cancel: Hủy bỏ
+        delete: Xóa dấu âm thanh
+        enrolling: Xét dấu âm thanh của anh...
+        result:
+          enrolled: Hình ảnh giọng nói của anh đã được lưu lại.
+          cancelled: Đăng ký bị hủy bỏ.
+          too-short: Các bản ghi âm có {seconds} của bài phát biểu. Việc đăng ký cần ít nhất là {min}. Lại ghi lại.
+          error: 'Việc đăng ký thất bại: {error}'
     memory-long-term:
       description: Cài đặt và quản lý trí nhớ dài hạn
       title: Trí nhớ dài hạn
+      enable: Sử dụng trí nhớ dài hạn
+      enable-description: Nhân vật nhớ những gì bạn nói. Khi bị tắt, nó không nhớ gì cả.
+      memories:
+        title: Những ký ức
+        description: Mỗi nhân vật giữ bí mật riêng của mình, và những người khác không thể nhìn thấy chúng. Sau khi bạn chia sẻ một bí mật, mọi nhân vật đều biết nó, và bạn không thể lấy lại nó. Bạn có thể xóa bất kỳ bí mật nào, nhưng bạn không thể viết lại một bí mật.
+        empty: Không còn ký ức nào.
+        forget: Hãy quên {name}
+        make_general: Chia sẻ {name} với mỗi ký tự
+        general: Những bí mật chung
+        entry:
+          title: Những ký ức
+          description: Bí mật của mỗi nhân vật, và những bí mật mà họ chia sẻ.
+      recipes:
+        title: Các công thức
+        empty: Hiện chưa có công thức.
+        sources:
+          user: của anh.
+          model: Đề xuất bởi nhân vật
+        pending: Chờ được sự chấp thuận của anh. Sau một lần chấp thuận, nó không bao giờ hỏi nữa.
+        approve: Thỏa thuận
+        remove: Tháo
+        add:
+          name: Tên
+          description: Khi nào sử dụng nó
+          instructions: Phải làm gì
+          keywords:
+            label: Các từ mã
+            description: Nói một từ mã, và nhân vật sử dụng công thức này.
+          submit: Thêm thêm
+        decision:
+          question: Câu hỏi
+          type:
+            label: Làm thế nào để trả lời
+            noul: Có hay không
+            choice: Chọn một lựa chọn
+          yes_means: '"Có" có nghĩa là'
+          no_means: '"Không" nghĩa là'
+          option: Ý nghĩa của lựa chọn này
+          add_option: Thêm một tùy chọn
+          remove_option: Tháo
+          action:
+            label: Rồi...
+            reply: Trả lời như thường lệ
+            stay_quiet: Đọc mà không trả lời
+            hint: Trả lời với một ghi chú
+            recipe: Sử dụng công thức khác tiếp theo
+          hint_text: Lưu ý để ghi nhớ
+          target_recipe: Công thức
+          keywords: Nhân vật chỉ phán xét sau khi bạn nói một từ mã.
+          note: Sau một từ mã, nhân vật đọc cuộc trò chuyện, chọn một câu trả lời, và hành động theo nó.
+        entry:
+          title: Các công thức
+          description: Những kỹ năng của nhân vật, những tín hiệu bắt đầu chúng, và những đề xuất đang chờ đợi bạn.
+        add_button: Thêm công thức
+        types:
+          title: Chọn kiểu công thức
+          instructions:
+            title: Các hướng dẫn
+            description: Những bước mà nhân vật sử dụng khi phù hợp, hoặc khi bạn nói một từ mã.
+          decision:
+            title: Quyết định
+            description: Sau một từ mã, nhân vật trả lời một câu hỏi trước khi nó trả lời. Mỗi câu trả lời dẫn đến hành động riêng của nó.
+        styles:
+          instructions: Các hướng dẫn
+          decision: Quyết định
+        cancel: Hủy bỏ
+        edit: Chỉnh sửa
+        save: Cung cấp
+        enabled: Sử dụng {name}
+        keywords_summary: 'Từ mã: {words}'
+        tabs:
+          conversation: Trong cuộc trò chuyện
+          auto_run: Tự động chạy
+          conversation_description: Các công thức để trò chuyện. Họ chỉ hành động khi bạn gửi tin nhắn.
+          auto_run_description: Các công thức bắt đầu tự mình khi có dấu hiệu. Mỗi chuyến chạy có chi phí một cuộc gọi mẫu.
+        background:
+          label: Tiếp tục chạy trong nền
+          description: Đối với các nhiệm vụ mất thời gian, chẳng hạn như nghiên cứu. Nó hoạt động trong bối cảnh và mang lại kết quả trở lại.
+          tag: Lịch sử
+        grants: 'Ưu điểm chấp thuận: {what}'
+        proposals:
+          label: Hãy để nhân vật đề xuất các công thức
+          description: Một công thức mà bạn yêu cầu được lưu lại như một đề nghị. Nó chỉ hoạt động sau khi bạn chấp thuận nó.
+        model_flow: Nhân vật quyết định những gì mỗi chạy làm
     memory-short-term:
       description: Cài đặt và quản lý trí nhớ ngắn hạn
       title: Trí nhớ ngắn hạn
     messaging-discord:
       description: Trò chuyện & gọi thoại qua Discord
       enable: Bật tích hợp Discord
-      enable-description: Cho phép AIRI tương tác qua Discord
+      enable-description: Cho phép Bạn đồng hành WoW tương tác qua Discord
       token: Mã token của bot
       token-description: Mã token bot Discord của bạn
       token-placeholder: Nhập mã token bot Discord của bạn
       configured: Đã cấu hình Discord thành công!
+      title: Discord
     speech:
       description: Tổng hợp giọng nói
       sections:
@@ -948,8 +1094,7 @@ pages:
             search_voices_placeholder: Tìm giọng nói...
             search_voices_results: Tìm thấy {count}/{total} giọng nói
             unsupported_voice_warning_title: Không có giọng nói được hỗ trợ
-            unsupported_voice_warning_content: >-
-              Hãy thử nhà cung cấp hoặc mô hình khác. Chúng tôi đang nỗ lực cập nhật thêm giọng nói sớm nhất có thể. Nếu cần gấp, hãy báo cho chúng tôi trên GitHub.
+            unsupported_voice_warning_content: Hãy thử nhà cung cấp hoặc mô hình khác. Chúng tôi đang nỗ lực cập nhật thêm giọng nói sớm nhất có thể. Nếu cần gấp, hãy báo cho chúng tôi trên GitHub.
             show_less: Ẩn bớt
             show_more: Hiện thêm
             title: Nhà cung cấp
@@ -993,7 +1138,7 @@ pages:
     x:
       description: Sử Dụng Twitter
       enable: Bật tích hợp X / Twitter
-      enable-description: Cho phép AIRI tương tác với X / Twitter
+      enable-description: Cho phép Bạn đồng hành WoW tương tác với X / Twitter
       api-key: Khóa API
       api-key-description: Khóa API X / Twitter của bạn
       api-key-placeholder: Nhập khóa API X / Twitter của bạn
@@ -1007,14 +1152,15 @@ pages:
       access-token-secret-description: Bí mật mã truy cập X / Twitter của bạn
       access-token-secret-placeholder: Nhập bí mật mã truy cập X / Twitter của bạn
       configured: Đã cấu hình X / Twitter thành công!
+      title: X / Twitter
     stickers:
       frequency: Tần suất nhãn dán
       frequency-description: Cho phép nhãn dán trong tỷ lệ phản hồi này. Nhân vật vẫn quyết định nhãn dán có phù hợp hay không.
       frequency-options:
-        25: Thỉnh thoảng (25%)
-        50: Đôi khi (50%)
-        75: Thường xuyên (75%)
-        100: Bất cứ khi nào phù hợp (100%)
+        '25': Thỉnh thoảng (25%)
+        '50': Đôi khi (50%)
+        '75': Thường xuyên (75%)
+        '100': Bất cứ khi nào phù hợp (100%)
       title: Nhãn dán
       description: Thêm phản ứng bằng ảnh vào phản hồi trò chuyện
       enable: Bật nhãn dán
@@ -1022,46 +1168,46 @@ pages:
       local-only: Ảnh vẫn nằm trên thiết bị này. Đồng bộ trò chuyện trên đám mây hiện chỉ truyền văn bản.
       catalog: Nhãn dán có sẵn
       unavailable: Nhãn dán không khả dụng
-      import: 'Nhập ảnh'
-      editor: 'Trình chỉnh sửa nhãn dán'
-      image: 'Ảnh'
-      replace: 'Thay ảnh (tùy chọn)'
-      image-limits: 'PNG, JPG, WebP hoặc GIF. Tối đa 2 MB và 4096 × 4096 pixel.'
-      choose-file: 'Chọn ảnh'
-      preview: 'Xem trước nhãn dán'
-      name: 'Tên'
-      name-limit: 'Dùng 1–80 ký tự. Mô hình đọc tên này.'
-      emotions: 'Thẻ cảm xúc'
-      save: 'Lưu nhãn dán'
-      cancel: 'Hủy'
-      edit: 'Chỉnh sửa'
-      delete: 'Xóa'
-      confirm-delete: 'Xác nhận xóa'
-      empty: 'Thư viện đang trống. Nhập ảnh để thêm nhãn dán.'
-      history-note: 'Xóa hoặc thay nhãn dán ảnh hưởng đến phản hồi sau này. Phản hồi đã lưu và đã chuẩn bị giữ ảnh gốc.'
-      saved-image: 'Nhãn dán đã lưu'
+      import: Nhập ảnh
+      editor: Trình chỉnh sửa nhãn dán
+      image: Ảnh
+      replace: Thay ảnh (tùy chọn)
+      image-limits: PNG, JPG, WebP hoặc GIF. Tối đa 2 MB và 4096 × 4096 pixel.
+      choose-file: Chọn ảnh
+      preview: Xem trước nhãn dán
+      name: Tên
+      name-limit: Dùng 1–80 ký tự. Mô hình đọc tên này.
+      emotions: Thẻ cảm xúc
+      save: Lưu nhãn dán
+      cancel: Hủy
+      edit: Chỉnh sửa
+      delete: Xóa
+      confirm-delete: Xác nhận xóa
+      empty: Thư viện đang trống. Nhập ảnh để thêm nhãn dán.
+      history-note: Xóa hoặc thay nhãn dán ảnh hưởng đến phản hồi sau này. Phản hồi đã lưu và đã chuẩn bị giữ ảnh gốc.
+      saved-image: Nhãn dán đã lưu
       errors:
-        name: 'Nhập tên dài 1–80 ký tự.'
-        emotions: 'Chọn ít nhất một thẻ cảm xúc hợp lệ.'
-        format: 'Chọn ảnh PNG, JPG, WebP hoặc GIF.'
-        size: 'Chọn ảnh nhỏ hơn 2 MB.'
-        image: 'Không thể mở ảnh này. Chọn tệp khác.'
-        dimensions: 'Chọn ảnh không lớn hơn 4096 × 4096 pixel.'
-        missing: 'Nhãn dán này đã bị xóa trong cửa sổ khác.'
-        storage: 'Không thể lưu hoặc tải thư viện nhãn dán. Thử lại.'
+        name: Nhập tên dài 1–80 ký tự.
+        emotions: Chọn ít nhất một thẻ cảm xúc hợp lệ.
+        format: Chọn ảnh PNG, JPG, WebP hoặc GIF.
+        size: Chọn ảnh nhỏ hơn 2 MB.
+        image: Không thể mở ảnh này. Chọn tệp khác.
+        dimensions: Chọn ảnh không lớn hơn 4096 × 4096 pixel.
+        missing: Nhãn dán này đã bị xóa trong cửa sổ khác.
+        storage: Không thể lưu hoặc tải thư viện nhãn dán. Thử lại.
       emotion-labels:
-        happy: 'Vui'
-        sad: 'Buồn'
-        confused: 'Bối rối'
-        surprised: 'Ngạc nhiên'
-        thanks: 'Cảm ơn'
-        celebrate: 'Ăn mừng'
-        angry: 'Tức giận'
-        tired: 'Mệt'
-        affectionate: 'Yêu mến'
-        awkward: 'Ngượng ngùng'
-        agree: 'Đồng ý'
-        disagree: 'Không đồng ý'
+        happy: Vui
+        sad: Buồn
+        confused: Bối rối
+        surprised: Ngạc nhiên
+        thanks: Cảm ơn
+        celebrate: Ăn mừng
+        angry: Tức giận
+        tired: Mệt
+        affectionate: Yêu mến
+        awkward: Ngượng ngùng
+        agree: Đồng ý
+        disagree: Không đồng ý
       artwork:
         airi-happy: Vui
         airi-sad: Buồn
@@ -1073,15 +1219,16 @@ pages:
         airi-tired: Mệt
         airi-affectionate: Yêu
         airi-awkward: Ngượng ngùng
-        airi-agree: 'Đồng ý'
+        airi-agree: Đồng ý
         airi-disagree: Không, cảm ơn
     home-assistant:
-      description: Cho phép AIRI đọc và điều khiển thiết bị Home Assistant của bạn.
+      description: Cho phép Bạn đồng hành WoW đọc và điều khiển thiết bị Home Assistant của bạn.
       enable: Bật Home Assistant
-      enable-description: Cho phép AIRI đọc và điều khiển thiết bị
+      enable-description: Cho phép Bạn đồng hành WoW đọc và điều khiển thiết bị
       base-url:
         label: Địa chỉ
         description: Địa chỉ phiên bản Home Assistant của bạn.
+        placeholder: http://homeassistant.local:8123
       token:
         label: Token truy cập dài hạn
         placeholder: Dán token từ hồ sơ Home Assistant
@@ -1095,8 +1242,8 @@ pages:
         saved: Đã lưu.
         saved-cleared: Đã lưu. Địa chỉ đã thay đổi nên danh sách thiết bị trống.
         testing: Đang kiểm tra kết nối…
-        reachable: 'Đã kết nối. Home Assistant báo có {count} thực thể.'
-        failed: 'Không thể kết nối. {message}'
+        reachable: Đã kết nối. Home Assistant báo có {count} thực thể.
+        failed: Không thể kết nối. {message}
         rejected-token: Nhập token truy cập Home Assistant.
         rejected-address: Địa chỉ đã thay đổi. Nhập token truy cập cho địa chỉ mới.
         failed-policy: Danh sách thiết bị chưa đến cửa sổ chạy công cụ nên địa chỉ chưa thay đổi. Thử lại.
@@ -1105,15 +1252,15 @@ pages:
         failed-policy-rollback: Việc lưu bị từ chối. Danh sách thiết bị chưa đến cửa sổ chạy công cụ nên mô hình không truy cập được thiết bị nào. Thử lại.
       access:
         label: Quyền truy cập thiết bị
-        description: Chọn thiết bị mà AIRI được đọc và điều khiển.
+        description: Chọn thiết bị mà Bạn đồng hành WoW được đọc và điều khiển.
         mode-all: Mọi thiết bị
         mode-allow: Danh sách cho phép
         mode-deny: Danh sách chặn
-        all-hint: AIRI truy cập mọi thiết bị. Chọn danh sách để giới hạn.
+        all-hint: Bạn đồng hành WoW truy cập mọi thiết bị. Chọn danh sách để giới hạn.
         rule-allow: Chỉ truy cập được thiết bị bạn chọn.
         rule-deny: Truy cập được mọi thiết bị trừ những thiết bị bạn chọn.
-        selected-count: 'Đã chọn {count}'
-        empty-warning: Chọn ít nhất một thiết bị. AIRI không truy cập được thiết bị nào cho đến khi bạn chọn.
+        selected-count: Đã chọn {count}
+        empty-warning: Chọn ít nhất một thiết bị. Bạn đồng hành WoW không truy cập được thiết bị nào cho đến khi bạn chọn.
         search: Tìm thiết bị
         reload: Tải lại thiết bị
         loading: Đang tải thiết bị…
@@ -1121,13 +1268,13 @@ pages:
         no-match: Không có thiết bị phù hợp.
         tab-all: Tất cả
         shown-count: '{shown} trên {total} thiết bị'
-        load-more: 'Hiển thị thêm {count}'
+        load-more: Hiển thị thêm {count}
         select-matching: Chọn tất cả kết quả phù hợp
         clear-matching: Bỏ chọn tất cả kết quả phù hợp
       states:
         generic:
-          'on': 'Bật'
-          'off': 'Tắt'
+          on: Bật
+          off: Tắt
           above_horizon: Trên đường chân trời
           armed: Đã bật bảo vệ
           armed_away: Bảo vệ khi vắng nhà
@@ -1194,11 +1341,12 @@ pages:
           windy-variant: Gió và mây
           unknown: Không xác định
           unavailable: Không khả dụng
+          ok: Được rồi.
         lawn_mower:
           returning: Đang trở về
         update:
-          'off': Đã cập nhật
-          'on': Có bản cập nhật
+          off: Đã cập nhật
+          on: Có bản cập nhật
         vacuum:
           returning: Đang về đế
       domains:
@@ -1252,18 +1400,19 @@ pages:
         water_heater: Máy nước nóng
         weather: Thời tiết
         zone: Vùng
+      title: Trợ lý gia đình
     web-search:
       title: Tìm kiếm trên web
-      description: Cho phép AIRI tìm kiếm trên web để lấy thông tin mới nhất
+      description: Cho phép Bạn đồng hành WoW tìm kiếm trên web để lấy thông tin mới nhất
       enable: Kích hoạt Tìm kiếm trên Web
-      enable-description: Cho phép AIRI tìm kiếm trên web trong khi trò chuyện
+      enable-description: Cho phép Bạn đồng hành WoW tìm kiếm trên web trong khi trò chuyện
       api-key: Khóa API Tavily
       api-key-description: Chức năng tìm kiếm trên web được cung cấp bởi Tavily. Nhận API miễn phí tại tavily.com.
       api-key-placeholder: Nhập Tavily API của bạn
       configured: Tìm kiếm web đã sẵn sàng sử dụng!
     mcp-server:
       title: Các máy chủ MCP
-      description: Cấu hình các máy chủ MCP và đưa công cụ của chúng vào AIRI.
+      description: Cấu hình các máy chủ MCP và đưa công cụ của chúng vào Bạn đồng hành WoW.
       config-path: Tệp cấu hình
       runtime-title: Trạng thái thực thi
       empty: Chưa có máy chủ MCP nào. Nhấp "Thêm máy chủ" bên dưới để tạo một máy chủ, hoặc dán cấu hình qua "Chỉnh sửa JSON".
@@ -1275,7 +1424,7 @@ pages:
         empty: Chưa có cái nào ở đây hết. Thêm một cái vào bên dưới đi!
       add:
         title: Mới
-        description: 'Điền thông tin máy chủ mới, sau đó nhấp "Lưu và khởi động lại". Máy chủ sẽ được chuyển lên mục "Đã cấu hình" ở trên.'
+        description: Điền thông tin máy chủ mới, sau đó nhấp "Lưu và khởi động lại". Máy chủ sẽ được chuyển lên mục "Đã cấu hình" ở trên.
         pending-badge: Chưa được lưu
       status:
         unknown: chưa tải
@@ -1303,16 +1452,18 @@ pages:
           placeholder: 'ví dụ: filesystem'
         transport:
           label: Loại
-          description: Cách AIRI kết nối với máy chủ này.
+          description: Cách Bạn đồng hành WoW kết nối với máy chủ này.
           stdio: Tiến trình cục bộ
           http: URL từ xa
         url:
           description: Điểm truy cập Streamable HTTP của máy chủ.
           placeholder: 'Ví dụ: https://example.com/api/mcp'
+          label: URL
         headers:
           label: Tiêu đề
           description: Tiêu đề gửi kèm mỗi yêu cầu, như token xác thực.
           value-placeholder: Token Bearer
+          key-placeholder: Giấy phép
         command:
           label: Lệnh
           description: Tệp thực thi được khởi chạy qua stdio.
@@ -1320,6 +1471,10 @@ pages:
         args:
           label: Đối số
           description: Mỗi dòng một đối số, theo thứ tự.
+          placeholder: |-
+            - Y
+            tên gói nào đó
+            /tmp
         cwd:
           label: Thư mục làm việc
           description: Thư mục tùy chọn được dùng làm thư mục làm việc của tiến trình.
@@ -1333,7 +1488,7 @@ pages:
           label: Bật
       json:
         title: Chỉnh sửa mcp.json
-        description: 'Chỉnh sửa trực tiếp JSON thô. Nhấp "Áp dụng" để nạp vào biểu mẫu, sau đó "Lưu và khởi động lại" để ghi vào đĩa.'
+        description: Chỉnh sửa trực tiếp JSON thô. Nhấp "Áp dụng" để nạp vào biểu mẫu, sau đó "Lưu và khởi động lại" để ghi vào đĩa.
         placeholder: Dán mcp.json vào đây…
       test:
         title: Kiểm tra kết nối
@@ -1348,16 +1503,32 @@ pages:
         success: Kết nối thành công! Đã tìm thấy {count} công cụ trong {ms}ms.
         failure: Kết nối thất bại sau {ms}ms
       errors:
-        empty-identifier: Máy chủ # {index} is missing an identifier.
+        empty-identifier: Máy chủ
         duplicate-identifier: Mã định danh "{name}" đã được sử dụng nhiều hơn một lần — tên phải là duy nhất.
         empty-command: '"{name}" đang thiếu một lệnh.'
-        empty-url: 'Thiếu URL cho "{name}".'
+        empty-url: Thiếu URL cho "{name}".
         invalid-url: '"{name}" cần URL tuyệt đối http hoặc https.'
         invalid-shape: Nhìn không giống mcp.json hợp lệ — gốc (root) cần một trường "mcpServers".
       messages:
         opened: Đã mở {path} trong trình quản lý tệp của bạn
         json-applied: Đã áp dụng JSON vào biểu mẫu. Nhấp "Lưu và khởi động lại" để lưu vào đĩa.
         restarted: Tất cả đã được khởi động lại! {started} đã khởi động, {failed} thất bại, {skipped} đã bỏ qua.
+    tool-cards:
+      title: Thẻ công cụ
+      description: Những thẻ mà mô hình trò chuyện tạo ra cho các công cụ và cho các câu trả lời của nó
+      enable: Làm thẻ cho kết quả công cụ
+      enable-description: Khi một cuộc gọi của một công cụ mà không có widget kết thúc và công cụ vẫn không có thẻ, mô hình trò chuyện tạo ra một cho kết quả của nó. Một cuộc gọi trong một tin nhắn cũ nhận được một khi bạn mở ra nó. Mỗi thẻ mới sử dụng mô hình trò chuyện.
+      reply-cards: Chụp thẻ trong câu trả lời
+      reply-cards-description: Khi một thẻ trả lời tốt hơn văn bản, ví dụ như chuyển đổi hoặc so sánh, mô hình trò chuyện thu hút một trong câu trả lời của nó. Thẻ thuộc về câu trả lời đó và không được lưu.
+      page-description: Các mẫu thẻ mà mô hình trò chuyện đã làm cho các công cụ mà không có widget. Sau khi bạn xóa một, trò chuyện sẽ tạo ra một cuộc gọi mới vào cuộc gọi tiếp theo của công cụ của nó, hoặc khi bạn mở ra một cuộc gọi của nó.
+      empty: Không còn thẻ nào. Một thẻ xuất hiện ở đây sau khi một công cụ mà không có widget kết thúc.
+      source-tool: 'Nguồn: công cụ ứng dụng'
+      source-mcp: 'Nguồn: MCP máy chủ {server}'
+      used: 'Sử dụng cuối cùng: {date}'
+      show-template: hiển thị mẫu
+      hide-template: Hình mẫu ẩn
+      delete: Xóa
+      deleted: Xóa mẫu của {name}. Cuộc trò chuyện tạo ra một cuộc gọi mới khi gọi tiếp theo của công cụ, hoặc khi bạn mở ra một trong các cuộc gọi của nó.
   flux:
     buy: Mua
     currency: Tiền tệ
@@ -1388,11 +1559,12 @@ pages:
       title: Gói Flux
       buy: Mua
       description: Các gói Flux để lựa chọn.
+    title: Flux
   capacitor:
     statusError: Không thể tải Capacitor của bạn. Thử lại sau.
     packagesError: Không thể tải danh sách Capacitor. Thử lại sau.
     preferenceError: Không thể lưu tùy chọn. Thử lại sau.
-    remaining: 'Còn {percent}'
+    remaining: Còn {percent}
     rechargesAt: Nạp lại vào {date}
     renewsAt: Gia hạn vào {date}
     expiresAt: Hết hạn vào {date}
@@ -1409,6 +1581,13 @@ pages:
       pending: Đã nhận thanh toán. Capacitor của bạn sẽ sớm được nạp.
       canceled: Đã hủy mua.
       error: Đã xảy ra sự cố. Xin vui lòng thử lại sau.
+    title: Capacitor
+    ofQuota: của {quota} Flux
+    change: Thay đổi Capacitor
+    quota:
+      day: '{quota} Flux mỗi ngày'
+      week: '{quota} Flux mỗi tuần'
+      month: '{quota} Flux mỗi tháng'
   providers:
     catalog:
       edit:
@@ -1420,8 +1599,7 @@ pages:
         validation:
           failed:
             title: Xác thực không thành công. Vui lòng kiểm tra lại cài đặt.
-            description: >-
-              Bạn vẫn có thể lưu cấu hình nếu muốn tiếp tục.
+            description: Bạn vẫn có thể lưu cấu hình nếu muốn tiếp tục.
             action: Vẫn lưu
         config:
           loading: Đang tải cài đặt nhà cung cấp...
@@ -1440,10 +1618,10 @@ pages:
                 api-key:
                   label: Khóa API
                   description: Khóa dùng để ủy quyền yêu cầu cho nhà cung cấp này
+                  placeholder: sk-...
                 base-url:
                   label: URL cơ sở
-                  description: >-
-                    Địa chỉ kết nối dịch vụ. Thường là http: "//localhost:11434/v1 hoặc tương tự."
+                  description: 'Địa chỉ kết nối dịch vụ. Thường là http: "//localhost:11434/v1 hoặc tương tự."'
                   placeholder: URL cơ sở...
                 download-model:
                   label: Tải xuống mô hình
@@ -1457,7 +1635,7 @@ pages:
                     placeholder: Giá trị (Value)
                 thinking-mode:
                   label: Chế độ suy nghĩ
-                  description: >
+                  description: |
                     Kiểm soát hành vi suy nghĩ của Ollama/GPT-OSS.
                   options:
                     auto: Tự động
@@ -1497,8 +1675,7 @@ pages:
                 validators:
                   openai-compatible-check-connectivity:
                     label: Cần cấu hình thêm cho Ollama
-                    content: >-
-                      Kiểm tra kết nối thất bại. Đối với Ollama, bạn cần đặt biến môi trường <code>OLLAMA_HOST</code> khi khởi động để cho phép kết nối. Xem hướng dẫn tại trang tài liệu.
+                    content: Kiểm tra kết nối thất bại. Đối với Ollama, bạn cần đặt biến môi trường <code>OLLAMA_HOST</code> khi khởi động để cho phép kết nối. Xem hướng dẫn tại trang tài liệu.
     common:
       continueAnyway: Vẫn tiếp tục
       goToModelSelection: Chọn Mô hình →
@@ -1550,8 +1727,7 @@ pages:
         description: 'Các nhà cung cấp mô hình giọng nói (text-to-speech). Ví dụ: ElevenLabs, Azure Giọng nói.'
       transcription:
         title: Phiên âm
-        description: >-
-          Các nhà cung cấp mô hình phiên âm (speech-to-text). Ví dụ: Whisper.cpp OpenAI, Azure Giọng nói
+        description: 'Các nhà cung cấp mô hình phiên âm (speech-to-text). Ví dụ: Whisper.cpp OpenAI, Azure Giọng nói'
       artistry:
         title: Nghệ thuật
         description: 'Các nhà cung cấp mô hình tạo ảnh và thiết kế. Ví dụ: ComfyUI, Replicate.'
@@ -1564,13 +1740,12 @@ pages:
             description: Xem trước hình ảnh trên Google AI Studio.
     helpinfo:
       title: Lần đầu tới đây?
-      description: >
-        {chat} AIRI cần ít nhất một nhà cung cấp để suy nghĩ và hoạt động đúng cách. Có thể coi nó như bộ não của nhân vật AIRI trong hệ thống.
+      description: |
+        {chat} Bạn đồng hành WoW cần ít nhất một nhà cung cấp để suy nghĩ và hoạt động đúng cách. Có thể coi nó như bộ não của nhân vật Bạn đồng hành WoW trong hệ thống.
     explained:
       chat: 'Nhà cung cấp mô hình tạo văn bản. Ví dụ: OpenRouter, OpenAI, Ollama.'
       Speech: 'Nhà cung cấp mô hình giọng nói (text-to-speech). Ví dụ: ElevenLabs, Azure Speech.'
-      Transcription: >-
-        Nhà cung cấp mô hình chuyển giọng nói thành văn bản. Ví dụ: Whisper.cpp, OpenAI, Azure Speech
+      Transcription: 'Nhà cung cấp mô hình chuyển giọng nói thành văn bản. Ví dụ: Whisper.cpp, OpenAI, Azure Speech'
     description: LLMs, nhà cung cấp giọng nói, v.v.
     provider:
       sherpaw-transcription:
@@ -1585,7 +1760,7 @@ pages:
         asset:
           title: Tệp mô hình
           unknown: Đang kiểm tra tệp…
-          bundled: Đi kèm AIRI
+          bundled: Đi kèm Bạn đồng hành WoW
           installed: Đã lưu trên thiết bị này
           missing: Tải khi sử dụng
           downloading: Đang tải xuống…
@@ -1593,8 +1768,10 @@ pages:
           download: Tải xuống ngay
           cancel: Hủy
           remove: Xóa bản tải xuống
+        title: Chân cừu
       apple-vision:
         description: Hiểu ảnh trên thiết bị với Apple Foundation Models trên macOS 27 trở lên. Không cần khóa API.
+        title: Apple Vision
       apple-speech-transcription:
         title: Apple Giọng nói
         description: Nhận diện giọng nói trên thiết bị với macOS 26 trở lên. Không yêu cầu khóa API.
@@ -1602,37 +1779,45 @@ pages:
           locale:
             label: Ngôn ngữ địa phương
             description: Sử dụng locale Apple Giọng nói chính xác, chẳng hạn en-US hoặc zh-CN.
+            placeholder: en-US
       app-local-audio-transcription:
         title: Ứng dụng (Local)
+        description: https://github.com/moeru-ai/xsai-transformers
       app-local-audio-speech:
         title: Ứng dụng (Local)
+        description: https://github.com/moeru-ai/xsai-transformers
       browser-local-audio-transcription:
         title: Trình duyệt (Local)
+        description: https://github.com/moeru-ai/xsai-transformers
       browser-local-audio-speech:
         title: Trình duyệt (Local)
+        description: https://github.com/moeru-ai/xsai-transformers
       alibaba-cloud-model-studio:
         title: Mô hình Studio Alibaba Cloud
+        description: bailian.console.aliyun.com
       amazon-bedrock:
         config:
           api-key:
             label: Khóa API Bedrock
             description: Khóa API Amazon Bedrock (tạo trong AWS Console → Bedrock → API Keys)
+            placeholder: đáy...
           region:
             label: Khu vực AWS
             description: 'Khu vực AWS nơi Bedrock được bật (ví dụ: us-east-1, us-west-2)'
+        title: Amazon Bedrock
+        description: aws.amazon.com/bedrock
       anthropic:
         helpinfo:
           title: Trước khi bắt đầu
           description:
-            part1: >-
-              Anthropic gần đây công bố hỗ trợ beta cho SDK OpenAI
+            part1: Anthropic gần đây công bố hỗ trợ beta cho SDK OpenAI
             part2: (xem thêm tại đây)
             part3: nhưng do chi tiết triển khai đi kèm
-            part4: >-
-              với hạn chế không tương thích hoàn toàn với SDK OpenAI, hiện chưa thể dùng nhà cung cấp này trong trình duyệt.
-            part5: >-
-              Nếu cần dùng, bạn phải có proxy backend riêng như Serverless Function
+            part4: với hạn chế không tương thích hoàn toàn với SDK OpenAI, hiện chưa thể dùng nhà cung cấp này trong trình duyệt.
+            part5: Nếu cần dùng, bạn phải có proxy backend riêng như Serverless Function
             part6: hoặc dịch vụ bypass CORS để vượt hạn chế.
+        description: anthropic.com
+        title: Antropic {'|'} Claude
       cloudflare-workers-ai:
         fields:
           field:
@@ -1642,6 +1827,8 @@ pages:
               placeholder: ID tài khoản Cloudflare của bạn
             api-key:
               placeholder: Nhập khóa API cho Cloudflare
+        description: cloudflare.com
+        title: Cloudflare Workers AI
       common:
         status:
           validating: Đang xác thực
@@ -1665,6 +1852,8 @@ pages:
               label: Ngữ điệu
         callout_origin_title: Kết nối với bộ máy từ trình duyệt
         callout_origin: Trình duyệt chỉ kết nối được với bộ máy trên thiết bị này. Với bộ máy trên thiết bị khác, dùng ứng dụng máy tính. Bộ máy phải cho phép trang này qua --cors_policy_mode all hoặc --allow_origin cùng địa chỉ này.
+        description: voicevox.hiroshiba.jp
+        title: VOICEVOX
       aivis-speech:
         fields:
           field:
@@ -1673,6 +1862,8 @@ pages:
               label: Cường độ biểu đạt cảm xúc
         callout_origin_title: Kết nối với bộ máy từ trình duyệt
         callout_origin: Trình duyệt chỉ kết nối được với bộ máy trên thiết bị này. Với bộ máy trên thiết bị khác, dùng ứng dụng máy tính. Bộ máy phải cho phép trang này trong trang cài đặt ở cổng 10101.
+        description: aivis-project.com
+        title: AivisSpeech
       speech-noop:
         title: Không có
         description: Không phát âm thanh.
@@ -1703,9 +1894,11 @@ pages:
             server_url:
               label: URL máy chủ
               description: Địa chỉ ComfyUI đang hoạt động
+              placeholder: http://localhost:8188
           cors:
             title: Yêu Cầu Bị Chặn Bởi CORS
-            description: ComfyUI mặc định chặn các yêu cầu từ các ứng dụng khác. Để cho phép AIRI kết nối, bạn phải bắt đầu ComfyUI với flag `--enable-cors-header "*"`.
+            description: ComfyUI mặc định chặn các yêu cầu từ các ứng dụng khác. Để cho phép Bạn đồng hành WoW kết nối, bạn phải bắt đầu ComfyUI với flag `--enable-cors-header "*"`.
+            command: python main.py --enable-cors-header "*"
           workflows:
             title: Mẫu Workflow
             upload: Tải Workflow
@@ -1716,7 +1909,7 @@ pages:
             remove: Xóa
             config_snippet: Đoạn cấu hình Nghệ thuật
             copy_json: Sao chép JSON
-            paste_hint: Dán nội dung này vào cấu hình Nghệ thuật của Thẻ AIRI để ghi đè các node này.
+            paste_hint: Dán nội dung này vào cấu hình Nghệ thuật của Thẻ Bạn đồng hành WoW để ghi đè các node này.
           upload:
             prompt: Kéo thả hoặc chọn tệp workflow_api.json
             invalid_json: JSON không hợp lệ
@@ -1734,15 +1927,19 @@ pages:
           api_key:
             label: Khóa API
             description: Token Replicate API của bạn (bắt đầu với r8_)
+            placeholder: r8_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
           default_model:
             label: Mô Hình Mặc Định
             description: Chuỗi owner/model dự phòng được dùng nếu thẻ nhân vật không chỉ định.
+            placeholder: Hầm rừng đen /flux-schnell
           aspect_ratio:
             label: Tỉ Lệ Khung Hình
             description: 'Tỉ lệ ảnh mặc định (ví dụ: 16:9 1:1 9:16)'
+            placeholder: 16:9
           inference_steps:
             label: Các Bước Suy Luận
             description: Số lượng bước cho quá trình khử nhiễu (giá trị thấp thì nhanh hơn, giá trị cao thì chất lượng tốt hơn)
+          title: Replicate.ai
       nanobanana:
         settings:
           heading: Nano Banana (Google AIスタジオ)
@@ -1750,6 +1947,7 @@ pages:
           api_key:
             label: Khóa API
             description: Khóa Google AI Studio API của bạn
+            placeholder: Đúng rồi.
           preferred_model:
             label: Mô hình ưu tiên
             description: Mô hình xem trước tạo ảnh Gemini cụ thể sẽ được sử dụng
@@ -1760,11 +1958,14 @@ pages:
             nano_banana_2: Nano Banana 2（Gemini 3.1 Flash Image）
             nano_banana_pro: Nano Banana Pro（Gemini 3 Pro Image）
             nano_banana: Nano Banana（Gemini 2.5 Flash Image）
+          title: Nano Banana
       deepseek:
         fields:
           field:
             thinking-mode:
               description: Kiểm soát việc các mô hình suy luận DeepSeek có sử dụng chế độ suy nghĩ trong yêu cầu trò chuyện hay không.
+        description: deepseek.com
+        title: Tìm kiếm sâu
       elevenlabs:
         fields:
           field:
@@ -1802,6 +2003,8 @@ pages:
           title: Thử nghiệm giọng nói
           validation:
             error-missing-api-key: Vui lòng nhập khóa API để thử giọng.
+        description: elevenlabs.io
+        title: ElevenLabs
       kokoro-local:
         description: Chuyển văn bản thành giọng nói cục bộ dùng Kokoro-82M.
         fields:
@@ -1811,8 +2014,7 @@ pages:
               description: Mô hình nhỏ tải nhanh hơn nhưng chất lượng thấp hơn chút.
         models:
           fp32-webgpu:
-            description: >-
-              Mô hình độ chính xác cao dùng WebGPU - Khuyên dùng cho thiết bị hỗ trợ
+            description: Mô hình độ chính xác cao dùng WebGPU - Khuyên dùng cho thiết bị hỗ trợ
           fp32:
             description: Độ chính xác đầy đủ (Full precision)
           fp16:
@@ -1834,9 +2036,12 @@ pages:
               description: Khu vực dịch vụ Speech
               label: Khu vực
         title: Microsoft / Azure Giọng nói
+        description: speech.microsoft.com
       index-tts-vllm:
         callout_indextts2_unavailable_title: Hỗ trợ hạn chế
         callout_indextts2_unavailable: IndexTTS2 hiện chưa hỗ trợ. Vui lòng dùng IndexTTS.
+        description: https://index-tts.github.io/
+        title: Bilibili / IndexTTS
       minimax-speech:
         errors:
           provider-initialization-failed: Không thể khởi tạo nhà cung cấp giọng nói MiniMax.
@@ -1849,11 +2054,13 @@ pages:
         playground:
           default-text: Xin chào! Đây là bài kiểm tra tổng hợp giọng nói MiniMax.
         title: MiniMax Giọng nói
+        description: minimax.io
       openai-compatible:
         description: Tương thích OpenAI
         title: Tương thích OpenAI
       n1n:
         description: n1n.ai - Cung cấp API AI hiệu năng cao.
+        title: N1n
       volcengine:
         fields:
           field:
@@ -1861,6 +2068,7 @@ pages:
               description: App ID của dự án (lấy trong Console)
               label: ID ứng dụng
         title: Động cơ Volcano
+        description: volcengine.com
       volcengine-coding-plan:
         description: Kế hoạch Lập trình Volcengine
         models:
@@ -1877,20 +2085,121 @@ pages:
         title: Web Giọng nói API
       prompt-api:
         description: Với Prompt API, bạn có thể gửi yêu cầu bằng ngôn ngữ tự nhiên đến mô hình cơ sở trong Chrome.
+        title: API nhanh chóng
       official:
         title: Nhà Cung Cấp Chính Thức
-        description: Nhà cung cấp AI chính thức bởi AIRI.
+        description: Nhà cung cấp AI chính thức bởi Bạn đồng hành WoW.
         speech-title: Nhà cung cấp giọng nói chính thức
-        speech-description: Nhà cung cấp chuyển văn bản thành giọng nói chính thức của AIRI.
+        speech-description: Nhà cung cấp chuyển văn bản thành giọng nói chính thức của Bạn đồng hành WoW.
         speech-streaming-title: Nhà Cung Cấp Giọng Nói Thời Gian Thực (Streaming) Chính Thức
-        speech-streaming-description: Nhà cung cấp text-to-speech độ trễ thấp chính thức bởi AIRI (WebSocket hai chiều).
+        speech-streaming-description: Nhà cung cấp text-to-speech độ trễ thấp chính thức bởi Bạn đồng hành WoW (WebSocket hai chiều).
         transcription-title: Nhà Cung Cấp Phiên Âm Chính Thức
-        transcription-description: Nhà cung cấp speech-to-text chính thức bởi AIRI.
+        transcription-description: Nhà cung cấp speech-to-text chính thức bởi Bạn đồng hành WoW.
       transcriptions:
         playground:
           title: Thử nghiệm chuyển văn bản
       aihubmix:
         description: https://aihubmix.com (Giảm giá 10%)
+        title: AIHubMix
+      deepgram-tts:
+        description: deepgram.com
+        title: Deepgram
+      fireworks:
+        description: pháo hoa.ai
+        title: pháo hoa.ai
+      google-gemini-audio-speech:
+        description: aistudio.google.com
+        title: Google Gemini
+      azure-ai-foundry:
+        description: Azure AI Foundry
+        title: Azure AI Foundry
+      minimax:
+        description: minimaxi.com
+        title: MiniMax
+      minimax-global:
+        description: minimax.io
+        title: MiniMax Global
+      mimo:
+        description: api.xiaomimimo.com
+        title: Xiaomi MiMo
+      mistral:
+        description: mistral.ai
+        title: Mistral
+      moonshot:
+        description: moonshot.ai
+        title: AI chụp mặt trăng
+      modelscope:
+        description: modelcope.cn
+        title: ModelScope
+      novita:
+        description: novita.ai
+        title: Novita
+      ollama:
+        description: Ollama.ai
+        title: Ollama
+      openai:
+        description: openai.com
+        title: OpenAI
+      azure-openai:
+        description: Azure OpenAI API
+        title: Azure OpenAI
+      nvidia:
+        description: build.nvidia.com
+        title: NVIDIA NIM
+      openpaths:
+        description: openpaths.io
+        title: OpenPaths
+      openrouter:
+        description: openrouter.ai
+        title: OpenRouter
+      openrouter-audio-speech:
+        description: openrouter.ai
+        title: OpenRouter
+      perplexity:
+        description: sự bối rối.ai
+        title: Sự bối rối
+      player2:
+        description: Player2. game
+        title: Player2
+      together:
+        description: cùng nhau.ai
+        title: Cùng nhau.
+      google-generative-ai:
+        description: gemini.google.com
+        title: Google Gemini
+      groq:
+        description: groq.com
+        title: Groq
+      featherless:
+        description: không có lông.ai
+        title: AI không có lông
+      lm-studio:
+        description: Imstudio.ai
+        title: LM Studio
+      vllm:
+        description: vllm.ai
+        title: VLLM
+      byteplus:
+        description: byteplus.com
+        title: BytePlus
+      xai:
+        description: x.ai
+        title: xAI
+      zai:
+        description: z.ai
+        title: Z.ai
+      302-ai:
+        description: 302.AI
+        title: 302.AI
+      comet-api:
+        description: CometAPI.com
+        title: Vũ trụ API
+      cerebras:
+        description: cerebras.ai
+        title: Bộ não
+      aliyun-nls:
+        description: Aliyun NLS
+        title: Aliyun NLS
     title: Nhà cung cấp
   connection:
     description: Cấu hình kết nối máy chủ WebSocket
@@ -1898,30 +2207,28 @@ pages:
     websocket-url:
       description: Địa chỉ đầy đủ máy chủ WebSocket (ví dụ ws://localhost:6121/ws)
       label: Địa chỉ máy chủ WebSocket
+      placeholder: ws://localhost:6121/ws
     server-hostname:
       label: Expose On Network
-      description: Choose whether the AIRI gateway only listens on this device or can be reached from your local network.
+      description: Choose whether the Bạn đồng hành WoW gateway only listens on this device or can be reached from your local network.
     server-auth-token:
       label: Auth Token
-      description: >-
-        Security token required by remote clients that connect to this gateway. When left empty, AIRI generates a new token automatically.
+      description: Security token required by remote clients that connect to this gateway. When left empty, Bạn đồng hành WoW generates a new token automatically.
       placeholder: Tự động tạo
     qr:
       title: Connect from Stage Pocket
-      description: >-
-        Scan this QR code from Stage Pocket to try all reachable local network addresses and save the first working one.
+      description: Scan this QR code from Stage Pocket to try all reachable local network addresses and save the first working one.
       refresh: Làm mới
-      image-alt: AIRI server channel connection QR code
+      image-alt: Bạn đồng hành WoW server channel connection QR code
       candidates: Các địa chỉ khả dụng
-      token-hint: >-
-        The QR code includes the auth token so Stage Pocket can authenticate after connecting. Do not share it publicly.
+      token-hint: The QR code includes the auth token so Stage Pocket can authenticate after connecting. Do not share it publicly.
       errors:
         title: Không thể tạo mã QR
         unavailable: Không thể chuẩn bị mã QR kết nối.
     qr-scan:
       title: Kết nối nhanh
       description: Quét mã QR từ Tamagotchi để kết nối nhanh
-      instructions: Hướng camera vào mã QR kết nối AIRI.
+      instructions: Hướng camera vào mã QR kết nối Bạn đồng hành WoW.
       action: Quét
       success:
         title: Đã lưu địa chỉ kết nối
@@ -1948,6 +2255,17 @@ pages:
         character_card_sync:
           title: Đồng bộ thẻ nhân vật trên đám mây
           description: Đồng bộ thẻ nhân vật với tài khoản khi đăng nhập để dùng trên thiết bị khác. Mặc định tắt. Thẻ đã xóa vẫn nằm trong lịch sử tài khoản trong 30 ngày.
+        display_model_sync:
+          title: Mô hình đồng bộ hóa đám mây
+          description: tải lên các mô hình Live2D và VRM nhập khẩu vào tài khoản của bạn khi đăng nhập, để bạn có thể sử dụng chúng trên các thiết bị khác. Dừng đi theo mặc định.
+        fullscreen_workspace:
+          title: Không gian làm việc màn hình đầy đủ
+          description: Mở cài đặt và trò chuyện trong không gian làm việc bao phủ màn hình, với nhân vật ở bên trái. Dừng đi theo mặc định.
+          window_mode:
+            title: Chế độ cửa sổ
+            description: Chọn nơi không gian làm việc mở ra.
+            single_window: 'Chiếc cửa sổ đơn: nhân vật phát triển vào không gian làm việc'
+            multi_window: 'Chiếc cửa sổ riêng biệt: nhân vật vẫn ở trên máy tính để bàn'
     color-scheme:
       description: Đổi bảng màu sân khấu.
       title: Bảng màu
@@ -1989,10 +2307,10 @@ pages:
                   confirm-import: Nhập tiện ích mở rộng
                   cancel-import: Hủy
                 errors:
-                  enable-and-load: 'Không thể bật và tải plugin {extensionId}.'
-                  disable-and-unload: 'Không thể tắt và dỡ plugin {extensionId} khỏi bộ nhớ.'
+                  enable-and-load: Không thể bật và tải plugin {extensionId}.
+                  disable-and-unload: Không thể tắt và dỡ plugin {extensionId} khỏi bộ nhớ.
                   prepare-import: Không thể kiểm tra thư mục tiện ích mở rộng.
-                  commit-import: 'Không thể nhập tiện ích mở rộng {extensionId}.'
+                  commit-import: Không thể nhập tiện ích mở rộng {extensionId}.
                   cancel-import: Không thể hủy nhập tiện ích mở rộng.
                 import:
                   title: Xem lại việc nhập tiện ích mở rộng
@@ -2006,7 +2324,7 @@ pages:
                   kits: Bộ công cụ
                   no-permissions: Chưa khai báo quyền nào.
                   no-kits: Chưa khai báo bộ công cụ nào.
-                  imported: 'Đã nhập tiện ích mở rộng {extensionId}.'
+                  imported: Đã nhập tiện ích mở rộng {extensionId}.
               use-magic-keys:
                 title: Công cụ useMagicKeys
                 description: Kiểm tra các phím tắt
@@ -2032,8 +2350,7 @@ pages:
                 title: Phân cực
                 description: Công cụ chụp ảnh mô hình
               context-flow:
-                description: >-
-                  Kiểm tra các bản cập nhật ngữ cảnh và sự kiện luồng chat
+                description: Kiểm tra các bản cập nhật ngữ cảnh và sự kiện luồng chat
               websocket-inspector:
                 title: Kiểm tra WebSocket
                 description: Theo dõi lưu lượng WebSocket thô
@@ -2042,17 +2359,19 @@ pages:
                 description: Thử nghiệm trích xuất màu sắc
               providers-transcription-realtime-aliyun-nls:
                 title: Công cụ chuyển đổi giọng nói thành văn bản theo thời gian thực của Aliyun
-                description: >-
-                  Truyền âm thanh micro tới Aliyun NLS và kiểm tra văn bản trực tiếp
+                description: Truyền âm thanh micro tới Aliyun NLS và kiểm tra văn bản trực tiếp
               performance-playground:
                 title: Khu thử nghiệm hiệu năng
                 description: Khu vực thử nghiệm biểu cảm VRM + đồng bộ môi TTS
+              tool-payloads-as-json:
+                title: Hiển thị dữ liệu công cụ như JSON
+                description: Hiển thị các lập luận và kết quả của các cuộc gọi công cụ trò chuyện như một cây JSON, chứ không phải là các trường được định dạng. Thẻ trong câu trả lời cũng cung cấp dữ liệu thô của họ.
         theme-presets:
           presets:
             default:
               colors:
-                color-1: Xanh AIRI
-              description: Màu xanh lá mặc định do AIRI mang đến cho bạn!
+                color-1: Xanh Bạn đồng hành WoW
+              description: Màu xanh lá mặc định do Bạn đồng hành WoW mang đến cho bạn!
               title: Màu mặc định
             morandi:
               colors:
@@ -2112,8 +2431,7 @@ pages:
                 color-6: Vàng hoàng kim
                 color-7: Xanh lam
                 color-8: Thổ hoàng
-              description: >-
-                Màu sắc truyền thống Trung Hoa, lấy cảm hứng từ dệt may, gốm sứ và hội họa cổ
+              description: Màu sắc truyền thống Trung Hoa, lấy cảm hứng từ dệt may, gốm sứ và hội họa cổ
               title: Màu truyền thống Trung Hoa
           title: Bộ Màu Có Sẵn
     title: Hệ thống
@@ -2153,7 +2471,7 @@ sections:
 theme:
   title: Chủ Đề
   description: |
-    Chuyển đổi chủ đề cơ bản của AIRI, Chế độ Sáng hoặc Chế độ Tối.
+    Chuyển đổi chủ đề cơ bản của Bạn đồng hành WoW, Chế độ Sáng hoặc Chế độ Tối.
   auto: Hệ thống
   light: Sáng
   dark: Tối
@@ -2183,7 +2501,7 @@ vrm:
       Hệ trục tọa độ được hiển thị.
     scale: Tỷ Lệ
     x: Dịch X
-    'y': Dịch Y
+    y: Dịch Y
     z: Dịch Z
     fov: Góc Nhìn (độ)
     rotation-y: Xoay Trục Y
@@ -2209,6 +2527,8 @@ spine:
   scale-and-position:
     title: Tỷ lệ và vị trí
     scale: Tỷ lệ
+    x: X
+    y: Y
   theme-color-from-model:
     title: Trích xuất màu từ mô hình
     button-extract:
@@ -2239,6 +2559,8 @@ mmd:
     title: Tỷ lệ và vị trí
     scale: Tỷ lệ
     rotation: Xoay
+    x: X
+    y: Y
   theme-color-from-model:
     title: Trích xuất màu từ mô hình
     button-extract:
@@ -2262,26 +2584,25 @@ mmd:
     import-motion: Nhập chuyển động (.vmd)
     play-once: Xem trước hoạt ảnh
     remove: Xóa chuyển động
-    description: >-
-      Nhập các tệp chuyển động VMD, thiết lập một tệp làm chuyển động lặp nhàn rỗi, hoặc phát bất kỳ chuyển động nào dưới dạng cử chỉ một lần. Áp các cảm xúc vào chuyển động để phát các cử chỉ cùng với biểu cảm khuôn mặt.
+    description: Nhập các tệp chuyển động VMD, thiết lập một tệp làm chuyển động lặp nhàn rỗi, hoặc phát bất kỳ chuyển động nào dưới dạng cử chỉ một lần. Áp các cảm xúc vào chuyển động để phát các cử chỉ cùng với biểu cảm khuôn mặt.
   morphs:
     title: Các biến thể hình dạng
     auto: (Tự động)
     revert: Khôi phục về tự động
     no-morphs: Mô hình này không cung cấp morph nào.
-    description: >-
-      Trình kết xuất tự động phát hiện các tên morph tiếng Nhật tiêu chuẩn (あいうえお, まばたき). Ghi đè một ô tại đây nếu mô hình của bạn sử dụng tên không tiêu chuẩn.
+    description: Trình kết xuất tự động phát hiện các tên morph tiếng Nhật tiêu chuẩn (あいうえお, まばたき). Ghi đè một ô tại đây nếu mô hình của bạn sử dụng tên không tiêu chuẩn.
   materials:
     title: Vật liệu
     no-materials: Mô hình này không cung cấp vật liệu nào.
-    description: >-
-      Điều chỉnh độ đục của các phần mô hình riêng lẻ (mặt, tóc, quần áo, phụ kiện). Đặt một phần thành 0 để ẩn phần đó đi.
+    description: Điều chỉnh độ đục của các phần mô hình riêng lẻ (mặt, tóc, quần áo, phụ kiện). Đặt một phần thành 0 để ẩn phần đó đi.
 tachie:
   title: Cài đặt Tachie
   archive-description: Mô hình Tachie sử dụng tệp lưu trữ .tachie.zip chứa các ảnh được đặt tên theo cảm xúc.
   scale-and-position:
     title: Tỷ lệ và vị trí
     scale: Tỷ lệ
+    x: X
+    y: Y
   theme-color-from-model:
     title: Trích xuất màu từ mô hình
     button-extract:
@@ -2292,12 +2613,10 @@ tachie:
     shadow: Bóng đổ theo màu chủ đề
 websocket-secure-enabled:
   title: Bật WebSocket bảo mật (WSS)
-  description: >-
-    Bật WSS để hỗ trợ kết nối HTTPS cho thiết bị di động trong quá trình phát triển. Chứng chỉ tự ký sẽ được tạo tự động.
+  description: Bật WSS để hỗ trợ kết nối HTTPS cho thiết bị di động trong quá trình phát triển. Chứng chỉ tự ký sẽ được tạo tự động.
 wip:
   title: Đang phát triển
-  description: >-
-    Tính năng này hiện đang được hoàn thiện và chưa sẵn sàng công khai. Hãy chờ bản cập nhật trong tương lai nhé!
+  description: Tính năng này hiện đang được hoàn thiện và chưa sẵn sàng công khai. Hãy chờ bản cập nhật trong tương lai nhé!
 streamer-mode:
   title: Chế độ phát trực tiếp
   description: Ẩn chỉ báo micrô và đăng nhập trên cửa sổ nhân vật.

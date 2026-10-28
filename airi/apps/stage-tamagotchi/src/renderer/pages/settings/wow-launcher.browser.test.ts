@@ -1,5 +1,6 @@
-import type { LauncherSaveRequest, LauncherState } from '../../../shared/wow-launcher'
 import type { Component } from 'vue'
+
+import type { LauncherSaveRequest, LauncherState } from '../../../shared/wow-launcher'
 
 import { createPinia } from 'pinia'
 import { beforeEach, describe, expect, it, onTestFinished, vi } from 'vitest'
@@ -58,7 +59,7 @@ beforeEach(() => {
 async function mount(component: Component = WowLauncherSettings, locale = 'en') {
   const screen = await render(component, {
     global: {
-      plugins: [createPinia(), createI18n({ legacy: false, locale, fallbackLocale: 'en', messages: { en: { 'wow-companion': parse(enMessages) }, 'zh-Hans': { 'wow-companion': parse(zhMessages) } } })],
+      plugins: [createPinia(), createI18n({ legacy: false, locale, fallbackLocale: 'en', messages: { 'en': { 'wow-companion': parse(enMessages) }, 'zh-Hans': { 'wow-companion': parse(zhMessages) } } })],
       provide: {
         [controlsIslandPlacementKey as symbol]: { dock: ref('bottom-left'), isLeft: ref(true), isTop: ref(false), motionPhase: ref('idle') },
       },

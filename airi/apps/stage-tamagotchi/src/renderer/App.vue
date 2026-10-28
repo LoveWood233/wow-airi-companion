@@ -8,9 +8,7 @@ import { artistrySyncConfig } from '@proj-airi/stage-shared'
 import { ToasterRoot } from '@proj-airi/stage-ui/components'
 import { updateModelAssetStatus, useInferencePreload } from '@proj-airi/stage-ui/composables'
 import { usePiniaSynced } from '@proj-airi/stage-ui/libs/pinia'
-import { initializeAnalytics } from '@proj-airi/stage-ui/libs/product-signals'
 import { isSherpawModelBundled, setSherpawModelAssetHost } from '@proj-airi/stage-ui/libs/providers/providers/sherpaw/model-assets'
-import { useAuthStore } from '@proj-airi/stage-ui/stores/auth'
 import { useCharacterOrchestratorStore } from '@proj-airi/stage-ui/stores/character'
 import { useChatStore } from '@proj-airi/stage-ui/stores/chat'
 import { usePluginHostInspectorStore } from '@proj-airi/stage-ui/stores/devtools/plugin-host-debug'
@@ -23,7 +21,6 @@ import { useConsciousnessStore } from '@proj-airi/stage-ui/stores/modules/consci
 import { useHearingStore } from '@proj-airi/stage-ui/stores/modules/hearing'
 import { useSpeechStore } from '@proj-airi/stage-ui/stores/modules/speech'
 import { useVisionStore } from '@proj-airi/stage-ui/stores/modules/vision'
-import { useOnboardingStore } from '@proj-airi/stage-ui/stores/onboarding'
 import { usePerfTracerBridgeStore } from '@proj-airi/stage-ui/stores/perf-tracer-bridge'
 import { listProvidersForPluginHost, shouldPublishPluginHostCapabilities } from '@proj-airi/stage-ui/stores/plugin-host-capabilities'
 import { useSettings, useSettingsAudioDevice } from '@proj-airi/stage-ui/stores/settings'
@@ -31,7 +28,8 @@ import { useSettingsStageModel } from '@proj-airi/stage-ui/stores/settings/stage
 import { useTheme } from '@proj-airi/ui'
 import { isEqual } from 'es-toolkit'
 import { storeToRefs } from 'pinia'
-import { onMounted, onUnmounted, watch } from 'vue'
+import { onMounted, onUnmounted, watch, watchEffect } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { RouterView, useRoute, useRouter } from 'vue-router'
 import { toast, Toaster } from 'vue-sonner'
 
@@ -64,7 +62,6 @@ import {
   electronPluginUnload,
 } from '../shared/eventa/plugin/host'
 import { electronPluginToolsChanged } from '../shared/eventa/plugin/tools'
-import { initializeElectronAuthCallbackBridge } from './bridges/electron-auth-callback'
 import { initializeIOTraceRecordingBridge } from './bridges/io-trace-recording'
 import { initializeStageThreeRuntimeTraceBridge } from './bridges/stage-three-runtime-trace'
 import { useLanguage } from './composables/use-language'
@@ -86,6 +83,13 @@ const settingsStore = useSettings()
 const { language, themeColorsHue, themeColorsHueDynamic } = storeToRefs(settingsStore)
 const router = useRouter()
 const route = useRoute()
+const { t, locale } = useI18n()
+
+// Keep native titles and accessibility language in sync in every renderer.
+watchEffect(() => {
+  document.title = t('companion-ui.app.name')
+  document.documentElement.lang = locale.value === 'zh-Hans' ? 'zh-CN' : locale.value === 'zh-Hant' ? 'zh-TW' : locale.value
+})
 const context = useElectronEventaContext()
 const listModelAssets = useElectronEventaInvoke(electronModelAssetsList)
 const ensureModelAsset = useElectronEventaInvoke(electronModelAssetEnsure)
@@ -158,8 +162,6 @@ const stopLeadershipListener = syncedPinia.onLeadershipChange((isLeader) => {
 })
 
 function createFullStageRuntime() {
-  const authStore = useAuthStore()
-  const onboardingStore = useOnboardingStore()
   const contextBridgeStore = useContextBridgeStore()
   const displayModelsStore = useDisplayModelsStore()
   const serverChannelSettingsStore = useServerChannelSettingsStore()
@@ -176,27 +178,6 @@ function createFullStageRuntime() {
   useSpeechStore()
   useSettingsStageModel()
   useVisionStore()
-
-  let stopAuthenticatedSetup: (() => void) | undefined
-  let stopLoggedOutSetup: (() => void) | undefined
-
-  async function removeAuthenticationProviderConfiguration() {
-    if (!syncedPinia.isLeader())
-      return
-
-    await cardStore.configureForAuthentication(false)
-  }
-
-  function registerAuthenticatedSetup() {
-    stopAuthenticatedSetup ??= authStore.onAuthenticated(async () => {
-      if (!syncedPinia.isLeader())
-        return
-
-      await cardStore.configureForAuthentication(true)
-      await onboardingStore.closeAfterAuthentication()
-    })
-    stopLoggedOutSetup ??= authStore.onLogout(removeAuthenticationProviderConfiguration)
-  }
 
   const { activeProvider, artistryGlobals, activeModel, defaultPromptPrefix, providerOptions } = storeToRefs(artistryStore)
   const getServerChannelConfig = useElectronEventaInvoke(electronGetServerChannelConfig)
@@ -228,10 +209,6 @@ function createFullStageRuntime() {
 
   usePerfTracerBridgeStore()
   initializeStageThreeRuntimeTraceBridge()
-  // The main process returns the callback only to the renderer that started
-  // sign-in. Each login-capable window listens locally, while the synchronized
-  // auth action still executes once in the main Stage leader.
-  initializeElectronAuthCallbackBridge()
   void stageWindowLifecycleStore.initializeWindowLifecycleBridge()
 
   contextBridgeStore.setSparkNotifyHostRole(isWidgetsWindow ? 'client' : 'main')
@@ -301,13 +278,8 @@ function createFullStageRuntime() {
 
   return {
     async initialize() {
-      initializeAnalytics()
-      await authStore.initialize()
       await displayModelsStore.initialize()
       await cardStore.initialize()
-      registerAuthenticatedSetup()
-      if (!authStore.isAuthenticated)
-        await removeAuthenticationProviderConfiguration()
 
       await displayModelsStore.loadDisplayModelsFromIndexedDB()
       await settingsStore.initializeStageModel()
@@ -351,8 +323,6 @@ function createFullStageRuntime() {
       inferencePreload.triggerPreload()
     },
     dispose() {
-      stopAuthenticatedSetup?.()
-      stopLoggedOutSetup?.()
       characterOrchestratorStore.dispose()
       contextBridgeStore.dispose()
     },

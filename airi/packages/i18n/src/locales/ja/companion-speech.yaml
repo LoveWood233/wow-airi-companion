@@ -1,0 +1,28 @@
+unknown: 不明
+error: 不明なエラーが発生しました。
+streaming-description: 低遅延のストリーミング音声
+preview-text: こんにちは、あなたのコンパニオンです。
+providers-empty: 音声プロバイダー未設定
+providers-setup: 音声プロバイダーを設定
+model: モデル
+model-description: 音声生成に使用するモデルを入力してください。
+model-manual-error: モデルの検出に失敗した場合は名前を入力してください。
+model-manual-empty: モデルが見つからない場合は名前を入力してください。
+voice-title: 声の設定
+voice-description: コンパニオンの話す声を調整します。
+current-voice: 現在の声：{voice}
+voices-error: 声を読み込めませんでした
+pitch: 声の高さ
+pitch-description: 声の高さを調整します。
+ssml: SSMLを有効にする
+ssml-description: 音声合成マークアップで音声出力を制御します。
+voice-name: 声の名前
+voice-name-description: カスタム音声の名前を入力してください。
+voice-name-placeholder: 声の名前（例：alloy、echo）
+monolingual-v1: 単一言語 v1
+multilingual-v1: 多言語 v1
+multilingual-v2: 多言語 v2
+custom-ssml: カスタムSSMLを使う
+custom-ssml-description: 通常のテキストの代わりにSSMLを入力します。
+ssml-placeholder: SSMLテキストを入力…
+stop: 停止

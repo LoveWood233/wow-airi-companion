@@ -57,7 +57,7 @@ export function computeCenteredWindowBounds(options: {
  */
 export function centerWindowOnDisplay(window: Pick<BrowserWindow, 'getBounds' | 'isDestroyed' | 'setBounds' | 'show'> | undefined): Rectangle {
   if (!window || window.isDestroyed())
-    throw new Error('Main AIRI window is not available.')
+    throw new Error('The main companion window is unavailable.')
 
   const windowBounds = window.getBounds()
   const displayWorkArea = screen.getDisplayMatching(windowBounds).workArea

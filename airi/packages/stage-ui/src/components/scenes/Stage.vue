@@ -28,6 +28,7 @@ import { useBroadcastChannel, useEventListener } from '@vueuse/core'
 // import { embed } from '@xsai/embed'
 import { storeToRefs } from 'pinia'
 import { computed, nextTick, onUnmounted, ref, shallowRef, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import StageAvatarModelMissing from './stage-avatar-model-missing.vue'
 import StageRenderError from './stage-render-error.vue'
@@ -718,6 +719,8 @@ defineExpose({
     }
   },
 })
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -826,8 +829,8 @@ defineExpose({
             'flex items-center justify-center',
           ]"
         >
-          <Callout label="Godot Stage (Experimental)">
-            <p>Godot Stage (experimental) is running...</p>
+          <Callout :label="translateCompanion('companion-extra.godot-stage-experimental-a81b5e')">
+            <p>{{ translateCompanion('companion-extra.godot-stage-experimental-is-running-bd3516') }}</p>
           </Callout>
         </div>
       </div>

@@ -97,6 +97,7 @@ notice:
     preparing: 准备中…
     read-more: 阅读更多
     preview-title: 这是什么？
+    value: '0'
 about:
   subtitle: 桌面版本
   current-version: 当前版本
@@ -106,6 +107,7 @@ about:
     title: 网址
     home: 首页
     documentation: 文档
+    github: GitHub
   update:
     lane:
       label: 更新频道
@@ -230,6 +232,7 @@ computer-use-tool-call:
       screen_recording: 屏幕录制
       accessibility: 辅助功能
       automation_to_system_events: 自动化（System Events）
+      screen_capture_kit: ScreenCaptureKit
     states:
       granted: 已授权
       missing: 未授权
@@ -249,6 +252,8 @@ computer-use-tool-call:
     nothing: 没有在播放
     liked: 已喜欢
     rate: '{rate} 倍速'
+  repeat: × {count}
+  click-count: × {count}
 computer-use-read-image-tool-call:
   description: 视觉模型的描述
   failed: 视觉模型没能读出这张图

@@ -35,7 +35,6 @@ import { toast } from 'vue-sonner'
 
 import FullscreenBackdrop from '../components/fullscreen/fullscreen-backdrop.vue'
 import FullscreenOverlay from '../components/fullscreen/fullscreen-overlay.vue'
-import AuthStatusIsland from '../components/stage-islands/auth-status-island.vue'
 import ControlsIslandRoot from '../components/stage-islands/controls-island/controls-island-root.vue'
 import ControlsIsland from '../components/stage-islands/controls-island/index.vue'
 import ResourceStatusIsland from '../components/stage-islands/resource-status-island/index.vue'
@@ -704,6 +703,8 @@ const cursorPosition = computed(() => ({
   x: relativeMouseX.value,
   y: relativeMouseY.value,
 }))
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -717,9 +718,7 @@ const cursorPosition = computed(() => ({
     <div v-show="!settingsStore.streamerMode && !fullscreenActive" ref="hearingStatusElement" :class="['absolute bottom-3 left-1/2 z-30 w-fit -translate-x-1/2']">
       <HearingStatus align="center" />
     </div>
-    <div v-show="!settingsStore.streamerMode && !fullscreenActive" ref="authStatusElement" :class="['absolute left-1/2 top-3 z-40 w-fit -translate-x-1/2']">
-      <AuthStatusIsland />
-    </div>
+    <div v-show="!settingsStore.streamerMode && !fullscreenActive" ref="authStatusElement" :class="['absolute left-1/2 top-3 z-40 w-fit -translate-x-1/2']" />
     <!-- Stage is always in DOM so TresCanvas can measure dimensions -->
     <div
       :class="[
@@ -799,10 +798,11 @@ const cursorPosition = computed(() => ({
             'h-full w-full flex items-center justify-center',
             'text-1.5rem text-primary-600 dark:text-primary-400 font-normal',
             'select-none',
-            'animate-flash animate-duration-5s animate-count-infinite',
+            'animate-flash animate-duration-5s',
           ]"
+          style="animation-iteration-count: infinite"
         >
-          Loading...
+          <span>{{ translateCompanion('companion-extra.loading-b04ba4') }}</span>
         </div>
       </div>
     </div>
@@ -828,11 +828,12 @@ const cursorPosition = computed(() => ({
           :class="[
             'absolute left-0 top-0 h-full w-full',
             'flex items-center justify-center',
-            'animate-flash animate-duration-5s animate-count-infinite',
+            'animate-flash animate-duration-5s',
             'select-none text-1.5rem text-primary-400 font-normal drag-region',
           ]"
+          style="animation-iteration-count: infinite"
         >
-          DRAG HERE TO MOVE
+          <span>{{ translateCompanion('companion-extra.drag-here-to-move-dc8629') }}</span>
         </div>
         <div class="wall absolute bottom-0 h-8 drag-region" />
       </div>

@@ -1,0 +1,79 @@
+web-speech-unavailable-title: Web Speech API недоступен
+web-speech-unavailable-description: Этот браузер не поддерживает распознавание Web Speech API. Выберите другого поставщика или браузер с распознаванием речи.
+web-speech-native-title: Бесплатное распознавание средствами браузера
+web-speech-native-description: Используйте распознавание речи браузера. Обработка зависит от браузера и его настроек. Ключ API не нужен.
+web-speech-no-api-key: Ключ API не нужен. Web Speech API бесплатен и встроен в браузер.
+recognition-language: Язык распознавания
+recognition-language-description: Выберите язык распознавания речи
+continuous-recognition: Непрерывное распознавание
+continuous-recognition-description: Продолжать слушать без остановки после каждой фразы
+interim-results-title: Показывать промежуточные результаты
+interim-results-description: Показывать частичные результаты во время речи
+transcription-test: Проверка преобразования речи в текст
+transcription-test-description: Проверьте Web Speech API с выбранным аудиоустройством. Этот тест всегда использует Web Speech API независимо от основного поставщика распознавания.
+web-speech-unavailable: Web Speech API недоступен в этом браузере
+audio-input-device: Устройство ввода звука
+audio-test-device-description: Выберите устройство ввода звука для проверки
+audio-input-placeholder: Выберите устройство ввода звука
+audio-test-device-required: Выберите устройство ввода звука для проверки
+transcription-error: Ошибка распознавания речи
+streaming-description: 'Потоковый режим: текст появляется во время речи (Web Speech API)'
+transcription-result: Результат распознавания
+streaming-transcription: 'Текущий текст (поток):'
+final-transcription: 'Итоговый текст:'
+transcription-empty: Текста пока нет. Нажмите «Начать проверку речи» и говорите в микрофон.
+provider-label: 'Поставщик:'
+language-label: 'Язык:'
+mode-label: 'Режим:'
+streaming-mode: Потоковый (в реальном времени)
+continuous-label: 'Непрерывно:'
+interim-results-label: 'Промежуточные результаты:'
+stop-test: Остановить проверку
+transcribing: Распознавание…
+start-transcription-test: Начать проверку речи
+mimo-model-description: Выберите модель MiMo TTS для синтеза речи
+mimo-model-placeholder: Выберите модель MiMo…
+voice-style-placeholder: Опишите тон, темп, эмоции и манеру речи…
+voice-sample-label: Образец голоса (data URI)
+voice-sample-description: Вставьте образец голоса base64 как data URI. MiMo поддерживает MP3 и WAV до 10 МБ.
+mimo-test-text: Привет! Это проверка речи Xiaomi MiMo.
+mimo-behavior-title: Поведение модели MiMo
+mimo-preset-description: '`mimo-v2.5-tts` использует список готовых голосов ниже.'
+mimo-design-description: '`mimo-v2.5-tts-voicedesign` создаёт голос по описанию стиля и не принимает `audio.voice`.'
+mimo-clone-description: '`mimo-v2.5-tts-voiceclone` использует вставленный образец и игнорирует выбор готового голоса.'
+style-optional: Описание стиля (необязательно)
+voice-design-prompt: Описание нового голоса
+style-prompt: Описание стиля
+clone-style-description: Необязательное управление обычным языком в сообщении пользователя. Оставьте пустым для чистого клонирования голоса.
+design-style-description: Управление обычным языком в сообщении пользователя. Для создания голоса MiMo это описание обязательно. Готовый голос не используется.
+preset-style-description: Управление обычным языком в сообщении пользователя. Оставьте пустым для нейтральной речи.
+speech-provider-error: Не удалось запустить поставщика синтеза речи
+voice-sample-required: Для клонирования голоса нужен образец base64 в формате data URI.
+resource-name: Название ресурса
+resource-name-description: Префикс в https://<prefix>.services.ai.azure.com
+model-id: Идентификатор модели
+model-id-description: Идентификатор модели в Azure AI Foundry
+api-version: Версия API
+api-version-placeholder: Например, 2025-04-01-preview
+api-version-description: Версия API для снимка моделей
+gemini-model-description: Выберите модель Gemini TTS для синтеза речи
+gemini-model-placeholder: Выберите модель Gemini…
+speech-temperature-description: Управляет случайностью синтеза. Меньшие значения делают речь предсказуемее, большие — разнообразнее.
+gemini-test-text: Привет! Это проверка речи Google Gemini.
+access-key-id: Идентификатор ключа доступа
+access-key-secret: Секретный ключ доступа
+app-key: Ключ приложения
+app-key-placeholder: Введите AppKey
+abort-session: Прервать сеанс
+partial-result: Промежуточный
+waiting-for-audio: Ожидание звука…
+awaiting-final-result: Ожидание итогового результата…
+streaming: Передача потока…
+start-realtime-transcription: Начать распознавание в реальном времени
+aliyun-provider-error: Не удалось запустить поставщика Aliyun NLS.
+aliyun-stream-error: Aliyun NLS неожиданно вернул непотоковый результат.
+onboarding-api-key-description: Введите ключ API выбранного поставщика.
+onboarding-base-url-description: Введите базовый адрес API поставщика.
+unknown-error: Неизвестная ошибка
+azure-api-key: Ключ API Azure OpenAI
+internal-region: '{region} (внутренний)'

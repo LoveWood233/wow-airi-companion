@@ -3,7 +3,7 @@
 local _, ns = ...
 local Protocol = {}
 ns.Protocol = Protocol
-local keys = { "v", "session", "seq", "tick", "guid", "name", "realm", "level", "class", "faction", "race", "spec", "map", "zone", "combat", "dead", "online", "account", "moneyEpoch", "copper", "earned", "spent" }
+local keys = { "v", "session", "seq", "tick", "guid", "name", "realm", "level", "class", "faction", "race", "spec", "map", "px", "py", "zone", "combat", "dead", "online", "account", "moneyEpoch", "copper", "earned", "spent" }
 local limits = { session = 40, guid = 48, name = 48, realm = 48, class = 20, zone = 96 }
 
 local function Public(value)
@@ -11,6 +11,12 @@ local function Public(value)
     return value
 end
 Protocol.Public = Public
+
+local function Coordinate(value)
+    value = Public(value)
+    if type(value) ~= "number" or value ~= value or value < 0 or value > 10000 or value ~= math.floor(value) then return nil end
+    return value
+end
 
 function Protocol.Faction(value)
     value = Public(value)
@@ -100,6 +106,12 @@ function Protocol.Encode(snapshot)
         if key == "faction" then value = Protocol.Faction(value) end
         if key == "race" then value = Protocol.Race(value) end
         clean[key] = value
+    end
+    -- Position is one atomic pair on the observed map, never a retained last-known point.
+    clean.px, clean.py = Coordinate(clean.px), Coordinate(clean.py)
+    if clean.px == nil or clean.py == nil or clean.online ~= true or type(clean.map) ~= "number"
+        or clean.map ~= clean.map or clean.map < 1 or clean.map > 10000000 or clean.map ~= math.floor(clean.map) then
+        clean.px, clean.py = nil, nil
     end
     local payload = Protocol.JSON(clean)
     -- Preserve faction, IDs and counters. Shrink display labels before dropping the whole race label.

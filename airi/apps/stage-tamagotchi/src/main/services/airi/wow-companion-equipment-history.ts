@@ -13,6 +13,7 @@ import { array, check, integer, literal, maxLength, maxValue, minValue, number, 
 
 import { snapshotSchema } from '../../../shared/wow-companion'
 import { equipmentSchema } from '../../../shared/wow-companion-equipment'
+import { companionError } from '../../../shared/wow-companion-errors'
 import { moneyIdSchema } from '../../../shared/wow-companion-gold'
 
 const entrySchema = strictObject({
@@ -107,7 +108,7 @@ export class CompanionEquipmentHistory {
       if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT')
         return
       this.blocked = true
-      this.storageError = `Cannot load WoW equipment history (${this.filePath}). Restore the file and restart 魔兽陪伴精灵: ${errorMessageFrom(error) ?? 'Unknown read error'}`
+      this.storageError = companionError('equipment-read', { path: this.filePath, detail: errorMessageFrom(error) ?? '' })
     }
   }
 
@@ -147,7 +148,7 @@ export class CompanionEquipmentHistory {
       this.storageError = null
     }
     catch (error) {
-      this.storageError = `Cannot save WoW equipment history (${this.filePath}). Changes are only in memory. 魔兽陪伴精灵 will retry: ${errorMessageFrom(error) ?? 'Unknown write error'}`
+      this.storageError = companionError('equipment-write', { path: this.filePath, detail: errorMessageFrom(error) ?? '' })
     }
     finally {
       // Cleanup cannot replace the write error that explains the unsaved history.

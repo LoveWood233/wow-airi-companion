@@ -191,8 +191,9 @@ class AddonTest(unittest.TestCase):
 
     def test_frame_drops_whole_race_only_after_display_labels(self):
         snapshot = self.lua.globals().WoWMapCompanionDB[b"snapshot"]
-        exact = {b"guid": b"G" * 48, b"session": b"s" * 28, b"account": b"a" * 40,
-                 b"moneyEpoch": b"e" * 40, b"copper": 9007199254740991,
+        # Budget 22 bytes for the paired coordinates while retaining the exact 504-byte boundary.
+        exact = {b"guid": b"G" * 48, b"session": b"s" * 28, b"account": b"a" * 29,
+                 b"moneyEpoch": b"e" * 29, b"px": 10000, b"py": 10000, b"copper": 9007199254740991,
                  b"earned": 9007199254740991, b"spent": 9007199254740991,
                  b"faction": b"Alliance", b"class": b"M" * 20}
         for key, value in exact.items():

@@ -32,7 +32,7 @@ const enableChatCheck = ref(true)
 const customFieldValues = ref<Record<string, string>>({})
 
 const validation = ref<'unchecked' | 'pending' | 'succeed' | 'failed'>('unchecked')
-const validationError = ref<any>()
+const validationError = ref<unknown>()
 
 const hasOnboardingFields = computed(() => (props.selectedProvider?.onboardingFields?.length ?? 0) > 0)
 
@@ -167,7 +167,7 @@ async function validateConfiguration() {
   catch (error) {
     validation.value = 'failed'
     validationError.value = t('settings.dialogs.onboarding.validationError', {
-      error: errorMessageFrom(error) ?? 'Unknown error',
+      error: errorMessageFrom(error) ?? t('companion-providers.unknown-error'),
     })
   }
 }
@@ -201,7 +201,7 @@ async function handleContinueAnyway() {
 function getApiKeyPlaceholder(providerId: string): string {
   const placeholders: Record<string, string> = {
     'openai': 'sk-...',
-    'azure-openai': 'Azure OpenAI API Key',
+    'azure-openai': t('companion-providers.azure-api-key'),
     'anthropic': 'sk-ant-...',
     'google-generative-ai': 'AI...',
     'openrouter-ai': 'sk-or-...',
@@ -217,7 +217,7 @@ function getApiKeyPlaceholder(providerId: string): string {
     'novita-ai': 'nvt-...',
   }
 
-  return placeholders[providerId] || 'API Key'
+  return placeholders[providerId] || t('settings.dialogs.onboarding.apiKey')
 }
 
 function getBaseUrlPlaceholder(_providerId: string): string {
@@ -283,8 +283,8 @@ initializeForm()
                 v-model="apiKey"
                 :placeholder="getApiKeyPlaceholder(props.selectedProvider.id)"
                 type="password"
-                label="API Key"
-                description="Enter your API key for the selected provider."
+                :label="t('settings.dialogs.onboarding.apiKey')"
+                :description="t('companion-providers.onboarding-api-key-description')"
                 required
               />
             </div>
@@ -295,8 +295,8 @@ initializeForm()
                 v-model="baseUrl"
                 :placeholder="getBaseUrlPlaceholder(props.selectedProvider.id)"
                 type="text"
-                label="Base URL"
-                description="Enter the base URL for the provider's API."
+                :label="t('settings.dialogs.onboarding.baseUrl')"
+                :description="t('companion-providers.onboarding-base-url-description')"
               />
             </div>
 

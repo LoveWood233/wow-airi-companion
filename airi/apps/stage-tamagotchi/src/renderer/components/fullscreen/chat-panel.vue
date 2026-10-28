@@ -5,6 +5,7 @@ import { ChatSessionsDrawer } from '@proj-airi/stage-ui/components'
 import { useAiriCardStore } from '@proj-airi/stage-ui/stores/modules/airi-card'
 import { storeToRefs } from 'pinia'
 import { shallowRef, useTemplateRef } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import ChatSpeechMuteButton from '../chat-window/chat-speech-mute-button.vue'
 import ChatWindowStyleMenu from '../chat-window/chat-window-style-menu.vue'
@@ -29,6 +30,7 @@ useFullscreenCarry<ChatDraftHandover>('chat', {
     await interactiveArea.value?.restoreDraft(draft)
   },
 })
+const { t } = useI18n()
 </script>
 
 <template>
@@ -44,7 +46,7 @@ useFullscreenCarry<ChatDraftHandover>('chat', {
         @click="sessionsDrawerOpen = true"
       >
         <div :class="['i-solar:chat-line-bold', 'text-neutral-400 dark:text-neutral-500']" />
-        <span :class="['whitespace-nowrap text-sm']">{{ activeCard?.name || 'AIRI' }}</span>
+        <span :class="['whitespace-nowrap text-sm']">{{ activeCard?.name || t('companion-ui.app.name') }}</span>
       </button>
       <div :class="['flex-1']" />
       <ChatSpeechMuteButton />

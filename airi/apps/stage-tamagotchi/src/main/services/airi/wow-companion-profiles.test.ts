@@ -225,7 +225,7 @@ describe('companion profile IPC and persistence', () => {
     context = createContext()
     setupWowCompanion(context as never)
     const get = defineInvoke(context, wowCompanionGet)
-    await expect.poll(async () => (await get({ game: 'retail' })).equipmentHistory.storageError).toContain('Cannot load WoW equipment history')
+    await expect.poll(async () => (await get({ game: 'retail' })).equipmentHistory.storageError).toContain('equipment-read')
     const retail = await get({ game: 'retail' })
     const forever = await get({ game: 'forever' })
     expect(retail.error).toBeNull()
@@ -321,7 +321,7 @@ describe('companion profile IPC and persistence', () => {
   it('does not start a disabled profile for capture or demo writes', async () => {
     const capture = defineInvoke(context, wowCompanionSetCapture)
     const demo = defineInvoke(context, wowCompanionDemo)
-    await expect(capture({ game: 'forever', capture: { x: 80, y: 64, cellSize: 1, pollMs: 500, paused: false } })).rejects.toThrow('Enable the companion connection')
-    await expect(demo({ game: 'forever', request: { enabled: true, action: 'none' } })).rejects.toThrow('Enable the companion connection')
+    await expect(capture({ game: 'forever', capture: { x: 80, y: 64, cellSize: 1, pollMs: 500, paused: false } })).rejects.toThrow('connection-disabled')
+    await expect(demo({ game: 'forever', request: { enabled: true, action: 'none' } })).rejects.toThrow('connection-disabled')
   })
 })

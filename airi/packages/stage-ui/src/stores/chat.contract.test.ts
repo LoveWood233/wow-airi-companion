@@ -2042,8 +2042,7 @@ describe('chat store contract', () => {
     const store = useChatStore()
     const observe = vi.fn(async () => 'Visible cliff')
     store.registerRequestContext('wow:screen-assist', observe)
-    await store.submit({ sessionId: 'session-1', messageId: 'screen-voice', text: '', audioTranscriptPending: true,
-      attachments: [{ type: 'audio', mimeType: 'audio/wav', data: 'UklGRg==' }] })
+    await store.submit({ sessionId: 'session-1', messageId: 'screen-voice', text: '', audioTranscriptPending: true, attachments: [{ type: 'audio', mimeType: 'audio/wav', data: 'UklGRg==' }] })
     expect(observe).not.toHaveBeenCalled()
     await store.settleAudioTranscript({ sessionId: 'session-1', messageId: 'screen-voice', transcript: 'Can I cross this terrain?' })
     await vi.waitFor(() => expect(observe).toHaveBeenCalledOnce())

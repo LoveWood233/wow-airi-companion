@@ -3,7 +3,7 @@ operations:
   load-models-status:
     loading: Загрузка
     ready: Готово
-'resource-island':
+resource-island:
   loading: Подготовка ресурсов...
   ready: Ресурсы готовы
   preparing: Подготовка файлов модели
@@ -13,35 +13,36 @@ docs:
     navbar:
       appearance:
         title: Внешний вид
-'controls-island':
-  'fade-on-hover':
+controls-island:
+  fade-on-hover:
     enable: Скрывать при наведении
     disable: Всегда показывать
-  'open-settings': Открыть настройки
-  'open-chat': Открыть чат
-  'hide-chat': Скрыть чат
-  'refresh': Обновить результаты
-  'center-main-window': Переместить в центр экрана
-  'open-hearing-controls': Управление слухом
-  'enable-microphone': Включить микрофон
-  'disable-microphone': Выключить микрофон
-  'drag-to-move-window': Перетащите окно
-  'mute': Отключить звук
-  'unmute': Включить звук
-  'switch-to-light-mode': Переключить на светлую тему
-  'switch-to-dark-mode': Переключить на темную тему
-  'switch-to-system-mode': Использовать системную тему
-  'pin-on-top': Прикрепить на верх
-  'unpin-from-top': Открепить сверху
-  'switch-profile': Переключить профиль
-  'close': Закрыть
-  'expand': Развернуть
-  'collapse': Свернуть
-  'login': Войти
-  'logging-in': Выполняется вход...
-  'account': Аккаунт
-  'logout': Выйти
-'chat-window':
+  open-settings: Открыть настройки
+  open-chat: Открыть чат
+  hide-chat: Скрыть чат
+  refresh: Обновить результаты
+  center-main-window: Переместить в центр экрана
+  open-hearing-controls: Управление слухом
+  enable-microphone: Включить микрофон
+  disable-microphone: Выключить микрофон
+  drag-to-move-window: Перетащите окно
+  mute: Отключить звук
+  unmute: Включить звук
+  switch-to-light-mode: Переключить на светлую тему
+  switch-to-dark-mode: Переключить на темную тему
+  switch-to-system-mode: Использовать системную тему
+  pin-on-top: Прикрепить на верх
+  unpin-from-top: Открепить сверху
+  switch-profile: Переключить профиль
+  close: Закрыть
+  expand: Развернуть
+  collapse: Свернуть
+  login: Войти
+  logging-in: Выполняется вход...
+  account: Аккаунт
+  logout: Выйти
+  open-wow-companion: Информационная карта WoW
+chat-window:
   style:
     title: Стиль окна чата
     legacy: Классическое окно
@@ -49,6 +50,7 @@ docs:
     floating-free: Плавающее, в любом месте экрана
     floating-danmaku: Плавающее, лента сообщений
     pinned: Поверх всех окон
+    fullscreen: Полный экран, рядом с персонажем
   resize: Перетащите для изменения размера чата
   move: Перетащите для перемещения чата
   fold: Скрыть чат
@@ -73,7 +75,7 @@ widgets:
 inlay:
   dismiss: Закрыть
 notice:
-  'fade-on-hover':
+  fade-on-hover:
     title: Исчезать при наведении
     intro: Автоматически делает персонажа прозрачнее, когда курсор рядом. Меньше отвлекает, но остаётся видимым.
     opacity: После включения непрозрачность падает до {value} для {targets}, когда курсор рядом.
@@ -86,6 +88,7 @@ notice:
     preparing: Подготавливаем…
     read-more: Подробнее
     preview-title: Что это?
+    value: '0'
 about:
   subtitle: Desktop версия.
   current-version: Текущая версия
@@ -95,6 +98,7 @@ about:
     title: Ссылки
     home: Главная
     documentation: Документация
+    github: GitHub
   update:
     lane:
       label: Канал обновления
@@ -106,6 +110,7 @@ about:
       alpha: Альфа
       beta: Бета
       nightly: Ночная сборка
+      canary: Канарские
     status:
       downloading: Загрузка обновления...
       error-prefix: Ошибка
@@ -130,3 +135,148 @@ about:
       title: Доступно обновление
       description: Доступна новая версия (v{version})
       no-release-notes-markdown: _Заметки о релизе не предоставлены._
+fullscreen-island:
+  settings: Настройки
+  chat: Чат
+  switch-to-dark-mode: Перейти в темный режим
+  switch-to-system-mode: Следуйте тематике системы
+  switch-to-light-mode: Перейти в световой режим
+  exit: Выход на полный экран
+fullscreen-surface:
+  resize: Перетащить панель
+computer-use-tool-call:
+  help: Помощь
+  status:
+    completed: Завершенные
+    failed: Неудача
+  display: Дисплей
+  built-in: Встроенный
+  primary: Первичная
+  logical-size: Логический размер
+  pixel-size: Размер пикселей
+  backend: Захватывать задний конец
+  fallback: Причина отступления
+  file: Файл
+  window: Окно
+  region: Регион
+  main: Главная
+  hidden: Скрытые
+  displays: Один дисплей | {count} дисплеи
+  windows: Одно окно | {count} окна
+  found: Найдено "{query}"
+  matches: Один матч | {count}
+  not-found: '"{query}" не найдено'
+  clicked-text: Нажмите на "{query}"
+  options: Обязательства
+  typed: Типовые
+  pasted: Заклеенные
+  pressed: Нажатие
+  repeat: × {count}
+  interval: каждые ms {ms}
+  hold: содержится на {ms} ms
+  steps: Один шаг в порядке | {count} шаги в порядке
+  focused: Фокусированный "{query}"
+  app: Приложение
+  process: Процесс
+  control: Контроль
+  title: Название
+  value: Содержание
+  ax-path: Путь доступности
+  moved: Переместил указатель к
+  clicked: Нажмите
+  dragged: Затащили
+  requested: Запрошенное
+  on-screen: На экране
+  start: Начинать
+  end: Конец
+  final: Заключительный пункт
+  duration: '{ms} ms'
+  normalized: Нормализованные координаты
+  click-count: × {count}
+  relative:
+    screen: По отношению к экрану
+    window: По отношению к окну
+    display: В отношении дисплея
+  buttons:
+    left: Левая кнопка
+    right: Правая кнопка
+    middle: Средняя кнопка
+  clicks:
+    single: Один клик
+    double: Двойный клик
+  delivery:
+    path: Доставка
+    verified: Проверенный эффект
+    not-verified: Влияние не подтверждено
+    disturbance: Расстройство
+    mouse: Мышь
+    focus: Сосредоточьтесь
+    clipboard: Клипборд
+    attempt: Попытка {index}
+    attempt-succeeded: Успешно
+    attempt-failed: Неудача
+  paths:
+    foreground_system_events: События системы в первом плане
+    window_targeted_keyboard: События на клавиатуре отправлены в окно
+    ax_focus: Фокус на доступности
+  disturbances:
+    none: Никаких
+    temporary: Временная
+    foreground: Приведены на фронт
+    unknown: Неизвестно
+  activated: Переход на {app}
+  in-front: Теперь впереди.
+  front-is: '{app} впереди'
+  front-unknown: Не удалось проверить приложение перед
+  permissions:
+    title: Система разрешений
+    names:
+      screen_recording: Запись экрана
+      screen_capture_kit: ScreenCaptureKit
+      accessibility: Доступность
+      automation_to_system_events: Автоматизация (Системные события)
+    states:
+      granted: Позволено
+      missing: Не предоставляется
+      denied: Отказ
+      unknown: Неизвестно
+  media:
+    commands:
+      play: Играть
+      pause: Пауза
+      toggle: Играть или паузу
+      next: Следующая трасса
+      previous: Предыдущая запись
+    verified: Проверено
+    not-verified: Не проверено
+    playing: Играть
+    paused: Пауза
+    nothing: Ничто не играет.
+    liked: Мне понравилось
+    rate: '{rate}× скорость'
+computer-use-read-image-tool-call:
+  description: Описание из модели видения
+  failed: Модель зрения не могла прочитать это изображение.
+tool-call-screenshot:
+  view-full: Просмотр полного размера
+weather-tool-call:
+  feels-like: Чувствую, как
+  humidity: Влажность
+  wind: Ветер
+  precipitation: Возможность дождя
+  high: Высоко
+  low: Низкий
+  conditions:
+    clear-day: Ясно .
+    clear-night: Ясно .
+    partly-cloudy-day: Частично облачная
+    partly-cloudy-night: Частично облачная
+    overcast: Облысы
+    fog: Туман
+    drizzle: Дрейзл
+    sleet: Слют
+    rain: Дождь
+    extreme-rain: Сильный дождь
+    snow: Снег
+    extreme-snow: Сильный снег
+    thunderstorm: Буря грозы

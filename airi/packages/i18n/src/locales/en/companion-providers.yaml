@@ -1,0 +1,79 @@
+web-speech-unavailable-title: Web Speech API Not Available
+web-speech-unavailable-description: This browser does not provide Web Speech API recognition. Choose another transcription provider or use a browser that supports speech recognition.
+web-speech-native-title: Free, Browser-Native Transcription
+web-speech-native-description: Use speech recognition provided by your browser. Processing depends on the browser and its configuration. No API key is required.
+web-speech-no-api-key: No API key required - Web Speech API is free and built into your browser
+recognition-language: Recognition Language
+recognition-language-description: Select the language for speech recognition
+continuous-recognition: Continuous Recognition
+continuous-recognition-description: Keep listening continuously instead of stopping after each phrase
+interim-results-title: Show Interim Results
+interim-results-description: Display partial recognition results in real-time as you speak
+transcription-test: Speech-to-Text Test
+transcription-test-description: Test Web Speech API transcription with your selected audio device. This test will always use Web Speech API regardless of your default hearing provider.
+web-speech-unavailable: Web Speech API is not available in this browser
+audio-input-device: Audio Input Device
+audio-test-device-description: Select the audio input device for testing
+audio-input-placeholder: Select an audio input device
+audio-test-device-required: Please select an audio input device to test
+transcription-error: Transcription Error
+streaming-description: 'Streaming mode: Transcription will appear in real-time as you speak (Web Speech API)'
+transcription-result: Transcription Result
+streaming-transcription: 'Current transcription (streaming):'
+final-transcription: 'Final transcription:'
+transcription-empty: No transcription yet. Click "Start Speech-to-Text Test" and speak into your microphone.
+provider-label: 'Provider:'
+language-label: 'Language:'
+mode-label: 'Mode:'
+streaming-mode: Streaming (real-time)
+continuous-label: 'Continuous:'
+interim-results-label: 'Interim Results:'
+stop-test: Stop Test
+transcribing: Transcribing...
+start-transcription-test: Start Speech-to-Text Test
+mimo-model-description: Select the MiMo TTS model to use for speech generation
+mimo-model-placeholder: Select a MiMo model...
+voice-style-placeholder: Describe the tone, pacing, emotion, and delivery style...
+voice-sample-label: Voice sample (data URI)
+voice-sample-description: Paste a base64 voice sample as a data URI. MiMo supports MP3 and WAV samples up to 10 MB.
+mimo-test-text: Hello! This is a test of the Xiaomi MiMo Speech.
+mimo-behavior-title: MiMo model behavior
+mimo-preset-description: '`mimo-v2.5-tts` uses the preset voice list below.'
+mimo-design-description: '`mimo-v2.5-tts-voicedesign` uses the style prompt to design a new voice and does not accept `audio.voice`.'
+mimo-clone-description: '`mimo-v2.5-tts-voiceclone` uses the pasted voice sample and ignores the preset voice selector.'
+style-optional: Style prompt (optional)
+voice-design-prompt: Voice design prompt
+style-prompt: Style prompt
+clone-style-description: Optional natural-language control sent as the user message. Leave it empty for pure voice cloning.
+design-style-description: Natural-language control sent as the user message. MiMo voice design requires this prompt and does not use a preset voice.
+preset-style-description: Natural-language control sent as the user message. You can leave it empty for a neutral delivery.
+speech-provider-error: Failed to initialize speech provider
+voice-sample-required: Voice clone model requires a base64 audio sample in data URI format.
+resource-name: Resource name
+resource-name-description: Prefix used in https://<prefix>.services.ai.azure.com
+model-id: Model id
+model-id-description: Model ID on Azure AI Foundry
+api-version: API version
+api-version-placeholder: e.g. 2025-04-01-preview
+api-version-description: API version for snapshot of the models
+gemini-model-description: Select the Gemini TTS model to use for speech generation
+gemini-model-placeholder: Select a Gemini model...
+speech-temperature-description: Controls randomness in speech generation. Lower values make speech more predictable, higher values make it more creative.
+gemini-test-text: Hello! This is a test of the Google Gemini Speech.
+access-key-id: Access Key ID
+access-key-secret: Access Key Secret
+app-key: App Key
+app-key-placeholder: Enter AppKey
+abort-session: Abort Session
+partial-result: Partial
+waiting-for-audio: Waiting for audio...
+awaiting-final-result: Awaiting final result...
+streaming: Streaming...
+start-realtime-transcription: Start Realtime Transcription
+aliyun-provider-error: Failed to initialize Aliyun NLS provider.
+aliyun-stream-error: Aliyun NLS returned a non-streaming result unexpectedly.
+onboarding-api-key-description: Enter your API key for the selected provider.
+onboarding-base-url-description: Enter the base URL for the provider's API.
+unknown-error: Unknown error
+azure-api-key: Azure OpenAI API Key
+internal-region: '{region} (internal)'

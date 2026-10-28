@@ -1,0 +1,44 @@
+app:
+  name: WoW コンパニオン
+titles:
+  main: '{name}'
+  settings: WoW コンパニオン · 設定
+  about: '{name}について'
+  editor: WoW コンパニオン · エディター
+  onboarding: '{name}へようこそ'
+  dashboard: WoW コンパニオン · ダッシュボード
+  overlay: WoW コンパニオン · デスクトップオーバーレイ
+chat:
+  ask: '{name}に聞く…'
+errors:
+  screen-capture: 画面キャプチャの取得元がありません。{name}の画面収録権限を確認してください。
+about:
+  version: バージョン
+  branch: ブランチ
+  commit: コミット
+  built-on: ビルド日時
+  about: このアプリについて
+  build-info: アプリのビルド情報
+menu:
+  file: ファイル
+  edit: 編集
+  view: 表示
+  window: ウィンドウ
+  close: ウィンドウを閉じる
+  quit: 終了
+  undo: 元に戻す
+  redo: やり直し
+  cut: 切り取り
+  copy: コピー
+  paste: 貼り付け
+  select-all: すべて選択
+  reload: 再読み込み
+  force-reload: 強制再読み込み
+  devtools: 開発者ツール
+  actual-size: 実際のサイズ
+  zoom-in: 拡大
+  zoom-out: 縮小
+  fullscreen: 全画面表示を切り替え
+  minimize: 最小化
+  zoom: ウィンドウを拡大
+  front: すべてを手前に移動

@@ -3,25 +3,202 @@
   "upstream": "https://github.com/moeru-ai/airi",
   "upstreamCommit": "747d4f68aa42180671de3071fb78d5e6129433bd",
   "airiModifiedTrackedFiles": [
+    "README.md",
+    "apps/stage-pocket/index.html",
     "apps/stage-tamagotchi/electron-builder.config.ts",
     "apps/stage-tamagotchi/resources/icon.png",
+    "apps/stage-tamagotchi/scripts/update-test/generate-manifest.test.ts",
     "apps/stage-tamagotchi/src/main/index.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/computer-use/runtime.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/computer-use/runtime.ts",
+    "apps/stage-tamagotchi/src/main/tray/index.ts",
+    "apps/stage-tamagotchi/src/main/windows/about/index.ts",
+    "apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+    "apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+    "apps/stage-tamagotchi/src/main/windows/desktop-overlay/window-contract.test.ts",
+    "apps/stage-tamagotchi/src/main/windows/desktop-overlay/window-contract.ts",
+    "apps/stage-tamagotchi/src/main/windows/editor/index.ts",
     "apps/stage-tamagotchi/src/main/windows/main/index.ts",
+    "apps/stage-tamagotchi/src/main/windows/onboarding/index.ts",
+    "apps/stage-tamagotchi/src/main/windows/shared/display.test.ts",
+    "apps/stage-tamagotchi/src/main/windows/shared/display.ts",
     "apps/stage-tamagotchi/src/main/windows/shared/window.test.ts",
+    "apps/stage-tamagotchi/src/main/windows/spotlight/index.ts",
+    "apps/stage-tamagotchi/src/main/windows/workspace/index.ts",
     "apps/stage-tamagotchi/src/renderer/App.vue",
+    "apps/stage-tamagotchi/src/renderer/app.browser.test.ts",
+    "apps/stage-tamagotchi/src/renderer/beat-sync.html",
+    "apps/stage-tamagotchi/src/renderer/components/InteractiveArea.vue",
+    "apps/stage-tamagotchi/src/renderer/components/chat-tool-renderers/journal-tool-call-block.vue",
+    "apps/stage-tamagotchi/src/renderer/components/fullscreen/chat-panel.vue",
+    "apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-microphone.browser.test.ts",
+    "apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-notifications.browser.test.ts",
     "apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-overflow.browser.test.ts",
     "apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/index.vue",
+    "apps/stage-tamagotchi/src/renderer/components/stage-islands/resource-status-island/loading-modules.vue",
+    "apps/stage-tamagotchi/src/renderer/composables/use-screen-ambient-light.ts",
+    "apps/stage-tamagotchi/src/renderer/index.html",
+    "apps/stage-tamagotchi/src/renderer/main.ts",
+    "apps/stage-tamagotchi/src/renderer/pages/about.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/caption.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/chat-floating.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/chat.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/dashboard/index.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/desktop-overlay.vue",
     "apps/stage-tamagotchi/src/renderer/pages/index.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/notice/fade-on-hover.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/onboarding.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/settings/account/index.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/spotlight.vue",
+    "apps/stage-tamagotchi/src/renderer/stores/tools/builtin/computer-use.ts",
+    "apps/stage-tamagotchi/src/renderer/widgets/artistry/components/Comfy.vue",
+    "apps/stage-tamagotchi/src/renderer/widgets/extension-ui/components/extension-ui-host.vue",
+    "apps/stage-tamagotchi/src/renderer/widgets/map/components/Map.vue",
+    "apps/stage-tamagotchi/src/renderer/widgets/weather/components/Weather.vue",
     "apps/stage-tamagotchi/vitest.config.ts",
+    "apps/stage-web/index.html",
+    "packages/i18n/glossary/terms.yaml",
+    "packages/i18n/package.json",
+    "packages/i18n/src/index.ts",
+    "packages/i18n/src/locales/en/base.yaml",
     "packages/i18n/src/locales/en/index.ts",
+    "packages/i18n/src/locales/en/server/auth.yaml",
+    "packages/i18n/src/locales/en/settings.yaml",
+    "packages/i18n/src/locales/en/stage.yaml",
+    "packages/i18n/src/locales/en/tamagotchi/settings.yaml",
     "packages/i18n/src/locales/en/tamagotchi/stage.yaml",
+    "packages/i18n/src/locales/es/base.yaml",
+    "packages/i18n/src/locales/es/index.ts",
+    "packages/i18n/src/locales/es/server/auth.yaml",
+    "packages/i18n/src/locales/es/settings.yaml",
+    "packages/i18n/src/locales/es/stage.yaml",
+    "packages/i18n/src/locales/es/tamagotchi/settings.yaml",
+    "packages/i18n/src/locales/es/tamagotchi/stage.yaml",
+    "packages/i18n/src/locales/fr/base.yaml",
+    "packages/i18n/src/locales/fr/index.ts",
+    "packages/i18n/src/locales/fr/server/auth.yaml",
+    "packages/i18n/src/locales/fr/settings.yaml",
+    "packages/i18n/src/locales/fr/stage.yaml",
+    "packages/i18n/src/locales/fr/tamagotchi/settings.yaml",
+    "packages/i18n/src/locales/fr/tamagotchi/stage.yaml",
+    "packages/i18n/src/locales/index.ts",
+    "packages/i18n/src/locales/ja/base.yaml",
+    "packages/i18n/src/locales/ja/index.ts",
+    "packages/i18n/src/locales/ja/server/auth.yaml",
+    "packages/i18n/src/locales/ja/settings.yaml",
+    "packages/i18n/src/locales/ja/stage.yaml",
+    "packages/i18n/src/locales/ja/tamagotchi/settings.yaml",
+    "packages/i18n/src/locales/ja/tamagotchi/stage.yaml",
+    "packages/i18n/src/locales/ko/base.yaml",
+    "packages/i18n/src/locales/ko/index.ts",
+    "packages/i18n/src/locales/ko/server/auth.yaml",
+    "packages/i18n/src/locales/ko/settings.yaml",
+    "packages/i18n/src/locales/ko/stage.yaml",
+    "packages/i18n/src/locales/ko/tamagotchi/settings.yaml",
+    "packages/i18n/src/locales/ko/tamagotchi/stage.yaml",
+    "packages/i18n/src/locales/ru/base.yaml",
+    "packages/i18n/src/locales/ru/index.ts",
+    "packages/i18n/src/locales/ru/server/auth.yaml",
+    "packages/i18n/src/locales/ru/settings.yaml",
+    "packages/i18n/src/locales/ru/stage.yaml",
+    "packages/i18n/src/locales/ru/tamagotchi/settings.yaml",
+    "packages/i18n/src/locales/ru/tamagotchi/stage.yaml",
+    "packages/i18n/src/locales/th/base.yaml",
+    "packages/i18n/src/locales/th/index.ts",
+    "packages/i18n/src/locales/th/server/auth.yaml",
+    "packages/i18n/src/locales/th/settings.yaml",
+    "packages/i18n/src/locales/th/stage.yaml",
+    "packages/i18n/src/locales/th/tamagotchi/settings.yaml",
+    "packages/i18n/src/locales/th/tamagotchi/stage.yaml",
+    "packages/i18n/src/locales/vi/base.yaml",
+    "packages/i18n/src/locales/vi/index.ts",
+    "packages/i18n/src/locales/vi/server/auth.yaml",
+    "packages/i18n/src/locales/vi/settings.yaml",
+    "packages/i18n/src/locales/vi/stage.yaml",
+    "packages/i18n/src/locales/vi/tamagotchi/settings.yaml",
+    "packages/i18n/src/locales/vi/tamagotchi/stage.yaml",
+    "packages/i18n/src/locales/zh-Hans/base.yaml",
     "packages/i18n/src/locales/zh-Hans/index.ts",
+    "packages/i18n/src/locales/zh-Hans/server/auth.yaml",
+    "packages/i18n/src/locales/zh-Hans/settings.yaml",
+    "packages/i18n/src/locales/zh-Hans/stage.yaml",
+    "packages/i18n/src/locales/zh-Hans/tamagotchi/settings.yaml",
     "packages/i18n/src/locales/zh-Hans/tamagotchi/stage.yaml",
+    "packages/i18n/src/locales/zh-Hant/base.yaml",
+    "packages/i18n/src/locales/zh-Hant/index.ts",
+    "packages/i18n/src/locales/zh-Hant/server/auth.yaml",
+    "packages/i18n/src/locales/zh-Hant/settings.yaml",
+    "packages/i18n/src/locales/zh-Hant/stage.yaml",
+    "packages/i18n/src/locales/zh-Hant/tamagotchi/settings.yaml",
+    "packages/i18n/src/locales/zh-Hant/tamagotchi/stage.yaml",
+    "packages/i18n/src/startup-fallback.ts",
+    "packages/i18n/tsdown.config.ts",
+    "packages/i18n/vitest.config.ts",
+    "packages/stage-layouts/src/components/Backgrounds/default/transparent-preview.vue",
+    "packages/stage-layouts/src/components/Layouts/HeaderLink.vue",
+    "packages/stage-layouts/src/components/Layouts/InteractiveArea/Actions/About.vue",
+    "packages/stage-layouts/src/components/Widgets/ChatActionButtons.vue",
+    "packages/stage-pages/src/pages/settings/modules/beat-sync.vue",
+    "packages/stage-pages/src/pages/settings/modules/hearing/transcriber.vue",
+    "packages/stage-pages/src/pages/settings/modules/speech.vue",
+    "packages/stage-pages/src/pages/settings/providers/chat/azure-ai-foundry.vue",
+    "packages/stage-pages/src/pages/settings/providers/speech/google-gemini-audio-speech.vue",
+    "packages/stage-pages/src/pages/settings/providers/speech/mimo-audio-speech.vue",
+    "packages/stage-pages/src/pages/settings/providers/transcription/aliyun-nls-transcription.vue",
+    "packages/stage-pages/src/pages/settings/providers/transcription/browser-web-speech-api.vue",
+    "packages/stage-pages/src/pages/settings/providers/vision/azure-ai-foundry.vue",
+    "packages/stage-pages/src/pages/v2/index.vue",
+    "packages/stage-pages/src/pages/v2/settings/index.vue",
+    "packages/stage-pages/src/pages/v2/settings/providers.vue",
+    "packages/stage-shared/README.md",
+    "packages/stage-shared/package.json",
+    "packages/stage-ui/src/components/auth/SignInPanel.vue",
+    "packages/stage-ui/src/components/misc/steppers/steppers.vue",
+    "packages/stage-ui/src/components/scenarios/about/about-content.vue",
+    "packages/stage-ui/src/components/scenarios/chat/JournalPreviewModal.vue",
+    "packages/stage-ui/src/components/scenarios/dialogs/about.vue",
+    "packages/stage-ui/src/components/scenarios/dialogs/background-picker/background-picker-dialog.vue",
+    "packages/stage-ui/src/components/scenarios/dialogs/background-picker/background-picker.vue",
+    "packages/stage-ui/src/components/scenarios/dialogs/model-selector/model-selector-dialog.vue",
+    "packages/stage-ui/src/components/scenarios/dialogs/model-selector/model-selector.vue",
+    "packages/stage-ui/src/components/scenarios/dialogs/model-selector/tachieReportModal.vue",
+    "packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding-dialog.vue",
+    "packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding.browser.test.ts",
+    "packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding.vue",
+    "packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-provider-configuration.vue",
+    "packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-welcome.browser.test.ts",
+    "packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-welcome.vue",
+    "packages/stage-ui/src/components/scenarios/dialogs/validation-details/provider-validation-details-dialog.vue",
+    "packages/stage-ui/src/components/scenarios/providers/provider-basic-settings.vue",
+    "packages/stage-ui/src/components/scenarios/providers/provider-download-model.vue",
+    "packages/stage-ui/src/components/scenarios/providers/speech-playground-openai-compatible.vue",
+    "packages/stage-ui/src/components/scenarios/settings/ModelCacheManager.vue",
+    "packages/stage-ui/src/components/scenarios/settings/model-settings/godot.vue",
+    "packages/stage-ui/src/components/scenarios/settings/model-settings/live2d.vue",
+    "packages/stage-ui/src/components/scenarios/settings/model-settings/mmd.vue",
+    "packages/stage-ui/src/components/scenarios/settings/model-settings/vrm.vue",
     "packages/stage-ui/src/components/scenes/Stage.vue",
+    "packages/stage-ui/src/features/devtools/motion/live2d/components/keyframe-editor.vue",
     "packages/stage-ui/src/stores/chat.contract.test.ts",
-    "packages/stage-ui/src/stores/chat.ts"
+    "packages/stage-ui/src/stores/chat.ts",
+    "packages/stage-ui/src/stores/journal-preview.ts",
+    "packages/stage-ui/src/stores/onboarding.ts",
+    "packages/stage-ui/src/stores/providers/provider.test.ts",
+    "packages/stage-ui/src/stores/providers/provider.ts",
+    "packages/stage-ui/vitest.config.ts",
+    "uno.config.ts"
   ],
   "airiAddedFiles": [
+    "apps/stage-tamagotchi/src/main/libs/electron/application-menu.test.ts",
+    "apps/stage-tamagotchi/src/main/libs/electron/application-menu.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-addons-catalog.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-addons-catalog.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-addons-install.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-addons-install.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-addons-settings.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-addons-settings.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-addons.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-addons.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-client.test.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-client.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-comparisons.test.ts",
@@ -38,17 +215,41 @@
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-runtime.test.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion-runtime.ts",
     "apps/stage-tamagotchi/src/main/services/airi/wow-companion.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-launcher-runtime.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-launcher-runtime.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-launcher-windows.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-launcher-windows.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-launcher.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-screen-assist-runtime.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-screen-assist-runtime.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-screen-assist-windows.test.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-screen-assist-windows.ts",
+    "apps/stage-tamagotchi/src/main/services/airi/wow-screen-assist.ts",
+    "apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-wow-launcher.vue",
     "apps/stage-tamagotchi/src/renderer/components/stage-islands/speech-caption-bubble.browser.test.ts",
     "apps/stage-tamagotchi/src/renderer/components/stage-islands/speech-caption-bubble.vue",
+    "apps/stage-tamagotchi/src/renderer/components/wow-addons-center.vue",
+    "apps/stage-tamagotchi/src/renderer/components/wow-addons-settings.vue",
     "apps/stage-tamagotchi/src/renderer/components/wow-companion-equipment-comparison.vue",
     "apps/stage-tamagotchi/src/renderer/components/wow-companion-equipment-swaps.vue",
     "apps/stage-tamagotchi/src/renderer/components/wow-companion-equipment.vue",
     "apps/stage-tamagotchi/src/renderer/components/wow-companion-level-history.vue",
     "apps/stage-tamagotchi/src/renderer/components/wow-companion-loadout.vue",
     "apps/stage-tamagotchi/src/renderer/components/wow-companion-settings.vue",
+    "apps/stage-tamagotchi/src/renderer/components/wow-launcher-settings.vue",
+    "apps/stage-tamagotchi/src/renderer/components/wow-screen-assist-settings.vue",
+    "apps/stage-tamagotchi/src/renderer/local-routes.browser.test.ts",
+    "apps/stage-tamagotchi/src/renderer/local-routes.ts",
+    "apps/stage-tamagotchi/src/renderer/pages/settings/wow-addons-settings.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/settings/wow-addons.browser.test.ts",
+    "apps/stage-tamagotchi/src/renderer/pages/settings/wow-addons.vue",
     "apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion-forever.vue",
     "apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion.browser.test.ts",
     "apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/settings/wow-launcher.browser.test.ts",
+    "apps/stage-tamagotchi/src/renderer/pages/settings/wow-launcher.vue",
+    "apps/stage-tamagotchi/src/renderer/pages/settings/wow-screen-assist.browser.test.ts",
+    "apps/stage-tamagotchi/src/renderer/pages/settings/wow-screen-assist.vue",
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment-context.ts",
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment-prompt.test.ts",
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment-prompt.ts",
@@ -63,7 +264,18 @@
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion-policy.test.ts",
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion-policy.ts",
     "apps/stage-tamagotchi/src/renderer/stores/wow-companion.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-launcher.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist-controller.test.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist-controller.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist-policy.test.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist-policy.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist-settings.ts",
+    "apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist.ts",
+    "apps/stage-tamagotchi/src/shared/eventa/wow-addons.ts",
     "apps/stage-tamagotchi/src/shared/eventa/wow-companion.ts",
+    "apps/stage-tamagotchi/src/shared/eventa/wow-launcher.ts",
+    "apps/stage-tamagotchi/src/shared/eventa/wow-screen-assist.ts",
+    "apps/stage-tamagotchi/src/shared/wow-addons.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-comparison.test-helper.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-equipment-comparisons.test.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-equipment-comparisons.ts",
@@ -72,6 +284,8 @@
     "apps/stage-tamagotchi/src/shared/wow-companion-equipment-offer.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-equipment-swaps.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-equipment.ts",
+    "apps/stage-tamagotchi/src/shared/wow-companion-errors.test.ts",
+    "apps/stage-tamagotchi/src/shared/wow-companion-errors.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-gold.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-http.test.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-level-history.ts",
@@ -79,20 +293,168 @@
     "apps/stage-tamagotchi/src/shared/wow-companion-loadout.test.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion-loadout.ts",
     "apps/stage-tamagotchi/src/shared/wow-companion.ts",
+    "apps/stage-tamagotchi/src/shared/wow-launcher.ts",
+    "apps/stage-tamagotchi/src/shared/wow-screen-assist.ts",
+    "apps/stage-tamagotchi/vitest.launcher.config.ts",
+    "apps/stage-tamagotchi/vitest.screen-assist.config.ts",
+    "docs/ai/adr/wow-addons-curseforge.md",
     "docs/ai/adr/wow-companion-compact-grid.md",
     "docs/ai/adr/wow-companion-current-loadout.md",
     "docs/ai/adr/wow-companion-expanded-menu-width.md",
     "docs/ai/adr/wow-companion-fast-equipment-offers.md",
+    "docs/ai/adr/wow-companion-internationalization.md",
+    "docs/ai/adr/wow-companion-knowledge.md",
+    "docs/ai/adr/wow-companion-launcher.md",
     "docs/ai/adr/wow-companion-player-address.md",
     "docs/ai/adr/wow-companion-proactive-speech.md",
+    "docs/ai/adr/wow-companion-product-brand.md",
     "docs/ai/adr/wow-companion-product-name.md",
     "docs/ai/adr/wow-companion-stable-profile.md",
     "docs/ai/adr/wow-companion-window-icon.md",
     "docs/ai/adr/wow-companion.md",
+    "docs/ai/adr/wow-screen-assist.md",
+    "packages/i18n/src/index.test.ts",
+    "packages/i18n/src/locales/en/companion-controls.yaml",
+    "packages/i18n/src/locales/en/companion-errors.yaml",
+    "packages/i18n/src/locales/en/companion-extra.yaml",
+    "packages/i18n/src/locales/en/companion-providers.yaml",
+    "packages/i18n/src/locales/en/companion-speech.yaml",
+    "packages/i18n/src/locales/en/companion-ui.yaml",
+    "packages/i18n/src/locales/en/wow-addons.yaml",
     "packages/i18n/src/locales/en/wow-companion.yaml",
+    "packages/i18n/src/locales/es/companion-controls.yaml",
+    "packages/i18n/src/locales/es/companion-errors.yaml",
+    "packages/i18n/src/locales/es/companion-extra.yaml",
+    "packages/i18n/src/locales/es/companion-providers.yaml",
+    "packages/i18n/src/locales/es/companion-speech.yaml",
+    "packages/i18n/src/locales/es/companion-ui.yaml",
+    "packages/i18n/src/locales/es/wow-addons.yaml",
+    "packages/i18n/src/locales/es/wow-companion.yaml",
+    "packages/i18n/src/locales/fr/companion-controls.yaml",
+    "packages/i18n/src/locales/fr/companion-errors.yaml",
+    "packages/i18n/src/locales/fr/companion-extra.yaml",
+    "packages/i18n/src/locales/fr/companion-providers.yaml",
+    "packages/i18n/src/locales/fr/companion-speech.yaml",
+    "packages/i18n/src/locales/fr/companion-ui.yaml",
+    "packages/i18n/src/locales/fr/wow-addons.yaml",
+    "packages/i18n/src/locales/fr/wow-companion.yaml",
+    "packages/i18n/src/locales/it/base.yaml",
+    "packages/i18n/src/locales/it/companion-controls.yaml",
+    "packages/i18n/src/locales/it/companion-errors.yaml",
+    "packages/i18n/src/locales/it/companion-extra.yaml",
+    "packages/i18n/src/locales/it/companion-providers.yaml",
+    "packages/i18n/src/locales/it/companion-speech.yaml",
+    "packages/i18n/src/locales/it/companion-ui.yaml",
+    "packages/i18n/src/locales/it/index.ts",
+    "packages/i18n/src/locales/it/server/auth.yaml",
+    "packages/i18n/src/locales/it/server/index.ts",
+    "packages/i18n/src/locales/it/settings.yaml",
+    "packages/i18n/src/locales/it/stage.yaml",
+    "packages/i18n/src/locales/it/tamagotchi/electron/index.ts",
+    "packages/i18n/src/locales/it/tamagotchi/electron/tray.yaml",
+    "packages/i18n/src/locales/it/tamagotchi/index.ts",
+    "packages/i18n/src/locales/it/tamagotchi/settings.yaml",
+    "packages/i18n/src/locales/it/tamagotchi/stage.yaml",
+    "packages/i18n/src/locales/it/wow-addons.yaml",
+    "packages/i18n/src/locales/it/wow-companion.yaml",
+    "packages/i18n/src/locales/ja/companion-controls.yaml",
+    "packages/i18n/src/locales/ja/companion-errors.yaml",
+    "packages/i18n/src/locales/ja/companion-extra.yaml",
+    "packages/i18n/src/locales/ja/companion-providers.yaml",
+    "packages/i18n/src/locales/ja/companion-speech.yaml",
+    "packages/i18n/src/locales/ja/companion-ui.yaml",
+    "packages/i18n/src/locales/ja/wow-addons.yaml",
+    "packages/i18n/src/locales/ja/wow-companion.yaml",
+    "packages/i18n/src/locales/ko/companion-controls.yaml",
+    "packages/i18n/src/locales/ko/companion-errors.yaml",
+    "packages/i18n/src/locales/ko/companion-extra.yaml",
+    "packages/i18n/src/locales/ko/companion-providers.yaml",
+    "packages/i18n/src/locales/ko/companion-speech.yaml",
+    "packages/i18n/src/locales/ko/companion-ui.yaml",
+    "packages/i18n/src/locales/ko/wow-addons.yaml",
+    "packages/i18n/src/locales/ko/wow-companion.yaml",
+    "packages/i18n/src/locales/pt/base.yaml",
+    "packages/i18n/src/locales/pt/companion-controls.yaml",
+    "packages/i18n/src/locales/pt/companion-errors.yaml",
+    "packages/i18n/src/locales/pt/companion-extra.yaml",
+    "packages/i18n/src/locales/pt/companion-providers.yaml",
+    "packages/i18n/src/locales/pt/companion-speech.yaml",
+    "packages/i18n/src/locales/pt/companion-ui.yaml",
+    "packages/i18n/src/locales/pt/index.ts",
+    "packages/i18n/src/locales/pt/server/auth.yaml",
+    "packages/i18n/src/locales/pt/server/index.ts",
+    "packages/i18n/src/locales/pt/settings.yaml",
+    "packages/i18n/src/locales/pt/stage.yaml",
+    "packages/i18n/src/locales/pt/tamagotchi/electron/index.ts",
+    "packages/i18n/src/locales/pt/tamagotchi/electron/tray.yaml",
+    "packages/i18n/src/locales/pt/tamagotchi/index.ts",
+    "packages/i18n/src/locales/pt/tamagotchi/settings.yaml",
+    "packages/i18n/src/locales/pt/tamagotchi/stage.yaml",
+    "packages/i18n/src/locales/pt/wow-addons.yaml",
+    "packages/i18n/src/locales/pt/wow-companion.yaml",
+    "packages/i18n/src/locales/ru/companion-controls.yaml",
+    "packages/i18n/src/locales/ru/companion-errors.yaml",
+    "packages/i18n/src/locales/ru/companion-extra.yaml",
+    "packages/i18n/src/locales/ru/companion-providers.yaml",
+    "packages/i18n/src/locales/ru/companion-speech.yaml",
+    "packages/i18n/src/locales/ru/companion-ui.yaml",
+    "packages/i18n/src/locales/ru/wow-addons.yaml",
+    "packages/i18n/src/locales/ru/wow-companion.yaml",
+    "packages/i18n/src/locales/th/companion-controls.yaml",
+    "packages/i18n/src/locales/th/companion-errors.yaml",
+    "packages/i18n/src/locales/th/companion-extra.yaml",
+    "packages/i18n/src/locales/th/companion-providers.yaml",
+    "packages/i18n/src/locales/th/companion-speech.yaml",
+    "packages/i18n/src/locales/th/companion-ui.yaml",
+    "packages/i18n/src/locales/th/wow-addons.yaml",
+    "packages/i18n/src/locales/th/wow-companion.yaml",
+    "packages/i18n/src/locales/vi/companion-controls.yaml",
+    "packages/i18n/src/locales/vi/companion-errors.yaml",
+    "packages/i18n/src/locales/vi/companion-extra.yaml",
+    "packages/i18n/src/locales/vi/companion-providers.yaml",
+    "packages/i18n/src/locales/vi/companion-speech.yaml",
+    "packages/i18n/src/locales/vi/companion-ui.yaml",
+    "packages/i18n/src/locales/vi/wow-addons.yaml",
+    "packages/i18n/src/locales/vi/wow-companion.yaml",
+    "packages/i18n/src/locales/zh-Hans/companion-controls.yaml",
+    "packages/i18n/src/locales/zh-Hans/companion-errors.yaml",
+    "packages/i18n/src/locales/zh-Hans/companion-extra.yaml",
+    "packages/i18n/src/locales/zh-Hans/companion-providers.yaml",
+    "packages/i18n/src/locales/zh-Hans/companion-speech.yaml",
+    "packages/i18n/src/locales/zh-Hans/companion-ui.yaml",
+    "packages/i18n/src/locales/zh-Hans/wow-addons.yaml",
     "packages/i18n/src/locales/zh-Hans/wow-companion.yaml",
+    "packages/i18n/src/locales/zh-Hant/companion-controls.yaml",
+    "packages/i18n/src/locales/zh-Hant/companion-errors.yaml",
+    "packages/i18n/src/locales/zh-Hant/companion-extra.yaml",
+    "packages/i18n/src/locales/zh-Hant/companion-providers.yaml",
+    "packages/i18n/src/locales/zh-Hant/companion-speech.yaml",
+    "packages/i18n/src/locales/zh-Hant/companion-ui.yaml",
+    "packages/i18n/src/locales/zh-Hant/wow-addons.yaml",
+    "packages/i18n/src/locales/zh-Hant/wow-companion.yaml",
+    "packages/i18n/src/startup-fallback.test.ts",
+    "packages/i18n/tests/catalog.test.ts",
+    "packages/stage-layouts/src/assets/wow-companion.png",
+    "packages/stage-shared/src/wow-knowledge/README.md",
+    "packages/stage-shared/src/wow-knowledge/catalog.ts",
+    "packages/stage-shared/src/wow-knowledge/data/classic/general.json",
+    "packages/stage-shared/src/wow-knowledge/data/classic/locales/zh-CN.json",
+    "packages/stage-shared/src/wow-knowledge/data/forever/general.json",
+    "packages/stage-shared/src/wow-knowledge/data/retail/general.json",
+    "packages/stage-shared/src/wow-knowledge/data/retail/locales/zh-CN.json",
+    "packages/stage-shared/src/wow-knowledge/data/shared/general.json",
+    "packages/stage-shared/src/wow-knowledge/data/shared/locales/en.json",
+    "packages/stage-shared/src/wow-knowledge/data/shared/locales/zh-CN.json",
+    "packages/stage-shared/src/wow-knowledge/index.test.ts",
+    "packages/stage-shared/src/wow-knowledge/index.ts",
+    "packages/stage-shared/src/wow-knowledge/schema.ts",
+    "packages/stage-ui/src/constants/wow-companion-product.ts",
     "packages/stage-ui/src/libs/speech/playback-caption.test.ts",
-    "packages/stage-ui/src/libs/speech/playback-caption.ts"
+    "packages/stage-ui/src/libs/speech/playback-caption.ts",
+    "packages/stage-ui/src/stores/chat/request-context.test.ts",
+    "packages/stage-ui/src/stores/chat/request-context.ts",
+    "packages/stage-ui/src/stores/chat/wow-knowledge-context.test.ts",
+    "packages/stage-ui/src/stores/chat/wow-knowledge-context.ts"
   ],
   "excludedEnvironmentFiles": [
     "airi/integrations/discord-bot/.env",
@@ -122,8 +484,8 @@
       "sha256": "55c58630a124479588419b243f27c21479244345c584c66af95e6e79f612e5dc"
     },
     "README.md": {
-      "bytes": 9961,
-      "sha256": "ef298a7d513f74b5241f105bb4dd5a61115e34544e2ded6aef1fc17b2f49a78d"
+      "bytes": 11672,
+      "sha256": "fde863e8a340c4a1e2556cb28d2b15e60efa87d357c9fd5e4ce5e2ec1de81b6f"
     },
     "WOWAddons/Install-WoWCompanion.ps1": {
       "bytes": 1568,
@@ -134,8 +496,8 @@
       "sha256": "42cacffded69e6a63f14576d51f177f9a06ae58915e4a798b0167ec860b2337a"
     },
     "WOWAddons/Start-WoWCompanion.ps1": {
-      "bytes": 4347,
-      "sha256": "aead33d36e7d1a8c3d8d97bd2a78911fd5e3e78137726d8146cbd59b963128f9"
+      "bytes": 4481,
+      "sha256": "9396b16b3f07f78e14f5c6bf36ca3d48e4c0d0cf7e7ba1711bf64c57800ed9ab"
     },
     "WOWAddons/WoWCompanion-2.0.0-source.zip": {
       "bytes": 116702,
@@ -153,6 +515,10 @@
       "bytes": 732374,
       "sha256": "5ae1d7f29ff8e0a3242c5b617f9818180e2f4e3da64fd30ac5b9e80d3dfe8286"
     },
+    "WOWAddons/WoWCompanion-2.16.0-source.zip": {
+      "bytes": 2249465,
+      "sha256": "6d30343ceae32d1c915db9f2bea9beb52ed1f064f9fb5ac1cdcd0c0c2bf6411f"
+    },
     "WOWAddons/WoWCompanion-2.2.0-source.zip": {
       "bytes": 160491,
       "sha256": "073e56c4872344330898ccf203faf57506bbbb7ce14b9dbd2e792f1bff48908d"
@@ -162,16 +528,16 @@
       "sha256": "9c56d6dc01b6f8786b67be39ffbfbb1d0c66de72be3bf3c35659aca212b128ed"
     },
     "WOWAddons/WoWCompanion-PROTOCOL.md": {
-      "bytes": 32698,
-      "sha256": "6bef4d85a97340ba1311ed725ef06f865be0013598f511df166bf4c046da5f13"
+      "bytes": 35151,
+      "sha256": "f607e85bda72ce84d37baf57e682c37c01ef56ebe557f53fdf5d66f0a41b2067"
     },
     "WOWAddons/WoWCompanionBridge/.gitignore": {
       "bytes": 155,
       "sha256": "831d3c37702149166e3050ebe820f5454489fa7e11fa3a7dbca4a3e6fe2f4fd7"
     },
     "WOWAddons/WoWCompanionBridge/README.md": {
-      "bytes": 27444,
-      "sha256": "f74271defbce80513ed7169e56379584a618fc6832c0c6bd33c1e2338bc64628"
+      "bytes": 28934,
+      "sha256": "459b10eeb9d8ea1e36931a7cb516b313e72a82025d8b54852fc85122056d31dd"
     },
     "WOWAddons/WoWCompanionBridge/capture.py": {
       "bytes": 4223,
@@ -182,36 +548,40 @@
       "sha256": "f423bef4982b408bd6568e65c8a202eedc326db9ae9d0040f8416b73e93228ad"
     },
     "WOWAddons/WoWCompanionBridge/index.html": {
-      "bytes": 9796,
-      "sha256": "c0b5354ea342fa0e9c3b0a79d0b9a00c179e64f6c1dec7b4a6dc8884fb329f49"
+      "bytes": 9850,
+      "sha256": "223b184c4eea09b824480c5d7d78fd2c3bd124d61e6aab74ba872ce32f168195"
     },
     "WOWAddons/WoWCompanionBridge/protocol.py": {
-      "bytes": 25243,
-      "sha256": "13848b9964d58ed4dfb07e60ca95800055c497e2974cb482f701b390c238fe7f"
+      "bytes": 26114,
+      "sha256": "0ab2a6e1034cfbd795fb3da2a4152c8f3cacf6ca83e377ef0c725873feeb74af"
     },
     "WOWAddons/WoWCompanionBridge/server.py": {
       "bytes": 12831,
-      "sha256": "8a36e2636256569647cde8440342a20c3e1e03aa03dcf9da8e119ae6ea4061b9"
+      "sha256": "71859e0f7287c4a4ac477cb3cd5bc7180342d9b92df69ef4572d8fcf3f02f913"
     },
     "WOWAddons/WoWCompanionBridge/start.ps1": {
       "bytes": 2240,
       "sha256": "baa59b0563eed74e00fede197af461e2d90bef88075b80cbe28691d6c41fde39"
     },
     "WOWAddons/WoWCompanionBridge/state.py": {
-      "bytes": 30789,
-      "sha256": "941af55d8b946a3b772c2a01acdc1c8b6b27a059d2edc14fcb3ee7c610e6bf6a"
+      "bytes": 31168,
+      "sha256": "0d3fca1f23ea6d80efe50a438709fbdf5a95f6c2c75ac0289be38552fa2d101f"
     },
     "WOWAddons/WoWCompanionBridge/stop.ps1": {
       "bytes": 1044,
       "sha256": "c948df779bbc4c179588a0e3ff23623b9730d19ac543a539924c2cbf324a9e33"
     },
     "WOWAddons/WoWCompanionBridge/test_bridge.py": {
-      "bytes": 18807,
-      "sha256": "6f2c6a96b56dff1293806498aef844d128f303819cfe20f9b9c83e5e01f3611e"
+      "bytes": 18911,
+      "sha256": "ea466119505e1e6d3af105f801fef985d6c2c6c9d83e2dc29685ab25779a9e48"
+    },
+    "WOWAddons/WoWCompanionBridge/test_coordinates.py": {
+      "bytes": 7595,
+      "sha256": "1cab4d524aaec7d5abc60ded08da8c88379cdb67f0f089e35c3b29c07032332e"
     },
     "WOWAddons/WoWCompanionBridge/test_cross_language.py": {
-      "bytes": 3594,
-      "sha256": "d3b05467a5e2f0322dfe53d2a0f2815e6de4052b314f764b50c18fcba88452a9"
+      "bytes": 6838,
+      "sha256": "7b3b3c4f4507dabe61fbb57fbee67aa0796a5331bf0ef38f644e3d017a3b0dac"
     },
     "WOWAddons/WoWCompanionBridge/test_equipment.py": {
       "bytes": 15477,
@@ -242,8 +612,8 @@
       "sha256": "7c915e8178dae893e104f746881c4530e5326872781409c7d42c26d29952e130"
     },
     "WOWAddons/WoWCompanionBridge/test_profiles.py": {
-      "bytes": 6713,
-      "sha256": "6679d68f50d252cc5fdfa7db590d258bceec9ccade72533818ca9fdf9d075ce7"
+      "bytes": 6793,
+      "sha256": "56896dfc12ba0326bd505fbcd610d0cae2733afea8c08410d7f774f0cc8b669e"
     },
     "WOWAddons/WoWForeverCompanion-1.3.0.zip": {
       "bytes": 33614,
@@ -253,49 +623,57 @@
       "bytes": 47288,
       "sha256": "a3c82e97518fd2df3e8060449429d87526e4b08b2cb3f79b4b445d0583f66562"
     },
+    "WOWAddons/WoWForeverCompanion-1.9.0.zip": {
+      "bytes": 71207,
+      "sha256": "d7754ce7aeabb300a8cdef8ece8d9280cf8dc7d86b608fdcda2dcad0ab06620b"
+    },
     "WOWAddons/WoWForeverCompanion/ConfirmEquip.lua": {
-      "bytes": 24858,
-      "sha256": "6752f38cd88b3d65b3a85aa2d23274c985cc52b47430183235ce3dcfdec35405"
+      "bytes": 25027,
+      "sha256": "ca7af455f4b26e4d9e86df29c351526b965c6f1d2df11a2bf9aeb8a712738716"
     },
     "WOWAddons/WoWForeverCompanion/Equipment.lua": {
-      "bytes": 21202,
-      "sha256": "0470dc6a4c065bf3cd66b9a32a055aa7c1d60d574a29352be94d88d8c98ffa72"
+      "bytes": 21260,
+      "sha256": "3f39df58c7f2d523601fa9a4d7da367df17b4eb852c968e3bec7becca79abf5d"
     },
     "WOWAddons/WoWForeverCompanion/EquipmentCompare.lua": {
-      "bytes": 16995,
-      "sha256": "23864cad7a51a8bfde60926e6ca54fc5487ab1ebb2d94130ef4dd6d4e9aa11a5"
+      "bytes": 18793,
+      "sha256": "b629d81c4334e8a392e9fc58f00b0a25a9d1dc6fa30d30f78e8440d4af260a3c"
+    },
+    "WOWAddons/WoWForeverCompanion/Localization.lua": {
+      "bytes": 96909,
+      "sha256": "4e7ec1143a45c8ddeb483fbf91e3016572ebe6166ac84f2a17156beea3a0cff1"
     },
     "WOWAddons/WoWForeverCompanion/Money.lua": {
-      "bytes": 3082,
-      "sha256": "538cff9cf448a65c0019403e8625f4fa6a74f5774b4cdf41075b42c88aac80b6"
+      "bytes": 3138,
+      "sha256": "e964a9241ccb1a1ada95ffc7858a3dc06288bbed867615434894f981cfc42a7b"
     },
     "WOWAddons/WoWForeverCompanion/Protocol.lua": {
-      "bytes": 5587,
-      "sha256": "41fce2ddd6f0e4bb7d02d1d186594eff5d9148fac5a3757bd8393cf1e73c61f8"
+      "bytes": 6241,
+      "sha256": "bcc276e699cd3c3a78a67d20d17195ed15cf42ff5724fae950c39d1a4a803892"
     },
     "WOWAddons/WoWForeverCompanion/README.md": {
-      "bytes": 28633,
-      "sha256": "468ef6832e3b2acf340a38cc9099727d7fa4b9dee9e893f7e49859769a1955ea"
+      "bytes": 30125,
+      "sha256": "5e30facd877531b4e1566cd210c6282d5d606d99fabad656dad8fe1c96345654"
     },
     "WOWAddons/WoWForeverCompanion/Telemetry.lua": {
       "bytes": 3722,
       "sha256": "6fd764a080394cdceb94bb41bc8bc81c4693822e5cad46e57a405a4acfa6f6d9"
     },
     "WOWAddons/WoWForeverCompanion/Transfer.lua": {
-      "bytes": 23207,
-      "sha256": "46b2110d95cb91f1ff2d17770d684e3638fc37452909c560c16fa15b61d380b6"
+      "bytes": 23262,
+      "sha256": "7980158e5688bf6cabad929a977eca173fd3f1ddfa99fc94c14caca04a573320"
     },
     "WOWAddons/WoWForeverCompanion/WoWForeverCompanion.lua": {
-      "bytes": 13148,
-      "sha256": "dd4fb11d8cc6be5eabc1ab67f9c6086dc2cdb9aa06c9387810523f41eac47f72"
+      "bytes": 14260,
+      "sha256": "965faf4ff1a72d591d9f8019b3ed247f654efc1a7d2d149ae7f0daa56349e057"
     },
     "WOWAddons/WoWForeverCompanion/WoWForeverCompanion.toc": {
-      "bytes": 659,
-      "sha256": "e0f6ab87479c9fc31270681bdb248ae71cc35d00f97ac822fea4b1625ba07f38"
+      "bytes": 1854,
+      "sha256": "61059f162c7f2cf1f6633d312afe555b1a1baa839101b90013afc52d51cef2f1"
     },
     "WOWAddons/WoWForeverCompanion/WoWForeverCompanion_Camelot.toc": {
-      "bytes": 659,
-      "sha256": "e0f6ab87479c9fc31270681bdb248ae71cc35d00f97ac822fea4b1625ba07f38"
+      "bytes": 1854,
+      "sha256": "61059f162c7f2cf1f6633d312afe555b1a1baa839101b90013afc52d51cef2f1"
     },
     "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-comparison-001.bin": {
       "bytes": 512,
@@ -353,6 +731,14 @@
       "bytes": 194,
       "sha256": "e81b769c3e627761bd7c24d0641b01be8439723aad280e1ada04f180b958d29f"
     },
+    "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-position.bin": {
+      "bytes": 512,
+      "sha256": "8e78b241c86685f9a6a2decebe5c3574ffd605a0f2f8c66f63177bd686e7bb1b"
+    },
+    "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-position.json": {
+      "bytes": 497,
+      "sha256": "ef1e5307f1119353910f133b7b1fb16d20e6c3b96dbfb01129cd86e1bd181d52"
+    },
     "WOWAddons/WoWForeverCompanion/tests/fixtures/lua-swap.bin": {
       "bytes": 512,
       "sha256": "e1b9ee426ed983faf0b85ea84ad6ed3513d929459162fd47e5515ba38572d080"
@@ -370,8 +756,8 @@
       "sha256": "aa604b4e18da5994bb9fc6ba778750e89d6a5705c40737ba86d3272253c0c069"
     },
     "WOWAddons/WoWForeverCompanion/tests/test_addon.py": {
-      "bytes": 35753,
-      "sha256": "a276e2f739f9f00f3cdaac21bb82a79a10d81b711a4f118b15b470d7da039efa"
+      "bytes": 35899,
+      "sha256": "47d159f6291c03924a30defbffea0f9d79c4da51def46fe23ee6243acfdcdd2c"
     },
     "WOWAddons/WoWForeverCompanion/tests/test_confirm_equip.py": {
       "bytes": 40732,
@@ -388,6 +774,10 @@
     "WOWAddons/WoWForeverCompanion/tests/test_loadout.py": {
       "bytes": 19451,
       "sha256": "49ef0e8655df058f544524d348e69bfcc655ca9c7792785c28ff04097e288fc4"
+    },
+    "WOWAddons/WoWForeverCompanion/tests/test_position.py": {
+      "bytes": 8532,
+      "sha256": "bc0fd556f9ec1cccb48b28a943b6333d33180415e0e013f0823724ab49259150"
     },
     "WOWAddons/WoWIntelAPI-1.0.0.zip": {
       "bytes": 15442,
@@ -437,49 +827,57 @@
       "bytes": 47858,
       "sha256": "ccda59a9fb4795ff7ff01ad4ee00c3c40784ae6cf3566652aac34f5a640c3d12"
     },
+    "WOWAddons/WoWMapCompanion-2.12.0.zip": {
+      "bytes": 71263,
+      "sha256": "8101d9bf21cbe517df21b5a980b0a3428363a3ffa68812f6878b9efcb152ee82"
+    },
     "WOWAddons/WoWMapCompanion-2.6.0.zip": {
       "bytes": 33785,
       "sha256": "8de14b0f55da26ceb097777135f5e1913f5b37d95e5b7534469d25ef55618127"
     },
     "WOWAddons/WoWMapCompanion/ConfirmEquip.lua": {
-      "bytes": 24858,
-      "sha256": "6752f38cd88b3d65b3a85aa2d23274c985cc52b47430183235ce3dcfdec35405"
+      "bytes": 25027,
+      "sha256": "ca7af455f4b26e4d9e86df29c351526b965c6f1d2df11a2bf9aeb8a712738716"
     },
     "WOWAddons/WoWMapCompanion/Equipment.lua": {
-      "bytes": 21202,
-      "sha256": "0470dc6a4c065bf3cd66b9a32a055aa7c1d60d574a29352be94d88d8c98ffa72"
+      "bytes": 21260,
+      "sha256": "3f39df58c7f2d523601fa9a4d7da367df17b4eb852c968e3bec7becca79abf5d"
     },
     "WOWAddons/WoWMapCompanion/EquipmentCompare.lua": {
-      "bytes": 16995,
-      "sha256": "23864cad7a51a8bfde60926e6ca54fc5487ab1ebb2d94130ef4dd6d4e9aa11a5"
+      "bytes": 18793,
+      "sha256": "b629d81c4334e8a392e9fc58f00b0a25a9d1dc6fa30d30f78e8440d4af260a3c"
+    },
+    "WOWAddons/WoWMapCompanion/Localization.lua": {
+      "bytes": 96909,
+      "sha256": "4e7ec1143a45c8ddeb483fbf91e3016572ebe6166ac84f2a17156beea3a0cff1"
     },
     "WOWAddons/WoWMapCompanion/Money.lua": {
-      "bytes": 3009,
-      "sha256": "830743ca7ca0b34a7a60c4b2c955ccd7952ec359482bd75ed5e7fc8deadcc03e"
+      "bytes": 3064,
+      "sha256": "5724781dcfccf71959af94806b2b08af8617180effdb53caf3e517f703763b50"
     },
     "WOWAddons/WoWMapCompanion/Protocol.lua": {
-      "bytes": 5456,
-      "sha256": "f2fd3f9ce7e6cf84d8555e86eed847b1e5adfa4b006a123eef53bfc8127e6189"
+      "bytes": 6098,
+      "sha256": "c6ab2d730c20ebeb31ddd58723f139a0de55ef6ffb3b27204a9015ba6ca5068c"
     },
     "WOWAddons/WoWMapCompanion/README.md": {
-      "bytes": 33378,
-      "sha256": "d536d640a99b5674238280cf05282bd17fe4820bc96a0862bf56d5cf2545ac3d"
+      "bytes": 34984,
+      "sha256": "9f629b6fb8f6a6b8d4d5132afab87964819311c64a3c8f3abae01301f0279ab8"
     },
     "WOWAddons/WoWMapCompanion/Telemetry.lua": {
       "bytes": 3631,
       "sha256": "92cc380cef1d5e33db52fd1a034a699ab0b44886dca2e3ad9af97a650d5a282e"
     },
     "WOWAddons/WoWMapCompanion/Transfer.lua": {
-      "bytes": 23207,
-      "sha256": "46b2110d95cb91f1ff2d17770d684e3638fc37452909c560c16fa15b61d380b6"
+      "bytes": 23262,
+      "sha256": "7980158e5688bf6cabad929a977eca173fd3f1ddfa99fc94c14caca04a573320"
     },
     "WOWAddons/WoWMapCompanion/WoWMapCompanion.lua": {
-      "bytes": 11601,
-      "sha256": "998353157d7f1a8db5fed630c71d64ee0530535ea2c4bd19ad942065b117d47a"
+      "bytes": 12695,
+      "sha256": "101e368458819f9d9ef838408d3f7b81d7fce0e43bc9fc1c43aa25ef374a31e3"
     },
     "WOWAddons/WoWMapCompanion/WoWMapCompanion.toc": {
-      "bytes": 616,
-      "sha256": "843da3c0016976ceff1468763f6c5e6c505a6f9d50f9ce3a8e3970108f1169f7"
+      "bytes": 1824,
+      "sha256": "b4725e5e1b723bdeece8228954bee1242dee9e613a33783f977ffc5b2669cd43"
     },
     "WOWAddons/WoWMapCompanion/tests/.gitignore": {
       "bytes": 20,
@@ -533,6 +931,14 @@
       "bytes": 194,
       "sha256": "e81b769c3e627761bd7c24d0641b01be8439723aad280e1ada04f180b958d29f"
     },
+    "WOWAddons/WoWMapCompanion/tests/fixtures/lua-position.bin": {
+      "bytes": 512,
+      "sha256": "495b50c74431f7c1853403b20ddf231c778b21ee73f113d825234984a7c0c40a"
+    },
+    "WOWAddons/WoWMapCompanion/tests/fixtures/lua-position.json": {
+      "bytes": 497,
+      "sha256": "ef1e5307f1119353910f133b7b1fb16d20e6c3b96dbfb01129cd86e1bd181d52"
+    },
     "WOWAddons/WoWMapCompanion/tests/fixtures/lua-retail-gear.bin": {
       "bytes": 4096,
       "sha256": "dacd183f6e8f96f39748e0152a1f6d08632b0479be58986248cbe8ca73f5eaf8"
@@ -558,8 +964,8 @@
       "sha256": "a9bd0a6e7efaec62c871430f7d62f5634e9e144527984df52304548e7dc4784a"
     },
     "WOWAddons/WoWMapCompanion/tests/test_addon.py": {
-      "bytes": 31843,
-      "sha256": "749dafd7546d155a8a532547383f4a5932f9ff48098923e9da8908ab46c4670f"
+      "bytes": 31969,
+      "sha256": "f76e55d2fd3dbb75036916d77087dc4e1cbce0050ec22a49fd9e92d7a6b046f8"
     },
     "WOWAddons/WoWMapCompanion/tests/test_confirm_equip.py": {
       "bytes": 40732,
@@ -570,16 +976,24 @@
       "sha256": "5759b44300fc7b225bed37ea75358bb3f3fc4f8a208170435fa84cb4bc36356b"
     },
     "WOWAddons/WoWMapCompanion/tests/test_equipment_compare.py": {
-      "bytes": 37465,
-      "sha256": "42c5444d178d14e356ff462150e3b0f74bbb52387a49c958dc163d2dbb4950b5"
+      "bytes": 38591,
+      "sha256": "f8566143f13af1da784743913bd7a966cfdf6a6f7e0a7fd0565fca620f850ee3"
     },
     "WOWAddons/WoWMapCompanion/tests/test_loadout.py": {
       "bytes": 19451,
       "sha256": "49ef0e8655df058f544524d348e69bfcc655ca9c7792785c28ff04097e288fc4"
     },
+    "WOWAddons/WoWMapCompanion/tests/test_localization.py": {
+      "bytes": 3878,
+      "sha256": "4f0105fcbe427b67d64975d59d4967dc750982dc721e7c20d81e9fd6b585d6c9"
+    },
+    "WOWAddons/WoWMapCompanion/tests/test_position.py": {
+      "bytes": 8532,
+      "sha256": "bc0fd556f9ec1cccb48b28a943b6333d33180415e0e013f0823724ab49259150"
+    },
     "WOWAddons/build-delivery.py": {
-      "bytes": 4835,
-      "sha256": "043a3307b236f715de872355f2e95703e1883d193c8ab6e765bfafb292673050"
+      "bytes": 6145,
+      "sha256": "97d50c14c692d8591492b9ac6242010723aed62314034fa7cd4f4d360ce741ed"
     },
     "WOWAddons/output/pdf/魔兽世界经典角色语录与陪伴人设.pdf": {
       "bytes": 593120,
@@ -597,17 +1011,25 @@
       "bytes": 39855,
       "sha256": "b4e87f2b11bc89270e9869d43afac0eeda1e3d0408c1a0f2d8717e0209a11895"
     },
+    "WOWAddons/verification-2026-10-29.md": {
+      "bytes": 5411,
+      "sha256": "11acc6c1bd0e9e317c6a381ef00c509edc267038de074046d1f686a1a9184048"
+    },
     "WOWAddons/wow-ai-companion.html": {
       "bytes": 31634,
       "sha256": "f3f6bc4b9978aa88b7b54427cbf3bf4b4e1bc1b0382e44c5d49e86a118bc0724"
     },
     "WOWAddons/wow-companion-implementation.html": {
-      "bytes": 153059,
-      "sha256": "db1dca41132df070320f06360d667761d8ca7f68bfee7956785d1ffc371f053c"
+      "bytes": 173158,
+      "sha256": "816ece2187004d335a8300c0202b9574297d9d65659478c19c51b37420783e41"
     },
     "WOWAddons/魔兽陪伴精灵-使用说明.html": {
-      "bytes": 15332,
-      "sha256": "f17a00747b0e7d4cbd95e02e910b53c849032242fe323bc7bcb53614310ed927"
+      "bytes": 18765,
+      "sha256": "fb20383777bfa12d3bc1e8b5ca32a4e6345805f71f8ea4050fd15cce593d3039"
+    },
+    "WOWAddons/魔兽陪伴精灵-功能现状与扩展规划.md": {
+      "bytes": 23346,
+      "sha256": "8a86fbe78661add5df0f90201261edfdfcd60bc0c68258ff0f6a3e8dccc7672d"
     },
     "airi/.agents/skills/agent-browser-electron/SKILL.md": {
       "bytes": 12464,
@@ -2794,8 +3216,8 @@
       "sha256": "11535fc9a00d682ce6a3e32f4c2c2e8a210426f2003439e690e17540c1c04fb0"
     },
     "airi/README.md": {
-      "bytes": 27759,
-      "sha256": "0bb6589ff5ff6f7adcd868f575b5ceb6782862bbfac28084ec70fe3b3d87266a"
+      "bytes": 1201,
+      "sha256": "6180a0b5c02a166d074bbc3f7392fe0bd1dd2086a809c0fecb827ff970eebb6c"
     },
     "airi/alint.config.ts": {
       "bytes": 311,
@@ -3166,8 +3588,8 @@
       "sha256": "a5fea0b8d54ff5d4d69e6a41bbefe1ce7dc67e82b25e4ae9aa137a3fe62e1398"
     },
     "airi/apps/stage-pocket/index.html": {
-      "bytes": 6290,
-      "sha256": "d115a22215e6068c9e38038bf336cd923bbc231aaaff151403f098676c8f862b"
+      "bytes": 7205,
+      "sha256": "b1b174853260d9e60c7d1d019ba53e4b1f533137f60e772b3217efab7295c47f"
     },
     "airi/apps/stage-pocket/ios/.gitignore": {
       "bytes": 251,
@@ -4842,8 +5264,8 @@
       "sha256": "0255c8f9a37a277adff7a91c2fda503012c4e67c8aa079555f997d423f880c23"
     },
     "airi/apps/stage-tamagotchi/electron-builder.config.ts": {
-      "bytes": 12839,
-      "sha256": "82048213e545b08cbe5798143765814e12a4b3267ec9e1bd3609e8cb98a1c798"
+      "bytes": 12836,
+      "sha256": "9ab9262c7ad8b40afac8f3c961b2fcd11134179d53625ecddb37093456d04f4d"
     },
     "airi/apps/stage-tamagotchi/electron.vite.config.ts": {
       "bytes": 11867,
@@ -4934,8 +5356,8 @@
       "sha256": "6f2dbfb106ba0542802e4bffefc104896f0cb0e5d46d6d5ed875e671b917fb23"
     },
     "airi/apps/stage-tamagotchi/scripts/update-test/generate-manifest.test.ts": {
-      "bytes": 3248,
-      "sha256": "ff2ca92f079f4704f8eda66d10fc5779d9762840271648505270b10fa313049b"
+      "bytes": 3290,
+      "sha256": "e93e441884b739954ce76ec46abadb1045eb3214a5b3c285e42c4266dd150370"
     },
     "airi/apps/stage-tamagotchi/scripts/update-test/generate-manifest.ts": {
       "bytes": 4519,
@@ -4998,8 +5420,8 @@
       "sha256": "76a42904fc704cd27b5506c4c43d814447d284f5c1d86df99878ae40c61b3d2d"
     },
     "airi/apps/stage-tamagotchi/src/main/index.ts": {
-      "bytes": 26039,
-      "sha256": "a0873ac7a428fc19d787f868bc1aace185bae1a706ddd57c68df5cbb7b1faa95"
+      "bytes": 27242,
+      "sha256": "ac3a972c0867ea1caa38977fd5f15f98a0a68aec94c1774d46196c276b53bc2b"
     },
     "airi/apps/stage-tamagotchi/src/main/libs/bootkit/lifecycle.test.ts": {
       "bytes": 1111,
@@ -5008,6 +5430,14 @@
     "airi/apps/stage-tamagotchi/src/main/libs/bootkit/lifecycle.ts": {
       "bytes": 1213,
       "sha256": "a27d977d06b1869a26650d55c03eb1dc359f73fdc4ebbc0ec603e422a0035de0"
+    },
+    "airi/apps/stage-tamagotchi/src/main/libs/electron/application-menu.test.ts": {
+      "bytes": 1242,
+      "sha256": "d9cb59a02964e0ff725a7671f77fa211fdb316a8939a61a48efa4fa52f519e66"
+    },
+    "airi/apps/stage-tamagotchi/src/main/libs/electron/application-menu.ts": {
+      "bytes": 1316,
+      "sha256": "23ba792df0c9d1c44c933692ef1c6b52190bea66a39116db6bd90e64c7c28109"
     },
     "airi/apps/stage-tamagotchi/src/main/libs/electron/devtools.test.ts": {
       "bytes": 1278,
@@ -5086,12 +5516,12 @@
       "sha256": "8f27144399d3e05416a62311a8f2b96be9ab4916b4197ca2f14e368d83023754"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/computer-use/runtime.test.ts": {
-      "bytes": 3521,
-      "sha256": "7e86deab3686e542609a0c9ff7d38e511aec6e6981209c2e6f08ba6a960cfc8c"
+      "bytes": 3633,
+      "sha256": "4a06a4225aba775b7b1e01050d12e8f2bbfbc9187ae5466750f29c358f8ae562"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/computer-use/runtime.ts": {
-      "bytes": 6464,
-      "sha256": "81a9489bcee3f625179309f52fa2d6e974bed189298b1364e8511c86a2eb2919"
+      "bytes": 6471,
+      "sha256": "0f561957b03eec2fac248d7c3cbb734a57587db75b73d1158de078c1086834e9"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/godot-stage/index.ts": {
       "bytes": 29986,
@@ -5373,69 +5803,141 @@
       "bytes": 7198,
       "sha256": "72bbcd5a655b6445571d9e749bbaf4805ef512c546f39ef0145486a0e21a0040"
     },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-addons-catalog.test.ts": {
+      "bytes": 18451,
+      "sha256": "ec83f6ff9b7219f71c2129927279572fb2b0ceab8ddd74e8fd6ae8d15e0de0fc"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-addons-catalog.ts": {
+      "bytes": 17449,
+      "sha256": "0b91028a67c8a29eb9a670f930907c03a693e1608bc781505a95f113656d9b8c"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-addons-install.test.ts": {
+      "bytes": 15600,
+      "sha256": "e61e34ae1dc62cb6abb1ac3fd040b9361d527c2f1a4857152b099f58f126bc90"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-addons-install.ts": {
+      "bytes": 18091,
+      "sha256": "e5d732c488a594a3a3fcb3b262a81dc99da7cd32ccdae681735833c49ad4cb97"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-addons-settings.test.ts": {
+      "bytes": 4509,
+      "sha256": "562443c7edf891736c88601b0548db8e34781749721c1f5f71ea6ecedf534fde"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-addons-settings.ts": {
+      "bytes": 5171,
+      "sha256": "80715a454cf7a78a1fcd150c3c0b74c777e559f5ac29f439bfdc9441408ca146"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-addons.test.ts": {
+      "bytes": 18309,
+      "sha256": "d6e5fde523aa2e366494eef88b4b0731de0efcfa2da7cc14bacf022415297a21"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-addons.ts": {
+      "bytes": 10142,
+      "sha256": "361cd21ff86733af7348daebf277fe4a5a100eb1e4e964417a3a1bba4d246700"
+    },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-client.test.ts": {
-      "bytes": 7118,
-      "sha256": "929b1fb4e772dd5bedb30113324b5c8cd5ec5956e7569603cca8e2e2dd8edfec"
+      "bytes": 7104,
+      "sha256": "f49f1949bb9d5f97d3055dd2405f325bc017c6c5adfe3079b177b960f94820ce"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-client.ts": {
-      "bytes": 3519,
-      "sha256": "13d3ed628774927e29db143d85c459aa58d2ca3a81e7d52efde393a008146994"
+      "bytes": 3621,
+      "sha256": "66243d0590e19d4bbf464b992d34930a9d48bf18d880b6b7f27ce0341b3b6807"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-comparisons.test.ts": {
-      "bytes": 5389,
-      "sha256": "deea8086fae26ce151d7344d1a151002961f9613691880683c1093574c4534d3"
+      "bytes": 5348,
+      "sha256": "547415fcac266feedf8f4207694aec81acd89e67b72f7e220b2f923e26955445"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-comparisons.ts": {
-      "bytes": 6278,
-      "sha256": "3d9a56739d7530d49a0fe31df2156545c93b386d6dcaf5ef6f84cfe5ec9d7350"
+      "bytes": 6216,
+      "sha256": "c4b2530dc8cc7cade782bed544211e938bc5a48af54789edfc9434721dc6d6ad"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-history.test.ts": {
-      "bytes": 12627,
-      "sha256": "a399a30a2d2719e992f3c325facd95ca507f9bddc2f11b9f79715695fe225153"
+      "bytes": 12533,
+      "sha256": "347684f03b44cf5fe232d9fb46f74f66f746fea795ac642bb7e896aa32bcd34e"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-equipment-history.ts": {
-      "bytes": 6216,
-      "sha256": "d54c3f8e035e26163b77b821dc113d3eb5a81a8124a67358737dd30c7ec02f41"
+      "bytes": 6158,
+      "sha256": "36b3501298ae40c094bd184714dde8648a2aa6f09785229b529bebcc7c90f92b"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-gold.test.ts": {
-      "bytes": 11060,
-      "sha256": "42a4efd0daaaa3d8bfc7a882923ed8fc6908ed468d685f11b400be89be0116f0"
+      "bytes": 11021,
+      "sha256": "54b698b2a1afa1e59cefaedeaccee632136425f0d08750420c3f5282e26c74e4"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-gold.ts": {
-      "bytes": 10018,
-      "sha256": "51a0e7cd10086f784c2a754c7c3c02e745b8a4ac47fd5326f10cdfada65ff15e"
+      "bytes": 9974,
+      "sha256": "35685cd2ed70bfb3c69192eb735920f7b0494f17d83cbdcdd473b2749aa44d61"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-level-history.test.ts": {
-      "bytes": 16292,
-      "sha256": "e181f8823f9e2a9209b09a4a8fea0c72410dc4ffe7d458ed5612cc81cabc9591"
+      "bytes": 16221,
+      "sha256": "8a62714ae4de646428ee17fb83d69915b6cd16d10902c37f3052ddf907587392"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-level-history.ts": {
-      "bytes": 12628,
-      "sha256": "a4e73347f1b4f8d6e215215b0bf6925b08648ed52cd39a5378a4bc21f9c6d059"
+      "bytes": 12572,
+      "sha256": "f47ed9bdaab60e3436006b3046329708dd50d7193167d930f8707c6ee66a221c"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-loadouts.test.ts": {
-      "bytes": 5996,
-      "sha256": "1f7508fca16605b8973960b26c7f622d3748950ab8856f8096fd1950b55a009f"
+      "bytes": 5998,
+      "sha256": "e02ff58e8aa39d7b744ffed076497fcd10dfcd66adfd88af8db9727e99170fc6"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-loadouts.ts": {
-      "bytes": 9045,
-      "sha256": "ec4f0ccccf95cfe81ecf56c2c17985372134be6f3ab078f7994033ddf0180c95"
+      "bytes": 9039,
+      "sha256": "9b4dec5a88e0746ed0369c756f534a164300b96a7215f2f49668f77cd3cff8f9"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-profiles.test.ts": {
-      "bytes": 15708,
-      "sha256": "d4f4330cc92e2d8c54addcc3b8d92d294766dbd8369d6c808d411f29fb359762"
+      "bytes": 15665,
+      "sha256": "ee0f4737d315e92d458a5671a48c87dd59e82152fd333a5c53671c242eb6e3dc"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-runtime.test.ts": {
       "bytes": 14979,
-      "sha256": "dcd9ddd9c82a1c78a88217bebb843e3735b281bfd11983b5e54b9f493c1f885e"
+      "sha256": "bf3fe20829ea98d9c993df9b0ef681f590d52f338e0b5a8b93873e747fd114cd"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-runtime.ts": {
-      "bytes": 12797,
-      "sha256": "cb704a41f501cf3b8ff050468fd13e0844eddd516307b48a334a7d17b106c788"
+      "bytes": 12358,
+      "sha256": "7dcd5d579c3302d68dddfd17813ca3860107253b802d1611dbafba95735a9597"
     },
     "airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion.ts": {
-      "bytes": 9002,
-      "sha256": "84daa02a34b59a09b5ca2aa12069dacef4fae786b58cd4cdd0595d1c010e8d48"
+      "bytes": 9009,
+      "sha256": "73d8e7130954cd6f013e0613cfd1d8fd15328cf9c72f55e2c1ccbf0eb6377e23"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-launcher-runtime.test.ts": {
+      "bytes": 9943,
+      "sha256": "4f6035f9246ac357f3cf6768b98a58b7a81ed77def7fe93c30310ea87c4e4cf0"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-launcher-runtime.ts": {
+      "bytes": 5708,
+      "sha256": "f7f6efa137fd93fc30a0b3c3e5805b286515abee2469208a5486b171622170b4"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-launcher-windows.test.ts": {
+      "bytes": 9123,
+      "sha256": "17880d5be010e54787d032ba8b1a45ec39c49d5926d82635cbc8843ba50bc159"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-launcher-windows.ts": {
+      "bytes": 11338,
+      "sha256": "91b481d8000b58663a1084b83628fcb2ca085b4232544ac07699bbdc790708d4"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-launcher.ts": {
+      "bytes": 1568,
+      "sha256": "e645faa409c46c194c26c0ec5a9c83ab4c806e72dd9ea645606c295b0531b785"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-screen-assist-runtime.test.ts": {
+      "bytes": 5838,
+      "sha256": "c3438b86205386aac992ed1b797de582ff63868e7c24c68fa735b76469b40e85"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-screen-assist-runtime.ts": {
+      "bytes": 4427,
+      "sha256": "c70d0a1793d911bb5b782a070401db43d3695b329726cf74d49a00d5d4e90733"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-screen-assist-windows.test.ts": {
+      "bytes": 3493,
+      "sha256": "249fa829b49f1d24e2719d76c840b17448663d8392ce1466b70bd7fa74a745ed"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-screen-assist-windows.ts": {
+      "bytes": 6550,
+      "sha256": "0235d9ccb90d79940a7622ec3cbb36831e1febb4644dd145e72528bf01afa6c0"
+    },
+    "airi/apps/stage-tamagotchi/src/main/services/airi/wow-screen-assist.ts": {
+      "bytes": 805,
+      "sha256": "f9a248d866a7ee5c096cb0661b495d58b829bd34a98ceb1205732a3e67753834"
     },
     "airi/apps/stage-tamagotchi/src/main/services/electron/app.test.ts": {
       "bytes": 1909,
@@ -5534,12 +6036,12 @@
       "sha256": "1578d080db156f1c2b4c5739b630acc5248bb610a86bffe511ab838228d35dfd"
     },
     "airi/apps/stage-tamagotchi/src/main/tray/index.ts": {
-      "bytes": 13299,
-      "sha256": "d39e94c90e6c9cdd7e6f68e5b75a0f6a64306eb2dcc055b4c14774de48523801"
+      "bytes": 13387,
+      "sha256": "3cca4529f52c88d9d402f8548acdafaa7cf5c9827b9d0b6a79f536178bae279d"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/about/index.ts": {
-      "bytes": 1680,
-      "sha256": "5d5a5af402d7dd710f17d14eeab08369338ca9c637dca4fa86ad4b4624f6c08d"
+      "bytes": 1760,
+      "sha256": "442d05811ffc102edf00837f2acf075371267b25b54fe1d2d25eb55d1bfc0a66"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts": {
       "bytes": 1219,
@@ -5582,16 +6084,16 @@
       "sha256": "26b9cca822ef62e8837b46f14f8b70bd2fcdaa383ab931ea0759f6ce0e255fab"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts": {
-      "bytes": 5833,
-      "sha256": "aac02b142ed6e34c9e25afcd3042855d2c8a0379e6a6e761f8ab3f2021033a30"
+      "bytes": 5913,
+      "sha256": "c6156ca6467c691deecf969ba4b8c9d0ac8e79416912f15c08d98686a97e76ef"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts": {
       "bytes": 1882,
       "sha256": "cae5124d2d45f113433b08309d8bfc35f5470805097feadf712c9e78ec03d1ba"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts": {
-      "bytes": 4917,
-      "sha256": "a1e9df1fe68d9a1e11b6b330acc485b2c932baf6eb785da35869217542e46031"
+      "bytes": 5025,
+      "sha256": "e479cac0bd509a05f8aa430d9b7edbe9ed3e825426b0f21a7daceae97d9ae2c6"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/contracts.ts": {
       "bytes": 154,
@@ -5606,20 +6108,20 @@
       "sha256": "ce1ae2a12f42179ed5c1b7b20faa8247be825fc6a5e58452bfd8b6a3c2a96797"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/desktop-overlay/window-contract.test.ts": {
-      "bytes": 2464,
-      "sha256": "c09741eff474174d1b98b8d2815c7c6346996f6f54311f5df0ed4f913f48b560"
+      "bytes": 2901,
+      "sha256": "6be1db82edc94710423ff75c8aafe9419ec87531141b11ab69376525323e9604"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/desktop-overlay/window-contract.ts": {
-      "bytes": 2500,
-      "sha256": "96552e93146de0946118467fc1d34d309281fd69e1149f8662ccbb12b64f4ae9"
+      "bytes": 2527,
+      "sha256": "c47d2827b6426e88cea0cc12e7e10dca8d8ea2f27eec74b2e47b109b8ecaf091"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/devtools/index.ts": {
       "bytes": 2899,
       "sha256": "61d605a6b4402a75a6150a73fcf796f3f7f47faa1853b96d2016b719c4b79bb5"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/editor/index.ts": {
-      "bytes": 2351,
-      "sha256": "55e6b14bc121ea687f3310289afd662eaf7bc91102233d5c730a7608f44ef602"
+      "bytes": 2431,
+      "sha256": "84bcf24c538a6bca18870bcbd5237e1688afd76913beeda0e0de64b390978e1f"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/editor/rpc/index.electron.ts": {
       "bytes": 1022,
@@ -5642,8 +6144,8 @@
       "sha256": "097bfbc7801c65d3a7789a334ceeadc8d2aefb98b364d9416c0a43d420dac369"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/main/index.ts": {
-      "bytes": 20708,
-      "sha256": "88a3b47d76e5bdbdfd9b09ec783e1c77811f2fd5f6614cd28cea0d452107ddeb"
+      "bytes": 20793,
+      "sha256": "1a60563e809424ebf0f56a26a1780bc766c7b2ac09e723fb93430798855b6a1c"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/main/rpc/index.electron.ts": {
       "bytes": 5442,
@@ -5654,8 +6156,8 @@
       "sha256": "7faffc6a54847750de18d4f665001adb02bae7d343adc4293b788f8bd7227f92"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/onboarding/index.ts": {
-      "bytes": 3504,
-      "sha256": "0974b7f6c0bedef5a27ef7b3edfa3846fb8bf175773f5459d6536440901582bd"
+      "bytes": 3584,
+      "sha256": "e66b5d379a47c820504f8fbf9ca6b9fdcd3225834c67c1c666371209bf7d94ac"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/settings/index.ts": {
       "bytes": 4628,
@@ -5682,12 +6184,12 @@
       "sha256": "3a608f82dfa5838e9e3d54fab9e7438e8177500fc4ea1a349fd93c31dfc4d6cc"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/shared/display.test.ts": {
-      "bytes": 9762,
-      "sha256": "319e6ca0cc1cb405785f082eda60eb7e531d441c93d2bbb12e6dfc602da0662b"
+      "bytes": 9776,
+      "sha256": "17435f3f9dbaaf9c61ec47d6ed2e75b1a554241d279674a70af7882d70697523"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/shared/display.ts": {
-      "bytes": 13229,
-      "sha256": "8089445ac124bb001bed2a6ab40ca82c28fadaef34acb39acb00b82b1fb0200c"
+      "bytes": 13236,
+      "sha256": "983e8d41b74af8f6127d3a41f4feefcc48ffd7cc2aa826811fd782e053bc5cec"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/shared/fullscreen.test.ts": {
       "bytes": 2036,
@@ -5718,8 +6220,8 @@
       "sha256": "99e8a23dfb1166e27713145b60de9f1c4b600551f979e4b81d3c59f16d29ea3d"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/spotlight/index.ts": {
-      "bytes": 7797,
-      "sha256": "ab20206d10a3c0ae249e67010c82a022face3cd5f2b364b410e0a8050ded0897"
+      "bytes": 7882,
+      "sha256": "7ddfa113c45823ff11bb2953608a06d6bd8cf654529e876d2f94ce9753adab73"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/widgets/iframe-request-coordinator.ts": {
       "bytes": 4268,
@@ -5742,8 +6244,8 @@
       "sha256": "158bcfb1b24a5ed4c07eac12551294b3d591003fbc71d1d5e4ea6df79e1e22f8"
     },
     "airi/apps/stage-tamagotchi/src/main/windows/workspace/index.ts": {
-      "bytes": 9887,
-      "sha256": "64540ed850863d2fc679eb20dfd1ecac335d99a2f4b2deb3612c004e7dfabb12"
+      "bytes": 9972,
+      "sha256": "5d9fab540aa29442ec35a33fdea09044ea0872e12d3d9cdc03cec8848845176e"
     },
     "airi/apps/stage-tamagotchi/src/preload/beat-sync.ts": {
       "bytes": 47,
@@ -5758,12 +6260,12 @@
       "sha256": "5188f15c63d94928efec0521c89abaaa5ed292a89067c0755243241d10132b84"
     },
     "airi/apps/stage-tamagotchi/src/renderer/App.vue": {
-      "bytes": 19526,
-      "sha256": "c0db43084e7946eb495b2cf4dcef0b989adf49115283b907071cbc1c2b94d234"
+      "bytes": 18490,
+      "sha256": "247345ad86999678794da81eb29e8f4a99fcabf24653758f7fcf83f83da40c2b"
     },
     "airi/apps/stage-tamagotchi/src/renderer/app.browser.test.ts": {
-      "bytes": 16840,
-      "sha256": "73ba75bb12286acb1748f15561eed9a18067e444a88afd1f27aedaa62fb5d922"
+      "bytes": 19484,
+      "sha256": "d928e5bbe26138355bce45339f110d76c59e620a6d2bcd74587500fdf2c3eff7"
     },
     "airi/apps/stage-tamagotchi/src/renderer/assets/videos/tutorial/tutorial-fade-on-hover.dark.mp4": {
       "bytes": 4056552,
@@ -5774,8 +6276,8 @@
       "sha256": "7a8b079be7ce170e433cfb53c7bd361e3d23bc5c20f8a6d0c1ad4f26e697d055"
     },
     "airi/apps/stage-tamagotchi/src/renderer/beat-sync.html": {
-      "bytes": 791,
-      "sha256": "e8b8508b768d89ff3adb040283961e58a0fb33599991888c7860a7b55fe51913"
+      "bytes": 805,
+      "sha256": "d46bced965c9b306d363ae2fbffeee2a3cbed1e5cf9c88402ecfc7023daf148e"
     },
     "airi/apps/stage-tamagotchi/src/renderer/beat-sync.main.ts": {
       "bytes": 1345,
@@ -5806,8 +6308,8 @@
       "sha256": "81c0496b20266b31ad3c79d297f5e0a0e6bb05598c8c2d8e17042c0f8515e543"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/InteractiveArea.vue": {
-      "bytes": 27593,
-      "sha256": "04885fe7ba236241c2114317604f64a5c88c8cf93e70f07d2120b888fb3b5639"
+      "bytes": 27728,
+      "sha256": "bcf775163a51dd5b984df5ea82d35238e4871f9536a71c675c1e4ab0e35b1e94"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/ResizeHandler.vue": {
       "bytes": 1977,
@@ -5930,8 +6432,8 @@
       "sha256": "ef439087a4b530baca5b5b0feb575472e1ac929ba0de4727beae4425f36dec0f"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/chat-tool-renderers/journal-tool-call-block.vue": {
-      "bytes": 6152,
-      "sha256": "73cc914c33104d8cc1a31f8753f7fa77038af8b85c9818bd5e7f7102283c2edb"
+      "bytes": 6357,
+      "sha256": "0c58981e150cd378d5188f95707c865b810065caf64fbcf6fd0a74c777550863"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/chat-tool-renderers/tool-call-screenshot.vue": {
       "bytes": 1332,
@@ -6026,8 +6528,8 @@
       "sha256": "54bd9881d414236030c97756ef35a56ab6991d358ef94c1779b5a49e553d2820"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/fullscreen/chat-panel.vue": {
-      "bytes": 2521,
-      "sha256": "20220f8bf7f8581673f87fc55a7290309507df5f00c6637a71a963e8da98893f"
+      "bytes": 2602,
+      "sha256": "26d5712ac7628ec2915e25ad4b464bc894e58a8776345736d9e4ad3f67292bfc"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/fullscreen/fullscreen-backdrop.vue": {
       "bytes": 262,
@@ -6098,16 +6600,16 @@
       "sha256": "9909863e1bd66b53d46d5c1d5a7427af1515bda386fa625443f352f3dbdf5f4f"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-microphone.browser.test.ts": {
-      "bytes": 6287,
-      "sha256": "7adff9138ff3df7bab8414834e68082e97cab67b72cce6c787c176135ad760b0"
+      "bytes": 6562,
+      "sha256": "6000ae7aae17286a6c9cd183a9a78d0d939ce40786590ffbdfe6e1ca9ca6bae5"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-notifications.browser.test.ts": {
-      "bytes": 7121,
-      "sha256": "59d90c5a4d6e689dcfbfb9752703620a0e9ce3886e3bb6983544568333d376fd"
+      "bytes": 7396,
+      "sha256": "02e74612202bf00a36fe5fed647413ab956d05285f8189fd9fc9b8b875d9d5dc"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-overflow.browser.test.ts": {
-      "bytes": 38808,
-      "sha256": "4c0e7c330bc1602ff5c930f25f6b6e05544f7ceef7a954e03ec935a84cb560df"
+      "bytes": 39079,
+      "sha256": "7e4ecf1f40304d4df52c2e939cbc7dceda5449b44acb01383e35856082c1e260"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-profile-picker.vue": {
       "bytes": 1499,
@@ -6129,9 +6631,13 @@
       "bytes": 1453,
       "sha256": "18c2fe62deb4e6316f33045953e32a0cfe82c16d175386b788f3b7bc7d97f389"
     },
+    "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-wow-launcher.vue": {
+      "bytes": 1763,
+      "sha256": "f005abcc4d33f617fedee6e71c0b8e37d8a886d9d9b255e14288c9689ac4e080"
+    },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/index.vue": {
-      "bytes": 32881,
-      "sha256": "bcd52b57dc016ebda8c28e62d847ae3cb421a47ec60277c2da4a6f2b64352171"
+      "bytes": 34562,
+      "sha256": "1a0acf9d22fe6ed757d90d97bd5c8916c9332abcaad54ad112b0aaf6ee8838c9"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/indicator-mic-volume.vue": {
       "bytes": 3161,
@@ -6158,8 +6664,8 @@
       "sha256": "55fe699bc040ac41a0531cc7a3ca114814c7a89da3823dcf623acee6017a27a8"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/resource-status-island/loading-modules.vue": {
-      "bytes": 2989,
-      "sha256": "354cb66442f96d0942dde81d6f89b3a6b35d26ebd3ec238767254dc7408d1641"
+      "bytes": 3250,
+      "sha256": "68ecc98bb11729019e8f527fadd5bc122a04af51d6af3273ec9d113140b4f7e7"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/stage-islands/resource-status-island/model-asset-progress.vue": {
       "bytes": 2383,
@@ -6181,6 +6687,14 @@
       "bytes": 2326,
       "sha256": "733d9cd3f4742112409c0cb74bb83675b19fe479a73b93ed89862b1414722208"
     },
+    "airi/apps/stage-tamagotchi/src/renderer/components/wow-addons-center.vue": {
+      "bytes": 20278,
+      "sha256": "a5bf0e2adb3fca4878c7b91d5c851391e3666b698d4a3f8b9f7eaed704d979e9"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/components/wow-addons-settings.vue": {
+      "bytes": 8955,
+      "sha256": "b01c4b14e13e0bb2da01977653222b2b097e71d018e7f8b353ca3714c760c50f"
+    },
     "airi/apps/stage-tamagotchi/src/renderer/components/wow-companion-equipment-comparison.vue": {
       "bytes": 5676,
       "sha256": "cb5bff64ae2c17968da67e4bdac74954bf40e33262db9ee284bd911d7be48b6c"
@@ -6190,20 +6704,28 @@
       "sha256": "4bee6f3bf2095c4432fffcabc9a5987d02a0f919c4b0513914b518a58108cb8b"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/wow-companion-equipment.vue": {
-      "bytes": 8781,
-      "sha256": "da8c775f587a45825ba7e99e0fa2c4051a2c32f9f6dd40f3df417206d712baa4"
+      "bytes": 8905,
+      "sha256": "3b2106bc12e9dd020c2e2f030242f06f47186735f9ae52111ac6db1fed4c13f0"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/wow-companion-level-history.vue": {
-      "bytes": 7774,
-      "sha256": "4f297ab47b39dd1875e38f78ee75490077ec023f71f9bdf60b39c5af7b25f54c"
+      "bytes": 7873,
+      "sha256": "b066abaecea52ac424e3ba99e9aa4c50aab6e068aa8aedbfdabeaa248489d424"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/wow-companion-loadout.vue": {
-      "bytes": 6175,
-      "sha256": "ffbe5a2e90d7f1daae36c2e52ac549bda0a7b92ab1f3c61e5589dd505bdb34ff"
+      "bytes": 6299,
+      "sha256": "b69234237c4e15076529db8049d3a4a8c8d87ac0879ee60cb0976fca805c8462"
     },
     "airi/apps/stage-tamagotchi/src/renderer/components/wow-companion-settings.vue": {
-      "bytes": 21282,
-      "sha256": "f3944c4a2b95e6273cd745d84c1b4f7feaf2ba9ebf7ecf9a64ccd763b545bd41"
+      "bytes": 22474,
+      "sha256": "1af12fb05a95ff54d57c7a52c03d2cba5165a3ab680d0f8d4a9068406c537b15"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/components/wow-launcher-settings.vue": {
+      "bytes": 5814,
+      "sha256": "dd2fccccf8412f5ab042656084399ec86621c6ac0097ef7fff1642c9d3a1a9c1"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/components/wow-screen-assist-settings.vue": {
+      "bytes": 2742,
+      "sha256": "c41ec6671b55a5aab5dbdc83328ef9d1758d13fd5abde976b5fd7d95d0737f0e"
     },
     "airi/apps/stage-tamagotchi/src/renderer/composables/icon-animation.ts": {
       "bytes": 859,
@@ -6314,8 +6836,8 @@
       "sha256": "9e7271f080856ea8c24b93e9b6d1ffc54b811a5e4d4f622869973d729aa94f0e"
     },
     "airi/apps/stage-tamagotchi/src/renderer/composables/use-screen-ambient-light.ts": {
-      "bytes": 20902,
-      "sha256": "c99906f88f9b7a7f99e442c003804518a1836db41cb89c185ce7c88dee701d3f"
+      "bytes": 20955,
+      "sha256": "feaa38e40eeb9b2016b65e4434f6cfdf2539361950ad8768a4a30b8ff7b17131"
     },
     "airi/apps/stage-tamagotchi/src/renderer/composables/use-speech-output-voicing.ts": {
       "bytes": 1964,
@@ -6362,8 +6884,8 @@
       "sha256": "84d63bbb7140744de79d0759b2b84a63eb7fdca8890da5ead7f6df292e039ecc"
     },
     "airi/apps/stage-tamagotchi/src/renderer/index.html": {
-      "bytes": 959,
-      "sha256": "62617b219408c1fa71ff7d2e349667edb06d9de496341eddf7f5b0a861db8738"
+      "bytes": 998,
+      "sha256": "b236b0e629b19f810a19c0b8f079d9a8d662e3e572a10d5d9bc9948acc186ef2"
     },
     "airi/apps/stage-tamagotchi/src/renderer/layouts/default.vue": {
       "bytes": 177,
@@ -6377,25 +6899,33 @@
       "bytes": 123,
       "sha256": "d166500934898df99a8441f3756a346733d0a9a31a32f621d6732bafc5506cfb"
     },
+    "airi/apps/stage-tamagotchi/src/renderer/local-routes.browser.test.ts": {
+      "bytes": 2620,
+      "sha256": "5cd1f47f66b9a6193c9b767f9955627a8e30d4b9a4fdeadd323c48d1b90cc53f"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/local-routes.ts": {
+      "bytes": 737,
+      "sha256": "bfa3c3717d84600ec3eb2c823da64805b6422ee129bc33e3d996c7646ce72793"
+    },
     "airi/apps/stage-tamagotchi/src/renderer/main.ts": {
-      "bytes": 3688,
-      "sha256": "b30fd78ba463765c847f3e2745c88635d5b8bdbd8832865bcc6e80006bbfa010"
+      "bytes": 3330,
+      "sha256": "9c7b30cfc830423280489381f471d3f67e99953ee57ef1254484312a310214cc"
     },
     "airi/apps/stage-tamagotchi/src/renderer/modules/i18n.ts": {
       "bytes": 573,
       "sha256": "b0ad448d148d5d49fd569eb6a9ba62c147730313243e71564423e412f1b43f79"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/about.vue": {
-      "bytes": 20827,
-      "sha256": "4f9478ec38c8d2f40ebc02351e3bac494891ea3f65b098a6230d22fccb4e08ec"
+      "bytes": 1974,
+      "sha256": "ff3d687d13cee0bbf61ab4a16e7004dfb187928dd75c3a397ace455c9286a703"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/caption.vue": {
-      "bytes": 5696,
-      "sha256": "291c28f36a75aadbc057a0c3439a7f27470343be3b294f34809379b385d6276a"
+      "bytes": 5847,
+      "sha256": "ec80162e7b5f2a9a8407b5f7f1bc9b0f467d2bf090507192d89d25ad48175155"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/chat-floating.vue": {
-      "bytes": 16619,
-      "sha256": "b9f62353352e1321ebf8c3c08188ed50d27fd4356b8c3a42b6363744d4e55ed2"
+      "bytes": 16639,
+      "sha256": "39d09f72eae3698929fa23d40f42389785c0c83224fcbc2b860403bfdf099cc6"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/chat-page-shell.vue": {
       "bytes": 589,
@@ -6406,12 +6936,12 @@
       "sha256": "0ccfcbb5c15b438e1e97720e33abd334c66bffed59862acb06bf3fb96be6468e"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/chat.vue": {
-      "bytes": 1775,
-      "sha256": "e1eb6fe552382f236ce6dbd0e6df6c86dedd034ad9b9ff9d50e0c2cc6eb4b6a8"
+      "bytes": 1856,
+      "sha256": "758c44b3eaa2467fb877941c1802550511c36de54f73a5d4d1e4213787bdaed8"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/dashboard/index.vue": {
-      "bytes": 59,
-      "sha256": "ec21f8e5155853d7788fe1033fdf9791534a40a548a855e46fdf78236c701926"
+      "bytes": 254,
+      "sha256": "c7b038fac7a0ec003ca0cada3ae62a15a4795db2eb5d98daba3b489b32b9aab9"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/desktop-overlay-coordinates.test.ts": {
       "bytes": 3872,
@@ -6430,8 +6960,8 @@
       "sha256": "4b90b0ac1329ea77b3d40b69b4ea70e2fdc25aa544b14bae3bad82604e3f6dc9"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/desktop-overlay.vue": {
-      "bytes": 13013,
-      "sha256": "1f6169e8281bfdcf536458e9331e487ff729248ce8917e7bb697e19786d6bad5"
+      "bytes": 13165,
+      "sha256": "ea5bf1c4fafe8724bd89f816b9c1ec215566d2345d9699fc83e65e2116530309"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/devtools/global-shortcut.vue": {
       "bytes": 11390,
@@ -6494,28 +7024,28 @@
       "sha256": "f09d2a1cd4cff7099bb53a4b5b8318773ff672e8ab0c1770540bf614b8b7abe6"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/index.vue": {
-      "bytes": 40130,
-      "sha256": "268e99a63a615fc18e45ff5dca904300b43b5da4c722047748db2145fecfd2d2"
+      "bytes": 40267,
+      "sha256": "77456b4ce6630377254d4fdc47c3ae48ad327e4ce6bff6ecf53a54f4f40a7db5"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/inlay/index.vue": {
       "bytes": 204,
       "sha256": "64f18ef2426502d4a1e04bbeb9fee0b45d9e9304e090c20bf57512d88b5fe79c"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/notice/fade-on-hover.vue": {
-      "bytes": 10475,
-      "sha256": "e18d71aef145547c6ca086e24f84ade16c65e282e2095d36772d27602a138572"
+      "bytes": 10595,
+      "sha256": "db3860c9b29c71dd9cb6ef4037b0b0f2094694bf60d23c1e3f0baec8f45b887d"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/notice/index.vue": {
       "bytes": 180,
       "sha256": "a1b27695bb54619b88f5cdffdf44397e734311904d4bebf8fb81788b249f2db1"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/onboarding.vue": {
-      "bytes": 2832,
-      "sha256": "63b6073c944fe011ded050c9fd10576e7b61a7875f281d47a8fa4bc8e51bc68d"
+      "bytes": 1573,
+      "sha256": "4fabb30058f3cd644aa153ca546528965f950e055bfcbe68a47c0dbc3bc0bf78"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/settings/account/index.vue": {
-      "bytes": 1281,
-      "sha256": "05a07ff978101141fc4212238ed45dea9700b801217ac6e26ee0ba2e0c06ee4c"
+      "bytes": 263,
+      "sha256": "76ac84883b035adda4246d574d93f8eedbdc8a8fc98f29f5a28b40ebbc391a3b"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/settings/connection/index.vue": {
       "bytes": 5102,
@@ -6605,21 +7135,49 @@
       "bytes": 4816,
       "sha256": "bdc5bc3849105443f5b4947a2457ca5b29cb76381642aa0c5afbcbe93a081e1a"
     },
+    "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-addons-settings.vue": {
+      "bytes": 316,
+      "sha256": "bf00ccfa049ca9bf7024ae4ef15980706f49ce76087c2bef69de736f0a903990"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-addons.browser.test.ts": {
+      "bytes": 17779,
+      "sha256": "a3450a08753d57f69b4f5286ed37bec61dcca0851530f45bac07a9735b66e069"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-addons.vue": {
+      "bytes": 415,
+      "sha256": "733e310f168c41efddc90511ed7308f62a401273eac3fa1095bbda0e16598b39"
+    },
     "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion-forever.vue": {
       "bytes": 513,
       "sha256": "0fe37ece76f99ab72d3a56de5511016535f376da827360f11317628cd6ddf9d2"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion.browser.test.ts": {
-      "bytes": 91207,
-      "sha256": "287f4cc75b08728e60dfe0ad42d4a7b4c83cda026d26d1952bd4cde76d93bb58"
+      "bytes": 95210,
+      "sha256": "bc11b0264a0cb0fe1288d754301ed3f5f3d54d93a9f08c6f29a278289442d8b7"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-companion.vue": {
       "bytes": 509,
       "sha256": "c9da57f51a4dde304f82bf187d5d18358f765a610bc73c2a5e14d2bd985b87c0"
     },
+    "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-launcher.browser.test.ts": {
+      "bytes": 10436,
+      "sha256": "a237ac730d38f4f305e16fd81b5c24e8d7ce17c3a264c8012b822f8834cc71f2"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-launcher.vue": {
+      "bytes": 451,
+      "sha256": "3646cfcf438d8ff3474b53e471ca740a38c4cfd3af3077976b16d0f018f260d7"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-screen-assist.browser.test.ts": {
+      "bytes": 4369,
+      "sha256": "4dc9e51af63fdb4f2ae52c49c6e62f328837d7127f9ab9233e7d3f2d1b416c10"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/pages/settings/wow-screen-assist.vue": {
+      "bytes": 469,
+      "sha256": "495d8c6e93c536cf8a1bed29158b3ded639a2efee0882f657ac211bf6d70748e"
+    },
     "airi/apps/stage-tamagotchi/src/renderer/pages/spotlight.vue": {
-      "bytes": 4654,
-      "sha256": "b47c763cf2f8dc5275bbfcc70c65e04c55f7af23233194b09975b21f7b32299e"
+      "bytes": 4708,
+      "sha256": "a5e2dca615c0159d7b0d5b108584a22f63a1700739661962b67bcc275b31e835"
     },
     "airi/apps/stage-tamagotchi/src/renderer/pages/widgets.vue": {
       "bytes": 10490,
@@ -6686,8 +7244,8 @@
       "sha256": "6a8c0f6ec03b10c18765a5772336a818be3491d2350ed44fe1fd6eadee7faa7f"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/tools/builtin/computer-use.ts": {
-      "bytes": 3093,
-      "sha256": "33f7c3b3c0c4944ce4a67ee6ddc45beff8bbeb1e9893f2377339bca2d604a201"
+      "bytes": 3107,
+      "sha256": "fac43ce3eda341c60903d16f703ac70ca5f5e5772af207c957c0fe788fba7b23"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/tools/builtin/image-journal.test.ts": {
       "bytes": 2372,
@@ -6778,16 +7336,16 @@
       "sha256": "99e67fae0f6429595bc726870c6d93a44f8e0063d23d787ea3c0db71a31b6316"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment-swaps-context.ts": {
-      "bytes": 1989,
-      "sha256": "21ec4db195fc13f16f3521dfad2a4cd4a7c75652373abe5d1db8a569d5ab4839"
+      "bytes": 2003,
+      "sha256": "64c8cbb6387104d0a8952a161029a7a885cf7b2519ace62b1d7d29a6e61db7b5"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-equipment.test.ts": {
       "bytes": 14492,
       "sha256": "c50af59557be84e91c677897aebee88b333f2f641e8c6c5401494a6fcc590ba2"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-idle.test.ts": {
-      "bytes": 7802,
-      "sha256": "ac3fadd20312028acdba0ddd9d04d352c9b46f319f1accbaa18327bf4e68e910"
+      "bytes": 8534,
+      "sha256": "f7e646e90c5627a78c8e9d6b7cc411c51e9aa69758d8ec1ca69968a68e3cd0fb"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-idle.ts": {
       "bytes": 2726,
@@ -6810,16 +7368,44 @@
       "sha256": "049bbbfbdbc3e79c9c4453f186633246197b4b4af1b45a81f8dd0383cecde49d"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-policy.test.ts": {
-      "bytes": 7943,
-      "sha256": "1b2ef99f55949f60583b862eded5be2910738da6a406068dcc9eefd001a78537"
+      "bytes": 9923,
+      "sha256": "5ff08096e779e05951dc84e5379c432681109cc67937e4494d739431b86517ec"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-policy.ts": {
       "bytes": 2888,
       "sha256": "778a6e7eae760abc2cc9e4b03cc2fe2a39bbaed21066e9692a4d73b59d2e9445"
     },
     "airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion.ts": {
-      "bytes": 24448,
-      "sha256": "c659d9c4dcb28141ec5057172319b998545dbd85bd4a9a49d90a7cdb7fb0861f"
+      "bytes": 25306,
+      "sha256": "f76dc19c7fd02b75374acad7bc32114a24eaefb54399cd01817634f010ee0640"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-launcher.ts": {
+      "bytes": 3306,
+      "sha256": "c6d4894b42549a805faeed5feda1367df5fbb6a7dcf18b52639422d4cce33662"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist-controller.test.ts": {
+      "bytes": 5881,
+      "sha256": "3971c51bea40f07796313657ef25b61c5fc0086eef7e7acd8c3dec1e8826cad6"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist-controller.ts": {
+      "bytes": 5220,
+      "sha256": "90a3ca9ee64c058a0a8c825feeec60a6c5daf4559677ed11bfccac330308e3aa"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist-policy.test.ts": {
+      "bytes": 8052,
+      "sha256": "570c6d34c398f0779572392e0834d605f4461222adfc101d729a8a58621012da"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist-policy.ts": {
+      "bytes": 9521,
+      "sha256": "fe1d7abd433531865ad8a099d5d390130bab32aa987269de8209783f100f6d32"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist-settings.ts": {
+      "bytes": 613,
+      "sha256": "fac510cafae45e6ee3b7d7516e651ede99755a39e9735a16a2642855cd9dbd4a"
+    },
+    "airi/apps/stage-tamagotchi/src/renderer/stores/wow-screen-assist.ts": {
+      "bytes": 3542,
+      "sha256": "f1d1776ec45aa5f2a393806b600029801cee70e4f64e7b99245b15047dbe1046"
     },
     "airi/apps/stage-tamagotchi/src/renderer/styles/main.css": {
       "bytes": 820,
@@ -6870,16 +7456,16 @@
       "sha256": "b9cf21a2023b83ce22d57ea4f5532f440676311144aeeb271f18c86d92298ef8"
     },
     "airi/apps/stage-tamagotchi/src/renderer/widgets/artistry/components/Comfy.vue": {
-      "bytes": 14082,
-      "sha256": "8a7ae0fa0688c1815b09a44935e1433abe528671b4c067ad9fa0b8cf19dedf30"
+      "bytes": 14439,
+      "sha256": "50fdc5c984de8e56265d499cc4ae31baebb45c2a0380cbe8f7539f3bb45de690"
     },
     "airi/apps/stage-tamagotchi/src/renderer/widgets/artistry/index.ts": {
       "bytes": 62,
       "sha256": "c79b43576f41e0ad83aa10234436847265b512d2e48092a126cabfef34570c2e"
     },
     "airi/apps/stage-tamagotchi/src/renderer/widgets/extension-ui/components/extension-ui-host.vue": {
-      "bytes": 9226,
-      "sha256": "04198b25e573f46d7fd8ca344835a6a04f438c6458ee96def522ec066ce930ed"
+      "bytes": 9650,
+      "sha256": "3c15f71a121643a7039ba011f5f6146b54d810aef35a84e9060a9ce98837836b"
     },
     "airi/apps/stage-tamagotchi/src/renderer/widgets/extension-ui/components/iframe-request.test.ts": {
       "bytes": 5288,
@@ -6926,8 +7512,8 @@
       "sha256": "f8eda1357aaadc8d9e0bd9b7c6c8d7a14568a548d546dbd30579fa9de95b338d"
     },
     "airi/apps/stage-tamagotchi/src/renderer/widgets/map/components/Map.vue": {
-      "bytes": 9587,
-      "sha256": "498e023846a432ee26fa5d393108383cfbf372aaf973a234c0f3f35e71856874"
+      "bytes": 9896,
+      "sha256": "0cb1bc05321d9b681d0aedbcfaf15c4e8c274ee48772fdfcbacffd3b4305f538"
     },
     "airi/apps/stage-tamagotchi/src/renderer/widgets/map/index.ts": {
       "bytes": 55,
@@ -6946,8 +7532,8 @@
       "sha256": "c8e7b4919049215c7f0cf84eab927542b39cd78f08013984c4762b43bd5ee78d"
     },
     "airi/apps/stage-tamagotchi/src/renderer/widgets/weather/components/Weather.vue": {
-      "bytes": 10048,
-      "sha256": "46c3cf393baf0a37d761d003059a86d55655f8527dc7feacff3a456509af5a5f"
+      "bytes": 10459,
+      "sha256": "88bf0455879613bdabacf87bd048e56d384747ddea8bcd26639be25030ff3a9c"
     },
     "airi/apps/stage-tamagotchi/src/renderer/widgets/weather/index.ts": {
       "bytes": 63,
@@ -7017,9 +7603,21 @@
       "bytes": 824,
       "sha256": "15d5cfe2281339de5ae5b2cfc4cf285071f68e6f508d1744d45787c3f4fd9870"
     },
+    "airi/apps/stage-tamagotchi/src/shared/eventa/wow-addons.ts": {
+      "bytes": 1396,
+      "sha256": "4e4b6cf44dc3ff2bcb843077295deeaee6187cc66a1526671979f4800425bcf2"
+    },
     "airi/apps/stage-tamagotchi/src/shared/eventa/wow-companion.ts": {
       "bytes": 1006,
       "sha256": "f4361f3195324d388ad6f2a7b1677c1a7c91eb8926d296a198ffa56b98010c63"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/eventa/wow-launcher.ts": {
+      "bytes": 623,
+      "sha256": "797d8b26fb586bf79f40c3721eab2d2865f2b884bce2a2b390aa4ab59baf9a16"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/eventa/wow-screen-assist.ts": {
+      "bytes": 288,
+      "sha256": "3897b19434c772b052bc04971d2d84c4d6f20b8580ea9ae030164ee674222e49"
     },
     "airi/apps/stage-tamagotchi/src/shared/mcp-config.ts": {
       "bytes": 7243,
@@ -7048,6 +7646,10 @@
     "airi/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts": {
       "bytes": 1646,
       "sha256": "4c856ce559dbba704031e87f42ee7df0c0be91c9a8f17360e4fa37fd143a4769"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/wow-addons.ts": {
+      "bytes": 2081,
+      "sha256": "16f36c5d30e02b330d3742ec7dd844e0055604d0cf818e7c36ddd601a40e4700"
     },
     "airi/apps/stage-tamagotchi/src/shared/wow-companion-comparison.test-helper.ts": {
       "bytes": 1123,
@@ -7081,6 +7683,14 @@
       "bytes": 2786,
       "sha256": "3273f9464809511de18cba6f55a4f1d24915f5d022f3ab7c2e2a5f58b044c7fd"
     },
+    "airi/apps/stage-tamagotchi/src/shared/wow-companion-errors.test.ts": {
+      "bytes": 2202,
+      "sha256": "229dcaa60ba083ff417be3d91a084e69d32000a394a16638b0705b20ebc8fb1e"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/wow-companion-errors.ts": {
+      "bytes": 2278,
+      "sha256": "ca55bde7f6459398c1e6c41464a28eaa1a02ea4da9c1b0128d76f3185c61c4f3"
+    },
     "airi/apps/stage-tamagotchi/src/shared/wow-companion-gold.ts": {
       "bytes": 1556,
       "sha256": "62ea25b65887b1389fd9ff2071a537799f0c0b7fd158353143a351ab55e9da58"
@@ -7106,8 +7716,16 @@
       "sha256": "b76adef51bf75297a5f829a41ec6c8003b4c912a798bd6e18cf395149ede6846"
     },
     "airi/apps/stage-tamagotchi/src/shared/wow-companion.ts": {
-      "bytes": 7204,
-      "sha256": "e49343e4a2ecca9b670f9f136003f9213116fcce269772ac279288d4fda84b58"
+      "bytes": 8326,
+      "sha256": "1bb03baf9aa9d7db3d33e6d3df64a99d3d3469e81c48c38e9b0f8f6f25ecae64"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/wow-launcher.ts": {
+      "bytes": 1838,
+      "sha256": "096245c01a1495860d52cca86da53147bb58b2ea2a2c62dafaf743c118d27a65"
+    },
+    "airi/apps/stage-tamagotchi/src/shared/wow-screen-assist.ts": {
+      "bytes": 1181,
+      "sha256": "8e1b499d4c4bf16128fe14c592ee6baf5835b53f84fdc7f5b6420ddffc65b707"
     },
     "airi/apps/stage-tamagotchi/src/test/setup-live2d.browser.ts": {
       "bytes": 536,
@@ -7129,6 +7747,14 @@
       "bytes": 3035,
       "sha256": "1db7cc95a0740be0d36aed111a5c7f1c357c6854f2c26c093c19353d074b31b7"
     },
+    "airi/apps/stage-tamagotchi/vitest.launcher.config.ts": {
+      "bytes": 2214,
+      "sha256": "b71aa069ef9c310973bfe893d1c9842ce625c2debc6d0ec2f5a5aae912583427"
+    },
+    "airi/apps/stage-tamagotchi/vitest.screen-assist.config.ts": {
+      "bytes": 1231,
+      "sha256": "667a7b6029c7a9e3f933603a0564167d7ed5aef3b3fb725f8d8a126aee9cea3d"
+    },
     "airi/apps/stage-web/.dockerignore": {
       "bytes": 20,
       "sha256": "8dddd5bb92e96a3ba01bbf50fcbaebe72b7816695816f212e21d29022c6c11b7"
@@ -7142,8 +7768,8 @@
       "sha256": "a1e0482ecefa22fa6a5af99750eebe71c89ebc10a432a3b0241eb5bc86aaac2c"
     },
     "airi/apps/stage-web/index.html": {
-      "bytes": 6326,
-      "sha256": "eee4171c5cb168f5dea5df5b07b0371347565429813d414a3184c467e7b60313"
+      "bytes": 7241,
+      "sha256": "f25ca7f8122b34ad1ae083984c89a7150625bf6ad926e616b9c5d0fda625d626"
     },
     "airi/apps/stage-web/netlify.toml": {
       "bytes": 614,
@@ -7773,6 +8399,10 @@
       "bytes": 18043,
       "sha256": "c48bc77a4a50719c0340bd8b25b14fd55c98628c5c29b9bd49048321a8986436"
     },
+    "airi/docs/ai/adr/wow-addons-curseforge.md": {
+      "bytes": 2522,
+      "sha256": "49aee01a8ea0e66222f5f2676a87265257b35f6b6c7e06042bb1360962a944c3"
+    },
     "airi/docs/ai/adr/wow-companion-compact-grid.md": {
       "bytes": 1341,
       "sha256": "a9fe85b87b58204a1a80d202bcbe24d8ce0f1220f19bc3bb7301ab804c0eff78"
@@ -7789,6 +8419,18 @@
       "bytes": 3552,
       "sha256": "ca84a6511f4df0c60096178132b93f2306574e15dfbb6c41f408e3849941b12d"
     },
+    "airi/docs/ai/adr/wow-companion-internationalization.md": {
+      "bytes": 2026,
+      "sha256": "c75184a82793f50464d809234f0df16f9b8c4e6dd81365c333d4e2af35a4b176"
+    },
+    "airi/docs/ai/adr/wow-companion-knowledge.md": {
+      "bytes": 4162,
+      "sha256": "a1161201908e34e9b1634773d0d79c0ea15e283969ae5a8b5e430c6dd7b68beb"
+    },
+    "airi/docs/ai/adr/wow-companion-launcher.md": {
+      "bytes": 10146,
+      "sha256": "546ece8ef43b0585e9d1b3039447ff28477af387106fc9f8ced9dc569e9f1226"
+    },
     "airi/docs/ai/adr/wow-companion-player-address.md": {
       "bytes": 2381,
       "sha256": "26996db400f36bc6bd407ca4e76dfa6c081c14d99316ceab3bc4a08c54ec2492"
@@ -7796,6 +8438,10 @@
     "airi/docs/ai/adr/wow-companion-proactive-speech.md": {
       "bytes": 3184,
       "sha256": "27876204f4a6694bc98e6df265fab238252560eab8cbad3adab6ee5b8645a418"
+    },
+    "airi/docs/ai/adr/wow-companion-product-brand.md": {
+      "bytes": 1112,
+      "sha256": "7c14c1d5b031e92cf4095326955ba2634ab28b6cd920ec14195f97e30f67c847"
     },
     "airi/docs/ai/adr/wow-companion-product-name.md": {
       "bytes": 443,
@@ -7812,6 +8458,10 @@
     "airi/docs/ai/adr/wow-companion.md": {
       "bytes": 28008,
       "sha256": "80f420baa645c8f0128bb404b21de52a6dece4e0ad35678b4ef3a3ad8c9f9d2c"
+    },
+    "airi/docs/ai/adr/wow-screen-assist.md": {
+      "bytes": 9231,
+      "sha256": "80a8125cd352f1f01017dee7a64ab57a5a03619e8e0539fddde052fee0cb939a"
     },
     "airi/docs/ai/audits/ui-components.csv": {
       "bytes": 142684,
@@ -11642,44 +12292,72 @@
       "sha256": "73f55d3639c454a37f0d0c895d7c8f32ed58747fa64cb5078560efcc62431417"
     },
     "airi/packages/i18n/glossary/terms.yaml": {
-      "bytes": 20871,
-      "sha256": "236823456da05766deecf75eb2b6b682f038552954c0d5e8184503578af792ab"
+      "bytes": 20517,
+      "sha256": "117959feeb0284559fe715377ec227214b03098286a7e66f91078a2ef50d2701"
     },
     "airi/packages/i18n/package.json": {
-      "bytes": 2142,
-      "sha256": "3057f1f5546bb0fed1856e48dbff6d92969a5a81c87aa7269ff9fda359ef09c5"
+      "bytes": 2267,
+      "sha256": "d07b6d9005dda7a033239782efa6721fd0372ef3715252354b05eb464e87b431"
     },
     "airi/packages/i18n/src/fallback.ts": {
       "bytes": 812,
       "sha256": "b759885fa50b85c5844eb7b53aea3d0dfb10e2bac2fa6b93ee6e93ae0cc7a9de"
     },
+    "airi/packages/i18n/src/index.test.ts": {
+      "bytes": 1508,
+      "sha256": "0e01a4692b4976290c588106dc87b1821cbc44bc9cd3cf247787a09558f6957a"
+    },
     "airi/packages/i18n/src/index.ts": {
-      "bytes": 1265,
-      "sha256": "b15b5737197984e65a307519f913da7aec20404ab9431555830f41ecc0e41b7d"
+      "bytes": 3224,
+      "sha256": "cf14acf60a0c9fae62265a519f5442a126fc10a2bad60c3b4f6bec33c5990bee"
     },
     "airi/packages/i18n/src/locales/en/base.yaml": {
-      "bytes": 2845,
-      "sha256": "215978ddfb787ecfc5a9a8b535b0291874d81902f03f4af155d2a2f410208c70"
+      "bytes": 2743,
+      "sha256": "52f500213ae8f4c5459d1af3c9f41f45f46728931d320297f6a588a686750c7d"
+    },
+    "airi/packages/i18n/src/locales/en/companion-controls.yaml": {
+      "bytes": 3862,
+      "sha256": "a3c8cab18f9855b6aac0d77efa94e2037420cf64ef7221aa8b2780569c164101"
+    },
+    "airi/packages/i18n/src/locales/en/companion-errors.yaml": {
+      "bytes": 2896,
+      "sha256": "594cd8c4b83329632117146fe69fb875819d9ed7d8429a767f8a1f068bfee62e"
+    },
+    "airi/packages/i18n/src/locales/en/companion-extra.yaml": {
+      "bytes": 3748,
+      "sha256": "5df33eb56c19a612eb602b48d4c7ac0f1e24d744df10ef71901600ac143cec57"
+    },
+    "airi/packages/i18n/src/locales/en/companion-providers.yaml": {
+      "bytes": 5079,
+      "sha256": "7b199e051b9d90ad21a076f414d8bb62c6a62145e766fa302b8f9e9be44a7616"
+    },
+    "airi/packages/i18n/src/locales/en/companion-speech.yaml": {
+      "bytes": 1123,
+      "sha256": "5f50de93fbee33a2644f7e15abe70a31abefe835d42bbee8abf03fa74de52090"
+    },
+    "airi/packages/i18n/src/locales/en/companion-ui.yaml": {
+      "bytes": 977,
+      "sha256": "0a8a7ceabedca6e43deab66851a4053bdfb7a9cfe177c72977d0ac1a2389e55b"
     },
     "airi/packages/i18n/src/locales/en/index.ts": {
-      "bytes": 340,
-      "sha256": "0391fc3482f4e6b142b26be4157500b6cfb411cff8fa69bfc22f544ea9011033"
+      "bytes": 981,
+      "sha256": "13d452651c2ba839e9618910034e20bc30786125c4adde84c9b041cca938179d"
     },
     "airi/packages/i18n/src/locales/en/server/auth.yaml": {
-      "bytes": 7570,
-      "sha256": "d842dd6873faad2aee705744a47513b202143555cf7b95f4e1b6e7de9d4a7309"
+      "bytes": 7660,
+      "sha256": "89ce4535dd03cbaa41303924ad35bf75c596edb13a7361fd84be5b81f08957c3"
     },
     "airi/packages/i18n/src/locales/en/server/index.ts": {
       "bytes": 64,
       "sha256": "6be10feba2a674c4e86dec2cc24f59ab135cf5e5b868c256200185d4633b1d92"
     },
     "airi/packages/i18n/src/locales/en/settings.yaml": {
-      "bytes": 112282,
-      "sha256": "aa378d08f4394e26ca67882bd457d3649ddc0ea31b808142deef5a2b2715fcea"
+      "bytes": 112920,
+      "sha256": "d8b67830005ca43e54824ff7133dd1359ccdbe935e059559261c87478bc9c790"
     },
     "airi/packages/i18n/src/locales/en/stage.yaml": {
-      "bytes": 12420,
-      "sha256": "f12ba228c155406a8287b07a0d7388b2962397a5cd5dc35aa55735b54ff1b775"
+      "bytes": 12456,
+      "sha256": "37a70cbcf248e27abd4db05370893bf8d84ea9566547511f0ccabab02218f820"
     },
     "airi/packages/i18n/src/locales/en/tamagotchi/electron/index.ts": {
       "bytes": 64,
@@ -11694,40 +12372,68 @@
       "sha256": "9aa6b5623bfa700dee00a6d128319736961ca75c97d0313bc836511c7276382f"
     },
     "airi/packages/i18n/src/locales/en/tamagotchi/settings.yaml": {
-      "bytes": 23775,
-      "sha256": "11833c89a749516b3d428c75981085513e612090331079508843d9f110a4b98e"
+      "bytes": 23955,
+      "sha256": "958839a1b1fdf730e932b2abe0f56827dd65110141f7662d8f768c46233fefeb"
     },
     "airi/packages/i18n/src/locales/en/tamagotchi/stage.yaml": {
       "bytes": 8226,
       "sha256": "08110426634d4fa2599d0b833144685568990caa2123947d7a779dfe75b50e30"
     },
+    "airi/packages/i18n/src/locales/en/wow-addons.yaml": {
+      "bytes": 7158,
+      "sha256": "d216e2855b1aa359012a920486e51f44175e180b6624a12c3388b00682323e58"
+    },
     "airi/packages/i18n/src/locales/en/wow-companion.yaml": {
-      "bytes": 18253,
-      "sha256": "9d46b6d487d1fee01b680d3523eee59b261e9af812cbeedac0829d7afd4af5a4"
+      "bytes": 24815,
+      "sha256": "a0612e01e82e365fec3abe117a0d4dc7a4259ce30b4578823ae33bfa058e2220"
     },
     "airi/packages/i18n/src/locales/es/base.yaml": {
-      "bytes": 4518,
-      "sha256": "2623a670aff095709c6e5e2e724aff143f6e2511de37534c01ef4c029783b332"
+      "bytes": 4440,
+      "sha256": "7513d876d90f5201b46c53d1d5e4a884795dcb323b60f8e70182313795dc0ef3"
+    },
+    "airi/packages/i18n/src/locales/es/companion-controls.yaml": {
+      "bytes": 4302,
+      "sha256": "3198f076a5fd1dcc3727222561cab7293fe86f2a1c5deb8a7ae2cecd29e39e47"
+    },
+    "airi/packages/i18n/src/locales/es/companion-errors.yaml": {
+      "bytes": 3338,
+      "sha256": "de381fe324536805b1357eb38374be33210d69564950dc44f9bf2d057c7c76fb"
+    },
+    "airi/packages/i18n/src/locales/es/companion-extra.yaml": {
+      "bytes": 3813,
+      "sha256": "dd6508dc1bb3569724d11fb76162dafc674b9af81aa84558e49f65ed787cff7f"
+    },
+    "airi/packages/i18n/src/locales/es/companion-providers.yaml": {
+      "bytes": 5501,
+      "sha256": "495de21182a51fc37e095a61096313c54ca92bf048f43d6d5fd1e7b212d09741"
+    },
+    "airi/packages/i18n/src/locales/es/companion-speech.yaml": {
+      "bytes": 1204,
+      "sha256": "439e1b2b02e2c7795badcf053d9ecc484862880414cbc07e41e5f911e8f39101"
+    },
+    "airi/packages/i18n/src/locales/es/companion-ui.yaml": {
+      "bytes": 1134,
+      "sha256": "ce9364896b6d37bdebb65b38a84e903fe6c00b7a08a5fd9acb79793675aeb783"
     },
     "airi/packages/i18n/src/locales/es/index.ts": {
-      "bytes": 257,
-      "sha256": "05d866965b7dbbb6bce92d877e80f5ae0ca1b7b4dba51efe2bb0701f8c0a5af2"
+      "bytes": 981,
+      "sha256": "13d452651c2ba839e9618910034e20bc30786125c4adde84c9b041cca938179d"
     },
     "airi/packages/i18n/src/locales/es/server/auth.yaml": {
-      "bytes": 8659,
-      "sha256": "a92b07a626bce4ada774006330ea919f93ddae9767a3f1274b94e3fae8833111"
+      "bytes": 8956,
+      "sha256": "16c7076e074dcb1cef416b18073c1e426a8c5e99e70a1c387d1b2f27cfbc0c58"
     },
     "airi/packages/i18n/src/locales/es/server/index.ts": {
       "bytes": 64,
       "sha256": "6be10feba2a674c4e86dec2cc24f59ab135cf5e5b868c256200185d4633b1d92"
     },
     "airi/packages/i18n/src/locales/es/settings.yaml": {
-      "bytes": 106970,
-      "sha256": "03d9cb19a80e8814fe4c3ee221afb7811f407110afca2f61c716cfdf7e89c3b5"
+      "bytes": 127549,
+      "sha256": "dbd3411ded841e541a7363e43844e34ad86e979013076fba0261071b988afa0d"
     },
     "airi/packages/i18n/src/locales/es/stage.yaml": {
-      "bytes": 10142,
-      "sha256": "7bcb99c25f6e84918e3172f387c9422a576ce36f810a10f608aa17af2b77e19c"
+      "bytes": 14111,
+      "sha256": "5376c2db85dea02293a18cefc810f952b4d4e64a961e1d923da1dc6aea83f078"
     },
     "airi/packages/i18n/src/locales/es/tamagotchi/electron/index.ts": {
       "bytes": 64,
@@ -11742,36 +12448,68 @@
       "sha256": "9aa6b5623bfa700dee00a6d128319736961ca75c97d0313bc836511c7276382f"
     },
     "airi/packages/i18n/src/locales/es/tamagotchi/settings.yaml": {
-      "bytes": 26528,
-      "sha256": "eda28cb31cee5cf16ceeb8bfda34d9f210d27390f2a3ff66da4679a5cc8a553b"
+      "bytes": 27900,
+      "sha256": "f9934a77a2aa1cfaae9a59a36a48bf53015110be3568584293bf2fbd2b90fcb2"
     },
     "airi/packages/i18n/src/locales/es/tamagotchi/stage.yaml": {
-      "bytes": 4711,
-      "sha256": "47bde36dfe9d078e7b4e361161ab7100d33920664f361733c123e6a616d04240"
+      "bytes": 9150,
+      "sha256": "12282c462685ac16860fdad87137c3eb2530964a98a5ab330385cfbe153476ba"
+    },
+    "airi/packages/i18n/src/locales/es/wow-addons.yaml": {
+      "bytes": 8361,
+      "sha256": "7775b8bb7b2ad2d97cc9dbf1a40d3156f1226e6c1f40726cf4d88fb4dff50f08"
+    },
+    "airi/packages/i18n/src/locales/es/wow-companion.yaml": {
+      "bytes": 28110,
+      "sha256": "e05fc0a193bf3791730b1ae5ae2655c505760df90f4e34f2707d1198bf448aec"
     },
     "airi/packages/i18n/src/locales/fr/base.yaml": {
-      "bytes": 4555,
-      "sha256": "003698d962a17587088c6d2c3c5f18b220ec3ab3bc1b42384b96d80e42af2e78"
+      "bytes": 4481,
+      "sha256": "43474a757b261ffa52c5ead7f3f93c4ae400109c7c1a617aa2915b61dc523ebe"
+    },
+    "airi/packages/i18n/src/locales/fr/companion-controls.yaml": {
+      "bytes": 4437,
+      "sha256": "be39f12ae1856e85366123412ed3597aaa5018ab2a0e940fdf8fedd9b7241cd8"
+    },
+    "airi/packages/i18n/src/locales/fr/companion-errors.yaml": {
+      "bytes": 3576,
+      "sha256": "f1c9d707eb75d3998c436180dcec7c1a795b9f26e05a836e75c64dd36407dd16"
+    },
+    "airi/packages/i18n/src/locales/fr/companion-extra.yaml": {
+      "bytes": 3986,
+      "sha256": "af450faa0e994148ded4e593068560e09d11624d473f02f4efe26c964ae25300"
+    },
+    "airi/packages/i18n/src/locales/fr/companion-providers.yaml": {
+      "bytes": 5884,
+      "sha256": "9899cab61e03b726095a94d44516d7199e13f7d1ed2a7df1ae58c79f234b558b"
+    },
+    "airi/packages/i18n/src/locales/fr/companion-speech.yaml": {
+      "bytes": 1263,
+      "sha256": "29255b3d512f4d9b4c25dc4d1643bb736cec8bbbd51c5ffc9ede40eaca3a1eca"
+    },
+    "airi/packages/i18n/src/locales/fr/companion-ui.yaml": {
+      "bytes": 1168,
+      "sha256": "dbd5d011af108982d9f381809fc2de1445e949740d12539053c480117169e657"
     },
     "airi/packages/i18n/src/locales/fr/index.ts": {
-      "bytes": 257,
-      "sha256": "05d866965b7dbbb6bce92d877e80f5ae0ca1b7b4dba51efe2bb0701f8c0a5af2"
+      "bytes": 981,
+      "sha256": "13d452651c2ba839e9618910034e20bc30786125c4adde84c9b041cca938179d"
     },
     "airi/packages/i18n/src/locales/fr/server/auth.yaml": {
-      "bytes": 9034,
-      "sha256": "e4e41858fb325e6e67b4b5ca62ff7058b0e33be3dc214dce74c850992dcc6463"
+      "bytes": 9124,
+      "sha256": "08a71cbc655385088e464d44abe9ff129036f2a3d8bb5bc89abf8e938a75e1ea"
     },
     "airi/packages/i18n/src/locales/fr/server/index.ts": {
       "bytes": 64,
       "sha256": "6be10feba2a674c4e86dec2cc24f59ab135cf5e5b868c256200185d4633b1d92"
     },
     "airi/packages/i18n/src/locales/fr/settings.yaml": {
-      "bytes": 107788,
-      "sha256": "15895449dee3294bab518a746287f952bab6af87ce60fe9efc3c0ac0ec1a077f"
+      "bytes": 130776,
+      "sha256": "702517194e3a69b6fe0399710c57eb24f4c4fb8d04707d850f1e37a73bb60f98"
     },
     "airi/packages/i18n/src/locales/fr/stage.yaml": {
-      "bytes": 10597,
-      "sha256": "d9b7dec3ca71e172eb2b52b15c89d18b9c014529fcdd26a0bf4f80806838e09f"
+      "bytes": 14785,
+      "sha256": "a5a275894015f2bae7e86fcd7a2356c4105f25ef6c030af526e9ee6ba58de6f2"
     },
     "airi/packages/i18n/src/locales/fr/tamagotchi/electron/index.ts": {
       "bytes": 64,
@@ -11786,40 +12524,148 @@
       "sha256": "9aa6b5623bfa700dee00a6d128319736961ca75c97d0313bc836511c7276382f"
     },
     "airi/packages/i18n/src/locales/fr/tamagotchi/settings.yaml": {
-      "bytes": 27274,
-      "sha256": "b0f5b168f0061587fdf24def8298e5ac1f0851654560dac1f38d01a850e1cbf9"
+      "bytes": 28883,
+      "sha256": "ff50e4e5af587b963c3addc3e5ba7278f9660eba99b915a514772971a12ef65c"
     },
     "airi/packages/i18n/src/locales/fr/tamagotchi/stage.yaml": {
-      "bytes": 4957,
-      "sha256": "8810c8aace9eab225e90c92b3687b9643ebdb91cdfbb9f728bee73754e27a5ce"
+      "bytes": 9389,
+      "sha256": "116c9ed19ae6a3ebb34fb4a8144a8200be2ad5d5cf32f0588ff3367b39c6e188"
+    },
+    "airi/packages/i18n/src/locales/fr/wow-addons.yaml": {
+      "bytes": 8475,
+      "sha256": "79b03a8a2530574bbec2dd189253d6e533c42acbc0510d3a7fd2f4362cef6b2c"
+    },
+    "airi/packages/i18n/src/locales/fr/wow-companion.yaml": {
+      "bytes": 29791,
+      "sha256": "0032c71bdaf027bf70191dc2291a61af252cb132522a51821b2d4947c1263a7a"
     },
     "airi/packages/i18n/src/locales/index.ts": {
-      "bytes": 371,
-      "sha256": "61fca1c8219b930a0b9d0f09718bb1b2c00d9271d395b6e9c1c7e3eec4d41d66"
+      "bytes": 431,
+      "sha256": "aaf8aae46e97875f8c4d800affab8746f964179c6c811c4fee9f08ca7ebf441c"
+    },
+    "airi/packages/i18n/src/locales/it/base.yaml": {
+      "bytes": 2573,
+      "sha256": "988cb7c453c1484697030dcecfe12d7ee4f9b950b4408c441935bea766952243"
+    },
+    "airi/packages/i18n/src/locales/it/companion-controls.yaml": {
+      "bytes": 4429,
+      "sha256": "eff4cc8bb52d43f9e7e954b3699b0dc0f2dd91a7e357725b0d803c387ffdffa0"
+    },
+    "airi/packages/i18n/src/locales/it/companion-errors.yaml": {
+      "bytes": 3301,
+      "sha256": "d8f196b10102c9f1dfd34fc45b33d858c243558a8ce073648dac8e4b16379c9b"
+    },
+    "airi/packages/i18n/src/locales/it/companion-extra.yaml": {
+      "bytes": 3853,
+      "sha256": "0fb16269cc1b2aa17eaa72442dd803104ad3b06df29a3d7614b3b5a178343d83"
+    },
+    "airi/packages/i18n/src/locales/it/companion-providers.yaml": {
+      "bytes": 5497,
+      "sha256": "362c127ee7a7b7dcc2aa54dcaf1cc2652a01f1fd4c92f1336418abc1e3ec2bf9"
+    },
+    "airi/packages/i18n/src/locales/it/companion-speech.yaml": {
+      "bytes": 1247,
+      "sha256": "483958eff30188e65f9f2a2b9705328d5d0c7e322422d9f2a332b211e8df78a1"
+    },
+    "airi/packages/i18n/src/locales/it/companion-ui.yaml": {
+      "bytes": 1172,
+      "sha256": "3f8de06f475154d0bea5deb31843c8f334b66946895c01e5436634fc00c8b291"
+    },
+    "airi/packages/i18n/src/locales/it/index.ts": {
+      "bytes": 952,
+      "sha256": "ecc96fa11aca8caf7adcfbea0eac638c62d9910bfc9c0c0a1962a97073950b91"
+    },
+    "airi/packages/i18n/src/locales/it/server/auth.yaml": {
+      "bytes": 7902,
+      "sha256": "d0b66f513f97e68f72232afe362f6e37723f1e6b3b0b9b7cbec5eea3a1763890"
+    },
+    "airi/packages/i18n/src/locales/it/server/index.ts": {
+      "bytes": 59,
+      "sha256": "a6219e28b4d9a14a2ec2d5bb45fa43a199de94a700abcb041b5a9cf780c1debb"
+    },
+    "airi/packages/i18n/src/locales/it/settings.yaml": {
+      "bytes": 120286,
+      "sha256": "f6d60926f3963c10d3209562542cbe8ce71985de01db937b773ec19c4c2e915a"
+    },
+    "airi/packages/i18n/src/locales/it/stage.yaml": {
+      "bytes": 13350,
+      "sha256": "22d5dea3e26b2f40b2506fd5da5b440d42dff72f00610f9e3c4aa02b6b2b7c0d"
+    },
+    "airi/packages/i18n/src/locales/it/tamagotchi/electron/index.ts": {
+      "bytes": 59,
+      "sha256": "a7706a961df8410aabab6a7bb6be8b2053fe7dd7ca457015c45af8e64f901284"
+    },
+    "airi/packages/i18n/src/locales/it/tamagotchi/electron/tray.yaml": {
+      "bytes": 892,
+      "sha256": "41ac5be9ea7b7073133dbf2621ab2d9838706be7db5f1eeb5d7f3f70f4883ac1"
+    },
+    "airi/packages/i18n/src/locales/it/tamagotchi/index.ts": {
+      "bytes": 159,
+      "sha256": "9ab32556da6507cf7187b8a1b782bfa093319e3c5d19edbd855df1f1a1183d91"
+    },
+    "airi/packages/i18n/src/locales/it/tamagotchi/settings.yaml": {
+      "bytes": 26568,
+      "sha256": "254f59be70ba58b590f1abdcddfb6beff22c06cc9516739d7038195df1ed6aa1"
+    },
+    "airi/packages/i18n/src/locales/it/tamagotchi/stage.yaml": {
+      "bytes": 8727,
+      "sha256": "e53c08b6f60baba7623214a0554c8ae5947923c8c80d579ee433475a8a6aebd6"
+    },
+    "airi/packages/i18n/src/locales/it/wow-addons.yaml": {
+      "bytes": 7736,
+      "sha256": "f5c9fe6ad290fb7b885de6c508bc1615c875d82addc17ff02d925bb1fb926a3d"
+    },
+    "airi/packages/i18n/src/locales/it/wow-companion.yaml": {
+      "bytes": 27722,
+      "sha256": "3ec727ef56c67c9c78a3a69bdcbf0a14e9c9a04f8fbfc8d7419b5c88cdb16043"
     },
     "airi/packages/i18n/src/locales/ja/base.yaml": {
-      "bytes": 5596,
-      "sha256": "8d2f1810aa0f8b6bf2db77974554ef1d979c7a0b53b3d819da534bc2d17fa01b"
+      "bytes": 5506,
+      "sha256": "2fd07b8a2a84b84dbf7a8bb483405d0bcd49699d3b84e44d9588f66917e51efa"
+    },
+    "airi/packages/i18n/src/locales/ja/companion-controls.yaml": {
+      "bytes": 4029,
+      "sha256": "5a8623eef5081432a7c7507b8bd848a736f736c5661f78df200a7628e6060673"
+    },
+    "airi/packages/i18n/src/locales/ja/companion-errors.yaml": {
+      "bytes": 4142,
+      "sha256": "d1ec956b90e8108888b5b0a5c70147fc6221033e89ba95ea15798a79aed759b2"
+    },
+    "airi/packages/i18n/src/locales/ja/companion-extra.yaml": {
+      "bytes": 4104,
+      "sha256": "1db935bb851ed024c501769956e85c40c924ab13308af5e2ed9756756b5c4242"
+    },
+    "airi/packages/i18n/src/locales/ja/companion-providers.yaml": {
+      "bytes": 6079,
+      "sha256": "ab6db763bb68047f76cc4afac1e0c437912b5ce39285ef8fa35f103090c4dc12"
+    },
+    "airi/packages/i18n/src/locales/ja/companion-speech.yaml": {
+      "bytes": 1420,
+      "sha256": "ea0e10875cc76b4e2f4ec8ae59066df55a0f4ad296bab53d9ba6d13c5f9fe393"
+    },
+    "airi/packages/i18n/src/locales/ja/companion-ui.yaml": {
+      "bytes": 1290,
+      "sha256": "5017af4732a0bc700dbf4c571df5522a7b5a2aabb774dc5db13d18653a1fd293"
     },
     "airi/packages/i18n/src/locales/ja/index.ts": {
-      "bytes": 257,
-      "sha256": "05d866965b7dbbb6bce92d877e80f5ae0ca1b7b4dba51efe2bb0701f8c0a5af2"
+      "bytes": 981,
+      "sha256": "13d452651c2ba839e9618910034e20bc30786125c4adde84c9b041cca938179d"
     },
     "airi/packages/i18n/src/locales/ja/server/auth.yaml": {
-      "bytes": 10361,
-      "sha256": "be2bad609338bc020abc63b90e7c77a106b96c91d4ec50fb929b30355bef8ad6"
+      "bytes": 10641,
+      "sha256": "ee97cb4458953e67dc28a1383d56f20dffb434b168a081e24d274a083883221e"
     },
     "airi/packages/i18n/src/locales/ja/server/index.ts": {
       "bytes": 64,
       "sha256": "6be10feba2a674c4e86dec2cc24f59ab135cf5e5b868c256200185d4633b1d92"
     },
     "airi/packages/i18n/src/locales/ja/settings.yaml": {
-      "bytes": 120058,
-      "sha256": "842f0fe84b7a00ee6e130d887b44cc9bcac8e317390a5faaf7f550e5872f342b"
+      "bytes": 138695,
+      "sha256": "7200c3464448de83ea51fb68a9f659185e22d5190c724b5bd3f251f93939cef4"
     },
     "airi/packages/i18n/src/locales/ja/stage.yaml": {
-      "bytes": 11497,
-      "sha256": "509b42ed4440c2380cb023a828db2aa693632bee28806e35fe9219b95057a57b"
+      "bytes": 15713,
+      "sha256": "517349adf88d70f17c1391f6e255dc9870bdd477e9ea78003fb03894eed7f8f3"
     },
     "airi/packages/i18n/src/locales/ja/tamagotchi/electron/index.ts": {
       "bytes": 64,
@@ -11834,36 +12680,68 @@
       "sha256": "9aa6b5623bfa700dee00a6d128319736961ca75c97d0313bc836511c7276382f"
     },
     "airi/packages/i18n/src/locales/ja/tamagotchi/settings.yaml": {
-      "bytes": 29474,
-      "sha256": "8fcbd550686d4647688e83d4e39d60311d47c02f8d079cf2dcbc672f5dfe1692"
+      "bytes": 29887,
+      "sha256": "463eb1733ac44b79dcdf721770377842a8869da2c6bff92c27ed40a543b47217"
     },
     "airi/packages/i18n/src/locales/ja/tamagotchi/stage.yaml": {
-      "bytes": 5858,
-      "sha256": "6eaf713d87a79a4302b584d8cb34f38c831ef6828b8ee60afec9ab4cfa503e7f"
+      "bytes": 10527,
+      "sha256": "6c39c18281cd5a41404e856e17de6d196e1cc1b25378c63d611e03e3a0a5c0d6"
+    },
+    "airi/packages/i18n/src/locales/ja/wow-addons.yaml": {
+      "bytes": 10016,
+      "sha256": "a2972b239a9b6e2c36bc59e2faa422d96419bfaeab637ab4af72a91038926339"
+    },
+    "airi/packages/i18n/src/locales/ja/wow-companion.yaml": {
+      "bytes": 32691,
+      "sha256": "03a43fc649c338749cc98c7c75c9dd6b2d7e385be711dd705e4ba5ee70e44c53"
     },
     "airi/packages/i18n/src/locales/ko/base.yaml": {
-      "bytes": 4595,
-      "sha256": "bda1167cbfc8f558e6100977f3ef0e36ee5184bda658a01da020251a180336aa"
+      "bytes": 4512,
+      "sha256": "bbfbafead2dfbbd646395447682db9481b6ab5ee1d8d3d492aacd172e9f9a721"
+    },
+    "airi/packages/i18n/src/locales/ko/companion-controls.yaml": {
+      "bytes": 3954,
+      "sha256": "e6d0f9cdada322d4463c5c5c5f46c8a02aa6ef9b460d6353a87da5b707adf682"
+    },
+    "airi/packages/i18n/src/locales/ko/companion-errors.yaml": {
+      "bytes": 3802,
+      "sha256": "0350a1e9f96a6a76e0d71ff83ed00e1e7e57e04d1d972ff3dcd27e82aae5626c"
+    },
+    "airi/packages/i18n/src/locales/ko/companion-extra.yaml": {
+      "bytes": 3722,
+      "sha256": "3b2af450fcc731d46007e63d1634957aa82f250a1b6c7160a142e6ff8e31cdea"
+    },
+    "airi/packages/i18n/src/locales/ko/companion-providers.yaml": {
+      "bytes": 5670,
+      "sha256": "77b996b869fe4fceb3687d378ecd2aad96ae8398bd811c7a4ec00768ec5ee8c7"
+    },
+    "airi/packages/i18n/src/locales/ko/companion-speech.yaml": {
+      "bytes": 1350,
+      "sha256": "fd5e93b2a8b37c88d859a3b4e29a4320e09ab09f12c5ea420f02388cb74cd5e6"
+    },
+    "airi/packages/i18n/src/locales/ko/companion-ui.yaml": {
+      "bytes": 1130,
+      "sha256": "d920c25f4a12881eebce93999f8a68af1300861b2f9629b94dfc4970f7a7931a"
     },
     "airi/packages/i18n/src/locales/ko/index.ts": {
-      "bytes": 257,
-      "sha256": "05d866965b7dbbb6bce92d877e80f5ae0ca1b7b4dba51efe2bb0701f8c0a5af2"
+      "bytes": 981,
+      "sha256": "13d452651c2ba839e9618910034e20bc30786125c4adde84c9b041cca938179d"
     },
     "airi/packages/i18n/src/locales/ko/server/auth.yaml": {
-      "bytes": 8960,
-      "sha256": "38f2c4d2a66419385479d94470a239a71f5b6389cd64575ea88099fd6d7f5b33"
+      "bytes": 9177,
+      "sha256": "f8d176a1e72f04b51d5b2d543bbb7432697d311e4d2a3f56776907fc0bd35797"
     },
     "airi/packages/i18n/src/locales/ko/server/index.ts": {
       "bytes": 64,
       "sha256": "6be10feba2a674c4e86dec2cc24f59ab135cf5e5b868c256200185d4633b1d92"
     },
     "airi/packages/i18n/src/locales/ko/settings.yaml": {
-      "bytes": 109689,
-      "sha256": "ac3e10734c9577eb2f9fc3a146d0760d7f13224316b9cd21720a8b816ea5232c"
+      "bytes": 127107,
+      "sha256": "b74a7ac4183dd7d23bbade38276cc03dbb5ea34488dc7ab6c4573786eb156a72"
     },
     "airi/packages/i18n/src/locales/ko/stage.yaml": {
-      "bytes": 10013,
-      "sha256": "18bddaf2fdc234d8fb47bf38461bc1c0c616cac9b57cc061a1a7e1f5beb04293"
+      "bytes": 13999,
+      "sha256": "075f293a187d361cb7b57611863c6ef84920bad65155a277289730ae9ec2364e"
     },
     "airi/packages/i18n/src/locales/ko/tamagotchi/electron/index.ts": {
       "bytes": 64,
@@ -11878,36 +12756,144 @@
       "sha256": "9aa6b5623bfa700dee00a6d128319736961ca75c97d0313bc836511c7276382f"
     },
     "airi/packages/i18n/src/locales/ko/tamagotchi/settings.yaml": {
-      "bytes": 26984,
-      "sha256": "9daa4b8d883766b54f52099e4d33a8a3303e8f11cf28504cf1151042c02ecbf3"
+      "bytes": 27369,
+      "sha256": "9e0ebb83c2d45d3df6d33900dc5d5e20332ba21f71067b3bf2063b10821cdb9f"
     },
     "airi/packages/i18n/src/locales/ko/tamagotchi/stage.yaml": {
-      "bytes": 4935,
-      "sha256": "78ae20f9963caa5ebc379857405a40c389e2bb60fe5a21cf6e38f67fea62d547"
+      "bytes": 9146,
+      "sha256": "5dbad881b65151937c2708d157d6d2b228285e965e178339ad7f1b7688da38da"
+    },
+    "airi/packages/i18n/src/locales/ko/wow-addons.yaml": {
+      "bytes": 8731,
+      "sha256": "8a12eadf80ab4506b5d42dcba21bee3cbdaeb32797db80c5037d398a6a19ec40"
+    },
+    "airi/packages/i18n/src/locales/ko/wow-companion.yaml": {
+      "bytes": 29578,
+      "sha256": "3e965ee407130d268a31c6bad7a2ff18ac70bb8b10b33ec0d7f08c8ca02f4571"
+    },
+    "airi/packages/i18n/src/locales/pt/base.yaml": {
+      "bytes": 2574,
+      "sha256": "38e39e21bbf85d13f5ade0e27a6ce2d709ae041d19fb8876876b9632e0c75847"
+    },
+    "airi/packages/i18n/src/locales/pt/companion-controls.yaml": {
+      "bytes": 4313,
+      "sha256": "b01d699c643c3ded28ab43756201cb22419dcee93435f0f122bee53525058324"
+    },
+    "airi/packages/i18n/src/locales/pt/companion-errors.yaml": {
+      "bytes": 3524,
+      "sha256": "e3cac5c9a454740fda856eb394c11f9c0874d4f7176b0ddeb0ec83cad589d452"
+    },
+    "airi/packages/i18n/src/locales/pt/companion-extra.yaml": {
+      "bytes": 3757,
+      "sha256": "318eab3f9194956d403e9e67de20f0a5bf85eb9e2102a55bc3326c22aa3b427e"
+    },
+    "airi/packages/i18n/src/locales/pt/companion-providers.yaml": {
+      "bytes": 5430,
+      "sha256": "e15ce36b9fc0fa8a479d5d1c34c31fbcc441f894f335de7aa91c8673da380787"
+    },
+    "airi/packages/i18n/src/locales/pt/companion-speech.yaml": {
+      "bytes": 1168,
+      "sha256": "d86d861378851f87d4f139c47f4a32949f5c62a6e3061a4ca0a49c447f52b3ca"
+    },
+    "airi/packages/i18n/src/locales/pt/companion-ui.yaml": {
+      "bytes": 1140,
+      "sha256": "0ff9e8b4c62ea5ba22c210ae2dcd6ffaed960d820c704b4fe63fa24babc6ebba"
+    },
+    "airi/packages/i18n/src/locales/pt/index.ts": {
+      "bytes": 952,
+      "sha256": "ecc96fa11aca8caf7adcfbea0eac638c62d9910bfc9c0c0a1962a97073950b91"
+    },
+    "airi/packages/i18n/src/locales/pt/server/auth.yaml": {
+      "bytes": 7704,
+      "sha256": "75f2a1481dfa9efb472f1a89d50933b4165b3b0d47241fb868a56217c760e5de"
+    },
+    "airi/packages/i18n/src/locales/pt/server/index.ts": {
+      "bytes": 59,
+      "sha256": "a6219e28b4d9a14a2ec2d5bb45fa43a199de94a700abcb041b5a9cf780c1debb"
+    },
+    "airi/packages/i18n/src/locales/pt/settings.yaml": {
+      "bytes": 119669,
+      "sha256": "0f64cc55408b33c24a541196263595292c5863719388f3bbb011f22a1f62ff1b"
+    },
+    "airi/packages/i18n/src/locales/pt/stage.yaml": {
+      "bytes": 13379,
+      "sha256": "bcfb2a047dac6e6686fe6f8a79071b83916e040f0a29083331491c736ee74562"
+    },
+    "airi/packages/i18n/src/locales/pt/tamagotchi/electron/index.ts": {
+      "bytes": 59,
+      "sha256": "a7706a961df8410aabab6a7bb6be8b2053fe7dd7ca457015c45af8e64f901284"
+    },
+    "airi/packages/i18n/src/locales/pt/tamagotchi/electron/tray.yaml": {
+      "bytes": 913,
+      "sha256": "b971f0a5103c351fdb5281d735a0ac407dc9f423fb598b994b09ebd12402e390"
+    },
+    "airi/packages/i18n/src/locales/pt/tamagotchi/index.ts": {
+      "bytes": 159,
+      "sha256": "9ab32556da6507cf7187b8a1b782bfa093319e3c5d19edbd855df1f1a1183d91"
+    },
+    "airi/packages/i18n/src/locales/pt/tamagotchi/settings.yaml": {
+      "bytes": 25889,
+      "sha256": "f60ecd4b624c0a530a4d90bd079c3e0a38bddfd042141941b611d3be14cbb0d6"
+    },
+    "airi/packages/i18n/src/locales/pt/tamagotchi/stage.yaml": {
+      "bytes": 8668,
+      "sha256": "c87d764e3cba5d639519c1ed32cdfef59f28bafa079585dc0fbbeab27618ccca"
+    },
+    "airi/packages/i18n/src/locales/pt/wow-addons.yaml": {
+      "bytes": 7968,
+      "sha256": "9abea2f36221384c5094afe76e9168ee5e9609b860b64ff36cd37ac2e64c2949"
+    },
+    "airi/packages/i18n/src/locales/pt/wow-companion.yaml": {
+      "bytes": 27334,
+      "sha256": "8db81ad5659e200e1549afebeea28aa8be2899400a3d2768f526f295f9cd68ae"
     },
     "airi/packages/i18n/src/locales/ru/base.yaml": {
-      "bytes": 6480,
-      "sha256": "ea331312d6ed3ece88a1300e320c70ccac6dac3bc71ae77311c5870b37a5ce6f"
+      "bytes": 6337,
+      "sha256": "e1a0c54474217a01e1c3ca98c4802efb6e748d706955ef03cbf918e977504aa0"
+    },
+    "airi/packages/i18n/src/locales/ru/companion-controls.yaml": {
+      "bytes": 5686,
+      "sha256": "f55f3f31bc1298a5f7dd7c788b5bea7349f30174d5eae9320c00371fbf2bd227"
+    },
+    "airi/packages/i18n/src/locales/ru/companion-errors.yaml": {
+      "bytes": 4632,
+      "sha256": "3d86caa5a0d94f80d2fc48a8569eba9d72a9fdccbacac51f2571f3277ee406a8"
+    },
+    "airi/packages/i18n/src/locales/ru/companion-extra.yaml": {
+      "bytes": 4964,
+      "sha256": "8878fb0cc136f7527e56ab35eb516115cdecd55c723ff6988495077284520913"
+    },
+    "airi/packages/i18n/src/locales/ru/companion-providers.yaml": {
+      "bytes": 7348,
+      "sha256": "1d3452c8d88b2e3ef4a00596db5be133fc4daee8b75917531360839d8e1b025d"
+    },
+    "airi/packages/i18n/src/locales/ru/companion-speech.yaml": {
+      "bytes": 1711,
+      "sha256": "8b1cb35a1d7217e1d54f6db2464c601719e3a306f26de13d8a64c31ea55ec4f3"
+    },
+    "airi/packages/i18n/src/locales/ru/companion-ui.yaml": {
+      "bytes": 1542,
+      "sha256": "b91be5a6cf0e8915e8d625dcba4612794eefb7d8107199c28157ab77788d3ed2"
     },
     "airi/packages/i18n/src/locales/ru/index.ts": {
-      "bytes": 257,
-      "sha256": "05d866965b7dbbb6bce92d877e80f5ae0ca1b7b4dba51efe2bb0701f8c0a5af2"
+      "bytes": 981,
+      "sha256": "13d452651c2ba839e9618910034e20bc30786125c4adde84c9b041cca938179d"
     },
     "airi/packages/i18n/src/locales/ru/server/auth.yaml": {
-      "bytes": 12056,
-      "sha256": "777e41c9b28f428780e3a4a3dec3941036ac8114e9b8a745ed49d3602d5de3bb"
+      "bytes": 12272,
+      "sha256": "ff5bdd2265d3ca9a2a773915a82ba6365c02171aa13e1308a78a26ef358a0385"
     },
     "airi/packages/i18n/src/locales/ru/server/index.ts": {
       "bytes": 64,
       "sha256": "6be10feba2a674c4e86dec2cc24f59ab135cf5e5b868c256200185d4633b1d92"
     },
     "airi/packages/i18n/src/locales/ru/settings.yaml": {
-      "bytes": 144106,
-      "sha256": "2f5fa68c9e0e35b014761b093c3c6db42f1453edc8914034017e6b32dae0979a"
+      "bytes": 165078,
+      "sha256": "82136e6000261b09f0e3910618aa93b5e3d046bd6f8c59d5c113503614528d95"
     },
     "airi/packages/i18n/src/locales/ru/stage.yaml": {
-      "bytes": 14560,
-      "sha256": "94b6913ccd3ff6fbddf34baf09eb0b3bd91f435ab4fc5b764874261b6479997e"
+      "bytes": 19632,
+      "sha256": "b6f4ee9b85a40d0bbcf0714b2116a34263cab8aedfee4e047000884ce7e2c225"
     },
     "airi/packages/i18n/src/locales/ru/tamagotchi/electron/index.ts": {
       "bytes": 64,
@@ -11922,36 +12908,68 @@
       "sha256": "9aa6b5623bfa700dee00a6d128319736961ca75c97d0313bc836511c7276382f"
     },
     "airi/packages/i18n/src/locales/ru/tamagotchi/settings.yaml": {
-      "bytes": 36947,
-      "sha256": "41b065d050dfe6692c078e2b591c27bd7a6222182d0130b13d389e4d8d90ea36"
+      "bytes": 37241,
+      "sha256": "b2df1b64a361a84dd04cf09d44c90bb3cc4fe47edebef502a1d68a2c95540069"
     },
     "airi/packages/i18n/src/locales/ru/tamagotchi/stage.yaml": {
-      "bytes": 6480,
-      "sha256": "bc89bbe961e96f104c86a519978eec65e685da84f7272de3912540bf2418f86b"
+      "bytes": 12085,
+      "sha256": "ee477ef919a97517d00db329527fcd540a6c4b937a28dfe552eb43ba3fbaa26f"
+    },
+    "airi/packages/i18n/src/locales/ru/wow-addons.yaml": {
+      "bytes": 11309,
+      "sha256": "35238c2fb313d2da73e295298f0893f99ded8fc0d1827a3f56709be3d3182f06"
+    },
+    "airi/packages/i18n/src/locales/ru/wow-companion.yaml": {
+      "bytes": 41289,
+      "sha256": "76ab65272e90b21654c9d8d75b6a35118d9393bb3c2e50b80b9189d651a28773"
     },
     "airi/packages/i18n/src/locales/th/base.yaml": {
-      "bytes": 5608,
-      "sha256": "e98d3bb4e3a23294c55e352dee1c973f5201c83afc1120903c12c2d6cb5c0aa8"
+      "bytes": 5417,
+      "sha256": "0ac8abf8bfb630adc1bdbe5d6ed1c9f6cc0e66a6211fd914952b97ca8c322490"
+    },
+    "airi/packages/i18n/src/locales/th/companion-controls.yaml": {
+      "bytes": 6535,
+      "sha256": "423cfd08b649dcba37baeefa0e9aedfc25a7cce8d280baa8068b04cba6e230c8"
+    },
+    "airi/packages/i18n/src/locales/th/companion-errors.yaml": {
+      "bytes": 6625,
+      "sha256": "c8ad63796031bc29a733ac8a390dd843710a86a43494a6c430e7c64af69bbcf1"
+    },
+    "airi/packages/i18n/src/locales/th/companion-extra.yaml": {
+      "bytes": 5689,
+      "sha256": "bb497511cb80f342fc101b37e38048962de1c34eb4271251bf5c8cd9ef8f7fc1"
+    },
+    "airi/packages/i18n/src/locales/th/companion-providers.yaml": {
+      "bytes": 8931,
+      "sha256": "dfaf17c4bcc5c058b5affd2757fc28e731d767e90b4e96531fa8b8350e6816fa"
+    },
+    "airi/packages/i18n/src/locales/th/companion-speech.yaml": {
+      "bytes": 2194,
+      "sha256": "b2d0393165f181d245c381b8ac60a5e6882fa589dc3e8cd8bef6c76364483c8b"
+    },
+    "airi/packages/i18n/src/locales/th/companion-ui.yaml": {
+      "bytes": 1841,
+      "sha256": "4f5f0728f28ea5e2e36e4e48f8f3cf549725d43691d180fab5ebb95560927b61"
     },
     "airi/packages/i18n/src/locales/th/index.ts": {
-      "bytes": 257,
-      "sha256": "05d866965b7dbbb6bce92d877e80f5ae0ca1b7b4dba51efe2bb0701f8c0a5af2"
+      "bytes": 981,
+      "sha256": "13d452651c2ba839e9618910034e20bc30786125c4adde84c9b041cca938179d"
     },
     "airi/packages/i18n/src/locales/th/server/auth.yaml": {
-      "bytes": 14917,
-      "sha256": "09424b4a121f815e313959d6c05c67d678294e1b7e02c56c92a53362b6852631"
+      "bytes": 15321,
+      "sha256": "62a104b335062cc8b590ac5d6f8aba7dca3c0996d62fe586d2797f94f4217290"
     },
     "airi/packages/i18n/src/locales/th/server/index.ts": {
       "bytes": 64,
       "sha256": "6be10feba2a674c4e86dec2cc24f59ab135cf5e5b868c256200185d4633b1d92"
     },
     "airi/packages/i18n/src/locales/th/settings.yaml": {
-      "bytes": 171392,
-      "sha256": "38404c670e20ab1f0cc9f4801408685115fa0ceace7fbbfd5e9e3be3640112ce"
+      "bytes": 197430,
+      "sha256": "338c13f1ca192ffc81f82fd2e303ba32ca39b5ad9609dda4e0838ae2e67c03bf"
     },
     "airi/packages/i18n/src/locales/th/stage.yaml": {
-      "bytes": 16933,
-      "sha256": "29dd733866cc3fd5c5709035d4de014720f5380f177f8b8a4f3b5eeda7842da2"
+      "bytes": 22408,
+      "sha256": "4fa54e664a0c7299af51f018a6098914e83d12860ebe3c0f487c2ed8999568bc"
     },
     "airi/packages/i18n/src/locales/th/tamagotchi/electron/index.ts": {
       "bytes": 64,
@@ -11966,36 +12984,68 @@
       "sha256": "9aa6b5623bfa700dee00a6d128319736961ca75c97d0313bc836511c7276382f"
     },
     "airi/packages/i18n/src/locales/th/tamagotchi/settings.yaml": {
-      "bytes": 43707,
-      "sha256": "c6c7953a26d8a0bf5063694dd57e18aec69d56a23b6a9321d7e3b8c911111f06"
+      "bytes": 44381,
+      "sha256": "5006cc1876eaf18cd9dc9eb04f883561558660a6c2bb51d6b7fbb79c255c8885"
     },
     "airi/packages/i18n/src/locales/th/tamagotchi/stage.yaml": {
-      "bytes": 7656,
-      "sha256": "1b5550e5db828c67f94c743fb51fb191ba170b1a501ebdd886de9a55461502ce"
+      "bytes": 13999,
+      "sha256": "b8f464a4c28e3d3d5f1fce126d6ee70cd84d1bb48e4efc48afbd07c7ea490a60"
+    },
+    "airi/packages/i18n/src/locales/th/wow-addons.yaml": {
+      "bytes": 14000,
+      "sha256": "250fce57c5b8f306c2d8ce9f51105fbda3fc6c0066d47dfffba9a258ad7ae44c"
+    },
+    "airi/packages/i18n/src/locales/th/wow-companion.yaml": {
+      "bytes": 52340,
+      "sha256": "f154c787a29a001b98b5eb3cb5910170515f05d00f393579986e491b7583f3bb"
     },
     "airi/packages/i18n/src/locales/vi/base.yaml": {
-      "bytes": 5024,
-      "sha256": "be29a94d139f64bb45221dd94be9ebe6085fa6e0ee3352a14e702e6fb272be93"
+      "bytes": 4941,
+      "sha256": "834d29de0ec162253444ec86e6a1d6faf22e0de4c8bd0fbae32e8691f8f11350"
+    },
+    "airi/packages/i18n/src/locales/vi/companion-controls.yaml": {
+      "bytes": 4526,
+      "sha256": "fd9f19c16ad264d0af5c4543724fa917950cf331aee45959f979d74fdebedd35"
+    },
+    "airi/packages/i18n/src/locales/vi/companion-errors.yaml": {
+      "bytes": 3514,
+      "sha256": "5524a358d6e301c6367b3857b87649981db6c6d39473f8f53a28eb633cb42958"
+    },
+    "airi/packages/i18n/src/locales/vi/companion-extra.yaml": {
+      "bytes": 4073,
+      "sha256": "f3d15a2293d46e5e823485995f779065727e3bb88624e5b373297b77ff43f391"
+    },
+    "airi/packages/i18n/src/locales/vi/companion-providers.yaml": {
+      "bytes": 6005,
+      "sha256": "1a62954d13202330ea261c080e939a651860edc22b1187f83a486056b7f9908c"
+    },
+    "airi/packages/i18n/src/locales/vi/companion-speech.yaml": {
+      "bytes": 1378,
+      "sha256": "c0721b49bc4dd0f56f353eae6befc103c001b986e6ea3c486f105a6af47504b6"
+    },
+    "airi/packages/i18n/src/locales/vi/companion-ui.yaml": {
+      "bytes": 1255,
+      "sha256": "83c32886a71977d5f210b126a14919910170de5a7c214ec53f6fe6c8ff73f72b"
     },
     "airi/packages/i18n/src/locales/vi/index.ts": {
-      "bytes": 257,
-      "sha256": "05d866965b7dbbb6bce92d877e80f5ae0ca1b7b4dba51efe2bb0701f8c0a5af2"
+      "bytes": 981,
+      "sha256": "13d452651c2ba839e9618910034e20bc30786125c4adde84c9b041cca938179d"
     },
     "airi/packages/i18n/src/locales/vi/server/auth.yaml": {
-      "bytes": 9633,
-      "sha256": "bf1386299a8b6b47203957b47dfbeed962bbdc6b18d4017c6c098e478c954698"
+      "bytes": 9925,
+      "sha256": "a0e0346d5b27eb93188c38517b90a9645a7aeea50dd7d60f32a0cc824aa13350"
     },
     "airi/packages/i18n/src/locales/vi/server/index.ts": {
       "bytes": 64,
       "sha256": "6be10feba2a674c4e86dec2cc24f59ab135cf5e5b868c256200185d4633b1d92"
     },
     "airi/packages/i18n/src/locales/vi/settings.yaml": {
-      "bytes": 113985,
-      "sha256": "0530d1b80645b1613d55ee41ff24e3de7bb60247d86f00959301a6f8ae7681f1"
+      "bytes": 132371,
+      "sha256": "0456b42e736ff17e0314da903a55627e2079576f2f51b3d0d819fb7fb698dac7"
     },
     "airi/packages/i18n/src/locales/vi/stage.yaml": {
-      "bytes": 11102,
-      "sha256": "14336ed09183857ea1287f9474214639a8c371302865dc6927b914dc309b07d9"
+      "bytes": 15217,
+      "sha256": "d8c428c1ba740a969200c5cc491cb6d855ad6e67487da121e782b693f73eabfc"
     },
     "airi/packages/i18n/src/locales/vi/tamagotchi/electron/index.ts": {
       "bytes": 64,
@@ -12010,36 +13060,68 @@
       "sha256": "9aa6b5623bfa700dee00a6d128319736961ca75c97d0313bc836511c7276382f"
     },
     "airi/packages/i18n/src/locales/vi/tamagotchi/settings.yaml": {
-      "bytes": 28538,
-      "sha256": "5aba8effe4d0d3f04f68dbdf353f446aad70666c8ba5d04bef284b8dd3b1d0c7"
+      "bytes": 28932,
+      "sha256": "e0e356b0ad4a44095f6807646777726ac5792dff742cd6dd6c0d293a4bbc76cd"
     },
     "airi/packages/i18n/src/locales/vi/tamagotchi/stage.yaml": {
-      "bytes": 5121,
-      "sha256": "1e0920faaa2efb5c475e79b67ce38362bb4d236e5bb95ed82e4d032a7766acf3"
+      "bytes": 9950,
+      "sha256": "2fe0356ad609c6fdd1b1c1ab4ea352668f9bcd959e3c15594c0f3a77fb0da6ec"
+    },
+    "airi/packages/i18n/src/locales/vi/wow-addons.yaml": {
+      "bytes": 8590,
+      "sha256": "3d12c33c49d4b340e3a015a23e5e15b948dea32e8f70056eca609c766df51aa0"
+    },
+    "airi/packages/i18n/src/locales/vi/wow-companion.yaml": {
+      "bytes": 32515,
+      "sha256": "3338fc66dfeb9e14d9d340d45099663eaff65a1e0ebb20d0470baf22cbe0b142"
     },
     "airi/packages/i18n/src/locales/zh-Hans/base.yaml": {
-      "bytes": 2684,
-      "sha256": "013eccc3a4744d03ce2417ec9bf007ad94d0ca1d2ba42150b1352933200291a9"
+      "bytes": 2605,
+      "sha256": "cea4d4a30725a8f13e5ce0238b70c93ef3f17c9dde74602675ac9a15ce5fa743"
+    },
+    "airi/packages/i18n/src/locales/zh-Hans/companion-controls.yaml": {
+      "bytes": 3575,
+      "sha256": "96245dac6346a8ac5b1d8bb8166faab53d0beb3dc4a05456f1d81cd638878630"
+    },
+    "airi/packages/i18n/src/locales/zh-Hans/companion-errors.yaml": {
+      "bytes": 2926,
+      "sha256": "74164cc1977828efafdd25048e5d3c9cd0ac3b0bc66bea28d6567041ecc70bc4"
+    },
+    "airi/packages/i18n/src/locales/zh-Hans/companion-extra.yaml": {
+      "bytes": 3748,
+      "sha256": "0ce338542958669a53b0de76432184c25d4bb301a6b7dbffabdc850f13026863"
+    },
+    "airi/packages/i18n/src/locales/zh-Hans/companion-providers.yaml": {
+      "bytes": 4792,
+      "sha256": "700740f269eb5dd4def977592a1bbaa510761b6a27bc65243bb8733191c391c2"
+    },
+    "airi/packages/i18n/src/locales/zh-Hans/companion-speech.yaml": {
+      "bytes": 1111,
+      "sha256": "d7766a096644f5a33966a11ba3ecac0ff3c97512edf33b13cf3b256ed882872f"
+    },
+    "airi/packages/i18n/src/locales/zh-Hans/companion-ui.yaml": {
+      "bytes": 1000,
+      "sha256": "6b96be8acec4fb1836165eabf3b7aa7cce5d5bf1cdb536b787cd6e434173964f"
     },
     "airi/packages/i18n/src/locales/zh-Hans/index.ts": {
-      "bytes": 340,
-      "sha256": "0391fc3482f4e6b142b26be4157500b6cfb411cff8fa69bfc22f544ea9011033"
+      "bytes": 981,
+      "sha256": "13d452651c2ba839e9618910034e20bc30786125c4adde84c9b041cca938179d"
     },
     "airi/packages/i18n/src/locales/zh-Hans/server/auth.yaml": {
-      "bytes": 7354,
-      "sha256": "dc4c5d782c5a5c367ec0df990753dbecf74d7acbb95583736afe399e4b1aede5"
+      "bytes": 7598,
+      "sha256": "1767736e7b9df23f11915a90f3eacaa5fb1d75e48eb4d8d1ab8c85f1ffd39069"
     },
     "airi/packages/i18n/src/locales/zh-Hans/server/index.ts": {
       "bytes": 64,
       "sha256": "6be10feba2a674c4e86dec2cc24f59ab135cf5e5b868c256200185d4633b1d92"
     },
     "airi/packages/i18n/src/locales/zh-Hans/settings.yaml": {
-      "bytes": 105478,
-      "sha256": "dcfaabf4e4f07063ef56cae3c935420f26219344b6e2f8f69792b3526a259ee7"
+      "bytes": 111356,
+      "sha256": "c7923cac0c867177757f42dc74d96d4b980fe86edbaead054e77d9b89a1bb4d9"
     },
     "airi/packages/i18n/src/locales/zh-Hans/stage.yaml": {
-      "bytes": 12093,
-      "sha256": "5b2c425497877e8c072d6c4e5f6d37f4e55f530f781771a7f7a9413deb9d37a1"
+      "bytes": 12374,
+      "sha256": "dd588cb1c0ca6b7683e74f6f822d2df127960105b254e9b586690dfacb8501ac"
     },
     "airi/packages/i18n/src/locales/zh-Hans/tamagotchi/electron/index.ts": {
       "bytes": 64,
@@ -12054,40 +13136,68 @@
       "sha256": "9aa6b5623bfa700dee00a6d128319736961ca75c97d0313bc836511c7276382f"
     },
     "airi/packages/i18n/src/locales/zh-Hans/tamagotchi/settings.yaml": {
-      "bytes": 22927,
-      "sha256": "c00bfc49d762ce64938137c139809edb60772bdc8a225b6e6075d539d7608d2f"
+      "bytes": 23246,
+      "sha256": "aa7a7852508b1ce4d55875f385faa1d6936a062b651a3e0198d58362ab75c26b"
     },
     "airi/packages/i18n/src/locales/zh-Hans/tamagotchi/stage.yaml": {
-      "bytes": 7865,
-      "sha256": "6e84c4c03d4e4b4e001ae1d12da7ef584d28671d3a09e0877b96fdb7d871d2b2"
+      "bytes": 7994,
+      "sha256": "c64b1f1fac0ca4025b7b28a2c3d112bb06dd6e8a0fa5dcf0b62493f4aad42fca"
+    },
+    "airi/packages/i18n/src/locales/zh-Hans/wow-addons.yaml": {
+      "bytes": 7035,
+      "sha256": "69403ce22f1140775d41417e3a10ac225c0602c67ce0ef6f7fce68c85773f52e"
     },
     "airi/packages/i18n/src/locales/zh-Hans/wow-companion.yaml": {
-      "bytes": 17620,
-      "sha256": "3d86a0b54a743056f0276d5fee1f227c874079f6575f6000fc3fd003c2ba6d5f"
+      "bytes": 23970,
+      "sha256": "b88399f6ffaa5d83a9bae186e06ecced78f2c63d3031c737370058bcf3d476d6"
     },
     "airi/packages/i18n/src/locales/zh-Hant/base.yaml": {
-      "bytes": 4105,
-      "sha256": "fd910f782cd4843d3abaa6686e4a74e8282d2c460b41053169be03767e082d82"
+      "bytes": 4026,
+      "sha256": "d7fccd6269b43a278081b21ad9e44bad3ca21305e318842b9053db74f2b15385"
+    },
+    "airi/packages/i18n/src/locales/zh-Hant/companion-controls.yaml": {
+      "bytes": 3575,
+      "sha256": "9ae2173f07b304756603581dd6633d10ceb606cdec832acbd580dfb5acb9f60a"
+    },
+    "airi/packages/i18n/src/locales/zh-Hant/companion-errors.yaml": {
+      "bytes": 2986,
+      "sha256": "08e4e022b55068858938e163c69f84c77c8d5646af1aace5069bcbbd74361842"
+    },
+    "airi/packages/i18n/src/locales/zh-Hant/companion-extra.yaml": {
+      "bytes": 3763,
+      "sha256": "381de84e44eb121a1761cdcb25338d50b3273bb8d37cabbccef4926875c3d240"
+    },
+    "airi/packages/i18n/src/locales/zh-Hant/companion-providers.yaml": {
+      "bytes": 4819,
+      "sha256": "4788692382e6d9c7f1057b0d9a5ca2ccccbdce8ff596e6d339f33e29e472eeb3"
+    },
+    "airi/packages/i18n/src/locales/zh-Hant/companion-speech.yaml": {
+      "bytes": 1120,
+      "sha256": "a6432ff17cba595c668090ef5a98fbdf33c07d6441a73a29be327b71900f52e0"
+    },
+    "airi/packages/i18n/src/locales/zh-Hant/companion-ui.yaml": {
+      "bytes": 1009,
+      "sha256": "0e0bc544d1671e943a6df25b38e37f590ae9d41d0bdc5b088fd68a3ed57e98d5"
     },
     "airi/packages/i18n/src/locales/zh-Hant/index.ts": {
-      "bytes": 257,
-      "sha256": "05d866965b7dbbb6bce92d877e80f5ae0ca1b7b4dba51efe2bb0701f8c0a5af2"
+      "bytes": 981,
+      "sha256": "13d452651c2ba839e9618910034e20bc30786125c4adde84c9b041cca938179d"
     },
     "airi/packages/i18n/src/locales/zh-Hant/server/auth.yaml": {
-      "bytes": 7291,
-      "sha256": "d87286f5587297b61dd797ae09f56c051c404e929fcf0721e6ec02b0e466a52e"
+      "bytes": 7507,
+      "sha256": "a54c61d88083c64bab416a6b42b0c474c91758e41fa86ff39c096561a987f822"
     },
     "airi/packages/i18n/src/locales/zh-Hant/server/index.ts": {
       "bytes": 64,
       "sha256": "6be10feba2a674c4e86dec2cc24f59ab135cf5e5b868c256200185d4633b1d92"
     },
     "airi/packages/i18n/src/locales/zh-Hant/settings.yaml": {
-      "bytes": 95923,
-      "sha256": "f5e20d0df2a5c70c4cf8557632216ecc10e3fef959635b38668ed5474ed1dcfd"
+      "bytes": 111452,
+      "sha256": "4353c643aa6f2bca256f1494a0e7c212042658278ec937711e7b1132b4e5455c"
     },
     "airi/packages/i18n/src/locales/zh-Hant/stage.yaml": {
-      "bytes": 8817,
-      "sha256": "0472e147f1cec96375e722a5ed473027740c5352dda7677f147049515ba94c1a"
+      "bytes": 12336,
+      "sha256": "705a219d3cb4eeb1b8732af892046a876c85315103a5752836cf5af30e0283db"
     },
     "airi/packages/i18n/src/locales/zh-Hant/tamagotchi/electron/index.ts": {
       "bytes": 64,
@@ -12102,28 +13212,44 @@
       "sha256": "9aa6b5623bfa700dee00a6d128319736961ca75c97d0313bc836511c7276382f"
     },
     "airi/packages/i18n/src/locales/zh-Hant/tamagotchi/settings.yaml": {
-      "bytes": 23317,
-      "sha256": "80f14acb0373a981407d228f8436c23b331079f599216961b968cbecf5f4ef79"
+      "bytes": 23637,
+      "sha256": "23c3052a66b73a212fdc6f86cb6deb95d6d586ddc38d7d1441a7040eb630e8cd"
     },
     "airi/packages/i18n/src/locales/zh-Hant/tamagotchi/stage.yaml": {
-      "bytes": 4320,
-      "sha256": "a0c8aac97841ce7bb25a1be3af974dadfb2f083fba494bede693b2bc6d6ca552"
+      "bytes": 8087,
+      "sha256": "05de2c276219e65adba171658099a94dac46cc3759613962e63af60ae892a9ec"
+    },
+    "airi/packages/i18n/src/locales/zh-Hant/wow-addons.yaml": {
+      "bytes": 7047,
+      "sha256": "01e03c756b8fece0c3e1dd56bee601634ce3a86249659279fb41688ccb0fb08f"
+    },
+    "airi/packages/i18n/src/locales/zh-Hant/wow-companion.yaml": {
+      "bytes": 23985,
+      "sha256": "d586dc6d27f33fead314504932d5eeffe5cf86ecb00c32a486e82c3c26193acf"
+    },
+    "airi/packages/i18n/src/startup-fallback.test.ts": {
+      "bytes": 2074,
+      "sha256": "2b3afdd957cca942299f9b6dedb45f3d78cf39f9f5b6626e605c8a2764f148e5"
     },
     "airi/packages/i18n/src/startup-fallback.ts": {
-      "bytes": 915,
-      "sha256": "481675283c40b4de58776b61d57975724c6ff8aa7adb2b9fec9a59485546b0ff"
+      "bytes": 1466,
+      "sha256": "1f6d7ecc507b19e3a9937808d25638cc58ea93d558b47483e53f19681e1e6af7"
+    },
+    "airi/packages/i18n/tests/catalog.test.ts": {
+      "bytes": 3265,
+      "sha256": "5b22878b2f6ccc0ad153b76cf64a85ae21a1590fca6e2cc4b29e856d7d569be3"
     },
     "airi/packages/i18n/tsconfig.json": {
       "bytes": 421,
       "sha256": "6c07cd84c6b99e3e290abcf77193f52a8a50ca97689f903c0f4658f6bbb189d0"
     },
     "airi/packages/i18n/tsdown.config.ts": {
-      "bytes": 448,
-      "sha256": "56c145bc5384a85849971af5b4f84945eb84a8c7ed0bde75503c82d63fb6549c"
+      "bytes": 978,
+      "sha256": "ad7ba29df8591301ce578ba60f9aac6b102573159dee4efdfb654637eb1c969c"
     },
     "airi/packages/i18n/vitest.config.ts": {
-      "bytes": 141,
-      "sha256": "fd1094f95fce790f7efbf16b9d02915ac9f5c8a1f054185fdbe72c222f60194c"
+      "bytes": 183,
+      "sha256": "13af5978efae236bc4e5b1d090fedc9fac5bc56da40a8f06eb94de557d545402"
     },
     "airi/packages/input-gamepad-vueuse/README.md": {
       "bytes": 1254,
@@ -14345,6 +15471,10 @@
       "bytes": 16490,
       "sha256": "4f85a0ec6914f93dc45a9f91944a44da94e6b54b18048ae4d8e356386c32e537"
     },
+    "airi/packages/stage-layouts/src/assets/wow-companion.png": {
+      "bytes": 1757,
+      "sha256": "1ba1a6b3e25488d282307e40dd8c202543d2f9533e0b3105947a4f358ba362b5"
+    },
     "airi/packages/stage-layouts/src/browser/adaptive-input-geometry.test.ts": {
       "bytes": 4481,
       "sha256": "9efd313a3cb255f3b97b521af362310fbca5b9710c79fbbab0d3f7145d548429"
@@ -14422,8 +15552,8 @@
       "sha256": "a411586d8c9f67dd30d039255663b4a5ebaa289b67613170632b6696bd35f696"
     },
     "airi/packages/stage-layouts/src/components/Backgrounds/default/transparent-preview.vue": {
-      "bytes": 1627,
-      "sha256": "cdf96f16aad66a5d2f46f961af979ea3e7c2844394a3cce5aa56964bcde67754"
+      "bytes": 1822,
+      "sha256": "4af46ffd0ce46a36696c2547283e8d0b46203113c44bddea93fd1d6d4ec0968a"
     },
     "airi/packages/stage-layouts/src/components/Backgrounds/index.ts": {
       "bytes": 136,
@@ -14438,16 +15568,16 @@
       "sha256": "ea4b5e1a001f404908e163c19d2aed8c7d26b365245f11f6e88077c8f06c6f06"
     },
     "airi/packages/stage-layouts/src/components/Layouts/HeaderLink.vue": {
-      "bytes": 814,
-      "sha256": "2d57a97190a2035c823a6c478b2f63f69f647dedb10337e37823804957507cf9"
+      "bytes": 526,
+      "sha256": "168c7e4714b76516bb9871a82a898df3ff4efcd16e9aa55d1be13ceac065844b"
     },
     "airi/packages/stage-layouts/src/components/Layouts/InteractiveArea.vue": {
       "bytes": 4588,
       "sha256": "9923d5acea2f15a501d002b75fb51e6a5d7a24a410426d6441462b1b868d58d3"
     },
     "airi/packages/stage-layouts/src/components/Layouts/InteractiveArea/Actions/About.vue": {
-      "bytes": 1653,
-      "sha256": "2401a92de46e59390b2ba095b9a7cb28b193a9010d089403e8d46c7970f219ef"
+      "bytes": 1768,
+      "sha256": "bdce71cef3554c7ec291bc1a3c7b448f67faa4eccc2a404086f08d08c1da95cf"
     },
     "airi/packages/stage-layouts/src/components/Layouts/InteractiveArea/Actions/ViewControls.vue": {
       "bytes": 4243,
@@ -14466,8 +15596,8 @@
       "sha256": "90b43e36af5c91cf5557b0a932787fb3a3975894fe1505d815b0fc7348daaa41"
     },
     "airi/packages/stage-layouts/src/components/Widgets/ChatActionButtons.vue": {
-      "bytes": 4189,
-      "sha256": "9494ffa13443990096395d92b39e1482e7f312daa6fd953a8998901eface0180"
+      "bytes": 4350,
+      "sha256": "87bdcbdd5cd0149433c1bc6bdecf0af254289940490f259d695195c73d668ef4"
     },
     "airi/packages/stage-layouts/src/components/Widgets/ChatArea.vue": {
       "bytes": 10159,
@@ -14842,8 +15972,8 @@
       "sha256": "8da5c7ab96468398ebfbcdca928b7d5aeac02a541a213a54134300b22a0998a4"
     },
     "airi/packages/stage-pages/src/pages/settings/modules/beat-sync.vue": {
-      "bytes": 12415,
-      "sha256": "de9a17d382d050e1f2baf1d8fac4a2288acef5519cf147975d7ac4a84ddc4c2f"
+      "bytes": 12581,
+      "sha256": "03f1e5bd7e6fc670e142989e51f430ff6c47d9c31b7b3ba236bf8070d53646a1"
     },
     "airi/packages/stage-pages/src/pages/settings/modules/components/hearing-playground-segment.vue": {
       "bytes": 2120,
@@ -14890,8 +16020,8 @@
       "sha256": "351226cb110bb7ceca02ee5e4bcf21c23cec23bee41ef8d317f23e4b60a7f4e5"
     },
     "airi/packages/stage-pages/src/pages/settings/modules/hearing/transcriber.vue": {
-      "bytes": 30842,
-      "sha256": "f7daa3d151f5b20f76161b4855f48012cc7e600863f898488276d72f9918cc59"
+      "bytes": 31987,
+      "sha256": "8856d3a5fea63694d47d513bd14130614169fd522e80675950079889d4b8ceb6"
     },
     "airi/packages/stage-pages/src/pages/settings/modules/hearing/voiceprint.browser.test.ts": {
       "bytes": 6691,
@@ -14942,8 +16072,8 @@
       "sha256": "ecdbcd108aebc0ae805e6c36b44b144ced2a3dd5145a073da8e9c8cd03fad8a8"
     },
     "airi/packages/stage-pages/src/pages/settings/modules/speech.vue": {
-      "bytes": 38947,
-      "sha256": "312db50270461ad1edbb3330607cb88653b86a38721b77abf118897d210b4b72"
+      "bytes": 39551,
+      "sha256": "b1e426dc11e97940e8f615d436c7051bb060e64a6e57eebc8eef72286580776d"
     },
     "airi/packages/stage-pages/src/pages/settings/modules/stickers.vue": {
       "bytes": 351,
@@ -14986,8 +16116,8 @@
       "sha256": "959ec9f62eaa0a8464815ceda9644d261601efdddf14ec6ace931711bff1519f"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/chat/azure-ai-foundry.vue": {
-      "bytes": 4370,
-      "sha256": "ff32558ec80c2c697bf0ab04e81bb2c00c20faf0c2b5a8bfafa6312b113c73de"
+      "bytes": 4684,
+      "sha256": "57dc9054319c9dccb5b6a2e5c0a8b73728cfaac096ddb701bd3356960f023c2a"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/chat/cloudflare-workers-ai.vue": {
       "bytes": 3570,
@@ -15042,8 +16172,8 @@
       "sha256": "a1539f1d6e866be62eb960f10417ba81e87c57afcf662882d5502f0716675c6c"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/speech/google-gemini-audio-speech.vue": {
-      "bytes": 5707,
-      "sha256": "386b1664a25c564f1800dbf419aab4113ac714d4e50bb099c4e6b15e62a9fd04"
+      "bytes": 5801,
+      "sha256": "75c50b0a6086aaf6d36517eefd3a93d872716087f791298e4194af7607b5e736"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/speech/index-tts-vllm.vue": {
       "bytes": 2957,
@@ -15058,8 +16188,8 @@
       "sha256": "8addb5a414fba9246d07b2eb490e79c293f8e6c6dcd6bd5734f712d34f142068"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/speech/mimo-audio-speech.vue": {
-      "bytes": 8483,
-      "sha256": "c1a2a69bf4adc5cde1683d4cce95f17623e3f26a37f16267202b7ec202bd9130"
+      "bytes": 8298,
+      "sha256": "4ecb76802ef4b45cbaec019fc7b7325bfef4dda60cf9797db90883e2f6f31928"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/speech/minimax-speech.browser.test.ts": {
       "bytes": 7335,
@@ -15106,8 +16236,8 @@
       "sha256": "0abdf45e81d16d5ef1643bbd8d05cd6d5535d02e08e5cde1e42b1e9c3ea1a2d1"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/transcription/aliyun-nls-transcription.vue": {
-      "bytes": 16519,
-      "sha256": "1da06c2d538a51f889c706ba6ef1959b55edfbe8e01d50c4ebb1dfc937ac999b"
+      "bytes": 17152,
+      "sha256": "008e61f07c617f9e1a8c451cececc913303f5a3dc82d1d1df87955927867dac2"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/transcription/app-local-audio-transcription.vue": {
       "bytes": 435,
@@ -15118,8 +16248,8 @@
       "sha256": "cc98a5d45a7d3c9aa9c62b717d0775ac889dda8306b09f09812ae663dd3d5515"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/transcription/browser-web-speech-api.vue": {
-      "bytes": 15753,
-      "sha256": "ca78da1e3225e1010a04ba2fdb2242b6fdad7181a7bc07c562135440839690c0"
+      "bytes": 15844,
+      "sha256": "f9af1ba655fb060ecf25b1aebf5a185ae885b0efc6f4ec00b13da4f59eeb275e"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/transcription/comet-api-transcription.vue": {
       "bytes": 6205,
@@ -15154,8 +16284,8 @@
       "sha256": "5a6d9f6fbc01a8341003c8084ee5350709fe91abf8f2737cda18e15802375237"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/vision/azure-ai-foundry.vue": {
-      "bytes": 4370,
-      "sha256": "93a35ceec0863040f3bd2f2dc90a6fd72cb4296c53a5cedbcb6397a459a401e3"
+      "bytes": 4684,
+      "sha256": "2bd82115a692e392ace7334af013d48eb8c8cb6f3a116ab0a92cb931ad806264"
     },
     "airi/packages/stage-pages/src/pages/settings/providers/vision/cloudflare-workers-ai.vue": {
       "bytes": 3570,
@@ -15194,24 +16324,24 @@
       "sha256": "bd9e04cbbd945e94a97d14f078665f1faa9f1926c64e77a35d81a1d3f0e2714f"
     },
     "airi/packages/stage-pages/src/pages/v2/index.vue": {
-      "bytes": 10523,
-      "sha256": "8d01d95ad5da867385f447629ca02a6ea4fa249e34a53fbf5ad7ee189fcf9cb3"
+      "bytes": 10863,
+      "sha256": "c8aa105f5eea30a93866a052fd205b4b5abb8580aa777141aec6319045e97e9c"
     },
     "airi/packages/stage-pages/src/pages/v2/settings.vue": {
       "bytes": 123,
       "sha256": "d166500934898df99a8441f3756a346733d0a9a31a32f621d6732bafc5506cfb"
     },
     "airi/packages/stage-pages/src/pages/v2/settings/index.vue": {
-      "bytes": 58,
-      "sha256": "361a7572ff5ab29984bab46e76b9665d03ee58cbbe3d1f6b13b137d6f463dc01"
+      "bytes": 253,
+      "sha256": "4f8fae75077121fb8d0d8b3c8259b3dd2bf9d131d9b4fa0d3f60bfb1aa968698"
     },
     "airi/packages/stage-pages/src/pages/v2/settings/providers.browser.test.ts": {
       "bytes": 3199,
       "sha256": "b8e4851f2363575a4fdaf63dcc687176b27177eeea14a49e182d61b38336fad2"
     },
     "airi/packages/stage-pages/src/pages/v2/settings/providers.vue": {
-      "bytes": 7223,
-      "sha256": "75b44162fbfba305fde189e423c56ccef2f9fc0006ae8c15bed99ed8c3bdc298"
+      "bytes": 7526,
+      "sha256": "e9fba6d5633c0300f2fe4f82d5d62ddcaeb37e233f82c4fc1af3b0b29aca9a2f"
     },
     "airi/packages/stage-pages/src/pages/v2/settings/providers/edit.vue": {
       "bytes": 123,
@@ -15234,12 +16364,12 @@
       "sha256": "65bf6c4c5837334c29f05d3542a5292bcd9143bc7a05d751d3ad5b1bfb2f3bee"
     },
     "airi/packages/stage-shared/README.md": {
-      "bytes": 1268,
-      "sha256": "f6eb27db72dacee58f88cf36743e4a8f01b421a4a2db4187716c2953dca3d6f9"
+      "bytes": 1700,
+      "sha256": "89ad8e2c04387b5c03fbe44af7fb550457aa89b7c029ed243e833337018d7165"
     },
     "airi/packages/stage-shared/package.json": {
-      "bytes": 1951,
-      "sha256": "e0d0d5c1bf693f1878f4f32f1a58afcd6a035ff0894125bd2ad411fc6c7e4027"
+      "bytes": 2007,
+      "sha256": "f97452773a549e6724103eca8bd34a09351ea73ce098e33da1fc4f6d34660bc0"
     },
     "airi/packages/stage-shared/src/analytics/openpanel.ts": {
       "bytes": 246,
@@ -15512,6 +16642,58 @@
     "airi/packages/stage-shared/src/window.ts": {
       "bytes": 477,
       "sha256": "fca0245a48cf2e9054b01a29683aa57c79cacb9791aab0a56df8ac7a4bc89c4e"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/README.md": {
+      "bytes": 5225,
+      "sha256": "dd28835207eea5217523b1ac4a62c5fcb0be6272cd5bb2dfc4e9b8e6bac1e4d3"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/catalog.ts": {
+      "bytes": 1721,
+      "sha256": "4d05c915970a16acce50c170f3a69c99056a7441cce0a903e93ccbff6b255e15"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/data/classic/general.json": {
+      "bytes": 2993,
+      "sha256": "b992a420a53bfde7e4158948a8883bab3270e027869984855a55fb6477135cb8"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/data/classic/locales/zh-CN.json": {
+      "bytes": 4708,
+      "sha256": "436783a5ea461ca540a5f190294a9e0b52abe26547020b6ac29963cd09e2a2e0"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/data/forever/general.json": {
+      "bytes": 3531,
+      "sha256": "aa16f1a9b17c88230a03add722c7b3322cd4c4701c00e8824299ef49a0f43343"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/data/retail/general.json": {
+      "bytes": 2572,
+      "sha256": "4cb5cf0d51f07e79dde1af68aeb92665876a79fb5ec1558ab4f805d260452527"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/data/retail/locales/zh-CN.json": {
+      "bytes": 1690,
+      "sha256": "524e38b0c1b910268d75792020d1117df71d9e5ad23686abc63492c9fa017fe7"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/data/shared/general.json": {
+      "bytes": 4536,
+      "sha256": "df54d40e6df2fc2b194aa941a2140906d124698d17e58d04c5b778619194d274"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/data/shared/locales/en.json": {
+      "bytes": 7444,
+      "sha256": "3f5156aa994c5f8a053fd0b00208a51865f6bcf6cc7e67e6939cd9859b6953f0"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/data/shared/locales/zh-CN.json": {
+      "bytes": 21845,
+      "sha256": "79b735152a6420c5ec78df9263c768c86604331cd8e9f06e557b690231c185bf"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/index.test.ts": {
+      "bytes": 6710,
+      "sha256": "3e1431bcd0231c993e33552c03b9df1138ab48b1212559680accb8a2acd9b349"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/index.ts": {
+      "bytes": 6557,
+      "sha256": "e0a90e6f02a6858e82884f9682c8f627656d5f44327529e291294ac4b2fd13a9"
+    },
+    "airi/packages/stage-shared/src/wow-knowledge/schema.ts": {
+      "bytes": 2077,
+      "sha256": "15407d85730e71016a6ca3f57c0917d30749ec3efae7bdda030f12931e488704"
     },
     "airi/packages/stage-shared/tsconfig.json": {
       "bytes": 932,
@@ -16446,8 +17628,8 @@
       "sha256": "eda134f38dcf304bcdfe1534ccb7a3f3d77ebd84d05978d1c9a945a1748dd5f3"
     },
     "airi/packages/stage-ui/src/components/auth/SignInPanel.vue": {
-      "bytes": 4086,
-      "sha256": "d1ad20344f1b8113b1be3c0e193cd16f12f0615309913e4dc44f924f5dd908da"
+      "bytes": 4089,
+      "sha256": "c75c9ae3e5ef3a15868e576b13792156fd3131ef19fa61b0dd2e0c7a7fe78189"
     },
     "airi/packages/stage-ui/src/components/auth/index.ts": {
       "bytes": 89,
@@ -16926,8 +18108,8 @@
       "sha256": "e4ef99a681e6ce2459162dc1745b454ddb3419054046b7cd0276aaaf14c472dc"
     },
     "airi/packages/stage-ui/src/components/misc/steppers/steppers.vue": {
-      "bytes": 5505,
-      "sha256": "b245f145074adbd8c1b8ae587e1ed30d17f95ebaee274916754d7984cc5ecad7"
+      "bytes": 5763,
+      "sha256": "97cdae5fc4b01052aac6a5248fee001d87d19240f663e9caa1004ce171419f1e"
     },
     "airi/packages/stage-ui/src/components/misc/steps/steps.story.vue": {
       "bytes": 22674,
@@ -16998,8 +18180,8 @@
       "sha256": "de98b4a46ed207bc2c82e1ae51196198ac078d7702880880803e4d91dbb1e78f"
     },
     "airi/packages/stage-ui/src/components/scenarios/about/about-content.vue": {
-      "bytes": 3944,
-      "sha256": "443c06d7d7ff59983980911fdf936f1005593b1fc1aa1fb51b4ae5c6dca88dab"
+      "bytes": 3981,
+      "sha256": "e439d04fedf187719b2eef09fc988ef0c5540430581a65ce45cd3682c443b88c"
     },
     "airi/packages/stage-ui/src/components/scenarios/about/index.ts": {
       "bytes": 88,
@@ -17010,8 +18192,8 @@
       "sha256": "74e7233df17ef74323462133a7187602d24d2d25510b5b0faf522c978d96fa19"
     },
     "airi/packages/stage-ui/src/components/scenarios/chat/JournalPreviewModal.vue": {
-      "bytes": 3392,
-      "sha256": "ab57441d08e2462d0bf92418a05d151f01719d0e1603a17ae90f37b07ca23f30"
+      "bytes": 3543,
+      "sha256": "cab1b69295c3845c5277c785228a10804317337811f173bc0a7250068f2b06e4"
     },
     "airi/packages/stage-ui/src/components/scenarios/chat/components/action-menu/index.test.ts": {
       "bytes": 1430,
@@ -17378,8 +18560,8 @@
       "sha256": "bbe6c6b1ee9036825790b5805572ddd7d1f731ff2c17003ebcd57191a36436d6"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/about.vue": {
-      "bytes": 778,
-      "sha256": "4e350faf9152d1260b81a027a01cd7bcba73650111de21acdc5953d153366ecc"
+      "bytes": 767,
+      "sha256": "945e2c13d63a0c53d815d0c08980eae522b2a3e400165d7adeae28823801ed1d"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/about/about-dialog.vue": {
       "bytes": 2309,
@@ -17410,12 +18592,12 @@
       "sha256": "b4045f80607160024ca3164ae119a1e3b8d123d7a00dd17b7b92eecb36a7a6db"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/background-picker/background-picker-dialog.vue": {
-      "bytes": 3461,
-      "sha256": "e56935c1b6123e83ffe2aa06880eb0aef7c12fed900c10f4b382c2d48989ef8b"
+      "bytes": 3617,
+      "sha256": "0df806c2453e299d808b6a347503a79ce89feb199d8c090a966b837139bfe6a1"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/background-picker/background-picker.vue": {
-      "bytes": 12504,
-      "sha256": "2981ba5d10eb9f00c664d404ee6e645774801969e210bfb0c98577a5f0038ad1"
+      "bytes": 12910,
+      "sha256": "86a830032950330aa9e03dacb329a3b10f75efd85f1f0d3ee1f6ad8b3edd319d"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/background-picker/index.ts": {
       "bytes": 180,
@@ -17470,12 +18652,12 @@
       "sha256": "d9914ec4ff69312475826f3049f4f43e92c02965ff8b820f6ec10d373a20039c"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/model-selector/model-selector-dialog.vue": {
-      "bytes": 2957,
-      "sha256": "29eabe7cc0465a368e63c5f19804282aa1d3c14d2d573ed73aafd8e2f9dbefb4"
+      "bytes": 3113,
+      "sha256": "37d6c943224cf689c122836cb0e9b2060dee5cfbf39b5b271940cd75e1cba046"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/model-selector/model-selector.vue": {
-      "bytes": 24478,
-      "sha256": "6d72313b1a38157b81111ff8fd1939fc83fa21fad3ebe74b11c83011d76c5d36"
+      "bytes": 24883,
+      "sha256": "eceafecd87925c8d0657c884df0e6ac1abd8e38b96cc480ee635a85b0370d517"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/model-selector/reports/live2d/content.vue": {
       "bytes": 15282,
@@ -17490,24 +18672,24 @@
       "sha256": "0fd7aed1c47b3efbb0647469ddff191b55104c1859cf997c1afe1fde816ffa4a"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/model-selector/tachieReportModal.vue": {
-      "bytes": 8480,
-      "sha256": "b8c0ecb2997d725995d540106a2aba588086190e85e8d76ffc87e0a22012cdd3"
+      "bytes": 9243,
+      "sha256": "a8ac11291d8dd1201520d79ac25d320ff6e3e0c85666933b1a18459c095383d4"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/onboarding/index.ts": {
       "bytes": 270,
       "sha256": "63bf6bdc8477bbb3ae7a4593baf3f38b731de74b42b751183f3f7b1108c68256"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding-dialog.vue": {
-      "bytes": 3585,
-      "sha256": "3f53ffe2431b1105724580227b437fc089d3cbb166a58feef33746790beeda75"
+      "bytes": 3741,
+      "sha256": "c9d84285fb9bad9647f78fd7dc65c94d01b181541833b3bded92502b1f29b056"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding.browser.test.ts": {
-      "bytes": 8818,
-      "sha256": "122d51f3bd252980d6ba2924a5a4344776bb872ac1aae1523fd62d7faa1e0765"
+      "bytes": 10036,
+      "sha256": "93da257a7c4cac1d56babe112efd739aa3fb303b2b0286b36eb36fc74807a702"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding.vue": {
-      "bytes": 8884,
-      "sha256": "345308b0f350a44cee82a31070115fc5e512f84086de30423f8e0c6b14c6cc47"
+      "bytes": 8735,
+      "sha256": "8725588dd2ee62b1866d7bc002820a426b9e7b41aa4fbf3e210e9e366be84153"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-analytics-notice.vue": {
       "bytes": 2055,
@@ -17518,20 +18700,20 @@
       "sha256": "381e5d4e7f979ac3bf6669942eb4d3f8f0389842e9c9ed211034b4e25d5de7d2"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-provider-configuration.vue": {
-      "bytes": 12477,
-      "sha256": "da4e9238abf6c5dd9a05a6ce42150ee88388ac8da205641b860c49cc67bb61cc"
+      "bytes": 12642,
+      "sha256": "c0856a2dd7d8fa1b4973c872aa4bcb76b91b985243cae911074457d46cbb6b64"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-provider-selection.vue": {
       "bytes": 2235,
       "sha256": "cda3c90b3d9aef8dbfab12f3eb35e0b075bcf0dec5d57575a78eac84bb365021"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-welcome.browser.test.ts": {
-      "bytes": 5590,
-      "sha256": "53f2101b73e20b7ddbcf28c7d38af6b1d537fe760352844a50612e303c664e9e"
+      "bytes": 5212,
+      "sha256": "b8d6b79ecdaef47d8ad3a29307f42077694055b8f00ec28ba36f15940c3a88a5"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-welcome.vue": {
-      "bytes": 6587,
-      "sha256": "0cc733c96549cb2c47ae3f29fbc37645306456ceb9f36d987cfc24bbf1b52c01"
+      "bytes": 4561,
+      "sha256": "a2881d5037360d2a8fcb8d1c73b24df3412042f9dac5f77b9190e4ffd950e5f6"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/onboarding/types.ts": {
       "bytes": 729,
@@ -17542,8 +18724,8 @@
       "sha256": "19b845b562660436a082b882e794f9a6af9e741a0c212e61ec8ff1ea7b44fd80"
     },
     "airi/packages/stage-ui/src/components/scenarios/dialogs/validation-details/provider-validation-details-dialog.vue": {
-      "bytes": 5419,
-      "sha256": "db126e6281782cf8c288467b47ae0b1917ec075507609863ec2bf8757bdd09b0"
+      "bytes": 5726,
+      "sha256": "a646ab9d94de29e99c5cafeabfe8b0dfa3b9bb7d1ecda63c519af9352e04f31a"
     },
     "airi/packages/stage-ui/src/components/scenarios/hologram/holo-coupon.vue": {
       "bytes": 9262,
@@ -17658,12 +18840,12 @@
       "sha256": "5637971dfca83dd56181517633806eb5a0c2d6cd4fabeee7216f6406e8ed8929"
     },
     "airi/packages/stage-ui/src/components/scenarios/providers/provider-basic-settings.vue": {
-      "bytes": 1017,
-      "sha256": "47bef4962dd60493708657cb2151d4a96ddc38866362264bdb6595b4bf490371"
+      "bytes": 1170,
+      "sha256": "c6d2b41e80fd4c88b4811d2d6432b075d843622f2d152dee220d6a4802f66411"
     },
     "airi/packages/stage-ui/src/components/scenarios/providers/provider-download-model.vue": {
-      "bytes": 1845,
-      "sha256": "55b7df4327e128c51bc8d2c88af22f02e9585518664154481d37d03468769f85"
+      "bytes": 2001,
+      "sha256": "eb14866611486db7c345d45e805568dc5c3c4dcb10ea6209294e56816d8ae6f8"
     },
     "airi/packages/stage-ui/src/components/scenarios/providers/provider-generation-settings.vue": {
       "bytes": 4140,
@@ -17690,8 +18872,8 @@
       "sha256": "fd208413d517d7f7552546967310c3b920097ce18bd40fdc6e60cbdfd63cb354"
     },
     "airi/packages/stage-ui/src/components/scenarios/providers/speech-playground-openai-compatible.vue": {
-      "bytes": 6353,
-      "sha256": "f684c752da6424d70186d0dc24d85e6f6b36abe9b37648aa6edefdc3eee58c60"
+      "bytes": 6510,
+      "sha256": "5a070b54fae340d94baa693bf3beef12e7eaaab3e10891b1d565fb12e2fdc0ff"
     },
     "airi/packages/stage-ui/src/components/scenarios/providers/speech-playground.vue": {
       "bytes": 9370,
@@ -17722,8 +18904,8 @@
       "sha256": "cce59bc49b88d521b2dd04135c87b0d954dfb5188e1e022f6cf9025099e137ab"
     },
     "airi/packages/stage-ui/src/components/scenarios/settings/ModelCacheManager.vue": {
-      "bytes": 3559,
-      "sha256": "1796f0c068da2b5b56681c1ef367583a39a347c0d0deb5546a0bc2e1fb14d360"
+      "bytes": 3854,
+      "sha256": "caf33665e58b78af46ccbf0eab0d4d24df3c2375108d5eb45ca2014decaa3945"
     },
     "airi/packages/stage-ui/src/components/scenarios/settings/bar.vue": {
       "bytes": 547,
@@ -17746,8 +18928,8 @@
       "sha256": "ad4ef0a976f6246f4f97240942298588340016eac0f4d755cd7b948369b73e5f"
     },
     "airi/packages/stage-ui/src/components/scenarios/settings/model-settings/godot.vue": {
-      "bytes": 7592,
-      "sha256": "617430af898cce553530bea10554d5b7f2f63236fcf5fae3fb8e9d101decfe25"
+      "bytes": 7810,
+      "sha256": "be7bc0a194f1b0122d041472fe3f0b503698b044ea56b3bde28d7668f1e43eef"
     },
     "airi/packages/stage-ui/src/components/scenarios/settings/model-settings/index.ts": {
       "bytes": 324,
@@ -17766,12 +18948,12 @@
       "sha256": "4b67dfeacfaa5610cb14238380480505537b30bc67ae04adf6e782f4175e12da"
     },
     "airi/packages/stage-ui/src/components/scenarios/settings/model-settings/live2d.vue": {
-      "bytes": 34569,
-      "sha256": "4d73e3e513ddb74f5126b9aa55775d53b00ba176d803c2452fdff889e79ec60f"
+      "bytes": 36630,
+      "sha256": "da8ceb85f3ef8ca8f8c79baf9aa8a9c238fc8ecfd35c55598a23258069ccc0e5"
     },
     "airi/packages/stage-ui/src/components/scenarios/settings/model-settings/mmd.vue": {
-      "bytes": 12952,
-      "sha256": "ca1b51ba744d3747d2f4bf2ad2268c70d46bb883ded98112d31fe1561e383d75"
+      "bytes": 13759,
+      "sha256": "be946462aebc57ea83eb97ceaece91f0ed51a8652863a913d8199c64e560bfa9"
     },
     "airi/packages/stage-ui/src/components/scenarios/settings/model-settings/panel.vue": {
       "bytes": 5486,
@@ -17798,8 +18980,8 @@
       "sha256": "2d837331a78e7062a68dca5a1ff52e1193f2c85983e25ba67fc18861179043eb"
     },
     "airi/packages/stage-ui/src/components/scenarios/settings/model-settings/vrm.vue": {
-      "bytes": 9968,
-      "sha256": "f313988ae5cca04aae9e5c4281a81544b2361e0b14c4bdc34c10f629db5b53e6"
+      "bytes": 10476,
+      "sha256": "d904063af726ac26c8a1a2187ebbf92846882b1fc2bbc74ab0151fe47bc82140"
     },
     "airi/packages/stage-ui/src/components/scenarios/settings/settings-bars.story.vue": {
       "bytes": 1039,
@@ -17854,8 +19036,8 @@
       "sha256": "1f8478637047e5b0b0dbd835187467e44a44749c4af76b31dad54f80329dd8c0"
     },
     "airi/packages/stage-ui/src/components/scenes/Stage.vue": {
-      "bytes": 31060,
-      "sha256": "e273c47d5dd40eab131cbbf4aff4f9741618b9021377d7e10e4ea5cedf621243"
+      "bytes": 31255,
+      "sha256": "52827b6806023ded93f334393b3a7bc2f0c37ad8eed8bdbe766d73426e9de41b"
     },
     "airi/packages/stage-ui/src/components/scenes/ViewControlSlider.vue": {
       "bytes": 4658,
@@ -18357,6 +19539,10 @@
       "bytes": 43,
       "sha256": "31fb700e614d79b8f0dc2d75754426d5171048cf8820730f3b55cbb0391907b5"
     },
+    "airi/packages/stage-ui/src/constants/wow-companion-product.ts": {
+      "bytes": 246,
+      "sha256": "0dcff6f2c03265f81b5e8e96706a0f2d791f4639532dc35b63a7f1b4cf37a677"
+    },
     "airi/packages/stage-ui/src/database/repos/__mocks__/chat-assets.repo.ts": {
       "bytes": 1583,
       "sha256": "0ff448e596b9eff6877a8c4f05a5e29ab90f356b52ed5a3658c5c3c013d953e4"
@@ -18434,8 +19620,8 @@
       "sha256": "a350aa5284d465357d1f864f55048ef34872a7468df841de3d5f1b5a89854838"
     },
     "airi/packages/stage-ui/src/features/devtools/motion/live2d/components/keyframe-editor.vue": {
-      "bytes": 19426,
-      "sha256": "0e62c301121eb447bea383942789e61ccf507524249b9f74b4da508a9a6c1d65"
+      "bytes": 19435,
+      "sha256": "7a2837e2570028fa794a9ab3f22709ee9fd01eeed30f28c12cd13d4470329ddc"
     },
     "airi/packages/stage-ui/src/features/devtools/motion/live2d/components/output-filter.vue": {
       "bytes": 6188,
@@ -19534,12 +20720,12 @@
       "sha256": "583ce7f122efbfd2d281974ad1e311930b84a3b0c3f7cc4c92b3467565e69f83"
     },
     "airi/packages/stage-ui/src/stores/chat.contract.test.ts": {
-      "bytes": 95919,
-      "sha256": "3bd3875954ecd4c308e14c2e26b4aaf741279263df1b9d123bb0befbb89dcb0d"
+      "bytes": 103019,
+      "sha256": "8929d12ea61facd999173bbe6ee6c17b2c4cb9b1bc9793f599cba0358d85c50c"
     },
     "airi/packages/stage-ui/src/stores/chat.ts": {
-      "bytes": 75015,
-      "sha256": "ec69c56ce10b6478d9fda8505d1db91fff27054edd2c032c094ed2a2e8892387"
+      "bytes": 77601,
+      "sha256": "1d950dc2ee0b4606e2a4ce2ecc335deb0d59f67dcb9036476d019a477d97a16c"
     },
     "airi/packages/stage-ui/src/stores/chat/constants.ts": {
       "bytes": 236,
@@ -19617,6 +20803,14 @@
       "bytes": 1822,
       "sha256": "b82555bc463975b0f8395aeddf0ee11fdff9d4aaf6629a12572f4033b045e1a3"
     },
+    "airi/packages/stage-ui/src/stores/chat/request-context.test.ts": {
+      "bytes": 4046,
+      "sha256": "dcbcc8ad9b11ab8f9e8cdaf91cadd097a3ff0a78ca65bca626f4fe01c215f559"
+    },
+    "airi/packages/stage-ui/src/stores/chat/request-context.ts": {
+      "bytes": 2355,
+      "sha256": "df3d6689cd9dc329a3f3264d9cd272905062f1c285eb33e2a041f8906736a2fa"
+    },
     "airi/packages/stage-ui/src/stores/chat/session-locality.ts": {
       "bytes": 475,
       "sha256": "d307160768665eb0b0792f0ce7e38cfabf0773e5bdfc7830730c259f5bd6a3a5"
@@ -19648,6 +20842,14 @@
     "airi/packages/stage-ui/src/stores/chat/stream-store.ts": {
       "bytes": 1921,
       "sha256": "1f8211486aa5e42dc9180050948fba535d956f59b23bea1d9a36f502087e2324"
+    },
+    "airi/packages/stage-ui/src/stores/chat/wow-knowledge-context.test.ts": {
+      "bytes": 4749,
+      "sha256": "99a1b7f5b2828036cdb0417d168b9532bafc57edf91579f219b0d2146b3fe912"
+    },
+    "airi/packages/stage-ui/src/stores/chat/wow-knowledge-context.ts": {
+      "bytes": 2582,
+      "sha256": "e8da064b98b92d31337d8d78ad5d9f8714af749a144eccfa327e55b5ed710979"
     },
     "airi/packages/stage-ui/src/stores/configurator.ts": {
       "bytes": 520,
@@ -19702,8 +20904,8 @@
       "sha256": "3e7dce8332ac908be173f30aeb571b478ff1c76e87a43057d86a990649843657"
     },
     "airi/packages/stage-ui/src/stores/journal-preview.ts": {
-      "bytes": 1331,
-      "sha256": "178972522c5e24e2307f3f0eeac5d6db017b645d0ec50c0f882d9598a654cb95"
+      "bytes": 1344,
+      "sha256": "dd4b631b2eeaf181b8952c2ae3b43f0d6613f3b74e3be656955d7691a4a7b3a1"
     },
     "airi/packages/stage-ui/src/stores/live2d.browser.test.ts": {
       "bytes": 11249,
@@ -19962,8 +21164,8 @@
       "sha256": "3d4e667c4731f855f13f82ae2f2d94d225332e5ece81d2ddc78e0c91288f56f7"
     },
     "airi/packages/stage-ui/src/stores/onboarding.ts": {
-      "bytes": 5986,
-      "sha256": "db54549d98e7d894a9d3726b0df56c385e5b60fe28cb6132ab70dcc30783373b"
+      "bytes": 5846,
+      "sha256": "66bc3e7e1518a5a9a1ab719046d6c1b016e8da256d6b0afc22c284e215a8205c"
     },
     "airi/packages/stage-ui/src/stores/perf-tracer-bridge.ts": {
       "bytes": 3918,
@@ -20014,12 +21216,12 @@
       "sha256": "68179a1ccfa83cd0353623158435b50ecbe1348a480806ecfa9b6a9511a67551"
     },
     "airi/packages/stage-ui/src/stores/providers/provider.test.ts": {
-      "bytes": 25534,
-      "sha256": "641870c9778cbb96c9f349d45c387ab8de9ae8d23b228312906cc1487b5452e8"
+      "bytes": 26267,
+      "sha256": "29ed5d1f7cc3f1d66bf3b86877774e0ff403439a3776879bc4964a9eb9140c97"
     },
     "airi/packages/stage-ui/src/stores/providers/provider.ts": {
-      "bytes": 47946,
-      "sha256": "72d15ab2edd23622189fa53bbc910e37c69c7f9a8da35947c8a218bb446f748f"
+      "bytes": 48110,
+      "sha256": "e395c786dd2a9f774bc8d7243d27dd9f51c38c4c7ea472cb598142060803a0dc"
     },
     "airi/packages/stage-ui/src/stores/recipes.test.ts": {
       "bytes": 2033,
@@ -20418,8 +21620,8 @@
       "sha256": "8477068ef297b49d96c02e343190792b6ca745b3bcc7179aa4af82d36dd3716a"
     },
     "airi/packages/stage-ui/vitest.config.ts": {
-      "bytes": 2660,
-      "sha256": "1cc295c5063f05517e198df14e2cb0cbfed09cd059f5a867bea0b3af96a51590"
+      "bytes": 2705,
+      "sha256": "07ce3e3bbfa5904ad5c6992621fe1e112d51496d485193dbb06485593c28dd7f"
     },
     "airi/packages/stream-kit/README.md": {
       "bytes": 1993,
@@ -24286,8 +25488,8 @@
       "sha256": "051a1c8ebe96b1267c1d108fab00a8c3a839f685ab91b09044d24116f327d911"
     },
     "airi/uno.config.ts": {
-      "bytes": 11111,
-      "sha256": "8e78161bfc8b725f357cb1a854bfc48f92899b6ca30a3906b009abbfd246daf6"
+      "bytes": 11151,
+      "sha256": "4f530b03d8cf0f92b62c7a6d1432975a99179aafd350ab8b48d31d3cb428bdac"
     },
     "airi/vite-env.d.ts": {
       "bytes": 369,
@@ -24421,11 +25623,13 @@
     "airi/packages/ui-transitions/netlify.toml": "100755",
     "airi/scripts/build-airi-docs.sh": "100755"
   },
-  "updatedAt": "2026-10-26T08:58:56.979021+00:00",
-  "companionVersion": "2.12.4",
-  "foreverAddonVersion": "1.7.1",
-  "retailAddonVersion": "2.10.1",
-  "bridgeVersion": "2.11.1",
+  "updatedAt": "2026-10-28T16:25:40.558630+00:00",
+  "companionVersion": "2.16.0",
+  "foreverAddonVersion": "1.9.0",
+  "retailAddonVersion": "2.12.0",
+  "bridgeVersion": "2.12.0",
   "repositoryTextLineEndings": "Synced text retains each tracked file's dominant line ending. New text uses LF. Delivery archives preserve source bytes.",
-  "deliveryArchive": "WOWAddons/WoWCompanion-2.12.4-source.zip"
+  "deliveryArchive": "WOWAddons/WoWCompanion-2.16.0-source.zip",
+  "featureReport": "WOWAddons/魔兽陪伴精灵-功能现状与扩展规划.md",
+  "verificationReport": "WOWAddons/verification-2026-10-29.md"
 }

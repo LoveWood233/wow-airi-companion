@@ -1,5 +1,6 @@
 -- Read new carried equipment through public APIs. Never unwrap secret data.
 local _, ns = ...
+local L = ns.L or function(text) return text end
 local Equipment = {}
 ns.Equipment = Equipment
 local Public = ns.Protocol.Public
@@ -431,5 +432,5 @@ end
 function Equipment.Status()
     local count = 0
     for _ in pairs(pending) do count = count + 1 end
-    return string.format("装备：%s · 等待资料 %d · 跳过 %d", initialized and "观察新增" or "建立背包基线", count, dropped)
+    return string.format(L("装备：%s · 等待资料 %d · 跳过 %d"), initialized and L("观察新增") or L("建立背包基线"), count, dropped)
 end

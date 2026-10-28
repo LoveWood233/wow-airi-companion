@@ -1,10 +1,18 @@
 title: WoW Companion
 description: Stay together in Azeroth. Read character status and respond to important moments.
+product:
+  about-title: About WoW Companion
+  description: World of Warcraft companionship, voice chat, and addon management.
+  version: Version
+  project: Project
+  third-party: Third-party licenses
+  license-note: This software uses open-source components. Their copyright notices and licenses remain in source and distribution files.
+  local-provider-note: Configure chat and speech services in settings. No application account is required.
 connection: Game connection
 last-seen: Last observation
 demo-warning: This is simulated data. It does not describe a real character.
-model-required: Select a chat provider and model in 魔兽陪伴精灵 to enable character replies. Speech uses your existing voice settings.
-start-bridge: 魔兽陪伴精灵 starts the local bridge when this connection is enabled. Keep the addon grid visible. Python 3.10 or later is required on Windows.
+model-required: Select a chat provider and model in WoW Companion to enable character replies. Speech uses your existing voice settings.
+start-bridge: WoW Companion starts the local bridge when this connection is enabled. Keep the addon grid visible. Python 3.10 or later is required on Windows.
 player: Character
 level: Level
 zone-label: Location
@@ -96,7 +104,7 @@ gold:
   character-balance: Last balance
   last-seen: Last observation
   characters-description: Last known balances and recorded flows for this account.
-  identity-note: Accounts use a local ID saved by the addon. 魔兽陪伴精灵 does not read your login account. Label each ID to identify it.
+  identity-note: Accounts use a local ID saved by the addon. WoW Companion does not read your login account. Label each ID to identify it.
   flow-note: Initial balances do not count as inflow. Mail, trades, bank deposits, withdrawals, and transfers between your characters count as money flows.
   balance-note: Balances cover only observed characters, each at its last observation. They are not all current. Warband bank balances are excluded.
   demo-note: Demo data stays outside this ledger. Money changes update chat context without proactive voice replies.
@@ -125,7 +133,7 @@ versions:
 
 level-history:
   title: Character level history
-  description: 魔兽陪伴精灵 saves level observations for each character on this computer. Elapsed time uses the real-world clock and includes time offline.
+  description: WoW Companion saves level observations for each character on this computer. Elapsed time uses the real-world clock and includes time offline.
   empty: No level history yet. Connect a real character to start a record from its current level.
   storage-error: Level history failed to load or save. Disk storage is not confirmed. Check the error and available disk space.
   current-character: Current character
@@ -143,8 +151,8 @@ level-history:
   source-title: Observation
   unknown-duration: Unknown
   partial: Time since first observation of the previous level. This is not the full time for that level.
-  offline-note: The interval includes time offline, on other characters, and with 魔兽陪伴精灵 closed. Records remain after restarts.
-  observation-note: 魔兽陪伴精灵 cannot recover missed upgrade times. A first observation or a change found after a gap does not prove the upgrade time.
+  offline-note: The interval includes time offline, on other characters, and with WoW Companion closed. Records remain after restarts.
+  observation-note: WoW Companion cannot recover missed upgrade times. A first observation or a change found after a gap does not prove the upgrade time.
   average-note: The average uses only complete single-level intervals. Partial intervals, missed changes, level decreases, and clock changes are excluded.
   duration-days: '{days}d {hours}h {minutes}m {seconds}s'
   duration-hours: '{hours}h {minutes}m {seconds}s'
@@ -159,14 +167,14 @@ level-history:
 
 equipment:
   title: Equipment acquisition history
-  description: 魔兽陪伴精灵 keeps the latest ten records for this game version on this computer. Once ten records exist, each new record removes the oldest.
+  description: WoW Companion keeps the latest ten records for this game version on this computer. Once ten records exist, each new record removes the oldest.
   empty: No equipment history yet. Existing bag items are not a new acquisition.
-  bridge-update: This bridge only provides character data. Stop the old standalone bridge, then restart 魔兽陪伴精灵 to read equipment with the updated bridge.
+  bridge-update: This bridge only provides character data. Stop the old standalone bridge, then restart WoW Companion to read equipment with the updated bridge.
   capture-note: Use a 100 ms capture interval for quick equipment questions. Longer intervals can repeatedly miss equipment fragments.
   historical: Historical record
   character: Character
   realm: Realm
-  received: Received by 魔兽陪伴精灵
+  received: Received by WoW Companion
   storage-error: Equipment history failed to load or save. Disk storage is not confirmed. Check the error and available disk space.
   unnamed: 'Item {id}'
   unavailable: Unavailable
@@ -234,11 +242,11 @@ equipment:
 equipment-swaps:
   title: Equipment change results
   description: The addon asks about clear improvements, empty slots, and higher item level with a primary-stat gain and secondary-stat losses. Each change requires confirmation.
-  confirmation: Confirm inside the game. Choosing Yes in 魔兽陪伴精灵 shows the next step. It does not change equipment or send input to the game.
+  confirmation: Confirm inside the game. Choosing Yes in WoW Companion shows the next step. It does not change equipment or send input to the game.
   empty: No equipment confirmation results in this character session.
-  bridge-update: This bridge does not supply equipment change results. Update the addon and bridge, then restart 魔兽陪伴精灵.
+  bridge-update: This bridge does not supply equipment change results. Update the addon and bridge, then restart WoW Companion.
   read-error: Some equipment results are unavailable.
-  historical: Last known results. 魔兽陪伴精灵 does not use them as live context while the connection or result data is unavailable.
+  historical: Last known results. WoW Companion does not use them as live context while the connection or result data is unavailable.
   observed: Result time
   previous: Previous item
   empty-slot: Empty slot
@@ -291,7 +299,7 @@ equipment-prompt:
     empty: Its destination slot is empty.
     tradeoff: 'Item level {oldLevel} → {newLevel}, {primary} {oldPrimary} → {newPrimary}, but {decreases}. These attributes have trade-offs. Overall benefit is not guaranteed.'
     separator: ', '
-  accepted: Please click “Confirm change” in the game. 魔兽陪伴精灵 does not send input to the game.
+  accepted: Please click “Confirm change” in the game. WoW Companion does not send input to the game.
   accept: Yes
   decline: No thanks
   timeout: Choose within 10 seconds. No choice closes this reminder. Equipment changes still require confirmation in the game.
@@ -338,7 +346,7 @@ comparison:
 
 loadout:
   title: Equipped items
-  description: Login, new equipment, and equipment changes refresh all 19 equipped slots. 魔兽陪伴精灵 keeps the latest snapshot for each character.
+  description: Login, new equipment, and equipment changes refresh all 19 equipped slots. WoW Companion keeps the latest snapshot for each character.
   characters: Saved characters
   waiting: Waiting for this login's complete equipment snapshot. Existing records remain historical.
   empty: No equipped-item snapshot received yet. Log in with the updated addon and keep the transfer grid visible.
@@ -436,3 +444,10 @@ screen-assist:
     vision-not-configured: Select a vision provider and model before requesting game screenshot assistance.
     vision-failed: The vision model could not read the screenshot. Check its settings and try again.
     no-description: The vision model returned no screen description. Try again or select another image-capable model.
+
+coordinates:
+  title: Map coordinates
+  value: X {x} · Y {y}
+  unavailable: Unavailable in this observation
+  note: Position within the current map (0–100). Some areas do not provide
+    coordinates.

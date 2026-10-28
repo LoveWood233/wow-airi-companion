@@ -62,7 +62,7 @@ export async function setupDashboardWindow(params: {
   const windowConfig = getConfig().windows?.find(w => w.title === 'AIRI Dashboard' && w.tag === 'dashboard')
 
   const window = new BrowserWindow({
-    title: 'AIRI Dashboard',
+    title: params.i18n.t('companion-ui.titles.dashboard', { name: params.i18n.t('companion-ui.app.name') }),
     width: windowConfig?.width ?? 1200.0,
     height: windowConfig?.height ?? 600.0,
     x: windowConfig?.x,

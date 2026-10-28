@@ -261,6 +261,7 @@ const setupTrayOnce = once((params: SetupTrayParams): void => {
   const stopLocaleEffect = effect(() => {
     const locale = params.i18n.locale as (() => string | LocaleDetector<any[]> | undefined)
     locale()
+    appTray.setToolTip(params.i18n.t('companion-ui.app.name'))
     rebuildContextMenu()
   })
 
@@ -287,7 +288,7 @@ const setupTrayOnce = once((params: SetupTrayParams): void => {
     appTray.destroy()
   })
 
-  appTray.setToolTip('Project AIRI')
+  appTray.setToolTip(params.i18n.t('companion-ui.app.name'))
   appTray.addListener('click', () => toggleWindowShow(params.mainWindow))
 
   // On macOS, there's a special double-click event

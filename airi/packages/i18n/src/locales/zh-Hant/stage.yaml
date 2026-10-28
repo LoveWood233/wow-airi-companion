@@ -4,7 +4,7 @@ character-switcher:
   empty: 尚無角色
   failed: 無法切換角色，請再試一次。
 mobile-tools:
-  sign-in: 登入 AIRI
+  sign-in: 登入 魔獸陪伴精靈
   account-description: 帳戶與偏好設定
   sound: 聲音
   character-voice: 角色聲音
@@ -18,6 +18,8 @@ mobile-tools:
   view: 檢視
   close-view: 儲存並關閉視圖控制
   hearing: 聽覺
+  menu: 選單
+  menu-unread: 選單，{count} 條未讀通知
 chat:
   provider-configuration:
     title: 尚未設定對話服務供應商
@@ -53,7 +55,7 @@ chat:
     system-default: 系統預設
     listen: 持續聆聽
     push-to-talk: 按住說話
-    push-to-talk-unavailable: 此裝置沒有按住說話按鍵，因此 AIRI 不會聆聽。請在聽覺設定中變更輸入模式。
+    push-to-talk-unavailable: 此裝置沒有按住說話按鍵，因此 魔獸陪伴精靈 不會聆聽。請在聽覺設定中變更輸入模式。
     wake-word: 聆聽喚醒詞
     hearing-settings: 更多聽覺設定…
     options-hint: 將游標移至此處或按右鍵以查看選項
@@ -110,6 +112,7 @@ chat:
     character-name:
       core-system: 核心系統
       you: 你
+      airi: 魔獸陪伴精靈
   reply:
     cancel: 取消回覆
     message: 訊息
@@ -134,6 +137,84 @@ chat:
     cloud-badge: 已同步至雲端
     new-chat-fallback: 新對話
     delete: 刪除對話
+  notice:
+    label: 後臺彙報 {name}
+  background-tasks:
+    label: 後臺任務
+    stop: 停止{name}
+    dismiss: 移除{name}
+    status:
+      running: 進行中
+      done: 已完成
+      failed: 沒做完
+      interrupted: 已停止
+  judgment:
+    running: 正在判斷 {name}
+    judged: 判斷 {name}
+    invalid: 判斷沒成功 {name}
+  judgment-tool-call:
+    answer: 答案
+    next: 接下來
+    reply: 正常回復
+    stay-quiet: 不回覆
+    hint: 回覆，並記住：{text}
+    recipe-steps: 用配方 {name}
+    recipe-decision: 接著判斷 {name}
+    recipe-background: 交給配方 {name}
+  recipe:
+    using: 正在用配方 {name}
+    loaded: 用了配方 {name}
+    started: 已交給配方 {name}
+    pending: 配方還沒批准 {name}
+    disabled: 配方已關閉 {name}
+    unknown: 找不到配方 {name}
+    refused: 配方沒能開始 {name}
+    failed: 配方沒能開始 {name}
+  recipe-tool-call:
+    task: 任務
+    usable: 現在能用的配方
+    pending: 這個配方還沒批准，批准後才能用。
+    disabled: 這個配方已經關閉。
+    unknown: 沒有叫這個名字的配方。
+    refused: 配方沒能開始。
+  invoked-skill:
+    steps: 用了配方 {name}
+    background: 已交給配方 {name}
+    decision: 用了配方 {name}
+    question: 問題
+    yes: 是
+    no: 否
+  home-assistant-tool-call:
+    shown: 顯示 {count} / {total} 個裝置
+  web-search-tool-call:
+    results: “{query}” 的搜尋結果 · {count} 條
+  tool-calls:
+    running-one: 正在 {name}
+    failed-one: '{name} 沒成功'
+    combo-running: 連擊 ×{count}
+    combo: '{count} 連擊'
+    combo-failed: '{count} 連擊，{failed} 次落空'
+    arguments: 引數
+    result: 結果
+    copy: 複製原始資料
+    copied: 已複製
+    raw: 原始資料
+    other: 其他資料
+    widget: 小元件
+    rerun: 重新執行
+    card-making: 正在為這個工具做卡片…
+    card-remaking: 正在重新做這張卡片…
+    card-regenerate: 重新生成
+    card-failed: 沒能為這個工具做出卡片
+    card-retry: 重試
+    state:
+      executing: 進行中
+      done: 完成
+      error: 失敗
+  reply-card:
+    drawing: 正在畫卡片…
+    raw: 原始資料
+    card: 卡片
 render-error:
   title: '{renderer} 無法算繪這個模型'
   description: 模型已經選取，但舞台無法顯示它。
@@ -174,6 +255,8 @@ theme:
 send-mode:
   title: 傳送按鍵
   double-enter: Enter + Enter
+  enter: Enter
+  ctrl-enter: Ctrl + Enter
 speech-output:
   mute: 靜音語音
   unmute: 恢復語音
@@ -216,6 +299,7 @@ promo-banner:
       eventName: 登入即可領取星塵、頭像框與啟動禮物。
       reward: 最多 120 星塵
       cta: 登入
+      date: 03/28 - 04/10
     build:
       watermark: 建造
       fallbackLabel: 建造獎勵
@@ -223,6 +307,7 @@ promo-banner:
       eventName: 完成建造任務即可獲得獎勵券與雙倍材料。
       reward: 5 張補給券 + 升級材料
       cta: 查看任務
+      date: 03/30 - 04/12
     spring:
       watermark: 春天
       fallbackLabel: 春日抽獎
@@ -230,6 +315,7 @@ promo-banner:
       eventName: 參加春日抽獎，解鎖氣泡、掛飾與主題家具。
       reward: 首抽半價 + 稀有掛飾
       cta: 立即抽取
+      date: 04/01 - 04/18
     coupon:
       watermark: 對話
       fallbackLabel: 優惠券
@@ -237,6 +323,7 @@ promo-banner:
       eventName: 完成聊天互動即可領取擴充包與語音包優惠券。
       reward: 滿 30 減 6 / 滿 68 減 15
       cta: 領取優惠券
+      date: 04/02 - 04/20
     home:
       watermark: 首頁
       fallbackLabel: 房間主題
@@ -244,6 +331,7 @@ promo-banner:
       eventName: 解鎖窗戶、書桌與夜燈主題，為房間煥然一新。
       reward: 登入即贈主題抽獎券
       cta: 查看主題
+      date: 04/05 - 04/22
 waiting: 等待中
 websocket-status:
   connected: 已連線
@@ -255,7 +343,7 @@ computer-use:
 status:
   preparing: 正在準備麥克風
   listening: 聆聽中
-  paused: AIRI 說話時暫停聆聽
+  paused: 魔獸陪伴精靈 說話時暫停聆聽
   transcribing: 正在轉錄
   hearing-error: 無法轉錄音訊
   no-transcript: 辨識到的語音會顯示在此處。
@@ -266,3 +354,29 @@ status:
   sign-in-unconfirmed: 無法確認你的工作階段。請重新登入。
   dismiss: 關閉提示
   configure-hearing: 在設定中選擇並設定聽覺供應商。
+avatar-model-missing:
+  title: 還沒有選擇模型
+  unavailable-title: 這臺裝置上沒有這個模型
+  description: 選擇一個模型，讓 {name} 出現在舞臺上。
+  select: 選擇模型
+notifications:
+  title: 通知
+  open: 開啟通知
+  open-unread: 開啟通知，{count} 條未讀
+  mark-all-read: 全部已讀
+  empty: 暫無通知
+  loading: 正在載入通知
+  back: 返回
+  error: 通知載入失敗。
+  retry: 重試
+  just-now: 剛剛
+  kinds:
+    flux-granted:
+      title: 獲得 {amount} Flux
+    subscription-renewed:
+      title: '{plan} 已續費'
+      body: 有效期至 {periodEnd}。
+    subscription-payment-failed:
+      title: 續費扣款失敗
+      body: 將於 {retryAt} 重試。請更新付款方式以繼續使用 {plan}。
+      body-no-retry: 請更新付款方式以繼續使用 {plan}。

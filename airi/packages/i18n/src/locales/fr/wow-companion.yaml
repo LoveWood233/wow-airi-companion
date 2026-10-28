@@ -1,0 +1,488 @@
+title: Compagnon WoW
+description: Ensemble en Azeroth. Observez l’état du personnage et réagissez aux moments importants.
+product:
+  about-title: À propos de Compagnon WoW
+  description: Compagnie dans World of Warcraft, discussion vocale et gestion des extensions.
+  version: Version
+  project: Projet
+  third-party: Licences tierces
+  license-note: Ce logiciel utilise des composants libres. Leurs mentions de droits d’auteur et licences restent dans les fichiers sources et distribués.
+  local-provider-note: Configurez les services de discussion et de voix dans les paramètres. Aucun compte de l’application n’est requis.
+connection: Connexion au jeu
+last-seen: Dernière observation
+demo-warning: Ces données sont simulées. Elles ne décrivent pas un personnage réel.
+model-required: Sélectionnez un fournisseur et un modèle de discussion dans Compagnon WoW pour activer les réponses. La voix utilise vos paramètres actuels.
+start-bridge: Compagnon WoW démarre la passerelle locale lorsque cette connexion est activée. Gardez la grille de l’extension visible. Windows nécessite Python 3.10 ou ultérieur.
+player: Personnage
+level: Niveau
+zone-label: Lieu
+class-spec: Identifiant de classe / spécialisation
+faction: Faction
+race: Race
+identity-unknown: Inconnu
+factions:
+  Alliance: Alliance
+  Horde: Horde
+  Neutral: Neutre
+activity: Activité
+freshness: Observation
+dead: Mort
+combat: En combat
+exploring: En exploration
+current: Actuel
+historical: Dernier état connu
+no-character: Aucun personnage observé pour le moment. Vérifiez la passerelle et les coordonnées de capture.
+preferences: Préférences du compagnon
+preferences-description: La connexion continue après la fermeture de cette page. Seule la fenêtre principale du personnage génère des réponses.
+options:
+  enabled: Activer le compagnon
+  muted: Couper les réactions au jeu
+  quietInCombat: Garder le silence en combat
+  levelUp: Célébrer les montées de niveau
+  zone: Commenter les nouveaux lieux
+  death: Réagir à la mort
+  revive: Saluer la résurrection
+  allowDemo: Autoriser les réponses aux événements de démonstration
+hints:
+  enabled: Rend l’état actuel du jeu accessible au personnage.
+  muted: Actualise le contexte sans réponses spontanées aux événements du jeu.
+  quietInCombat: Conserve un événement important jusqu’à la fin du combat. Les événements expirent après 30 secondes.
+  levelUp: Détecte un niveau supérieur dans la même session de personnage.
+  zone: Réagit à une nouvelle carte ou zone en respectant le délai entre les réactions.
+  death: Réagit brièvement sur le ton du personnage, avec des plaisanteries de faction ou de race si approprié.
+  revive: Réagit au retour à la vie du personnage.
+  allowDemo: Désactivé par défaut. Les réponses de test utilisent le modèle et la voix configurés.
+cooldown: Secondes minimales entre les réactions
+cooldown-description: De 0 à 300 secondes. Un seul événement récent attend pendant ce délai.
+capture: Étalonnage de l’écran
+capture-description: La grille par défaut utilise un pixel physique par cellule et mesure 64 × 64 pixels. C’est le minimum de ce format monochrome. Les coordonnées sont les pixels physiques du bureau.
+capture-x: Bord gauche de la grille (X)
+capture-y: Bord supérieur de la grille (Y)
+cell-size: Taille des cellules en pixels
+poll-ms: Intervalle de capture en millisecondes
+pause-capture: Suspendre la capture
+capture-help: Utilisez /wowc compact pour une grille de 64 × 64 et /wowc status pour lire son origine. Ne masquez pas la grille. Si les cellules sont floues, utilisez /wowc cell 2 et réglez ici leur taille sur 2.
+save-preferences: Enregistrer les préférences
+save-capture: Appliquer l’étalonnage
+saved: Enregistré.
+failed: L’opération a échoué.
+demo: Test de connexion
+demo-description: Testez sans vous connecter au jeu. Les événements de démonstration restent hors du contexte du personnage jusqu’à votre autorisation ci-dessus.
+demo-label: Démonstration
+start-demo: Démarrer la démonstration
+stop-demo: Revenir à la capture en direct
+actions:
+  level_up: Simuler une montée de niveau
+  zone: Changer de zone
+  death: Simuler la mort
+  revive: Simuler une résurrection
+  combat: Basculer le combat
+events: Événements récents du jeu
+events-description: Ce sont des observations, pas des accusés de réception. Les événements filtrés ou silencieux restent visibles ici.
+no-events: Aucun événement pour le moment.
+gold:
+  title: Registre d’or
+  description: Suivez les mouvements d’argent par compte local de l’extension. Les totaux s’actualisent avec la connexion au jeu et restent sur cet ordinateur.
+  current-balance: Argent actuel du personnage
+  current-unavailable: L’argent actuel est indisponible. Gardez un personnage réel connecté avec la capture en direct pour lire son solde.
+  empty: Aucun mouvement d’argent réel observé. Installez l’extension et la passerelle à jour, puis connectez chaque personnage.
+  storage-error: Le chargement ou l’enregistrement du registre a échoué. Les totaux sur disque ne sont pas confirmés. Vérifiez l’erreur et l’espace disponible.
+  unnamed-account: Compte local de l’extension
+  account-id: Identifiant du compte
+  account-name: Libellé du compte
+  account-name-placeholder: Par exemple, compte principal
+  account-name-help: 64 caractères maximum. Laissez vide pour supprimer le libellé.
+  save-name: Enregistrer le libellé
+  character-count: 'Personnages enregistrés : {count}'
+  since: Suivi sur le bureau depuis
+  earned: Total des entrées
+  spent: Total des sorties
+  net: Variation nette
+  balance: Soldes enregistrés des personnages
+  character: Personnage
+  realm: Royaume
+  character-balance: Dernier solde
+  last-seen: Dernière observation
+  characters-description: Derniers soldes connus et mouvements enregistrés pour ce compte.
+  identity-note: Les comptes utilisent un identifiant local enregistré par l’extension. Compagnon WoW ne lit pas votre compte de connexion. Nommez chaque identifiant pour le reconnaître.
+  flow-note: Les soldes initiaux ne comptent pas comme entrées. Courrier, échanges, dépôts, retraits et transferts entre vos personnages comptent comme mouvements d’argent.
+  balance-note: Les soldes couvrent uniquement les personnages observés lors de leur dernière lecture. Ils ne sont pas tous actuels. La banque de bataillon est exclue.
+  demo-note: Les données de démonstration restent hors du registre. Les variations d’argent actualisent le contexte de discussion sans réponses vocales spontanées.
+  money: '{sign}{gold}po {silver}pa {copper}pc'
+status:
+  disabled: Compagnon désactivé
+  disconnected: Passerelle indisponible
+  waiting: En attente du jeu
+  live: Personnage en direct
+  stale: Capture obsolète
+  demo: Données de démonstration
+  paused: Capture suspendue
+versions:
+  label: Version de World of Warcraft
+  isolation: Chaque version possède ses paramètres, étalonnage, événements et historiques d’or, d’équipement et de niveaux. Changer de page supprime les modifications non enregistrées.
+  retail:
+    name: World of Warcraft actuel
+    description: Paramètres du compagnon et registre d’or pour la version actuelle.
+    capture-help: Utilisez /wowc compact pour une grille de 64 × 64, puis /wowc status pour lire son origine. Les bordures et autres écrans modifient les coordonnées. Gardez la grille visible. Si elle est floue, utilisez /wowc cell 2 et une taille de cellule de 2.
+  forever:
+    name: 'World of Warcraft: Forever'
+    description: Paramètres du compagnon et registre d’or indépendants pour Forever.
+    preview: Cette version est préparée avant la sortie du client. La compatibilité nécessite une vérification après sa sortie. La connexion est désactivée par défaut.
+    capture-help: Après l’installation de l’extension Forever, utilisez /wowf compact pour une grille de 64 × 64 et /wowf status pour lire son origine. Gardez-la visible. Si elle est floue, utilisez /wowf cell 2 et une taille de cellule de 2.
+level-history:
+  title: Historique des niveaux du personnage
+  description: Compagnon WoW enregistre les niveaux observés de chaque personnage sur cet ordinateur. La durée utilise l’horloge réelle et inclut le temps hors ligne.
+  empty: Aucun historique de niveaux. Connectez un personnage réel pour commencer un suivi à partir de son niveau actuel.
+  storage-error: Le chargement ou l’enregistrement de l’historique des niveaux a échoué. Le stockage sur disque n’est pas confirmé. Vérifiez l’erreur et l’espace disponible.
+  current-character: Personnage actuel
+  account: Identifiant du compte local
+  current-level: 'Dernier niveau observé : {level}'
+  first-seen: Premier enregistrement
+  complete-count: Intervalles complets d’un niveau
+  average: Moyenne des intervalles complets
+  show-records: Afficher l’historique des niveaux
+  hide-records: Masquer l’historique des niveaux
+  table-description: Tous les changements enregistrés, du plus récent au plus ancien. Les heures utilisent le fuseau horaire de cet ordinateur.
+  level-change: Changement de niveau
+  recorded-at: Heure d’enregistrement
+  duration: Durée de ce niveau
+  source-title: Observation
+  unknown-duration: Inconnue
+  partial: Durée depuis la première observation du niveau précédent. Ce n’est pas la durée complète de ce niveau.
+  offline-note: L’intervalle inclut le temps hors ligne, sur d’autres personnages et lorsque Compagnon WoW est fermé. Les enregistrements persistent après redémarrage.
+  observation-note: Compagnon WoW ne peut pas retrouver les montées de niveau manquées. Une première observation ou un changement après une interruption ne prouve pas l’heure exacte.
+  average-note: La moyenne utilise seulement les intervalles complets d’un niveau. Elle exclut les intervalles partiels, changements manqués, baisses de niveau et changements d’horloge.
+  duration-days: '{days}j {hours}h {minutes}min {seconds}s'
+  duration-hours: '{hours}h {minutes}min {seconds}s'
+  duration-minutes: '{minutes}min {seconds}s'
+  duration-seconds: '{seconds}s'
+  source:
+    baseline: Première observation. L’heure de la montée de niveau antérieure est inconnue.
+    live: Montée de niveau observée pendant la capture en direct.
+    gap: Changement détecté après une interruption ou sur plusieurs niveaux. Les heures des montées sont inconnues.
+    decrease: Baisse de niveau observée. Aucun intervalle de progression ne s’applique.
+    clock-change: L’horloge de l’ordinateur a changé. Cet intervalle ne peut pas être mesuré.
+equipment:
+  title: Historique des équipements obtenus
+  description: Compagnon WoW conserve les dix derniers enregistrements de cette version sur cet ordinateur. Chaque nouvel enregistrement supprime le plus ancien.
+  empty: Aucun historique d’équipement. Les objets déjà dans les sacs ne comptent pas comme nouvelles acquisitions.
+  bridge-update: Cette passerelle fournit seulement les données du personnage. Arrêtez l’ancienne passerelle autonome, puis redémarrez Compagnon WoW pour lire l’équipement avec la nouvelle.
+  capture-note: Utilisez un intervalle de capture de 100 ms pour les questions d’équipement rapides. Un intervalle plus long peut manquer plusieurs fragments de données.
+  historical: Enregistrement historique
+  character: Personnage
+  realm: Royaume
+  received: Reçu par Compagnon WoW
+  storage-error: Le chargement ou l’enregistrement de l’historique d’équipement a échoué. Le stockage sur disque n’est pas confirmé. Vérifiez l’erreur et l’espace disponible.
+  unnamed: 'Objet {id}'
+  unavailable: Indisponible
+  item-level: Niveau d’objet
+  observed: Heure d’observation
+  completeness: Disponibilité des données
+  infoComplete: Détails de l’objet
+  statsComplete: Caractéristiques numériques
+  tooltipComplete: Infobulle
+  complete: Lu
+  incomplete: Incomplet
+  truncated: Une partie du texte a été raccourcie
+  show-details: Afficher les détails de l’équipement
+  hide-details: Masquer les détails de l’équipement
+  quality: Qualité
+  required-level: Niveau requis
+  slot: Emplacement d’équipement
+  attributes: Caractéristiques numériques
+  no-stats: Le jeu n’a renvoyé aucune caractéristique numérique pour cet objet.
+  tooltip: Effets, bonus et descriptions d’ensembles
+  effect-note: L’infobulle décrit l’objet. Elle ne prouve pas qu’un bonus d’ensemble ou un effet est actif.
+  item-link: Lien de l’objet
+  session-note: Les enregistrements persistent après redémarrage, changement de personnage, réinitialisation de capture et démonstration. Les ajouts incluent achats, courrier et retraits bancaires.
+  history-note: L’historique ne décrit pas l’équipement actuel et n’alimente pas la discussion en direct. Les questions utilisent les propositions valides de la session actuelle.
+  read-error: Certaines données d’équipement sont indisponibles.
+  qualities:
+    '0': Médiocre
+    '1': Commun
+    '2': Inhabituel
+    '3': Rare
+    '4': Épique
+    '5': Légendaire
+    '6': Artéfact
+    '7': Héritage
+    '8': Jeton WoW
+  stats:
+    ITEM_MOD_STRENGTH_SHORT: Force
+    ITEM_MOD_AGILITY_SHORT: Agilité
+    ITEM_MOD_INTELLECT_SHORT: Intelligence
+    ITEM_MOD_STAMINA_SHORT: Endurance
+    ITEM_MOD_SPIRIT_SHORT: Esprit
+    ITEM_MOD_CRIT_RATING_SHORT: Coup critique
+    ITEM_MOD_HASTE_RATING_SHORT: Hâte
+    ITEM_MOD_MASTERY_RATING_SHORT: Maîtrise
+    ITEM_MOD_VERSATILITY: Polyvalence
+    ITEM_MOD_VERSATILITY_SHORT: Polyvalence
+    ITEM_MOD_ARMOR_SHORT: Armure
+    RESISTANCE0_NAME: Armure
+    ITEM_MOD_ATTACK_POWER_SHORT: Puissance d’attaque
+    ITEM_MOD_SPELL_POWER_SHORT: Puissance des sorts
+    ITEM_MOD_DAMAGE_PER_SECOND_SHORT: Dégâts par seconde
+    ITEM_MOD_CR_AVOIDANCE_SHORT: Évitement
+    ITEM_MOD_CR_LIFESTEAL_SHORT: Ponction
+    ITEM_MOD_CR_SPEED_SHORT: Vitesse
+    ITEM_MOD_LIFESTEAL_SHORT: Ponction
+    ITEM_MOD_AVOIDANCE_SHORT: Évitement
+    ITEM_MOD_SPEED_SHORT: Vitesse
+    ITEM_MOD_DODGE_RATING_SHORT: Esquive
+    ITEM_MOD_PARRY_RATING_SHORT: Parade
+    ITEM_MOD_BLOCK_RATING_SHORT: Blocage
+    ITEM_MOD_DEFENSE_SKILL_RATING_SHORT: Défense
+    ITEM_MOD_HIT_RATING_SHORT: Toucher
+    ITEM_MOD_EXPERTISE_RATING_SHORT: Expertise
+equipment-swaps:
+  title: Résultats des changements d’équipement
+  description: L’extension propose les améliorations nettes, les emplacements vides et les objets de niveau supérieur gagnant en caractéristique principale malgré des pertes secondaires. Chaque changement nécessite confirmation.
+  confirmation: Confirmez dans le jeu. Choisir Oui dans Compagnon WoW affiche l’étape suivante. Cela ne change pas l’équipement et n’envoie aucune commande au jeu.
+  empty: Aucun résultat de confirmation d’équipement dans cette session du personnage.
+  bridge-update: Cette passerelle ne fournit pas les résultats des changements d’équipement. Mettez à jour l’extension et la passerelle, puis redémarrez Compagnon WoW.
+  read-error: Certains résultats d’équipement sont indisponibles.
+  historical: Derniers résultats connus. Compagnon WoW ne les utilise pas comme contexte en direct lorsque la connexion ou les données sont indisponibles.
+  observed: Heure du résultat
+  previous: Objet précédent
+  empty-slot: Emplacement vide
+  expired-reason: La question a expiré. L’extension n’a pas effectué le changement.
+  scope-note: Ces enregistrements décrivent des actions passées, pas l’équipement actuel. Un niveau d’objet supérieur ne garantit pas de meilleures caractéristiques ou des bonus d’ensemble.
+  status:
+    equipped: Changement confirmé
+    declined: Refusé
+    failed: Non confirmé
+    expired: Question expirée
+  reason:
+    confirmed: L’extension a confirmé le changement d’équipement après votre accord dans le jeu.
+    user: Vous avez refusé le changement dans le jeu.
+    timeout: L’extension n’a pas confirmé le résultat. Vérifiez votre équipement dans le jeu.
+    combat: Le combat a interrompu la demande. Confirmez une nouvelle demande après le combat.
+    changed: L’objet ou l’emplacement cible a changé. La demande s’est arrêtée.
+    unavailable: Les informations de l’objet ou les fonctions du jeu requises étaient indisponibles.
+    locked: L’objet était verrouillé. La demande s’est arrêtée.
+    cursor: Le curseur tenait un objet. La demande s’est arrêtée.
+    dead: Le personnage était mort. La demande s’est arrêtée.
+    restricted: Le jeu a restreint l’action. La demande s’est arrêtée.
+    disabled: La confirmation d’équipement était désactivée. La demande s’est arrêtée.
+    left_world: Le personnage a quitté le monde. La demande s’est arrêtée.
+  slots:
+    '1': Tête
+    '2': Cou
+    '3': Épaules
+    '4': Chemise
+    '5': Torse
+    '6': Taille
+    '7': Jambes
+    '8': Pieds
+    '9': Poignets
+    '10': Mains
+    '11': Doigt 1
+    '12': Doigt 2
+    '13': Bijou 1
+    '14': Bijou 2
+    '15': Dos
+    '16': Main droite
+    '17': Main gauche
+    '18': À distance
+    '19': Tabard
+equipment-prompt:
+  message: 'Félicitations pour votre nouvel équipement, {name} ! Une nouvelle occasion de devenir plus fort. {reason} Voulez-vous changer d’équipement ?'
+  message-player: '{player}, félicitations pour votre nouvel équipement, {name} ! Une nouvelle occasion de devenir plus fort. {reason} Voulez-vous changer d’équipement ?'
+  message-player-tradeoff: '{player}, félicitations pour votre nouvel équipement, {name} ! Il peut améliorer votre caractéristique principale. {reason} Voulez-vous changer d’équipement ?'
+  reason:
+    stats: 'Les caractéristiques enregistrées s’améliorent nettement après comparaison (niveau d’objet {oldLevel} → {newLevel}).'
+    empty: Son emplacement cible est vide.
+    tradeoff: 'Niveau d’objet {oldLevel} → {newLevel}, {primary} {oldPrimary} → {newPrimary}, mais {decreases}. Ces caractéristiques présentent des compromis. Le gain global n’est pas garanti.'
+    separator: ', '
+  accepted: Cliquez sur « Confirmer le changement » dans le jeu. Compagnon WoW n’envoie aucune commande au jeu.
+  accept: Oui
+  decline: Non merci
+  timeout: Choisissez sous 10 secondes. Sans réponse, le rappel se ferme. Le changement nécessite toujours une confirmation dans le jeu.
+  description: Une amélioration nette ou un niveau d’objet supérieur avec un gain principal peut déclencher une question. Les pertes secondaires restent affichées. Chaque changement nécessite confirmation.
+idle-interaction:
+  title: Interaction du compagnon hors combat
+  messages:
+    '0': '{player}, où voulez-vous partir pour votre prochaine aventure ?'
+    '1': '{player}, profitez de ce moment de calme. Buvez de l’eau et reposez-vous. Je reste à vos côtés.'
+    '2': '{player}, quelle pièce d’équipement voulez-vous remplacer ensuite ?'
+    '3': '{player}, quel paysage d’Azeroth préférez-vous ?'
+comparison:
+  title: Comparaison de l’acquisition
+  missing: Aucune comparaison correspondante reçue. Le niveau d’objet seul ne prouve pas une amélioration.
+  historical: 'Équipement et spécialisation observés lors de l’acquisition :'
+  stale-spec: Cette comparaison est historique. Le personnage ou la spécialisation actuels diffèrent ou sont indisponibles.
+  type: Type d’équipement
+  empty-slot: Emplacement vide
+  attribute: Caractéristique
+  difference: Variation
+  item-level: Niveau d’objet
+  unknown: Inconnu
+  limitation: Un niveau d’objet et un gain principal supérieurs peuvent demander confirmation malgré des pertes secondaires. Vérifiez effets, ensembles, châsses et informations incomplètes.
+  verdict:
+    upgrade: Amélioration nette
+    not_upgrade: Aucune amélioration pour ce personnage
+    review: Vérification requise
+  reason:
+    empty_slot: Un objet utilisable remplit un emplacement vide
+    stats_upgrade: Les caractéristiques comparées s’améliorent sans perte enregistrée
+    unusable: L’objet ne peut pas être utilisé actuellement
+    wrong_spec: L’objet ne correspond pas à la spécialisation observée
+    weaker_stats: Les caractéristiques comparées sont inférieures
+    equivalent: Aucune caractéristique comparée ne s’améliore
+    incomplete: Les données de comparaison sont incomplètes ou contiennent des caractéristiques non prises en charge
+    unknown_spec: La compatibilité avec la spécialisation est inconnue
+    weapon_change: Les types d’équipement diffèrent
+    complex_item: Les effets ou combinaisons d’équipement nécessitent une vérification
+    stat_tradeoff: Les caractéristiques présentent des compromis
+    primary_upgrade_tradeoff: Niveau d’objet et caractéristique principale supérieurs, avec des compromis secondaires. Votre confirmation décide.
+    no_target: L’emplacement cible est indisponible
+loadout:
+  title: Objets équipés
+  description: Connexion, acquisition et changement d’équipement actualisent les 19 emplacements. Compagnon WoW conserve le dernier instantané de chaque personnage.
+  characters: Personnages enregistrés
+  waiting: En attente de l’instantané complet de cette connexion. Les enregistrements existants restent historiques.
+  empty: Aucun instantané d’équipement reçu. Connectez-vous avec l’extension à jour et gardez la grille de transfert visible.
+  received: Reçu
+  observed: Observé
+  historical: Il s’agit du dernier instantané enregistré, pas d’une vue continue de l’équipement en direct.
+  unknown: Inconnu / indisponible
+  empty-slot: Emplacement vide
+  incomplete: Certaines informations d’objets sont incomplètes ou raccourcies.
+  note: Un emplacement vide diffère d’un emplacement inconnu. Les descriptions d’ensembles ne prouvent pas l’activation des bonus. Ces instantanés échappent à la limite de dix acquisitions.
+launcher:
+  title: Paramètres de démarrage du jeu
+  description: Choisissez Battle.net ou une application World of Warcraft.
+    Conservez l'emplacement du fichier d'application pour chaque version du jeu.
+  configure: Configurer le démarrage du jeu
+  target: Programme à démarrer
+  targets:
+    battle-net: Battle.net
+    retail: World of Warcraft Retail
+    forever: World of Warcraft Forever
+    classic: World of Warcraft Classic
+  default-summary: 'Démarrage rapide : {target}'
+  path-label: Chemin du programme {target}
+  path-description: Choisissez le fichier .exe dans le dossier pour cette version
+    du jeu. Pour World of Warcraft Launcher.exe, choisissez Battle.net. Ne
+    choisissez pas de raccourcis ou de scripts.
+  path-placeholder: Sélectionnez un fichier .exe ou saisissez son chemin complet
+  browse: Parcourir les programmes
+  make-default: Utiliser ce programme pour le démarrage rapide
+  make-default-description: La barre d’outils du personnage démarre ce programme enregistré.
+  current-default: Ce programme est sélectionné pour le démarrage rapide.
+  save: Vérifier et enregistrer
+  clear: Supprimer le chemin enregistré
+  retry: Recharger les paramètres
+  launch-game: Démarrer le jeu
+  launch-battle-net: Démarrer Battle.net
+  quick-launch: Démarrage rapide du jeu
+  quick-launch-description: Démarrez l'application par défaut enregistrée. Si
+    aucune application n'est configurée, ouvrez les paramètres de démarrage.
+  saved: Programme vérifié et enregistré.
+  cleared: Chemin enregistré supprimé.
+  launched: Demande de démarrage envoyée.
+  unsaved: Vérifiez et enregistrez les modifications avant de démarrer ce programme.
+  launch-note: Battle.net ouvre son application. Le jeu peut toujours nécessiter
+    une connexion ou des mises à jour. L'application enregistrée est vérifiée
+    avant chaque démarrage.
+  verified-program: Programme vérifié
+  errors:
+    unsupported-platform: Pour démarrer le jeu à partir de cette application, il faut Windows.
+    invalid-request: Les paramètres de démarrage sont invalides. Sélectionnez à
+      nouveau le jeu et son application.
+    invalid-path: Entrez l'emplacement complet d'un fichier de demande local.
+      N'ajoutez pas d'arguments de ligne de commande.
+    file-not-found: Le programme n'a pas été trouvé. Sélectionnez son emplacement actuel.
+    not-executable: Choisissez un programme Windows .exe. Ne choisissez ni
+      raccourci, ni script, ni dossier.
+    invalid-signature: Le programme ne possède pas de signature Blizzard valide.
+      Sélectionnez le programme officiel dans son dossier d’installation.
+    wrong-product: Cette application ne correspond pas à l'option Battle.net ou
+      World of Warcraft sélectionnée.
+    wrong-version: Cette application World of Warcraft est pour une autre version de
+      jeu. Choisissez la bonne version du jeu ou l'application.
+    unrecognized-version: La version du jeu ne pouvait pas être vérifiée. Commencez
+      par Battle.net ou mettez à jour le compagnon pour cette version.
+    inspection-failed: Le programme n'a pas pu être vérifié. Vérifiez l'accès aux
+      fichiers et réessayez.
+    not-configured: Aucune application n'est enregistrée pour cette option.
+      Configurer et enregistrer son emplacement de fichier d'abord.
+    storage-error: Ne peut pas lire ou enregistrer les paramètres de démarrage.
+      Vérifiez l'accès au dossier de données de l'application.
+    launch-failed: Je ne peux pas démarrer la demande. Vérifiez les autorisations
+      d'installation et de fichier.
+    busy: Une demande commence déjà. Attends qu'il soit fini.
+    request-failed: Le service de bureau n'a pas répondu. Essayez à nouveau ou
+      redémarrez le compagnon.
+screen-assist:
+  title: Assistance par capture du jeu
+  description: Demandez à votre compagnon d'examiner la capture d'écran de
+    Warcraft pour le terrain, les quêtes de jeu ou l'orientation NPC.
+  enabled: Capturer lorsque je demande à voir le jeu
+  enabled-description: Une demande explicite capture une image du jeu. Une
+    conversation ordinaire ne déclenche aucune capture.
+  image-use: La capture est envoyée au fournisseur de vision sélectionné. L’image
+    originale n’est pas enregistrée dans l’historique local du chat.
+  target: Fenêtre du jeu
+  target-description: La sélection automatique exige une seule fenêtre Warcraft.
+    Si plusieurs versions sont ouvertes, choisissez-en une. Fermez les fenêtres
+    supplémentaires de cette version.
+  games:
+    auto: Automatique
+    retail: Retail
+    forever: Forever
+    classic: Classic
+  configure-vision: Configurer le modèle de vision
+  vision-description: Choisissez un fournisseur et un modèle compatibles avec les
+    images dans les paramètres Vision. Ouvrir ces paramètres ne prend aucune
+    capture.
+  examples-title: Posez une question par écrit ou à voix haute
+  examples:
+    terrain: Peux-tu regarder le terrain devant moi et m’aider à trouver un passage ?
+    quest: La quête indique que le PNJ est ici, mais je ne le vois pas. Peux-tu
+      m’aider à le trouver ?
+    scene: Regarde mon écran de jeu et explique l’objectif de la quête.
+  command: Pour demander une capture, commencez le message par /look et ajoutez
+    votre question. Après un déplacement dans le jeu, redemandez une nouvelle
+    image.
+  limits: Windows uniquement. Gardez le jeu visible. Une image ne confirme ni les
+    collisions, ni les entrées cachées, ni les phases de quête. Les conseils ne
+    contrôlent pas votre personnage.
+  capturing: Capture de la fenêtre Warcraft…
+  analyzing: Analyse de l’écran du jeu…
+  ready: Écran analysé. Préparation de la réponse.
+  errors:
+    unsupported-platform: L'assistance des captures d'écran du jeu nécessite Windows.
+    invalid-request: La version du jeu sélectionnée est invalide. Sélectionnez-le à
+      nouveau dans les paramètres d'aide à la capture d'écran.
+    game-not-found: Aucune fenêtre de Warcraft n'a été trouvée. Ouvrez le jeu et réessayez.
+    ambiguous-window: Plusieurs fenêtres de jeu correspondantes sont ouvertes.
+      Sélectionnez une version du jeu ou fermez les fenêtres supplémentaires et
+      réessayez.
+    minimized-window: La fenêtre de jeu est réduite. Restaure-le et demande encore.
+    unverified-game: Je ne peux pas vérifier cette fenêtre de jeu. Utilisez une
+      installation officielle de Warcraft.
+    capture-failed: Je ne peux pas prendre une capture d'écran de jeu. Gardez le jeu
+      visible et essayez le mode fenêtre.
+    empty-frame: La capture d'écran est vide ou noire. Gardez le jeu visible et
+      demandez encore.
+    capture-timeout: L'opération de capture d'écran est terminée. Attendez un
+      instant et demandez encore.
+    busy: Une autre capture d'écran est en cours. Attends qu'il soit fini.
+    window-changed: La fenêtre du jeu a changé pendant la prise d'écran. Demandez
+      encore une nouvelle capture d'écran.
+    vision-not-configured: Sélectionnez un fournisseur et un modèle de vision avant
+      de demander une assistance par capture du jeu.
+    vision-failed: Le modèle d'IA d'analyse d'image ne peut pas lire la capture
+      d'écran. Vérifiez les paramètres du modèle et réessayez.
+    no-description: Le modèle d'IA d'analyse d'image n'a pas fourni de description.
+      Essayez à nouveau ou choisissez un autre modèle qui prend en charge les
+      images.
+
+coordinates:
+  title: Coordonnées sur la carte
+  value: X {x} · Y {y}
+  unavailable: Indisponibles pour cette observation
+  note: Position sur la carte actuelle (0–100). Certaines zones ne fournissent pas
+    de coordonnées.

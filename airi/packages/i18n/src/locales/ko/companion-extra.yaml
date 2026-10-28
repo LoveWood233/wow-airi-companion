@@ -1,0 +1,86 @@
+save-to-computer-0c61d6: 컴퓨터에 저장
+failed-47cb70: (실패)
+saved-to-long-term-memory-40f70f: 장기 기억에 저장됨
+some-modules-haven-t-been-available-yet-2baa21: 일부 모듈이 아직 준비되지 않았습니다…
+all-modules-are-ready-22de94: 모든 모듈이 준비되었습니다!
+settings-3cc1d5: 설정
+preparing-resources-ff2c87: 리소스 준비 중…
+loading-b04ba4: 불러오는 중…
+drag-here-to-move-dc8629: 여기를 드래그하여 이동
+drag-to-move-0d84b3: 드래그하여 이동
+dashboard-d87f47: 대시보드
+stale-86c16f: ⚠ 오래된 데이터
+tutorial-2701a9: 사용 안내
+wind-142b57: 바람
+chance-of-rain-73cb4e: 강수 확률
+humidity-65adb9: 습도
+eta-3044d4: 도착 예정
+origin-44ab85: 출발지
+destination-d42713: 목적지
+distance-423208: 거리
+awaiting-first-generation-0991d8: 첫 생성 대기 중…
+generated-prompt-368db9: 생성된 프롬프트
+remix-id-72babb: 리믹스 ID
+time-6c82e6: 시각
+cuipp-backend-linked-034bcf: CUIPP 백엔드 연결됨
+loading-extension-ui-7c266d: 확장 기능 화면 불러오는 중…
+this-module-is-registered-but-it-did-not-decl-c98d1d: 등록된 모듈이지만 표시할 iframe 소스가 아직 지정되지 않았습니다.
+kit-91bf6f: 키트
+type-3deb74: 유형
+runtime-c4740e: 런타임
+revision-3beb9a: 리비전
+iframe-353fb2: iframe
+options-for-character-26b5b4: 캐릭터 옵션
+connect-b65463: 연결
+bookmark-441da1: 북마크
+like-c7e02c: 좋아요
+chat-2ced57: 대화
+settings-c7f73b: 설정
+provider-catalog-03da1c: 제공자 목록
+search-configured-ee69cd: 설정된 제공자 검색…
+customize-options-b884b3: 옵션 사용자 지정
+search-supported-providers-496667: 지원하는 제공자 검색…
+no-providers-d239f8: 제공자 없음
+no-audio-detected-680bfe: 오디오가 감지되지 않음
+please-make-sure-that-the-correct-permissions-b47bf6: 필요한 권한이 허용되고 오디오 소스에서 소리가 재생되는지 확인하세요.
+reset-settings-9ba8d6: 설정 초기화
+godot-stage-experimental-a81b5e: Godot 무대(실험 기능)
+godot-stage-experimental-is-running-bd3516: Godot 무대(실험 기능) 실행 중…
+step-dc416e: 단계
+of-de04fa: /
+back-b52b36: 뒤로
+download-image-d6f34a: 이미지 다운로드
+no-preview-e49000: 미리보기 없음
+remove-background-e19463: 배경 제거
+add-custom-background-6613e1: 사용자 지정 배경 추가
+preview-f1fbb2: 미리보기
+blur-900aa9: 흐림
+select-a-background-568528: 배경 선택
+background-picker-c52c7c: 배경 선택기
+options-for-display-models-71073d: 표시 모델 옵션
+loading-display-models-121bc7: 표시 모델 불러오는 중…
+unavailable-preview-unavailable-preview-d9e79c: 미리보기를 사용할 수 없음
+preview-unavailable-preview-unavailable-8186d8: 미리보기를 사용할 수 없음
+model-name-981e71: 모델 이름…
+models-f3798f: 모델
+tachie-model-audit-report-ae0296: Tachie 모델 검사 보고서
+close-bbfa77: 닫기
+status-11dc9e: '상태:'
+emotions-55b719: '감정:'
+canvas-3809d6: '캔버스:'
+detected-8a1687: '감지됨:'
+critical-issues-2d5aeb: 심각한 문제
+warnings-1430f9: 경고
+ignored-032e96: '무시됨:'
+cancel-77dfd2: 취소
+onboarding-8d49e0: 초기 설정
+no-failed-checks-82f623: 실패한 검사가 없습니다.
+download-a479c9: 다운로드
+voice-3091c8: 목소리
+enter-the-voice-id-for-your-openai-compatible-04dd5f: OpenAI 호환 API의 목소리 ID를 입력하세요
+model-cache-6532cf: 모델 캐시
+downloaded-inference-models-stored-in-browser-6b33b9: 브라우저 캐시에 저장된 다운로드한 추론 모델
+checking-cache-177e32: 캐시 확인 중…
+refresh-56e3ba: 새로 고침
+about-6b21fb: 정보
+transparent-0491f7: 투명

@@ -42,7 +42,7 @@ else {
 
 export default {
   appId: 'ai.moeru.airi',
-  productName: 'AIRI',
+  productName: '魔兽陪伴精灵',
   directories: {
     output: 'dist',
     buildResources: 'build',
@@ -133,7 +133,7 @@ export default {
     license: 'MIT',
   },
   win: {
-    executableName: 'airi',
+    executableName: 'wow-companion',
     // NOTICE: Keep `channel: 'latest-${arch}'` for architecture-aware updater metadata.
     // electron-builder expands `${arch}` at publish-time (for example: `latest-x64`, `latest-arm64`),
     // and electron-updater later consumes that expanded channel to resolve platform-specific *.yml files.
@@ -229,11 +229,11 @@ export default {
       channel: 'latest-${arch}',
     },
     extendInfo: {
-      NSAppleEventsUsageDescription: 'AIRI uses Automation to control apps for computer-use tasks.',
-      NSMicrophoneUsageDescription: 'AIRI requires microphone access for voice interaction',
-      NSSpeechRecognitionUsageDescription: 'AIRI uses Apple Speech to transcribe voice interactions on this device',
-      NSCameraUsageDescription: 'AIRI requires camera access for vision understanding',
-      NSBluetoothAlwaysUsageDescription: 'AIRI uses Bluetooth to read game controller input',
+      NSAppleEventsUsageDescription: '魔兽陪伴精灵使用自动化功能完成电脑操作。',
+      NSMicrophoneUsageDescription: '魔兽陪伴精灵需要麦克风权限进行语音交互。',
+      NSSpeechRecognitionUsageDescription: '魔兽陪伴精灵使用 Apple Speech 在本机转写语音。',
+      NSCameraUsageDescription: '魔兽陪伴精灵需要摄像头权限理解画面。',
+      NSBluetoothAlwaysUsageDescription: '魔兽陪伴精灵使用蓝牙读取游戏手柄输入。',
     },
     // For self-publishing, testing, and distribution after modified the code without access to
     // an Apple Developer account, comment and uncomment the following 4 lines.
@@ -243,7 +243,7 @@ export default {
     hardenedRuntime: true,
     // notarize: false,
     notarize: true,
-    executableName: 'airi',
+    executableName: 'wow-companion',
     icon: useIconFormattedMacAppIcon ? 'icon.icon' : 'icon.icns',
   },
   dmg: {
@@ -262,9 +262,9 @@ export default {
       channel: 'latest-${arch}',
     },
     category: 'Utility',
-    synopsis: 'AI VTuber/Waifu chatbot app inspired by Neuro-sama.',
-    description: 'AIRI is an AI VTuber/Waifu chatbot supporting Live2D/VRM avatars, featuring human-like interactions and modular stage-based rendering.',
-    executableName: 'airi',
+    synopsis: '魔兽世界桌面陪伴助手',
+    description: '魔兽陪伴精灵提供魔兽世界角色状态、装备分析、插件管理和桌面语音陪伴。',
+    executableName: 'wow-companion',
     artifactName: '${productName}-${version}-linux-${arch}.${ext}',
     icon: 'build/icons/icon.png',
   },

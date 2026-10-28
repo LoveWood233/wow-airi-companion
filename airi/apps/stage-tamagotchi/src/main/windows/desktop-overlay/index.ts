@@ -81,6 +81,7 @@ export async function setupDesktopOverlayWindow(params: {
   overlayWindow = new BrowserWindow(createDesktopOverlayWindowOptions({
     bounds: primaryDisplay.bounds,
     preloadPath,
+    title: params.i18n.t('companion-ui.titles.overlay', { name: params.i18n.t('companion-ui.app.name') }),
   }))
   protectPrivilegedWindowNavigation(overlayWindow)
   applyDesktopOverlayInputIsolation(overlayWindow)

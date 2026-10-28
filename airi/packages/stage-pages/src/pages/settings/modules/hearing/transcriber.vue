@@ -119,7 +119,7 @@ controller.onInput((attempt) => {
   void attempt.done.then(async (outcome) => {
     const recording = await recordings.get(attempt.id)
     if (outcome.status === 'failed')
-      finishError(recording, errorMessageFrom(outcome.error) ?? 'Transcription failed')
+      finishError(recording, errorMessageFrom(outcome.error) ?? t('settings.pages.modules.hearing.sections.section.playground.transcription-failed'))
     recordings.delete(attempt.id)
   })
 })
@@ -138,7 +138,7 @@ async function setupAudioMonitoring() {
       return
     // Surface a denied or missing microphone before the detector starts. The plugin then subscribes by itself.
     if (!await settingsAudioDeviceStore.askPermission())
-      throw new Error(settingsAudioDeviceStore.error || 'Microphone access was denied')
+      throw new Error(settingsAudioDeviceStore.error || t('companion-controls.microphone-access-denied'))
     if (startup.signal.aborted)
       return
     const model = useVADModel.value ? new SileroVad() : undefined
@@ -167,7 +167,7 @@ async function setupAudioMonitoring() {
       scope.onDispose(() => model?.close())
       return undefined
     } }, { grants: ['input-control', 'cancel-input'], onError: (event) => {
-      vadModelError.value = errorMessageFrom(event.error) ?? 'Speech detection failed'
+      vadModelError.value = errorMessageFrom(event.error) ?? t('companion-controls.speech-detection-failed')
       error.value = vadModelError.value
     } })
     error.value = ''
@@ -242,7 +242,7 @@ function updateCustomModelName(value: string | undefined) {
 async function updateActiveProviderConfig(patch: Record<string, unknown>) {
   const providerId = activeTranscriptionProvider.value
   if (!providerId)
-    throw new Error('No transcription Provider is active.')
+    throw new Error(t('companion-controls.transcription-provider-inactive'))
 
   const shouldRestartMonitoring = isMonitoring.value
 
@@ -250,7 +250,7 @@ async function updateActiveProviderConfig(patch: Record<string, unknown>) {
     await providersStore.initializeProvider(providerId)
     const provider = providerStore.getProvider(providerId)
     if (!provider)
-      throw new Error('The transcription Provider configuration is unavailable.')
+      throw new Error(t('companion-controls.transcription-provider-unavailable'))
 
     const update = providerStore.updateProviderConfig(
       providerId,
@@ -383,7 +383,7 @@ onUnmounted(() => {
                 v-model="activeTranscriptionProvider"
                 name="provider"
                 :value="metadata.id"
-                :title="metadata.localizedName || 'Unknown'"
+                :title="metadata.localizedName || t('wow-companion.identity-unknown')"
                 :description="metadata.localizedDescription"
                 @click="trackProviderClick(metadata.id, 'hearing')"
               />
@@ -415,8 +415,8 @@ onUnmounted(() => {
               >
                 <div :class="['i-solar:warning-circle-line-duotone text-2xl text-amber-500 dark:text-amber-400']" />
                 <div :class="['flex flex-col']">
-                  <span :class="['font-medium']">No Providers Configured</span>
-                  <span :class="['text-sm text-neutral-400 dark:text-neutral-500']">Click here to set up your Transcription providers</span>
+                  <span :class="['font-medium']">{{ t('settings.pages.modules.consciousness.sections.section.provider-model-selection.no_providers_configured_title') }}</span>
+                  <span :class="['text-sm text-neutral-400 dark:text-neutral-500']">{{ t('companion-controls.click-here-to-set-up-your-transcription-providers') }}</span>
                 </div>
                 <div :class="['i-solar:arrow-right-line-duotone ml-auto text-xl text-neutral-400 dark:text-neutral-500']" />
               </RouterLink>
@@ -441,7 +441,7 @@ onUnmounted(() => {
                   {{ t('settings.pages.modules.consciousness.sections.section.provider-model-selection.subtitle') }}
                 </span>
                 <span v-else>
-                  Enter the transcription model to use (e.g., 'whisper-1', 'gpt-4o-transcribe')
+                  {{ t('companion-controls.enter-the-transcription-model-to-use-e-g-whisper-1-gpt-4o-transcribe', { models: 'whisper-1, gpt-4o-transcribe' }) }}
                 </span>
                 <span v-if="activeTranscriptionModel" :class="['text-sm text-neutral-400 font-medium dark:text-neutral-400']">{{ t('settings.pages.modules.consciousness.sections.section.provider-model-selection.current_model_label') }} {{ activeTranscriptionModel }}</span>
               </div>
@@ -582,25 +582,25 @@ onUnmounted(() => {
             <!-- Audio Level Visualization -->
             <div :class="['space-y-3']">
               <!-- Volume Meter -->
-              <LevelMeter :level="volumeLevel" label="Input Level" />
+              <LevelMeter :level="volumeLevel" :label="t('companion-controls.input-level')" />
 
               <!-- VAD Probability Meter (when VAD model is active) -->
               <ThresholdMeter
                 v-if="useVADModel && loadedVAD"
                 :value="isSpeechProb"
                 :threshold="useVADThreshold"
-                label="Probability of Speech"
-                below-label="Silence"
-                above-label="Speech"
-                threshold-label="Detection threshold"
+                :label="t('companion-controls.probability-of-speech')"
+                :below-label="t('stage.chat.voice-preview.silence')"
+                :above-label="t('settings.pages.card.creation.sections.speech')"
+                :threshold-label="t('stage.chat.voice-preview.threshold')"
               />
 
               <!-- Threshold Controls -->
               <div v-if="useVADModel && loadedVAD" :class="['space-y-3']">
                 <FieldRange
                   v-model="useVADThreshold"
-                  label="Sensitivity"
-                  description="Adjust the threshold for speech detection"
+                  :label="t('settings.pages.modules.beat_sync.sections.parameters.parameters.sensitivity.label')"
+                  :description="t('companion-controls.adjust-the-threshold-for-speech-detection')"
                   :min="0.1"
                   :max="0.9"
                   :step="0.05"
@@ -609,8 +609,8 @@ onUnmounted(() => {
 
                 <FieldRange
                   v-model="useVADMinSilenceDurationMs"
-                  label="Pause Before Stop"
-                  description="How long silence must last before speech is considered finished"
+                  :label="t('companion-controls.pause-before-stop')"
+                  :description="t('companion-controls.how-long-silence-must-last-before-speech-is-considered-finished')"
                   :min="200"
                   :max="1500"
                   :step="50"
@@ -621,8 +621,8 @@ onUnmounted(() => {
               <div v-else :class="['space-y-3']">
                 <FieldRange
                   v-model="useVolumeThreshold"
-                  label="Sensitivity"
-                  description="Adjust the threshold for speech detection"
+                  :label="t('settings.pages.modules.beat_sync.sections.parameters.parameters.sensitivity.label')"
+                  :description="t('companion-controls.adjust-the-threshold-for-speech-detection')"
                   :min="1"
                   :max="80"
                   :step="1"
@@ -634,10 +634,10 @@ onUnmounted(() => {
               <div :class="['flex items-center gap-3']">
                 <div :class="['h-4 w-4 rounded-full transition-all duration-200', speakingIndicatorClass]" />
                 <span :class="['text-sm font-medium']">
-                  {{ isSpeech ? 'Speaking Detected' : 'Silence' }}
+                  {{ isSpeech ? t('companion-controls.speaking-detected') : t('stage.chat.voice-preview.silence') }}
                 </span>
                 <span :class="['ml-auto text-xs text-neutral-500']">
-                  {{ useVADModel && loadedVAD ? 'Model Based' : 'Volume Based' }}
+                  {{ useVADModel && loadedVAD ? t('companion-controls.model-based') : t('companion-controls.volume-based') }}
                 </span>
               </div>
 
@@ -645,28 +645,28 @@ onUnmounted(() => {
               <div :class="['border-t border-neutral-200 pt-3 dark:border-neutral-700']">
                 <FieldCheckbox
                   v-model="useVADModel"
-                  label="Model Based"
-                  description="Use AI models for more accurate speech detection"
+                  :label="t('companion-controls.model-based')"
+                  :description="t('companion-controls.use-ai-models-for-more-accurate-speech-detection')"
                 />
 
                 <!-- VAD Model Status -->
                 <div v-if="useVADModel" :class="['mt-3 space-y-2']">
                   <div v-if="loadingVAD" :class="['flex items-center gap-2 text-primary-600 dark:text-primary-400']">
                     <div :class="['i-solar:spinner-line-duotone animate-spin text-sm']" />
-                    <span :class="['text-sm']">Loading...</span>
+                    <span :class="['text-sm']">{{ t('companion-controls.loading') }}</span>
                   </div>
 
                   <ErrorContainer
                     v-else-if="vadModelError"
-                    title="Inference error"
+                    :title="t('companion-controls.inference-error')"
                     :error="vadModelError"
                   />
 
                   <div v-else-if="loadedVAD" :class="['flex items-center gap-2 text-green-600 dark:text-green-400']">
                     <div :class="['i-solar:check-circle-bold-duotone text-sm']" />
-                    <span :class="['text-sm']">Activated</span>
+                    <span :class="['text-sm']">{{ t('companion-controls.activated') }}</span>
                     <span :class="['ml-auto text-xs text-neutral-500']">
-                      Probability: {{ (isSpeechProb * 100).toFixed(1) }}%
+                      {{ t('companion-controls.probability') }} {{ (isSpeechProb * 100).toFixed(1) }}%
                     </span>
                   </div>
                 </div>
@@ -679,12 +679,12 @@ onUnmounted(() => {
                 :current-value="isSpeechProb"
                 :threshold="useVADThreshold"
                 :is-active="isSpeech"
-                title="Voice Activity"
-                subtitle="Last 2 seconds"
-                active-label="Speaking"
-                active-legend-label="Voice detected"
-                inactive-legend-label="Silence"
-                threshold-label="Speech threshold"
+                :title="t('companion-controls.voice-activity')"
+                :subtitle="t('companion-controls.last-2-seconds')"
+                :active-label="t('companion-controls.speaking')"
+                :active-legend-label="t('companion-controls.voice-detected')"
+                :inactive-legend-label="t('stage.chat.voice-preview.silence')"
+                :threshold-label="t('companion-controls.speech-threshold')"
                 :format-threshold="formatVADThreshold"
               />
             </div>

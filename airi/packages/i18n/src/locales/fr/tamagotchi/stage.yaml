@@ -41,6 +41,7 @@ docs:
   'logging-in': Connexion en cours...
   'account': Compte
   'logout': Compte
+  open-wow-companion: Fiche WoW
 'chat-window':
   style:
     title: Style de fenêtre de chat
@@ -49,6 +50,7 @@ docs:
     floating-free: Flottante, n’importe où sur l’écran
     floating-danmaku: Flottante, fil de messages
     pinned: Toujours au premier plan
+    fullscreen: Plein écran, à côté du personnage
   resize: Faites glisser pour redimensionner le chat
   move: Faites glisser pour déplacer le chat
   fold: Masquer le chat
@@ -58,10 +60,12 @@ docs:
   danmaku-feed:
     title: Durée d’affichage des messages
     hide-read: Masquer les messages lus
-    hide-read-description: Les messages disparaissent après lecture. Les réponses vocales disparaissent à la fin de la parole.
+    hide-read-description: Les messages disparaissent après lecture. Les réponses
+      vocales disparaissent à la fin de la parole.
     reading-speed: Vitesse de lecture
     reading-speed-value: '{count} caractères/s'
     minimum-time: Durée minimale
+    minimum-time-value: '{count} s'
 widgets:
   close: Fermer le widget
   empty:
@@ -74,9 +78,12 @@ inlay:
 notice:
   'fade-on-hover':
     title: Disparaître au survol
-    intro: Fait disparaître légèrement le personnage quand le curseur s’approche. Moins de distractions tout en restant visible.
-    opacity: Une fois activé, l’opacité descend à {value} pour {targets} quand le curseur est à proximité.
-    toggle: Vous pouvez le désactiver en survolant l’{controls}, puis en cliquant à nouveau sur l’{icon}.
+    intro: Fait disparaître légèrement le personnage quand le curseur s’approche.
+      Moins de distractions tout en restant visible.
+    opacity: Une fois activé, l’opacité descend à {value} pour {targets} quand le
+      curseur est à proximité.
+    toggle: Vous pouvez le désactiver en survolant l’{controls}, puis en cliquant à
+      nouveau sur l’{icon}.
     controls-label: Îlot de commandes
     icon-label: icône œil barré
     targets: Personnage et UI
@@ -85,6 +92,7 @@ notice:
     preparing: Préparation…
     read-more: En savoir plus
     preview-title: C’est quoi ?
+    value: '0'
 about:
   subtitle: Version de bureau.
   current-version: Version actuelle
@@ -94,6 +102,7 @@ about:
     title: Liens
     home: Accueil
     documentation: Documentation
+    github: GitHub
   update:
     lane:
       label: Canal de mise à jour
@@ -104,6 +113,8 @@ about:
       beta: Bêta
       nightly: Nocturne
       canary: Expérimental
+      stable: Stable
+      alpha: Alpha
     status:
       downloading: Téléchargement de la mise à jour...
       error-prefix: Erreur
@@ -128,3 +139,148 @@ about:
       title: Mise à jour disponible
       description: Une nouvelle version (v{version}) est disponible.
       no-release-notes-markdown: _ Aucune note de mise à jour fournie._
+fullscreen-island:
+  settings: Paramètres
+  chat: Discussion
+  switch-to-dark-mode: Passer au mode sombre
+  switch-to-system-mode: Suivre le thème du système
+  switch-to-light-mode: Passer au mode clair
+  exit: Quitter le plein écran
+fullscreen-surface:
+  resize: Faites glisser pour redimensionner le panneau
+computer-use-tool-call:
+  help: Aide
+  status:
+    completed: Terminé
+    failed: Échec
+  display: Écran
+  built-in: Intégré
+  primary: Principal
+  logical-size: Taille logique
+  pixel-size: Taille en pixels
+  backend: Moteur de capture
+  fallback: Raison du mode de secours
+  file: Fichier
+  window: Fenêtre
+  region: Zone
+  main: Principal
+  hidden: Masqué
+  displays: Un écran | {count} écrans
+  windows: Une fenêtre | {count} fenêtres
+  found: « {query} » trouvé
+  matches: Une correspondance | {count} correspondances
+  not-found: « {query} » introuvable
+  clicked-text: Clic sur « {query} »
+  options: Options
+  typed: Saisi
+  pasted: Collé
+  pressed: Appuyé
+  repeat: × {count}
+  interval: toutes les {ms} ms
+  hold: maintenu pendant {ms} ms
+  steps: Une étape dans l’ordre | {count} étapes dans l’ordre
+  focused: Focus sur « {query} »
+  app: Application
+  process: Processus
+  control: Contrôle
+  title: Titre
+  value: Contenu
+  ax-path: Chemin d’accessibilité
+  moved: Pointeur déplacé vers
+  clicked: Clic effectué
+  dragged: Glissé
+  requested: Demandé
+  on-screen: À l’écran
+  start: Début
+  end: Fin
+  final: Point final
+  duration: '{ms} ms'
+  normalized: Coordonnées normalisées
+  click-count: × {count}
+  relative:
+    screen: Par rapport à l’écran
+    window: Par rapport à la fenêtre
+    display: Par rapport au moniteur
+  buttons:
+    left: Bouton gauche
+    right: Bouton droit
+    middle: Bouton central
+  clicks:
+    single: Clic simple
+    double: Double-clic
+  delivery:
+    path: Transmission
+    verified: Effet vérifié
+    not-verified: Effet non vérifié
+    disturbance: Perturbation
+    mouse: Souris
+    focus: Focus
+    clipboard: Presse-papiers
+    attempt: Tentative {index}
+    attempt-succeeded: Réussi
+    attempt-failed: Échec
+  paths:
+    foreground_system_events: Événements système au premier plan
+    window_targeted_keyboard: Événements clavier envoyés à la fenêtre
+    ax_focus: Focus d’accessibilité
+  disturbances:
+    none: Aucun
+    temporary: Temporaire
+    foreground: Placé au premier plan
+    unknown: Inconnu
+  activated: Passage à {app}
+  in-front: Actuellement au premier plan
+  front-is: '{app} est au premier plan'
+  front-unknown: Impossible de vérifier l’application au premier plan
+  permissions:
+    title: Autorisations système
+    names:
+      screen_recording: Enregistrement de l’écran
+      screen_capture_kit: ScreenCaptureKit
+      accessibility: Accessibilité
+      automation_to_system_events: Automatisation (System Events)
+    states:
+      granted: Accordé
+      missing: Non accordé
+      denied: Refusé
+      unknown: Inconnu
+  media:
+    commands:
+      play: Lire
+      pause: Mettre en pause
+      toggle: Lire ou mettre en pause
+      next: Piste suivante
+      previous: Piste précédente
+    verified: Vérifié
+    not-verified: Non vérifié
+    playing: Lecture en cours
+    paused: En pause
+    nothing: Aucune lecture en cours
+    liked: Aimé
+    rate: Vitesse ×{rate}
+computer-use-read-image-tool-call:
+  description: Description du modèle de vision
+  failed: Le modèle de vision n’a pas pu lire cette image
+tool-call-screenshot:
+  view-full: Voir en taille réelle
+weather-tool-call:
+  feels-like: Ressenti
+  humidity: Humidité
+  wind: Vent
+  precipitation: Probabilité de pluie
+  high: Maximum
+  low: Minimum
+  conditions:
+    clear-day: Dégagé
+    clear-night: Dégagé
+    partly-cloudy-day: Partiellement nuageux
+    partly-cloudy-night: Partiellement nuageux
+    overcast: Couvert
+    fog: Brouillard
+    drizzle: Bruine
+    sleet: Grésil
+    rain: Pluie
+    extreme-rain: Forte pluie
+    snow: Neige
+    extreme-snow: Forte neige
+    thunderstorm: Orage

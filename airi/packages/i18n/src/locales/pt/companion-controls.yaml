@@ -1,0 +1,101 @@
+click-here-to-set-up-your-transcription-providers: Clique aqui para configurar provedores de transcrição
+enter-the-transcription-model-to-use-e-g-whisper-1-gpt-4o-transcribe: Digite um modelo de transcrição, por exemplo {models}.
+input-level: Nível de entrada
+probability-of-speech: Probabilidade de fala
+adjust-the-threshold-for-speech-detection: Ajustar o limite de detecção de fala
+pause-before-stop: Pausa antes de parar
+how-long-silence-must-last-before-speech-is-considered-finished: Duração do silêncio necessária para considerar a fala concluída
+model-based: Baseado em modelo
+use-ai-models-for-more-accurate-speech-detection: Usar modelos de IA para detectar fala com mais precisão
+loading: Carregando…
+inference-error: Erro de inferência
+activated: Ativado
+probability: 'Probabilidade:'
+voice-activity: Atividade de fala
+last-2-seconds: Últimos 2 segundos
+speaking: Falando
+voice-detected: Voz detectada
+speech-threshold: Limite de fala
+reset-value-to-default: Restaurar valor padrão
+head-rotation: Rotação da cabeça
+angle-x: Ângulo X
+angle-y: Ângulo Y
+angle-z: Ângulo Z
+left-eye-open-close: Olho esquerdo aberto/fechado
+right-eye-open-close: Olho direito aberto/fechado
+left-eye-smiling: Sorriso do olho esquerdo
+right-eye-smiling: Sorriso do olho direito
+eyebrows: Sobrancelhas
+left-eyebrow-left-right: 'Sobrancelha esquerda: esquerda/direita'
+right-eyebrow-left-right: 'Sobrancelha direita: esquerda/direita'
+left-eyebrow-y-up-down: Sobrancelha esquerda Y (cima/baixo)
+left-eyebrow-y: Sobrancelha esquerda Y
+right-eyebrow-y-up-down: Sobrancelha direita Y (cima/baixo)
+right-eyebrow-y: Sobrancelha direita Y
+left-eyebrow-angle: Ângulo da sobrancelha esquerda
+right-eyebrow-angle: Ângulo da sobrancelha direita
+left-eyebrow-form-deformation: Forma da sobrancelha esquerda (deformação)
+left-eyebrow-form: Forma da sobrancelha esquerda
+right-eyebrow-form-deformation: Forma da sobrancelha direita (deformação)
+right-eyebrow-form: Forma da sobrancelha direita
+mouth: Boca
+mouth-open-close: Boca aberta/fechada
+mouth-form-deformation: Forma da boca (deformação)
+mouth-form: Forma da boca
+face: Rosto
+cheek: Bochecha
+body-rotation-x: Rotação do corpo X
+body-rotation-y: Rotação do corpo Y
+body-rotation-z: Rotação do corpo Z
+breath: Respiração
+model-position: Posição do modelo
+directional-light-rotation-x: Rotação da luz direcional - X
+directional-light-rotation-y: Rotação da luz direcional - Y
+directional-light-color: Cor da luz direcional
+directional-light-intensity: Intensidade da luz direcional
+ambient-light-intensity: Intensidade da luz ambiente
+ambient-light-color: Cor da luz ambiente
+hemisphere-light-intensity: Intensidade da luz hemisférica
+hemisphere-sky-color: Cor do céu hemisférico
+hemisphere-ground-color: Cor do solo hemisférico
+tips: Dicas!
+camera-fov: Campo de visão da câmera
+directional-light-x: Luz direcional - X
+directional-light-y: Luz direcional - Y
+directional-light-z: Luz direcional - Z
+albedo-glow: Brilho do albedo
+godot-stage-experimental: Palco Godot (experimental)
+godot-view: Visualização Godot
+camera-x: Câmera X
+camera-y: Câmera Y
+camera-z: Câmera Z
+camera-yaw: Rotação horizontal da câmera
+camera-pitch: Inclinação vertical da câmera
+transcription-provider-inactive: Nenhum provedor de transcrição ativo.
+transcription-provider-unavailable: A configuração do provedor de transcrição está indisponível.
+microphone-access-denied: Acesso ao microfone negado.
+speech-detection-failed: Falha na detecção de fala.
+speaking-detected: Fala detectada
+volume-based: Baseado em volume
+select-model-before-godot-view: Selecione um modelo VRM antes de ajustar a visualização do palco Godot.
+godot-view-unavailable: Nenhuma visualização do palco Godot recebida. Verifique a conexão com Godot.
+godot-no-snapshot: Nenhum retrato da visualização do palco Godot recebido
+revision: Revisão {revision} · {reason}
+hemisphere: Hemisfério
+skybox: Skybox
+rotation-x-degrees: Rotação X (graus)
+rotation-y-degrees: Rotação Y (graus)
+intensity: Intensidade
+scale: Escala
+rotation: Rotação
+glow: Brilho
+mouth-vowel: Boca {vowel}
+blink: Piscar
+wink-left: Piscadela (esquerda)
+wink-right: Piscadela (direita)
+smile: Sorriso
+anger: Raiva
+sad: Triste
+surprise: Surpresa
+troubled: Preocupado
+serious: Sério

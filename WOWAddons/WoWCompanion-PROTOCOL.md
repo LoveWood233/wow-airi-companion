@@ -2,6 +2,39 @@
 
 The addon publishes a bounded snapshot through a visible black-and-white grid. The desktop bridge reads the grid without accessing game process memory.
 
+## Current map coordinates (2.12.0)
+
+Retail addon 2.12.0 and Forever addon 1.9.0 add `px` and `py` to character snapshots. Bridge 2.12.0 reads these fields.
+
+This is an additive part of the supported v3 contract. The frame stays 512 bytes, and the payload stays within 504 bytes.
+
+| Field | Contract |
+| --- | --- |
+| `px`, `py` | Paired integers from 0 through 10000, or paired JSON `null` |
+| `map` | The UI map ID that defines these coordinates |
+
+Each integer represents a map fraction multiplied by 10000. For example, `px:1234, py:5678` means map coordinates `12.34, 56.78`.
+
+Both fields absent is also a valid v3 snapshot with unknown coordinates. A single missing field or mixed numeric/null pair is invalid.
+
+The addon reads the player's best map and public `C_Map.GetPlayerMapPosition` result. It samples movement on the existing one-second heartbeat.
+
+Unavailable, restricted, invalid, offline, and map-zero observations clear both values. The addon does not reuse coordinates from another map.
+
+The bridge validates the pair before publication. Offline and map-zero observations publish unknown coordinates.
+
+The status endpoint also clears coordinates when the displayed observation becomes stale. Historical event facts retain their original observations.
+
+The desktop displays coordinates only for a fresh, live, online screen observation without capture errors. Unknown coordinates stay unknown in chat.
+
+These are map coordinates. They do not establish world-space distance, elevation, a walkable route, or precise capture time.
+
+Coordinate changes advance the snapshot sequence. They do not create proactive companion events or change idle interaction rules.
+
+The grid remains 64 by 64 pixels at the default cell size. Display labels still shrink before required numeric data is discarded.
+
+API definitions: [Blizzard MapDocumentation](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/MapDocumentation.lua) and [Vector2DMixin](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_SharedXML/Vector2D.lua).
+
 ## Compact grid (2.11.1)
 
 Retail addon 2.10.1 and Forever addon 1.7.1 use one physical pixel per bit by default. The complete frame occupies 64 by 64 pixels.
@@ -105,7 +138,7 @@ This example is synthetic. Production frames contain the current character's ava
 - The addon filters secret values before comparison, encoding, or display.
 - Text is bounded and truncated at UTF-8 boundaries when required.
 
-All three components require snapshot version 3. Update the addon, bridge, and AIRI together.
+All three components require snapshot version 3. Update the addon, bridge, and 魔兽陪伴精灵 together.
 Both games use the same layout and snapshot fields. Frame magic identifies the game. Decoders reject the other game’s magic.
 
 ## Faction and race (2.7.0)
@@ -126,7 +159,7 @@ If the payload still does not fit, the complete race value becomes `null`. A par
 Identifiers, gold counters, and faction are preserved exactly. If that minimum payload exceeds 504 bytes, encoding fails instead of corrupting data.
 The unrefreshed frame then ages out through the existing heartbeat rules. Extreme combinations of maximum-length identifiers can reach this limit.
 
-AIRI displays both fields and includes them in live chat context and event facts.
+魔兽陪伴精灵 displays both fields and includes them in live chat context and event facts.
 Event wording follows the active character card, including user-requested fictional faction banter. It does not override mute, cooldown, or combat quiet settings.
 The local Sylvanas card permits occasional Horde death banter such as “部落都是废物。” This is an example, not a fixed response.
 The model must use the event's actual faction and race, and treat unknown values as unknown.
@@ -138,7 +171,7 @@ API definitions: [Retail UnitDocumentation](https://github.com/Gethe/wow-ui-sour
 This desktop feature uses existing snapshot v3 fields. Retail addon 2.7.0, Forever addon 1.4.0, and bridge 2.7.0 remain unchanged.
 No new screen field, frame type, or HTTP endpoint is required.
 
-The AIRI main process stores level observations by game profile, local account identifier, and character GUID.
+The 魔兽陪伴精灵 main process stores level observations by game profile, local account identifier, and character GUID.
 Only valid, live, online screen observations without capture errors enter this history. Demo data does not enter the history.
 Each record contains the previous level, observed level, local receipt time, observation source, duration, and duration basis.
 Timestamps use `Date.now()` as Unix milliseconds. The settings page displays local dates and times.
@@ -146,7 +179,7 @@ Receipt timestamps include the existing capture and polling delay. They are not 
 
 The first observation establishes a baseline. It cannot recover earlier level changes.
 Consecutive observed upgrades produce a complete duration for one level. That duration is the difference between their receipt timestamps.
-Offline periods, character switches, and AIRI downtime between those observations remain part of the duration.
+Offline periods, character switches, and 魔兽陪伴精灵 downtime between those observations remain part of the duration.
 An unchanged level after reconnection preserves the known start time for the next observed upgrade.
 
 The first upgrade after a baseline only measures time since that baseline. The display marks this duration as partial.
@@ -155,18 +188,18 @@ A jump across multiple levels does not create invented intermediate records or e
 Decreases and clock changes cannot produce negative or complete level durations from invalid intervals.
 The history retains all recorded changes. It does not use the ten-record equipment limit.
 
-Retail saves `wow-companion-level-history-v1.json` in the AIRI user data directory.
+Retail saves `wow-companion-level-history-v1.json` in the 魔兽陪伴精灵 user data directory.
 Forever saves `wow-companion-forever-level-history-v1.json` in the same directory.
 Each profile owns its file, and each account and GUID owns separate records within that file.
 Atomic replacement protects completed saves. Invalid files remain untouched, and the settings page displays the storage error.
-AIRI flushes pending writes during normal exit. Saved records remain available while the game is offline.
+魔兽陪伴精灵 flushes pending writes during normal exit. Saved records remain available while the game is offline.
 
 This feature makes no model requests and adds no speech trigger. Reminder preferences and notification cooldowns retain their existing behavior.
 
 ## Equipment comparison observations (desktop and bridge 2.9.0)
 
 Retail addon 2.8.0 and Forever addon 1.5.0 add a separate comparison stream. Snapshot v3, equipment observations, and frame size remain unchanged.
-Update the addon, bridge, and desktop together. AIRI requires bridge 2.9 or later for this feature.
+Update the addon, bridge, and desktop together. 魔兽陪伴精灵 requires bridge 2.9 or later for this feature.
 
 A `cmp` fragment uses the existing 512-byte frame and 504-byte payload limit:
 
@@ -195,7 +228,7 @@ An empty slot uses `itemID=0`, `itemLevel=-1`, and an empty stats array.
 Unknown or restricted item values cannot prove an upgrade. Oversized comparisons are rejected without truncating the evidence.
 
 The API exposes `equipmentComparisons` and `equipmentComparisonError`. It retains the ten latest live comparison records.
-AIRI independently evaluates the received evidence. It stores ten comparison observations per game in separate user-data files:
+魔兽陪伴精灵 independently evaluates the received evidence. It stores ten comparison observations per game in separate user-data files:
 `wow-companion-equipment-comparisons-v1.json` and `wow-companion-forever-equipment-comparisons-v1.json`.
 Acquisition ID, character GUID, session, and account correlate a saved comparison with an equipment history entry.
 These records describe equipment at observation time. They are not a continuously updated snapshot of all equipped slots.
@@ -236,14 +269,14 @@ The addon samples `GetMoney()` on `PLAYER_MONEY`. The first sample sets the bala
 Each subsequent change updates one counter. Gains and losses between screen captures remain separate.
 After a reload or unavailable value, a fresh balance baseline prevents invented transactions across the gap.
 
-AIRI imports these cumulative counters only from live, online screen snapshots without a capture error.
+魔兽陪伴精灵 imports these cumulative counters only from live, online screen snapshots without a capture error.
 Account, character GUID, and counter segment identify each record. Repeated frames and session changes do not add the counters again.
 For the same segment, lower counters are rejected. Retired segments cannot replace a newer segment.
 Restoring an older SavedVariables file can lower these counters. Both source counters must catch up before that character resumes ledger updates.
 Desktop totals use exact integers and cross IPC as decimal copper strings. Gold, silver, and copper formatting happens at display time.
 
 The account identifier belongs to the account-wide SavedVariables file. It does not identify a Battle.net account independently of that file.
-Characters that share this file share the account group. AIRI stores an optional display name for each group.
+Characters that share this file share the account group. 魔兽陪伴精灵 stores an optional display name for each group.
 Clearing this file creates a new identity. Copying it across unrelated accounts also copies that identity.
 
 Totals describe wallet flows, including mail, trades, repairs, purchases, and bank transfers.
@@ -262,11 +295,11 @@ The first valid snapshot establishes a baseline. A new character, session, data 
 The bridge derives changes from successive valid snapshots. This protocol does not provide a lossless queue of every game event.
 Gold counters preserve observed cumulative flows during capture gaps. They do not preserve individual transaction times or descriptions.
 
-The AIRI integration consumes bridge events once. It applies reminder preferences, combat quiet mode, and cooldown before requesting a character reaction.
+The 魔兽陪伴精灵 integration consumes bridge events once. It applies reminder preferences, combat quiet mode, and cooldown before requesting a character reaction.
 
 ## HTTP boundary
 
-Retail binds to `127.0.0.1:18765`. Forever binds to `127.0.0.1:18766`. Each game uses a separate process. The AIRI main process calls its local HTTP API. AIRI main-to-renderer messages use Eventa.
+Retail binds to `127.0.0.1:18765`. Forever binds to `127.0.0.1:18766`. Each game uses a separate process. The 魔兽陪伴精灵 main process calls its local HTTP API. 魔兽陪伴精灵 main-to-renderer messages use Eventa.
 
 | Method | Path | Purpose |
 | --- | --- | --- |
@@ -277,7 +310,7 @@ Retail binds to `127.0.0.1:18765`. Forever binds to `127.0.0.1:18766`. Each game
 | POST | `/api/config` | Capture rectangle, cell size, polling interval, and pause state |
 | POST | `/api/demo` | Explicitly enable or disable synthetic events |
 
-Browser origins are restricted to local development and the AIRI app. Write requests require JSON and an accepted origin when an Origin header is present.
+Browser origins are restricted to local development and the 魔兽陪伴精灵 app. Write requests require JSON and an accepted origin when an Origin header is present.
 
 ## SavedVariables
 
@@ -285,8 +318,8 @@ Browser origins are restricted to local development and the AIRI app. Write requ
 WoW writes this data on reload or logout. It is not the real-time transport.
 An abrupt game exit before saving can lose recent source counters.
 
-AIRI stores its account ledger in its local user data directory. Atomic file replacement protects completed saves.
-An invalid ledger file is preserved. AIRI reports the error and stops ingestion instead of overwriting it.
+魔兽陪伴精灵 stores its account ledger in its local user data directory. Atomic file replacement protects completed saves.
+An invalid ledger file is preserved. 魔兽陪伴精灵 reports the error and stops ingestion instead of overwriting it.
 Demo observations never enter the ledger.
 
 ## Capture conditions
@@ -303,8 +336,8 @@ The bridge reports waiting or stale when capture fails. Demo mode always uses a 
 Retail retains `bridge-config.json`. Forever uses `bridge-config-forever.json` and defaults to cell size 1.
 HTTP health and status responses include `game` and `protocol`. Capture updates cannot change the game.
 
-AIRI uses explicit game keys in IPC requests. Each game owns its settings, client, runtime, event cursor, notification policy, and ledger.
-Retail retains its original files. Forever uses `wow-companion-forever-v1.json` and `wow-companion-forever-gold-v1.json` in AIRI user data.
+魔兽陪伴精灵 uses explicit game keys in IPC requests. Each game owns its settings, client, runtime, event cursor, notification policy, and ledger.
+Retail retains its original files. Forever uses `wow-companion-forever-v1.json` and `wow-companion-forever-gold-v1.json` in 魔兽陪伴精灵 user data.
 Both profiles share the configured model and voice providers. Forever starts disabled until the user enables it.
 Matching account IDs and character GUIDs across games never merge their ledgers.
 
@@ -360,8 +393,8 @@ Pausing, capture changes, character changes, and demo switches clear equipment a
 
 HTTP status adds `equipment`, an array of at most ten complete records, and `equipmentError` for independent equipment diagnostics.
 Older bridge releases without these fields remain a supported status-only source. They cannot decode equipment frames.
-Update the addon, bridge, and AIRI together before equipment use.
-AIRI shows recent records and includes bounded equipment data in chat context. It treats all item text as untrusted observations.
+Update the addon, bridge, and 魔兽陪伴精灵 together before equipment use.
+魔兽陪伴精灵 shows recent records and includes bounded equipment data in chat context. It treats all item text as untrusted observations.
 Equipment does not trigger an automatic spoken notification. Demo data never enters the real equipment list or gold ledger.
 
 ## Confirmed equipment swaps (2.5.0)
@@ -412,13 +445,13 @@ Repeated IDs are deduplicated. Conflicting payloads for the same ID produce an i
 The same reset boundaries as equipment observations apply to swap results.
 Older bridges without these fields remain supported for their existing telemetry features.
 
-AIRI shows the latest results and includes three matching results in live chat context.
+魔兽陪伴精灵 shows the latest results and includes three matching results in live chat context.
 An `equipped` result proves a past confirmed action, not that the item remains equipped now.
 Swap results do not trigger automatic model calls, voice replies, or gameplay actions.
 
-## AIRI equipment history (desktop 2.5.1)
+## 魔兽陪伴精灵 equipment history (desktop 2.5.1)
 
-AIRI saves complete equipment observations in its local user data directory.
+魔兽陪伴精灵 saves complete equipment observations in its local user data directory.
 Each game profile retains ten records across characters. New records replace the oldest records by receipt order.
 Each entry includes the character name, realm, account identifier, receipt time, and original equipment record.
 Repeated observations do not change the order or add another entry.

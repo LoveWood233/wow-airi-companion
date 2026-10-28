@@ -5,16 +5,21 @@ import { createFallbackOptions } from '@proj-airi/i18n'
 import { createPinia } from 'pinia'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { render } from 'vitest-browser-vue'
+import { page } from 'vitest/browser'
 import { defineComponent, h, nextTick } from 'vue'
 import { createI18n } from 'vue-i18n'
 
 import StepWelcome from './step-welcome.vue'
 
-import { AIRI_FLUX_URL, AIRI_TERMS_URL } from '../../../../constants/public-links'
 import { useAuthStore } from '../../../../stores/auth'
 import { useAiriCardStore } from '../../../../stores/modules/airi-card'
 
+import '@unocss/reset/tailwind.css'
+import '@proj-airi/ui/main.css'
+import 'virtual:uno.css'
+
 afterEach(() => {
+  vi.restoreAllMocks()
   vi.unstubAllEnvs()
   // The card store keeps its cards in the local storage.
   localStorage.clear()
@@ -32,81 +37,51 @@ function createTestI18n() {
 }
 
 /** Renders the welcome step with real Pinia and i18n plugins. */
-async function renderWelcomeStep(customProviderSetupEnabled: boolean) {
-  return render(StepWelcome, {
+async function renderWelcomeStep(signedIn: boolean) {
+  const pinia = createPinia()
+  const onNext = vi.fn()
+  const screen = await render(StepWelcome, {
+    attrs: { style: 'height: calc(100dvh - 64px); margin: 32px' },
     props: {
-      customProviderSetupEnabled,
-      onNext: vi.fn(),
+      onNext,
     },
     global: {
       directives: {
         motion: {},
       },
-      plugins: [createPinia(), createTestI18n()],
+      plugins: [pinia, createTestI18n()],
     },
   })
+  if (signedIn) {
+    const date = new Date('2026-01-01')
+    useAuthStore(pinia).$patch({
+      user: { id: 'user', name: 'Saved user', email: 'user@example.test', emailVerified: true, createdAt: date, updatedAt: date },
+      session: { id: 'session', userId: 'user', token: 'saved-session', expiresAt: new Date('2027-01-01'), createdAt: date, updatedAt: date },
+      token: 'saved-token',
+    })
+    await nextTick()
+  }
+  return { screen, onNext, auth: useAuthStore(pinia) }
 }
 
-/**
- * @example
- * describe('Steam onboarding provider restrictions', () => {})
- */
-describe('steam onboarding provider restrictions', () => {
-  /**
-   * @example
-   * it('keeps login without custom provider setup in Steam builds', async () => {})
-   */
-  it('keeps login without custom provider setup in Steam builds', async () => {
-    // ROOT CAUSE:
-    //
-    // The welcome step rendered its local-provider action without consulting
-    // the distribution restriction already used by settings and provider stores.
-    // A clean Steam install therefore exposed BYOK during onboarding even though
-    // the same provider paths were hidden after setup.
-    await renderWelcomeStep(false)
+describe('local onboarding entry', () => {
+  it.each([false, true])('offers provider setup without cloud account UI when signed in is %s', async (signedIn) => {
+    vi.spyOn(globalThis, 'fetch').mockImplementation(async () => Response.json({ flux: 0 }))
+    const { screen, onNext, auth } = await renderWelcomeStep(signedIn)
 
-    expect(document.body.textContent).toContain('Sign in')
-    expect(document.body.textContent).not.toContain('Setup with your provider')
-  })
+    await expect.element(screen.getByRole('button', { name: 'Sign in' })).not.toBeInTheDocument()
+    await expect.element(screen.getByRole('link', { name: 'Pricing' })).not.toBeInTheDocument()
+    await expect.element(screen.getByRole('link', { name: 'Terms of Service' })).not.toBeInTheDocument()
+    expect(document.body.textContent).not.toContain('Flux')
+    expect(document.querySelector('img')).toBeNull()
+    await expect.poll(() => getComputedStyle(screen.getByRole('button', { name: 'Configure a model provider' }).element()).backgroundColor).not.toBe('rgba(0, 0, 0, 0)')
+    if (!signedIn)
+      await page.screenshot({ path: '__screenshots__/local-onboarding-welcome.png' })
 
-  /**
-   * @example
-   * it('keeps custom provider setup in direct builds', async () => {})
-   */
-  it('keeps custom provider setup in direct builds', async () => {
-    await renderWelcomeStep(true)
+    await screen.getByRole('button', { name: 'Configure a model provider' }).click()
 
-    expect(document.body.textContent).toContain('Setup with your provider')
-  })
-})
-
-describe('desktop onboarding sign-in', () => {
-  it('requests login through the auth store', async () => {
-    vi.stubEnv('RUNTIME_ENVIRONMENT', 'electron')
-    const pinia = createPinia()
-    const screen = await render(StepWelcome, {
-      props: {
-        customProviderSetupEnabled: true,
-        onNext: vi.fn(),
-      },
-      global: {
-        directives: { motion: {} },
-        plugins: [pinia, createTestI18n()],
-      },
-    })
-
-    await screen.getByRole('button', { name: 'Sign in' }).click()
-
-    await expect.poll(() => useAuthStore(pinia).needsLogin).toBe(true)
-  })
-})
-
-describe('onboarding public links', () => {
-  it('links to public pricing and terms without requiring sign-in', async () => {
-    const screen = await renderWelcomeStep(true)
-
-    await expect.element(screen.getByRole('link', { name: 'Pricing' })).toHaveAttribute('href', AIRI_FLUX_URL)
-    await expect.element(screen.getByRole('link', { name: 'Terms of Service' })).toHaveAttribute('href', AIRI_TERMS_URL)
+    expect(onNext).toHaveBeenCalledOnce()
+    expect(auth.needsLogin).toBe(false)
   })
 })
 
@@ -119,7 +94,7 @@ describe('onboarding language choice', () => {
       setup() {
         // The card store creates its runtime stores in the setup of the app, where they can bind i18n.
         void useAiriCardStore().initialize()
-        return () => h(StepWelcome, { customProviderSetupEnabled: true, onNext: vi.fn() })
+        return () => h(StepWelcome, { onNext: vi.fn() })
       },
     })
     await render(App, {

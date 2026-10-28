@@ -1,5 +1,13 @@
 title: 魔兽陪伴精灵
 description: 一起漫游艾泽拉斯。了解角色状态，在重要时刻陪你回应。
+product:
+  about-title: 关于魔兽陪伴精灵
+  description: 魔兽世界角色陪伴、语音聊天与插件管理。
+  version: 版本
+  project: 项目地址
+  third-party: 第三方许可
+  license-note: 本软件使用开源组件，其版权与许可证保留在源码和发行文件中。
+  local-provider-note: 在设置中配置聊天和语音服务，无需软件账号。
 connection: 游戏连接
 last-seen: 最近有效画面
 demo-warning: 当前为演示数据，不代表真实游戏角色。
@@ -436,3 +444,9 @@ screen-assist:
     vision-not-configured: 请先选择视觉模型服务和模型，再使用游戏截图辅助。
     vision-failed: 视觉模型未能完成截图分析，请检查模型配置后重试。
     no-description: 视觉模型没有返回画面描述，请重试或选择其他支持图片分析的模型。
+
+coordinates:
+  title: 地图坐标
+  value: X {x} · Y {y}
+  unavailable: 当前观测无可用坐标
+  note: 当前地图内的 0–100 坐标；副本等区域可能无法获取。

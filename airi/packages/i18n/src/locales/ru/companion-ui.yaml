@@ -1,0 +1,45 @@
+app:
+  name: Спутник WoW
+titles:
+  main: '{name}'
+  settings: Спутник WoW · Настройки
+  about: О программе {name}
+  editor: Спутник WoW · Редактор
+  onboarding: Добро пожаловать в {name}
+  dashboard: Спутник WoW · Панель
+  overlay: Спутник WoW · Наложение рабочего стола
+chat:
+  ask: Спросите {name}…
+errors:
+  screen-capture: Источник захвата экрана недоступен. Проверьте разрешение на
+    запись экрана для {name}.
+about:
+  version: Версия
+  branch: Ветка
+  commit: Коммит
+  built-on: Дата сборки
+  about: О программе
+  build-info: Информация о сборке
+menu:
+  file: Файл
+  edit: Правка
+  view: Вид
+  window: Окно
+  close: Закрыть окно
+  quit: Выход
+  undo: Отменить
+  redo: Повторить
+  cut: Вырезать
+  copy: Копировать
+  paste: Вставить
+  select-all: Выделить всё
+  reload: Перезагрузить
+  force-reload: Принудительно перезагрузить
+  devtools: Инструменты разработчика
+  actual-size: Исходный размер
+  zoom-in: Увеличить
+  zoom-out: Уменьшить
+  fullscreen: Полноэкранный режим
+  minimize: Свернуть
+  zoom: Развернуть окно
+  front: Все окна на передний план

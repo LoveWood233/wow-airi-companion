@@ -5,8 +5,14 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { ScreenCaptureFailure, WowScreenCapture } from './wow-screen-assist-runtime'
 
 const retail: GameCaptureWindow = {
-  handle: '12345', processId: 100, processStartedAt: '45678', path: 'C:\\Games\\_retail_\\Wow.exe',
-  title: 'World of Warcraft', game: 'retail', minimized: false, visible: true,
+  handle: '12345',
+  processId: 100,
+  processStartedAt: '45678',
+  path: 'C:\\Games\\_retail_\\Wow.exe',
+  title: 'World of Warcraft',
+  game: 'retail',
+  minimized: false,
+  visible: true,
 }
 
 function platform(): GameCapturePlatform {
@@ -25,8 +31,12 @@ describe('game screenshot ownership', () => {
     const os = platform()
     const capture = new WowScreenCapture(os)
     expect(await capture.capture({})).toEqual({ ok: true, image: {
-      dataUrl: 'data:image/jpeg;base64,dGVzdA==', width: 1920, height: 1080, capturedAt: 123456,
-      game: 'retail', windowTitle: 'World of Warcraft',
+      dataUrl: 'data:image/jpeg;base64,dGVzdA==',
+      width: 1920,
+      height: 1080,
+      capturedAt: 123456,
+      game: 'retail',
+      windowTitle: 'World of Warcraft',
     } })
     expect(os.verify).toHaveBeenCalledWith(retail, 'retail')
     expect(os.discover).toHaveBeenCalledTimes(3)

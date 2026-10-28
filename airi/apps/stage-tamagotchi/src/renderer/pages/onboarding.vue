@@ -1,63 +1,37 @@
 <script setup lang="ts">
 import { useElectronEventaInvoke } from '@proj-airi/electron-vueuse'
-import { OnboardingScreen, OnboardingStepAnalyticsNotice } from '@proj-airi/stage-ui/components'
-import { isAnalyticsAvailableInBuild } from '@proj-airi/stage-ui/libs/product-signals'
-import { useAuthStore } from '@proj-airi/stage-ui/stores/auth'
+import { OnboardingScreen } from '@proj-airi/stage-ui/components'
 import { useOnboardingStore } from '@proj-airi/stage-ui/stores/onboarding'
 import { useTheme } from '@proj-airi/ui'
-import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 
-import { electronAuthStartLogin, electronOnboardingClose } from '../../shared/eventa'
-import { useOnboardingAuthentication } from '../composables/use-onboarding-authentication'
-import { useAuthStatusStore } from '../stores/auth-status'
+import { electronOnboardingClose } from '../../shared/eventa'
 
-const authStore = useAuthStore()
-const { needsLogin, isAuthenticated } = storeToRefs(authStore)
 const onboardingStore = useOnboardingStore()
-const { closeRequestId } = storeToRefs(onboardingStore)
 const { isDark } = useTheme()
-const startLogin = useElectronEventaInvoke(electronAuthStartLogin)
 const closeWindow = useElectronEventaInvoke(electronOnboardingClose)
-const authStatus = useAuthStatusStore()
-const { closeOnboardingWindow } = useOnboardingAuthentication({
-  consumeLoginRequest: () => authStore.consumeLoginRequest(),
-  closeRequestId,
-  closeWindow,
-  isAuthenticated,
-  isConfirming: computed(() => authStatus.status?.state === 'confirming'),
-  needsLogin,
-  onCloseError: error => console.error('[Onboarding] Failed to close the onboarding window.', error),
-  startLogin,
-})
 
 const bgClass = computed(() => isDark.value ? 'bg-[#0f0f0f]' : 'bg-white')
-const extraSteps = computed(() => {
-  return isAnalyticsAvailableInBuild()
-    ? [{ id: 'analytics-notice', component: OnboardingStepAnalyticsNotice }]
-    : []
-})
 
 async function handleSkipped() {
-  onboardingStore.markSetupSkipped()
-  await closeOnboardingWindow()
+  await onboardingStore.markSetupSkipped()
+  await closeWindow()
 }
 
 async function handleConfigured() {
-  onboardingStore.markSetupCompleted()
-  await closeOnboardingWindow()
+  await onboardingStore.markSetupCompleted()
+  await closeWindow()
 }
 </script>
 
 <template>
   <!-- Same flex/min-h-0 chain as OnboardingDialog so model step grid scrolls inside the viewport (not the whole page). -->
   <div
-    class="onboarding-root h-full min-h-0 w-full flex flex-col overflow-hidden overscroll-none"
-    :class="bgClass"
+    :class="['onboarding-root h-full min-h-0 w-full', 'flex flex-col overflow-hidden overscroll-none', bgClass]"
   >
-    <div class="min-h-8 w-full flex-shrink-0 select-none drag-region" :class="bgClass" />
-    <div class="mx-8 mb-8 mt-2 min-h-0 flex flex-1 flex-col">
-      <OnboardingScreen :extra-steps="extraSteps" @skipped="handleSkipped" @configured="handleConfigured" />
+    <div :class="['min-h-8 w-full flex-shrink-0 select-none drag-region', bgClass]" />
+    <div :class="['mx-8 mb-8 mt-2', 'min-h-0 flex flex-1 flex-col']">
+      <OnboardingScreen @skipped="handleSkipped" @configured="handleConfigured" />
     </div>
   </div>
 </template>

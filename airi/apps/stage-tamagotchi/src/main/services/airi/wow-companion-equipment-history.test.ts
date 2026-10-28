@@ -216,7 +216,7 @@ describe('companion equipment history', () => {
     await broken.observe(live([equipment(1)]))
     await broken.flush()
     expect(broken.read().entries).toEqual([])
-    expect(broken.read().storageError).toContain('Cannot load WoW equipment history')
+    expect(broken.read().storageError).toContain('equipment-read')
     expect(await readFile(path, 'utf8')).toBe(original)
   })
 
@@ -229,7 +229,7 @@ describe('companion equipment history', () => {
     const broken = new CompanionEquipmentHistory(path)
     await broken.load()
     await broken.flush()
-    expect(broken.read().storageError).toContain('Cannot load WoW equipment history')
+    expect(broken.read().storageError).toContain('equipment-read')
     expect(await readFile(path, 'utf8')).toBe(original)
   })
 
@@ -239,7 +239,7 @@ describe('companion equipment history', () => {
     await expect(blocked.load()).resolves.toBeUndefined()
     await blocked.observe(live([equipment(1)]))
     await blocked.flush()
-    expect(blocked.read().storageError).toContain('Cannot load WoW equipment history')
+    expect(blocked.read().storageError).toContain('equipment-read')
     expect(await readdir(path)).toEqual([])
   })
 
@@ -252,7 +252,7 @@ describe('companion equipment history', () => {
     const broken = new CompanionEquipmentHistory(path)
     await broken.load()
     await broken.observe(live([equipment(2)]))
-    expect(broken.read().storageError).toContain('Cannot load WoW equipment history')
+    expect(broken.read().storageError).toContain('equipment-read')
     expect(await readFile(path, 'utf8')).toBe(original)
   })
 
@@ -260,7 +260,7 @@ describe('companion equipment history', () => {
     await mkdir(path)
     await history.observe(live([equipment(1)]))
     expect(history.read().entries[0].record.id).toBe(1)
-    expect(history.read().storageError).toContain('Cannot save WoW equipment history')
+    expect(history.read().storageError).toContain('equipment-write')
     expect(await readdir(directory)).toEqual(['equipment.json'])
     await rename(path, join(directory, 'blocked-destination'))
     await history.observe(null, 'Disconnected')

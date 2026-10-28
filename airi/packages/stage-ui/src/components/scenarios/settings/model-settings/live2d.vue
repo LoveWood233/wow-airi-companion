@@ -355,7 +355,7 @@ function handleMotionSelect(selectedMotionPath: string | number | undefined) {
       <template #label>
         <div flex items-center>
           <div>{{ t('settings.live2d.scale-and-position.scale') }}</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => scale = 1">
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => scale = 1">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
@@ -365,7 +365,7 @@ function handleMotionSelect(selectedMotionPath: string | number | undefined) {
       <template #label>
         <div flex items-center>
           <div>{{ t('settings.live2d.scale-and-position.x') }}</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => position.x = 0">
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => position.x = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
@@ -375,7 +375,7 @@ function handleMotionSelect(selectedMotionPath: string | number | undefined) {
       <template #label>
         <div flex items-center>
           <div>{{ t('settings.live2d.scale-and-position.y') }}</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => position.y = 0">
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => position.y = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
@@ -593,33 +593,33 @@ function handleMotionSelect(selectedMotionPath: string | number | undefined) {
 
     <!-- Head Rotation -->
     <div mb-2 mt-4 text-xs text-neutral-500 font-semibold dark:text-neutral-400>
-      Head Rotation
+      {{ t('companion-controls.head-rotation') }}
     </div>
-    <FieldRange v-model="modelParameters.angleX" as="div" :min="-30" :max="30" :step="0.1" label="Angle X">
+    <FieldRange v-model="modelParameters.angleX" as="div" :min="-30" :max="30" :step="0.1" :label="t('companion-controls.angle-x')">
       <template #label>
         <div flex items-center>
-          <div>Angle X</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.angleX = 0">
+          <div>{{ t('companion-controls.angle-x') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.angleX = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.angleY" as="div" :min="-30" :max="30" :step="0.1" label="Angle Y">
+    <FieldRange v-model="modelParameters.angleY" as="div" :min="-30" :max="30" :step="0.1" :label="t('companion-controls.angle-y')">
       <template #label>
         <div flex items-center>
-          <div>Angle Y</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.angleY = 0">
+          <div>{{ t('companion-controls.angle-y') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.angleY = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.angleZ" as="div" :min="-30" :max="30" :step="0.1" label="Angle Z">
+    <FieldRange v-model="modelParameters.angleZ" as="div" :min="-30" :max="30" :step="0.1" :label="t('companion-controls.angle-z')">
       <template #label>
         <div flex items-center>
-          <div>Angle Z</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.angleZ = 0">
+          <div>{{ t('companion-controls.angle-z') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.angleZ = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
@@ -628,43 +628,43 @@ function handleMotionSelect(selectedMotionPath: string | number | undefined) {
 
     <!-- Eyes -->
     <div mb-2 mt-4 text-xs text-neutral-500 font-semibold dark:text-neutral-400>
-      Eyes
+      {{ t('tamagotchi.settings.devtools.pages.live2d-motion.groups.eyes') }}
     </div>
-    <FieldRange v-model="modelParameters.leftEyeOpen" as="div" :min="0" :max="1" :step="0.01" label="Left Eye Open/Close">
+    <FieldRange v-model="modelParameters.leftEyeOpen" as="div" :min="0" :max="1" :step="0.01" :label="t('companion-controls.left-eye-open-close')">
       <template #label>
         <div flex items-center>
-          <div>Left Eye Open/Close</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.leftEyeOpen = 0">
+          <div>{{ t('companion-controls.left-eye-open-close') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.leftEyeOpen = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.rightEyeOpen" as="div" :min="0" :max="1" :step="0.01" label="Right Eye Open/Close">
+    <FieldRange v-model="modelParameters.rightEyeOpen" as="div" :min="0" :max="1" :step="0.01" :label="t('companion-controls.right-eye-open-close')">
       <template #label>
         <div flex items-center>
-          <div>Right Eye Open/Close</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.rightEyeOpen = 0">
+          <div>{{ t('companion-controls.right-eye-open-close') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.rightEyeOpen = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.leftEyeSmile" as="div" :min="0" :max="1" :step="0.01" label="Left Eye Smiling">
+    <FieldRange v-model="modelParameters.leftEyeSmile" as="div" :min="0" :max="1" :step="0.01" :label="t('companion-controls.left-eye-smiling')">
       <template #label>
         <div flex items-center>
-          <div>Left Eye Smiling</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.leftEyeSmile = 0">
+          <div>{{ t('companion-controls.left-eye-smiling') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.leftEyeSmile = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.rightEyeSmile" as="div" :min="0" :max="1" :step="0.01" label="Right Eye Smiling">
+    <FieldRange v-model="modelParameters.rightEyeSmile" as="div" :min="0" :max="1" :step="0.01" :label="t('companion-controls.right-eye-smiling')">
       <template #label>
         <div flex items-center>
-          <div>Right Eye Smiling</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.rightEyeSmile = 0">
+          <div>{{ t('companion-controls.right-eye-smiling') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.rightEyeSmile = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
@@ -673,83 +673,83 @@ function handleMotionSelect(selectedMotionPath: string | number | undefined) {
 
     <!-- Eyebrows -->
     <div mb-2 mt-4 text-xs text-neutral-500 font-semibold dark:text-neutral-400>
-      Eyebrows
+      {{ t('companion-controls.eyebrows') }}
     </div>
-    <FieldRange v-model="modelParameters.leftEyebrowLR" as="div" :min="-1" :max="1" :step="0.01" label="Left eyebrow Left/Right">
+    <FieldRange v-model="modelParameters.leftEyebrowLR" as="div" :min="-1" :max="1" :step="0.01" :label="t('companion-controls.left-eyebrow-left-right')">
       <template #label>
         <div flex items-center>
-          <div>Left eyebrow Left/Right</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.leftEyebrowLR = 0">
+          <div>{{ t('companion-controls.left-eyebrow-left-right') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.leftEyebrowLR = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.rightEyebrowLR" as="div" :min="-1" :max="1" :step="0.01" label="Right eyebrow Left/Right">
+    <FieldRange v-model="modelParameters.rightEyebrowLR" as="div" :min="-1" :max="1" :step="0.01" :label="t('companion-controls.right-eyebrow-left-right')">
       <template #label>
         <div flex items-center>
-          <div>Right eyebrow Left/Right</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.rightEyebrowLR = 0">
+          <div>{{ t('companion-controls.right-eyebrow-left-right') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.rightEyebrowLR = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.leftEyebrowY" as="div" :min="-1" :max="1" :step="0.01" label="Left Eyebrow Y (Up/Down)">
+    <FieldRange v-model="modelParameters.leftEyebrowY" as="div" :min="-1" :max="1" :step="0.01" :label="t('companion-controls.left-eyebrow-y-up-down')">
       <template #label>
         <div flex items-center>
-          <div>Left Eyebrow Y</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.leftEyebrowY = 0">
+          <div>{{ t('companion-controls.left-eyebrow-y') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.leftEyebrowY = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.rightEyebrowY" as="div" :min="-1" :max="1" :step="0.01" label="Right Eyebrow Y (Up/Down)">
+    <FieldRange v-model="modelParameters.rightEyebrowY" as="div" :min="-1" :max="1" :step="0.01" :label="t('companion-controls.right-eyebrow-y-up-down')">
       <template #label>
         <div flex items-center>
-          <div>Right Eyebrow Y</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.rightEyebrowY = 0">
+          <div>{{ t('companion-controls.right-eyebrow-y') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.rightEyebrowY = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.leftEyebrowAngle" as="div" :min="-1" :max="1" :step="0.01" label="Left Eyebrow Angle">
+    <FieldRange v-model="modelParameters.leftEyebrowAngle" as="div" :min="-1" :max="1" :step="0.01" :label="t('companion-controls.left-eyebrow-angle')">
       <template #label>
         <div flex items-center>
-          <div>Left Eyebrow Angle</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.leftEyebrowAngle = 0">
+          <div>{{ t('companion-controls.left-eyebrow-angle') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.leftEyebrowAngle = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.rightEyebrowAngle" as="div" :min="-1" :max="1" :step="0.01" label="Right Eyebrow Angle">
+    <FieldRange v-model="modelParameters.rightEyebrowAngle" as="div" :min="-1" :max="1" :step="0.01" :label="t('companion-controls.right-eyebrow-angle')">
       <template #label>
         <div flex items-center>
-          <div>Right Eyebrow Angle</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.rightEyebrowAngle = 0">
+          <div>{{ t('companion-controls.right-eyebrow-angle') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.rightEyebrowAngle = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.leftEyebrowForm" as="div" :min="-1" :max="1" :step="0.01" label="Left Eyebrow Form (Deformation)">
+    <FieldRange v-model="modelParameters.leftEyebrowForm" as="div" :min="-1" :max="1" :step="0.01" :label="t('companion-controls.left-eyebrow-form-deformation')">
       <template #label>
         <div flex items-center>
-          <div>Left Eyebrow Form</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.leftEyebrowForm = 0">
+          <div>{{ t('companion-controls.left-eyebrow-form') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.leftEyebrowForm = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.rightEyebrowForm" as="div" :min="-1" :max="1" :step="0.01" label="Right Eyebrow Form (Deformation)">
+    <FieldRange v-model="modelParameters.rightEyebrowForm" as="div" :min="-1" :max="1" :step="0.01" :label="t('companion-controls.right-eyebrow-form-deformation')">
       <template #label>
         <div flex items-center>
-          <div>Right Eyebrow Form</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.rightEyebrowForm = 0">
+          <div>{{ t('companion-controls.right-eyebrow-form') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.rightEyebrowForm = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
@@ -758,23 +758,23 @@ function handleMotionSelect(selectedMotionPath: string | number | undefined) {
 
     <!-- Mouth -->
     <div mb-2 mt-4 text-xs text-neutral-500 font-semibold dark:text-neutral-400>
-      Mouth
+      {{ t('companion-controls.mouth') }}
     </div>
-    <FieldRange v-model="modelParameters.mouthOpen" as="div" :min="0" :max="1" :step="0.01" label="Mouth Open/Close">
+    <FieldRange v-model="modelParameters.mouthOpen" as="div" :min="0" :max="1" :step="0.01" :label="t('companion-controls.mouth-open-close')">
       <template #label>
         <div flex items-center>
-          <div>Mouth Open/Close</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.mouthOpen = 0">
+          <div>{{ t('companion-controls.mouth-open-close') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.mouthOpen = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.mouthForm" as="div" :min="-1" :max="1" :step="0.01" label="Mouth Form (Deformation)">
+    <FieldRange v-model="modelParameters.mouthForm" as="div" :min="-1" :max="1" :step="0.01" :label="t('companion-controls.mouth-form-deformation')">
       <template #label>
         <div flex items-center>
-          <div>Mouth Form</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.mouthForm = 0">
+          <div>{{ t('companion-controls.mouth-form') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.mouthForm = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
@@ -783,13 +783,13 @@ function handleMotionSelect(selectedMotionPath: string | number | undefined) {
 
     <!-- Face -->
     <div mb-2 mt-4 text-xs text-neutral-500 font-semibold dark:text-neutral-400>
-      Face
+      {{ t('companion-controls.face') }}
     </div>
-    <FieldRange v-model="modelParameters.cheek" as="div" :min="0" :max="1" :step="0.01" label="Cheek">
+    <FieldRange v-model="modelParameters.cheek" as="div" :min="0" :max="1" :step="0.01" :label="t('companion-controls.cheek')">
       <template #label>
         <div flex items-center>
-          <div>Cheek</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.cheek = 0">
+          <div>{{ t('companion-controls.cheek') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.cheek = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
@@ -798,43 +798,43 @@ function handleMotionSelect(selectedMotionPath: string | number | undefined) {
 
     <!-- Body -->
     <div mb-2 mt-4 text-xs text-neutral-500 font-semibold dark:text-neutral-400>
-      Body
+      {{ t('settings.pages.card.creation.sections.body') }}
     </div>
-    <FieldRange v-model="modelParameters.bodyAngleX" as="div" :min="-10" :max="10" :step="0.1" label="Body rotation X">
+    <FieldRange v-model="modelParameters.bodyAngleX" as="div" :min="-10" :max="10" :step="0.1" :label="t('companion-controls.body-rotation-x')">
       <template #label>
         <div flex items-center>
-          <div>Body rotation X</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.bodyAngleX = 0">
+          <div>{{ t('companion-controls.body-rotation-x') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.bodyAngleX = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.bodyAngleY" as="div" :min="-10" :max="10" :step="0.1" label="Body rotation Y">
+    <FieldRange v-model="modelParameters.bodyAngleY" as="div" :min="-10" :max="10" :step="0.1" :label="t('companion-controls.body-rotation-y')">
       <template #label>
         <div flex items-center>
-          <div>Body rotation Y</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.bodyAngleY = 0">
+          <div>{{ t('companion-controls.body-rotation-y') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.bodyAngleY = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.bodyAngleZ" as="div" :min="-10" :max="10" :step="0.1" label="Body rotation Z">
+    <FieldRange v-model="modelParameters.bodyAngleZ" as="div" :min="-10" :max="10" :step="0.1" :label="t('companion-controls.body-rotation-z')">
       <template #label>
         <div flex items-center>
-          <div>Body rotation Z</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.bodyAngleZ = 0">
+          <div>{{ t('companion-controls.body-rotation-z') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.bodyAngleZ = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>
       </template>
     </FieldRange>
-    <FieldRange v-model="modelParameters.breath" as="div" :min="0" :max="1" :step="0.01" label="Breath">
+    <FieldRange v-model="modelParameters.breath" as="div" :min="0" :max="1" :step="0.01" :label="t('companion-controls.breath')">
       <template #label>
         <div flex items-center>
-          <div>Breath</div>
-          <button px-2 text-xs outline-none title="Reset value to default" @click="() => modelParameters.breath = 0">
+          <div>{{ t('companion-controls.breath') }}</div>
+          <button px-2 text-xs outline-none :title="t('companion-controls.reset-value-to-default')" @click="() => modelParameters.breath = 0">
             <div i-solar:forward-linear transform-scale-x--100 text="neutral-500 dark:neutral-400" />
           </button>
         </div>

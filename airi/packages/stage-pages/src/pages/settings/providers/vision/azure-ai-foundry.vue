@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { RemovableRef } from '@vueuse/core'
-
 import {
   ProviderAccountIdInput,
   ProviderAdvancedSettings,
@@ -17,11 +15,14 @@ import { computed } from 'vue'
 
 const providerId = 'vision-azure-ai-foundry'
 const providerStore = useProviderConfigStore()
-const { configs: providers } = storeToRefs(providerStore) as { configs: RemovableRef<Record<string, any>> }
+const { configs: providers } = storeToRefs(providerStore)
 
 // Define computed properties for credentials
 const apiKey = computed({
-  get: () => providers.value[providerId]?.apiKey || '',
+  get: () => {
+    const value = providers.value[providerId]?.apiKey
+    return typeof value === 'string' ? value : ''
+  },
   set: (value) => {
     if (!providers.value[providerId])
       providers.value[providerId] = {}
@@ -30,7 +31,10 @@ const apiKey = computed({
 })
 
 const resourceName = computed({
-  get: () => providers.value[providerId]?.resourceName || '',
+  get: () => {
+    const value = providers.value[providerId]?.resourceName
+    return typeof value === 'string' ? value : ''
+  },
   set: (value) => {
     if (!providers.value[providerId])
       providers.value[providerId] = {}
@@ -39,7 +43,10 @@ const resourceName = computed({
 })
 
 const apiVersion = computed({
-  get: () => providers.value[providerId]?.apiVersion || '',
+  get: () => {
+    const value = providers.value[providerId]?.apiVersion
+    return typeof value === 'string' ? value : ''
+  },
   set: (value) => {
     if (!providers.value[providerId])
       providers.value[providerId] = {}
@@ -48,7 +55,10 @@ const apiVersion = computed({
 })
 
 const modelId = computed({
-  get: () => providers.value[providerId]?.modelId || '',
+  get: () => {
+    const value = providers.value[providerId]?.modelId
+    return typeof value === 'string' ? value : ''
+  },
   set: (value) => {
     if (!providers.value[providerId])
       providers.value[providerId] = {}
@@ -94,16 +104,16 @@ const {
         />
         <ProviderAccountIdInput
           v-model="resourceName"
-          label="Resouce name"
+          :label="t('companion-providers.resource-name')"
           placeholder="..."
-          description="Prefix used in https://<prefix>.services.ai.azure.com"
+          :description="t('companion-providers.resource-name-description')"
           required
         />
         <ProviderAccountIdInput
           v-model="modelId"
-          label="Model id"
+          :label="t('companion-providers.model-id')"
           placeholder="..."
-          description="Model ID on Azure AI Foundry"
+          :description="t('companion-providers.model-id-description')"
           required
         />
       </ProviderBasicSettings>
@@ -111,9 +121,9 @@ const {
       <ProviderAdvancedSettings :title="t('settings.pages.providers.common.section.advanced.title')">
         <ProviderAccountIdInput
           v-model="apiVersion"
-          label="API version"
-          placeholder="e.g. 2025-04-01-preview"
-          description="API version for snapshot of the models"
+          :label="t('companion-providers.api-version')"
+          :placeholder="t('companion-providers.api-version-placeholder')"
+          :description="t('companion-providers.api-version-description')"
         />
       </ProviderAdvancedSettings>
 

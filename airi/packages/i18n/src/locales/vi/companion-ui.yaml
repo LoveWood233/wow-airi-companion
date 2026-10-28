@@ -1,0 +1,44 @@
+app:
+  name: Bạn đồng hành WoW
+titles:
+  main: '{name}'
+  settings: Bạn đồng hành WoW · Cài đặt
+  about: Giới thiệu {name}
+  editor: Bạn đồng hành WoW · Trình chỉnh sửa
+  onboarding: Chào mừng đến với {name}
+  dashboard: Bạn đồng hành WoW · Bảng điều khiển
+  overlay: Bạn đồng hành WoW · Lớp phủ màn hình
+chat:
+  ask: Hỏi {name}…
+errors:
+  screen-capture: Không có nguồn chụp màn hình. Hãy kiểm tra quyền ghi màn hình của {name}.
+about:
+  version: Phiên bản
+  branch: Nhánh
+  commit: Commit
+  built-on: Ngày biên dịch
+  about: Giới thiệu
+  build-info: Thông tin bản dựng ứng dụng
+menu:
+  file: Tệp
+  edit: Chỉnh sửa
+  view: Hiển thị
+  window: Cửa sổ
+  close: Đóng cửa sổ
+  quit: Thoát
+  undo: Hoàn tác
+  redo: Làm lại
+  cut: Cắt
+  copy: Sao chép
+  paste: Dán
+  select-all: Chọn tất cả
+  reload: Tải lại
+  force-reload: Buộc tải lại
+  devtools: Công cụ nhà phát triển
+  actual-size: Kích thước thực
+  zoom-in: Phóng to
+  zoom-out: Thu nhỏ
+  fullscreen: Bật/tắt toàn màn hình
+  minimize: Thu nhỏ cửa sổ
+  zoom: Phóng to cửa sổ
+  front: Đưa tất cả lên trước

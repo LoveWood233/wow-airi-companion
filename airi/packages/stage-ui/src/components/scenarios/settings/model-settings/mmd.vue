@@ -76,22 +76,22 @@ const morphOptions = computed(() => [
 ])
 
 /** Logical morph slots exposed for manual remapping, grouped by purpose. */
-const MORPH_SLOTS: { slot: MorphSlot, label: string }[] = [
-  { slot: 'vowelA', label: 'Mouth あ (A)' },
-  { slot: 'vowelI', label: 'Mouth い (I)' },
-  { slot: 'vowelU', label: 'Mouth う (U)' },
-  { slot: 'vowelE', label: 'Mouth え (E)' },
-  { slot: 'vowelO', label: 'Mouth お (O)' },
-  { slot: 'blink', label: 'Blink' },
-  { slot: 'blinkLeft', label: 'Wink (L)' },
-  { slot: 'blinkRight', label: 'Wink (R)' },
-  { slot: 'smile', label: 'Smile' },
-  { slot: 'anger', label: 'Anger' },
-  { slot: 'sad', label: 'Sad' },
-  { slot: 'surprise', label: 'Surprise' },
-  { slot: 'troubled', label: 'Troubled' },
-  { slot: 'serious', label: 'Serious' },
-]
+const morphSlots = computed<{ slot: MorphSlot, label: string }[]>(() => [
+  { slot: 'vowelA', label: t('companion-controls.mouth-vowel', { vowel: 'あ (A)' }) },
+  { slot: 'vowelI', label: t('companion-controls.mouth-vowel', { vowel: 'い (I)' }) },
+  { slot: 'vowelU', label: t('companion-controls.mouth-vowel', { vowel: 'う (U)' }) },
+  { slot: 'vowelE', label: t('companion-controls.mouth-vowel', { vowel: 'え (E)' }) },
+  { slot: 'vowelO', label: t('companion-controls.mouth-vowel', { vowel: 'お (O)' }) },
+  { slot: 'blink', label: t('companion-controls.blink') },
+  { slot: 'blinkLeft', label: t('companion-controls.wink-left') },
+  { slot: 'blinkRight', label: t('companion-controls.wink-right') },
+  { slot: 'smile', label: t('companion-controls.smile') },
+  { slot: 'anger', label: t('companion-controls.anger') },
+  { slot: 'sad', label: t('companion-controls.sad') },
+  { slot: 'surprise', label: t('companion-controls.surprise') },
+  { slot: 'troubled', label: t('companion-controls.troubled') },
+  { slot: 'serious', label: t('companion-controls.serious') },
+])
 
 function handleIdleMotionSelect(name: string | number | undefined) {
   if (typeof name !== 'string')
@@ -147,7 +147,7 @@ function removeMotion(id: string) {
     <div grid="~ cols-5 gap-1" p-2>
       <PropertyNumber
         v-model="scale"
-        :config="{ min: controlConfig.scale.min, max: controlConfig.scale.max, step: controlConfig.scale.step, label: 'Scale', formatValue: val => val?.toFixed(2) }"
+        :config="{ min: controlConfig.scale.min, max: controlConfig.scale.max, step: controlConfig.scale.step, label: t('companion-controls.scale'), formatValue: val => val?.toFixed(2) }"
         :label="t('settings.mmd.scale-and-position.scale')"
       />
       <PropertyNumber
@@ -163,11 +163,11 @@ function removeMotion(id: string) {
       <PropertyNumber
         v-model="cameraFov"
         :config="{ min: 10, max: 120, step: 1, label: 'FOV' }"
-        label="Camera FOV"
+        :label="t('companion-controls.camera-fov')"
       />
       <PropertyNumber
         v-model="rotationY"
-        :config="{ min: controlConfig.rotationY.min, max: controlConfig.rotationY.max, step: controlConfig.rotationY.step, label: 'Rotation', formatValue: val => val?.toFixed(2) }"
+        :config="{ min: controlConfig.rotationY.min, max: controlConfig.rotationY.max, step: controlConfig.rotationY.step, label: t('companion-controls.rotation'), formatValue: val => val?.toFixed(2) }"
         :label="t('settings.mmd.scale-and-position.rotation')"
       />
 
@@ -189,47 +189,47 @@ function removeMotion(id: string) {
       <PropertyNumber
         v-model="directionalPosition.x"
         :config="{ min: -10, max: 10, step: 0.1, label: 'X' }"
-        label="Directional Light - X"
+        :label="t('companion-controls.directional-light-x')"
       />
       <PropertyNumber
         v-model="directionalPosition.y"
         :config="{ min: -10, max: 10, step: 0.1, label: 'Y' }"
-        label="Directional Light - Y"
+        :label="t('companion-controls.directional-light-y')"
       />
       <PropertyNumber
         v-model="directionalPosition.z"
         :config="{ min: -10, max: 10, step: 0.1, label: 'Z' }"
-        label="Directional Light - Z"
+        :label="t('companion-controls.directional-light-z')"
       />
       <PropertyColor
         v-model="directionalColor"
-        label="Directional Light Color"
+        :label="t('companion-controls.directional-light-color')"
       />
       <PropertyNumber
         v-model="directionalIntensity"
-        :config="{ min: 0, max: 3, step: 0.01, label: 'Intensity' }"
-        label="Directional Light Intensity"
+        :config="{ min: 0, max: 3, step: 0.01, label: t('companion-controls.intensity') }"
+        :label="t('companion-controls.directional-light-intensity')"
       />
 
       <PropertyNumber
         v-model="ambientIntensity"
-        :config="{ min: 0, max: 3, step: 0.01, label: 'Intensity' }"
-        label="Ambient Light Intensity"
+        :config="{ min: 0, max: 3, step: 0.01, label: t('companion-controls.intensity') }"
+        :label="t('companion-controls.ambient-light-intensity')"
       />
       <PropertyColor
         v-model="ambientColor"
-        label="Ambient Light Color"
+        :label="t('companion-controls.ambient-light-color')"
       />
 
       <PropertyNumber
         v-model="albedoGlow"
-        :config="{ min: 0, max: 1, step: 0.01, label: 'Glow', formatValue: val => val?.toFixed(2) }"
-        label="Albedo Glow"
+        :config="{ min: 0, max: 1, step: 0.01, label: t('companion-controls.glow'), formatValue: val => val?.toFixed(2) }"
+        :label="t('companion-controls.albedo-glow')"
       />
       <PropertyNumber
         v-model="renderScale"
-        :config="{ min: 0.5, max: 2, step: 0.1, label: 'Scale' }"
-        label="Render Scale"
+        :config="{ min: 0.5, max: 2, step: 0.1, label: t('companion-controls.scale') }"
+        :label="t('settings.spine.rendering.render-scale')"
       />
     </div>
   </Container>
@@ -314,7 +314,7 @@ function removeMotion(id: string) {
     </p>
     <template v-if="availableMorphs.length > 0">
       <FieldCombobox
-        v-for="entry in MORPH_SLOTS"
+        v-for="entry in morphSlots"
         :key="entry.slot"
         :model-value="morphOverrides[entry.slot] ?? ''"
         :options="morphOptions"

@@ -105,8 +105,9 @@ export class WowScreenCapture {
     const windows = await this.platform.discover()
     const current = windows.find(window => window.handle === original.handle)
     if (!current || current.processId !== original.processId || current.processStartedAt !== original.processStartedAt
-      || current.path.toLowerCase() !== original.path.toLowerCase())
+      || current.path.toLowerCase() !== original.path.toLowerCase()) {
       throw new ScreenCaptureFailure('window-changed')
+    }
     if (current.minimized || !current.visible)
       throw new ScreenCaptureFailure('minimized-window')
   }

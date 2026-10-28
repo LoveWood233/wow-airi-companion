@@ -1,0 +1,30 @@
+bridge-local-address: Il ponte WoW deve usare un indirizzo HTTP locale.
+bridge-stopped: Il ponte WoW si è arrestato.
+bridge-cancelled: Avvio del ponte WoW annullato.
+bridge-retry: 'Compagno di WoW riproverà dopo 30 secondi. {detail}'
+bridge-windows: L'acquisizione automatica di WoW richiede Windows. Il ponte locale non può avviarsi su questo sistema.
+bridge-exited: Il ponte WoW si è chiuso.
+bridge-start-failed: 'Impossibile avviare il ponte WoW. Controlla i file e le impostazioni di acquisizione. {detail}'
+bridge-start-exited: Il ponte WoW si è chiuso durante l'avvio. Controlla se la sua porta è occupata.
+bridge-timeout: Il ponte WoW non è pronto entro 10 secondi. Controlla Python e le impostazioni di acquisizione locale.
+bridge-port-unavailable: 'La porta del ponte WoW locale non ha risposto. Controlla la porta {port} prima di riprovare.'
+bridge-port-incompatible: 'La porta {port} è occupata da un servizio incompatibile. Chiudi quel servizio o aggiorna il ponte WoW.'
+bridge-profile-incompatible: 'La porta {port} è occupata da un servizio incompatibile. Usa il ponte WoW 2.11 o successivo per il profilo {game}.'
+bridge-files-missing: Mancano i file del ponte WoW. Ripristina WOWAddons accanto al codice di Compagno di WoW o reinstalla il pacchetto desktop.
+bridge-python-missing: Python 3.10 o successivo non trovato. Installa Python aggiungendolo a PATH, poi riavvia Compagno di WoW.
+bridge-unavailable: Il ponte WoW non è disponibile.
+bridge-http: 'Il ponte WoW ha restituito HTTP {status}.'
+bridge-response-profile: 'La risposta del ponte WoW non corrisponde al profilo {game}.'
+connection-disabled: Attiva la connessione del compagno per questo gioco prima di usare i comandi di acquisizione o dimostrazione.
+connection-changed: La connessione del compagno è cambiata prima del completamento del comando.
+gold-account-unknown: Account locale dell'oro non trovato.
+gold-read: 'Impossibile caricare il registro dell’oro ({path}). Ripristina il file e riavvia Compagno di WoW. {detail}'
+gold-write: 'Impossibile salvare il registro dell’oro ({path}). Le modifiche sono solo in memoria. Compagno di WoW riproverà. {detail}'
+levels-read: 'Impossibile caricare la cronologia livelli ({path}). Ripristina il file e riavvia Compagno di WoW. {detail}'
+levels-write: 'Impossibile salvare la cronologia livelli ({path}). Le modifiche sono solo in memoria. Compagno di WoW riproverà. {detail}'
+equipment-read: 'Impossibile caricare la cronologia equipaggiamento ({path}). Ripristina il file e riavvia Compagno di WoW. {detail}'
+equipment-write: 'Impossibile salvare la cronologia equipaggiamento ({path}). Le modifiche sono solo in memoria. Compagno di WoW riproverà. {detail}'
+comparisons-read: 'Impossibile caricare i confronti dell’equipaggiamento ({path}). Ripristina il file e riavvia Compagno di WoW. {detail}'
+comparisons-write: 'Impossibile salvare i confronti dell’equipaggiamento ({path}). Le modifiche sono solo in memoria. Compagno di WoW riproverà. {detail}'
+loadouts-read: 'Impossibile caricare le istantanee dell’equipaggiamento ({path}). Ripristina il file e riavvia Compagno di WoW. {detail}'
+loadouts-write: 'Impossibile salvare le istantanee dell’equipaggiamento ({path}). Le modifiche sono solo in memoria. Compagno di WoW riproverà. {detail}'

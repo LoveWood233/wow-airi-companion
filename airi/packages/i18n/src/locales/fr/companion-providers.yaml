@@ -1,0 +1,97 @@
+web-speech-unavailable-title: Web Speech API indisponible
+web-speech-unavailable-description: Ce navigateur ne propose pas la
+  reconnaissance Web Speech API. Choisissez un autre fournisseur de
+  transcription ou un navigateur compatible avec la reconnaissance vocale.
+web-speech-native-title: Transcription gratuite intégrée au navigateur
+web-speech-native-description: Utilisez la reconnaissance vocale du navigateur.
+  Le traitement dépend du navigateur et de sa configuration. Aucune clé API
+  n’est requise.
+web-speech-no-api-key: Aucune clé API requise. Web Speech API est gratuit et intégré au navigateur.
+recognition-language: Langue de reconnaissance
+recognition-language-description: Choisissez la langue de reconnaissance vocale
+continuous-recognition: Reconnaissance continue
+continuous-recognition-description: Poursuivre l’écoute sans s’arrêter après chaque phrase
+interim-results-title: Afficher les résultats provisoires
+interim-results-description: Afficher les résultats partiels en temps réel pendant que vous parlez
+transcription-test: Test de transcription vocale
+transcription-test-description: Testez Web Speech API avec le périphérique
+  sélectionné. Ce test utilise toujours Web Speech API, quel que soit votre
+  fournisseur d’écoute par défaut.
+web-speech-unavailable: Web Speech API n’est pas disponible dans ce navigateur
+audio-input-device: Périphérique d’entrée audio
+audio-test-device-description: Choisissez le périphérique d’entrée pour le test
+audio-input-placeholder: Choisir un périphérique d’entrée audio
+audio-test-device-required: Sélectionnez un périphérique d’entrée audio pour le test
+transcription-error: Erreur de transcription
+streaming-description: 'Mode continu : le texte apparaît en temps réel pendant
+  que vous parlez (Web Speech API)'
+transcription-result: Résultat de la transcription
+streaming-transcription: 'Transcription actuelle (en continu) :'
+final-transcription: 'Transcription finale :'
+transcription-empty: Aucune transcription pour le moment. Démarrez le test de
+  transcription vocale et parlez dans le microphone.
+provider-label: 'Fournisseur :'
+language-label: 'Langue :'
+mode-label: 'Mode :'
+streaming-mode: En continu (temps réel)
+continuous-label: 'En continu :'
+interim-results-label: 'Résultats provisoires :'
+stop-test: Arrêter le test
+transcribing: Transcription en cours…
+start-transcription-test: Démarrer le test de transcription vocale
+mimo-model-description: Choisissez le modèle MiMo TTS pour générer la voix
+mimo-model-placeholder: Choisir un modèle MiMo…
+voice-style-placeholder: Décrivez le ton, le rythme, l’émotion et la manière de parler…
+voice-sample-label: Échantillon vocal (URI de données)
+voice-sample-description: Collez un échantillon vocal en base64 sous forme d’URI
+  de données. MiMo accepte les fichiers MP3 et WAV jusqu’à 10 Mo.
+mimo-test-text: Bonjour ! Ceci est un test de la voix Xiaomi MiMo.
+mimo-behavior-title: Fonctionnement du modèle MiMo
+mimo-preset-description: '`mimo-v2.5-tts` utilise la liste de voix prédéfinies ci-dessous.'
+mimo-design-description: '`mimo-v2.5-tts-voicedesign` crée une nouvelle voix à
+  partir de l’instruction de style et n’accepte pas `audio.voice`.'
+mimo-clone-description: '`mimo-v2.5-tts-voiceclone` utilise l’échantillon collé
+  et ignore le sélecteur de voix prédéfinies.'
+style-optional: Instruction de style (facultative)
+voice-design-prompt: Instruction de création vocale
+style-prompt: Instruction de style
+clone-style-description: Instructions facultatives en langage naturel, envoyées
+  comme message utilisateur. Laissez vide pour cloner uniquement la voix.
+design-style-description: Instructions en langage naturel, envoyées comme
+  message utilisateur. La création vocale de MiMo exige ces instructions et
+  n’utilise pas de voix prédéfinie.
+preset-style-description: Instructions en langage naturel, envoyées comme
+  message utilisateur. Laissez vide pour une voix neutre.
+speech-provider-error: Impossible d’initialiser le fournisseur de voix
+voice-sample-required: Le modèle de clonage vocal nécessite un échantillon audio
+  en base64 au format URI de données.
+resource-name: Nom de la ressource
+resource-name-description: Préfixe utilisé dans https://<prefix>.services.ai.azure.com
+model-id: Identifiant du modèle
+model-id-description: Identifiant du modèle dans Azure AI Foundry
+api-version: Version de l’API
+api-version-placeholder: Par exemple, 2025-04-01-preview
+api-version-description: Version de l’API pour l’instantané du modèle
+gemini-model-description: Choisissez le modèle Gemini TTS pour générer la voix
+gemini-model-placeholder: Choisir un modèle Gemini…
+speech-temperature-description: Contrôle le caractère aléatoire de la voix
+  générée. Les valeurs basses la rendent plus prévisible et les valeurs hautes
+  plus créative.
+gemini-test-text: Bonjour ! Ceci est un test de la voix Google Gemini.
+access-key-id: Identifiant de clé d’accès
+access-key-secret: Secret de clé d’accès
+app-key: Clé d’application
+app-key-placeholder: Saisir AppKey
+abort-session: Interrompre la session
+partial-result: Partiel
+waiting-for-audio: En attente d’audio…
+awaiting-final-result: En attente du résultat final…
+streaming: Transmission en cours…
+start-realtime-transcription: Démarrer la transcription en temps réel
+aliyun-provider-error: Impossible d’initialiser le fournisseur Aliyun NLS.
+aliyun-stream-error: Aliyun NLS a renvoyé un résultat sans flux continu de manière inattendue.
+onboarding-api-key-description: Saisissez votre clé API pour le fournisseur sélectionné.
+onboarding-base-url-description: Saisissez l’URL de base de l’API du fournisseur.
+unknown-error: Erreur inconnue
+azure-api-key: Clé API Azure OpenAI
+internal-region: '{region} (interne)'

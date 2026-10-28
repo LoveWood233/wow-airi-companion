@@ -5,6 +5,7 @@ import { useResizeObserver, useScreenSafeArea } from '@vueuse/core'
 import { DialogContent, DialogOverlay, DialogPortal, DialogRoot, DialogTitle, DialogTrigger, VisuallyHidden } from 'reka-ui'
 import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue'
 import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import ModelManager from './model-selector.vue'
 
@@ -22,6 +23,8 @@ const screenSafeArea = useScreenSafeArea()
 
 useResizeObserver(document.documentElement, () => screenSafeArea.update())
 onMounted(() => screenSafeArea.update())
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -33,7 +36,7 @@ onMounted(() => screenSafeArea.update())
       <DialogOverlay class="fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm data-[state=closed]:animate-fadeOut data-[state=open]:animate-fadeIn" />
       <DialogContent class="fixed left-1/2 top-1/2 z-[9999] max-h-full max-w-5xl w-[92dvw] transform overflow-y-scroll rounded-2xl bg-white p-6 shadow-xl outline-none backdrop-blur-md scrollbar-none -translate-x-1/2 -translate-y-1/2 data-[state=closed]:animate-contentHide data-[state=open]:animate-contentShow dark:bg-neutral-900">
         <VisuallyHidden>
-          <DialogTitle>Models</DialogTitle>
+          <DialogTitle>{{ translateCompanion('companion-extra.models-f3798f') }}</DialogTitle>
         </VisuallyHidden>
         <ModelManager :selected-model="props.selectedModel" @close="showDialog = false" @pick="value => emits('pick', value)" />
       </DialogContent>

@@ -10,8 +10,8 @@ animations:
 dialogs:
   onboarding:
     official:
-      title: AIRI 官方提供者
-    title: 歡迎來到 AIRI！
+      title: 魔獸陪伴精靈 官方提供者
+    title: 歡迎來到 魔獸陪伴精靈！
     description: 讓我們先設定您的第一個服務來源來開始使用。
     selectProvider: 選擇服務來源
     configureProvider: 設定 {provider}
@@ -35,13 +35,14 @@ dialogs:
     retry: 重試
     credentialsSafeLabel: 請妥善保管 API 金鑰與憑證！
     credentialsSafeLocal: >-
-      AIRI 完全在您的電腦本機執行，我們絕不會竊取您用於 AI / LLM 提供者的憑證。但請注意，API 金鑰屬於敏感資訊，請妥善保管，切勿與他人分享。
+      魔獸陪伴精靈 完全在您的電腦本機執行，我們絕不會竊取您用於 AI / LLM 提供者的憑證。但請注意，API
+      金鑰屬於敏感資訊，請妥善保管，切勿與他人分享。
     credentialsSafeOpenSource: >-
-      AIRI 以 {github} 開放原始碼，如果您想了解我們如何處理您的憑證，歡迎檢視我們的程式碼。
+      魔獸陪伴精靈 以 {github} 開放原始碼，如果您想了解我們如何處理您的憑證，歡迎檢視我們的程式碼。
     enableChatCheck: >-
-      允許 airi 傳送「ping」訊息給第一個可用的聊天模型，以檢查是否可用
+      允許 魔獸陪伴精靈 傳送「ping」訊息給第一個可用的聊天模型，以檢查是否可用
     start: 開始吧！
-    loginPrompt: 登入以使用 AIRI 官方服務，獲得最佳體驗。
+    loginPrompt: 登入以使用 魔獸陪伴精靈 官方服務，獲得最佳體驗。
     loginAction: 登入
     setupWithoutSigningIn: 使用自己的服務供應商設定
     pricingLink: 定價
@@ -57,11 +58,12 @@ dialogs:
       notificationsTitle: 通知
       notificationsDescription: 允許提醒以及重要的狀態更新。
       microphoneTitle: 麥克風
-      microphoneDescription: 允許 AIRI 使用麥克風進行語音輸入和轉錄。
+      microphoneDescription: 允許 魔獸陪伴精靈 使用麥克風進行語音輸入和轉錄。
       requestAction: 請求取得
       optionalHint: 即使沒有授予這些權限，您也可以繼續。
       stateGranted: 已授權
       stateNotGranted: 未授權
+    flux: Flux 電量
   bug-report:
     title: 回報問題 (´;ω;`)ヾ(･∀･`)
     subtitle: 抱歉，發生了一些問題。可以告訴我們發生了什麼事嗎？
@@ -94,7 +96,7 @@ analytics:
   notice:
     title: 使用情況分析
     description: >-
-      AIRI 收集匿名使用情況資料，以了解應用程式的使用方式並改善穩定性，不會收集個人資料。
+      魔獸陪伴精靈 收集匿名使用情況資料，以了解應用程式的使用方式並改善穩定性，不會收集個人資料。
     privacyPrefix: 閱讀
     privacyLink: 隱私權政策
     onboardingHint: 之後可在「設定 > 系統 > 通用」中關閉使用情況分析。
@@ -108,9 +110,11 @@ model-select:
   panel-callout:
     support-status-header: 支援 2D 與 3D 模型
     support-status: >
-      點擊 {select-button} 選擇或匯入模型。目前支援 {zip}（適用於 Live2D 與 Spine 模型）、{vrm}（適用於 VRM 模型）和 {mmd}（適用於 MMD 模型，需與貼圖一起壓縮）。
+      點擊 {select-button} 選擇或匯入模型。目前支援 {zip}（適用於 Live2D 與 Spine 模型）、{vrm}（適用於 VRM
+      模型）和 {mmd}（適用於 MMD 模型，需與貼圖一起壓縮）。
     model-type-example: >
-      Neuro-sama 使用 Live2D Inc 開發的框架驅動 2D 模型；Grok Companion 中的 Grok Ani 則使用 VRM / MMD 開放格式驅動 3D 模型。
+      Neuro-sama 使用 Live2D Inc 開發的框架驅動 2D 模型；Grok Companion 中的 Grok Ani 則使用 VRM
+      / MMD 開放格式驅動 3D 模型。
   select-model:
     title: 模型選擇器
     button: 選擇模型
@@ -118,6 +122,17 @@ model-select:
     import: 匯入
     remove: 移除
     confirm: 確認
+    sync:
+      upload: 上傳到雲端
+      delete-cloud: 從雲端刪除
+      status:
+        local-only: 僅在本裝置
+        queued: 等待上傳
+        uploading: 上傳中
+        synced: 已同步到雲端
+        cloud-only: 在雲端，未下載
+        downloading: 下載中
+        failed: 同步失敗
   live2d-report:
     title: 匯入前確認
     description: 檢查模型資料及壓縮檔中發現的問題。
@@ -128,6 +143,8 @@ model-select:
       files: '{count} 個檔案'
       types:
         unknown: 未知
+        cubism: Cubism {version} ({format})
+        cubism-compatible: Cubism 3+ ({format})
     resources:
       title: 資源
       motions: 動作
@@ -165,26 +182,29 @@ live2d:
   scale-and-position:
     title: 縮放與位置
     scale: 縮放
+    x: X
+    y: Y
   switch-to-vrm:
     title: 想切換至 3D 虛擬角色嗎？
     change-to-vrm: 切換至 3D 虛擬角色設定頁面（VRM）
   theme-color-from-model:
     title: 從模型中提取顏色
     description: >
-      從目前的渲染畫布提取主要顏色。點選顏色即可套用至 AIRI；若顏色不理想，請讓模型擺出不同姿勢後多次提取。
+      從目前的渲染畫布提取主要顏色。點選顏色即可套用至 魔獸陪伴精靈；若顏色不理想，請讓模型擺出不同姿勢後多次提取。
     button-extract:
       title: 提取
   animation:
     title: 動畫
     motion-driver:
       title: 動作驅動器
-      description: 選擇 AIRI 產生待機身體與眼睛動作的方式。
+      description: 選擇 魔獸陪伴精靈 產生待機身體與眼睛動作的方式。
       options:
         universal:
           title: 通用
           description: 使用模型動作、待機眼睛動作及滑鼠追蹤。
         magic:
           description: 使用內建 MAGIC 資料集產生動作。
+          title: MAGIC
       magic:
         profile:
           title: MAGIC 設定檔
@@ -220,7 +240,7 @@ live2d:
       description: 使用外部計時器強制播放眨眼動畫
     blink-mode:
       title: 眨眼模式
-      description: 選擇模型內建的眨眼，或 AIRI 的強制眨眼計時器。
+      description: 選擇模型內建的眨眼，或 魔獸陪伴精靈 的強制眨眼計時器。
     idle-motion:
       title: 待機動畫
       no-motion: 沒有可用的動畫
@@ -233,6 +253,9 @@ live2d:
       title: 渲染縮放
     fps:
       description: 限制渲染影格率
+      title: FPS
+      options:
+        unlimited: ∞
     shadow: 陰影
     reset-parameters: 重設為預設參數
   clear-model-cache: 清除模型快取
@@ -243,6 +266,13 @@ live2d:
       停用時仍會保留 SDK 表情管理器與眨眼功能。
     no-expression: 此模型沒有可用的表情。
     reset: 重設所有表情
+    description: 暫時啟用表情，或選擇是否允許魔獸陪伴精靈使用。
+    parameter-count: '{count} 個參數'
+    actions:
+      activate: 啟用 {name}
+      deactivate: 停用 {name}
+      show-to-airi: 允許魔獸陪伴精靈使用 {name}
+      hide-from-airi: 對魔獸陪伴精靈隱藏 {name}
 microphone: 麥克風
 models: 模型
 pages:
@@ -275,7 +305,7 @@ pages:
     connections:
       tab: 已連結的帳戶
       title: 已連結的帳戶
-      description: 透過這些服務供應商登入 AIRI。解除連結可撤銷存取權，再次連結可改用其他帳戶。
+      description: 透過這些服務供應商登入 魔獸陪伴精靈。解除連結可撤銷存取權，再次連結可改用其他帳戶。
       status:
         linked: 已連結
         notLinked: 未連結
@@ -292,7 +322,7 @@ pages:
         listFailed: 無法載入已連結的帳戶。
         unlinkFailed: 無法解除此帳戶的連結。
         linkFailed: 無法開始連結流程。
-        accountAlreadyLinkedToDifferentUser: 這個 OAuth 帳戶已經連結到另一個 AIRI 帳戶了。請選擇另一個第三方帳戶，或先在另一個 AIRI 帳戶中解除連結。
+        accountAlreadyLinkedToDifferentUser: 這個 OAuth 帳戶已經連結到另一個 魔獸陪伴精靈 帳戶了。請選擇另一個第三方帳戶，或先在另一個 魔獸陪伴精靈 帳戶中解除連結。
         oauthCallbackFailed: 暫時無法連結這個 OAuth 帳戶。請重試，或選擇另一個第三方帳戶。
         lastAccount: 這是你唯一的登入方式。解除連結前，請先設定密碼。
     security:
@@ -334,6 +364,7 @@ pages:
           confirmEmail:
             label: 輸入電子郵件地址以確認
             mismatch: 電子郵件不符。
+            placeholder: ''
           confirm: 傳送確認郵件
           deleteNow: 永久刪除
           confirmPhrase: 輸入 DELETE 以確認
@@ -346,6 +377,7 @@ pages:
           reauthenticate: 請重新登入，再回到這裡確認刪除。不會寄送電子郵件。
           fallback: 無法開始刪除操作，請稍後再試。
           subscriptionActive: 訂閱仍然有效，請先在 Capacitor 頁面取消訂閱，再刪除帳戶。
+    capacitorEntry: Capacitor
   card:
     wake-word-conflicts:
       title: '一個共用喚醒詞發音需要指定角色 | {count} 個共用喚醒詞發音需要指定角色'
@@ -360,7 +392,7 @@ pages:
         pending: 等待上傳
         refused: 尚未上傳。帳戶沒有空間容納更多角色卡，因此此卡片會保留在這部裝置上。
       conflict_copy_name: '{name}（衝突副本）'
-      conflict_notice: 另一部裝置變更了同一個角色。AIRI 已將這部裝置上的版本保留為副本。
+      conflict_notice: 另一部裝置變更了同一個角色。魔獸陪伴精靈 已將這部裝置上的版本保留為副本。
       history:
         tab: 歷史記錄
         empty: 此角色卡尚無歷史記錄。
@@ -436,7 +468,7 @@ pages:
     delete: 刪除
     delete_card: 刪除角色卡
     delete_confirmation: 確定要刪除此角色卡嗎？
-    description: 使用 AIRI 角色卡預設
+    description: 使用 魔獸陪伴精靈 角色卡預設
     description_label: 描述
     drop_here: 放開以上傳檔案
     create_card: 建立新角色卡
@@ -504,6 +536,7 @@ pages:
         invalid_artistry_json: '錯誤：繪圖提供者選項包含無效 JSON。'
       none: 無
       none_disabled: 無（已停用）
+      no_model: 無模型
     modules: 模組
     name_asc: 名稱 (A-Z)
     name_desc: 名稱 (Z-A)
@@ -521,7 +554,7 @@ pages:
       model: 聲音 / 模型
       voice: 聲音 / 聲線
     systemprompt: 系統提示詞
-    title: AIRI 角色卡
+    title: 魔獸陪伴精靈 角色卡
     try_different_search: 嘗試使用其他關鍵字搜尋
     export: 匯出
     exported: 角色卡套件已匯出
@@ -530,13 +563,27 @@ pages:
     import_missing_file: 角色卡套件缺少必要檔案
     import_invalid_file: 角色卡套件檔案無效
     upload: 上傳
-    upload_desc: 點擊或拖曳 AIRI 角色卡套件以匯入
+    upload_desc: 點擊或拖曳 魔獸陪伴精靈 角色卡套件以匯入
+    view-card: 檢視角色卡
+    model_not_bound: 未選擇形象
+    gallery: 相簿
+    pinned_background: 固定背景
+    pinned_background_description: 選擇角色啟用時顯示的圖片。
+    select_background: 選擇背景
+    refresh_gallery: 重新整理相簿
+    gallery_empty: 還沒有圖片。在對話裡讓角色畫圖後，圖片會出現在這裡。
+    gallery_delete_confirm: 確定要從相簿刪除這張圖片嗎？
+    active_background: 當前背景
+    set_as_background: 設為背景
+    download: 下載
+    show_less: 收起
+    view_all_history: 檢視全部 {count} 個版本
   memory:
     description: 存放記憶的地方，以及策略
     title: 記憶體
   data:
     title: 資料
-    description: 管理已儲存的 AIRI 資料、匯出與重置作業
+    description: 管理已儲存的 魔獸陪伴精靈 資料、匯出與重置作業
     sections:
       chats:
         title: 對話紀錄
@@ -554,6 +601,7 @@ pages:
         empty: 尚未下載語音模型。
         wake-word-model: 喚醒詞模型
         refresh: 重新整理
+        voiceprint-model: 聲紋模型
       modules:
         title: 模組
         description: 重設模組偏好設定與驗證資訊
@@ -571,11 +619,11 @@ pages:
         delete: 刪除所有資料
       desktop-folder:
         title: 開啟應用程式資料夾
-        description: 在檔案管理器中開啟 AIRI 的資料夾。
+        description: 在檔案管理器中開啟 魔獸陪伴精靈 的資料夾。
         open: 開啟資料夾
       desktop:
         title: 重設桌面設定與狀態
-        description: 清除 AIRI 桌面設定與執行階段狀態
+        description: 清除 魔獸陪伴精靈 桌面設定與執行階段狀態
         center: 將桌面視窗移至中央
         reset: 重設桌面資料
     confirmations:
@@ -601,8 +649,10 @@ pages:
       section:
         live2d:
           description: 設定 Live2D 模型與相關選項
+          title: Live2D
         vrm:
           description: 設定 3D VRM 模型與相關選項
+          title: VRM
         scene: 場景
   modules:
     beat_sync:
@@ -672,7 +722,7 @@ pages:
           name: Nano Banana（預覽）
           description: 使用 Google AI Studio 進行圖像預覽與回應。
       card:
-        description: 設定 AIRI 生成圖像與視覺內容的方式。
+        description: 設定 魔獸陪伴精靈 生成圖像與視覺內容的方式。
         comfyui_empty: 尚未設定 ComfyUI 工作流程。前往「設定 → 提供者 → ComfyUI」上傳工作流程範本。
         exposed_fields: '已公開 {count} 個欄位'
         open_on_replicate: 在 Replicate 上開啟
@@ -750,19 +800,20 @@ pages:
             top_p_description: 透過核心取樣控制模型輸出的多樣性。較低值（例如 0.2）僅選擇高機率的 token；較高值（例如 1.0）包含更廣的可能性。
             subtitle: 從該提供者中選擇預設模型
             title: 模型
+            top_p_label: Top P
           model-options:
             title: 模型選項
             thinking:
               label: 思考
               required-description: 此模型必須啟用思考。
-              provider-default-description: AIRI 未提供此模型的推理設定，將使用 OpenRouter 的預設值。
+              provider-default-description: 魔獸陪伴精靈 未提供此模型的推理設定，將使用 OpenRouter 的預設值。
       title: 意識
     description: 思維、視覺、語音綜合、遊戲等
     gaming-factorio:
       description: 一起玩 Factorio！
       title: 異星工廠 Factorio
       enable: 啟用異星工廠集成
-      enable-description: 允許 AIRI 與異星工廠遊戲互動
+      enable-description: 允許 魔獸陪伴精靈 與異星工廠遊戲互動
       server-address: 伺服器地址
       server-address-description: 異星工廠伺服器的 IP 地址或主機名稱
       server-address-placeholder: 輸入伺服器地址（例如：localhost 或 192.168.1.100）
@@ -833,34 +884,34 @@ pages:
           microphone:
             title: 麥克風
             label: 麥克風
-            description: 開啟聽覺模組的麥克風。輸入模式控制 AIRI 何時聆聽。
+            description: 開啟聽覺模組的麥克風。輸入模式控制 魔獸陪伴精靈 何時聆聽。
             error: 無法使用麥克風
           input-device:
             label: 輸入裝置
-            description: 選擇 AIRI 使用的麥克風。
+            description: 選擇 魔獸陪伴精靈 使用的麥克風。
             playground-description: 聽覺模組與測試區使用此麥克風。
             placeholder: 選擇麥克風
           auto-send:
             title: 轉錄文字
-            description: 選擇 AIRI 如何處理你的語音轉錄文字。
+            description: 選擇 魔獸陪伴精靈 如何處理你的語音轉錄文字。
             label: 自動傳送
-            label-description: AIRI 會在延遲後將轉錄文字傳送至對話。停用可先閱讀與編輯文字，每則傳送的訊息都會消耗 token。
+            label-description: 魔獸陪伴精靈 會在延遲後將轉錄文字傳送至對話。停用可先閱讀與編輯文字，每則傳送的訊息都會消耗 token。
             delay: 傳送延遲
-            delay-description: AIRI 傳送轉錄文字前的等待時間。
+            delay-description: 魔獸陪伴精靈 傳送轉錄文字前的等待時間。
             immediate: 立即
           input-mode:
             title: 輸入模式
-            description: 選擇麥克風開啟時，AIRI 開始聆聽的方式。
+            description: 選擇麥克風開啟時，魔獸陪伴精靈 開始聆聽的方式。
             label: 開始聆聽
             always-on: 持續開啟
-            always-on-description: AIRI 持續聆聽，並在你說話時回應。
+            always-on-description: 魔獸陪伴精靈 持續聆聽，並在你說話時回應。
             push-to-talk: 按住說話
-            push-to-talk-description: AIRI 僅在你按住「按住說話」按鍵時聆聽，麥克風也只在按住期間開啟。
+            push-to-talk-description: 魔獸陪伴精靈 僅在你按住「按住說話」按鍵時聆聽，麥克風也只在按住期間開啟。
             push-to-talk-unavailable: 此處無法使用。這部裝置上的應用程式未提供「按住說話」按鍵。
             stranded-title: 此處無法使用「按住說話」
-            stranded-description: 這部裝置上的應用程式未提供「按住說話」按鍵，因此 AIRI 不會聆聽。請選擇「持續開啟」或「喚醒詞」來對話。
+            stranded-description: 這部裝置上的應用程式未提供「按住說話」按鍵，因此 魔獸陪伴精靈 不會聆聽。請選擇「持續開啟」或「喚醒詞」來對話。
             wake-word: 喚醒詞
-            wake-word-description: 麥克風保持開啟，但 AIRI 只會在你說出角色的喚醒詞後聆聽。
+            wake-word-description: 麥克風保持開啟，但 魔獸陪伴精靈 只會在你說出角色的喚醒詞後聆聽。
             wake-word-status:
               no-words: 尚無角色設定喚醒詞，請在對話中請角色設定。
               unconfigured: 麥克風開啟時，會開始偵測喚醒詞。
@@ -869,9 +920,9 @@ pages:
               error: '無法使用喚醒詞模型：{error}'
           end-judge:
             title: 說完判定
-            description: 你停頓時，對話模型會讀取轉錄文字，判斷你是否說完了。如果還沒說完，AIRI 會再等 3 秒讓你繼續說。
+            description: 你停頓時，對話模型會讀取轉錄文字，判斷你是否說完了。如果還沒說完，魔獸陪伴精靈 會再等 3 秒讓你繼續說。
             enabled: 判斷我是否說完了
-            enabled-description: 每次停頓時的轉錄文字會傳送給修正所用的模型。關閉後，AIRI 會在短暫停頓後結束這次語音輸入。
+            enabled-description: 每次停頓時的轉錄文字會傳送給修正所用的模型。關閉後，魔獸陪伴精靈 會在短暫停頓後結束這次語音輸入。
           rephrase:
             title: 轉錄文字修正
             description: 對話模型會在建立草稿前修正辨識錯誤並移除贅詞，原始文字仍會保留。
@@ -898,26 +949,145 @@ pages:
           confidence-threshold:
             title: 信賴度門檻
             description: >-
-              篩除低信賴度轉錄，以減少 Whisper 幻覺。數值越接近 0 越嚴格，拖到最左側可停用。僅適用於支援 Whisper API 的供應商，例如 OpenAI、Groq。
+              篩除低信賴度轉錄，以減少 Whisper 幻覺。數值越接近 0 越嚴格，拖到最左側可停用。僅適用於支援 Whisper API
+              的供應商，例如 OpenAI、Groq。
             disabled: 已停用
             verbose-json-note: >-
               注意：若服務供應商不支援 verbose_json 回應，此設定不會生效。
             verbose-json-unsupported: >-
               服務供應商未回傳 verbose_json 片段，信賴度篩選未影響上次轉錄。
+      voiceprint:
+        title: 聲紋
+        description: 登記你的聲音，讓 魔獸陪伴精靈 能認出你。
+        intro: 聲紋是聲紋模型從你的語音中算出的一組數字。它不包含音訊，但能識別出你。
+        privacy: 魔獸陪伴精靈 只把你的聲紋儲存在這臺裝置上。匯出角色卡不會帶上它，魔獸陪伴精靈
+          也不會上傳它。要刪除它，可以使用本頁的「刪除聲紋」，或資料設定中的「刪除所有資料」。
+        download: 第一次登記時會下載聲紋模型，約 28 MB。
+        speaker-recognition:
+          label: 說話人識別
+          description: 把由說話或喚醒詞開始的每次語音輸入和你的聲紋比對，並把分數記錄在這次輸入的 IO trace
+            中。「按住說話」的輸入沒有分數。任何人的聲音仍然可以開始輸入，聊天模型也收不到這個分數。魔獸陪伴精靈
+            聆聽期間，聲紋模型會一直留在記憶體中。
+          needs-voiceprint: 登記聲紋後才能開啟說話人識別。
+        status:
+          none: 你還沒有聲紋。
+          enrolled: '{date} 登記，使用了 {seconds} 秒語音。'
+          outdated: 聲紋模型已更新。請重新登記，才能使用你的聲紋。
+        instructions: 請一個人待在麥克風旁邊。點選「開始錄音」，然後用平時的聲音讀出下面的句子。
+        sentence-1: 今天我想看看天氣，讀一下訊息，再安排好接下來要做的事情。
+        sentence-2: 我一般在晚上和 魔獸陪伴精靈 聊天，那時候房間很安靜，我也有空。
+        sentence-3: 請記住我的聲音，這樣你就能知道是我在說話。
+        progress: 已錄到 {seconds} 秒語音。登記至少需要 {min} 秒。
+        start: 開始錄音
+        again: 重新登記
+        finish: 完成
+        cancel: 取消
+        delete: 刪除聲紋
+        enrolling: 正在計算你的聲紋……
+        result:
+          enrolled: 你的聲紋已儲存。
+          cancelled: 已取消登記。
+          too-short: 這次錄音只有 {seconds} 秒語音，登記至少需要 {min} 秒。請重新錄音。
+          error: 登記失敗：{error}
     memory-long-term:
       description: 長期記憶
       title: 長期記憶
+      enable: 使用長期記憶
+      enable-description: 角色會記住聊過的事。關掉後，它什麼都不記得。
+      memories:
+        title: 記憶
+        description: 這是每個角色自己記下的小秘密，彼此看不到。共享後所有角色都會知道，而且收不回來哦。你可以刪掉任何一條，但不能改寫。
+        empty: 還沒有記憶。
+        forget: 忘掉{name}
+        make_general: 把{name}共享給所有角色
+        general: 共享的秘密
+        entry:
+          title: 記憶
+          description: 每個角色的小秘密，和大家共享的秘密。
+      recipes:
+        title: 配方
+        empty: 還沒有配方。
+        sources:
+          user: 你建立的
+          model: 角色提議的
+        pending: 等你批准，批准一次就不再問。
+        approve: 批准
+        remove: 刪除
+        add:
+          name: 名稱
+          description: 什麼時候用
+          instructions: 怎麼做
+          keywords:
+            label: 暗號
+            description: 訊息裡說出暗號，角色就會用這個配方。
+          submit: 新增
+        decision:
+          question: 問題
+          type:
+            label: 回答方式
+            noul: 是或否
+            choice: 多選一
+          yes_means: 選「是」的意思
+          no_means: 選「否」的意思
+          option: 這個選項的意思
+          add_option: 新增選項
+          remove_option: 刪除
+          action:
+            label: 然後
+            reply: 正常回復
+            stay_quiet: 已讀不回
+            hint: 回覆時記住一句話
+            recipe: 接著用另一個配方
+          hint_text: 要記住的話
+          target_recipe: 配方
+          keywords: 訊息裡說出暗號，角色才會做這道判斷。
+          note: 對上暗號後，角色會看完整段對話，選定一個答案，然後照著做。
+        entry:
+          title: 配方
+          description: 角色的技能、啟動它們的契機，和等你批准的提議。
+        add_button: 新增配方
+        types:
+          title: 選擇配方型別
+          instructions:
+            title: 指令
+            description: 一套做事的步驟。角色覺得合適就會用，說出暗號也行。
+          decision:
+            title: 判斷
+            description: 對上暗號後，角色先答一道題再回復。不同答案，做不同的事。
+        styles:
+          instructions: 指令
+          decision: 判斷
+        cancel: 取消
+        edit: 編輯
+        save: 儲存
+        enabled: 啟用{name}
+        keywords_summary: 暗號：{words}
+        tabs:
+          conversation: 對話中
+          auto_run: 自動執行
+          conversation_description: 聊天時用的配方，你發訊息時才會用上。
+          auto_run_description: 契機一到就自己開始，不用你發訊息。每次執行都會請求一次模型。
+        background:
+          label: 在後臺執行
+          description: 適合查資料這類要花時間的事。在後臺做完，再把結果帶回對話。
+          tag: 後臺
+        grants: 批准後它可以：{what}
+        proposals:
+          label: 允許角色提議配方
+          description: 你讓角色建配方時，它會先存成提議，你批准後才生效。
+        model_flow: 每次做什麼由角色決定
     memory-short-term:
       description: 短期記憶
       title: 短期記憶
     messaging-discord:
       description: Discord 訊息與語音聊天
       enable: 啟用 Discord 集成
-      enable-description: 允許 AIRI 透過 Discord 進行互動
+      enable-description: 允許 魔獸陪伴精靈 透過 Discord 進行互動
       token: 機器人權杖
       token-description: 您的 Discord 機器人权杖
       token-placeholder: 輸入您的 Discord 機器人权杖
       configured: Discord 已正確設定！
+      title: Discord
     speech:
       description: 語音合成
       sections:
@@ -952,7 +1122,8 @@ pages:
             search_voices_results: 找到 {count} / {total} 條聲線
             unsupported_voice_warning_title: 未支援的語音
             unsupported_voice_warning_content: >-
-              嘗試使用不同的模型或提供者。我們正努力盡快支援此模型的所有語音；若你急需此功能，請在 GitHub 回報：https://github.com/moeru-ai/airi/issues。
+              嘗試使用不同的模型或提供者。我們正努力盡快支援此模型的所有語音；若你急需此功能，請在 GitHub
+              回報：https://github.com/moeru-ai/airi/issues。
             show_less: 顯示更少
             show_more: 顯示更多
             title: 選擇語音合成服務來源
@@ -996,7 +1167,7 @@ pages:
     x:
       description: X / Twitter 的瀏覽與使用
       enable: 啟用 X / Twitter 集成
-      enable-description: 允許 AIRI 與 X / Twitter 互動
+      enable-description: 允許 魔獸陪伴精靈 與 X / Twitter 互動
       api-key: API 金鑰
       api-key-description: 您的 X / Twitter API 金鑰
       api-key-placeholder: 輸入您的 X / Twitter API 金鑰
@@ -1010,6 +1181,7 @@ pages:
       access-token-secret-description: 您的 X / Twitter 存取權杖密文
       access-token-secret-placeholder: 輸入您的 X / Twitter 存取權杖密文
       configured: X / Twitter 已正確設定！
+      title: X / Twitter
     stickers:
       frequency: 貼圖頻率
       frequency-description: 允許在此比例的回覆中使用貼圖，是否適合仍由角色決定。
@@ -1018,6 +1190,10 @@ pages:
         50: 有時（50%）
         75: 經常（75%）
         100: 適合時都可使用（100%）
+        '25': 偶爾（25%）
+        '50': 有時（50%）
+        '75': 經常（75%）
+        '100': 適當時每次都使用（100%）
       title: 貼圖
       description: 在對話回覆中加入可選的圖片反應
       enable: 啟用貼圖
@@ -1079,12 +1255,13 @@ pages:
         airi-agree: '是'
         airi-disagree: 不用了，謝謝
     home-assistant:
-      description: 讓 AIRI 讀取並控制你的 Home Assistant 裝置。
+      description: 讓 魔獸陪伴精靈 讀取並控制你的 Home Assistant 裝置。
       enable: 啟用 Home Assistant
-      enable-description: 允許 AIRI 讀取與控制裝置
+      enable-description: 允許 魔獸陪伴精靈 讀取與控制裝置
       base-url:
         label: 位址
         description: 你的 Home Assistant 執行個體位址。
+        placeholder: http://homeassistant.local:8123
       token:
         label: 長效存取權杖
         placeholder: 貼上 Home Assistant 個人資料中的權杖
@@ -1108,15 +1285,15 @@ pages:
         failed-policy-rollback: 儲存遭拒。裝置清單未傳至執行工具的視窗，因此模型無法存取任何裝置。請再試一次。
       access:
         label: 裝置存取權
-        description: 選擇 AIRI 可以讀取與控制的裝置。
+        description: 選擇 魔獸陪伴精靈 可以讀取與控制的裝置。
         mode-all: 所有裝置
         mode-allow: 允許清單
         mode-deny: 封鎖清單
-        all-hint: AIRI 可存取所有裝置，選擇清單即可限制存取範圍。
+        all-hint: 魔獸陪伴精靈 可存取所有裝置，選擇清單即可限制存取範圍。
         rule-allow: 僅可存取你選擇的裝置。
         rule-deny: 可存取所有裝置，但你選擇的裝置除外。
         selected-count: '已選取 {count} 個'
-        empty-warning: 請至少選擇一個裝置。在選擇前，AIRI 無法存取任何裝置。
+        empty-warning: 請至少選擇一個裝置。在選擇前，魔獸陪伴精靈 無法存取任何裝置。
         search: 搜尋裝置
         reload: 重新載入裝置
         loading: 正在載入裝置…
@@ -1256,18 +1433,19 @@ pages:
         water_heater: 熱水器
         weather: 天氣
         zone: 區域
+      title: Home Assistant
     web-search:
       title: 網路搜尋
-      description: 讓 AIRI 連網搜尋最新資訊
+      description: 讓 魔獸陪伴精靈 連網搜尋最新資訊
       enable: 啟用網路搜尋
-      enable-description: 允許 AIRI 在對話中連網搜尋
+      enable-description: 允許 魔獸陪伴精靈 在對話中連網搜尋
       api-key: Tavily API 金鑰
       api-key-description: 網路搜尋由 Tavily 提供支援，可在 tavily.com 免費取得 API 金鑰。
       api-key-placeholder: 輸入您的 Tavily API 金鑰
       configured: 網路搜尋已就緒！
     mcp-server:
       title: MCP 伺服器
-      description: 設定 MCP 伺服器並將其工具帶入 AIRI。
+      description: 設定 MCP 伺服器並將其工具帶入 魔獸陪伴精靈。
       config-path: 設定檔
       runtime-title: 執行狀態
       empty: 尚無 MCP 伺服器 — 點擊下方「新增伺服器」建立一個，或透過「編輯 JSON」貼上設定。
@@ -1307,16 +1485,18 @@ pages:
           placeholder: 例如：filesystem
         transport:
           label: 類型
-          description: AIRI 連線至此伺服器的方式。
+          description: 魔獸陪伴精靈 連線至此伺服器的方式。
           stdio: 本機程序
           http: 遠端 URL
         url:
           description: 伺服器的 Streamable HTTP 端點。
           placeholder: 例如：https://example.com/api/mcp
+          label: 地址
         headers:
           label: 標頭
           description: 每個請求都會傳送的標頭，例如授權權杖。
           value-placeholder: Bearer 權杖
+          key-placeholder: Authorization
         command:
           label: 指令
           description: 透過標準輸入輸出啟動的可執行檔。
@@ -1333,6 +1513,7 @@ pages:
           label: 環境
           description: 傳遞給子程序的變數。
           value-placeholder: 值
+          key-placeholder: 名稱
         enabled:
           label: 已啟用
       json:
@@ -1341,7 +1522,7 @@ pages:
         placeholder: 在此貼上 mcp.json…
       test:
         title: 測試連線
-        description: AIRI 會短暫連線至伺服器，列出其提供的工具。
+        description: 魔獸陪伴精靈 會短暫連線至伺服器，列出其提供的工具。
         pick-server-label: 伺服器
         no-servers: 尚無可測試的伺服器
         no-server-selected: 請先選擇伺服器。
@@ -1362,6 +1543,22 @@ pages:
         opened: 已在檔案管理員中開啟 {path}
         json-applied: JSON 已套用至表單。按一下「儲存並重新啟動」以寫入磁碟。
         restarted: 已全部重新啟動！啟動 {started} 個、失敗 {failed} 個、略過 {skipped} 個。
+    tool-cards:
+      title: 工具卡片
+      description: 聊天模型為工具和回答做的卡片
+      enable: 為工具結果做卡片
+      enable-description: 沒有小元件的工具呼叫完成後，如果這個工具還沒有卡片，聊天模型會為它的結果做一張。舊訊息裡的呼叫要展開後才會做。每做一張卡片都會呼叫聊天模型。
+      reply-cards: 在回覆裡畫卡片
+      reply-cards-description: 回答更適合用卡片時，比如換算或比較，聊天模型會直接在回覆裡畫一張。這張卡片只屬於這條回覆，不會儲存。
+      page-description: 聊天模型為沒有小元件的工具做的卡片模板。刪除後，這個工具下次呼叫，或你展開它的呼叫時，會重新做一份。
+      empty: 還沒有卡片。沒有小元件的工具呼叫完成後，卡片會出現在這裡。
+      source-tool: 來源：應用自帶的工具
+      source-mcp: 來源：MCP 服務 {server}
+      used: 最近使用：{date}
+      show-template: 看模板
+      hide-template: 收起模板
+      delete: 刪除
+      deleted: 已刪除 {name} 的模板。這個工具下次呼叫，或你展開它的呼叫時，會重新做一份。
   flux:
     buy: 儲值
     currency: 貨幣
@@ -1392,6 +1589,7 @@ pages:
       title: Flux 儲值組合
       buy: 儲值
       description: 可供選擇的 Flux 儲值組合。
+    title: Flux 電量
   capacitor:
     statusError: 無法載入你的 Capacitor，請稍後再試。
     packagesError: 無法載入 Capacitor 清單，請稍後再試。
@@ -1413,6 +1611,13 @@ pages:
       pending: 已收到付款，Capacitor 即將充能。
       canceled: 已取消購買。
       error: 發生錯誤，請稍後再試。
+    title: Capacitor
+    ofQuota: 共 {quota} Flux
+    change: 更換 Capacitor
+    quota:
+      day: 每天 {quota} Flux
+      week: 每週 {quota} Flux
+      month: 每月 {quota} Flux
   providers:
     catalog:
       edit:
@@ -1444,10 +1649,12 @@ pages:
                 api-key:
                   label: API 金鑰
                   description: 用於授權向此提供者發送請求的 API 金鑰
+                  placeholder: sk-……
                 base-url:
                   label: 基礎 URL
                   description: >-
-                    用於連接遠端服務的基礎 URL。通常看起來像 http://localhost:11434/v1 或 https://example.com/v1
+                    用於連接遠端服務的基礎 URL。通常看起來像 http://localhost:11434/v1 或
+                    https://example.com/v1
                   placeholder: 基礎 url...
                 download-model:
                   label: 下載模型
@@ -1502,7 +1709,11 @@ pages:
                   openai-compatible-check-connectivity:
                     label: 需要為 Ollama 進行額外配置
                     content: >-
-                      很抱歉，Ollama 連接檢查失敗。不要擔心，如果使用 Ollama，需要額外配置才能通過 Ollama。 您需要在啟動 Olama 應用程序或 Ollama CLI 伺服器時明確設置 <code>OLLAMA_HOST</code> 詳情，請檢查 <a href="https://airi.moeru.ai/docs/en/docs/manual/integrations/providers/chat/ollama">Ollama 集成指南</a>。
+                      很抱歉，Ollama 連接檢查失敗。不要擔心，如果使用 Ollama，需要額外配置才能通過 Ollama。
+                      您需要在啟動 Olama 應用程序或 Ollama CLI 伺服器時明確設置
+                      <code>OLLAMA_HOST</code> 詳情，請檢查 <a
+                      href="https://airi.moeru.ai/docs/en/docs/manual/integrations/providers/chat/ollama">Ollama
+                      集成指南</a>。
     common:
       continueAnyway: 仍然繼續
       goToModelSelection: 選擇模型→
@@ -1569,7 +1780,7 @@ pages:
     helpinfo:
       title: 第一次使用？
       description: >
-        AIRI 需要設定至少一個 {chat} 服務來源，才能正常思考與運作。你可以把它看作是 AIRI 系統中角色的大腦。
+        魔獸陪伴精靈 需要設定至少一個 {chat} 服務來源，才能正常思考與運作。你可以把它看作是 魔獸陪伴精靈 系統中角色的大腦。
     explained:
       chat: 文字生成模型服務來源，例如 OpenRouter、OpenAI、Ollama
       Speech: 語音（文字轉語音）模型服務來源，例如 ElevenLabs、Azure Speech
@@ -1589,7 +1800,7 @@ pages:
         asset:
           title: 模型檔案
           unknown: 正在檢查檔案…
-          bundled: AIRI 內建
+          bundled: 魔獸陪伴精靈 內建
           installed: 已儲存在這部裝置上
           missing: 使用時下載
           downloading: 正在下載…
@@ -1597,32 +1808,44 @@ pages:
           download: 立即下載
           cancel: 取消
           remove: 移除下載檔案
+        title: Sherpaw
       apple-vision:
         description: 在 macOS 27 或更新版本上，使用 Apple Foundation Models 在裝置端理解圖片，不需要 API 金鑰。
+        title: Apple 視覺理解
       apple-speech-transcription:
         description: 在 macOS 26 或更新版本上進行裝置端語音辨識，不需要 API 金鑰。
         fields:
           locale:
             label: 語言地區
             description: 使用完整的 Apple Speech 語言地區代碼，例如 en-US 或 zh-CN。
+            placeholder: zh-CN
+        title: Apple 語音識別
       app-local-audio-transcription:
         title: 應用程式內（本機）
+        description: https://github.com/moeru-ai/xsai-transformers
       app-local-audio-speech:
         title: 應用程式內（本機）
+        description: https://github.com/moeru-ai/xsai-transformers
       browser-local-audio-transcription:
         title: 瀏覽器內（本機）
+        description: https://github.com/moeru-ai/xsai-transformers
       browser-local-audio-speech:
         title: 瀏覽器內（本機）
+        description: https://github.com/moeru-ai/xsai-transformers
       alibaba-cloud-model-studio:
         title: 阿里百煉
+        description: bailian.console.aliyun.com
       amazon-bedrock:
         config:
           api-key:
             label: Bedrock API 金鑰
             description: Amazon Bedrock API 金鑰（在 AWS Console → Bedrock → API Keys 中建立）。
+            placeholder: bedrock-...
           region:
             label: AWS 區域
             description: 已啟用 Bedrock 的 AWS 區域，例如 us-east-1、us-west-2。
+        title: Amazon Bedrock
+        description: aws.amazon.com/bedrock
       anthropic:
         helpinfo:
           title: 開始之前
@@ -1636,6 +1859,8 @@ pages:
             part5: >-
               如果您確實需要使用此提供者，則需要一個專用的代理後端，例如在
             part6: 上運行的 Serverless Function，或者一些繞過 CORS 的服務，以繞過 CORS 限制。
+        description: anthropic.com
+        title: Anthropic {'|'} Claude
       cloudflare-workers-ai:
         description: Cloudflare.com
         fields:
@@ -1669,7 +1894,10 @@ pages:
               description: 調整朗讀語調的變化幅度
               label: 語調
         callout_origin_title: 從瀏覽器連線至引擎
-        callout_origin: 瀏覽器只能連線至本機的引擎。若引擎位於其他裝置，請使用桌面應用程式。引擎也必須允許此網站存取，可使用 --cors_policy_mode all，或使用 --allow_origin 指定此位址。
+        callout_origin: 瀏覽器只能連線至本機的引擎。若引擎位於其他裝置，請使用桌面應用程式。引擎也必須允許此網站存取，可使用
+          --cors_policy_mode all，或使用 --allow_origin 指定此位址。
+        description: voicevox.hiroshiba.jp
+        title: VOICEVOX
       aivis-speech:
         fields:
           field:
@@ -1678,6 +1906,8 @@ pages:
               label: 情感表現強度
         callout_origin_title: 從瀏覽器連線至引擎
         callout_origin: 瀏覽器只能連線至本機的引擎。若引擎位於其他裝置，請使用桌面應用程式。引擎也必須允許此網站存取，可在 10101 連接埠的設定頁面中設定。
+        description: aivis-project.com
+        title: AivisSpeech
       speech-noop:
         title: 無
         description: 無語音輸出。
@@ -1708,9 +1938,12 @@ pages:
             server_url:
               label: 伺服器 URL
               description: ComfyUI 執行所在的位址
+              placeholder: http://localhost:8188
           cors:
             title: 偵測到 CORS 封鎖
-            description: ComfyUI 預設封鎖其他應用程式的請求。若要允許 AIRI 連線，請使用 `--enable-cors-header "*"` 參數啟動 ComfyUI。
+            description: ComfyUI 預設封鎖其他應用程式的請求。若要允許 魔獸陪伴精靈 連線，請使用 `--enable-cors-header "*"`
+              參數啟動 ComfyUI。
+            command: python main.py --enable-cors-header "*"
           workflows:
             title: 工作流程範本
             upload: 上傳工作流程
@@ -1721,7 +1954,7 @@ pages:
             remove: 移除
             config_snippet: 繪圖設定片段
             copy_json: 複製 JSON
-            paste_hint: 將此片段貼至 AIRI 角色卡的繪圖設定，以覆寫這些節點。
+            paste_hint: 將此片段貼至 魔獸陪伴精靈 角色卡的繪圖設定，以覆寫這些節點。
           upload:
             prompt: 拖放或選擇 workflow_api.json 檔案
             invalid_json: 無效 JSON
@@ -1739,27 +1972,38 @@ pages:
           api_key:
             label: API 金鑰
             description: 你的 Replicate API 權杖（以 r8_ 開頭）
+            placeholder: r8_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
           default_model:
             label: 預設模型
             description: 角色卡未指定時使用的 owner/model 字串
+            placeholder: black-forest-labs/flux-schnell
           aspect_ratio:
             label: 長寬比
             description: 預設圖片長寬比，例如 16:9、1:1、9:16
+            placeholder: 16:9
           inference_steps:
             label: 推理步數
             description: 擴散過程的步數，較少步數速度更快，較多步數品質更高。
+          title: Replicate.ai
       nanobanana:
         settings:
           description: 設定 Google Gemini 的原生圖片生成功能。
           api_key:
             label: API 金鑰
             description: 你的 Google AI Studio API 金鑰
+            placeholder: AIpk...
           preferred_model:
             label: 偏好模型
             description: 要使用的特定 Gemini 圖片預覽模型
           default_resolution:
             label: 預設解析度
             description: 生成圖片的目標解析度
+          title: 'Nano Banana'
+          heading: Nano Banana（Google AI Studio）
+          model_options:
+            nano_banana_2: 'Nano Banana 2（Gemini 3.1 Flash Image）'
+            nano_banana_pro: Nano Banana Pro（Gemini 3 Pro Image）
+            nano_banana: 'Nano Banana（Gemini 2.5 Flash Image）'
       deepseek:
         description: DeepSeek.com
         fields:
@@ -1833,6 +2077,7 @@ pages:
         title: Kokoro TTS (本地)
       fireworks:
         description: Fireworks.ai
+        title: Fireworks.ai
       microsoft-speech:
         fields:
           field:
@@ -1840,9 +2085,12 @@ pages:
               description: 服務 Endpoint 地區（例如亞太 eastasia 區域）
               label: Endpoint 地區
         title: Microsoft / Azure 語音服務
+        description: speech.microsoft.com
       index-tts-vllm:
         callout_indextts2_unavailable_title: 有限支援
         callout_indextts2_unavailable: IndexTTS2 目前尚未支援，請改用 IndexTTS。
+        description: https://index-tts.github.io/
+        title: Bilibili / IndexTTS
       minimax-speech:
         errors:
           provider-initialization-failed: 初始化 MiniMax 語音供應者失敗。
@@ -1854,22 +2102,29 @@ pages:
               placeholder: 選擇一個 MiniMax 模型...
         playground:
           default-text: 您好！這是 MiniMax 語音合成測試。
+        description: minimax.io
+        title: MiniMax Speech
       moonshot:
         description: Moonshot.ai
         title: 月之暗面
       modelscope:
         title: 魔搭社群 ModelScope
+        description: modelscope.cn
       openai:
         description: OpenAi.com
+        title: OpenAI
       openai-compatible:
         description: OpenAI 相容
         title: OpenAI 兼容性
       n1n:
         description: n1n.ai - 高效能AI API供應商
+        title: n1n
       openrouter:
         description: OpenRouter.ai
+        title: OpenRouter
       openrouter-audio-speech:
         description: OpenRouter.ai
+        title: OpenRouter
       volcengine:
         fields:
           field:
@@ -1877,14 +2132,18 @@ pages:
               description: 可在控制台取得的 App ID
               label: 應用程式 ID
         title: 火山引擎
+        description: volcengine.com
       volcengine-coding-plan:
         models:
           ark-code-latest:
             description: 使用 Coding Plan 控制台中選擇的模型，包括 Auto。變更會在 3–5 分鐘內生效。
           legacy:
             description: 此舊版 Coding Plan 模型即將停止服務，請切換至目前支援的模型。
+        description: 火山引擎 Coding Plan
+        title: 火山引擎 Coding Plan
       xai:
         description: X.AI
+        title: xAI
       aliyun-nls:
         description: 阿里雲 NLS
         title: 阿里雲 NLS
@@ -1893,20 +2152,100 @@ pages:
         title: 網頁語音 API
       prompt-api:
         description: 您可以使用 Prompt API，將自然語言要求傳送至 Chrome 中的基礎模型。
+        title: Prompt API
       official:
         title: 官方服務供應商
-        description: AIRI 提供的官方 AI 服務。
+        description: 魔獸陪伴精靈 提供的官方 AI 服務。
         speech-title: 官方語音服務供應商
-        speech-description: AIRI 提供的官方文字轉語音服務。
+        speech-description: 魔獸陪伴精靈 提供的官方文字轉語音服務。
         speech-streaming-title: 官方串流語音服務供應商
-        speech-streaming-description: AIRI 提供的官方低延遲文字轉語音服務（雙向 WebSocket）。
+        speech-streaming-description: 魔獸陪伴精靈 提供的官方低延遲文字轉語音服務（雙向 WebSocket）。
         transcription-title: 官方語音轉文字服務供應商
-        transcription-description: AIRI 提供的官方語音轉文字服務。
+        transcription-description: 魔獸陪伴精靈 提供的官方語音轉文字服務。
       transcriptions:
         playground:
           title: 實驗平台
       aihubmix:
         description: https://aihubmix.com (10% 優惠)
+        title: AIHubMix
+      deepgram-tts:
+        description: deepgram.com
+        title: Deepgram
+      google-gemini-audio-speech:
+        description: aistudio.google.com
+        title: Google Gemini
+      azure-ai-foundry:
+        description: Azure AI Foundry
+        title: Azure AI Foundry
+      minimax:
+        description: minimaxi.com
+        title: MiniMax
+      minimax-global:
+        description: minimax.io
+        title: MiniMax Global
+      mimo:
+        description: api.xiaomimimo.com
+        title: Xiaomi MiMo
+      mistral:
+        description: mistral.ai
+        title: Mistral
+      novita:
+        description: novita.ai
+        title: Novita
+      ollama:
+        description: ollama.ai
+        title: Ollama
+      azure-openai:
+        description: Azure OpenAI API
+        title: Azure OpenAI
+      nvidia:
+        description: build.nvidia.com
+        title: NVIDIA NIM
+      openpaths:
+        description: openpaths.io
+        title: OpenPaths
+      perplexity:
+        description: perplexity.ai
+        title: Perplexity
+      player2:
+        description: player2.game
+        title: Player2
+      together:
+        description: together.ai
+        title: Together.ai
+      google-generative-ai:
+        description: gemini.google.com
+        title: Google Gemini
+      groq:
+        description: groq.com
+        title: Groq
+      featherless:
+        description: featherless.ai
+        title: Featherless AI
+      lm-studio:
+        description: lmstudio.ai
+        title: LM Studio
+      vllm:
+        description: vllm.ai
+        title: vLLM
+      byteplus:
+        description: byteplus.com
+        title: BytePlus
+      byteplus-coding-plan:
+        description: BytePlus Coding Plan
+        title: BytePlus Coding Plan
+      zai:
+        description: 智譜大模型
+        title: Z.ai
+      302-ai:
+        description: 302.AI
+        title: 302.AI
+      comet-api:
+        description: CometAPI.com
+        title: Comet API
+      cerebras:
+        description: cerebras.ai
+        title: Cerebras
     title: 服務來源
   connection:
     description: 配置 WebSocket 伺服器連接
@@ -1914,30 +2253,35 @@ pages:
     websocket-url:
       description: WebSocket 伺服器的完整位址（例如：ws://localhost:6121/ws）
       label: WebSocket 伺服器位址
+      placeholder: ws://localhost:6121/ws
     server-hostname:
       label: Expose On Network
-      description: Choose whether the AIRI gateway only listens on this device or can be reached from your local network.
+      description: Choose whether the 魔獸陪伴精靈 gateway only listens on this device or
+        can be reached from your local network.
     server-auth-token:
       label: Auth Token
       description: >-
-        Security token required by remote clients that connect to this gateway. When left empty, AIRI generates a new token automatically.
+        Security token required by remote clients that connect to this gateway.
+        When left empty, 魔獸陪伴精靈 generates a new token automatically.
       placeholder: 自動產生
     qr:
       title: Connect from Stage Pocket
       description: >-
-        Scan this QR code from Stage Pocket to try all reachable local network addresses and save the first working one.
+        Scan this QR code from Stage Pocket to try all reachable local network
+        addresses and save the first working one.
       refresh: 重新整理
-      image-alt: AIRI server channel connection QR code
+      image-alt: 魔獸陪伴精靈 server channel connection QR code
       candidates: 候選位址
       token-hint: >-
-        The QR code includes the auth token so Stage Pocket can authenticate after connecting. Do not share it publicly.
+        The QR code includes the auth token so Stage Pocket can authenticate
+        after connecting. Do not share it publicly.
       errors:
         title: 無法使用 QR 碼
         unavailable: 無法準備連線 QR 碼。
     qr-scan:
       title: 快速連線
       description: 掃描桌面版的 QR 碼以快速連線
-      instructions: 將攝影機對準 AIRI 連線 QR 碼。
+      instructions: 將攝影機對準 魔獸陪伴精靈 連線 QR 碼。
       action: 掃描
       success:
         title: 已儲存連線位址
@@ -1964,6 +2308,17 @@ pages:
         character_card_sync:
           title: 角色卡雲端同步
           description: 登入時將角色卡同步至帳戶，讓其他裝置也能使用。預設停用，已刪除的角色卡會在帳戶歷史記錄中保留 30 天。
+        display_model_sync:
+          title: 模型雲同步
+          description: 登入後把匯入的 Live2D 和 VRM 模型上傳到賬號，方便在其他裝置上使用。預設關閉。
+        fullscreen_workspace:
+          title: 全屏工作區
+          description: 在鋪滿螢幕的工作區裡開啟設定和聊天，角色在左邊。預設關閉。
+          window_mode:
+            title: 視窗模式
+            description: 選擇工作區開在哪裡。
+            single_window: 單視窗：角色自己展開成工作區
+            multi_window: 多視窗：角色留在桌面上
     color-scheme:
       description: 更改舞台的配色方案
       title: 配色方案
@@ -2063,12 +2418,15 @@ pages:
               performance-playground:
                 title: 效能實驗場
                 description: VRM 表情 + TTS 嘴型同步實驗場
+              tool-payloads-as-json:
+                title: 以 JSON 顯示工具資料
+                description: 聊天裡工具呼叫的引數和結果顯示為 JSON 樹，不再格式化。回覆裡的卡片也會提供原始資料。
         theme-presets:
           presets:
             default:
               colors:
-                color-1: AIRI 綠
-              description: AIRI 為您帶來的預設綠色系主題色彩！
+                color-1: 魔獸陪伴精靈 綠
+              description: 魔獸陪伴精靈 為您帶來的預設綠色系主題色彩！
               title: 預設色彩
             morandi:
               colors:
@@ -2169,7 +2527,7 @@ sections:
 theme:
   title: 主題
   description: |
-    切換 AIRI 的基礎主題，亮色模式或暗色模式。
+    切換 魔獸陪伴精靈 的基礎主題，亮色模式或暗色模式。
   auto: 系統
   light: 淺色
   dark: 深色
@@ -2225,6 +2583,8 @@ spine:
   scale-and-position:
     title: 縮放與位置
     scale: 縮放
+    x: X
+    y: Y
   theme-color-from-model:
     title: 從模型擷取色彩
     button-extract:
@@ -2255,6 +2615,8 @@ mmd:
     title: 縮放與位置
     scale: 縮放
     rotation: 旋轉
+    x: X
+    y: Y
   theme-color-from-model:
     title: 從模型擷取色彩
     button-extract:
@@ -2298,6 +2660,8 @@ tachie:
   scale-and-position:
     title: 縮放與位置
     scale: 縮放
+    x: X
+    y: Y
   theme-color-from-model:
     title: 從模型提取顏色
     button-extract:

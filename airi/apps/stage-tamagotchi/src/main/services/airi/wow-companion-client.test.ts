@@ -98,7 +98,7 @@ describe('woW bridge HTTP request ordering', () => {
 
   it('resumes polling after a failed command', async () => {
     const command = client.update('/api/config', { cellSize: 2 })
-    const rejected = expect(command).rejects.toThrow('HTTP 500')
+    const rejected = expect(command).rejects.toThrow('"status":500')
     await expect.poll(() => requests.length).toBe(1)
     requests[0].response.writeHead(500)
     requests[0].response.end()
@@ -137,7 +137,7 @@ describe('woW bridge HTTP request ordering', () => {
     requests[0].response.end(JSON.stringify({ ...status(1), ...identity }))
     await read
     expect(client.read().bridge).toBeNull()
-    expect(client.read().error).toContain(`does not match the ${game} profile`)
+    expect(client.read().error).toContain(`"game":"${game}"`)
   })
 
   it('keeps Forever events and capture writes separate from Retail', async () => {

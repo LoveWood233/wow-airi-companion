@@ -1,0 +1,203 @@
+electronCallback:
+  title:
+    loading: Completamento dell'accesso
+    openingAiri: Apertura di Compagno di WoW
+    signedIn: Accesso effettuato
+    signInFailed: Accesso non riuscito
+    finishSignInInAiri: Completa l'accesso in Compagno di WoW
+    openAiriToContinue: Apri Compagno di WoW per continuare
+  message:
+    checkingResponse: Verifica della risposta di accesso e preparazione del passaggio a Compagno di WoW.
+    passingToAiri: Trasferimento dell'accesso a Compagno di WoW. La pagina si chiuderà tra poco.
+    syncedAndSafeToClose: Il client Compagno di WoW da cui hai effettuato l'accesso è stato avvisato.
+    invalidResponse: Impossibile utilizzare questa risposta di accesso.
+    loopbackUnreachable: Il browser non ha raggiunto Compagno di WoW tramite la porta di richiamata locale.
+    tryOpenDirectly: Proveremo ad aprire direttamente il passaggio locale. Se non funziona, usa il pulsante qui sotto.
+    automaticHandoffFailed: Il passaggio automatico non è stato completato in questa sessione del browser.
+  label:
+    signIn: Accedi
+    safeToClose: Ora puoi chiudere questa scheda.
+    whyStillHere: Perché questa scheda è ancora aperta?
+  action:
+    openAiriManually: Apri Compagno di WoW manualmente
+  hint:
+    closeTabManually: Alcuni browser impediscono la chiusura automatica di questa pagina. Puoi chiuderla manualmente.
+signIn:
+  title: Accedi
+  step:
+    identify:
+      heading: Accedi
+      description: Inserisci l'email per accedere o creare un account.
+    password:
+      heading: Bentornato
+      description: Continua come {email}.
+    create:
+      heading: Crea il tuo account
+      description: Creeremo un nuovo account per {email}.
+  email:
+    label: Email
+    placeholder: tu{'@'}example.com
+  password:
+    label: Password
+    placeholder: La tua password
+  newPassword:
+    label: Crea password
+    placeholder: Almeno 8 caratteri
+  confirmPassword:
+    label: Conferma password
+    placeholder: Ripeti la password
+  name:
+    label: Nome visualizzato
+    placeholder: Facoltativo. Per impostazione predefinita usa il nome dell'email
+  action:
+    continue: Continua
+    signIn: Accedi
+    createAccount: Crea account
+    forgotPassword: Password dimenticata?
+    useDifferentEmail: Usa un'altra email
+  divider:
+    or: o
+  message:
+    redirecting: Reindirizzamento a {provider}…
+  error:
+    fallback: Accesso non riuscito
+    providerTimeout: Tempo di accesso al fornitore scaduto. Riprova.
+    unknown: Si è verificato un errore sconosciuto
+    socialOnlyNoPassword: Questa email è registrata con Google o GitHub. Accedi con un pulsante qui sotto. Poi puoi aggiungere una password nelle impostazioni dell'account.
+    passwordMismatch: La password e la conferma non coincidono.
+    invalidEmail: Inserisci un indirizzo email valido.
+  footer:
+    prefix: Continuando, accetti i nostri
+    terms: Termini
+    and: e
+    privacy: Informativa sulla privacy
+verifyEmail:
+  title:
+    pending: Controlla la posta in arrivo
+    success: Email verificata
+    failed: Verifica non riuscita
+  message:
+    pending: Abbiamo inviato un link di verifica alla tua email. Aprilo per completare la creazione dell'account. Questa pagina continuerà automaticamente.
+    pendingWithAddress: Abbiamo inviato un link di verifica a {email}. Aprilo per completare la creazione dell'account. Questa pagina continuerà automaticamente.
+    success: Email verificata e accesso effettuato. Puoi chiudere questa scheda.
+    failed: Impossibile verificare l'email ({error}). Richiedi un nuovo link.
+  action:
+    backToSignIn: Torna all'accesso
+forgotPassword:
+  title: Reimposta la password
+  description: Inserisci l'email associata all'account. Ti invieremo un link per reimpostare la password.
+  email:
+    label: Email
+    placeholder: tu{'@'}example.com
+  action:
+    send: Invia link di reimpostazione
+    backToSignIn: Torna all'accesso
+  message:
+    sent: Se {email} corrisponde a un account, riceverai un link di reimpostazione.
+  error:
+    fallback: Impossibile inviare l'email di reimpostazione.
+deleteAccount:
+  title:
+    success: Account eliminato
+    failed: Impossibile eliminare l'account
+  message:
+    success: Il tuo account è stato eliminato.
+  action:
+    closeTab: Puoi chiudere questa scheda.
+resetPassword:
+  title:
+    default: Imposta una nuova password
+    success: Password aggiornata
+  password:
+    label: Nuova password
+    placeholder: Almeno 8 caratteri
+  confirmPassword:
+    label: Conferma nuova password
+    placeholder: Ripeti la nuova password
+  action:
+    reset: Aggiorna password
+    goSignIn: Vai all'accesso
+  message:
+    success: La password è stata aggiornata. Accedi con la nuova password.
+  error:
+    fallback: Impossibile aggiornare la password.
+    missingToken: Link di reimpostazione non valido o scaduto.
+    passwordMismatch: La password e la conferma non coincidono.
+profile:
+  title: Profilo dell'account
+  description: Gestisci avatar, nome visualizzato e account collegati.
+  section:
+    profile: Profilo
+    avatar: Avatar
+    password: Password
+    linkedAccounts: Account collegati
+  field:
+    email: Email
+    emailVerified: Stato email
+    createdAt: Iscrizione
+  label:
+    verified: Verificato
+    unverified: Non verificato
+  name:
+    label: Nome visualizzato
+    placeholder: Come ti vedono gli altri
+  avatar:
+    altText: Avatar del profilo
+    gravatarNotice: Avatar da Gravatar.
+    gravatarLink: Gestisci su gravatar.com
+  password:
+    currentLabel: Password attuale
+    currentPlaceholder: Inserisci la password attuale
+    newLabel: Nuova password
+    newPlaceholder: Almeno 8 caratteri
+    confirmLabel: Conferma nuova password
+    confirmPlaceholder: Ripeti la nuova password
+    setDescription: Hai effettuato l'accesso tramite un servizio esterno, quindi non hai ancora una password. Ti invieremo un link sicuro per impostarla.
+    setLinkSent: Controlla {email} per il link per impostare la password.
+    setLinkFailed: Impossibile inviare il link per impostare la password.
+  linkedAccounts:
+    description: Accedi a Compagno di WoW con questi fornitori. Scollegali per revocare l'accesso, poi ricollegali per cambiare account.
+    status:
+      linked: Collegato
+      notLinked: Non collegato
+      linkedSince: Collegato il {date}
+    action:
+      link: Collega
+      unlink: Scollega
+    message:
+      loading: Caricamento account collegati…
+      unlinked: '{provider} scollegato.'
+      linkStarted: Reindirizzamento a {provider}…
+    error:
+      listFailed: Impossibile caricare gli account collegati.
+      unlinkFailed: Impossibile scollegare questo account.
+      linkFailed: Impossibile avviare il collegamento.
+      lastAccount: Questo è il tuo unico metodo di accesso. Imposta una password prima di scollegarlo.
+  action:
+    saveProfile: Salva modifiche
+    changePassword: Cambia password
+    sendSetPasswordLink: Inviami un link per impostare la password
+    signOut: Esci
+  message:
+    loading: Caricamento del profilo…
+    profileSaved: Profilo aggiornato.
+    passwordChanged: Password modificata. Le altre sessioni sono state disconnesse.
+  error:
+    loadFailed: Impossibile caricare il profilo.
+    saveFailed: Impossibile salvare le modifiche.
+    changePasswordFailed: Impossibile cambiare la password.
+    signOutFailed: Impossibile uscire.
+    passwordMismatch: La nuova password e la conferma non coincidono.
+    passwordSameAsCurrent: La nuova password deve essere diversa da quella attuale.
+webCallback:
+  title:
+    signIn: Accedi
+    errorLabel: Si è verificato un errore durante l'accesso
+    loading: Accesso in corso…
+  message:
+    missingCodeOrState: Codice di autorizzazione o stato mancante
+    missingFlowState: Stato del flusso OIDC mancante. Accedi di nuovo
+    tokenExchangeFailed: Scambio di token non riuscito
+    finalizing: Completamento dell'autenticazione con Compagno di WoW.
+  action:
+    tryAgain: Riprova

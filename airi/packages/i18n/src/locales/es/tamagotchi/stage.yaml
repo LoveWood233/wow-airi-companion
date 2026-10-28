@@ -41,6 +41,7 @@ docs:
   'logging-in': Iniciando sesión...
   'account': Cuenta
   'logout': Cerrar sesión
+  open-wow-companion: Ficha de WoW
 'chat-window':
   style:
     title: Estilo de ventana de chat
@@ -49,6 +50,7 @@ docs:
     floating-free: Flotante, en cualquier lugar de la pantalla
     floating-danmaku: Flotante, flujo de mensajes
     pinned: Mantener siempre encima
+    fullscreen: Pantalla completa, junto al personaje
   resize: Arrastra para cambiar el tamaño del chat
   move: Arrastra para mover el chat
   fold: Ocultar chat
@@ -58,10 +60,12 @@ docs:
   danmaku-feed:
     title: Tiempo de mensajes
     hide-read: Ocultar mensajes leídos
-    hide-read-description: Los mensajes desaparecen tras leerlos. Las respuestas habladas desaparecen al terminar la voz.
+    hide-read-description: Los mensajes desaparecen tras leerlos. Las respuestas
+      habladas desaparecen al terminar la voz.
     reading-speed: Velocidad de lectura
     reading-speed-value: '{count} caracteres/s'
     minimum-time: Tiempo mínimo
+    minimum-time-value: '{count} s'
 widgets:
   close: Cerrar widget
   empty:
@@ -74,9 +78,12 @@ inlay:
 notice:
   'fade-on-hover':
     title: Desvanecer al pasar el cursor
-    intro: Difumina el personaje automáticamente cuando el cursor está cerca. Reduce distracciones sin perder visibilidad.
-    opacity: Al activarlo, la opacidad baja a {value} para {targets} cuando el cursor está cerca.
-    toggle: Puedes desactivarlo pasando el cursor por {controls} y tocando de nuevo el {icon}.
+    intro: Difumina el personaje automáticamente cuando el cursor está cerca. Reduce
+      distracciones sin perder visibilidad.
+    opacity: Al activarlo, la opacidad baja a {value} para {targets} cuando el
+      cursor está cerca.
+    toggle: Puedes desactivarlo pasando el cursor por {controls} y tocando de nuevo
+      el {icon}.
     controls-label: Isla de controles
     icon-label: ícono de ojo tachado
     targets: Personaje y UI
@@ -85,6 +92,7 @@ notice:
     preparing: Preparando…
     read-more: Leer más
     preview-title: '¿Qué es esto?'
+    value: '0'
 about:
   subtitle: Versión de escritorio.
   current-version: Versión actual
@@ -94,6 +102,7 @@ about:
     title: Enlaces
     home: Inicio
     documentation: Documentación
+    github: GitHub
   update:
     lane:
       label: Canal de actualización
@@ -104,12 +113,15 @@ about:
       stable: Estable
       alpha: Alfa
       nightly: Compilación nocturna
+      beta: Beta
+      canary: Canary
     status:
       downloading: Descargando actualización...
       latest: Actualizado (v{version}).
       downloaded:
         windows: Actualización lista para instalar silenciosamente (v{version}).
         restart: Actualización lista para instalar al reiniciar (v{version}).
+      error-prefix: Error
     actions:
       download: Descargar actualización
       download-short: Descargar
@@ -127,3 +139,148 @@ about:
       title: Actualización disponible
       description: Una nueva versión (v{version}) está disponible.
       no-release-notes-markdown: _No se proporcionaron notas de lanzamiento._
+fullscreen-island:
+  settings: Ajustes
+  chat: Chat
+  switch-to-dark-mode: Cambiar a modo oscuro
+  switch-to-system-mode: Usar el tema del sistema
+  switch-to-light-mode: Cambiar a modo claro
+  exit: Salir de pantalla completa
+fullscreen-surface:
+  resize: Arrastra para cambiar el tamaño del panel
+computer-use-tool-call:
+  help: Ayuda
+  status:
+    completed: Completado
+    failed: Fallido
+  display: Pantalla
+  built-in: Integrado
+  primary: Principal
+  logical-size: Tamaño lógico
+  pixel-size: Tamaño en píxeles
+  backend: Motor de captura
+  fallback: Motivo del método alternativo
+  file: Archivo
+  window: Ventana
+  region: Región
+  main: Principal
+  hidden: Oculto
+  displays: Una pantalla | {count} pantallas
+  windows: Una ventana | {count} ventanas
+  found: Se encontró «{query}»
+  matches: Una coincidencia | {count} coincidencias
+  not-found: No se encontró «{query}»
+  clicked-text: Se hizo clic en «{query}»
+  options: Opciones
+  typed: Escrito
+  pasted: Pegado
+  pressed: Pulsado
+  repeat: × {count}
+  interval: cada {ms} ms
+  hold: mantenido durante {ms} ms
+  steps: Un paso en orden | {count} pasos en orden
+  focused: Enfocado «{query}»
+  app: Aplicación
+  process: Proceso
+  control: Control
+  title: Título
+  value: Contenido
+  ax-path: Ruta de accesibilidad
+  moved: Puntero movido a
+  clicked: Clic realizado
+  dragged: Arrastrado
+  requested: Solicitado
+  on-screen: En pantalla
+  start: Inicio
+  end: Final
+  final: Punto final
+  duration: '{ms} ms'
+  normalized: Coordenadas normalizadas
+  click-count: × {count}
+  relative:
+    screen: Respecto a la pantalla
+    window: Respecto a la ventana
+    display: Respecto al monitor
+  buttons:
+    left: Botón izquierdo
+    right: Botón derecho
+    middle: Botón central
+  clicks:
+    single: Un clic
+    double: Doble clic
+  delivery:
+    path: Envío
+    verified: Efecto verificado
+    not-verified: Efecto sin verificar
+    disturbance: Interferencia
+    mouse: Ratón
+    focus: Foco
+    clipboard: Portapapeles
+    attempt: Intento {index}
+    attempt-succeeded: Correcto
+    attempt-failed: Fallido
+  paths:
+    foreground_system_events: Eventos del sistema en primer plano
+    window_targeted_keyboard: Eventos de teclado enviados a la ventana
+    ax_focus: Foco de accesibilidad
+  disturbances:
+    none: Ninguno
+    temporary: Temporal
+    foreground: Traído al primer plano
+    unknown: Desconocido
+  activated: Se cambió a {app}
+  in-front: Ahora en primer plano
+  front-is: '{app} está en primer plano'
+  front-unknown: No se pudo comprobar la aplicación en primer plano
+  permissions:
+    title: Permisos del sistema
+    names:
+      screen_recording: Grabación de pantalla
+      screen_capture_kit: ScreenCaptureKit
+      accessibility: Accesibilidad
+      automation_to_system_events: Automatización (System Events)
+    states:
+      granted: Concedido
+      missing: Sin conceder
+      denied: Denegado
+      unknown: Desconocido
+  media:
+    commands:
+      play: Reproducir
+      pause: Pausar
+      toggle: Reproducir o pausar
+      next: Pista siguiente
+      previous: Pista anterior
+    verified: Verificado
+    not-verified: Sin verificar
+    playing: Reproduciendo
+    paused: En pausa
+    nothing: No se está reproduciendo nada
+    liked: Me gusta
+    rate: Velocidad ×{rate}
+computer-use-read-image-tool-call:
+  description: Descripción del modelo de visión
+  failed: El modelo de visión no pudo leer esta imagen
+tool-call-screenshot:
+  view-full: Ver tamaño completo
+weather-tool-call:
+  feels-like: Sensación térmica
+  humidity: Humedad
+  wind: Viento
+  precipitation: Probabilidad de lluvia
+  high: Máxima
+  low: Mínima
+  conditions:
+    clear-day: Despejado
+    clear-night: Despejado
+    partly-cloudy-day: Parcialmente nublado
+    partly-cloudy-night: Parcialmente nublado
+    overcast: Cubierto
+    fog: Niebla
+    drizzle: Llovizna
+    sleet: Aguanieve
+    rain: Lluvia
+    extreme-rain: Lluvia intensa
+    snow: Nieve
+    extreme-snow: Nieve intensa
+    thunderstorm: Tormenta eléctrica

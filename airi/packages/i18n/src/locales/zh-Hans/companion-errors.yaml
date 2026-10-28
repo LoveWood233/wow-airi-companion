@@ -1,0 +1,30 @@
+bridge-local-address: 魔兽桥接服务必须使用本地 HTTP 地址。
+bridge-stopped: 魔兽桥接服务已停止。
+bridge-cancelled: 已取消启动魔兽桥接服务。
+bridge-retry: 魔兽陪伴精灵将在 30 秒后重试。{detail}
+bridge-windows: 自动捕获魔兽画面需要 Windows。本地桥接服务无法在此系统上启动。
+bridge-exited: 魔兽桥接服务已退出。
+bridge-start-failed: 无法启动魔兽桥接服务。请检查桥接文件和捕获设置。{detail}
+bridge-start-exited: 魔兽桥接服务在启动时退出。请检查端口是否被占用。
+bridge-timeout: 魔兽桥接服务未能在 10 秒内就绪。请检查 Python 和本地捕获设置。
+bridge-port-unavailable: 本地魔兽桥接端口没有响应。重试前请检查端口 {port}。
+bridge-port-incompatible: 端口 {port} 被不兼容的服务占用。请关闭该服务或更新魔兽桥接服务。
+bridge-profile-incompatible: 端口 {port} 被不兼容的服务占用。请为 {game} 配置使用 2.11 或更高版本的魔兽桥接服务。
+bridge-files-missing: 缺少魔兽桥接文件。请将 WOWAddons 恢复到魔兽陪伴精灵源码旁边，或重新安装桌面软件包。
+bridge-python-missing: 未找到 Python 3.10 或更高版本。请安装 Python 并启用 PATH，然后重启魔兽陪伴精灵。
+bridge-unavailable: 魔兽桥接服务不可用。
+bridge-http: 魔兽桥接服务返回 HTTP {status}。
+bridge-response-profile: 魔兽桥接响应与 {game} 配置不匹配。
+connection-disabled: 请先启用此游戏的陪伴连接，再发送捕获或演示命令。
+connection-changed: 命令完成前，陪伴连接已发生变化。
+gold-account-unknown: 未找到本地金币账户。
+gold-read: 无法加载金币账本（{path}）。请恢复文件并重启魔兽陪伴精灵。{detail}
+gold-write: 无法保存金币账本（{path}）。更改仅保存在内存中，魔兽陪伴精灵将会重试。{detail}
+levels-read: 无法加载等级历史（{path}）。请恢复文件并重启魔兽陪伴精灵。{detail}
+levels-write: 无法保存等级历史（{path}）。更改仅保存在内存中，魔兽陪伴精灵将会重试。{detail}
+equipment-read: 无法加载装备获取历史（{path}）。请恢复文件并重启魔兽陪伴精灵。{detail}
+equipment-write: 无法保存装备获取历史（{path}）。更改仅保存在内存中，魔兽陪伴精灵将会重试。{detail}
+comparisons-read: 无法加载装备对比记录（{path}）。请恢复文件并重启魔兽陪伴精灵。{detail}
+comparisons-write: 无法保存装备对比记录（{path}）。更改仅保存在内存中，魔兽陪伴精灵将会重试。{detail}
+loadouts-read: 无法加载已装备快照（{path}）。请恢复文件并重启魔兽陪伴精灵。{detail}
+loadouts-write: 无法保存已装备快照（{path}）。更改仅保存在内存中，魔兽陪伴精灵将会重试。{detail}

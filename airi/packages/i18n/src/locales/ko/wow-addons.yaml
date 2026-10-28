@@ -1,0 +1,143 @@
+title: 와우 애드온 센터
+description: 호환되는 CurseForge 애드온을 찾아 각 월드 오브 워크래프트 클라이언트에 설치합니다.
+game-version: 게임 에디션
+games:
+  retail: 본 서버
+  classic: 클래식
+  forever: Forever
+view: 애드온 보기
+browse: 둘러보기
+installed: 설치됨
+loading: 애드온 불러오는 중…
+retry: 다시 시도
+refresh: 새로 고침
+search-label: 애드온 검색
+search-placeholder: 애드온 이름 또는 검색어
+search: 검색
+category: 분류
+sort-label: 정렬 기준
+sort:
+  popular: 인기순
+  updated: 최근 업데이트순
+  downloads: 다운로드순
+current-version: '호환 게임 버전: {version}'
+authors: '제작자: {authors}'
+downloads: '다운로드 {count}회'
+no-results: 이 필터에 맞는 호환 애드온이 없습니다.
+previous: 이전
+next: 다음
+pagination: '{page} / {pages}페이지 · 애드온 {total}개'
+installed-description: 선택한 클라이언트에서 와우 동반자가 관리하는 애드온 목록입니다.
+none-installed: 와우 동반자가 이 클라이언트에 설치한 애드온이 없습니다.
+choose-update: 업데이트 선택
+close: 파일 상세 정보 닫기
+loading-files: 호환 파일 불러오는 중…
+no-files: 설정한 게임 버전과 호환되는 파일이 없습니다.
+compatible-files: 호환 파일
+file-details: 애드온 파일 상세 정보
+required-dependencies: 필수 애드온 ID
+no-dependencies: 없음
+dependencies-hint: 필수 의존 애드온도 함께 설치됩니다.
+current-file: 이 파일은 이미 설치되어 있습니다.
+install: 설치
+update: 업데이트
+install-success: 설치가 완료되었습니다. 와우를 다시 시작하거나 인터페이스를 새로 불러와 애드온을 적용하세요.
+release:
+  stable: 정식 버전
+  beta: 베타
+  alpha: 알파
+setup:
+  title: CurseForge에 연결하여 애드온 둘러보기
+  description: 설정에 CurseForge API 키를 추가하세요. 유효한 키를 저장하면 애드온 목록을 불러옵니다.
+  action: API 키 설정
+  client-title: '{game} 클라이언트 설정'
+  client-description: 애드온 설정에서 클라이언트 폴더와 호환 게임 버전을 선택하세요.
+  configure-client: 클라이언트 설정
+settings:
+  title: 애드온 설정
+  description: 애드온을 설치하기 전에 CurseForge API 키와 각 와우 클라이언트를 설정하세요.
+  key-title: CurseForge 접근
+  key-label: 새 CurseForge API 키
+  key-description: 비워 두면 저장된 키를 유지합니다. 저장된 키는 이 양식에 표시되지 않습니다.
+  key-configured: API 키 설정됨
+  key-missing: API 키 설정 안 됨
+  key-instructions: 공식 API 안내에서 신청서 링크를 여세요. 프로젝트 정보를 입력하고 Overwolf의 이메일을 기다리세요. 승인된 API 키를 여기에 붙여 넣으세요.
+  key-link: API 키 신청 안내 읽기
+  save-key-first: 먼저 API 키를 저장하세요. 그런 다음 각 클라이언트의 호환 게임 버전을 선택하세요.
+  directory: 와우 클라이언트 폴더
+  directory-description: 와우 실행 파일이 있는 폴더를 선택하세요. 애드온은 이 폴더의 Interface/AddOns에 설치됩니다.
+  browse: 찾아보기
+  browse-game: '{game} 폴더 찾아보기'
+  version-type: 호환 게임 버전
+  choose-version: API에서 제공하는 게임 버전 선택
+  no-version-types: CurseForge가 이 에디션의 지원 게임 버전을 반환하지 않았습니다.
+  retry-metadata: 게임 버전 다시 불러오기
+  install-target: 애드온 설치 위치
+  reload-hint: 설치 전에 와우를 종료하세요. 설치 후에는 와우를 다시 시작하거나 인터페이스를 새로 불러오세요.
+  save: 설정 저장
+  cancel: 취소
+  back: 애드온 센터로 돌아가기
+  saved: 설정을 저장했습니다.
+categories:
+  all: 모든 분류
+  combat: 전투
+  bags-inventory: 가방 및 소지품
+  bags: 가방
+  inventory: 소지품
+  classes: 직업
+  class: 직업
+  action-bars: 행동 단축바
+  artwork: 그래픽
+  auction-economy: 경매 및 경제
+  auction: 경매
+  buffs-debuffs: 강화 및 약화 효과
+  chat-communication: 대화 및 의사소통
+  damage-dealer: 공격 담당
+  guild: 길드
+  libraries: 라이브러리
+  map-minimap: 지도 및 미니맵
+  map: 지도
+  miscellaneous: 기타
+  professions: 전문 기술
+  quests-leveling: 퀘스트 및 레벨 업
+  quests: 퀘스트
+  raid-boss-encounters: 공격대 및 우두머리
+  tooltip: 툴팁
+  unit-frames: 유닛 프레임
+  pvp: PvP
+errors:
+  unknown: 요청에 실패했습니다. 다시 시도하세요.
+  curseforge-api-key-required: 애드온 설정에 CurseForge API 키를 추가하세요.
+  curseforge-unauthorized: CurseForge가 API 키를 거부했습니다. 애드온 설정에서 키를 확인하세요.
+  curseforge-rate-limited: CurseForge 요청 제한에 도달했습니다. 잠시 기다린 후 다시 시도하세요.
+  curseforge-timeout: CurseForge가 제시간에 응답하지 않았습니다. 다시 시도하세요.
+  curseforge-invalid-response: CurseForge가 잘못된 응답을 반환했습니다. 다시 시도하세요.
+  curseforge-response-too-large: CurseForge 응답이 지원 크기를 초과했습니다.
+  curseforge-request-failed: CurseForge 요청에 실패했습니다. 연결을 확인하고 다시 시도하세요.
+  curseforge-invalid-request: 요청이 유효하지 않습니다. 설정한 게임 버전을 확인하고 다시 시도하세요.
+  curseforge-too-many-files: 이 애드온은 파일이 너무 많아 안전하게 불러올 수 없습니다. 다른 애드온을 선택하세요.
+  curseforge-too-many-redirects: 다운로드 리디렉션이 너무 많습니다. 나중에 다시 시도하세요.
+  curseforge-not-found: CurseForge에서 이 애드온이나 파일을 찾을 수 없습니다. 애드온 목록을 새로 고치세요.
+  curseforge-disposed: 애드온 서비스가 중지되었습니다. 애드온 센터를 다시 열고 시도하세요.
+  curseforge-incompatible-version: 이 애드온 파일은 설정한 게임 버전과 호환되지 않습니다.
+  curseforge-distribution-disabled: 제작자가 외부 도구를 통한 이 애드온의 설치를 허용하지 않습니다.
+  curseforge-download-unavailable: CurseForge에 이 애드온 파일의 다운로드가 없습니다.
+  curseforge-unsafe-download-url: 다운로드 주소 검증에 실패했습니다.
+  curseforge-download-integrity: 애드온 다운로드의 무결성 확인에 실패했습니다. 다시 시도하세요.
+  wow-addons-settings-invalid: 애드온 설정을 확인하고 다시 시도하세요.
+  wow-addons-directory-required: 애드온 설정에서 와우 클라이언트 폴더를 지정하세요.
+  wow-addons-version-required: 애드온 설정에서 호환 게임 버전을 선택하세요.
+  wow-addons-busy: 다른 애드온 작업이 진행 중입니다. 완료될 때까지 기다리세요.
+  wow-addons-key-storage-unavailable: 보안 키 저장소를 사용할 수 없습니다. 와우 동반자를 다시 시작하고 시도하세요.
+  wow-addons-key-unreadable: 와우 동반자가 저장된 API 키를 읽을 수 없습니다. 키를 다시 저장하세요.
+  wow-addons-required-dependency: 필수 의존 애드온을 설치하지 못했습니다. 다시 시도하세요.
+  wow-addons-unmanaged-conflict: 관리하지 않는 애드온 폴더가 이미 있습니다. 해당 폴더를 옮긴 후 설치하세요.
+  wow-addons-folder-conflict: 애드온 폴더가 다른 애드온과 충돌합니다. 해당 폴더를 옮긴 후 설치하세요.
+  wow-addons-unsafe-archive: 애드온 압축 파일에 안전하지 않은 경로가 있어 설치할 수 없습니다.
+  wow-addons-install-failed: 설치에 실패했습니다. 클라이언트 폴더를 확인하고 다시 시도하세요.
+  wow-addons-invalid-directory: 클라이언트 폴더가 유효하지 않거나 사용할 수 없습니다. 애드온 설정에서 경로를 확인하세요.
+  wow-addons-invalid-archive: 애드온 압축 파일이 유효하지 않거나 안전하지 않아 설치할 수 없습니다.
+  wow-addons-directory-conflict: 기존 애드온 폴더가 이 설치와 충돌합니다. 충돌하는 폴더를 옮긴 후 다시 시도하세요.
+  wow-addons-request-failed: 애드온 작업에 실패했습니다. 클라이언트 폴더를 확인하고 다시 시도하세요.
+  wow-addons-dependency-limit: 중첩된 의존성이 너무 많아 애드온을 안전하게 설치할 수 없습니다.
+  wow-addons-stopped: 애드온 작업이 중지되었습니다. 애드온 센터를 다시 열고 시도하세요.

@@ -1,0 +1,101 @@
+click-here-to-set-up-your-transcription-providers: Nhấp để thiết lập nhà cung cấp phiên âm
+enter-the-transcription-model-to-use-e-g-whisper-1-gpt-4o-transcribe: Nhập mô hình phiên âm, ví dụ {models}.
+input-level: Mức âm đầu vào
+probability-of-speech: Xác suất có giọng nói
+adjust-the-threshold-for-speech-detection: Điều chỉnh ngưỡng phát hiện giọng nói
+pause-before-stop: Khoảng im lặng trước khi dừng
+how-long-silence-must-last-before-speech-is-considered-finished: Thời gian im lặng cần có để xác định đã nói xong
+model-based: Dựa trên mô hình
+use-ai-models-for-more-accurate-speech-detection: Dùng mô hình AI để phát hiện giọng nói chính xác hơn
+loading: Đang tải…
+inference-error: Lỗi suy luận
+activated: Đã kích hoạt
+probability: 'Xác suất:'
+voice-activity: Hoạt động giọng nói
+last-2-seconds: 2 giây gần nhất
+speaking: Đang nói
+voice-detected: Đã phát hiện giọng nói
+speech-threshold: Ngưỡng giọng nói
+reset-value-to-default: Khôi phục giá trị mặc định
+head-rotation: Xoay đầu
+angle-x: Góc X
+angle-y: Góc Y
+angle-z: Góc Z
+left-eye-open-close: Mở / nhắm mắt trái
+right-eye-open-close: Mở / nhắm mắt phải
+left-eye-smiling: Cười bằng mắt trái
+right-eye-smiling: Cười bằng mắt phải
+eyebrows: Lông mày
+left-eyebrow-left-right: Di chuyển lông mày trái trái / phải
+right-eyebrow-left-right: Di chuyển lông mày phải trái / phải
+left-eyebrow-y-up-down: Lông mày trái Y (lên / xuống)
+left-eyebrow-y: Lông mày trái Y
+right-eyebrow-y-up-down: Lông mày phải Y (lên / xuống)
+right-eyebrow-y: Lông mày phải Y
+left-eyebrow-angle: Góc lông mày trái
+right-eyebrow-angle: Góc lông mày phải
+left-eyebrow-form-deformation: Hình lông mày trái (biến dạng)
+left-eyebrow-form: Hình lông mày trái
+right-eyebrow-form-deformation: Hình lông mày phải (biến dạng)
+right-eyebrow-form: Hình lông mày phải
+mouth: Miệng
+mouth-open-close: Mở / khép miệng
+mouth-form-deformation: Hình miệng (biến dạng)
+mouth-form: Hình miệng
+face: Khuôn mặt
+cheek: Má
+body-rotation-x: Xoay thân X
+body-rotation-y: Xoay thân Y
+body-rotation-z: Xoay thân Z
+breath: Hơi thở
+model-position: Vị trí mô hình
+directional-light-rotation-x: Xoay ánh sáng định hướng X
+directional-light-rotation-y: Xoay ánh sáng định hướng Y
+directional-light-color: Màu ánh sáng định hướng
+directional-light-intensity: Cường độ ánh sáng định hướng
+ambient-light-intensity: Cường độ ánh sáng môi trường
+ambient-light-color: Màu ánh sáng môi trường
+hemisphere-light-intensity: Cường độ ánh sáng bán cầu
+hemisphere-sky-color: Màu trời bán cầu
+hemisphere-ground-color: Màu mặt đất bán cầu
+tips: Mẹo
+camera-fov: Góc nhìn camera
+directional-light-x: Ánh sáng định hướng X
+directional-light-y: Ánh sáng định hướng Y
+directional-light-z: Ánh sáng định hướng Z
+albedo-glow: Phát sáng màu nền
+godot-stage-experimental: Sân khấu Godot (thử nghiệm)
+godot-view: Chế độ xem Godot
+camera-x: Camera X
+camera-y: Camera Y
+camera-z: Camera Z
+camera-yaw: Góc xoay ngang camera
+camera-pitch: Góc ngẩng camera
+transcription-provider-inactive: Chưa có nhà cung cấp phiên âm đang hoạt động.
+transcription-provider-unavailable: Cấu hình nhà cung cấp phiên âm không khả dụng.
+microphone-access-denied: Quyền truy cập micrô bị từ chối.
+speech-detection-failed: Phát hiện giọng nói thất bại.
+speaking-detected: Đã phát hiện đang nói
+volume-based: Dựa trên âm lượng
+select-model-before-godot-view: Chọn mô hình VRM trước khi chỉnh chế độ xem sân khấu Godot.
+godot-view-unavailable: Chưa nhận được chế độ xem sân khấu Godot. Kiểm tra kết nối Godot.
+godot-no-snapshot: Chưa nhận được bản chụp chế độ xem sân khấu Godot
+revision: Bản sửa {revision} · {reason}
+hemisphere: Bán cầu
+skybox: Hộp bầu trời
+rotation-x-degrees: Xoay X (độ)
+rotation-y-degrees: Xoay Y (độ)
+intensity: Cường độ
+scale: Tỉ lệ
+rotation: Xoay
+glow: Phát sáng
+mouth-vowel: Miệng {vowel}
+blink: Chớp mắt
+wink-left: Nháy mắt trái
+wink-right: Nháy mắt phải
+smile: Cười
+anger: Giận
+sad: Buồn
+surprise: Ngạc nhiên
+troubled: Bối rối
+serious: Nghiêm túc

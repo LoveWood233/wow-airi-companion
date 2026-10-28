@@ -6,6 +6,7 @@ import { useElectronEventaContext, useElectronMouseAroundWindowBorder, useElectr
 import { createFadeAnimator, PoppinText } from '@proj-airi/stage-ui/components'
 import { refDebounced, useBroadcastChannel } from '@vueuse/core'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { captionGetIsFollowingWindow, captionIsFollowingWindowChanged } from '../../shared/eventa'
 import { useCaptionItems } from '../composables/useCaptionItems'
@@ -86,6 +87,8 @@ onMounted(async () => {
 onUnmounted(() => {
   disposeCaptionItems()
 })
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -100,7 +103,7 @@ onUnmounted(() => {
       <div
         v-show="!attached"
         class="[-webkit-app-region:drag] absolute left-1/2 h-[14px] w-[36px] border border-[rgba(125,125,125,0.35)] rounded-[10px] bg-[rgba(125,125,125,0.28)] backdrop-blur-[6px] -top-2 -translate-x-1/2"
-        title="Drag to move"
+        :title="translateCompanion('companion-extra.drag-to-move-0d84b3')"
       >
         <div class="absolute left-1/2 top-1/2 h-[3px] w-4 rounded-full bg-[rgba(255,255,255,0.85)] -translate-x-1/2 -translate-y-1/2" />
       </div>

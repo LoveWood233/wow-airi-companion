@@ -1,0 +1,203 @@
+electronCallback:
+  title:
+    loading: Concluindo o acesso
+    openingAiri: Abrindo Companheiro de WoW
+    signedIn: Você entrou
+    signInFailed: Falha ao entrar
+    finishSignInInAiri: Conclua o acesso no Companheiro de WoW
+    openAiriToContinue: Abra o Companheiro de WoW para continuar
+  message:
+    checkingResponse: Verificando a resposta de acesso e preparando a transferência para o Companheiro de WoW.
+    passingToAiri: Transferindo o acesso ao Companheiro de WoW. Esta página fechará em instantes.
+    syncedAndSafeToClose: O cliente Companheiro de WoW usado para entrar foi avisado.
+    invalidResponse: Não foi possível usar esta resposta de acesso.
+    loopbackUnreachable: O navegador não alcançou o Companheiro de WoW pela porta de retorno local.
+    tryOpenDirectly: Tentaremos abrir a transferência local diretamente. Se falhar, use o botão abaixo.
+    automaticHandoffFailed: A transferência automática não foi concluída nesta sessão do navegador.
+  label:
+    signIn: Entrar
+    safeToClose: Agora você pode fechar esta aba.
+    whyStillHere: Por que esta aba ainda está aberta?
+  action:
+    openAiriManually: Abrir Companheiro de WoW manualmente
+  hint:
+    closeTabManually: Alguns navegadores impedem o fechamento automático desta página. Você pode fechá-la manualmente.
+signIn:
+  title: Entrar
+  step:
+    identify:
+      heading: Entrar
+      description: Digite seu email para entrar ou criar uma conta.
+    password:
+      heading: Bem-vindo de volta
+      description: Continuar como {email}.
+    create:
+      heading: Crie sua conta
+      description: Criaremos uma conta para {email}.
+  email:
+    label: Email
+    placeholder: voce{'@'}example.com
+  password:
+    label: Senha
+    placeholder: Sua senha
+  newPassword:
+    label: Criar senha
+    placeholder: Pelo menos 8 caracteres
+  confirmPassword:
+    label: Confirmar senha
+    placeholder: Repita sua senha
+  name:
+    label: Nome de exibição
+    placeholder: Opcional. Usa o nome do email por padrão
+  action:
+    continue: Continuar
+    signIn: Entrar
+    createAccount: Criar conta
+    forgotPassword: Esqueceu a senha?
+    useDifferentEmail: Usar outro email
+  divider:
+    or: ou
+  message:
+    redirecting: Redirecionando para {provider}…
+  error:
+    fallback: Falha ao entrar
+    providerTimeout: O acesso ao provedor expirou. Tente novamente.
+    unknown: Ocorreu um erro desconhecido
+    socialOnlyNoPassword: Este email foi registrado com Google ou GitHub. Entre pelo botão abaixo. Depois você pode adicionar uma senha nas configurações da conta.
+    passwordMismatch: A senha e a confirmação não coincidem.
+    invalidEmail: Digite um endereço de email válido.
+  footer:
+    prefix: Ao continuar, você aceita nossos
+    terms: Termos
+    and: e
+    privacy: Política de Privacidade
+verifyEmail:
+  title:
+    pending: Verifique sua caixa de entrada
+    success: Email verificado
+    failed: Falha na verificação
+  message:
+    pending: Enviamos um link de verificação ao seu email. Abra-o para concluir a criação da conta. Esta página continuará automaticamente.
+    pendingWithAddress: Enviamos um link de verificação para {email}. Abra-o para concluir a criação da conta. Esta página continuará automaticamente.
+    success: Email verificado e acesso concluído. Você pode fechar esta aba.
+    failed: Não foi possível verificar seu email ({error}). Solicite outro link.
+  action:
+    backToSignIn: Voltar ao acesso
+forgotPassword:
+  title: Redefinir sua senha
+  description: Digite o email da sua conta. Enviaremos um link para redefinir sua senha.
+  email:
+    label: Email
+    placeholder: voce{'@'}example.com
+  action:
+    send: Enviar link de redefinição
+    backToSignIn: Voltar ao acesso
+  message:
+    sent: Se {email} corresponder a uma conta, você receberá um link de redefinição.
+  error:
+    fallback: Não foi possível enviar o email de redefinição.
+deleteAccount:
+  title:
+    success: Conta excluída
+    failed: Não foi possível excluir a conta
+  message:
+    success: Sua conta foi excluída.
+  action:
+    closeTab: Você pode fechar esta aba.
+resetPassword:
+  title:
+    default: Definir uma nova senha
+    success: Senha atualizada
+  password:
+    label: Nova senha
+    placeholder: Pelo menos 8 caracteres
+  confirmPassword:
+    label: Confirmar nova senha
+    placeholder: Repita a nova senha
+  action:
+    reset: Atualizar senha
+    goSignIn: Ir para o acesso
+  message:
+    success: Sua senha foi atualizada. Entre com a nova senha.
+  error:
+    fallback: Não foi possível atualizar sua senha.
+    missingToken: O link de redefinição é inválido ou expirou.
+    passwordMismatch: A senha e a confirmação não coincidem.
+profile:
+  title: Perfil da conta
+  description: Gerencie seu avatar, nome de exibição e contas conectadas.
+  section:
+    profile: Perfil
+    avatar: Avatar
+    password: Senha
+    linkedAccounts: Contas conectadas
+  field:
+    email: Email
+    emailVerified: Estado do email
+    createdAt: Cadastro
+  label:
+    verified: Verificado
+    unverified: Não verificado
+  name:
+    label: Nome de exibição
+    placeholder: Como outras pessoas veem você
+  avatar:
+    altText: Avatar do perfil
+    gravatarNotice: Avatar do Gravatar.
+    gravatarLink: Gerenciar em gravatar.com
+  password:
+    currentLabel: Senha atual
+    currentPlaceholder: Digite sua senha atual
+    newLabel: Nova senha
+    newPlaceholder: Pelo menos 8 caracteres
+    confirmLabel: Confirmar nova senha
+    confirmPlaceholder: Repita a nova senha
+    setDescription: Você entrou por um provedor social e ainda não tem senha. Enviaremos um link seguro para defini-la.
+    setLinkSent: Verifique {email} para obter o link de definição de senha.
+    setLinkFailed: Não foi possível enviar o link para definir a senha.
+  linkedAccounts:
+    description: Entre no Companheiro de WoW com estes provedores. Desconecte para revogar o acesso e conecte novamente para trocar de conta.
+    status:
+      linked: Conectado
+      notLinked: Não conectado
+      linkedSince: Conectado em {date}
+    action:
+      link: Conectar
+      unlink: Desconectar
+    message:
+      loading: Carregando contas conectadas…
+      unlinked: '{provider} desconectado.'
+      linkStarted: Redirecionando para {provider}…
+    error:
+      listFailed: Não foi possível carregar as contas conectadas.
+      unlinkFailed: Não foi possível desconectar esta conta.
+      linkFailed: Não foi possível iniciar a conexão.
+      lastAccount: Este é seu único método de acesso. Defina uma senha antes de desconectar.
+  action:
+    saveProfile: Salvar alterações
+    changePassword: Alterar senha
+    sendSetPasswordLink: Enviar link para definir minha senha
+    signOut: Sair
+  message:
+    loading: Carregando seu perfil…
+    profileSaved: Perfil atualizado.
+    passwordChanged: Senha alterada. As outras sessões foram desconectadas.
+  error:
+    loadFailed: Não foi possível carregar seu perfil.
+    saveFailed: Não foi possível salvar suas alterações.
+    changePasswordFailed: Não foi possível alterar sua senha.
+    signOutFailed: Não foi possível sair.
+    passwordMismatch: A nova senha e a confirmação não coincidem.
+    passwordSameAsCurrent: A nova senha deve ser diferente da atual.
+webCallback:
+  title:
+    signIn: Entrar
+    errorLabel: Ocorreu um erro ao entrar
+    loading: Entrando…
+  message:
+    missingCodeOrState: Código de autorização ou estado ausente
+    missingFlowState: Estado do fluxo OIDC ausente. Entre novamente
+    tokenExchangeFailed: Falha na troca de tokens
+    finalizing: Concluindo a autenticação com o Companheiro de WoW.
+  action:
+    tryAgain: Tentar novamente

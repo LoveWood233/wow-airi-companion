@@ -327,6 +327,26 @@ class EquipmentCompareTest(unittest.TestCase):
                 self.assertEqual(self.decision(), ("review", "complex_item"))
                 self.assertIsNone(self.g.Visible)
 
+    def test_client_localized_labels_and_numeric_formats_keep_effects_for_review(self):
+        self.lua.execute('''
+ITEM_MOD_CRIT_RATING_SHORT="Coup critique"
+ITEM_SOULBOUND="Lié"
+INVTYPE_HAND="Mains"
+ITEM_LEVEL="Niveau d’objet %d"
+ARMOR_TEMPLATE="%s armure"
+DURABILITY_TEMPLATE="Durabilité %d / %d"
+'''.encode())
+        load = self.lua.eval(b"function(source,ns) assert(loadstring(source))('WoWMapCompanion',ns) end")
+        load((ROOT / "EquipmentCompare.lua").read_bytes(), self.ns)
+        self.add(lines=["New item", "Mains", "Lié", "Niveau d’objet 150", "83 armure", "+27 Coup critique", "Durabilité 40 / 40"])
+        self.assertEqual(self.decision(), ("upgrade", "empty_slot"))
+        # Exact numeric formats do not consume a suffix describing a real effect.
+        record = self.g.Records[1]
+        record[b"tooltip"] = self.table(["New item", "83 armure et déclenche un bouclier"])
+        comparison, assessment = self.ns[b"EquipmentCompare"][b"Capture"](self.g.Owner, record)
+        self.assertTrue(comparison[b"candidate"][b"complex"])
+        self.assertEqual(assessment[b"verdict"], b"review")
+
     def test_retribution_single_hand_case_is_not_an_upgrade_despite_47_more_item_levels(self):
         self.lua.execute(b'Model.class="PALADIN"; Model.spec=70; Owner.class="PALADIN"; Owner.spec=70; function GetSpecializationInfo() return Model.spec,"Spec",nil,123,"DAMAGER",1 end')
         old = self.g.SetupOld(16, 219354, "塑山者的巨斧".encode(), 111, b"INVTYPE_2HWEAPON")

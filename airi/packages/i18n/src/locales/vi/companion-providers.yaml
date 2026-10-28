@@ -1,0 +1,79 @@
+web-speech-unavailable-title: Web Speech API không khả dụng
+web-speech-unavailable-description: Trình duyệt này không hỗ trợ nhận dạng Web Speech API. Chọn nhà cung cấp phiên âm khác hoặc trình duyệt hỗ trợ nhận dạng giọng nói.
+web-speech-native-title: Phiên âm miễn phí bằng trình duyệt
+web-speech-native-description: Dùng nhận dạng giọng nói của trình duyệt. Cách xử lý phụ thuộc vào trình duyệt và cấu hình. Không cần khóa API.
+web-speech-no-api-key: Không cần khóa API. Web Speech API miễn phí và được tích hợp trong trình duyệt.
+recognition-language: Ngôn ngữ nhận dạng
+recognition-language-description: Chọn ngôn ngữ nhận dạng giọng nói
+continuous-recognition: Nhận dạng liên tục
+continuous-recognition-description: Tiếp tục lắng nghe thay vì dừng sau mỗi câu
+interim-results-title: Hiện kết quả tạm thời
+interim-results-description: Hiện kết quả nhận dạng từng phần trong lúc bạn nói
+transcription-test: Kiểm tra chuyển giọng nói thành văn bản
+transcription-test-description: Kiểm tra phiên âm Web Speech API bằng thiết bị âm thanh đã chọn. Thử nghiệm này luôn dùng Web Speech API dù nhà cung cấp nghe mặc định là gì.
+web-speech-unavailable: Web Speech API không khả dụng trong trình duyệt này
+audio-input-device: Thiết bị âm thanh đầu vào
+audio-test-device-description: Chọn thiết bị âm thanh đầu vào để kiểm tra
+audio-input-placeholder: Chọn thiết bị âm thanh đầu vào
+audio-test-device-required: Hãy chọn thiết bị âm thanh đầu vào để kiểm tra
+transcription-error: Lỗi phiên âm
+streaming-description: 'Chế độ truyền trực tiếp: Bản phiên âm xuất hiện trong lúc bạn nói (Web Speech API)'
+transcription-result: Kết quả phiên âm
+streaming-transcription: 'Bản phiên âm hiện tại (truyền trực tiếp):'
+final-transcription: 'Bản phiên âm cuối cùng:'
+transcription-empty: Chưa có bản phiên âm. Nhấp bắt đầu kiểm tra giọng nói rồi nói vào micrô.
+provider-label: 'Nhà cung cấp:'
+language-label: 'Ngôn ngữ:'
+mode-label: 'Chế độ:'
+streaming-mode: Truyền trực tiếp (thời gian thực)
+continuous-label: 'Liên tục:'
+interim-results-label: 'Kết quả tạm thời:'
+stop-test: Dừng kiểm tra
+transcribing: Đang phiên âm…
+start-transcription-test: Bắt đầu kiểm tra giọng nói
+mimo-model-description: Chọn mô hình MiMo TTS để tạo giọng nói
+mimo-model-placeholder: Chọn mô hình MiMo…
+voice-style-placeholder: Mô tả giọng điệu, nhịp độ, cảm xúc và cách thể hiện…
+voice-sample-label: Mẫu giọng nói (data URI)
+voice-sample-description: Dán mẫu giọng nói base64 dưới dạng data URI. MiMo hỗ trợ mẫu MP3 và WAV tối đa 10 MB.
+mimo-test-text: Xin chào! Đây là thử nghiệm giọng nói Xiaomi MiMo.
+mimo-behavior-title: Cách hoạt động của mô hình MiMo
+mimo-preset-description: '`mimo-v2.5-tts` dùng danh sách giọng có sẵn bên dưới.'
+mimo-design-description: '`mimo-v2.5-tts-voicedesign` dùng lời nhắc phong cách để thiết kế giọng mới và không nhận `audio.voice`.'
+mimo-clone-description: '`mimo-v2.5-tts-voiceclone` dùng mẫu giọng đã dán và bỏ qua bộ chọn giọng có sẵn.'
+style-optional: Lời nhắc phong cách (tùy chọn)
+voice-design-prompt: Lời nhắc thiết kế giọng nói
+style-prompt: Lời nhắc phong cách
+clone-style-description: Điều khiển bằng ngôn ngữ tự nhiên tùy chọn, gửi dưới dạng tin nhắn người dùng. Để trống nếu chỉ nhân bản giọng.
+design-style-description: Điều khiển bằng ngôn ngữ tự nhiên gửi dưới dạng tin nhắn người dùng. Thiết kế giọng MiMo yêu cầu lời nhắc này và không dùng giọng có sẵn.
+preset-style-description: Điều khiển bằng ngôn ngữ tự nhiên gửi dưới dạng tin nhắn người dùng. Có thể để trống để giọng trung tính.
+speech-provider-error: Không thể khởi tạo nhà cung cấp giọng nói
+voice-sample-required: Mô hình nhân bản giọng yêu cầu mẫu âm thanh base64 ở định dạng data URI.
+resource-name: Tên tài nguyên
+resource-name-description: Tiền tố dùng trong https://<prefix>.services.ai.azure.com
+model-id: ID mô hình
+model-id-description: ID mô hình trên Azure AI Foundry
+api-version: Phiên bản API
+api-version-placeholder: Ví dụ 2025-04-01-preview
+api-version-description: Phiên bản API cho bản chụp mô hình
+gemini-model-description: Chọn mô hình Gemini TTS để tạo giọng nói
+gemini-model-placeholder: Chọn mô hình Gemini…
+speech-temperature-description: Điều chỉnh tính ngẫu nhiên khi tạo giọng nói. Giá trị thấp dễ dự đoán hơn, giá trị cao sáng tạo hơn.
+gemini-test-text: Xin chào! Đây là thử nghiệm giọng nói Google Gemini.
+access-key-id: ID khóa truy cập
+access-key-secret: Khóa bí mật truy cập
+app-key: Khóa ứng dụng
+app-key-placeholder: Nhập AppKey
+abort-session: Hủy phiên
+partial-result: Một phần
+waiting-for-audio: Đang chờ âm thanh…
+awaiting-final-result: Đang chờ kết quả cuối cùng…
+streaming: Đang truyền trực tiếp…
+start-realtime-transcription: Bắt đầu phiên âm thời gian thực
+aliyun-provider-error: Không thể khởi tạo nhà cung cấp Aliyun NLS.
+aliyun-stream-error: Aliyun NLS bất ngờ trả về kết quả không truyền trực tiếp.
+onboarding-api-key-description: Nhập khóa API của nhà cung cấp đã chọn.
+onboarding-base-url-description: Nhập URL cơ sở cho API của nhà cung cấp.
+unknown-error: Lỗi không rõ
+azure-api-key: Khóa API Azure OpenAI
+internal-region: '{region} (nội bộ)'

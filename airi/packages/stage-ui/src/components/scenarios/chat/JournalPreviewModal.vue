@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ScrollableArea } from '@proj-airi/ui'
 import { storeToRefs } from 'pinia'
+import { useI18n } from 'vue-i18n'
 
 import { useJournalPreviewStore } from '../../../stores/journal-preview'
 import { MarkdownRenderer } from '../../markdown'
@@ -8,6 +9,8 @@ import { MarkdownRenderer } from '../../markdown'
 const store = useJournalPreviewStore()
 const { previewModal } = storeToRefs(store)
 const { closePreview, downloadImage } = store
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -35,7 +38,7 @@ const { closePreview, downloadImage } = store
               <button
                 v-if="previewModal.type === 'image'"
                 :class="['rounded-full p-1 text-neutral-400 transition-colors', 'hover:bg-neutral-100 hover:text-neutral-600', 'dark:hover:bg-neutral-800 dark:hover:text-neutral-200']"
-                title="Download image"
+                :title="translateCompanion('companion-extra.download-image-d6f34a')"
                 @click="downloadImage(previewModal.content, previewModal.title)"
               >
                 <div i-solar:download-minimalistic-bold-duotone class="text-lg" />

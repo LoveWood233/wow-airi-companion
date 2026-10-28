@@ -1,5 +1,6 @@
 -- Equipment fragments share the existing grid with normal state frames.
 local _, ns = ...
+local L = ns.L or function(text) return text end
 local Transfer = {}
 ns.Transfer = Transfer
 local Protocol = ns.Protocol
@@ -429,5 +430,5 @@ end
 function Transfer.Current(stateFrame) return heldFrame or stateFrame end
 
 function Transfer.Status()
-    return string.format("装备传输：缓存 %d/6 · 比较 %d/6 · 换装结果 %d/10 · 全身装备 %s · 过载/编码跳过 %d · 状态与数据每0.25秒交替", #records, #comparisons, #swaps, gear and (gearPart .. "/" .. #gear.frames) or "无", dropped)
+    return string.format(L("装备传输：缓存 %d/6 · 比较 %d/6 · 换装结果 %d/10 · 全身装备 %s · 过载/编码跳过 %d · 状态与数据每0.25秒交替"), #records, #comparisons, #swaps, gear and (gearPart .. "/" .. #gear.frames) or L("无"), dropped)
 end

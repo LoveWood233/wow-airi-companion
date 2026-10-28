@@ -3,6 +3,7 @@ import { useAuthStore } from '@proj-airi/stage-ui/stores/auth'
 import { useCharacterStore } from '@proj-airi/stage-ui/stores/characters'
 import { GhostButton } from '@proj-airi/ui'
 import { computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const characterStore = useCharacterStore()
 const authStore = useAuthStore()
@@ -59,6 +60,8 @@ const characters = computed(() => Array.from(characterStore.characters.values())
     priceCredit: char.priceCredit,
   }
 }))
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -118,7 +121,7 @@ const characters = computed(() => Array.from(characterStore.characters.values())
                 'dark:bg-neutral-950/50 hover:dark:bg-neutral-900/65 active:dark:bg-neutral-900/90',
                 'transition duration-200 ease-in-out',
               ]"
-              aria-label="Options for character"
+              :aria-label="translateCompanion('companion-extra.options-for-character-26b5b4')"
             >
               <div :class="['i-solar-menu-dots-bold inline-block']" />
             </button>
@@ -152,7 +155,7 @@ const characters = computed(() => Array.from(characterStore.characters.values())
                     </div>
                   </div>
                   <button
-                    aria-label="Connect"
+                    :aria-label="translateCompanion('companion-extra.connect-b65463')"
                     :class="[
                       'px-2 py-1 flex flex-row items-center gap-1',
                     ]"
@@ -170,7 +173,7 @@ const characters = computed(() => Array.from(characterStore.characters.values())
                 </div>
                 <div :class="['grid grid-cols-3 items-center']">
                   <div :class="['flex items-center justify-start']">
-                    <GhostButton size="sm" aria-label="Bookmark" @click="characterStore.bookmark(character.id)">
+                    <GhostButton size="sm" :aria-label="translateCompanion('companion-extra.bookmark-441da1')" @click="characterStore.bookmark(character.id)">
                       <div
                         :class="[
                           character.bookmarked ? 'i-solar-star-bold' : 'i-solar-star-linear',
@@ -189,7 +192,7 @@ const characters = computed(() => Array.from(characterStore.characters.values())
                     </GhostButton>
                   </div>
                   <div :class="['flex items-center justify-center']">
-                    <GhostButton size="sm" aria-label="Like" @click="characterStore.like(character.id)">
+                    <GhostButton size="sm" :aria-label="translateCompanion('companion-extra.like-c7e02c')" @click="characterStore.like(character.id)">
                       <div
                         :class="[
                           character.liked ? 'i-solar-heart-bold' : 'i-solar-heart-outline',
@@ -228,7 +231,7 @@ const characters = computed(() => Array.from(characterStore.characters.values())
                           'text-neutral-100 dark:text-neutral-900',
                         ]"
                       >
-                        Chat
+                        {{ translateCompanion('companion-extra.chat-2ced57') }}
                       </span>
                     </div>
                   </div>

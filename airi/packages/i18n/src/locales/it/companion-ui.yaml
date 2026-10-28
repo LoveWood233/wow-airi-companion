@@ -1,0 +1,45 @@
+app:
+  name: Compagno di WoW
+titles:
+  main: '{name}'
+  settings: Compagno di WoW · Impostazioni
+  about: Informazioni su {name}
+  editor: Compagno di WoW · Editor
+  onboarding: Benvenuto in {name}
+  dashboard: Compagno di WoW · Pannello
+  overlay: Compagno di WoW · Sovrapposizione desktop
+chat:
+  ask: Chiedi a {name}…
+errors:
+  screen-capture: Nessuna sorgente di acquisizione schermo disponibile. Controlla
+    l'autorizzazione alla registrazione dello schermo per {name}.
+about:
+  version: Versione
+  branch: Ramo
+  commit: Commit
+  built-on: Compilato il
+  about: Informazioni
+  build-info: Informazioni sulla compilazione dell'applicazione
+menu:
+  file: File
+  edit: Modifica
+  view: Visualizza
+  window: Finestra
+  close: Chiudi finestra
+  quit: Esci
+  undo: Annulla
+  redo: Ripeti
+  cut: Taglia
+  copy: Copia
+  paste: Incolla
+  select-all: Seleziona tutto
+  reload: Ricarica
+  force-reload: Forza ricarica
+  devtools: Strumenti per sviluppatori
+  actual-size: Dimensioni reali
+  zoom-in: Ingrandisci
+  zoom-out: Riduci
+  fullscreen: Attiva/disattiva schermo intero
+  minimize: Riduci a icona
+  zoom: Ingrandisci finestra
+  front: Porta tutto in primo piano

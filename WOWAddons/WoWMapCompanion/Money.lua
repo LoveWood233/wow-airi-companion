@@ -1,5 +1,6 @@
 -- Account-local identity and per-character copper counters survive reloads.
 local _, ns = ...
+local L = ns.L or function(text) return text end
 local Money = {}
 ns.Money = Money
 local MAX_INTEGER = 9007199254740991
@@ -68,6 +69,6 @@ function Money.Sample(guid, online)
 end
 
 function Money.Format(copper)
-    if copper == nil then return "金币暂不可用" end
-    return string.format("%.0f金 %d银 %d铜", math.floor(copper / 10000), math.floor(copper / 100) % 100, copper % 100)
+    if copper == nil then return L("金币暂不可用") end
+    return string.format(L("%.0f金 %d银 %d铜"), math.floor(copper / 10000), math.floor(copper / 100) % 100, copper % 100)
 end

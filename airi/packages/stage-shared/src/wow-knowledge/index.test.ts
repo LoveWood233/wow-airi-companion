@@ -8,7 +8,7 @@ function hasAlias(entries: ReturnType<typeof searchWowKnowledge>['entries'], ali
   return entries.some(entry => entry.aliases.some(value => value.toLowerCase() === alias.toLowerCase()))
 }
 
-describe('Warcraft reference retrieval', () => {
+describe('warcraft reference retrieval', () => {
   it('explains Chinese DZ offline without assuming a game version', () => {
     const result = searchWowKnowledge({ text: 'DZ是什么意思', locale: 'en' })
     expect(result.games).toEqual([])

@@ -1,5 +1,6 @@
 <script setup lang="ts" generic="T extends Record<string, any> | any">
 import { computed, useSlots } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const props = withDefaults(defineProps<{
   steps: T[]
@@ -44,6 +45,8 @@ function next() {
 function goToStep(index: number) {
   value.value = index
 }
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -61,7 +64,7 @@ function goToStep(index: number) {
       </div>
       <div v-else>
         <p class="text-xs text-neutral-500/50 dark:text-neutral-400">
-          Step {{ value + 1 }} of {{ steps.length }}
+          {{ translateCompanion('companion-extra.step-dc416e') }} {{ value + 1 }} {{ translateCompanion('companion-extra.of-de04fa') }} {{ steps.length }}
         </p>
       </div>
 
@@ -127,7 +130,7 @@ function goToStep(index: number) {
               class="rounded bg-neutral-200 px-3 py-1 text-xs text-neutral-700 disabled:cursor-not-allowed dark:bg-neutral-700 hover:bg-neutral-300 dark:text-neutral-200 disabled:opacity-50 dark:hover:bg-neutral-600"
               @click="back"
             >
-              Back
+              {{ translateCompanion('companion-extra.back-b52b36') }}
             </button>
           </slot>
           <slot name="next-button" :next="next" :is-disabled="false" :is-last="isLastStep">

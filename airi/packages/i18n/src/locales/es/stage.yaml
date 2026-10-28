@@ -4,7 +4,7 @@ character-switcher:
   empty: Aún no hay personajes
   failed: No se pudo cambiar de personajes. Inténtelo de nuevo.
 mobile-tools:
-  sign-in: Iniciar sesión en AIRI
+  sign-in: Iniciar sesión en Compañero de WoW
   account-description: Cuenta y preferencias
   sound: Sonido
   character-voice: Voz del personaje
@@ -18,6 +18,8 @@ mobile-tools:
   view: Vista
   close-view: Guardar y cerrar controles de vista
   hearing: Audición
+  menu: Menú
+  menu-unread: Menú, {count} notificaciones sin leer
 chat:
   provider-configuration:
     title: El proveedor de chat no está configurado
@@ -33,7 +35,8 @@ chat:
   voice-composer:
     audio: Mensaje de voz
     transcription: Dictado
-    hold-hint: Mantén pulsado para grabar. Haz clic para cambiar entre mensaje de voz y dictado. Pulsa Enter para grabar sin mantener pulsado.
+    hold-hint: Mantén pulsado para grabar. Haz clic para cambiar entre mensaje de
+      voz y dictado. Pulsa Enter para grabar sin mantener pulsado.
     listening: Escuchando…
     lock: Desliza hacia arriba para bloquear
     cancel-hint: Desliza hacia la izquierda para cancelar
@@ -45,7 +48,8 @@ chat:
     discard: Descartar mensaje de voz
     failed: La entrada de voz falló
     configure-title: Configurar Audición
-    configure-description: Selecciona un proveedor y un modelo de transcripción en Audición para usar el dictado.
+    configure-description: Selecciona un proveedor y un modelo de transcripción en
+      Audición para usar el dictado.
     configure-action: Abrir Audición
     mode: Entrada de voz
     auto-send: Enviar al detener la grabación
@@ -53,7 +57,9 @@ chat:
     system-default: Predeterminado del sistema
     listen: Escuchar continuamente
     push-to-talk: Pulsar para hablar
-    push-to-talk-unavailable: Este dispositivo no tiene tecla de pulsar para hablar, así que AIRI no escucha. Cambia el modo de entrada en los ajustes de Audición.
+    push-to-talk-unavailable: Este dispositivo no tiene tecla de pulsar para hablar,
+      así que Compañero de WoW no escucha. Cambia el modo de entrada en los
+      ajustes de Audición.
     wake-word: Escuchar palabras de activación
     hearing-settings: Más ajustes de Audición…
     options-hint: Pasa el cursor o haz clic derecho para ver las opciones
@@ -90,7 +96,9 @@ chat:
   images:
     empty: Comparte un pensamiento o una imagen.
     use-vision: Usar el modelo de visión para las imágenes del chat
-    use-vision-description: Elige un proveedor y modelo debajo. Lee las imágenes adjuntas antes de que el modelo de chat responda. Sin un modelo de visión, las imágenes van directamente al modelo de chat.
+    use-vision-description: Elige un proveedor y modelo debajo. Lee las imágenes
+      adjuntas antes de que el modelo de chat responda. Sin un modelo de visión,
+      las imágenes van directamente al modelo de chat.
     attach: 'Adjuntar imagen'
     remove: 'Eliminar {name}'
     unsupported: 'Usar imágenes PNG, JPEG, WebP o GIF.'
@@ -98,7 +106,8 @@ chat:
     too-many: 'Adjunte hasta {count} imágenes a la vez.'
     total-too-large: 'Todas las imágenes adjuntas deben ser en total 3 MB o menos.'
     read-failed: 'No se pudo leer esta imagen. Inténtalo de nuevo.'
-    no-description: 'El modelo de visión no devolvió ninguna descripción de la imagen. Compruebe Configuración → Módulos → Visión e inténtelo de nuevo.'
+    no-description: 'El modelo de visión no devolvió ninguna descripción de la
+      imagen. Compruebe Configuración → Módulos → Visión e inténtelo de nuevo.'
     reading: 'Leyendo imágenes...'
     description: 'Imagen adjunta'
   actions:
@@ -110,6 +119,7 @@ chat:
     character-name:
       core-system: Sistema Central
       you: Tu
+      airi: Compañero de WoW
   reply:
     cancel: Cancelar respuesta
     message: Mensaje
@@ -134,6 +144,84 @@ chat:
     cloud-badge: Sincronizado en la nube
     new-chat-fallback: Nuevo Chat
     delete: Eliminar conversación
+  notice:
+    label: Informe en segundo plano de {name}
+  background-tasks:
+    label: Tareas en segundo plano
+    stop: Detener {name}
+    dismiss: Descartar {name}
+    status:
+      running: En curso
+      done: Completado
+      failed: Sin terminar
+      interrupted: Detenido
+  judgment:
+    running: Evaluando {name}
+    judged: '{name} evaluado'
+    invalid: No se pudo evaluar {name}
+  judgment-tool-call:
+    answer: Respuesta
+    next: Después
+    reply: Responder normalmente
+    stay-quiet: Guardar silencio
+    hint: 'Responder teniendo en cuenta: {text}'
+    recipe-steps: Usar receta {name}
+    recipe-decision: Evaluar {name}
+    recipe-background: Delegar a la receta {name}
+  recipe:
+    using: Usando receta {name}
+    loaded: Receta {name} utilizada
+    started: Delegado a la receta {name}
+    pending: La receta {name} espera aprobación
+    disabled: La receta {name} está desactivada
+    unknown: No se encontró la receta {name}
+    refused: La receta {name} no se inició
+    failed: La receta {name} no se inició
+  recipe-tool-call:
+    task: Tarea
+    usable: Recetas disponibles ahora
+    pending: Esta receta espera tu aprobación.
+    disabled: Esta receta está desactivada.
+    unknown: No hay recetas con este nombre.
+    refused: No se pudo iniciar la receta.
+  invoked-skill:
+    steps: Receta {name} utilizada
+    background: Delegado a la receta {name}
+    decision: Receta {name} utilizada
+    question: Pregunta
+    yes: Sí
+    no: No
+  home-assistant-tool-call:
+    shown: Mostrando {count} de {total} dispositivos
+  web-search-tool-call:
+    results: Resultados de «{query}» · {count}
+  tool-calls:
+    running-one: Usando {name}
+    failed-one: '{name} no terminó'
+    combo-running: Combo ×{count}
+    combo: Combo de {count} acciones
+    combo-failed: Combo de {count} acciones, {failed} fallidas
+    arguments: Argumentos
+    result: Resultado
+    copy: Copiar datos sin procesar
+    copied: Copiado
+    raw: Datos sin procesar
+    other: Otros datos
+    widget: Widget
+    rerun: Ejecutar de nuevo
+    card-making: Creando una tarjeta para esta herramienta…
+    card-remaking: Creando una tarjeta nueva…
+    card-regenerate: Crear tarjeta nueva
+    card-failed: No se pudo crear una tarjeta para esta herramienta
+    card-retry: Reintentar
+    state:
+      executing: En ejecución
+      done: Completado
+      error: Fallido
+  reply-card:
+    drawing: Dibujando una tarjeta…
+    raw: Datos sin procesar
+    card: Tarjeta
 render-error:
   title: '{renderer} no pudo renderizar este modelo'
   description: El modelo está seleccionado, pero el escenario no pudo mostrarlo.
@@ -145,12 +233,14 @@ startup:
   failed: Error al iniciar
   failed-resource: 'No se pudo cargar: {resource}'
   recover: Vuelve a intentarlo. Si falla de nuevo, abre los detalles de abajo.
-  recover-model: Vuelve a intentarlo o continúa sin personaje. Puedes seleccionar otro modelo más tarde.
+  recover-model: Vuelve a intentarlo o continúa sin personaje. Puedes seleccionar
+    otro modelo más tarde.
   details: '¿Qué ocurrió?'
   close-details: Cerrar detalles
   retry: Reintentar
   continue-without-model: Continuar de todas formas
-  model-timeout: El modelo del personaje tardó demasiado en cargar. Comprueba la conexión y vuelve a intentarlo.
+  model-timeout: El modelo del personaje tardó demasiado en cargar. Comprueba la
+    conexión y vuelve a intentarlo.
   resources:
     auth: ajustes de la cuenta
     modelIndex: lista de modelos
@@ -215,37 +305,47 @@ promo-banner:
       watermark: Luna
       fallbackLabel: Regalo lunar
       title: 7 días de inicio de sesión
-      eventName: Inicia sesión para reclamar stardust, marcos de avatar y regalos de lanzamiento.
+      eventName: Inicia sesión para reclamar stardust, marcos de avatar y regalos de
+        lanzamiento.
       reward: Hasta 120 Stardust
       cta: Iniciar sesión
+      date: 03/28 - 04/10
     build:
       watermark: Construir
       fallbackLabel: Bonificación de construcción
       title: Bono de caja de suministro
-      eventName: Termina las tareas de construcción para ganar cupones de bonificación y materiales dobles.
+      eventName: Termina las tareas de construcción para ganar cupones de bonificación
+        y materiales dobles.
       reward: 5 Cupones de Suministros + Materiales de Mejora
       cta: Ver tareas
+      date: 03/30 - 04/12
     spring:
       watermark: Primavera
       fallbackLabel: Dibujo Primaveral
       title: Cápsula de Carnaval
-      eventName: Participa en el sorteo de primavera para desbloquear burbujas, amuletos y muebles temáticos.
+      eventName: Participa en el sorteo de primavera para desbloquear burbujas,
+        amuletos y muebles temáticos.
       reward: Primera tirada a mitad de precio + Talismán raro
       cta: Participar ahora
+      date: 04/01 - 04/18
     coupon:
       watermark: Hablar
       fallbackLabel: Cupón
       title: Cupón Top-Up
-      eventName: Termina las interacciones del chat para reclamar cupones para la expansión y los paquetes de voz.
+      eventName: Termina las interacciones del chat para reclamar cupones para la
+        expansión y los paquetes de voz.
       reward: Ahorre 6 en 30 / Ahorre 15 en 68
       cta: Reclamar Cupón
+      date: 04/02 - 04/20
     home:
       watermark: Inicio
       fallbackLabel: Tema de sala
       title: Actualización del tema primavera
-      eventName: Desbloquea los temas de ventana, escritorio y lámparas nocturnas para actualizar tu habitación.
+      eventName: Desbloquea los temas de ventana, escritorio y lámparas nocturnas para
+        actualizar tu habitación.
       reward: Ticket de Dibujo de Tema gratis al iniciar sesión
       cta: Ver temas
+      date: 04/05 - 04/22
 waiting: Esperando...
 websocket-status:
   connected: Conectado
@@ -253,11 +353,12 @@ websocket-status:
   open-settings: Abrir ajustes de conexión
 computer-use:
   label: Usar el ordenador
-  description: Permite que esta ventana de chat examine y controle las aplicaciones nativas de este ordenador.
+  description: Permite que esta ventana de chat examine y controle las
+    aplicaciones nativas de este ordenador.
 status:
   preparing: Preparando el micrófono
   listening: Escuchando
-  paused: Escucha en pausa mientras AIRI habla
+  paused: Escucha en pausa mientras Compañero de WoW habla
   transcribing: Transcribiendo
   hearing-error: No se pudo transcribir el audio
   no-transcript: El texto reconocido aparecerá aquí.
@@ -268,3 +369,30 @@ status:
   sign-in-unconfirmed: No se pudo confirmar la sesión. Inicia sesión de nuevo.
   dismiss: Descartar
   configure-hearing: Selecciona y configura un proveedor de Audición en los ajustes.
+avatar-model-missing:
+  title: Ningún modelo seleccionado
+  unavailable-title: Este modelo no está en este dispositivo
+  description: Selecciona un modelo para mostrar a {name} en el escenario.
+  select: Seleccionar modelo
+notifications:
+  title: Notificaciones
+  open: Abrir notificaciones
+  open-unread: Abrir notificaciones, {count} sin leer
+  mark-all-read: Marcar todas como leídas
+  empty: Todavía no hay notificaciones
+  loading: Cargando notificaciones
+  back: Atrás
+  error: No se pudieron cargar las notificaciones.
+  retry: Reintentar
+  just-now: Ahora mismo
+  kinds:
+    flux-granted:
+      title: Has recibido {amount} Flux
+    subscription-renewed:
+      title: '{plan} renovado'
+      body: Activo hasta {periodEnd}.
+    subscription-payment-failed:
+      title: El pago de renovación falló
+      body: Lo volveremos a intentar el {retryAt}. Actualiza tu método de pago para
+        conservar {plan}.
+      body-no-retry: Actualiza tu método de pago para conservar {plan}.

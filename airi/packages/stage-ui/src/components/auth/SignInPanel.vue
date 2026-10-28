@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<{
   pendingProvider?: OAuthProvider | null
   error?: string | null
 }>(), {
-  title: 'Sign in to AIRI',
+  title: '魔兽陪伴精灵',
   subtitle: 'Choose a provider to continue your authorization flow.',
   pendingProvider: null,
   error: null,

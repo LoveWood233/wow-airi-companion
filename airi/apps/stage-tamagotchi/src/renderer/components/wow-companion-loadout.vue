@@ -6,6 +6,8 @@ import { Button, Collapsible, SettingsCard } from '@proj-airi/ui'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { formatCompanionError } from '../../shared/wow-companion-errors'
+
 const props = defineProps<{ game: GameVersion, history: EquipmentLoadoutsState, current: Snapshot | null, error: string | null }>()
 const { t, te, locale } = useI18n()
 const tn = (key: string) => t(`wow-companion.loadout.${key}`)
@@ -37,10 +39,10 @@ function statLabel(key: string) {
       </p>
     </header>
     <p v-if="history.storageError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
-      {{ history.storageError }}
+      {{ formatCompanionError(history.storageError, t) }}
     </p>
     <p v-if="error" role="status" :class="['break-words text-sm text-amber-700 dark:text-amber-300']">
-      {{ error }}
+      {{ formatCompanionError(error, t) }}
     </p>
     <p v-if="waiting" role="status" :class="['text-sm text-amber-700 dark:text-amber-300']">
       {{ tn('waiting') }}

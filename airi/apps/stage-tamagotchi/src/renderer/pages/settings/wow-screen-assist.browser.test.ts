@@ -31,8 +31,9 @@ async function mount(locale = 'en') {
   const screen = await render(WowScreenAssistSettings, {
     global: {
       plugins: [
-        createPinia(), router,
-        createI18n({ legacy: false, locale, fallbackLocale: 'en', messages: { en: { 'wow-companion': parse(enMessages) }, 'zh-Hans': { 'wow-companion': parse(zhMessages) } } }),
+        createPinia(),
+        router,
+        createI18n({ legacy: false, locale, fallbackLocale: 'en', messages: { 'en': { 'wow-companion': parse(enMessages) }, 'zh-Hans': { 'wow-companion': parse(zhMessages) } } }),
       ],
     },
   })

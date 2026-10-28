@@ -1,7 +1,13 @@
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
+</script>
+
 <template>
   <div class="transparent-preview">
     <div class="transparent-preview__label">
-      Transparent
+      {{ translateCompanion('companion-extra.transparent-0491f7') }}
     </div>
   </div>
 </template>

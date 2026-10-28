@@ -1,0 +1,79 @@
+web-speech-unavailable-title: Web Speech API 사용 불가
+web-speech-unavailable-description: 이 브라우저는 Web Speech API 음성 인식을 제공하지 않습니다. 다른 음성 인식 제공자나 음성 인식을 지원하는 브라우저를 선택하세요.
+web-speech-native-title: 브라우저 내장 무료 음성 인식
+web-speech-native-description: 브라우저에서 제공하는 음성 인식을 사용합니다. 처리 방식은 브라우저와 설정에 따라 다릅니다. API 키는 필요하지 않습니다.
+web-speech-no-api-key: API 키가 필요하지 않습니다. Web Speech API는 무료이며 브라우저에 내장되어 있습니다.
+recognition-language: 인식 언어
+recognition-language-description: 음성 인식 언어 선택
+continuous-recognition: 연속 인식
+continuous-recognition-description: 문장마다 멈추지 않고 계속 듣기
+interim-results-title: 중간 결과 표시
+interim-results-description: 말하는 동안 부분 인식 결과를 실시간으로 표시
+transcription-test: 음성 인식 테스트
+transcription-test-description: 선택한 오디오 장치로 Web Speech API를 테스트합니다. 기본 듣기 제공자와 관계없이 항상 Web Speech API를 사용합니다.
+web-speech-unavailable: 이 브라우저에서는 Web Speech API를 사용할 수 없습니다
+audio-input-device: 오디오 입력 장치
+audio-test-device-description: 테스트할 오디오 입력 장치 선택
+audio-input-placeholder: 오디오 입력 장치 선택
+audio-test-device-required: 테스트할 오디오 입력 장치를 선택하세요
+transcription-error: 음성 인식 오류
+streaming-description: '스트리밍 모드: 말하는 동안 텍스트가 실시간으로 표시됩니다(Web Speech API)'
+transcription-result: 음성 인식 결과
+streaming-transcription: '현재 음성 인식(스트리밍):'
+final-transcription: '최종 음성 인식 결과:'
+transcription-empty: 아직 인식 결과가 없습니다. '음성 인식 테스트 시작'을 누르고 마이크에 말하세요.
+provider-label: '제공자:'
+language-label: '언어:'
+mode-label: '모드:'
+streaming-mode: 스트리밍(실시간)
+continuous-label: '연속 인식:'
+interim-results-label: '중간 결과:'
+stop-test: 테스트 중지
+transcribing: 음성 인식 중…
+start-transcription-test: 음성 인식 테스트 시작
+mimo-model-description: 음성 생성에 사용할 MiMo TTS 모델 선택
+mimo-model-placeholder: MiMo 모델 선택…
+voice-style-placeholder: 음색, 속도, 감정, 말하는 방식을 설명하세요…
+voice-sample-label: 음성 샘플(데이터 URI)
+voice-sample-description: base64 음성 샘플을 데이터 URI로 붙여 넣으세요. MiMo는 최대 10MB의 MP3 및 WAV 샘플을 지원합니다.
+mimo-test-text: 안녕하세요! Xiaomi MiMo 음성 테스트입니다.
+mimo-behavior-title: MiMo 모델 동작
+mimo-preset-description: '`mimo-v2.5-tts`는 아래의 사전 설정된 목소리 목록을 사용합니다.'
+mimo-design-description: '`mimo-v2.5-tts-voicedesign`는 스타일 프롬프트로 새 목소리를 만들며 `audio.voice`를 받지 않습니다.'
+mimo-clone-description: '`mimo-v2.5-tts-voiceclone`는 붙여 넣은 음성 샘플을 사용하고 사전 설정 목소리 선택을 무시합니다.'
+style-optional: 스타일 프롬프트(선택 사항)
+voice-design-prompt: 목소리 디자인 프롬프트
+style-prompt: 스타일 프롬프트
+clone-style-description: 사용자 메시지로 보내는 선택적 자연어 지시입니다. 목소리 복제만 하려면 비워 두세요.
+design-style-description: 사용자 메시지로 보내는 자연어 지시입니다. MiMo 목소리 디자인에는 이 프롬프트가 필수이며 사전 설정 목소리는 사용하지 않습니다.
+preset-style-description: 사용자 메시지로 보내는 자연어 지시입니다. 중립적인 말투를 사용하려면 비워 두세요.
+speech-provider-error: 음성 제공자를 초기화하지 못했습니다
+voice-sample-required: 목소리 복제 모델에는 데이터 URI 형식의 base64 오디오 샘플이 필요합니다.
+resource-name: 리소스 이름
+resource-name-description: https://<prefix>.services.ai.azure.com 에 사용되는 접두사
+model-id: 모델 ID
+model-id-description: Azure AI Foundry의 모델 ID
+api-version: API 버전
+api-version-placeholder: '예: 2025-04-01-preview'
+api-version-description: 모델 스냅샷의 API 버전
+gemini-model-description: 음성 생성에 사용할 Gemini TTS 모델 선택
+gemini-model-placeholder: Gemini 모델 선택…
+speech-temperature-description: 음성 생성의 무작위성을 조절합니다. 낮은 값은 더 예측 가능한 음성을, 높은 값은 더 창의적인 음성을 만듭니다.
+gemini-test-text: 안녕하세요! Google Gemini 음성 테스트입니다.
+access-key-id: 액세스 키 ID
+access-key-secret: 액세스 키 시크릿
+app-key: 앱 키
+app-key-placeholder: AppKey 입력
+abort-session: 세션 중단
+partial-result: 부분 결과
+waiting-for-audio: 오디오 대기 중…
+awaiting-final-result: 최종 결과 대기 중…
+streaming: 스트리밍 중…
+start-realtime-transcription: 실시간 음성 인식 시작
+aliyun-provider-error: Aliyun NLS 제공자를 초기화하지 못했습니다.
+aliyun-stream-error: Aliyun NLS가 예기치 않게 비스트리밍 결과를 반환했습니다.
+onboarding-api-key-description: 선택한 제공자의 API 키를 입력하세요.
+onboarding-base-url-description: 제공자 API의 기본 URL을 입력하세요.
+unknown-error: 알 수 없는 오류
+azure-api-key: Azure OpenAI API 키
+internal-region: '{region}(내부)'

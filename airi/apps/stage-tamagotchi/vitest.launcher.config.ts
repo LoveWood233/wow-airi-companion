@@ -1,8 +1,9 @@
 import { env } from 'node:process'
 
 import vue from '@vitejs/plugin-vue'
-import { playwright } from '@vitest/browser-playwright'
 import UnoCss from 'unocss/vite'
+
+import { playwright } from '@vitest/browser-playwright'
 import { normalizePath, searchForWorkspaceRoot } from 'vite'
 import { defineConfig } from 'vitest/config'
 

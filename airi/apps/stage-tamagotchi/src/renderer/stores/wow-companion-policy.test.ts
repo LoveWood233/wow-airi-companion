@@ -131,9 +131,50 @@ describe('woW companion notification policy', () => {
     policy.accept(bridge(), defaultSettings, now)
     expect(policy.accept(bridge([], { snapshot: { ...snapshot, seq: 2, copper: 22345, earned: 10000 } }), defaultSettings, now + 1000)).toBeUndefined()
   })
+
+  it('keeps coordinate-only movement silent while preserving later real events', () => {
+    const policy = new CompanionPolicy()
+    policy.accept(bridge([], { snapshot: { ...snapshot, px: 1234, py: 5678 } }), defaultSettings, now)
+    expect(policy.accept(bridge([], { snapshot: { ...snapshot, seq: 2, tick: 2, px: 1250, py: 5700 } }), defaultSettings, now + 1000)).toBeUndefined()
+    expect(policy.accept(bridge([event(1)], { snapshot: { ...snapshot, seq: 3, tick: 3, px: 1250, py: 5700 } }), defaultSettings, now + 2000)?.type).toBe('level_up')
+  })
 })
 
 describe('woW companion input boundary', () => {
+  it('accepts map coordinate boundaries and normalizes published snapshots without a pair', () => {
+    for (const [px, py] of [[0, 10000], [10000, 0], [1234, 5678]]) {
+      const observation = parse(snapshotSchema, { ...snapshot, px, py })
+      expect(observation.px).toBe(px)
+      expect(observation.py).toBe(py)
+    }
+    expect(parse(snapshotSchema, snapshot)).toMatchObject({ px: null, py: null })
+    expect(parse(snapshotSchema, { ...snapshot, px: null, py: null })).toMatchObject({ px: null, py: null })
+  })
+
+  it.each([
+    { px: null },
+    { py: null },
+    { px: 1 },
+    { py: 1 },
+    { px: null, py: 1 },
+    { px: 1, py: null },
+    { px: undefined, py: undefined },
+    { px: -1, py: 0 },
+    { px: 10001, py: 0 },
+    { px: 0.5, py: 0 },
+    { px: Number.NaN, py: 0 },
+    { px: Number.POSITIVE_INFINITY, py: 0 },
+    { px: true, py: 0 },
+    { px: '1234', py: 5678 },
+  ])('rejects malformed or incomplete map coordinates: %j', (coordinates) => {
+    expect(() => parse(snapshotSchema, { ...snapshot, ...coordinates })).toThrow()
+    expect(() => parse(snapshotSchema, { ...snapshot, online: false, ...coordinates })).toThrow()
+  })
+
+  it.each([{ map: 0 }, { online: false }])('clears otherwise valid coordinates when their map observation is unavailable: %j', (change) => {
+    expect(parse(snapshotSchema, { ...snapshot, px: 1234, py: 5678, ...change })).toMatchObject({ px: null, py: null })
+  })
+
   it('accepts fast capture intervals and enforces the polling bounds', () => {
     const capture = { x: 8, y: 8, cellSize: 1, pollMs: 100, paused: false }
     expect(parse(captureSchema, capture).pollMs).toBe(100)

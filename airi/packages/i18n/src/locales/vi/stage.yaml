@@ -4,7 +4,7 @@ character-switcher:
   empty: Chưa có nhân vật
   failed: Không thể đổi nhân vật. Thử lại.
 mobile-tools:
-  sign-in: Đăng nhập AIRI
+  sign-in: Đăng nhập Bạn đồng hành WoW
   account-description: Tài khoản và tùy chọn
   sound: Âm thanh
   character-voice: Giọng nhân vật
@@ -18,6 +18,8 @@ mobile-tools:
   view: Xem
   close-view: Lưu và đóng điều khiển hiển thị
   hearing: Nghe
+  menu: Menu
+  menu-unread: Menu, {count} thông báo không đọc
 chat:
   provider-configuration:
     title: Nhà cung cấp trò chuyện chưa được cấu hình
@@ -53,7 +55,7 @@ chat:
     system-default: Mặc định hệ thống
     listen: Lắng nghe liên tục
     push-to-talk: Nhấn để nói
-    push-to-talk-unavailable: Thiết bị này không có phím nhấn để nói nên AIRI không lắng nghe. Hãy đổi chế độ nhập trong cài đặt Nghe.
+    push-to-talk-unavailable: Thiết bị này không có phím nhấn để nói nên Bạn đồng hành WoW không lắng nghe. Hãy đổi chế độ nhập trong cài đặt Nghe.
     wake-word: Lắng nghe từ đánh thức
     hearing-settings: Cài đặt Nghe khác…
     options-hint: Di chuột hoặc nhấp chuột phải để xem tùy chọn
@@ -91,16 +93,16 @@ chat:
     empty: Chia sẻ một suy nghĩ hoặc hình ảnh.
     use-vision: Dùng mô hình thị giác cho hình ảnh trong cuộc trò chuyện
     use-vision-description: Chọn nhà cung cấp và mô hình bên dưới. Mô hình đọc ảnh đính kèm trước khi mô hình trò chuyện trả lời. Nếu không có mô hình thị giác, ảnh được gửi trực tiếp đến mô hình trò chuyện.
-    attach: 'Đính kèm hình ảnh'
-    remove: 'Xóa {name}'
-    unsupported: 'Dùng ảnh PNG, JPEG, WebP hoặc GIF.'
-    too-large: 'Mỗi ảnh phải có dung lượng tối đa 3 MB.'
-    too-many: 'Đính kèm tối đa {count} ảnh mỗi lần.'
-    total-too-large: 'Tổng dung lượng ảnh đính kèm phải tối đa 3 MB.'
-    read-failed: 'Không thể đọc ảnh này. Hãy thử lại.'
-    no-description: 'Mô hình thị giác không trả về mô tả ảnh. Kiểm tra Cài Đặt → Module → Thị giác rồi thử lại.'
-    reading: 'Đang đọc ảnh…'
-    description: 'Ảnh đính kèm'
+    attach: Đính kèm hình ảnh
+    remove: Xóa {name}
+    unsupported: Dùng ảnh PNG, JPEG, WebP hoặc GIF.
+    too-large: Mỗi ảnh phải có dung lượng tối đa 3 MB.
+    too-many: Đính kèm tối đa {count} ảnh mỗi lần.
+    total-too-large: Tổng dung lượng ảnh đính kèm phải tối đa 3 MB.
+    read-failed: Không thể đọc ảnh này. Hãy thử lại.
+    no-description: Mô hình thị giác không trả về mô tả ảnh. Kiểm tra Cài Đặt → Module → Thị giác rồi thử lại.
+    reading: Đang đọc ảnh…
+    description: Ảnh đính kèm
   actions:
     reply: Trả lời
     retry: Thử lại
@@ -110,6 +112,7 @@ chat:
     character-name:
       core-system: Hệ thống lõi
       you: Bạn
+      airi: Bạn đồng hành WoW
   reply:
     cancel: Hủy trả lời
     message: Tin nhắn
@@ -121,7 +124,7 @@ chat:
     archive: Lưu trữ
     pin: Ghim
     actions: Hiện thao tác
-    row: 'Cuộc trò chuyện {n}'
+    row: Cuộc trò chuyện {n}
   sessions:
     delete-short: Xóa
     confirm-delete-short: Xác nhận xóa
@@ -134,6 +137,84 @@ chat:
     cloud-badge: Đã đồng bộ đám mây
     new-chat-fallback: Cuộc trò chuyện mới
     delete: Xóa đoạn hội thoại
+  notice:
+    label: Báo cáo nền từ {name}
+  background-tasks:
+    label: Nhiệm vụ nền
+    stop: Giữ lại {name}
+    dismiss: Thả {name}
+    status:
+      running: Làm việc trên
+      done: Làm xong
+      failed: Không hoàn thành
+      interrupted: Dừng lại.
+  judgment:
+    running: Đánh giá {name}
+    judged: Thẩm phán {name}
+    invalid: Không thể đánh giá {name}
+  judgment-tool-call:
+    answer: Trả lời
+    next: Rồi...
+    reply: Trả lời như thường lệ
+    stay-quiet: Đừng nói gì.
+    hint: 'Trả lời, ghi nhớ: {text}'
+    recipe-steps: Sử dụng công thức {name}
+    recipe-decision: Thẩm phán {name}
+    recipe-background: Quá trình công thức {name}
+  recipe:
+    using: Sử dụng công thức {name}
+    loaded: Công thức sử dụng {name}
+    started: Đưa theo công thức {name}
+    pending: Công thức {name} chờ phê duyệt
+    disabled: Công thức {name} bị tắt
+    unknown: Công thức {name} không tìm thấy
+    refused: Công thức {name} không bắt đầu
+    failed: Công thức {name} không bắt đầu
+  recipe-tool-call:
+    task: Nhiệm vụ
+    usable: Những công thức mà bạn có thể sử dụng ngay bây giờ
+    pending: Công thức này chờ đợi sự chấp thuận của bạn.
+    disabled: Công thức này đã bị tắt.
+    unknown: Không có công thức nào có tên này.
+    refused: Công thức không thể bắt đầu.
+  invoked-skill:
+    steps: Công thức sử dụng {name}
+    background: Đưa theo công thức {name}
+    decision: Công thức sử dụng {name}
+    question: Câu hỏi
+    yes: Vâng
+    no: Không.
+  home-assistant-tool-call:
+    shown: Hình ảnh {count} của thiết bị {total}
+  web-search-tool-call:
+    results: Kết quả cho "{query}" · {count}
+  tool-calls:
+    running-one: Sử dụng {name}
+    failed-one: '{name} không hoàn thành'
+    combo-running: Combo ×{count}
+    combo: '{count} hit combo'
+    combo-failed: '{count} hit combo, {failed} bỏ lỡ'
+    arguments: Các lập luận
+    result: Kết quả
+    copy: Sao chép dữ liệu nguyên liệu
+    copied: Phiên bản
+    raw: Dữ liệu thô
+    other: Dữ liệu khác
+    widget: Widget
+    rerun: Chạy lại.
+    card-making: Làm thẻ cho công cụ này...
+    card-remaking: Làm một tấm thẻ mới...
+    card-regenerate: Làm một thẻ mới
+    card-failed: Không thể làm một thẻ cho công cụ này
+    card-retry: Thử lại đi.
+    state:
+      executing: Đi chạy
+      done: Làm xong
+      error: Thất bại
+  reply-card:
+    drawing: Chụp một tấm thẻ...
+    raw: Dữ liệu thô
+    card: Thẻ
 render-error:
   title: '{renderer} không thể hiển thị mô hình này'
   description: Mô hình đã được chọn nhưng sân khấu không thể hiển thị mô hình đó.
@@ -175,6 +256,7 @@ send-mode:
   title: Gửi key
   enter: Nhập
   double-enter: Nhập hai lần
+  ctrl-enter: Ctrl + Enter
 speech-output:
   mute: Tắt tiếng nói
   unmute: Bật tiếng nói
@@ -190,14 +272,14 @@ viewers:
   debug-menu:
     emotions: Cảm xúc
     emotions-btn:
-      angry: '😠 Giận dữ'
-      awkward: '😳 Ngại ngùng'
-      happy: '😄 Vui vẻ'
-      neutral: '🙂 Bình thường'
-      question: '🤔 Thắc mắc'
-      sad: '😫 Buồn bã'
-      surprised: '🤯 Ngạc nhiên'
-      think: '🤨 Suy nghĩ'
+      angry: 😠 Giận dữ
+      awkward: 😳 Ngại ngùng
+      happy: 😄 Vui vẻ
+      neutral: 🙂 Bình thường
+      question: 🤔 Thắc mắc
+      sad: 😫 Buồn bã
+      surprised: 🤯 Ngạc nhiên
+      think: 🤨 Suy nghĩ
     vrm:
       camera: Máy quay
       model:
@@ -261,7 +343,7 @@ computer-use:
 status:
   preparing: Đang chuẩn bị micrô
   listening: Đang lắng nghe
-  paused: Tạm dừng lắng nghe khi AIRI nói
+  paused: Tạm dừng lắng nghe khi Bạn đồng hành WoW nói
   transcribing: Đang phiên âm
   hearing-error: Không thể phiên âm âm thanh
   no-transcript: Lời nói được nhận dạng sẽ xuất hiện ở đây.
@@ -272,3 +354,29 @@ status:
   sign-in-unconfirmed: Không thể xác nhận phiên của bạn. Vui lòng đăng nhập lại.
   dismiss: Bỏ qua
   configure-hearing: Chọn và cấu hình nhà cung cấp Nghe trong Cài đặt.
+avatar-model-missing:
+  title: Không có mô hình được chọn
+  unavailable-title: Mô hình này không có trên thiết bị này
+  description: Chọn một mô hình để hiển thị {name} trên sân khấu.
+  select: Chọn mô hình
+notifications:
+  title: Thông báo
+  open: Thông báo mở
+  open-unread: Thông báo mở, {count} không đọc
+  mark-all-read: Đánh dấu tất cả như đã đọc
+  empty: Hiện chưa có thông báo
+  loading: Thông báo tải
+  back: Trở lại
+  error: Các thông báo không thể tải.
+  retry: Thử lại
+  just-now: Ngay bây giờ.
+  kinds:
+    flux-granted:
+      title: Bạn đã nhận được {amount} Flux
+    subscription-renewed:
+      title: '{plan} được gia hạn'
+      body: Hành động đến {periodEnd}.
+    subscription-payment-failed:
+      title: Việc thanh toán gia hạn đã thất bại
+      body: Chúng ta sẽ thử lại trên {retryAt}. Cập nhật phương thức thanh toán của bạn để giữ {plan}.
+      body-no-retry: Cập nhật phương thức thanh toán của bạn để giữ {plan}.

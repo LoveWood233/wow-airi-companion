@@ -1,0 +1,485 @@
+title: Compagno di WoW
+description: Insieme ad Azeroth. Leggi lo stato del personaggio e reagisci ai momenti importanti.
+product:
+  about-title: Informazioni su Compagno di WoW
+  description: Compagnia in World of Warcraft, chat vocale e gestione addon.
+  version: Versione
+  project: Progetto
+  third-party: Licenze di terze parti
+  license-note: Questo software usa componenti open source. I relativi avvisi di copyright e licenze restano nei file sorgente e distribuiti.
+  local-provider-note: Configura i servizi di chat e voce nelle impostazioni. Non serve un account dell'applicazione.
+connection: Connessione al gioco
+last-seen: Ultima osservazione
+demo-warning: Questi dati sono simulati. Non descrivono un personaggio reale.
+model-required: Seleziona un fornitore e un modello di chat in Compagno di WoW per attivare le risposte. La voce usa le impostazioni vocali esistenti.
+start-bridge: Compagno di WoW avvia il ponte locale quando attivi questa connessione. Mantieni visibile la griglia dell'addon. Su Windows serve Python 3.10 o successivo.
+player: Personaggio
+level: Livello
+zone-label: Posizione
+class-spec: ID classe / specializzazione
+faction: Fazione
+race: Razza
+identity-unknown: Sconosciuto
+factions:
+  Alliance: Alleanza
+  Horde: Orda
+  Neutral: Neutrale
+activity: Attività
+freshness: Osservazione
+dead: Morto
+combat: In combattimento
+exploring: Esplorazione
+current: Attuale
+historical: Ultimo stato noto
+no-character: Nessuna osservazione del personaggio. Controlla il ponte e le coordinate di acquisizione.
+preferences: Preferenze del compagno
+preferences-description: La connessione continua dopo aver chiuso questa pagina. Solo la finestra principale del personaggio genera risposte.
+options:
+  enabled: Attiva compagno
+  muted: Silenzia reazioni al gioco
+  quietInCombat: Resta in silenzio in combattimento
+  levelUp: Festeggia gli aumenti di livello
+  zone: Commenta nuove località
+  death: Reagisci alla morte
+  revive: Accogli la resurrezione
+  allowDemo: Consenti risposte agli eventi dimostrativi
+hints:
+  enabled: Mantieni lo stato attuale del gioco disponibile al personaggio.
+  muted: Continua ad aggiornare il contesto senza risposte spontanee al gioco.
+  quietInCombat: Conserva un evento importante fino alla fine del combattimento. Scarta gli eventi dopo 30 secondi.
+  levelUp: Rileva un livello superiore nella stessa sessione del personaggio.
+  zone: Reagisci a una nuova mappa o zona, rispettando il tempo di attesa.
+  death: Reagisci brevemente nel tono del personaggio selezionato, con battute su fazioni o razze quando appropriate.
+  revive: Reagisci quando il personaggio torna in vita.
+  allowDemo: Disattivato per impostazione predefinita. Le risposte di prova usano il modello e la voce configurati.
+cooldown: Secondi minimi tra le reazioni
+cooldown-description: Da 0 a 300 secondi. Durante l'attesa resta in coda un solo evento recente.
+capture: Calibrazione schermo
+capture-description: La griglia predefinita usa un pixel fisico per cella e occupa 64 × 64 pixel, il minimo per questo formato in bianco e nero. Le coordinate usano pixel fisici del desktop.
+capture-x: Sinistra della griglia (X)
+capture-y: Alto della griglia (Y)
+cell-size: Dimensione cella in pixel
+poll-ms: Intervallo di acquisizione in millisecondi
+pause-capture: Sospendi acquisizione
+capture-help: Usa /wowc compact per una griglia 64 × 64 e /wowc status per leggerne l'origine. Non coprire la griglia. Se le celle da un pixel sono sfocate, usa /wowc cell 2 e imposta qui Dimensione cella a 2.
+save-preferences: Salva preferenze
+save-capture: Applica calibrazione
+saved: Salvato.
+failed: Operazione non riuscita.
+demo: Test di connessione
+demo-description: Prova senza accedere al gioco. Gli eventi dimostrativi restano fuori dal contesto finché non li autorizzi sopra.
+demo-label: Dimostrazione
+start-demo: Avvia dimostrazione
+stop-demo: Torna all'acquisizione dal vivo
+actions:
+  level_up: Simula aumento di livello
+  zone: Cambia zona
+  death: Simula morte
+  revive: Simula resurrezione
+  combat: Attiva/disattiva combattimento
+events: Eventi recenti del gioco
+events-description: Sono osservazioni, non ricevute di consegna. Gli eventi silenziati o filtrati restano visibili qui.
+no-events: Nessun evento per ora.
+gold:
+  title: Registro dell'oro
+  description: Monitora i flussi di denaro per account locale dell'addon. I totali si aggiornano con la connessione e restano su questo computer.
+  current-balance: Denaro attuale del personaggio
+  current-unavailable: Denaro attuale non disponibile. Mantieni online un personaggio reale con acquisizione dal vivo per leggere il saldo.
+  empty: Nessuna osservazione di denaro reale. Installa addon e ponte aggiornati, poi accedi a ogni personaggio per avviare il registro.
+  storage-error: Impossibile caricare o salvare il registro. I totali non sono confermati su disco. Controlla l'errore e lo spazio disponibile.
+  unnamed-account: Account locale dell'addon
+  account-id: ID account
+  account-name: Etichetta account
+  account-name-placeholder: Per esempio, account principale
+  account-name-help: Massimo 64 caratteri. Lascia vuoto per rimuovere l'etichetta.
+  save-name: Salva etichetta
+  character-count: 'Personaggi registrati: {count}'
+  since: Monitoraggio desktop dal
+  earned: Entrate totali
+  spent: Uscite totali
+  net: Variazione netta
+  balance: Saldi registrati dei personaggi
+  character: Personaggio
+  realm: Reame
+  character-balance: Ultimo saldo
+  last-seen: Ultima osservazione
+  characters-description: Ultimi saldi noti e flussi registrati per questo account.
+  identity-note: Gli account usano un ID locale salvato dall'addon. Compagno di WoW non legge l'account di accesso. Assegna un'etichetta a ogni ID per riconoscerlo.
+  flow-note: I saldi iniziali non contano come entrate. Posta, scambi, depositi, prelievi e trasferimenti tra personaggi contano come flussi di denaro.
+  balance-note: I saldi coprono solo i personaggi osservati, ciascuno all'ultima osservazione. Non sono tutti attuali. La banca della Brigata è esclusa.
+  demo-note: I dati dimostrativi restano fuori dal registro. Le variazioni di denaro aggiornano il contesto senza risposte vocali spontanee.
+  money: '{sign}{gold}o {silver}a {copper}r'
+status:
+  disabled: Compagno disattivato
+  disconnected: Ponte non disponibile
+  waiting: In attesa del gioco
+  live: Personaggio dal vivo
+  stale: Acquisizione obsoleta
+  demo: Dati dimostrativi
+  paused: Acquisizione sospesa
+versions:
+  label: Versione di World of Warcraft
+  isolation: Ogni versione ha impostazioni, calibrazione, eventi, registri dell'oro e cronologie separate. Cambiare pagina scarta le modifiche non salvate.
+  retail:
+    name: World of Warcraft Retail
+    description: Preferenze del compagno e registri dell'oro per Retail.
+    capture-help: Usa /wowc compact per una griglia 64 × 64, poi /wowc status per leggerne l'origine. Bordi della finestra e altri monitor cambiano le coordinate. Non coprire la griglia. Se le celle sono sfocate, usa /wowc cell 2 e imposta Dimensione cella a 2.
+  forever:
+    name: 'World of Warcraft: Forever'
+    description: Preferenze del compagno e registri dell'oro indipendenti per Forever.
+    preview: Questa versione è preparata prima dell'uscita del client. La compatibilità dal vivo richiede una verifica dopo l'uscita. La connessione è disattivata per impostazione predefinita.
+    capture-help: Dopo aver installato l'addon Forever, usa /wowf compact per una griglia 64 × 64 e /wowf status per leggerne l'origine. Non coprire la griglia. Se le celle sono sfocate, usa /wowf cell 2 e imposta Dimensione cella a 2.
+level-history:
+  title: Cronologia livelli del personaggio
+  description: Compagno di WoW salva le osservazioni dei livelli su questo computer. Il tempo trascorso usa l'orologio reale e include il tempo offline.
+  empty: Nessuna cronologia livelli. Collega un personaggio reale per iniziare dal suo livello attuale.
+  storage-error: Impossibile caricare o salvare la cronologia livelli. Il salvataggio su disco non è confermato. Controlla l'errore e lo spazio disponibile.
+  current-character: Personaggio attuale
+  account: ID account locale
+  current-level: 'Ultimo livello osservato: {level}'
+  first-seen: Prima registrazione
+  complete-count: Intervalli completi per singolo livello
+  average: Intervallo completo medio
+  show-records: Mostra cronologia livelli
+  hide-records: Nascondi cronologia livelli
+  table-description: Tutte le variazioni salvate, dalle più recenti. Gli orari usano il fuso locale del computer.
+  level-change: Variazione di livello
+  recorded-at: Ora registrata
+  duration: Tempo per questo livello
+  source-title: Osservazione
+  unknown-duration: Sconosciuto
+  partial: Tempo dalla prima osservazione del livello precedente. Non rappresenta tutto il tempo trascorso a quel livello.
+  offline-note: L'intervallo include tempo offline, con altri personaggi e con Compagno di WoW chiuso. I dati restano dopo il riavvio.
+  observation-note: Compagno di WoW non recupera gli orari mancati. Una prima osservazione o una variazione dopo un'interruzione non prova l'orario dell'aumento.
+  average-note: La media usa solo intervalli completi di un livello. Esclude intervalli parziali, variazioni mancate, riduzioni di livello e cambi dell'orologio.
+  duration-days: '{days}g {hours}h {minutes}m {seconds}s'
+  duration-hours: '{hours}h {minutes}m {seconds}s'
+  duration-minutes: '{minutes}m {seconds}s'
+  duration-seconds: '{seconds}s'
+  source:
+    baseline: Prima osservazione. L'orario degli aumenti precedenti è sconosciuto.
+    live: Aumento di livello osservato durante l'acquisizione dal vivo.
+    gap: Variazione rilevata dopo un'interruzione o su più livelli. Orari degli aumenti sconosciuti.
+    decrease: Riduzione di livello osservata. Nessun intervallo di aumento applicabile.
+    clock-change: L'orologio del computer è cambiato. Impossibile misurare questo intervallo.
+equipment:
+  title: Cronologia acquisizione equipaggiamento
+  description: Compagno di WoW conserva gli ultimi dieci record di questa versione sul computer. Ogni nuovo record elimina il più vecchio quando sono dieci.
+  empty: Nessuna cronologia equipaggiamento. Gli oggetti già nelle borse non sono nuove acquisizioni.
+  bridge-update: Questo ponte fornisce solo dati del personaggio. Arresta il vecchio ponte autonomo e riavvia Compagno di WoW per leggere l'equipaggiamento con il ponte aggiornato.
+  capture-note: Usa un intervallo di 100 ms per domande rapide sull'equipaggiamento. Intervalli maggiori possono perdere ripetutamente frammenti dei dati.
+  historical: Record storico
+  character: Personaggio
+  realm: Reame
+  received: Ricevuto da Compagno di WoW
+  storage-error: Impossibile caricare o salvare la cronologia equipaggiamento. Il salvataggio non è confermato. Controlla l'errore e lo spazio disponibile.
+  unnamed: Oggetto {id}
+  unavailable: Non disponibile
+  item-level: Livello oggetto
+  observed: Osservato il
+  completeness: Disponibilità dei dati
+  infoComplete: Dettagli oggetto
+  statsComplete: Attributi numerici
+  tooltipComplete: Descrizione
+  complete: Letto
+  incomplete: Incompleto
+  truncated: Parte del testo è stata abbreviata
+  show-details: Mostra dettagli equipaggiamento
+  hide-details: Nascondi dettagli equipaggiamento
+  quality: Qualità
+  required-level: Livello richiesto
+  slot: Scomparto equipaggiamento
+  attributes: Attributi numerici
+  no-stats: Il gioco non ha restituito attributi numerici per questo oggetto.
+  tooltip: Effetti, bonus e descrizioni dei set
+  effect-note: La descrizione illustra l'oggetto. Non dimostra che un effetto o bonus del set sia attivo.
+  item-link: Link oggetto
+  session-note: I record restano dopo riavvii, cambi di personaggio, ripristini dell'acquisizione e dimostrazioni. Gli oggetti aggiunti alle borse possono provenire da acquisti, posta e prelievi.
+  history-note: La cronologia non descrive l'equipaggiamento attuale e non fornisce contesto dal vivo alla chat. Le proposte usano offerte idonee della sessione attuale.
+  read-error: Alcuni dati dell'equipaggiamento non sono disponibili.
+  qualities:
+    '0': Scarso
+    '1': Comune
+    '2': Non comune
+    '3': Raro
+    '4': Epico
+    '5': Leggendario
+    '6': Artefatto
+    '7': Cimelio
+    '8': Gettone WoW
+  stats:
+    ITEM_MOD_STRENGTH_SHORT: Forza
+    ITEM_MOD_AGILITY_SHORT: Agilità
+    ITEM_MOD_INTELLECT_SHORT: Intelletto
+    ITEM_MOD_STAMINA_SHORT: Tempra
+    ITEM_MOD_SPIRIT_SHORT: Spirito
+    ITEM_MOD_CRIT_RATING_SHORT: Indice di critico
+    ITEM_MOD_HASTE_RATING_SHORT: Celerità
+    ITEM_MOD_MASTERY_RATING_SHORT: Maestria
+    ITEM_MOD_VERSATILITY: Versatilità
+    ITEM_MOD_VERSATILITY_SHORT: Versatilità
+    ITEM_MOD_ARMOR_SHORT: Armatura
+    RESISTANCE0_NAME: Armatura
+    ITEM_MOD_ATTACK_POWER_SHORT: Potenza d'attacco
+    ITEM_MOD_SPELL_POWER_SHORT: Potenza magica
+    ITEM_MOD_DAMAGE_PER_SECOND_SHORT: Danni al secondo
+    ITEM_MOD_CR_AVOIDANCE_SHORT: Elusione
+    ITEM_MOD_CR_LIFESTEAL_SHORT: Ruba vita
+    ITEM_MOD_CR_SPEED_SHORT: Velocità
+    ITEM_MOD_LIFESTEAL_SHORT: Ruba vita
+    ITEM_MOD_AVOIDANCE_SHORT: Elusione
+    ITEM_MOD_SPEED_SHORT: Velocità
+    ITEM_MOD_DODGE_RATING_SHORT: Schivata
+    ITEM_MOD_PARRY_RATING_SHORT: Parata
+    ITEM_MOD_BLOCK_RATING_SHORT: Blocco
+    ITEM_MOD_DEFENSE_SKILL_RATING_SHORT: Difesa
+    ITEM_MOD_HIT_RATING_SHORT: Impatto
+    ITEM_MOD_EXPERTISE_RATING_SHORT: Perizia
+equipment-swaps:
+  title: Risultati delle modifiche all'equipaggiamento
+  description: L'addon propone miglioramenti chiari, scomparti vuoti e livelli oggetto superiori con guadagni primari e perdite secondarie. Ogni modifica richiede conferma.
+  confirmation: Conferma nel gioco. Scegliere Sì in Compagno di WoW mostra il passo successivo, senza cambiare l'equipaggiamento o inviare comandi al gioco.
+  empty: Nessun risultato di conferma in questa sessione del personaggio.
+  bridge-update: Questo ponte non fornisce risultati delle modifiche. Aggiorna addon e ponte, poi riavvia Compagno di WoW.
+  read-error: Alcuni risultati dell'equipaggiamento non sono disponibili.
+  historical: Ultimi risultati noti. Compagno di WoW non li usa come contesto dal vivo se la connessione o i risultati non sono disponibili.
+  observed: Ora del risultato
+  previous: Oggetto precedente
+  empty-slot: Scomparto vuoto
+  expired-reason: La domanda è scaduta. L'addon non ha effettuato la modifica.
+  scope-note: Questi record descrivono azioni passate. Un livello oggetto superiore non garantisce attributi o effetti del set migliori.
+  status:
+    equipped: Modifica confermata
+    declined: Rifiutato
+    failed: Non confermato
+    expired: Domanda scaduta
+  reason:
+    confirmed: L'addon ha confermato la modifica dopo la tua approvazione nel gioco.
+    user: Hai rifiutato la modifica nel gioco.
+    timeout: L'addon non ha confermato il risultato. Controlla l'equipaggiamento nel gioco.
+    combat: Il combattimento ha interrotto la richiesta. Conferma una nuova richiesta dopo il combattimento.
+    changed: L'oggetto o lo scomparto di destinazione è cambiato. Richiesta interrotta.
+    unavailable: Informazioni richieste sull'oggetto o funzioni del gioco non disponibili.
+    locked: L'oggetto era bloccato. Richiesta interrotta.
+    cursor: Il cursore teneva un oggetto. Richiesta interrotta.
+    dead: Il personaggio era morto. Richiesta interrotta.
+    restricted: Il gioco ha limitato l'azione. Richiesta interrotta.
+    disabled: La conferma equipaggiamento era disattivata. Richiesta interrotta.
+    left_world: Il personaggio è uscito dal mondo. Richiesta interrotta.
+  slots:
+    '1': Testa
+    '2': Collo
+    '3': Spalle
+    '4': Camicia
+    '5': Torso
+    '6': Vita
+    '7': Gambe
+    '8': Piedi
+    '9': Polsi
+    '10': Mani
+    '11': Dito 1
+    '12': Dito 2
+    '13': Monile 1
+    '14': Monile 2
+    '15': Indietro
+    '16': Mano primaria
+    '17': Mano secondaria
+    '18': A distanza
+    '19': Insegna
+equipment-prompt:
+  message: Congratulazioni per il nuovo equipaggiamento, {name}! È un'altra occasione per diventare più forte. {reason} Vuoi cambiare equipaggiamento?
+  message-player: "{player}, congratulazioni per il nuovo equipaggiamento, {name}! È un'altra occasione per diventare più forte. {reason} Vuoi cambiare equipaggiamento?"
+  message-player-tradeoff: "{player}, congratulazioni per il nuovo equipaggiamento, {name}! Può migliorare l'attributo primario. {reason} Vuoi cambiare equipaggiamento?"
+  reason:
+    stats: Gli attributi registrati migliorano chiaramente dal confronto (livello oggetto {oldLevel} → {newLevel}).
+    empty: Lo scomparto di destinazione è vuoto.
+    tradeoff: Livello oggetto {oldLevel} → {newLevel}, {primary} {oldPrimary} → {newPrimary}, ma {decreases}. Gli attributi comportano compromessi. Il beneficio complessivo non è garantito.
+    separator: ', '
+  accepted: Fai clic su “Conferma modifica” nel gioco. Compagno di WoW non invia comandi al gioco.
+  accept: Sì
+  decline: No, grazie
+  timeout: Scegli entro 10 secondi. Senza scelta, il promemoria si chiude. Le modifiche richiedono comunque conferma nel gioco.
+  description: Miglioramenti chiari e livelli oggetto superiori con guadagni primari possono proporre una modifica. Le perdite secondarie restano esplicite. Ogni modifica richiede conferma.
+idle-interaction:
+  title: Interazione fuori dal combattimento
+  messages:
+    '0': '{player}, dove vuoi che ti porti la prossima avventura?'
+    '1': "{player}, goditi questo momento tranquillo. Bevi dell'acqua e riposa. Resterò al tuo fianco."
+    '2': '{player}, quale pezzo di equipaggiamento vuoi sostituire prossimamente?'
+    '3': '{player}, qual è il tuo panorama preferito di Azeroth?'
+comparison:
+  title: Confronto all'acquisizione
+  missing: Nessun confronto corrispondente ricevuto. Il solo livello oggetto non dimostra un miglioramento.
+  historical: "Equipaggiamento e specializzazione osservati all'acquisizione:"
+  stale-spec: Questo è un confronto storico. Il personaggio o la specializzazione attuale è diverso o non disponibile.
+  type: Tipo di equipaggiamento
+  empty-slot: Scomparto vuoto
+  attribute: Attributo
+  difference: Variazione
+  item-level: Livello oggetto
+  unknown: Sconosciuto
+  limitation: Livello oggetto e attributo primario superiori possono richiedere conferma anche con perdite secondarie. Effetti, set, incavi e dati incompleti richiedono comunque verifica.
+  verdict:
+    upgrade: Miglioramento chiaro
+    not_upgrade: Nessun miglioramento per questo personaggio
+    review: Verifica richiesta
+  reason:
+    empty_slot: Un oggetto utilizzabile riempie uno scomparto vuoto
+    stats_upgrade: Gli attributi confrontati migliorano senza perdite registrate
+    unusable: L'oggetto non è attualmente utilizzabile
+    wrong_spec: L'oggetto non corrisponde alla specializzazione osservata
+    weaker_stats: Gli attributi confrontati sono inferiori
+    equivalent: Nessun attributo confrontato migliora
+    incomplete: Dati del confronto incompleti o con attributi non supportati
+    unknown_spec: Idoneità alla specializzazione sconosciuta
+    weapon_change: I tipi di equipaggiamento sono diversi
+    complex_item: Effetti o combinazioni di equipaggiamento richiedono verifica
+    stat_tradeoff: Gli attributi comportano compromessi
+    primary_upgrade_tradeoff: Livello oggetto e attributo primario superiori, con compromessi secondari. Decide la tua conferma.
+    no_target: Scomparto di destinazione non disponibile
+loadout:
+  title: Oggetti equipaggiati
+  description: Accesso, nuovi oggetti e modifiche aggiornano tutti i 19 scomparti. Compagno di WoW conserva l'ultima istantanea per ogni personaggio.
+  characters: Personaggi salvati
+  waiting: In attesa dell'istantanea completa dell'accesso attuale. I record esistenti restano storici.
+  empty: Nessuna istantanea ricevuta. Accedi con l'addon aggiornato e mantieni visibile la griglia di trasferimento.
+  received: Ricevuto
+  observed: Osservato
+  historical: Questa è l'ultima istantanea registrata, non una vista continua dal vivo.
+  unknown: Sconosciuto / non disponibile
+  empty-slot: Scomparto vuoto
+  incomplete: Alcune informazioni sugli oggetti sono incomplete o troncate.
+  note: Gli scomparti vuoti e sconosciuti sono distinti. Le descrizioni dei set non provano bonus attivi. Le istantanee non usano il limite di dieci acquisizioni.
+launcher:
+  title: Impostazioni di avvio del gioco
+  description: Scegli Battle.net o un'applicazione World of Warcraft. Salva la
+    posizione del file di applicazione per ogni versione del gioco.
+  configure: Configura l’avvio del gioco
+  target: Programma da avviare
+  targets:
+    battle-net: Battle.net
+    retail: World of Warcraft Retail
+    forever: World of Warcraft Forever
+    classic: World of Warcraft Classic
+  default-summary: 'Avvio rapido: {target}'
+  path-label: Percorso del programma {target}
+  path-description: Scegli il file .exe nella cartella per questa versione del
+    gioco. Per World of Warcraft Launcher.exe, scegli Battle.net. Non scegliere
+    scorciatoie o script.
+  path-placeholder: Seleziona un file .exe o inserisci il percorso completo
+  browse: Sfoglia programmi
+  make-default: Usa questo programma per l’avvio rapido
+  make-default-description: La barra del personaggio avvia questo programma salvato.
+  current-default: Questo programma è selezionato per l’avvio rapido.
+  save: Verifica e salva
+  clear: Rimuovi percorso salvato
+  retry: Ricarica impostazioni
+  launch-game: Avvia gioco
+  launch-battle-net: Avvia Battle.net
+  quick-launch: Avvio rapido del gioco
+  quick-launch-description: Inizia l'applicazione predefinita salvata. Se non è
+    configurata alcuna applicazione, aprire le impostazioni di avvio.
+  saved: Programma verificato e salvato.
+  cleared: Percorso salvato rimosso.
+  launched: Richiesta di avvio inviata.
+  unsaved: Verifica e salva le modifiche prima di avviare questo programma.
+  launch-note: Battle.net apre la sua applicazione. Il gioco può comunque
+    richiedere login o aggiornamenti. L'applicazione salvata viene controllata
+    prima di ogni avvio.
+  verified-program: Programma verificato
+  errors:
+    unsupported-platform: Iniziare il gioco da questa applicazione richiede Windows.
+    invalid-request: Le impostazioni di avvio sono invalide. Selezionare nuovamente
+      il gioco e la sua applicazione.
+    invalid-path: Inserire la posizione completa di un file di domanda locale. Non
+      aggiungere argomenti di riga di comando.
+    file-not-found: Il programma non è stato trovato. Selezionare la sua posizione attuale.
+    not-executable: Seleziona un programma Windows .exe. Non selezionare
+      collegamenti, script o cartelle.
+    invalid-signature: Il programma non ha una firma Blizzard valida. Seleziona il
+      programma ufficiale nella sua cartella di installazione.
+    wrong-product: Questa applicazione non corrisponde all'opzione Battle.net o
+      World of Warcraft selezionata.
+    wrong-version: Questa applicazione World of Warcraft è per una versione di gioco
+      diversa. Scegli la versione o l'applicazione del gioco corretta.
+    unrecognized-version: La versione del gioco non poteva essere verificata. Inizia
+      con Battle.net o aggiorna il compagno per questa versione.
+    inspection-failed: Il programma non poteva essere verificato. Controlla
+      l'accesso ai file e prova di nuovo.
+    not-configured: Nessuna applicazione è salvata per questa opzione. Configura e
+      salva prima la posizione del file.
+    storage-error: Non è possibile leggere o salvare le impostazioni di avvio.
+      Controllare l'accesso alla cartella dati dell'applicazione.
+    launch-failed: Non posso avviare l'applicazione. Controlla le autorizzazioni di
+      installazione e file.
+    busy: La domanda è già iniziata. Aspetta che finisca.
+    request-failed: Il servizio desktop non ha risposto. Prova di nuovo o riavvia il compagno.
+screen-assist:
+  title: Assistenza tramite schermate del gioco
+  description: Chiedi al tuo compagno di esaminare lo screenshot di Warcraft per
+    il terreno, le missioni di gioco o la guida NPC.
+  enabled: Acquisisci quando chiedo di vedere il gioco
+  enabled-description: Una richiesta esplicita acquisisce una schermata del gioco.
+    La chat normale non avvia acquisizioni.
+  image-use: La schermata viene inviata al fornitore di visione selezionato.
+    L’immagine originale non viene salvata nella cronologia locale della chat.
+  target: Finestra del gioco
+  target-description: La selezione automatica richiede una sola finestra di
+    Warcraft. Se sono aperte più versioni, scegline una. Chiudi le finestre
+    aggiuntive di quella versione.
+  games:
+    auto: Automatico
+    retail: Retail
+    forever: Forever
+    classic: Classic
+  configure-vision: Configura modello di visione
+  vision-description: Scegli un fornitore e un modello che supportano le immagini
+    nelle impostazioni Visione. Aprire queste impostazioni non acquisisce
+    schermate.
+  examples-title: Chiedi in chat o a voce
+  examples:
+    terrain: Puoi guardare il terreno davanti a me e aiutarmi a trovare un passaggio?
+    quest: La missione indica che il PNG è qui, ma non lo vedo. Puoi aiutarmi a
+      trovarlo?
+    scene: Guarda la schermata del gioco e spiega l’obiettivo della missione.
+  command: Per richiedere una schermata, inizia il messaggio con /look e aggiungi
+    la domanda. Dopo esserti mosso nel gioco, chiedi di nuovo per ottenere una
+    nuova immagine.
+  limits: Solo Windows. Mantieni il gioco visibile. Una schermata non conferma
+    collisioni, ingressi nascosti o fasi delle missioni. I consigli non
+    controllano il personaggio.
+  capturing: Acquisizione della finestra di Warcraft…
+  analyzing: Analisi della schermata del gioco…
+  ready: Schermata analizzata. Preparazione della risposta.
+  errors:
+    unsupported-platform: L'assistenza dello screenshot del gioco richiede Windows.
+    invalid-request: La versione del gioco selezionata è invalida. Selezionalo di
+      nuovo nelle impostazioni di assistenza per le riprese di schermo.
+    game-not-found: Non è stata trovata una finestra corrispondente a Warcraft. Apri
+      il gioco e riprova.
+    ambiguous-window: Molte finestre di gioco corrispondenti sono aperte.
+      Selezionare una versione del gioco o chiudere le finestre extra e
+      riprovare.
+    minimized-window: La finestra di gioco è ridotta al minimo. Riprendi e chiedi di nuovo.
+    unverified-game: Non riesco a verificare questa finestra di gioco. Usa
+      un'installazione ufficiale di Warcraft supportata.
+    capture-failed: Non posso scattare uno schermo di gioco. Mantenete il gioco
+      visibile e provate la modalità con finestre.
+    empty-frame: Lo screenshot è vuoto o nero. Tieni il gioco visibile e chiedi di nuovo.
+    capture-timeout: L'operazione di screenshot è finita. Aspetta un attimo e chiedi di nuovo.
+    busy: Un altro screenshot è in corso. Aspetta che finisca.
+    window-changed: La finestra del gioco è cambiata mentre scatto la schermata.
+      Chiedi di nuovo un nuovo screenshot.
+    vision-not-configured: Seleziona un fornitore e un modello di visione prima di
+      richiedere assistenza tramite schermate del gioco.
+    vision-failed: Il modello AI di analisi delle immagini non può leggere lo
+      screenshot. Controlla le impostazioni del modello e riprova.
+    no-description: Il modello di IA di analisi delle immagini non ha restituito
+      alcuna descrizione. Prova di nuovo o scegli un altro modello che supporti
+      le immagini.
+
+coordinates:
+  title: Coordinate sulla mappa
+  value: X {x} · Y {y}
+  unavailable: Non disponibili in questa osservazione
+  note: Posizione nella mappa attuale (0–100). Alcune aree non forniscono coordinate.

@@ -1,0 +1,88 @@
+save-to-computer-0c61d6: Enregistrer sur l’ordinateur
+failed-47cb70: (échec)
+saved-to-long-term-memory-40f70f: Enregistré dans la mémoire à long terme
+some-modules-haven-t-been-available-yet-2baa21: Certains modules ne sont pas encore disponibles…
+all-modules-are-ready-22de94: Tous les modules sont prêts !
+settings-3cc1d5: paramètres
+preparing-resources-ff2c87: Préparation des ressources…
+loading-b04ba4: Chargement…
+drag-here-to-move-dc8629: FAITES GLISSER ICI POUR DÉPLACER
+drag-to-move-0d84b3: Faire glisser pour déplacer
+dashboard-d87f47: Tableau de bord
+stale-86c16f: ⚠ OBSOLÈTE
+tutorial-2701a9: Tutoriel
+wind-142b57: Vent
+chance-of-rain-73cb4e: Probabilité de pluie
+humidity-65adb9: Humidité
+eta-3044d4: Arrivée estimée
+origin-44ab85: Départ
+destination-d42713: Destination
+distance-423208: Distance
+awaiting-first-generation-0991d8: En attente de la première génération…
+generated-prompt-368db9: Instruction générée
+remix-id-72babb: Identifiant du remix
+time-6c82e6: Heure
+cuipp-backend-linked-034bcf: SERVEUR CUIPP CONNECTÉ
+loading-extension-ui-7c266d: Chargement de l’interface de l’extension…
+this-module-is-registered-but-it-did-not-decl-c98d1d: Ce module est enregistré,
+  mais il n’a pas encore déclaré de source iframe à afficher.
+kit-91bf6f: Kit
+type-3deb74: Type
+runtime-c4740e: Environnement d’exécution
+revision-3beb9a: Révision
+iframe-353fb2: Iframe
+options-for-character-26b5b4: Options du personnage
+connect-b65463: Connecter
+bookmark-441da1: Ajouter aux favoris
+like-c7e02c: J’aime
+chat-2ced57: Discussion
+settings-c7f73b: Paramètres
+provider-catalog-03da1c: Catalogue des fournisseurs
+search-configured-ee69cd: Rechercher parmi les fournisseurs configurés…
+customize-options-b884b3: Personnaliser les options
+search-supported-providers-496667: Rechercher des fournisseurs compatibles…
+no-providers-d239f8: Aucun fournisseur
+no-audio-detected-680bfe: Aucun son détecté
+please-make-sure-that-the-correct-permissions-b47bf6: Vérifiez que les
+  autorisations sont accordées et que la source audio émet du son.
+reset-settings-9ba8d6: Réinitialiser les paramètres
+godot-stage-experimental-a81b5e: Scène Godot (expérimentale)
+godot-stage-experimental-is-running-bd3516: La scène Godot (expérimentale) est en cours d’exécution…
+step-dc416e: Étape
+of-de04fa: sur
+back-b52b36: Retour
+download-image-d6f34a: Télécharger l’image
+no-preview-e49000: Aucun aperçu
+remove-background-e19463: Supprimer l’arrière-plan
+add-custom-background-6613e1: Ajouter un arrière-plan personnalisé
+preview-f1fbb2: Aperçu
+blur-900aa9: Flou
+select-a-background-568528: Choisir un arrière-plan
+background-picker-c52c7c: Sélecteur d’arrière-plan
+options-for-display-models-71073d: Options des modèles de personnage
+loading-display-models-121bc7: Chargement des modèles de personnage…
+unavailable-preview-unavailable-preview-d9e79c: Aperçu indisponible
+preview-unavailable-preview-unavailable-8186d8: Aperçu indisponible
+model-name-981e71: Nom du modèle…
+models-f3798f: Modèles
+tachie-model-audit-report-ae0296: Rapport de vérification du modèle Tachie
+close-bbfa77: Fermer
+status-11dc9e: 'État :'
+emotions-55b719: 'Émotions :'
+canvas-3809d6: 'Canevas :'
+detected-8a1687: 'Détecté :'
+critical-issues-2d5aeb: Problèmes critiques
+warnings-1430f9: Avertissements
+ignored-032e96: 'Ignoré :'
+cancel-77dfd2: Annuler
+onboarding-8d49e0: Configuration initiale
+no-failed-checks-82f623: Aucune vérification en échec.
+download-a479c9: Télécharger
+voice-3091c8: Voix
+enter-the-voice-id-for-your-openai-compatible-04dd5f: Saisissez l’identifiant vocal de votre API compatible avec OpenAI
+model-cache-6532cf: Cache des modèles
+downloaded-inference-models-stored-in-browser-6b33b9: Modèles d’inférence téléchargés et conservés dans le cache du navigateur
+checking-cache-177e32: Vérification du cache…
+refresh-56e3ba: Actualiser
+about-6b21fb: À propos
+transparent-0491f7: Transparent

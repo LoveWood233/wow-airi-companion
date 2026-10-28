@@ -6,6 +6,8 @@ import { Button, Collapsible, SettingsCard } from '@proj-airi/ui'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { formatCompanionError } from '../../shared/wow-companion-errors'
+
 const props = defineProps<{ game: GameVersion, history: LevelHistoryState, current: Snapshot | null }>()
 const { t, locale } = useI18n()
 const tn = (key: string) => t(`wow-companion.level-history.${key}`)
@@ -69,7 +71,7 @@ function formatDuration(milliseconds: number | null) {
       </p>
     </header>
     <p v-if="history.storageError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
-      {{ tn('storage-error') }} {{ history.storageError }}
+      {{ tn('storage-error') }} {{ formatCompanionError(history.storageError, t) }}
     </p>
     <p v-if="!characters.length" :class="['text-sm text-neutral-500 dark:text-neutral-400']">
       {{ tn('empty') }}

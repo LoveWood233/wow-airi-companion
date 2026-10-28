@@ -1,0 +1,86 @@
+save-to-computer-0c61d6: บันทึกลงคอมพิวเตอร์
+failed-47cb70: (ไม่สำเร็จ)
+saved-to-long-term-memory-40f70f: บันทึกในความทรงจำระยะยาวแล้ว
+some-modules-haven-t-been-available-yet-2baa21: บางโมดูลยังไม่พร้อมใช้งาน…
+all-modules-are-ready-22de94: ทุกโมดูลพร้อมแล้ว!
+settings-3cc1d5: การตั้งค่า
+preparing-resources-ff2c87: กำลังเตรียมทรัพยากร…
+loading-b04ba4: กำลังโหลด…
+drag-here-to-move-dc8629: ลากที่นี่เพื่อย้าย
+drag-to-move-0d84b3: ลากเพื่อย้าย
+dashboard-d87f47: แดชบอร์ด
+stale-86c16f: ⚠ ข้อมูลล้าสมัย
+tutorial-2701a9: คู่มือ
+wind-142b57: ลม
+chance-of-rain-73cb4e: โอกาสฝนตก
+humidity-65adb9: ความชื้น
+eta-3044d4: เวลาถึงโดยประมาณ
+origin-44ab85: จุดเริ่มต้น
+destination-d42713: จุดหมาย
+distance-423208: ระยะทาง
+awaiting-first-generation-0991d8: กำลังรอการสร้างครั้งแรก…
+generated-prompt-368db9: พรอมป์ที่สร้าง
+remix-id-72babb: รหัสรีมิกซ์
+time-6c82e6: เวลา
+cuipp-backend-linked-034bcf: เชื่อมต่อส่วนหลัง CUIPP แล้ว
+loading-extension-ui-7c266d: กำลังโหลดส่วนติดต่อส่วนขยาย…
+this-module-is-registered-but-it-did-not-decl-c98d1d: ลงทะเบียนโมดูลนี้แล้ว แต่ยังไม่ได้ระบุแหล่ง iframe สำหรับแสดงผล
+kit-91bf6f: ชุด
+type-3deb74: ประเภท
+runtime-c4740e: สภาพแวดล้อมการทำงาน
+revision-3beb9a: รุ่นแก้ไข
+iframe-353fb2: Iframe
+options-for-character-26b5b4: ตัวเลือกตัวละคร
+connect-b65463: เชื่อมต่อ
+bookmark-441da1: บุ๊กมาร์ก
+like-c7e02c: ถูกใจ
+chat-2ced57: แชท
+settings-c7f73b: การตั้งค่า
+provider-catalog-03da1c: รายการผู้ให้บริการ
+search-configured-ee69cd: ค้นหาที่ตั้งค่าแล้ว…
+customize-options-b884b3: ปรับตัวเลือก
+search-supported-providers-496667: ค้นหาผู้ให้บริการที่รองรับ…
+no-providers-d239f8: ไม่มีผู้ให้บริการ
+no-audio-detected-680bfe: ไม่พบเสียง
+please-make-sure-that-the-correct-permissions-b47bf6: โปรดตรวจสอบว่าได้รับสิทธิ์ที่ถูกต้องและแหล่งเสียงกำลังเล่นเสียง
+reset-settings-9ba8d6: คืนค่าการตั้งค่า
+godot-stage-experimental-a81b5e: ฉาก Godot (ทดลอง)
+godot-stage-experimental-is-running-bd3516: ฉาก Godot (ทดลอง) กำลังทำงาน…
+step-dc416e: ขั้นตอน
+of-de04fa: จาก
+back-b52b36: ย้อนกลับ
+download-image-d6f34a: ดาวน์โหลดภาพ
+no-preview-e49000: ไม่มีภาพตัวอย่าง
+remove-background-e19463: ลบพื้นหลัง
+add-custom-background-6613e1: เพิ่มพื้นหลังเอง
+preview-f1fbb2: ดูตัวอย่าง
+blur-900aa9: เบลอ
+select-a-background-568528: เลือกพื้นหลัง
+background-picker-c52c7c: ตัวเลือกพื้นหลัง
+options-for-display-models-71073d: ตัวเลือกโมเดลแสดงผล
+loading-display-models-121bc7: กำลังโหลดโมเดลแสดงผล…
+unavailable-preview-unavailable-preview-d9e79c: แสดงตัวอย่างไม่ได้
+preview-unavailable-preview-unavailable-8186d8: แสดงตัวอย่างไม่ได้
+model-name-981e71: ชื่อโมเดล…
+models-f3798f: โมเดล
+tachie-model-audit-report-ae0296: รายงานตรวจสอบโมเดล Tachie
+close-bbfa77: ปิด
+status-11dc9e: 'สถานะ:'
+emotions-55b719: 'อารมณ์:'
+canvas-3809d6: 'ผืนภาพ:'
+detected-8a1687: 'ตรวจพบ:'
+critical-issues-2d5aeb: ปัญหาร้ายแรง
+warnings-1430f9: คำเตือน
+ignored-032e96: 'ละเว้น:'
+cancel-77dfd2: ยกเลิก
+onboarding-8d49e0: เริ่มต้นใช้งาน
+no-failed-checks-82f623: ไม่มีการตรวจสอบที่ล้มเหลว
+download-a479c9: ดาวน์โหลด
+voice-3091c8: เสียงพูด
+enter-the-voice-id-for-your-openai-compatible-04dd5f: ป้อนรหัสเสียงสำหรับ API ที่เข้ากันได้กับ OpenAI
+model-cache-6532cf: แคชโมเดล
+downloaded-inference-models-stored-in-browser-6b33b9: โมเดลประมวลผลที่ดาวน์โหลดเก็บไว้ในแคชเบราว์เซอร์
+checking-cache-177e32: กำลังตรวจสอบแคช…
+refresh-56e3ba: รีเฟรช
+about-6b21fb: เกี่ยวกับ
+transparent-0491f7: โปร่งใส

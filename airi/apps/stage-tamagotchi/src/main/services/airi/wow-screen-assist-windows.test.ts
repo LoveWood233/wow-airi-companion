@@ -1,5 +1,7 @@
 import type { GameCaptureWindow } from './wow-screen-assist-runtime'
 
+import { Buffer } from 'node:buffer'
+
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { WindowsGameCapture } from './wow-screen-assist-windows'
@@ -8,8 +10,14 @@ const electron = vi.hoisted(() => ({ getSources: vi.fn() }))
 vi.mock('electron', () => ({ desktopCapturer: { getSources: electron.getSources } }))
 
 const window: GameCaptureWindow = {
-  handle: '123', processId: 100, processStartedAt: '45678', path: 'C:\\Games\\_retail_\\Wow.exe',
-  title: 'World of Warcraft', game: 'retail', minimized: false, visible: true,
+  handle: '123',
+  processId: 100,
+  processStartedAt: '45678',
+  path: 'C:\\Games\\_retail_\\Wow.exe',
+  title: 'World of Warcraft',
+  game: 'retail',
+  minimized: false,
+  visible: true,
 }
 
 function thumbnail(width = 1920, height = 1080, pixels = Buffer.from([0, 0, 0, 255, 200, 210, 220, 255])) {
@@ -26,7 +34,7 @@ function thumbnail(width = 1920, height = 1080, pixels = Buffer.from([0, 0, 0, 2
 
 beforeEach(() => electron.getSources.mockReset())
 
-describe('Windows game frame capture', () => {
+describe('windows game frame capture', () => {
   it('selects only the verified native window handle, even when another source has the same title', async () => {
     const other = thumbnail()
     const game = thumbnail()

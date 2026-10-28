@@ -49,6 +49,10 @@
     },
     "./locales/*.yaml": {
       "default": "./dist/locales/*.yaml"
+    },
+    "./locales/*": {
+      "types": "./dist/locales/*/index.d.mts",
+      "default": "./dist/locales/*/index.mjs"
     }
   },
   "main": "./dist/index.mjs",

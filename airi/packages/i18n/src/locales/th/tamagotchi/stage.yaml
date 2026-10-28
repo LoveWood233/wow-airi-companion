@@ -3,7 +3,7 @@ operations:
   load-models-status:
     loading: กำลังโหลด
     ready: พร้อม
-'resource-island':
+resource-island:
   loading: กำลังเตรียมทรัพยากร...
   ready: ทรัพยากรพร้อมแล้ว
   preparing: กำลังเตรียมไฟล์โมเดล
@@ -13,35 +13,36 @@ docs:
     navbar:
       appearance:
         title: รูปลักษณ์
-'controls-island':
-  'fade-on-hover':
+controls-island:
+  fade-on-hover:
     enable: ซ่อนอัตโนมัติ
     disable: แสดงตลอด
-  'open-settings': เปิดการตั้งค่า
-  'open-chat': เปิดแชท
-  'hide-chat': ซ่อนแชท
-  'refresh': รีเฟรช
-  'center-main-window': ย้ายไปกึ่งกลางหน้าจอ
-  'open-hearing-controls': เปิดการควบคุมการฟัง
-  'enable-microphone': เปิดไมโครโฟน
-  'disable-microphone': ปิดไมโครโฟน
-  'drag-to-move-window': ลากเพื่อย้ายหน้าต่าง
-  'mute': ปิดเสียง
-  'unmute': เปิดเสียง
-  'switch-to-light-mode': สลับเป็นโหมดสว่าง
-  'switch-to-dark-mode': สลับเป็นโหมดมืด
-  'switch-to-system-mode': ใช้ธีมตามระบบ
-  'pin-on-top': ปักหมุดไว้บนสุด
-  'unpin-from-top': เลิกปักหมุดไว้บนสุด
-  'switch-profile': สลับโปรไฟล์
-  'close': ปิด
-  'expand': ขยาย
-  'collapse': ย่อ
-  'login': เข้าสู่ระบบ
-  'logging-in': กำลังเข้าสู่ระบบ...
-  'account': บัญชี
-  'logout': ออกจากระบบ
-'chat-window':
+  open-settings: เปิดการตั้งค่า
+  open-chat: เปิดแชท
+  hide-chat: ซ่อนแชท
+  refresh: รีเฟรช
+  center-main-window: ย้ายไปกึ่งกลางหน้าจอ
+  open-hearing-controls: เปิดการควบคุมการฟัง
+  enable-microphone: เปิดไมโครโฟน
+  disable-microphone: ปิดไมโครโฟน
+  drag-to-move-window: ลากเพื่อย้ายหน้าต่าง
+  mute: ปิดเสียง
+  unmute: เปิดเสียง
+  switch-to-light-mode: สลับเป็นโหมดสว่าง
+  switch-to-dark-mode: สลับเป็นโหมดมืด
+  switch-to-system-mode: ใช้ธีมตามระบบ
+  pin-on-top: ปักหมุดไว้บนสุด
+  unpin-from-top: เลิกปักหมุดไว้บนสุด
+  switch-profile: สลับโปรไฟล์
+  close: ปิด
+  expand: ขยาย
+  collapse: ย่อ
+  login: เข้าสู่ระบบ
+  logging-in: กำลังเข้าสู่ระบบ...
+  account: บัญชี
+  logout: ออกจากระบบ
+  open-wow-companion: การ์ดข้อมูล WoW
+chat-window:
   style:
     title: รูปแบบหน้าต่างแชท
     legacy: หน้าต่างแบบคลาสสิก
@@ -49,6 +50,7 @@ docs:
     floating-free: ลอยได้ทุกที่บนหน้าจอ
     floating-danmaku: ลอยแบบฟีดข้อความ
     pinned: อยู่บนสุดเสมอ
+    fullscreen: หน้าจอเต็ม พร้อมกับตัวละคร
   resize: ลากเพื่อปรับขนาดแชท
   move: ลากเพื่อย้ายแชท
   fold: ซ่อนแชท
@@ -73,7 +75,7 @@ widgets:
 inlay:
   dismiss: ปิด
 notice:
-  'fade-on-hover':
+  fade-on-hover:
     title: จางลงเมื่อเคอร์เซอร์อยู่ใกล้
     intro: ทำให้ตัวละครจางลงโดยอัตโนมัติเมื่อเคอร์เซอร์เลื่อนเข้ามาใกล้ ช่วยลดสิ่งรบกวนโดยยังมองเห็นตัวละครอยู่
     opacity: เมื่อเปิดใช้ ความทึบของ {targets} จะลดลงเหลือ {value} เมื่อเคอร์เซอร์อยู่ใกล้
@@ -86,6 +88,7 @@ notice:
     preparing: กำลังเตรียม…
     read-more: อ่านเพิ่มเติม
     preview-title: นี่คืออะไร?
+    value: '0'
 about:
   subtitle: เวอร์ชันเดสก์ท็อป
   current-version: เวอร์ชันปัจจุบัน
@@ -95,6 +98,7 @@ about:
     title: ลิงก์
     home: หน้าแรก
     documentation: เอกสาร
+    github: GitHub
   update:
     lane:
       label: ช่องทางอัปเดต
@@ -106,6 +110,7 @@ about:
       alpha: อัลฟา
       beta: เบตา
       nightly: รายคืน
+      canary: แคนารี
     status:
       downloading: กำลังดาวน์โหลดอัปเดต...
       error-prefix: ข้อผิดพลาด
@@ -130,3 +135,148 @@ about:
       title: มีอัปเดตใหม่
       description: เวอร์ชันใหม่ (v{version}) พร้อมให้ใช้งานแล้ว
       no-release-notes-markdown: _ไม่มีบันทึกประจำรุ่น_
+fullscreen-island:
+  settings: การตั้งค่า
+  chat: แชท
+  switch-to-dark-mode: เปลี่ยนเป็นโหมดที่มืด
+  switch-to-system-mode: ตามหัวข้อระบบ
+  switch-to-light-mode: เปลี่ยนไปสู่โหมดแสง
+  exit: ออกเต็มจอ
+fullscreen-surface:
+  resize: ดึงเพื่อเปลี่ยนขนาดแผ่น
+computer-use-tool-call:
+  help: ช่วยเหลือ
+  status:
+    completed: เสร็จแล้ว
+    failed: ผิดพลาด
+  display: การแสดง
+  built-in: สร้างใน
+  primary: ประเภทหลัก
+  logical-size: ขนาดที่สมเหตุสมผล
+  pixel-size: ขนาดปิกเซล
+  backend: จับ backend
+  fallback: เหตุผลการถอยหลัง
+  file: ไฟล์
+  window: หน้าต่าง
+  region: ภูมิภาค
+  main: หลัก
+  hidden: ปลอม
+  displays: โปรแกรมจอเดียว | {count}
+  windows: หน้าต่างเดียว | {count} หน้าต่าง
+  found: พบ "{query}"
+  matches: นัดเดียว | {count}
+  not-found: ไม่พบ "{query}"
+  clicked-text: คลิก "{query}"
+  options: ตัวเลือก
+  typed: ประเภท
+  pasted: กระดาน
+  pressed: กด
+  repeat: × {count}
+  interval: ทุก MS {ms}
+  hold: จัดไว้สําหรับ {ms} ms
+  steps: 1 ขั้นตอนตามลําดับ | {count} ขั้นตอนตามลําดับ
+  focused: โฟกัส "{query}"
+  app: แอป
+  process: กระบวนการ
+  control: การควบคุม
+  title: หัวข้อ
+  value: เนื้อหา
+  ax-path: เส้นทางการเข้าถึง
+  moved: ขยับตัวชี้ไป
+  clicked: คลิก
+  dragged: ถูกดึง
+  requested: การขอ
+  on-screen: บนจอ
+  start: เริ่มต้น
+  end: ปลาย
+  final: จุดสุดท้าย
+  duration: '{ms} ms'
+  normalized: คอร์ดไดนต์ที่ปกติ
+  click-count: × {count}
+  relative:
+    screen: ความสัมพันธ์กับจอ
+    window: เทียบกับหน้าต่าง
+    display: ความสัมพันธ์กับการแสดง
+  buttons:
+    left: ปุ่มซ้าย
+    right: ปุ่มขวา
+    middle: ปุ่มกลาง
+  clicks:
+    single: คลิกเดียว
+    double: คลิกสองครั้ง
+  delivery:
+    path: การจัดส่ง
+    verified: ผลที่ได้รับการตรวจสอบ
+    not-verified: ผลที่ไม่ได้ตรวจสอบ
+    disturbance: การขัดขวาง
+    mouse: หนู
+    focus: จดใจ
+    clipboard: คลิปบอร์ด
+    attempt: ทดลอง {index}
+    attempt-succeeded: ประสบความสําเร็จ
+    attempt-failed: ผิดพลาด
+  paths:
+    foreground_system_events: เหตุการณ์ระบบหน้า
+    window_targeted_keyboard: เหตุการณ์คีย์บอร์ดถูกส่งไปยังหน้าต่าง
+    ax_focus: ความสามารถในการเข้าถึง
+  disturbances:
+    none: ไม่มีใคร
+    temporary: ช่วงเวลาชั่วคราว
+    foreground: นําไปข้างหน้า
+    unknown: ไม่ทราบ
+  activated: เปลี่ยนเป็น {app}
+  in-front: ตอนนี้ข้างหน้า
+  front-is: '{app} อยู่ด้านหน้า'
+  front-unknown: ไม่สามารถเช็คแอพหน้าได้
+  permissions:
+    title: การอนุญาตระบบ
+    names:
+      screen_recording: การบันทึกจอ
+      screen_capture_kit: ScreenCaptureKit
+      accessibility: การเข้าถึง
+      automation_to_system_events: อัตโนมัติ (กิจกรรมระบบ))
+    states:
+      granted: สนใจ
+      missing: ไม่ยอมรับ
+      denied: ปฏิเสธ
+      unknown: ไม่ทราบ
+  media:
+    commands:
+      play: เล่น
+      pause: หยุด
+      toggle: เล่นหรือหยุด
+      next: สถานที่ต่อไป
+      previous: เพลงก่อนหน้านี้
+    verified: ตรวจสอบ
+    not-verified: ไม่ตรวจสอบ
+    playing: เล่น
+    paused: หยุด
+    nothing: ไม่มีอะไรเล่น
+    liked: ชอบมาก
+    rate: '{rate}× ความเร็ว'
+computer-use-read-image-tool-call:
+  description: การอธิบายจากรูปแบบการมองเห็น
+  failed: รูปแบบการมองเห็นไม่สามารถอ่านภาพนี้ได้
+tool-call-screenshot:
+  view-full: ดูขนาดเต็ม
+weather-tool-call:
+  feels-like: รู้สึกเหมือน
+  humidity: ความชื้น
+  wind: ลม
+  precipitation: โอกาสฝนตก
+  high: สูง
+  low: ต่ํา
+  conditions:
+    clear-day: เคลียร์
+    clear-night: เคลียร์
+    partly-cloudy-day: มีเมฆบางส่วน
+    partly-cloudy-night: มีเมฆบางส่วน
+    overcast: มีเมฆ
+    fog: น้ําเมฆ
+    drizzle: ฝ้ากระจาย
+    sleet: สล็อต
+    rain: ฝนตก
+    extreme-rain: ฝนตกหนัก
+    snow: ฝนตก
+    extreme-snow: ฝนตกหนัก
+    thunderstorm: พายุฟ้าคะนอง

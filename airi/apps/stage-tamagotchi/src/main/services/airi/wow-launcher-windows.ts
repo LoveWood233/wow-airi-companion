@@ -5,6 +5,7 @@ import type { LauncherPlatform } from './wow-launcher-runtime'
 
 import process from 'node:process'
 
+import { Buffer } from 'node:buffer'
 import { execFile, spawn } from 'node:child_process'
 import { open, readFile, realpath, stat } from 'node:fs/promises'
 import { win32 } from 'node:path'
@@ -112,8 +113,9 @@ export function validateLauncherEvidence(
   // The signed file version distinguishes Forever's 1.60 branch from a Retail binary copied into a renamed directory.
   if ((target === 'forever' && major !== 1)
     || (target === 'retail' && major! < 8)
-    || (target === 'classic' && major === 1 && minor! >= 60))
+    || (target === 'classic' && major === 1 && minor! >= 60)) {
     throw new LauncherFailure('wrong-version')
+  }
   if (target === 'forever' && minor !== 60)
     throw new LauncherFailure('unrecognized-version')
   const buildLines = installation.buildInfo.replace(/^\uFEFF/, '').trim().split(/\r?\n/)

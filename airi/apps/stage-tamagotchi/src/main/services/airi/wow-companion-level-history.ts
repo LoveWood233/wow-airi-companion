@@ -11,6 +11,7 @@ import { errorMessageFrom } from '@moeru/std'
 import { array, boolean, check, integer, literal, maxLength, maxValue, minLength, minValue, nullable, number, parse, picklist, pipe, safeParse, strictObject, string } from 'valibot'
 
 import { snapshotSchema } from '../../../shared/wow-companion'
+import { companionError } from '../../../shared/wow-companion-errors'
 import { moneyIdSchema } from '../../../shared/wow-companion-gold'
 
 const count = pipe(number(), integer(), minValue(0), maxValue(Number.MAX_SAFE_INTEGER))
@@ -178,7 +179,7 @@ export class CompanionLevelHistory {
       if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT')
         return
       this.blocked = true
-      this.storageError = `Cannot load WoW level history (${this.filePath}). Restore the file and restart 魔兽陪伴精灵: ${errorMessageFrom(error) ?? 'Unknown read error'}`
+      this.storageError = companionError('levels-read', { path: this.filePath, detail: errorMessageFrom(error) ?? '' })
     }
   }
 
@@ -296,7 +297,7 @@ export class CompanionLevelHistory {
       this.lastSavedAt = Date.now()
     }
     catch (error) {
-      this.storageError = `Cannot save WoW level history (${this.filePath}). Changes are only in memory. 魔兽陪伴精灵 will retry: ${errorMessageFrom(error) ?? 'Unknown write error'}`
+      this.storageError = companionError('levels-write', { path: this.filePath, detail: errorMessageFrom(error) ?? '' })
     }
     finally {
       await rm(temporaryPath, { force: true }).catch(() => {})

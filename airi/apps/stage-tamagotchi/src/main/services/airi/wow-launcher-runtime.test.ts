@@ -62,7 +62,7 @@ describe('persisted Warcraft launch configuration', () => {
     await runtime.save({ target: 'battle-net', path: 'E:\\Game\\Battle.net.exe', makeDefault: false })
     inspect.mockClear()
     expect((await runtime.save({ target: 'retail', path: ' ', makeDefault: false })).ok).toBe(true)
-    expect(await runtime.read()).toMatchObject({ paths: { retail: '', 'battle-net': 'E:\\Game\\Battle.net.exe' } })
+    expect(await runtime.read()).toMatchObject({ paths: { 'retail': '', 'battle-net': 'E:\\Game\\Battle.net.exe' } })
     expect(inspect).not.toHaveBeenCalled()
     expect(await runtime.launch({})).toEqual({ ok: false, code: 'not-configured' })
   })

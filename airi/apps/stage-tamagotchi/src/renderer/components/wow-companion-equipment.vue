@@ -9,6 +9,8 @@ import { useI18n } from 'vue-i18n'
 
 import WowCompanionEquipmentComparison from './wow-companion-equipment-comparison.vue'
 
+import { formatCompanionError } from '../../shared/wow-companion-errors'
+
 const props = defineProps<{ game: GameVersion, bridge: BridgeStatus | null, history: EquipmentHistoryState, comparisons: EquipmentComparisonsState }>()
 const { t, te, locale } = useI18n()
 const tn = (key: string) => t(`wow-companion.equipment.${key}`)
@@ -36,10 +38,10 @@ function statLabel(key: string) {
       </p>
     </header>
     <p v-if="history.storageError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
-      {{ tn('storage-error') }} {{ history.storageError }}
+      {{ tn('storage-error') }} {{ formatCompanionError(history.storageError, t) }}
     </p>
     <p v-if="comparisons.storageError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
-      {{ comparisons.storageError }}
+      {{ formatCompanionError(comparisons.storageError, t) }}
     </p>
     <p v-if="bridge?.equipmentComparisonError" role="status" :class="['break-words text-sm text-amber-700 dark:text-amber-300']">
       {{ bridge.equipmentComparisonError }}

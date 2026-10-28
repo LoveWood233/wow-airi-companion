@@ -1,0 +1,101 @@
+click-here-to-set-up-your-transcription-providers: 點選此處設定轉錄服務商
+enter-the-transcription-model-to-use-e-g-whisper-1-gpt-4o-transcribe: 輸入轉錄模型，例如 {models}。
+input-level: 輸入音量
+probability-of-speech: 語音機率
+adjust-the-threshold-for-speech-detection: 調整語音檢測閾值
+pause-before-stop: 結束前靜音時長
+how-long-silence-must-last-before-speech-is-considered-finished: 靜音持續多久後判定講話結束
+model-based: 模型檢測
+use-ai-models-for-more-accurate-speech-detection: 使用 AI 模型提高語音檢測準確度
+loading: 正在載入…
+inference-error: 推理錯誤
+activated: 已啟用
+probability: 機率：
+voice-activity: 語音活動
+last-2-seconds: 最近 2 秒
+speaking: 正在講話
+voice-detected: 檢測到語音
+speech-threshold: 語音閾值
+reset-value-to-default: 恢復預設值
+head-rotation: 頭部旋轉
+angle-x: X 軸角度
+angle-y: Y 軸角度
+angle-z: Z 軸角度
+left-eye-open-close: 左眼開合
+right-eye-open-close: 右眼開合
+left-eye-smiling: 左眼微笑
+right-eye-smiling: 右眼微笑
+eyebrows: 眉毛
+left-eyebrow-left-right: 左眉左右移動
+right-eyebrow-left-right: 右眉左右移動
+left-eyebrow-y-up-down: 左眉 Y（上下）
+left-eyebrow-y: 左眉 Y
+right-eyebrow-y-up-down: 右眉 Y（上下）
+right-eyebrow-y: 右眉 Y
+left-eyebrow-angle: 左眉角度
+right-eyebrow-angle: 右眉角度
+left-eyebrow-form-deformation: 左眉形狀（變形）
+left-eyebrow-form: 左眉形狀
+right-eyebrow-form-deformation: 右眉形狀（變形）
+right-eyebrow-form: 右眉形狀
+mouth: 嘴部
+mouth-open-close: 嘴部開合
+mouth-form-deformation: 嘴型（變形）
+mouth-form: 嘴型
+face: 面部
+cheek: 臉頰
+body-rotation-x: 身體 X 軸旋轉
+body-rotation-y: 身體 Y 軸旋轉
+body-rotation-z: 身體 Z 軸旋轉
+breath: 呼吸
+model-position: 模型位置
+directional-light-rotation-x: 平行光 X 軸旋轉
+directional-light-rotation-y: 平行光 Y 軸旋轉
+directional-light-color: 平行光顏色
+directional-light-intensity: 平行光強度
+ambient-light-intensity: 環境光強度
+ambient-light-color: 環境光顏色
+hemisphere-light-intensity: 半球光強度
+hemisphere-sky-color: 半球光天空顏色
+hemisphere-ground-color: 半球光地面顏色
+tips: 提示
+camera-fov: 相機視野
+directional-light-x: 平行光 X
+directional-light-y: 平行光 Y
+directional-light-z: 平行光 Z
+albedo-glow: 基礎顏色輝光
+godot-stage-experimental: Godot 舞臺（實驗性）
+godot-view: Godot 檢視
+camera-x: 相機 X
+camera-y: 相機 Y
+camera-z: 相機 Z
+camera-yaw: 相機偏航角
+camera-pitch: 相機俯仰角
+transcription-provider-inactive: 尚未啟用轉錄服務商。
+transcription-provider-unavailable: 轉錄服務商配置不可用。
+microphone-access-denied: 麥克風訪問被拒絕。
+speech-detection-failed: 語音檢測失敗。
+speaking-detected: 檢測到講話
+volume-based: 音量檢測
+select-model-before-godot-view: 請先選擇 VRM 模型，再調整 Godot 舞臺檢視。
+godot-view-unavailable: 尚未收到 Godot 舞臺檢視。請檢查 Godot 連線。
+godot-no-snapshot: 尚未收到 Godot 舞臺檢視快照
+revision: 修訂 {revision} · {reason}
+hemisphere: 半球光
+skybox: 天空盒
+rotation-x-degrees: X 軸旋轉（度）
+rotation-y-degrees: Y 軸旋轉（度）
+intensity: 強度
+scale: 縮放
+rotation: 旋轉
+glow: 輝光
+mouth-vowel: 嘴部 {vowel}
+blink: 眨眼
+wink-left: 左眼眨眼
+wink-right: 右眼眨眼
+smile: 微笑
+anger: 生氣
+sad: 悲傷
+surprise: 驚訝
+troubled: 困擾
+serious: 嚴肅

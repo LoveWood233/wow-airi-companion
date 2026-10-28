@@ -1,17 +1,17 @@
 electronCallback:
   title:
     loading: サインインを完了しています
-    openingAiri: AIRIを開く
+    openingAiri: WoW コンパニオンを開く
     signedIn: サインインしています
     signInFailed: ログインに失敗しました
-    finishSignInInAiri: AIRIへのサインインを完了してください
-    openAiriToContinue: AIRIを開いて続行してください
+    finishSignInInAiri: WoW コンパニオンへのサインインを完了してください
+    openAiriToContinue: WoW コンパニオンを開いて続行してください
   message:
-    checkingResponse: サインイン応答を確認し、AIRIへの引き継ぎを準備しています。
-    passingToAiri: サインイン情報をAIRIに転送しています。まもなくこのページは閉じます。
-    syncedAndSafeToClose: 当社は、お客様がAIRIから署名したクライアントに通知しました。
+    checkingResponse: サインイン応答を確認し、WoW コンパニオンへの引き継ぎを準備しています。
+    passingToAiri: サインイン情報をWoW コンパニオンに転送しています。まもなくこのページは閉じます。
+    syncedAndSafeToClose: 当社は、お客様がWoW コンパニオンから署名したクライアントに通知しました。
     invalidResponse: このサインイン応答を使用できませんでした。
-    loopbackUnreachable: ブラウザーはローカルコールバックポートからAIRIに到達できませんでした。
+    loopbackUnreachable: ブラウザーはローカルコールバックポートからWoW コンパニオンに到達できませんでした。
     tryOpenDirectly: 私たちは直接ローカルハンドオフを開いてみます。それでも失敗する場合は、下のボタンを使用してください。
     automaticHandoffFailed: このブラウザセッションで自動ハンドオフは終了しませんでした。
   label:
@@ -19,7 +19,7 @@ electronCallback:
     safeToClose: このタブを閉じても安全です。
     whyStillHere: なぜこのタブはまだここにありますか？
   action:
-    openAiriManually: 手動でAIRIを開く
+    openAiriManually: 手動でWoW コンパニオンを開く
   hint:
     closeTabManually: 一部のブラウザではこのページを自動的に閉じることができません。手動で閉じることができます。
 signIn:
@@ -36,6 +36,7 @@ signIn:
       description: '{email} の新しいアカウントを作成します。'
   email:
     label: Eメール
+    placeholder: you{'@'}example.com
   password:
     label: パスワード
     placeholder: パスワード
@@ -76,8 +77,10 @@ verifyEmail:
     success: メールを確認しました
     failed: 認証失敗
   message:
-    pending: あなたのメールアドレスに確認リンクを送信しました。 アカウントの作成を完了するために開きます — リンクをクリックすると、このページは自動的に続行されます。
-    pendingWithAddress: '{email}に確認リンクを送信しました。 アカウントの作成を完了するために開きます — リンクをクリックすると、このページは自動的に続行されます。'
+    pending: あなたのメールアドレスに確認リンクを送信しました。 アカウントの作成を完了するために開きます —
+      リンクをクリックすると、このページは自動的に続行されます。
+    pendingWithAddress: '{email}に確認リンクを送信しました。 アカウントの作成を完了するために開きます —
+      リンクをクリックすると、このページは自動的に続行されます。'
     success: あなたのメールアドレスが認証され、サインインしています。このタブを閉じることができます。
     failed: メールアドレスの確認ができませんでした（{error}）。新しいリンクをリクエストしてください。
   action:
@@ -87,6 +90,7 @@ forgotPassword:
   description: あなたのアカウントに関連付けられているメールアドレスを入力すると、リセットリンクが送信されます。
   email:
     label: Eメール
+    placeholder: you{'@'}example.com
   action:
     send: リセットリンクを送信
     backToSignIn: サインインに戻る
@@ -154,7 +158,7 @@ profile:
     setLinkSent: パスワードを設定するには、 {email} を確認してください。
     setLinkFailed: パスワード設定リンクを送信できませんでした。
   linkedAccounts:
-    description: これらのプロバイダを通じてAIRIにサインインします。リンクを解除してアクセスを取り消し、もう一度リンクして別のアカウントに切り替えます。
+    description: これらのプロバイダを通じてWoW コンパニオンにサインインします。リンクを解除してアクセスを取り消し、もう一度リンクして別のアカウントに切り替えます。
     status:
       linked: リンク済
       notLinked: リンクされていません
@@ -170,7 +174,9 @@ profile:
       listFailed: 接続されたアカウントを読み込めませんでした。
       unlinkFailed: このアカウントのリンクを解除できませんでした。
       linkFailed: リンクフローを開始できませんでした。
-      lastAccount: "これはあなたの唯一のサインイン方法です。\nリンクを解除する前にパスワードを設定してください。"
+      lastAccount: 'これはあなたの唯一のサインイン方法です。
+
+        リンクを解除する前にパスワードを設定してください。'
   action:
     saveProfile: 変更を保存
     changePassword: パスワードを変更
@@ -196,6 +202,6 @@ webCallback:
     missingCodeOrState: 認証コードまたは状態がありません
     missingFlowState: OIDCフロー状態がありません。もう一度ログインしてください
     tokenExchangeFailed: トークンの交換に失敗しました
-    finalizing: AIRIで認証を完了しています。
+    finalizing: WoW コンパニオンで認証を完了しています。
   action:
     tryAgain: もう一度やり直してください

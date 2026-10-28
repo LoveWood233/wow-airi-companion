@@ -1,0 +1,28 @@
+unknown: Desconhecido
+error: Ocorreu um erro desconhecido.
+streaming-description: Voz em streaming com baixa latência
+preview-text: Olá, sou seu companheiro.
+providers-empty: Nenhum provedor de voz configurado
+providers-setup: Configurar um provedor de voz
+model: Modelo
+model-description: Insira o modelo para gerar a voz.
+model-manual-error: Insira o nome do modelo se a busca falhar.
+model-manual-empty: Insira um nome se nenhum modelo for encontrado.
+voice-title: Configurações de voz
+voice-description: Personalize a voz do seu companheiro.
+current-voice: 'Voz atual: {voice}'
+voices-error: Não foi possível carregar as vozes
+pitch: Tom
+pitch-description: Ajuste o tom da voz.
+ssml: Ativar SSML
+ssml-description: Use marcações de fala para controlar a voz.
+voice-name: Nome da voz
+voice-name-description: Insira o nome da sua voz personalizada.
+voice-name-placeholder: Nome da voz, por exemplo alloy ou echo
+monolingual-v1: Monolíngue v1
+multilingual-v1: Multilíngue v1
+multilingual-v2: Multilíngue v2
+custom-ssml: Usar SSML personalizado
+custom-ssml-description: Insira SSML em vez de texto simples.
+ssml-placeholder: Insira texto SSML…
+stop: Parar

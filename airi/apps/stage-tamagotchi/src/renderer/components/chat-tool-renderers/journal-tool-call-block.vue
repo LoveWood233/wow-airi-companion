@@ -4,6 +4,7 @@ import { useBackgroundStore } from '@proj-airi/stage-ui/stores/background'
 import { useJournalPreviewStore } from '@proj-airi/stage-ui/stores/journal-preview'
 import { ContainerError } from '@proj-airi/ui'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   toolName: string
@@ -129,6 +130,8 @@ function openGeneratedImagePreview() {
     url: generatedImageUrl.value,
   })
 }
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -138,7 +141,7 @@ function openGeneratedImagePreview() {
   >
     <template #labelSuffix>
       <span v-if="state === 'error' && resultText" class="ml-2 text-xs text-red-500 op-80">
-        (failed)
+        {{ translateCompanion('companion-extra.failed-47cb70') }}
       </span>
     </template>
 
@@ -161,7 +164,7 @@ function openGeneratedImagePreview() {
       <div class="mb-2 flex items-center gap-2">
         <div class="i-solar:notebook-bookmark-bold-duotone text-base text-emerald-500" />
         <div class="rounded-full bg-emerald-500/12 px-2.5 py-1 text-xs text-emerald-700 dark:text-emerald-300">
-          Saved to long-term memory
+          {{ translateCompanion('companion-extra.saved-to-long-term-memory-40f70f') }}
         </div>
       </div>
       <MarkdownRenderer :content="textJournalMarkdown" />

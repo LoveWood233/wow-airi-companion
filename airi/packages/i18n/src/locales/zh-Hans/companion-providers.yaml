@@ -1,0 +1,79 @@
+web-speech-unavailable-title: Web Speech API 不可用
+web-speech-unavailable-description: 此浏览器不提供 Web Speech API 语音识别。请选择其他转录服务，或使用支持语音识别的浏览器。
+web-speech-native-title: 免费的浏览器内置转录
+web-speech-native-description: 使用浏览器提供的语音识别。处理方式取决于浏览器及其配置。无需 API 密钥。
+web-speech-no-api-key: 无需 API 密钥：Web Speech API 免费并内置于浏览器中
+recognition-language: 识别语言
+recognition-language-description: 选择语音识别使用的语言
+continuous-recognition: 连续识别
+continuous-recognition-description: 持续监听，不在每句话结束后停止
+interim-results-title: 显示临时结果
+interim-results-description: 说话时实时显示部分识别结果
+transcription-test: 语音转文字测试
+transcription-test-description: 使用所选音频设备测试 Web Speech API 转录。此测试始终使用 Web Speech API，不受默认听觉服务设置影响。
+web-speech-unavailable: 此浏览器无法使用 Web Speech API
+audio-input-device: 音频输入设备
+audio-test-device-description: 选择测试使用的音频输入设备
+audio-input-placeholder: 选择音频输入设备
+audio-test-device-required: 请先选择音频输入设备再进行测试
+transcription-error: 转录错误
+streaming-description: 流式模式：说话时实时显示转录文字（Web Speech API）
+transcription-result: 转录结果
+streaming-transcription: 当前转录（流式）：
+final-transcription: 最终转录：
+transcription-empty: 暂无转录。请点击“开始语音转文字测试”，然后对着麦克风说话。
+provider-label: 服务商：
+language-label: 语言：
+mode-label: 模式：
+streaming-mode: 流式（实时）
+continuous-label: 连续识别：
+interim-results-label: 临时结果：
+stop-test: 停止测试
+transcribing: 正在转录…
+start-transcription-test: 开始语音转文字测试
+mimo-model-description: 选择生成语音使用的 MiMo TTS 模型
+mimo-model-placeholder: 选择 MiMo 模型…
+voice-style-placeholder: 描述音调、节奏、情感和说话风格…
+voice-sample-label: 声音样本（数据 URI）
+voice-sample-description: 粘贴 base64 编码的声音样本，格式为数据 URI。MiMo 支持不超过 10 MB 的 MP3 和 WAV 样本。
+mimo-test-text: 你好！这是小米 MiMo 语音测试。
+mimo-behavior-title: MiMo 模型行为
+mimo-preset-description: '`mimo-v2.5-tts` 使用下方的预设声音列表。'
+mimo-design-description: '`mimo-v2.5-tts-voicedesign` 根据风格提示词设计新声音，不接受 `audio.voice`。'
+mimo-clone-description: '`mimo-v2.5-tts-voiceclone` 使用粘贴的声音样本，忽略预设声音选择器。'
+style-optional: 风格提示词（可选）
+voice-design-prompt: 声音设计提示词
+style-prompt: 风格提示词
+clone-style-description: 以用户消息发送的可选自然语言控制指令。留空则仅克隆声音。
+design-style-description: 以用户消息发送的自然语言控制指令。MiMo 声音设计必须提供提示词，不使用预设声音。
+preset-style-description: 以用户消息发送的自然语言控制指令。留空则使用中性的说话风格。
+speech-provider-error: 无法初始化语音服务
+voice-sample-required: 声音克隆模型需要数据 URI 格式的 base64 音频样本。
+resource-name: 资源名称
+resource-name-description: https://<prefix>.services.ai.azure.com 中使用的前缀
+model-id: 模型 ID
+model-id-description: Azure AI Foundry 上的模型 ID
+api-version: API 版本
+api-version-placeholder: 例如 2025-04-01-preview
+api-version-description: 模型快照使用的 API 版本
+gemini-model-description: 选择生成语音使用的 Gemini TTS 模型
+gemini-model-placeholder: 选择 Gemini 模型…
+speech-temperature-description: 控制语音生成的随机性。值越低，语音越稳定可预测；值越高，语音越有创意。
+gemini-test-text: 你好！这是 Google Gemini 语音测试。
+access-key-id: 访问密钥 ID
+access-key-secret: 访问密钥 Secret
+app-key: 应用密钥
+app-key-placeholder: 输入 AppKey
+abort-session: 中止会话
+partial-result: 临时结果
+waiting-for-audio: 正在等待音频…
+awaiting-final-result: 正在等待最终结果…
+streaming: 正在流式传输…
+start-realtime-transcription: 开始实时转录
+aliyun-provider-error: 无法初始化阿里云 NLS 服务。
+aliyun-stream-error: 阿里云 NLS 意外返回了非流式结果。
+onboarding-api-key-description: 输入所选服务商的 API 密钥。
+onboarding-base-url-description: 输入服务商 API 的基础 URL。
+unknown-error: 未知错误
+azure-api-key: Azure OpenAI API 密钥
+internal-region: '{region}（内部）'

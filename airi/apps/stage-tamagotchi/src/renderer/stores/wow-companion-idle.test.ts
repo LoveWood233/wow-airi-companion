@@ -26,6 +26,21 @@ function continueUntil(policy: CompanionIdlePolicy, state: CompanionState, from:
 }
 
 describe('noncombat companion interaction schedule', () => {
+  it('keeps the one-minute interval while coordinates and heartbeat sequences change', () => {
+    const policy = new CompanionIdlePolicy()
+    const state = loadoutStateFixture()
+    const snapshot = state.bridge?.snapshot
+    if (!snapshot)
+      throw new Error('Expected current snapshot')
+    for (let elapsed = 0; elapsed < 60_000; elapsed += 1000) {
+      Object.assign(snapshot, { px: elapsed / 10, py: 5000, seq: elapsed / 1000 + 1, tick: elapsed / 1000 + 1 })
+      expect(observe(policy, state, elapsed)).toBeUndefined()
+    }
+    Object.assign(snapshot, { px: 6000, py: 5000, seq: 61, tick: 61 })
+    expect(observe(policy, state, 60_000)).toBe(snapshot)
+    expect(observe(policy, state, 60_000)).toBeUndefined()
+  })
+
   it('waits one continuous minute and emits one interaction per interval', () => {
     const policy = new CompanionIdlePolicy()
     const state = loadoutStateFixture()

@@ -1,0 +1,382 @@
+character-switcher:
+  title: Cambia personaggio
+  manage: Gestisci personaggi
+  empty: Nessun personaggio
+  failed: Impossibile cambiare personaggio. Riprova.
+mobile-tools:
+  sign-in: Accedi a Compagno di WoW
+  account-description: Account e preferenze
+  sound: Audio
+  character-voice: Voce del personaggio
+  title: Impostazioni
+  appearance: Aspetto
+  application: Applicazione
+  more: Altro
+  background: Background
+  settings: Impostazioni
+  about: Informazioni
+  view: Visualizza
+  close-view: Salva e chiudi i controlli della vista
+  hearing: Ascolto
+  menu: Menu
+  menu-unread: Menu, {count} notifiche non lette
+chat:
+  provider-configuration:
+    title: Il fornitore di chat non è configurato
+    description: Scegli e convalida un fornitore nelle impostazioni prima di inviare un messaggio.
+    action: Apri impostazioni del fornitore
+  voice-message:
+    recording: Registrazione
+    starting: Avvio del microfono
+    preview: Messaggio vocale registrato
+    transcribing: Trascrizione in corso…
+    position: Posizione di riproduzione
+    no-speech: Nessuna voce riconosciuta. Il messaggio vocale non è stato inviato.
+  voice-composer:
+    audio: Messaggio vocale
+    transcription: Dettatura
+    hold-hint: Tieni premuto per registrare. Fai clic per passare tra messaggio vocale e dettatura. Premi Invio per registrare senza tenere premuto.
+    listening: In ascolto…
+    lock: Scorri verso l'alto per bloccare
+    cancel-hint: Scorri a sinistra per annullare
+    processing: Completamento…
+    cancel: Annulla
+    send: Invia messaggio vocale
+    insert: Inserisci testo
+    retry: Invia di nuovo il messaggio vocale
+    discard: Scarta messaggio vocale
+    failed: Input vocale non riuscito
+    configure-title: Configura Ascolto
+    configure-description: Seleziona un fornitore di trascrizione e un modello in Ascolto per usare la dettatura.
+    configure-action: Apri Ascolto
+    mode: Input vocale
+    auto-send: Invia al termine della registrazione
+    input-device: Microfono
+    system-default: Predefinito di sistema
+    listen: Ascolta continuamente
+    push-to-talk: Premi per parlare
+    push-to-talk-unavailable: Questo dispositivo non ha un tasto Premi per parlare, quindi Compagno di WoW non ascolta. Cambia modalità nelle impostazioni Ascolto.
+    wake-word: Ascolta le parole di attivazione
+    hearing-settings: Altre impostazioni Ascolto…
+    options-hint: Passa sopra o fai clic destro per le opzioni
+    recording: Registrazione
+    stop: Interrompi registrazione
+    stop-send: Interrompi e invia
+    play: Riproduci registrazione
+    pause: Pausa
+  voice-preview:
+    processing: Completamento della trascrizione
+    device: Dispositivo di ingresso audio
+    device-description: Seleziona il microfono per questa registrazione.
+    device-placeholder: Seleziona un microfono
+    level: Livello di ingresso
+    activity: Attività vocale
+    silence: Silenzio
+    speech: Voce
+    threshold: Soglia di rilevamento
+    sensitivity: Sensibilità
+    sensitivity-description: Regola la soglia dell'indicatore vocale.
+    start: Avvia registrazione
+    stop: Termina registrazione
+    failed: Operazione audio non riuscita.
+  voice-draft:
+    title: Bozza vocale
+    discard: Scarta bozza
+    listening: In ascolto
+    finalizing: Completamento…
+    sent: Inviato
+  voice-input: Input vocale
+  notice:
+    label: Resoconto in background da {name}
+  background-tasks:
+    label: Attività in background
+    stop: Interrompi {name}
+    dismiss: Ignora {name}
+    status:
+      running: Al lavoro su
+      done: Completato
+      failed: Non completato
+      interrupted: Fermo
+  judgment:
+    running: Valutazione di {name}
+    judged: '{name} valutato'
+    invalid: Impossibile valutare {name}
+  judgment-tool-call:
+    answer: Risposta
+    next: Poi
+    reply: Rispondi normalmente
+    stay-quiet: Resta in silenzio
+    hint: 'Rispondi tenendo presente: {text}'
+    recipe-steps: Usa ricetta {name}
+    recipe-decision: Valuta {name}
+    recipe-background: Passa alla ricetta {name}
+  recipe:
+    using: Uso della ricetta {name}
+    loaded: Ricetta {name} usata
+    started: Passato alla ricetta {name}
+    pending: La ricetta {name} attende approvazione
+    disabled: La ricetta {name} è disattivata
+    unknown: Ricetta {name} non trovata
+    refused: La ricetta {name} non è stata avviata
+    failed: La ricetta {name} non è stata avviata
+  recipe-tool-call:
+    task: Attività
+    usable: Ricette disponibili ora
+    pending: Questa ricetta attende la tua approvazione.
+    disabled: Questa ricetta è disattivata.
+    unknown: Nessuna ricetta con questo nome.
+    refused: Impossibile avviare la ricetta.
+  invoked-skill:
+    steps: Ricetta {name} usata
+    background: Passato alla ricetta {name}
+    decision: Ricetta {name} usata
+    question: Domanda
+    yes: Sì
+    no: No
+  home-assistant-tool-call:
+    shown: Visualizzati {count} dispositivi su {total}
+  web-search-tool-call:
+    results: Risultati per "{query}" · {count}
+  tool-calls:
+    running-one: Uso di {name}
+    failed-one: '{name} non ha terminato'
+    combo-running: Combo ×{count}
+    combo: Combo di {count} colpi
+    combo-failed: Combo di {count} colpi, {failed} mancati
+    arguments: Argomenti
+    result: Risultato
+    copy: Copia dati grezzi
+    copied: Copiato
+    raw: Dati grezzi
+    other: Altri dati
+    widget: Widget
+    rerun: Esegui di nuovo
+    card-making: Creazione di una scheda per questo strumento…
+    card-remaking: Creazione di una nuova scheda…
+    card-regenerate: Crea una nuova scheda
+    card-failed: Impossibile creare una scheda per questo strumento
+    card-retry: Riprova
+    state:
+      executing: In esecuzione
+      done: Completato
+      error: Non riuscito
+  reply-card:
+    drawing: Disegno della scheda…
+    raw: Dati grezzi
+    card: Scheda
+  error-details:
+    show: Mostra dettagli
+    hide: Nascondi dettagli
+  images:
+    empty: Condividi un pensiero o un'immagine.
+    use-vision: Usa il modello di visione per le immagini della chat
+    use-vision-description: Scegli un fornitore e un modello qui sotto. Legge le immagini allegate prima della risposta. Senza un modello di visione, le immagini vanno direttamente al modello di chat.
+    attach: Allega immagini
+    remove: Rimuovi {name}
+    unsupported: Usa immagini PNG, JPEG, WebP o GIF.
+    too-large: Ogni immagine deve essere di massimo 3 MB.
+    too-many: Allega fino a {count} immagini alla volta.
+    total-too-large: Tutte le immagini allegate insieme devono essere di massimo 3 MB.
+    read-failed: Impossibile leggere questa immagine. Riprova.
+    no-description: Il modello di visione non ha restituito una descrizione. Controlla Impostazioni → Moduli → Visione e riprova.
+    reading: Lettura immagini…
+    description: Immagine allegata
+  actions:
+    reply: Rispondi
+    retry: Riprova
+    send: Invia messaggio
+    stop: Interrompi risposta
+  message:
+    character-name:
+      airi: Compagno di WoW
+      core-system: Sistema centrale
+      you: Tu
+  reply:
+    cancel: Annulla risposta
+    message: Messaggio
+    replying-to: In risposta a {name}
+  reasoning: Ragionamento
+  swipe-demo:
+    show-label: Mostra etichette
+    delete: Elimina
+    archive: Archivia
+    pin: Fissa
+    actions: Mostra azioni
+    row: Conversazione {n}
+  sessions:
+    delete-short: Elimina
+    confirm-delete-short: Conferma eliminazione
+    title: Conversazioni
+    new: Nuova conversazione
+    current: Attuale
+    confirm-delete: Eliminare questa conversazione e i suoi messaggi?
+    cancel: Annulla
+    empty: Nessuna conversazione
+    cloud-badge: Sincronizzato nel cloud
+    new-chat-fallback: Nuova chat
+    delete: Elimina conversazione
+avatar-model-missing:
+  title: Nessun modello selezionato
+  unavailable-title: Questo modello non è su questo dispositivo
+  description: Seleziona un modello per mostrare {name} nella scena.
+  select: Seleziona modello
+render-error:
+  title: '{renderer} non ha potuto visualizzare questo modello'
+  description: Il modello è selezionato, ma la scena non riesce a visualizzarlo.
+  report-description: |-
+    {renderer} non ha visualizzato il modello selezionato.
+    ID modello: {modelId}
+    Errore: {error}
+startup:
+  failed: Avvio non riuscito
+  failed-resource: Impossibile caricare {resource}
+  recover: Riprova. Se fallisce ancora, apri i dettagli qui sotto.
+  recover-model: Riprova o continua senza personaggio. Potrai scegliere un altro modello in seguito.
+  details: Che cosa è successo?
+  close-details: Chiudi dettagli
+  retry: Riprova
+  continue-without-model: Continua comunque
+  model-timeout: Il caricamento del modello ha impiegato troppo tempo. Controlla la connessione e riprova.
+  resources:
+    auth: impostazioni account
+    modelIndex: elenco modelli
+    card: impostazioni personaggio
+    chat: cronologia chat
+    services: servizi dell'app
+    modelData: modelli salvati
+    modelSelection: impostazioni modello
+    audio: impostazioni audio
+    route: pagina
+    model: modello del personaggio
+message: Di' qualcosa…
+theme:
+  title: Tema
+  system: Sistema
+  light: Luce
+  dark: Scuro
+  switch-to-light: Passa al tema chiaro
+  switch-to-dark: Passa al tema scuro
+  switch-to-system: Segui il tema del sistema
+send-mode:
+  title: Tasto di invio
+  enter: Invio
+  ctrl-enter: Ctrl + Invio
+  double-enter: Doppio Invio
+speech-output:
+  mute: Silenzia voce
+  unmute: Riattiva voce
+operations:
+  load-models: Carica modelli
+  load-models-status:
+    loading: Caricamento
+    ready: Pronto
+select-a-audio-input: Seleziona un ingresso audio
+select-a-model: Seleziona un modello
+select-a-voice: Scegli una voce
+viewers:
+  debug-menu:
+    emotions: Emozioni
+    emotions-btn:
+      angry: 😠 Arrabbiato
+      awkward: 😳 Imbarazzato
+      happy: 😄 Felice
+      neutral: 🙂 Neutrale
+      question: 🤔 Domanda
+      sad: 😫 Triste
+      surprised: 🤯 Sorpreso
+      think: 🤨 Pensieroso
+    vrm:
+      camera: Camera
+      model:
+        title: Modello
+profile-switcher:
+  no-profile: Nessun profilo
+  no-profiles: Nessun profilo disponibile
+  save-as-new: Salva come nuovo profilo
+  new-profile-name: Nome profilo
+  manage: Gestisci profili
+promo-banner:
+  items:
+    signin:
+      watermark: Luna
+      fallbackLabel: Regalo lunare
+      title: Accesso per 7 giorni
+      eventName: Accedi per ricevere polvere di stelle, cornici avatar e regali di lancio.
+      date: 03/28 - 04/10
+      reward: Fino a 120 polvere di stelle
+      cta: Accedi
+    build:
+      watermark: Costruisci
+      fallbackLabel: Bonus costruzione
+      title: Bonus cassa rifornimenti
+      eventName: Completa le attività di costruzione per ottenere buoni bonus e materiali doppi.
+      date: 03/30 - 04/12
+      reward: 5 buoni rifornimenti + materiali di potenziamento
+      cta: Visualizza attività
+    spring:
+      watermark: Primavera
+      fallbackLabel: Estrazione di primavera
+      title: Carnevale delle capsule
+      eventName: Partecipa all'estrazione di primavera per sbloccare fumetti, ciondoli e mobili a tema.
+      date: 04/01 - 04/18
+      reward: Prima estrazione a metà prezzo + ciondolo raro
+      cta: Estrai ora
+    coupon:
+      watermark: Parla
+      fallbackLabel: Buono
+      title: Buono di ricarica
+      eventName: Completa interazioni di chat per ricevere buoni per espansioni e pacchetti vocali.
+      date: 04/02 - 04/20
+      reward: Risparmia 6 su 30 / 15 su 68
+      cta: Richiedi buono
+    home:
+      watermark: Pagina iniziale
+      fallbackLabel: Tema della stanza
+      title: Aggiornamento tema primaverile
+      eventName: Sblocca temi per finestra, scrivania e lampada notturna per rinnovare la stanza.
+      date: 04/05 - 04/22
+      reward: Biglietto gratuito per estrazione tema all'accesso
+      cta: Visualizza tema
+waiting: In attesa
+websocket-status:
+  connected: Connesso
+  disconnected: Nessuna connessione
+  open-settings: Apri impostazioni connessione
+computer-use:
+  label: Usa computer
+  description: Consenti a questa finestra di chat di esaminare e controllare le app native sul computer.
+status:
+  preparing: Preparazione microfono
+  listening: In ascolto
+  paused: Ascolto sospeso mentre Compagno di WoW parla
+  transcribing: Trascrizione
+  hearing-error: Impossibile trascrivere l'audio
+  no-transcript: Il parlato riconosciuto comparirà qui.
+  signing-in: Completa l'accesso nel browser
+  confirming: Conferma dell'accesso
+  signed-in: Accesso effettuato
+  sign-in-error: Accesso non riuscito
+  sign-in-unconfirmed: Impossibile confermare la sessione. Accedi di nuovo.
+  dismiss: Ignora
+  configure-hearing: Seleziona e configura un fornitore Ascolto nelle impostazioni.
+notifications:
+  title: Notifiche
+  open: Apri notifiche
+  open-unread: Apri notifiche, {count} non lette
+  mark-all-read: Segna tutte come lette
+  empty: Nessuna notifica
+  loading: Caricamento notifiche
+  back: Indietro
+  error: Impossibile caricare le notifiche.
+  retry: Riprova
+  just-now: Adesso
+  kinds:
+    flux-granted:
+      title: Hai ricevuto {amount} Flux
+    subscription-renewed:
+      title: '{plan} rinnovato'
+      body: Attivo fino al {periodEnd}.
+    subscription-payment-failed:
+      title: Pagamento del rinnovo non riuscito
+      body: Riproveremo il {retryAt}. Aggiorna il metodo di pagamento per mantenere {plan}.
+      body-no-retry: Aggiorna il metodo di pagamento per mantenere {plan}.

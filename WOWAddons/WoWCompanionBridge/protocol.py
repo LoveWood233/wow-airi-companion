@@ -471,6 +471,20 @@ def validate_snapshot(value: object) -> dict:
         if type(item) is not bool:
             raise FrameError(f"字段 {key} 必须是布尔值")
         result[key] = item
+    # Both omitted fields are a supported v3 snapshot without position data.
+    # A present pair uses map-relative fractions scaled by 10000, not screen pixels.
+    has_x, has_y = "px" in value, "py" in value
+    if has_x != has_y:
+        raise FrameError("字段 px、py 必须成对传入或同时省略")
+    px, py = value.get("px"), value.get("py")
+    if px is not None or py is not None:
+        if type(px) is not int or type(py) is not int or not 0 <= px <= 10000 or not 0 <= py <= 10000:
+            raise FrameError("字段 px、py 必须同时为 0–10000 整数或同时为 null")
+    # Invalid types are rejected before unavailable state clears a valid pair.
+    # A position cannot describe a current character without an online map.
+    if not result["online"] or result["map"] == 0:
+        px, py = None, None
+    result["px"], result["py"] = px, py
     return result
 
 

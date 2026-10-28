@@ -63,8 +63,12 @@ onMounted(load)
 <template>
   <div data-testid="wow-launcher-settings" :class="['mx-auto max-w-3xl pb-12', 'flex flex-col gap-5']" :aria-busy="launcher.loading || launcher.busy">
     <header>
-      <h2 :class="['text-xl font-semibold']">{{ tn('title') }}</h2>
-      <p :class="['mt-2 text-sm text-neutral-500 dark:text-neutral-400']">{{ tn('description') }}</p>
+      <h2 :class="['text-xl font-semibold']">
+        {{ tn('title') }}
+      </h2>
+      <p :class="['mt-2 text-sm text-neutral-500 dark:text-neutral-400']">
+        {{ tn('description') }}
+      </p>
     </header>
 
     <p v-if="launcher.state && !launcher.state.supported" role="status" :class="['text-sm text-amber-700 dark:text-amber-300']">
@@ -84,7 +88,9 @@ onMounted(load)
           :variant="target === item ? 'primary' : 'secondary'" :color="target === item ? 'primary' : 'neutral'"
           :aria-pressed="target === item" :disabled="launcher.busy || launcher.loading"
           @click="target = item"
-        >{{ tn(`targets.${item}`) }}</Button>
+        >
+          {{ tn(`targets.${item}`) }}
+        </Button>
       </div>
 
       <p v-if="launcher.state" :class="['text-sm text-neutral-500 dark:text-neutral-400']">
@@ -95,26 +101,44 @@ onMounted(load)
         :description="tn('path-description')" :placeholder="tn('path-placeholder')" :disabled="disabled" type="text"
         @update:model-value="launcher.clearFeedback()"
       />
-      <Button :disabled="disabled" :class="['self-start']" @click="browse">{{ tn('browse') }}</Button>
+      <Button :disabled="disabled" :class="['self-start']" @click="browse">
+        {{ tn('browse') }}
+      </Button>
 
       <FieldCheckbox
         v-if="launcher.state && target !== launcher.state.defaultTarget"
         v-model="makeDefault" :label="tn('make-default')" :description="tn('make-default-description')" :disabled="disabled"
         @update:model-value="launcher.clearFeedback()"
       />
-      <p v-else-if="launcher.state" :class="['text-sm text-neutral-500 dark:text-neutral-400']">{{ tn('current-default') }}</p>
+      <p v-else-if="launcher.state" :class="['text-sm text-neutral-500 dark:text-neutral-400']">
+        {{ tn('current-default') }}
+      </p>
 
       <div :class="['flex flex-wrap gap-2']">
-        <Button :disabled="disabled || !path.trim()" :loading="launcher.busy" variant="primary" color="primary" @click="save">{{ tn('save') }}</Button>
-        <Button :disabled="!canLaunch" @click="launcher.launch(target)">{{ launchLabel }}</Button>
-        <Button :disabled="disabled || !savedPath" @click="clear">{{ tn('clear') }}</Button>
-        <Button v-if="!launcher.state" :disabled="launcher.loading" @click="load">{{ tn('retry') }}</Button>
+        <Button :disabled="disabled || !path.trim()" :loading="launcher.busy" variant="primary" color="primary" @click="save">
+          {{ tn('save') }}
+        </Button>
+        <Button :disabled="!canLaunch" @click="launcher.launch(target)">
+          {{ launchLabel }}
+        </Button>
+        <Button :disabled="disabled || !savedPath" @click="clear">
+          {{ tn('clear') }}
+        </Button>
+        <Button v-if="!launcher.state" :disabled="launcher.loading" @click="load">
+          {{ tn('retry') }}
+        </Button>
       </div>
-      <p v-if="unsaved" :class="['text-xs text-neutral-500 dark:text-neutral-400']">{{ tn('unsaved') }}</p>
-      <p :class="['text-xs text-neutral-500 dark:text-neutral-400']">{{ tn('launch-note') }}</p>
+      <p v-if="unsaved" :class="['text-xs text-neutral-500 dark:text-neutral-400']">
+        {{ tn('unsaved') }}
+      </p>
+      <p :class="['text-xs text-neutral-500 dark:text-neutral-400']">
+        {{ tn('launch-note') }}
+      </p>
 
       <dl v-if="launcher.executable" :class="['min-w-0 grid gap-1 text-sm', '[overflow-wrap:anywhere] text-neutral-600 dark:text-neutral-300']">
-        <dt :class="['font-medium']">{{ tn('verified-program') }}</dt>
+        <dt :class="['font-medium']">
+          {{ tn('verified-program') }}
+        </dt>
         <dd>{{ launcher.executable.productName }} · {{ launcher.executable.fileVersion }}</dd>
         <dd>{{ launcher.executable.path }}</dd>
       </dl>

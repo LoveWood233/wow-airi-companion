@@ -41,6 +41,8 @@ onMounted(() => launcher.refresh())
     >
       <div :class="['i-solar:play-circle-outline text-primary-600 dark:text-primary-400', iconClass]" />
     </ControlButton>
-    <template #tooltip>{{ launcher.state?.supported === false ? t('wow-companion.launcher.errors.unsupported-platform') : t('wow-companion.launcher.quick-launch-description') }}</template>
+    <template #tooltip>
+      {{ launcher.state?.supported === false ? t('wow-companion.launcher.errors.unsupported-platform') : t('wow-companion.launcher.quick-launch-description') }}
+    </template>
   </ControlButtonTooltip>
 </template>

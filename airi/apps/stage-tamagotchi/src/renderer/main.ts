@@ -7,9 +7,7 @@ import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
 import { PiniaColada } from '@pinia/colada'
 import { pushToTalkTriggerKey } from '@proj-airi/stage-ui/composables/push-to-talk-trigger'
 import { trackButtonPlugin } from '@proj-airi/stage-ui/directives/track-button'
-import { browserAuthorizationHandler, registerAuthorizationHandler } from '@proj-airi/stage-ui/libs/auth'
 import { piniaPluginTracing, setupSynced } from '@proj-airi/stage-ui/libs/pinia'
-import { configureAnalyticsAdapter } from '@proj-airi/stage-ui/libs/product-signals'
 import { MotionPlugin } from '@vueuse/motion'
 import { createPinia } from 'pinia'
 import { setupLayouts } from 'virtual:generated-layouts'
@@ -20,6 +18,7 @@ import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 import App from './App.vue'
 
 import { nestFullscreenSurfaces } from './components/fullscreen/surfaces'
+import { installLocalAccountRoutes } from './local-routes'
 import { i18n } from './modules/i18n'
 import { resolveRendererWindowContext } from './window-context'
 
@@ -43,12 +42,6 @@ import '@fontsource/kiwi-maru/index.css'
 import '@fontsource/m-plus-rounded-1c/index.css'
 import '@fontsource-variable/nunito/index.css'
 
-configureAnalyticsAdapter(async (options) => {
-  const { createOpenpanelAdapter } = await import('@proj-airi/stage-ui/libs/product-signals/openpanel')
-  return createOpenpanelAdapter(options)
-})
-registerAuthorizationHandler(browserAuthorizationHandler)
-
 const windowContext = resolveRendererWindowContext()
 const pinia = createPinia()
 const synced = setupSynced({
@@ -69,6 +62,7 @@ const router = createRouter({
   // TODO: vite-plugin-vue-layouts is long deprecated, replace with another layout solution
   routes: windowRoutes(routes as RouteRecordRaw[]),
 })
+installLocalAccountRoutes(router)
 
 if (import.meta.hot) {
   handleHotUpdate(router, (updatedRoutes) => {

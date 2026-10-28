@@ -1,4 +1,4 @@
-# AIRI terminology glossary — English source of truth.
+# WoW Companion terminology glossary — English source of truth.
 #
 # A generator turns this file into TBX version 3 and sends it to the Crowdin glossary, where
 # the editor marks each term and offers the approved translation.
@@ -6,7 +6,7 @@
 # Every field maps to one TBX element and carries the TBX name. schema.ts holds the mapping.
 # packages/i18n/AGENTS.md, under "Glossary", says when a term belongs here and when it does not.
 #
-# This repository owns English. Crowdin owns the other 8 languages, and the translated terms
+# This repository owns English. Crowdin owns the other languages, and the translated terms
 # arrive in packages/i18n/glossary/translations/ through a pull request.
 
 # ---------------------------------------------------------------------------------------
@@ -83,23 +83,15 @@
 
 - id: airi
   subject: product
-  # TODO: open question. Should this concept be translatable? Interface strings in all 8
-  # locales keep "AIRI". But the project uses the Japanese form アイリ in prose, and also in
-  # the English README.
-  translatable: false
+  translatable: true
   definition: The application that this project makes, an animated character that speaks, listens, and sees.
-  note: >
-    Keep the Latin letters in every language; only prose may write the Japanese form アイリ.
+  note: Use the approved product name for each language.
   terms:
-    - text: AIRI
-      part-of-speech: proper noun
-      status: preferred
-      context: Welcome to AIRI!
-    - text: Project AIRI
+    - text: WoW Companion
       part-of-speech: proper noun
       status: preferred
       type: fullForm
-      note: The full name, used on first mention.
+      context: Welcome to WoW Companion!
 
 - id: tamagotchi
   subject: product
@@ -525,11 +517,11 @@
     A rename is in progress, so no term is preferred yet, and the interface still uses
     "Character" for a smaller thing: a tab inside the card.
   terms:
-    - text: AIRI Card
+    - text: WoW Companion Card
       part-of-speech: noun
       status: admitted
-      context: Paste this into your AIRI Card artistry config to override these nodes.
-      note: The name in the interface today; translate "Card" and keep "AIRI".
+      context: Paste this into your WoW Companion Card artistry config to override these nodes.
+      note: Translate "Card" and use the approved product name for each language.
     - text: Character
       part-of-speech: noun
       status: admitted

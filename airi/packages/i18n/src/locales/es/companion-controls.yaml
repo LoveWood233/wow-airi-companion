@@ -1,0 +1,101 @@
+click-here-to-set-up-your-transcription-providers: Configurar proveedores de transcripción
+enter-the-transcription-model-to-use-e-g-whisper-1-gpt-4o-transcribe: Introduce un modelo de transcripción, por ejemplo {models}.
+input-level: Nivel de entrada
+probability-of-speech: Probabilidad de habla
+adjust-the-threshold-for-speech-detection: Ajusta el umbral de detección del habla
+pause-before-stop: Silencio antes de finalizar
+how-long-silence-must-last-before-speech-is-considered-finished: Tiempo de silencio necesario para dar por terminada el habla
+model-based: Basado en modelo
+use-ai-models-for-more-accurate-speech-detection: Usa modelos de IA para detectar el habla con mayor precisión
+loading: Cargando…
+inference-error: Error de inferencia
+activated: Activado
+probability: 'Probabilidad:'
+voice-activity: Actividad de voz
+last-2-seconds: Últimos 2 segundos
+speaking: Hablando
+voice-detected: Voz detectada
+speech-threshold: Umbral de habla
+reset-value-to-default: Restablecer valor predeterminado
+head-rotation: Rotación de la cabeza
+angle-x: Ángulo X
+angle-y: Ángulo Y
+angle-z: Ángulo Z
+left-eye-open-close: Abrir/cerrar ojo izquierdo
+right-eye-open-close: Abrir/cerrar ojo derecho
+left-eye-smiling: Sonrisa del ojo izquierdo
+right-eye-smiling: Sonrisa del ojo derecho
+eyebrows: Cejas
+left-eyebrow-left-right: 'Ceja izquierda: izquierda/derecha'
+right-eyebrow-left-right: 'Ceja derecha: izquierda/derecha'
+left-eyebrow-y-up-down: Ceja izquierda Y (arriba/abajo)
+left-eyebrow-y: Ceja izquierda Y
+right-eyebrow-y-up-down: Ceja derecha Y (arriba/abajo)
+right-eyebrow-y: Ceja derecha Y
+left-eyebrow-angle: Ángulo de la ceja izquierda
+right-eyebrow-angle: Ángulo de la ceja derecha
+left-eyebrow-form-deformation: Forma de la ceja izquierda (deformación)
+left-eyebrow-form: Forma de la ceja izquierda
+right-eyebrow-form-deformation: Forma de la ceja derecha (deformación)
+right-eyebrow-form: Forma de la ceja derecha
+mouth: Boca
+mouth-open-close: Abrir/cerrar boca
+mouth-form-deformation: Forma de la boca (deformación)
+mouth-form: Forma de la boca
+face: Rostro
+cheek: Mejilla
+body-rotation-x: Rotación del cuerpo X
+body-rotation-y: Rotación del cuerpo Y
+body-rotation-z: Rotación del cuerpo Z
+breath: Respiración
+model-position: Posición del modelo
+directional-light-rotation-x: Rotación de luz direccional X
+directional-light-rotation-y: Rotación de luz direccional Y
+directional-light-color: Color de luz direccional
+directional-light-intensity: Intensidad de luz direccional
+ambient-light-intensity: Intensidad de luz ambiental
+ambient-light-color: Color de luz ambiental
+hemisphere-light-intensity: Intensidad de luz hemisférica
+hemisphere-sky-color: Color del cielo hemisférico
+hemisphere-ground-color: Color del suelo hemisférico
+tips: Consejos
+camera-fov: Campo de visión de la cámara
+directional-light-x: Luz direccional X
+directional-light-y: Luz direccional Y
+directional-light-z: Luz direccional Z
+albedo-glow: Brillo del albedo
+godot-stage-experimental: Escenario Godot (experimental)
+godot-view: Vista de Godot
+camera-x: Cámara X
+camera-y: Cámara Y
+camera-z: Cámara Z
+camera-yaw: Giro horizontal de la cámara
+camera-pitch: Inclinación de la cámara
+transcription-provider-inactive: No hay un proveedor de transcripción activo.
+transcription-provider-unavailable: La configuración del proveedor de transcripción no está disponible.
+microphone-access-denied: Se denegó el acceso al micrófono.
+speech-detection-failed: La detección del habla falló.
+speaking-detected: Habla detectada
+volume-based: Basado en volumen
+select-model-before-godot-view: Selecciona un modelo VRM antes de ajustar la vista del escenario Godot.
+godot-view-unavailable: No se recibió la vista del escenario Godot. Comprueba la conexión con Godot.
+godot-no-snapshot: No se recibió una captura de la vista del escenario Godot
+revision: Revisión {revision} · {reason}
+hemisphere: Hemisferio
+skybox: Cielo de fondo
+rotation-x-degrees: Rotación X (grados)
+rotation-y-degrees: Rotación Y (grados)
+intensity: Intensidad
+scale: Escala
+rotation: Rotación
+glow: Resplandor
+mouth-vowel: Boca {vowel}
+blink: Parpadeo
+wink-left: Guiño izquierdo
+wink-right: Guiño derecho
+smile: Sonrisa
+anger: Enfado
+sad: Tristeza
+surprise: Sorpresa
+troubled: Preocupación
+serious: Seriedad

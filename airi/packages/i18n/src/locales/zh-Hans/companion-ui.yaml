@@ -1,0 +1,44 @@
+app:
+  name: 魔兽陪伴精灵
+titles:
+  main: '{name}'
+  settings: 魔兽陪伴精灵 · 设置
+  about: 关于{name}
+  editor: 魔兽陪伴精灵 · 编辑器
+  onboarding: 欢迎使用{name}
+  dashboard: 魔兽陪伴精灵 · 仪表盘
+  overlay: 魔兽陪伴精灵 · 桌面浮层
+chat:
+  ask: 询问{name}…
+errors:
+  screen-capture: 没有可用的屏幕捕获来源，请检查{name}的屏幕录制权限。
+about:
+  version: 版本
+  branch: 分支
+  commit: 提交
+  built-on: 构建时间
+  about: 关于
+  build-info: 应用构建信息
+menu:
+  file: 文件
+  edit: 编辑
+  view: 视图
+  window: 窗口
+  close: 关闭窗口
+  quit: 退出
+  undo: 撤销
+  redo: 重做
+  cut: 剪切
+  copy: 复制
+  paste: 粘贴
+  select-all: 全选
+  reload: 重新加载
+  force-reload: 强制重新加载
+  devtools: 开发者工具
+  actual-size: 实际大小
+  zoom-in: 放大
+  zoom-out: 缩小
+  fullscreen: 切换全屏
+  minimize: 最小化
+  zoom: 缩放窗口
+  front: 全部置于前台

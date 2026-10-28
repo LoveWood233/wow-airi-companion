@@ -4,7 +4,7 @@ character-switcher:
   empty: Пока нет персонажей
   failed: Не удалось переключить персонажа. Попробуйте еще раз.
 mobile-tools:
-  sign-in: Войти в AIRI
+  sign-in: Войти в Спутник WoW
   account-description: Учётная запись и настройки
   sound: Звук
   character-voice: Голос персонажа
@@ -18,6 +18,8 @@ mobile-tools:
   view: Вид
   close-view: Сохранить и закрыть управление видом
   hearing: Слух
+  menu: Меню
+  menu-unread: Меню, {count} нечитаемые уведомления
 chat:
   provider-configuration:
     title: Провайдер чата не настроен
@@ -53,7 +55,7 @@ chat:
     system-default: По умолчанию в системе
     listen: Слушать непрерывно
     push-to-talk: Нажать для разговора
-    push-to-talk-unavailable: На этом устройстве нет клавиши для разговора по нажатию, поэтому AIRI не слушает. Измените режим ввода в настройках слуха.
+    push-to-talk-unavailable: На этом устройстве нет клавиши для разговора по нажатию, поэтому Спутник WoW не слушает. Измените режим ввода в настройках слуха.
     wake-word: Слушать слова активации
     hearing-settings: Другие настройки слуха…
     options-hint: Наведите курсор или нажмите правой кнопкой для просмотра настроек
@@ -91,16 +93,16 @@ chat:
     empty: Поделитесь мыслью или изображением.
     use-vision: Использовать модель зрения для изображений в чате
     use-vision-description: Выберите провайдера и модель ниже. Она читает прикреплённые изображения до ответа модели чата. Без модели зрения изображения передаются прямо модели чата.
-    attach: 'Прикрепить изображения'
-    remove: 'Удалить {name}'
-    unsupported: 'Используйте изображения PNG, JPEG, WebP или GIF.'
-    too-large: 'Размер каждого изображения не должен превышать 3 МБ.'
-    too-many: 'Прикрепляйте не более {count} изображений за раз.'
-    total-too-large: 'Общий размер прикреплённых изображений не должен превышать 3 МБ.'
-    read-failed: 'Не удалось прочитать изображение. Попробуйте ещё раз.'
-    no-description: 'Модель зрения не вернула описание изображения. Проверьте Настройки → Модули → Зрение и попробуйте ещё раз.'
-    reading: 'Чтение изображений…'
-    description: 'Прикреплённое изображение'
+    attach: Прикрепить изображения
+    remove: Удалить {name}
+    unsupported: Используйте изображения PNG, JPEG, WebP или GIF.
+    too-large: Размер каждого изображения не должен превышать 3 МБ.
+    too-many: Прикрепляйте не более {count} изображений за раз.
+    total-too-large: Общий размер прикреплённых изображений не должен превышать 3 МБ.
+    read-failed: Не удалось прочитать изображение. Попробуйте ещё раз.
+    no-description: Модель зрения не вернула описание изображения. Проверьте Настройки → Модули → Зрение и попробуйте ещё раз.
+    reading: Чтение изображений…
+    description: Прикреплённое изображение
   actions:
     reply: Ответить
     retry: Повторить
@@ -110,6 +112,7 @@ chat:
     character-name:
       core-system: Core система
       you: Ты
+      airi: Спутник WoW
   reply:
     cancel: Отменить ответ
     message: Сообщение
@@ -121,7 +124,7 @@ chat:
     archive: Архивировать
     pin: Закрепить
     actions: Показать действия
-    row: 'Разговор {n}'
+    row: Разговор {n}
   sessions:
     delete-short: Удалить
     confirm-delete-short: Подтвердить удаление
@@ -134,6 +137,84 @@ chat:
     cloud-badge: Синхронизировано с облаком
     new-chat-fallback: Новый чат
     delete: Удалить диалог
+  notice:
+    label: Отчет о прошлом из {name}
+  background-tasks:
+    label: Основные задачи
+    stop: Остановить {name}
+    dismiss: Отменить {name}
+    status:
+      running: Работа над
+      done: Сделано
+      failed: Не законченный
+      interrupted: Остановился
+  judgment:
+    running: Суждение {name}
+    judged: Судья {name}
+    invalid: Не мог судить {name}
+  judgment-tool-call:
+    answer: Ответ
+    next: Тогда ...
+    reply: Отвечай как обычно
+    stay-quiet: Держись тихо .
+    hint: 'Ответ, с учетом: {text}'
+    recipe-steps: Используйте рецепт {name}
+    recipe-decision: Судья {name}
+    recipe-background: Рука к рецепту {name}
+  recipe:
+    using: Используя рецепт {name}
+    loaded: Использованный рецепт {name}
+    started: По рецепту {name}
+    pending: Рецепт {name} ожидает одобрения
+    disabled: Рецепт {name} отключен .
+    unknown: Рецепт {name} не найден
+    refused: Рецепт {name} не начался
+    failed: Рецепт {name} не начался
+  recipe-tool-call:
+    task: Задача
+    usable: Рецепты, которые вы можете использовать сейчас
+    pending: Этот рецепт ждет вашего одобрения.
+    disabled: Этот рецепт выключен.
+    unknown: Никакой рецепт не имеет этого названия.
+    refused: Рецепт не мог начаться.
+  invoked-skill:
+    steps: Использованный рецепт {name}
+    background: По рецепту {name}
+    decision: Использованный рецепт {name}
+    question: Вопрос
+    yes: Да , это так .
+    no: Нет, нет.
+  home-assistant-tool-call:
+    shown: Показание {count} устройств {total}
+  web-search-tool-call:
+    results: Результаты "{query}" · {count}
+  tool-calls:
+    running-one: Использование {name}
+    failed-one: '{name} не закончился'
+    combo-running: Комбо ×{count}
+    combo: '{count}-ударная комбинация'
+    combo-failed: '{count}-ударный комбинат, {failed} пропущен'
+    arguments: Аргументы
+    result: Результат
+    copy: Копия сырых данных
+    copied: Копия
+    raw: Сырьевые данные
+    other: Другие данные
+    widget: Виджет
+    rerun: Снова беги .
+    card-making: Сделать карточку для этого инструмента...
+    card-remaking: Сделать новую карту...
+    card-regenerate: Сделайте новую карту
+    card-failed: Не мог сделать карту для этого инструмента
+    card-retry: Попробуй еще раз.
+    state:
+      executing: Бег
+      done: Сделано
+      error: Неудача
+  reply-card:
+    drawing: Рисую карту...
+    raw: Сырьевые данные
+    card: Карта
 render-error:
   title: '{renderer} не удалось отобразить эту модель'
   description: Модель выбрана, но сцена не смогла её отобразить.
@@ -174,6 +255,8 @@ theme:
 send-mode:
   title: Отправить ключ
   double-enter: Двойной Enter
+  enter: Войти .
+  ctrl-enter: Ctrl + Ввести
 speech-output:
   mute: Отключить озвучивание
   unmute: Включить озвучивание
@@ -189,14 +272,14 @@ viewers:
   debug-menu:
     emotions: Эмоции
     emotions-btn:
-      angry: '😠 Злость'
-      awkward: '😳 Неловкость'
-      happy: '😄 Радость'
-      neutral: '🙂 Нейтраль'
-      question: '🤔 Вопрос'
-      sad: '😫 Грусть'
-      surprised: '🤯 Удивление'
-      think: '🤨 Задумчивость'
+      angry: 😠 Злость
+      awkward: 😳 Неловкость
+      happy: 😄 Радость
+      neutral: 🙂 Нейтраль
+      question: 🤔 Вопрос
+      sad: 😫 Грусть
+      surprised: 🤯 Удивление
+      think: 🤨 Задумчивость
     vrm:
       camera: Камера
       model:
@@ -216,6 +299,7 @@ promo-banner:
       eventName: Войдите, чтобы получить звездную пыль, рамки аватара и подарки к запуску.
       reward: До 120 звёздной пыли
       cta: Войти
+      date: 03/28 - 04/10
     build:
       watermark: Сборка
       fallbackLabel: Бонус сборки
@@ -223,6 +307,7 @@ promo-banner:
       eventName: Выполняйте строительные задания, чтобы получать бонусные ваучеры и двойные материалы.
       reward: 5 ваучеров на припасы + улучшающие материалы
       cta: Просмотреть задания
+      date: 03/30 - 04/12
     spring:
       watermark: Весна
       fallbackLabel: Весенний розыгрыш
@@ -230,6 +315,7 @@ promo-banner:
       eventName: Участвуйте в весеннем розыгрыше, чтобы открывать пузырьки, подвески и тематическую мебель.
       reward: Первое привлечение за полцены + редкая подвеска
       cta: Участвовать сейчас
+      date: 04/01 - 04/18
     coupon:
       watermark: Диалог
       fallbackLabel: Купон
@@ -237,6 +323,7 @@ promo-banner:
       eventName: Выполняйте чат взаимодействия, чтобы получать купоны на наборы расширения и голосовые пакеты.
       reward: Экономьте 6 на 30 / Экономьте 15 на 68
       cta: Подтвердить промокод
+      date: 04/02 - 04/20
     home:
       watermark: Главная
       fallbackLabel: Тема комнаты
@@ -244,6 +331,7 @@ promo-banner:
       eventName: Открывайте темы для окна, стола и ночника, чтобы обновить свою комнату.
       reward: Бесплатный билет на тематический розыгрыш при входе
       cta: Просмотр тем
+      date: 04/05 - 04/22
 waiting: Ожидание
 websocket-status:
   connected: Подключено
@@ -255,7 +343,7 @@ computer-use:
 status:
   preparing: Подготовка микрофона
   listening: Прослушивание
-  paused: Прослушивание приостановлено, пока AIRI говорит
+  paused: Прослушивание приостановлено, пока Спутник WoW говорит
   transcribing: Распознавание речи
   hearing-error: Не удалось распознать речь
   no-transcript: Распознанная речь появится здесь.
@@ -266,3 +354,29 @@ status:
   sign-in-unconfirmed: Не удалось подтвердить сеанс. Войдите ещё раз.
   dismiss: Закрыть
   configure-hearing: Выберите и настройте провайдера слуха в настройках.
+avatar-model-missing:
+  title: Никакой модели не выбрана
+  unavailable-title: Эта модель не на этом устройстве.
+  description: Выберите модель, чтобы показать {name} на сцене.
+  select: Выберите модель
+notifications:
+  title: Уведомления
+  open: Открытые уведомления
+  open-unread: Открытые уведомления, {count} нечитаемые
+  mark-all-read: Отметьте все как прочитано .
+  empty: Пока никаких уведомлений
+  loading: Уведомления о загрузке
+  back: Вернуться .
+  error: Уведомления не загружались.
+  retry: Попробуйте .
+  just-now: Только сейчас.
+  kinds:
+    flux-granted:
+      title: Вы получили {amount} Flux
+    subscription-renewed:
+      title: '{plan} возобновлено'
+      body: Активная до {periodEnd}.
+    subscription-payment-failed:
+      title: Неудача платежа за продление
+      body: Мы попробуем снова на {retryAt}. Обновляйте свой способ оплаты, чтобы сохранить {plan}.
+      body-no-retry: Обновьте свой способ оплаты, чтобы сохранить {plan}.

@@ -105,7 +105,7 @@ export function setupWorkspaceWindowManager(params: {
       : screen.getPrimaryDisplay()
 
     const window = new BrowserWindow({
-      title: 'AIRI',
+      title: params.i18n.t('companion-ui.titles.main', { name: params.i18n.t('companion-ui.app.name') }),
       ...display.workArea,
       show: false,
       icon,

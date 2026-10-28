@@ -1290,6 +1290,70 @@ describe('woW version profiles', () => {
   })
 })
 
+describe('woW map coordinates', () => {
+  beforeEach(() => vi.resetAllMocks())
+
+  it.each(['en', 'zh-Hans'])('shows map-relative coordinates for the selected game in %s', async (locale) => {
+    const retail = liveState()
+    const forever = liveState('forever')
+    if (!retail.bridge?.snapshot || !forever.bridge?.snapshot)
+      throw new Error('Expected both game snapshots')
+    Object.assign(retail.bridge.snapshot, { px: 1234, py: 5678 })
+    Object.assign(forever.bridge.snapshot, { px: 0, py: 10000 })
+    const { router } = await renderPage(retail, locale, forever)
+    const region = page.getByTestId('wow-coordinates')
+    await expect.element(region.getByText(locale === 'en' ? 'Map coordinates' : '地图坐标', { exact: true })).toBeInTheDocument()
+    await expect.element(region.getByText('X 12.34 · Y 56.78', { exact: true })).toBeInTheDocument()
+    await router.push('/settings/wow-companion-forever')
+    await expect.element(region.getByText('X 0.00 · Y 100.00', { exact: true })).toBeInTheDocument()
+    await expect.element(region.getByText('X 12.34 · Y 56.78', { exact: true })).not.toBeInTheDocument()
+  })
+
+  it.each([
+    { status: 'stale', online: true, map: 84, ageSeconds: 0 },
+    { status: 'live', online: false, map: 84, ageSeconds: 0 },
+    { status: 'live', online: true, map: 0, ageSeconds: 0 },
+    { status: 'live', online: true, map: 84, ageSeconds: 6 },
+  ] as const)('does not show an old coordinate pair as current: %j', async (observation) => {
+    const state = liveState()
+    if (!state.bridge?.snapshot)
+      throw new Error('Expected snapshot')
+    Object.assign(state.bridge, { status: observation.status, ageSeconds: observation.ageSeconds })
+    Object.assign(state.bridge.snapshot, { px: 1234, py: 5678, online: observation.online, map: observation.map })
+    await renderPage(state)
+    const region = page.getByTestId('wow-coordinates')
+    await expect.element(region.getByText('Unavailable in this observation', { exact: true })).toBeInTheDocument()
+    await expect.element(region.getByText('X 12.34 · Y 56.78', { exact: true })).not.toBeInTheDocument()
+  })
+
+  it('updates the chat observation when the player moves without generating a proactive response', async () => {
+    const state = liveState()
+    if (!state.bridge?.snapshot)
+      throw new Error('Expected snapshot')
+    Object.assign(state.bridge.snapshot, { px: 1234, py: 5678 })
+    const { companion, pinia } = await renderPage(state)
+    companion.start(true)
+    await companion.refresh('retail')
+    const contexts = useChatContextStore(pinia)
+    const currentContext = () => contexts.getContextBucketsSnapshot()
+      .flatMap(bucket => bucket.messages)
+      .find(message => message.contextId === 'wow-current-player-retail')
+      ?.text ?? ''
+    await expect.poll(currentContext).toContain('"px":1234')
+    expect(currentContext()).toContain('fractions of the reported map multiplied by 10000')
+    Object.assign(state.bridge.snapshot, { px: 1250, py: 5700, seq: 2, tick: 2 })
+    mockStates(state)
+    await companion.refresh('retail')
+    await expect.poll(currentContext).toContain('"px":1250')
+    expect(currentContext()).not.toContain('"px":1234')
+    expect(companion.profiles.retail.responseState).toBe('idle')
+    state.bridge.status = 'stale'
+    mockStates(state)
+    await companion.refresh('retail')
+    expect(currentContext()).toBe('')
+  })
+})
+
 describe('woW equipment view and chat context', () => {
   beforeEach(() => vi.resetAllMocks())
 

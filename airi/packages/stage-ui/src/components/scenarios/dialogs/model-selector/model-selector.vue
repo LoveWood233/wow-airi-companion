@@ -222,6 +222,8 @@ vrmDialog.onChange(handleAddVRMModel)
 spineDialog.onChange(handleAddSpineModel)
 tachieDialog.onChange(handleAddTachieModel)
 mmdDialog.onChange(handleAddMMDModel)
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -247,7 +249,7 @@ mmdDialog.onChange(handleAddMMDModel)
             bg="neutral-400/20 hover:neutral-400/45 active:neutral-400/60 dark:neutral-700/50 hover:dark:neutral-700/65 active:dark:neutral-700/90"
             flex items-center justify-center gap-1 rounded-lg px-2 py-1 backdrop-blur-sm
             transition="colors duration-200 ease-in-out"
-            aria-label="Options for Display Models"
+            :aria-label="translateCompanion('companion-extra.options-for-display-models-71073d')"
           >
             <div i-solar:add-circle-bold />
             <div>{{ t('settings.model-select.select-model.import') }}</div>
@@ -325,7 +327,7 @@ mmdDialog.onChange(handleAddMMDModel)
       </div>
     </div>
     <div v-if="displayModelsFromIndexedDBLoading">
-      Loading display models...
+      {{ translateCompanion('companion-extra.loading-display-models-121bc7') }}
     </div>
     <div class="flex-1 overflow-x-auto overflow-y-hidden md:flex-none sm:overflow-x-hidden sm:overflow-y-scroll" h-full w-full>
       <div class="w-full flex gap-2 md:grid lg:grid-cols-2 md:grid-cols-1 lg:max-h-80dvh">
@@ -346,7 +348,7 @@ mmdDialog.onChange(handleAddMMDModel)
                 text="white"
                 h-7 w-7 flex items-center justify-center rounded-lg backdrop-blur-sm
                 transition="colors duration-200 ease-in-out"
-                aria-label="Options for Display Models"
+                :aria-label="translateCompanion('companion-extra.options-for-display-models-71073d')"
               >
                 <div i-solar:menu-dots-bold />
               </DropdownMenuTrigger>
@@ -442,13 +444,13 @@ mmdDialog.onChange(handleAddMMDModel)
               <div i-solar:question-square-bold-duotone text-4xl opacity-75 />
               <div translate-y="100%" absolute top-0 flex flex-col translate-x--7 rotate-45 scale-250 gap-0 opacity-5>
                 <div text="sm sm:sm" translate-x-7 translate-y--2 text-nowrap>
-                  unavailable Preview unavailable Preview
+                  {{ translateCompanion('companion-extra.unavailable-preview-unavailable-preview-d9e79c') }}
                 </div>
                 <div text="sm sm:sm" translate-x-0 translate-y--0 text-nowrap>
-                  Preview unavailable Preview unavailable
+                  {{ translateCompanion('companion-extra.preview-unavailable-preview-unavailable-8186d8') }}
                 </div>
                 <div text="sm sm:sm" translate-x--7 translate-y-2 text-nowrap>
-                  unavailable Preview unavailable Preview
+                  {{ translateCompanion('companion-extra.unavailable-preview-unavailable-preview-d9e79c') }}
                 </div>
               </div>
             </div>
@@ -458,7 +460,7 @@ mmdDialog.onChange(handleAddMMDModel)
               <EditableRoot
                 v-slot="{ isEditing }"
                 :default-value="model.name"
-                placeholder="Model Name..."
+                :placeholder="translateCompanion('companion-extra.model-name-981e71')"
                 class="flex gap-2"
                 auto-resize
               >

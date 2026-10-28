@@ -14,6 +14,7 @@ import WowCompanionLevelHistory from './wow-companion-level-history.vue'
 import WowCompanionLoadout from './wow-companion-loadout.vue'
 
 import { defaultSettings } from '../../shared/wow-companion'
+import { formatCompanionError } from '../../shared/wow-companion-errors'
 import { useWowCompanionStore } from '../stores/wow-companion'
 
 const props = defineProps<{ game: GameVersion }>()
@@ -58,6 +59,17 @@ const currentMoney = computed(() => {
   return snapshot.value.copper
 })
 const summaryFields = ['earned', 'spent', 'net', 'balance'] as const
+const coordinates = computed(() => {
+  const current = snapshot.value
+  const age = bridge.value?.ageSeconds
+  if (status.value !== 'live' || bridge.value?.source !== 'screen' || error.value || !current?.online
+    || !current.map || typeof current.px !== 'number' || typeof current.py !== 'number'
+    || typeof age !== 'number' || !Number.isFinite(age) || age < 0 || age > 5) {
+    return null
+  }
+  const formatter = new Intl.NumberFormat(locale.value, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  return { x: formatter.format(current.px / 100), y: formatter.format(current.py / 100) }
+})
 
 /** Keep full copper precision for account totals that exceed the safe number range. */
 function formatMoney(copper: string | number) {
@@ -187,7 +199,7 @@ onMounted(() => companion.start())
           {{ tn('start-bridge') }}
         </p>
         <p v-if="error" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
-          {{ error }}
+          {{ formatCompanionError(error, t) }}
         </p>
         <p v-if="message" role="status" :class="['text-sm text-primary-600 dark:text-primary-300']">
           {{ message }}
@@ -209,6 +221,15 @@ onMounted(() => companion.start())
             <p :class="['text-xs text-neutral-500']">
               {{ tn('zone-label') }}
             </p><p>{{ snapshot.zone }}</p>
+          </div>
+          <div data-testid="wow-coordinates">
+            <p :class="['text-xs text-neutral-500']">
+              {{ tn('coordinates.title') }}
+            </p>
+            <p>{{ coordinates ? t('wow-companion.coordinates.value', coordinates) : tn('coordinates.unavailable') }}</p>
+            <p :class="['mt-1 text-xs text-neutral-500']">
+              {{ tn('coordinates.note') }}
+            </p>
           </div>
           <div>
             <p :class="['text-xs text-neutral-500']">
@@ -271,10 +292,10 @@ onMounted(() => companion.start())
           </p>
         </div>
         <p v-if="profile.state.gold.storageError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
-          {{ tn('gold.storage-error') }} {{ profile.state.gold.storageError }}
+          {{ tn('gold.storage-error') }} {{ formatCompanionError(profile.state.gold.storageError, t) }}
         </p>
         <p v-if="goldActionError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
-          {{ goldActionError }}
+          {{ formatCompanionError(goldActionError, t) }}
         </p>
         <p v-if="goldMessage" role="status" :class="['text-sm text-primary-600 dark:text-primary-300']">
           {{ goldMessage }}

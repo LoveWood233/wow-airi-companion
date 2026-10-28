@@ -1,0 +1,28 @@
+unknown: Inconnu
+error: Une erreur inconnue s’est produite.
+streaming-description: Voix en continu à faible latence
+preview-text: Bonjour, je suis votre compagnon.
+providers-empty: Aucun fournisseur de voix configuré
+providers-setup: Configurer un fournisseur de voix
+model: Modèle
+model-description: Saisissez le modèle de génération vocale.
+model-manual-error: Saisissez un nom de modèle si la détection échoue.
+model-manual-empty: Saisissez un nom si aucun modèle n’est renvoyé.
+voice-title: Paramètres de la voix
+voice-description: Personnalisez la voix de votre compagnon.
+current-voice: 'Voix actuelle : {voice}'
+voices-error: Impossible de charger les voix
+pitch: Hauteur
+pitch-description: Réglez la hauteur de la voix.
+ssml: Activer SSML
+ssml-description: Utilisez le balisage vocal pour contrôler la voix.
+voice-name: Nom de la voix
+voice-name-description: Saisissez le nom de votre voix personnalisée.
+voice-name-placeholder: Nom de voix, par exemple alloy ou echo
+monolingual-v1: Monolingue v1
+multilingual-v1: Multilingue v1
+multilingual-v2: Multilingue v2
+custom-ssml: Utiliser un SSML personnalisé
+custom-ssml-description: Saisissez du SSML à la place du texte brut.
+ssml-placeholder: Saisissez du texte SSML…
+stop: Arrêter

@@ -3,7 +3,7 @@ operations:
   load-models-status:
     loading: Đang tải
     ready: Sẵn sàng
-'resource-island':
+resource-island:
   loading: Đang chuẩn bị tài nguyên...
   ready: Tài nguyên sẵn sàng
   preparing: Đang chuẩn bị tệp mô hình
@@ -13,35 +13,36 @@ docs:
     navbar:
       appearance:
         title: Giao diện
-'controls-island':
-  'fade-on-hover':
+controls-island:
+  fade-on-hover:
     enable: Ẩn khi rê chuột
     disable: Luôn hiển thị
-  'open-settings': Mở cài đặt
-  'open-chat': Mở trò chuyện
-  'hide-chat': Ẩn trò chuyện
-  'refresh': Làm mới
-  'center-main-window': Di chuyển vào giữa màn hình
-  'open-hearing-controls': Kiểm soát thính giác mở
-  'enable-microphone': Bật micrô
-  'disable-microphone': Tắt micrô
-  'drag-to-move-window': Kéo để di chuyển cửa sổ
-  'mute': Tắt tiếng
-  'unmute': Bật tiếng
-  'switch-to-light-mode': Chuyển sang chế độ sáng
-  'switch-to-dark-mode': Chuyển sang chế độ tối
-  'switch-to-system-mode': Theo giao diện hệ thống
-  'pin-on-top': Ghim lên trên
-  'unpin-from-top': Gỡ ghim khỏi đầu trang
-  'switch-profile': Chuyển Hồ Sơ
-  'close': Đóng
-  'expand': Mở rộng
-  'collapse': Sụp đổ
-  'login': Đăng nhập
-  'logging-in': Đang đăng nhập...
-  'account': Tài khoản
-  'logout': Đăng xuất
-'chat-window':
+  open-settings: Mở cài đặt
+  open-chat: Mở trò chuyện
+  hide-chat: Ẩn trò chuyện
+  refresh: Làm mới
+  center-main-window: Di chuyển vào giữa màn hình
+  open-hearing-controls: Kiểm soát thính giác mở
+  enable-microphone: Bật micrô
+  disable-microphone: Tắt micrô
+  drag-to-move-window: Kéo để di chuyển cửa sổ
+  mute: Tắt tiếng
+  unmute: Bật tiếng
+  switch-to-light-mode: Chuyển sang chế độ sáng
+  switch-to-dark-mode: Chuyển sang chế độ tối
+  switch-to-system-mode: Theo giao diện hệ thống
+  pin-on-top: Ghim lên trên
+  unpin-from-top: Gỡ ghim khỏi đầu trang
+  switch-profile: Chuyển Hồ Sơ
+  close: Đóng
+  expand: Mở rộng
+  collapse: Sụp đổ
+  login: Đăng nhập
+  logging-in: Đang đăng nhập...
+  account: Tài khoản
+  logout: Đăng xuất
+  open-wow-companion: thẻ thông tin WoW
+chat-window:
   style:
     title: Kiểu cửa sổ trò chuyện
     legacy: Cửa sổ cổ điển
@@ -49,6 +50,7 @@ docs:
     floating-free: Nổi, bất kỳ đâu trên màn hình
     floating-danmaku: Nổi, luồng tin nhắn
     pinned: Luôn ở trên cùng
+    fullscreen: Fullscreen, bên cạnh nhân vật
   resize: Kéo để đổi kích thước trò chuyện
   move: Kéo để di chuyển trò chuyện
   fold: Ẩn trò chuyện
@@ -73,7 +75,7 @@ widgets:
 inlay:
   dismiss: Đóng
 notice:
-  'fade-on-hover':
+  fade-on-hover:
     title: Mờ dần khi rê chuột
     intro: Tự làm mờ nhân vật khi con trỏ ở gần. Giảm xao nhãng nhưng vẫn nhìn thấy nhân vật.
     opacity: Bật lên thì độ mờ giảm xuống {value} cho {targets} khi con trỏ ở gần.
@@ -86,6 +88,7 @@ notice:
     preparing: Đang chuẩn bị…
     read-more: Xem thêm
     preview-title: Đây là gì?
+    value: '0'
 about:
   subtitle: Phiên bản desktop
   current-version: Phiên Bản Hiện Tại
@@ -95,6 +98,7 @@ about:
     title: Các Liên Kết
     home: Trang chủ
     documentation: Tài liệu
+    github: GitHub
   update:
     lane:
       label: Luồng cập nhật
@@ -104,6 +108,9 @@ about:
       auto: Tự động
       stable: Ổn định
       nightly: Hàng ngày
+      alpha: Alpha
+      beta: Beta
+      canary: Canary
     status:
       downloading: Đang tải bản cập nhật...
       error-prefix: Lỗi
@@ -128,3 +135,148 @@ about:
       title: Có Bản Cập Nhật Mới
       description: Hiện đang có phiên bản mới (v{version}).
       no-release-notes-markdown: _Không có ghi chú phát hành nào được cung cấp._
+fullscreen-island:
+  settings: Cài đặt
+  chat: Nói chuyện
+  switch-to-dark-mode: Chuyển sang chế độ tối
+  switch-to-system-mode: Theo chủ đề hệ thống
+  switch-to-light-mode: Chuyển sang chế độ ánh sáng
+  exit: Khởi ra màn hình đầy đủ
+fullscreen-surface:
+  resize: Nhổ để thay đổi kích thước bảng
+computer-use-tool-call:
+  help: Hỗ trợ
+  status:
+    completed: Được hoàn thành
+    failed: Thất bại
+  display: Khán giả
+  built-in: Tích hợp
+  primary: Đáng cấp
+  logical-size: Kích thước hợp lý
+  pixel-size: kích thước pixel
+  backend: Chụp backend
+  fallback: Nguyên nhân trở lại
+  file: Dữ liệu
+  window: Chiếc cửa sổ
+  region: Khu vực
+  main: Tối trọng
+  hidden: Cầm kín
+  displays: Một màn hình | {count} màn hình
+  windows: Một cửa sổ | {count} cửa sổ
+  found: Tìm thấy "{query}"
+  matches: Một trận đấu | {count}
+  not-found: Không tìm thấy "{query}"
+  clicked-text: Nhấp vào "{query}"
+  options: Các lựa chọn
+  typed: Tiêu chuẩn
+  pasted: Chất đệm
+  pressed: Đánh áp
+  repeat: × {count}
+  interval: mỗi ms {ms}
+  hold: được giữ cho {ms} ms
+  steps: Một bước theo thứ tự | {count} bước theo thứ tự
+  focused: '"{query}" tập trung'
+  app: Ứng dụng
+  process: Quá trình
+  control: Kiểm soát
+  title: Tên gọi
+  value: Nội dung
+  ax-path: Đường truy cập
+  moved: Chuyển hướng dẫn đến
+  clicked: Nhấp vào
+  dragged: Bị kéo
+  requested: Được yêu cầu
+  on-screen: Trên màn hình
+  start: Bắt đầu
+  end: Kết thúc
+  final: Điểm cuối cùng
+  duration: '{ms} ms'
+  normalized: Các phối hợp bình thường
+  click-count: × {count}
+  relative:
+    screen: Liên quan đến màn hình
+    window: Liên quan đến cửa sổ
+    display: Liên quan đến màn hình
+  buttons:
+    left: Bấm bên trái
+    right: Bấm phải
+    middle: Bấm giữa
+  clicks:
+    single: Nhấp một lần
+    double: Nhấp hai lần
+  delivery:
+    path: Đưa hàng
+    verified: Hiệu ứng được xác minh
+    not-verified: Hiệu ứng không được xác minh
+    disturbance: Sự nhiễu loạn
+    mouse: Chuột
+    focus: Tập trung
+    clipboard: Clipboard
+    attempt: Cố gắng {index}
+    attempt-succeeded: Thành công
+    attempt-failed: Thất bại
+  paths:
+    foreground_system_events: Các sự kiện hệ thống tiên phong
+    window_targeted_keyboard: Các sự kiện bàn phím được gửi đến cửa sổ
+    ax_focus: Tập trung vào khả năng tiếp cận
+  disturbances:
+    none: Không có
+    temporary: Thời gian tạm thời
+    foreground: Được đưa đến phía trước
+    unknown: Không biết
+  activated: Chuyển sang {app}
+  in-front: Bây giờ đi trước
+  front-is: '{app} ở phía trước'
+  front-unknown: Không thể kiểm tra ứng dụng ở phía trước
+  permissions:
+    title: Các quyền hệ thống
+    names:
+      screen_recording: Thiết lập màn hình
+      screen_capture_kit: ScreenCaptureKit
+      accessibility: Khả năng tiếp cận
+      automation_to_system_events: Tự động hóa (System Events))
+    states:
+      granted: Được chấp thuận
+      missing: Không được cấp
+      denied: Chưa được
+      unknown: Không biết
+  media:
+    commands:
+      play: Chơi
+      pause: Hỗng nghỉ
+      toggle: Chơi hoặc tạm dừng
+      next: Đường tiếp theo
+      previous: Hướng dẫn trước
+    verified: Được xác minh
+    not-verified: Không được xác minh
+    playing: Chơi
+    paused: Chạm dừng
+    nothing: Không có gì đang chơi.
+    liked: Ước gì
+    rate: '{rate}× tốc độ'
+computer-use-read-image-tool-call:
+  description: Mô tả từ mô hình tầm nhìn
+  failed: Mô hình thị giác không đọc được hình ảnh này.
+tool-call-screenshot:
+  view-full: Xem kích thước đầy đủ
+weather-tool-call:
+  feels-like: Cảm giác như
+  humidity: Độ ẩm
+  wind: Gió
+  precipitation: Cơ hội mưa
+  high: Tối cao
+  low: Tầng thấp
+  conditions:
+    clear-day: Rõ ràng
+    clear-night: Rõ ràng
+    partly-cloudy-day: Một phần mây
+    partly-cloudy-night: Một phần mây
+    overcast: Ánh mây
+    fog: Sương mù
+    drizzle: Giống nước
+    sleet: Sơn
+    rain: Mưa
+    extreme-rain: mưa lớn
+    snow: Tuyết
+    extreme-snow: Tuyết nặng
+    thunderstorm: Bão bão

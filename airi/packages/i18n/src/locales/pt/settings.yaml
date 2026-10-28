@@ -1,0 +1,2622 @@
+common:
+  save: Salvar
+animations:
+  stage-transitions:
+    title: Desativar transições do palco
+  use-page-specific-transitions:
+    description: Algumas páginas têm transições próprias que substituem as do palco
+    title: Usar transições específicas da página
+dialogs:
+  onboarding:
+    official:
+      title: Provedor oficial do Companheiro de WoW
+    title: Bem-vindo ao Companheiro de WoW!
+    description: Configure um provedor de IA para o Companheiro de WoW.
+    selectProvider: Escolher um provedor de IA
+    configureProvider: Configurar {provider}
+    apiKey: Chave de API
+    apiKeyHelp: Obtenha sua chave de API em {provider} e cole aqui
+    baseUrl: URL base
+    baseUrlHelp: URL do endpoint da API. Em caso de dúvida, use o padrão
+    accountId: ID da conta
+    validationRunning: Executando testes
+    validationSuccess: Configuração validada
+    validationPartial: Configuração parcialmente validada
+    validationFailed: Falha na validação da configuração
+    validationError: 'Erro de validação: {error}'
+    testGeneration: Testar API
+    testGenerationRunning: Testando…
+    testGenerationFailed: Falha no teste de conexão
+    retryPingCheck: Tentar novamente
+    skipForNow: Pular por enquanto
+    saveAndContinue: Salvar e continuar
+    next: Próximo
+    retry: Tentar novamente
+    credentialsSafeLabel: Proteja suas chaves de API e credenciais!
+    credentialsSafeLocal: O Companheiro de WoW funciona localmente no seu computador e não coleta credenciais de provedores de IA/LLM. As chaves de API são sensíveis. Proteja-as e não as compartilhe.
+    credentialsSafeOpenSource: O código do Companheiro de WoW está aberto em {github}. Consulte-o para verificar como tratamos suas credenciais.
+    enableChatCheck: Permitir que o Companheiro de WoW envie "ping" ao primeiro modelo de conversa disponível para verificar a conexão
+    start: Vamos começar!
+    loginPrompt: Entre para usar o provedor oficial do Companheiro de WoW e obter a melhor experiência.
+    loginAction: Entrar
+    setupWithoutSigningIn: Configurar um provedor de modelos
+    pricingLink: Preços
+    termsLink: Termos de Serviço
+    flux: Flux
+    buyFlux: Carregar Flux
+    select-model: Escolher modelo
+    no-models: Nenhum modelo disponível
+    no-models-help: Volte à etapa anterior e verifique sua chave de API ou conexão de rede.
+    permissions:
+      title: Gerenciamento de permissões
+      description: Você pode conceder as permissões necessárias agora ou configurá-las depois.
+      notificationsTitle: Notificações
+      notificationsDescription: Permitir lembretes e atualizações importantes de estado.
+      microphoneTitle: Microfone
+      microphoneDescription: Permitir que o Companheiro de WoW use seu microfone para entrada de voz e transcrição.
+      requestAction: Solicitar acesso
+      optionalHint: Você pode continuar sem conceder estas permissões.
+      stateGranted: Concedido
+      stateNotGranted: Não concedido
+  bug-report:
+    title: Relato de erro (´;ω;`)ヾ(･∀･`)
+    subtitle: Lamento ter cometido algo errado. Importa-se de nos dizer o que aconteceu?
+    trigger-label: Relatar erro
+    submit-label: Enviar relato de erro
+    triage-description: Incluir captura de tela e contexto da página para nos ajudar a triagar este problema.
+    description-placeholder: Passos para se reproduzir, comportamento esperado e comportamento real
+    include-current-page-screenshot: Incluir captura da página atual
+    manual-media:
+      label: Escolha manualmente capturas de tela / gravações
+      optional: Opcional.
+    media-files:
+      label: Arquivos de mídia
+      description: 'Opcional: selecione manualmente.'
+      placeholder: Escolher captura ou arquivo de vídeo
+      selected-count: '{count} arquivo(s) selecionado(s)'
+    last-submitted-preview: Prévia do último conteúdo enviado
+language:
+  title: Idioma
+  description: |
+    Língua de interface. Podes definir a linguagem dos personagens mais tarde.
+controls-island:
+  icon-size:
+    title: Tamanho dos ícones dos controles flutuantes
+    description: Ajustar o tamanho dos ícones de controle da ilha
+    auto: Automático (adaptável)
+    large: Grande (padrão)
+    small: Pequeno
+analytics:
+  notice:
+    title: Análise de uso
+    description: A Companheiro de WoW coleta análises de uso anônimas para nos ajudar a entender como o aplicativo é usado e melhorar a estabilidade. Não são recolhidos dados pessoais.
+    privacyPrefix: Leia a
+    privacyLink: política de privacidade
+    onboardingHint: Você pode desativar a análise mais tarde em Configurações > Sistema > Geral.
+    settingsHint: Pode desligar a análise a qualquer momento.
+  toggle:
+    title: Ativar análise de uso
+    description: Desligue isto para optar pela coleção de análises.
+  disabled:
+    title: Análise desativada para esta construção de desenvolvimento
+model-select:
+  panel-callout:
+    support-status-header: Apoiamos os modelos 2D e 3D
+    support-status: |
+      Clique em {select-button} para selecionar ou importar modelos. Atualmente, são suportados {zip} (para os modelos Live2D e Spine) ), {vrm} (para os modelos VRM ) e {mmd} (para os modelos MMD, fechados com suas texturas)).
+    model-type-example: |
+      O Neuro-sama usa um modelo 2D impulsionado por uma estrutura desenvolvida pela Live2D Inc, enquanto o Grok Ani (em Grok Companion) usa um modelo 3D impulsionado por formatos abertos VRM / MMD.
+  select-model:
+    title: Seletor de modelos
+    button: Selecionar modelo
+    select: Escolher
+    import: Importar
+    remove: Remover
+    sync:
+      upload: Enviar para a nuvem
+      delete-cloud: Excluir da nuvem
+      status:
+        local-only: Apenas neste dispositivo
+        queued: Aguardando envio
+        uploading: Enviando
+        synced: Sincronizado na nuvem
+        cloud-only: Na nuvem, não baixado
+        downloading: Baixando
+        failed: Falha na sincronização
+    confirm: Confirmar
+  live2d-report:
+    title: Antes de importar
+    description: Revisar os dados do modelo e quaisquer questões encontradas no arquivo.
+    description-short: Revisar os dados do modelo e as questões.
+    close: Fechar
+    model:
+      title: Modelo
+      files: '{count} arquivos'
+      types:
+        cubism: Cubism {version} ({format})
+        cubism-compatible: Cubism 3+ ({format})
+        unknown: Desconhecido
+    resources:
+      title: Recursos
+      motions: Movimentos
+      expressions: Expressões
+      parameters: Parâmetros
+      textures: Texturas
+      referenced-and-found: '{referenced} referenciado · {found} encontrado'
+      referenced: '{count} referências'
+      found: '{count} encontrados'
+    issues:
+      title: Problemas
+      errors: '{count} erros'
+      warnings: '{count} avisos'
+      none: Nenhum problema encontrado.
+      how-to-fix: Como corrigir
+      resolve-before-import: Resolver os erros antes da importação.
+    actions:
+      cancel: Cancelar
+      confirm: Confirmar importação
+      import-anyway: Importar mesmo assim
+live2d:
+  change-model:
+    from-file: Carregar de arquivo
+    from-file-select: Selecionar
+    from-url: Carregar de URL
+    from-url-confirm: Carregar
+    from-url-placeholder: Digite a URL do modelo Live2D
+    title: Trocar modelo
+  edit-motion-map:
+    title: Editar mapa de movimentos
+  map-motions:
+    play: Reproduzir movimento
+    title: Mapear movimentos
+  title: Configurações de Live2D
+  scale-and-position:
+    title: Escala e posição
+    scale: Escala
+    x: X
+    y: Y
+  switch-to-vrm:
+    title: Mudar para avatar 3D?
+    change-to-vrm: Clique aqui para mudar para a configuração de avatar 3D (VRM))
+  theme-color-from-model:
+    title: Extrair cores do modelo
+    description: |
+      Extrair cores proeminentes da tela de renderização atual. Clique na cor para aplicá-la ao Companheiro de WoW. Tente extrair várias vezes, com o modelo em posturas diferentes, se as cores não são desejáveis.
+    button-extract:
+      title: Extrair
+  animation:
+    title: Animação
+    motion-driver:
+      title: Gerador de movimentos
+      description: Selecione como o Companheiro de WoW cria movimento ocioso do corpo e dos olhos.
+      options:
+        universal:
+          title: Universal
+          description: Use movimentos de modelo, movimento de olho ocioso e rastreamento do rato.
+        magic:
+          title: MAGIC
+          description: Gerar movimento a partir do conjunto de dados MAGIC em conjunto.
+      magic:
+        profile:
+          title: Perfil MAGIC
+          description: Selecione o conjunto de dados de movimento em conjunto que se encaixa no driver MAGIC.
+          options:
+            idle-calm:
+              title: Ocioso / calmo
+              description: Use a gravação de movimento ocioso e calmo.
+            speaking-excited:
+              title: Falando / animado
+              description: Use a gravação de voz e movimentos animados.
+        skip-mouth-open:
+          title: Ignorar abertura de boca gerada
+          description: Mantém a sincronização dos lábios da fala sob controle. Desativar esta opção para utilizar abertura bucal do perfil.
+        force-view-target:
+          title: Forçar olhar para frente
+          description: Mantenha os olhos direcionados para a frente enquanto o MAGIC move a cabeça.
+    focus:
+      title: Ativar acompanhamento do mouse
+      description: Olhe para o cursor enquanto se move. O movimento do olho ocioso retoma após o cursor parar.
+      offset: Deslocamento dos olhos (%)
+    force-idle-eye-animation:
+      title: Movimento dos olhos em repouso
+      description: Olhe ao acaso quando não há foco ativo do cursor.
+    blink-enable:
+      title: Ativar piscar
+      description: Permitir que o modelo pisque.
+    auto-blink:
+      title: Automático
+      description: Use a animação padrão de piscar do modelo
+    force-auto-blink:
+      title: Forçar
+      description: Animação de piscar de força com temporizador externo
+    blink-mode:
+      title: Modo de piscar
+      description: Escolha o modelo de piscar incorporado ou o temporizador de piscar forçado do Companheiro de WoW.
+    idle-motion:
+      title: Animação em repouso
+      no-motion: Nenhuma animação disponível
+      placeholder: Selecionar animação
+      disable-motion: Desativado
+      disable-motion-description: Desativar animação em repouso
+  parameters:
+    title: Parâmetros do modelo
+    render-scale:
+      title: Escala de renderização
+    fps:
+      title: FPS
+      description: Limitar taxa de quadros
+      options:
+        unlimited: ∞
+    shadow: Sombra projetada
+    reset-parameters: Restaurar parâmetros padrão
+  clear-model-cache: Limpar cache de modelos
+  expressions:
+    title: Expressões
+    description: Ativar temporariamente uma expressão ou escolher se a Companheiro de WoW pode usá-la.
+    override-toggle: Sistema de expressões
+    sdk-preset-preserved-notice: |
+      O gerenciador de expressão do SDK e o piscar de olhos são preservados quando desativados.
+    no-expression: Não há expressões disponíveis para este modelo.
+    reset: Restaurar todas as expressões
+    parameter-count: '{count} parâmetros'
+    actions:
+      activate: Ativar {name}
+      deactivate: Desativar {name}
+      show-to-airi: Disponibilizar {name} ao Companheiro de WoW
+      hide-from-airi: Ocultar {name} do Companheiro de WoW
+microphone: Microfone
+models: Modelo
+pages:
+  account:
+    title: Conta
+    description: Visualizar o seu perfil e gerir a sua conta
+    notLoggedIn: Inscreva-se para ver a sua conta e acessar todos os recursos
+    login: Entrar
+    logout: Sair
+    fluxBalance: Saldo de Flux
+    viewFluxDetails: Ver detalhes
+    capacitorEntry: Capacitor
+    viewCapacitor: Ver
+    signedInAs: Conectado como
+    profile:
+      tab: Perfil
+      title: Perfil
+      description: Gerencie o seu nome de exibição pública.
+      name:
+        label: Nome de exibição
+        placeholder: Como outras pessoas veem você
+      avatar:
+        gravatarNotice: Avatar do Gravatar.
+        gravatarLink: Gerenciar em gravatar.com
+      action:
+        save: Salvar alterações
+      message:
+        saved: Perfil atualizado.
+      error:
+        fallback: Não foi possível salvar suas alterações.
+    connections:
+      tab: Contas conectadas
+      title: Contas conectadas
+      description: Entre no Companheiro de WoW com estes provedores. Desconecte para revogar o acesso e conecte novamente para trocar de conta.
+      status:
+        linked: Conectado
+        notLinked: Não conectado
+        linkedSince: Conectado em {date}
+      action:
+        link: Conectar
+        unlink: Desconectar
+      message:
+        loading: Carregando contas conectadas…
+        unlinked: '{provider} desconectado.'
+        linked: '{provider} conectado.'
+        linkStarted: Redirecionando para {provider}…
+      error:
+        listFailed: Não foi possível carregar as contas conectadas.
+        unlinkFailed: Não foi possível desconectar esta conta.
+        linkFailed: Não foi possível iniciar a conexão.
+        accountAlreadyLinkedToDifferentUser: Esta conta OAuth já está vinculada a outra conta Companheiro de WoW. Escolha uma conta de fornecedor diferente, ou desligue-a da outra conta Companheiro de WoW primeiro.
+        oauthCallbackFailed: Não conseguimos conectar esta conta OAuth. Tente novamente ou escolha outra conta do fornecedor.
+        lastAccount: Este é seu único método de acesso. Defina uma senha antes de desconectar.
+    security:
+      tab: Segurança
+      title: Segurança
+      description: Mude a senha. Os outros aparelhos serão assinados.
+      setDescription: Você entrou por um provedor social e ainda não tem senha. Enviaremos um link seguro para defini-la.
+      currentPassword:
+        label: Senha atual
+        placeholder: Digite sua senha atual
+      newPassword:
+        label: Nova senha
+        placeholder: Pelo menos 8 caracteres
+      confirmPassword:
+        label: Confirmar nova senha
+        placeholder: Repita a nova senha
+      action:
+        changePassword: Alterar senha
+        sendSetLink: Enviar link para definir minha senha
+      message:
+        changed: Senha alterada. As outras sessões foram desconectadas.
+        setLinkSent: Verifique {email} para obter o link de definição de senha.
+      error:
+        fallback: Não foi possível alterar sua senha.
+        setLinkFailed: Não foi possível enviar o link para definir a senha.
+        passwordMismatch: A nova senha e a confirmação não coincidem.
+        passwordSameAsCurrent: A nova senha deve ser diferente da atual.
+    danger:
+      tab: Zona de perigo
+      title: Zona de perigo
+      description: Ações de conta irreversíveis vivem aqui.
+      deleteAccount:
+        title: Excluir conta
+        description: Eliminar permanentemente a sua conta e dados pessoais.
+        action: Excluir conta
+        modal:
+          title: Excluir conta?
+          warning: Isto não pode ser desfeito. O seu saldo Flux está limpo. Anula uma assinatura ativa primeiro.
+          confirmEmail:
+            label: Digite seu email para confirmar
+            placeholder: ''
+            mismatch: O email não coincide.
+          confirm: Enviar email de confirmação
+          deleteNow: Excluir permanentemente
+          confirmPhrase: Digite DELETE para confirmar
+          signInAgain: Entrar novamente
+          cancel: Cancelar
+        message:
+          deleted: Sua conta foi excluída.
+          emailSent: Verifique o {email} para a ligação de exclusão.
+        error:
+          reauthenticate: Inscreva-se de novo e depois volta para confirmar a exclusão. Nenhum e-mail é enviado.
+          fallback: Não conseguiu iniciar a exclusão. Tenta outra vez mais tarde.
+          subscriptionActive: A sua assinatura ainda está ativa. Anula-o na página Capacitor primeiro, e depois apague a sua conta.
+  card:
+    wake-word-conflicts:
+      title: Uma pronúncia de palavra compartilhada Wake precisa de um caráter | {count} pronúncia de palavra compartilhada Wake precisa de um caráter
+      description: Dois cartões usam a mesma pronúncia. Nenhum personagem responde até que você escolha um.
+      action: Escolher quem responde
+    sync:
+      notice: Os cartões de personagens são sincronizados com a sua conta. Um cartão apagado permanece restaurável por 30 dias.
+      off_notice: Está conectado, mas a sincronização do cartão de personagem está desligada.
+      off_notice_link: Ligue-o em Características Experimentais.
+      state:
+        synced: Sincronizado com sua conta
+        pending: Aguardando envio
+        refused: Não foi carregado. A sua conta não tem espaço para mais cartões, por isso este cartão fica neste dispositivo.
+      conflict_copy_name: '{name} (cópia em conflito)'
+      conflict_notice: Outro dispositivo mudou o mesmo personagem. O Companheiro de WoW manteve a versão deste dispositivo como uma cópia.
+      history:
+        tab: Histórico
+        empty: Nenhum histórico desta ficha ainda.
+        loading: Carregando histórico…
+        load_failed: Não consegui carregar o histórico deste cartão.
+        current: Atual
+        changed_label: Alterado
+        removed_label: Removido
+        fields:
+          name: Nome
+          nickname: Apelido
+          version: Versão
+          creator: Criador
+          description: Descrição
+          personality: Personalidade
+          scenario: Cenário
+          systemPrompt: Instruções do sistema
+          postHistoryInstructions: Instruções após o histórico
+          notes: Notas do criador
+          greetings: Saudações
+          tags: Etiquetas
+          metadata: Metadados
+          assets: Recursos
+          characterBook: Livro de conhecimento
+          source: Origem
+          wakeWords: Palavras de ativação
+          agents: Agentes
+          consciousness: Modelo de Consciência
+          vision: Modelo de Visão
+          speech: Modelo de Fala
+          vrm: Modelo VRM
+          live2d: Modelo Live2D
+          displayModelId: Modelo exibido
+          activeBackgroundId: Fundo fixado
+          artistry: Criação de imagens
+        restore: Restaurar esta versão
+        restore_confirm_title: Restaurar esta versão?
+        restore_confirm_body: Esta substitui o conteúdo atual do {name} pelo conteúdo do {date}.
+        restore_confirm_confirm: Restaurar
+        restore_confirm_cancel: Cancelar
+        restore_success: Restaurado {name} para uma versão anterior.
+        restore_failed: Não consegui restaurar esta versão. O servidor pode já não tê-lo.
+      deleted:
+        title: Excluídos recentemente
+        empty: Nenhuma ficha excluída recentemente.
+        loading: Carregando fichas excluídas recentemente…
+        load_failed: Não consegui carregar cartões recentemente apagados.
+        deleted_when: Excluído {when}
+        days_left: '{days} dias para restaurar'
+        restore: Restaurar
+        restore_success: '{name} restaurado.'
+        restore_failed: Não consegui restaurar este cartão. O servidor pode não ter mais o seu conteúdo.
+    activate: Ativar
+    active: Ativo
+    active_badge: Ativo no momento
+    activation_notice: Passei para {name}. A conversa atual agora usa este personagem.
+    cancel: Cancelar ação
+    save: Salvar alterações
+    save_and_activate: Salvar e ativar
+    card_not_found: Ficha não encontrada
+    back: Voltar
+    character: Personagem
+    close: Fechar
+    chat:
+      provider: Conversa / Provedor
+    consciousness:
+      model: Consciência / Modelo
+    vision:
+      provider: Visão / Provedor
+      model: Visão / Modelo
+    created_by: criado por
+    creator_notes: Notas do criador
+    delete: Excluir
+    delete_card: Excluir ficha
+    delete_confirmation: Tens a certeza de que queres apagar este cartão?
+    description: Usar pré-configurados de cartão de caracteres Companheiro de WoW
+    description_label: Descrição
+    drop_here: Solte para enviar
+    create_card: Criar nova ficha
+    edit_card: Editar ficha
+    saved: Ficha salva
+    unsaved:
+      badge: Não salvo
+      title: Descartar alterações?
+      message: As tuas alterações não são guardadas. Se você deixar esta página, vai perdê-los.
+      keep_editing: Continuar editando
+      discard: Descartar alterações
+    creation:
+      identity: Identidade
+      name: Nome
+      nickname: Apelido
+      description: Descrição
+      behavior: Comportamento
+      greetings: Saudações (uma por linha)
+      settings: Configurações
+      version: Versão
+      create: Criar
+      defaults:
+        name: Nome
+        personality: Você é um ser humano comum, curioso sobre tudo.
+        scenario: Recentemente acordaste e esqueceste-te de tudo sobre a tua vida anterior.
+        systemprompt: Vais receber mensagens, responder-lhes como um ser humano.
+        posthistoryinstructions: Lembre-se de imitar um ser humano.
+      modules_info: Configurar módulos para este cartão de caracteres. Campos vazios de conversa, visão e fala herdam configurações globais. Nenhum Modelo de Corpo desativa o renderizado.
+      sections:
+        chat: Conversa
+        vision: Visão
+        speech: Fala
+        body: Corpo
+      use_default: Usar padrão
+      use_default_not_configured: Usar padrão (não configurado)
+      inherit_global_settings: Herdar configurações globais
+      no_model: Sem modelo
+      fields_info:
+        subtitle: Você pode colocar aqui alguns detalhes sobre o personagem que está criando, explicar sua história e contexto, e como suas interações devem ser respondidas.
+        name: É o nome formal deste personagem.
+        nickname: Você também pode dar um apelido que será usado em prioridade.
+        description: Descrição deste personagem.
+        notes: Se quiseres acrescentar algumas notas pessoais.
+        personality: Descreva aqui a personalidade do seu personagem. Tem vergonha ? Curioso ? - Mais alguma coisa ?
+        scenario: Qual é o local ? Qual é a situação atual ?
+        greetings_field: Saudações
+        greetings: Como é que o teu personagem deve dizer "olá"?
+        systemprompt: Explique aqui ao M.L.L. de IA como deve responder quando solicitado.
+        posthistoryinstructions: Coloque aqui qualquer coisa que o Mestrado em Inteligência Artificial possa ler depois do histórico das mensagens.
+        version: Versão do cartão, você deve aumentar isso se estiver fazendo alterações de um cartão anterior.
+        consciousness_model: Selecione o modelo de consciência (modelo AI) para este caráter.
+        speech_model: Selecione o modelo de síntese de fala e a voz para este personagem.
+      errors:
+        model_required: Selecionar um modelo para cada fornecedor explícito. Os modelos não podem ser herdados de um fornecedor diferente.
+        name: O nome deve ser válido ou não vazio.
+        version: 'Erro: número de versão inválido!'
+        description: 'Erro: Deve fornecer uma descrição deste cartão.'
+        personality: 'Erro: Deve ser fornecida uma personalidade para este personagem.'
+        scenario: 'Erro: é necessário um cenário.'
+        systemprompt: 'Erro: Por favor, forneça um aviso do sistema.'
+        posthistoryinstructions: 'Erro: É necessário solicitar o cronograma de publicação.'
+        invalid_artistry_json: 'Erro: Opções de fornecedor de arte contêm JSON inválido.'
+      none: Nenhum
+      none_disabled: Nenhum (desativado)
+    modules: Módulos
+    name_asc: Nome (A-Z)
+    name_desc: Nome (Z-A)
+    no_cards: Ainda não há cartões. Clique no botão acima para carregar um!
+    no_results: Nenhuma ficha correspondente
+    personality: Personalidade
+    posthistoryinstructions: Instruções após o histórico
+    recent: Adicionados recentemente
+    scenario: Cenário
+    search: Buscar fichas…
+    sort_by: Ordenar por
+    body-model: Corpo / Modelo exibido
+    view-card: Ver ficha
+    model_not_bound: Nenhum modelo selecionado
+    gallery: Galeria
+    pinned_background: Fundo fixado
+    pinned_background_description: Selecione a imagem para mostrar quando este caráter está ativo.
+    select_background: Selecionar fundo
+    refresh_gallery: Atualizar galeria
+    gallery_empty: Ainda não há imagens. As imagens que o personagem cria no chat aparecem aqui.
+    gallery_delete_confirm: Tens a certeza de que queres apagar esta imagem do diário?
+    active_background: Fundo ativo
+    set_as_background: Definir como fundo
+    download: Baixar
+    show_less: Mostrar menos
+    view_all_history: Ver todas as {count} versões
+    speech:
+      provider: Fala / Provedor
+      model: Fala / Modelo
+      voice: Fala / Voz
+    systemprompt: Instruções do sistema
+    title: Ficha do Companheiro de WoW
+    try_different_search: Tente outro termo de busca
+    export: Exportar
+    exported: Pacote de ficha exportado
+    export_failed: Falha ao exportar pacote de ficha
+    imported: Pacote de ficha importado
+    import_missing_file: O pacote de cartão está faltando os arquivos necessários
+    import_invalid_file: Arquivo do pacote de ficha inválido
+    upload: Enviar
+    upload_desc: Clique ou arrastre um pacote de cartão Companheiro de WoW para importar
+  memory:
+    description: Onde as memórias foram armazenadas e organizadas
+    title: Memória
+  data:
+    title: Dados
+    description: Gerenciamento dos dados, exportações e reset de Companheiro de WoW armazenados
+    sections:
+      chats:
+        title: Sessões de conversa
+        description: Exportar ou importar sessões de chat salvas.
+        export: Exportar conversas
+        import: Importar conversas
+        delete: Excluir todas as sessões de conversa
+      models:
+        title: Modelos
+        description: Remover os modelos Live2D, VRM, Spine e MMD importados.
+        delete: Excluir todos os modelos
+      model-downloads:
+        title: Modelos de fala baixados
+        description: Arquivos de modelos Sherpaw armazenados neste dispositivo.
+        empty: Não são baixados modelos de fala.
+        wake-word-model: Modelo de palavras de ativação
+        voiceprint-model: Modelo de impressão vocal
+        refresh: Atualizar
+      modules:
+        title: Módulos
+        description: Preferências e credenciais de redefinição do módulo.
+        reset: Restaurar configurações dos módulos
+      providers:
+        title: Provedores
+        description: Resetar todas as configurações e credenciais do fornecedor.
+        reset: Restaurar configurações dos provedores
+      danger:
+        title: Zona de perigo
+        description: Ações irreversíveis. Exportem o que precisam antes de continuar.
+      all:
+        title: Excluir todos os dados
+        description: Apague todas as configurações locais, configuração do provedor e modelo.
+        delete: Excluir todos os dados
+      desktop-folder:
+        title: Abrir pasta de dados do aplicativo
+        description: Abra a pasta de dados do Companheiro de WoW no gerenciador de arquivos.
+        open: Abrir pasta
+      desktop:
+        title: Restaurar configurações e estados do computador
+        description: Limpar as configurações de desktop Companheiro de WoW e o estado de tempo de execução.
+        center: Centralizar janela na área de trabalho
+        reset: Restaurar dados do computador
+    confirmations:
+      tooltip: Tem certeza?
+      yes: Sim
+    status:
+      exported: Sessões de conversa exportadas.
+      imported: Sessões de conversa importadas.
+      import_error: Não consegui importar sessões de chat. Verifique o formato do arquivo.
+      chats_deleted: Sessões de conversa excluídas.
+      models_deleted: Modelos excluídos.
+      model_download_cancelled: Download do modelo cancelado.
+      model_download_removed: Modelo baixado removido.
+      modules_reset: Configurações dos módulos restauradas.
+      providers_reset: Configurações dos provedores restauradas.
+      all_deleted: Todos os dados locais excluídos.
+      desktop_window_centered: A janela do desktop mudou-se para o centro da tela.
+      desktop_reset: Dados do computador restaurados.
+  models:
+    description: Live2D, VRM, Spine, MMD e outros.
+    title: Modelos
+    sections:
+      section:
+        live2d:
+          title: Live2D
+          description: Configurar os modelos e configurações do Live2D
+        vrm:
+          title: VRM
+          description: Configurar modelos e configurações 3D de VRM
+        scene: Cena
+  modules:
+    beat_sync:
+      description: Vibe com batimentos da fonte de áudio
+      title: Sincronização com o ritmo
+      sections:
+        audio_source:
+          actions:
+            start_screen_capture: Iniciar captura de tela
+            stop: Parar
+          description: Selecione uma fonte de áudio para detectar batidas.
+          title: Fonte de áudio
+        beat_visualizer:
+          title: Visualizador de ritmo
+        parameters:
+          advanced_parameters: Parâmetros avançados
+          description: Ajuste os parâmetros de detecção do ritmo.
+          title: Parâmetros
+          parameters:
+            adaptive_threshold:
+              description: Se aplicam-se limiares adaptativos com base na variação do sinal ao longo do tempo.
+              label: Limite adaptativo
+            buffer_duration:
+              description: Duração do buffer de análise interna.
+              label: Duração do buffer
+            envelope_filter_frequency:
+              description: Frequência para o filtro de envelope aplicado a mudanças energéticas suaves.
+              label: Frequência do filtro de envelope
+            highpass_filter_frequency:
+              description: Frequência para o filtro de alta passagem aplicado para reduzir as baixas frequências, como os ruídos sub-baixo.
+              label: Frequência do filtro passa-altas
+            lowpass_filter_frequency:
+              description: Frequência para o filtro de baixa passagem aplicado para reduzir as frequências altas, como vocais.
+              label: Frequência do filtro passa-baixas
+            min_beat_interval:
+              description: BPM máximo ou intervalo mínimo entre batimentos detectados.
+              label: BPM máximo / intervalo mínimo entre batidas
+            sensitivity:
+              label: Sensibilidade
+            spectral_flux:
+              description: Ativar a detecção de início baseada em fluxo espectral.
+              label: Fluxo espectral
+            warmup:
+              description: Se aquecer antes de detectar batimentos para melhor precisão.
+              label: Aquecimento
+    artistry:
+      title: Criação de imagens
+      description: Geração de imagens, cenário e desenho.
+      page:
+        title: Configuração do provedor de imagens
+        description: Selecione o provedor de backend ativo para geração de imagem. Os personagens podem anular isto nas configurações do Cartão.
+      providers:
+        none:
+          name: Nenhum
+          description: contornar e desativar o módulo de geração de imagens globalmente.
+        comfyui:
+          name: ComfyUI (local)
+          description: Use uma instância local ComfyUI via WSL para geração de imagem.
+        replicate:
+          name: Replicate.ai (nuvem)
+          description: Use modelos baseados em nuvem através do Replicate API.
+        nanobanana:
+          name: Nano Banana (prévia)
+          description: Use Google AI Studio para visualização de imagem e reações.
+      card:
+        description: Configurar como o Companheiro de WoW gera imagens e conteúdo visual.
+        comfyui_empty: Nenhum fluxo de trabalho ComfyUI configurado. Vá para Configurações → Fornecedores → ComfyUI para carregar um modelo de fluxo de trabalho.
+        exposed_fields: '{count} campos expostos'
+        open_on_replicate: Abrir no Replicate
+        instruction_sync:
+          title: Sincronizar instruções do ComfyUI
+          description: Um prompt especializado está pronto para o seu fluxo de trabalho {workflowName}. Aplicando isso, as instruções de widget atuais serão substituídas para que a IA saiba como usar esse modelo específico.
+          apply: Aplicar instruções recomendadas
+          keep: Manter existentes
+      provider: Provedor de imagens
+      spawn_mode:
+        label: Modo de manifestação
+        description: Escolha como as imagens são entregues à interface.
+        options:
+          bg: Ambiente do fundo
+          inline: Conversa integrada
+          widget: Widget sobreposto
+          bg_widget: Duplo (fundo + widget)
+      autonomous:
+        title: Autonomia cinematográfica (Artista autônomo))
+        description: Quando habilitado, o "Produtor" corre em paralelo ao personagem para decidir se é necessário um visual. Isso impede que o personagem se esqueça de cenas manifestas.
+        threshold: Limite de manifestação
+        threshold_description: Use o {min} para criação de cenas agressivas ou o {max} para exigir provas mais fortes antes de gerar.
+        threshold_min: Gerar sempre (0%)
+        threshold_max: Rigoroso (100%)
+      model:
+        label: Modelo artístico (Optional Override))
+        description: Identificador de modelo, se necessário pelo fornecedor
+        placeholder: 'Por exemplo: laboratórios de floresta negra/flux-schnell'
+      prompt-prefix:
+        label: Prefixo padrão das instruções de imagens
+        description: Pre-pendido para cada pedido enviado para o gerador de imagem.
+        placeholder: 'Por exemplo: Mestre, alta qualidade, 1girl, anime,'
+      options:
+        label: Opções de fornecedores artísticos (JSON))
+      widget-instructions:
+        label: Instruções do sistema de widgets
+        description: Instruções personalizadas para a IA sobre como usar as capacidades de geração.
+    categories:
+      essential: Essenciais
+      messaging: Mensagens
+      gaming: Jogos
+      artistry: Criação de imagens
+    consciousness:
+      description: Personalidade, modelo desejado, etc.
+      sections:
+        section:
+          provider-model-selection:
+            collapse: Recolher
+            custom_model_placeholder: Digite um nome de modelo personalizado…
+            current_model_label: 'Modelo atual:'
+            description: Selecionar o prestador de LLM adequado para a consciência
+            error: Erro ao carregar modelos
+            health_check_failed: Falha na verificação do serviço
+            no_providers_configured_title: Nenhum provedor configurado
+            no_providers_configured_description: Clique aqui para configurar os seus provedores de LLM
+            expand: Expandir
+            loading: Carregando modelos disponíveis…
+            manual_model_name: Nome do modelo
+            manual_model_placeholder: Insira o nome do modelo para usar com este fornecedor
+            no_models: Nenhum modelo disponível
+            no_models_description: Não foram encontrados modelos para este fornecedor
+            no_search_results: Nenhum modelo correspondente
+            no_search_results_description: Nenhum modelo corresponde ao "{query}". Tente um termo de busca diferente.
+            not_supported: Listagem de modelos incompatível
+            not_supported_description: Este provedor não suporta a funcionalidade de listagem de modelos
+            search_placeholder: Buscar modelos…
+            search_results: Encontrados {count} de {total} modelos
+            show_less: Mostrar menos
+            show_more: Mostrar mais
+            temperature_label: Temperatura
+            temperature_enabled: Temperatura personalizada
+            top_p_enabled: Top P personalizado
+            sampling_override_description: Desligado por padrão. Ativar apenas se o seu modelo suportar este parâmetro. Alguns modelos aceitam apenas um parâmetro de amostragem por vez.
+            temperature_description: 'Controlar a aleatoriedade da saída do modelo. Um valor inferior (por exemplo, O 0.2) resulta em uma saída mais determinista, precisa e analítica, enquanto um valor mais elevado (por exemplo: O 1.0) aumenta a criatividade e a diversidade.'
+            top_p_label: Top P
+            top_p_description: 'Controlar a diversidade da produção do modelo através da amostragem do núcleo. Um valor inferior (por exemplo, O 0.2) limita a saída apenas a tokens de alta probabilidade, enquanto um valor mais elevado (por exemplo: A 1.0) inclui um conjunto mais amplo de possibilidades.'
+            subtitle: Selecionar um modelo padrão do fornecedor
+            title: Modelo
+          model-options:
+            title: Opções do modelo
+            thinking:
+              label: Raciocínio
+              required-description: Este modelo exige raciocínio.
+              provider-default-description: O Companheiro de WoW não tem configurações de raciocínio para este modelo. A OpenRouter aplica o seu padrão.
+      title: Consciência
+    description: Pensamento, visão, síntese de fala, jogos, etc.
+    gaming-factorio:
+      description: Jogando Factorio!
+      title: Factorio
+      enable: Ativar integração com Factorio
+      enable-description: Permitir que o Companheiro de WoW interaja com o jogo Factorio
+      server-address: Endereço do servidor
+      server-address-description: Endereço IP ou nome de hospedeiro do servidor Factorio
+      server-address-placeholder: Insira o endereço do servidor (por exemplo, localhost ou 192.168.1.100)
+      server-port: Porta do servidor
+      server-port-description: O número de porta do servidor Factorio (default 34197))
+      username: Nome de usuário
+      username-description: Seu nome de usuário no servidor Factorio
+      username-placeholder: Digite seu nome de usuário do Factorio
+      configured: O Factorio está bem configurado!
+    gaming-minecraft:
+      description: Jogando Minecraft!
+      title: Minecraft
+      enable: Ativar integração com Minecraft
+      enable-description: Incluir o auto-conhecimento Minecraft nas curvas de bate-papo do estágio e manter a visibilidade passiva da hora de execução ativada.
+      configured: O Minecraft está adequadamente configurado!
+      read-only:
+        title: Shell somente de leitura
+        description: O estágio expõe atualmente o Minecraft como uma concha passiva. O estado do tempo de execução e o tráfego são visíveis aqui, mas a configuração do serviço permanece nos arquivos de serviço Minecraft.
+      setup:
+        title: Configuração
+        description: Você pode encontrar as instruções para configurar o bot no arquivo seguinte
+      runtime:
+        title: Ambiente observado
+        connection: Conexão
+        latest-context: Último contexto do bot
+        waiting: À espera de um novo impulso de contexto originado por botes.
+        unknown: Desconhecido
+      debug:
+        title: Tráfego do Minecraft
+        empty: Ainda não foi observado tráfego Minecraft.
+        source: 'Origem: {source}'
+      status:
+        service-online: Serviço online
+        service-offline: Serviço offline
+        no-runtime-context: Nenhum contexto do bot observado ainda
+        last-context-seconds: 'Último contexto do bot: {seconds}s atrás'
+        last-context-stale: 'Último contexto do bot: desatualizado'
+    hearing:
+      description: Configurar como funciona o reconhecimento de fala
+      title: Audição
+      transcriber:
+        title: Reconhecimento de fala
+        description: Escolha o fornecedor e modelo de transcrição e teste o seu microfone.
+      wake-words:
+        title: Palavras de ativação
+        description: Veja as palavras de despertar de cada personagem, e escolha quem responde a uma pronúncia compartilhada.
+        intro: Cada personagem guarda as suas palavras de avivamento no seu cartão. Para mudar as palavras, pergunte ao personagem no chat.
+        empty: Este personagem não tem palavras para acordar.
+        state:
+          active: Ativo
+          paused: Pausa. Escolha um personagem para responder.
+          other: Respondido por {name}
+          unsupported: Não está disponível com o modelo atual da palavra "wake"
+        conflicts:
+          title: Pronúncias compartilhadas
+          description: Dois ou mais caracteres usam a mesma pronúncia. Escolha o personagem que responde neste dispositivo. Cada carta mantém as suas palavras.
+          choose-label: Personagem que responde
+          choose: '{name} ("{word}")'
+          answered-by: '{name} responde'
+          unresolved: Nenhum personagem responde a essa pronúncia.
+      voiceprint:
+        title: Impressão vocal
+        description: Regista a tua voz, para que o Companheiro de WoW possa reconhecê-la.
+        intro: Uma impressão de voz é uma lista de números que o modelo de impressão de voz calcula a partir do seu discurso. Não contém áudio, mas pode identificá-lo.
+        privacy: O Companheiro de WoW mantém a sua impressão de voz apenas neste dispositivo. O cartão de exportação não o inclui e o Companheiro de WoW não o carrega. Para excluí-lo, use Eliminar a impressão de voz nesta página, ou Eliminar todos os dados nas configurações de Dados.
+        download: A primeira inscrição faz o download do modelo de impressão de voz, cerca de 28 MB.
+        speaker-recognition:
+          label: Reconhecimento de locutor
+          description: Compara cada entrada de voz que o discurso ou uma palavra de aviso começa com a sua impressão de voz, e registra a pontuação no rastro IO da entrada. Puxar para falar as entradas não obtém pontuação. Cada voz ainda pode iniciar uma entrada, e o modelo de chat não recebe a pontuação. Enquanto o Companheiro de WoW ouve, o modelo de impressão de voz permanece na memória.
+          needs-voiceprint: Regista a tua voz para ligar o reconhecimento de alto-falantes.
+        status:
+          none: Você não tem impressão vocal.
+          enrolled: Inscrito no {date}, do {seconds} do discurso.
+          outdated: O modelo de impressão de voz mudou. Inscreva-se novamente para usar a sua impressão de voz.
+        instructions: Fique sozinho perto do microfone. Clique em Começar a gravação, e depois leia essas frases em voz alta com a sua voz habitual.
+        sentence-1: Hoje quero verificar o tempo, ler as minhas mensagens e planear o resto do meu dia.
+        sentence-2: Normalmente falo com a Companheiro de WoW à noite, quando o quarto é tranquilo e eu tenho algum tempo livre.
+        sentence-3: Por favor, lembre-se da minha voz, para que possa saber quando sou eu quem fala.
+        progress: '{seconds}s de fala. A inscrição requer pelo menos {min}s.'
+        start: Iniciar gravação
+        again: Cadastrar novamente
+        finish: Concluir
+        cancel: Cancelar
+        delete: Excluir impressão vocal
+        enrolling: Calculando sua impressão vocal…
+        result:
+          enrolled: Sua impressão vocal foi salva.
+          cancelled: Cadastro cancelado.
+          too-short: A gravação tinha {seconds}s de fala. A inscrição requer pelo menos {min}s. Recorde outra vez.
+          error: 'Falha no cadastro: {error}'
+      sections:
+        section:
+          provider-selection:
+            description: Selecionar o provedor de reconhecimento de voz adequado
+          microphone:
+            title: Microfone
+            label: Microfone
+            description: Ligue o microfone para ouvir. O modo de entrada controla quando o Companheiro de WoW ouve.
+            error: O microfone está indisponível
+          input-device:
+            label: Dispositivo de entrada
+            description: Selecione o microfone que o Companheiro de WoW utiliza.
+            playground-description: A audição e o parque infantil usam este microfone.
+            placeholder: Selecionar microfone
+          auto-send:
+            title: Transcrições
+            description: Escolha o que o Companheiro de WoW faz com o texto do seu discurso.
+            label: Enviar automaticamente
+            label-description: O Companheiro de WoW envia a transcrição para conversar depois de um atraso. Desligue isto para ler e editar o texto primeiro. Cada mensagem enviada usa tokens.
+            delay: Atraso de envio
+            delay-description: O tempo que o Companheiro de WoW espera antes de enviar a transcrição.
+            immediate: Imediatamente
+          input-mode:
+            title: Modo de entrada
+            description: Escolha como o Companheiro de WoW começa a ouvir enquanto o microfone está ligado.
+            label: Começar a ouvir
+            always-on: Sempre ligado
+            always-on-description: O Companheiro de WoW ouve o tempo todo e responde quando você fala.
+            push-to-talk: Pressione para falar
+            push-to-talk-description: O Companheiro de WoW só ouve enquanto seguras a tecla Push to Talk. O microfone só está aberto durante a espera.
+            push-to-talk-unavailable: Não está disponível aqui. Este aplicativo não tem a tecla Push to Talk neste dispositivo.
+            stranded-title: Push to Talk não está disponível aqui
+            stranded-description: Este aplicativo não tem a tecla Push to Talk neste dispositivo, por isso o Companheiro de WoW não escuta. Para falar com o Companheiro de WoW aqui, escolha Always on ou Wake palavras.
+            wake-word: Palavras de ativação
+            wake-word-description: O microfone permanece ligado, mas o Companheiro de WoW só ouve depois que você diz a palavra de aviso de um personagem.
+            wake-word-status:
+              no-words: Nenhum personagem tem palavras de despertar. Peça a um personagem em bate-papo para definir suas palavras de aviso.
+              unconfigured: A detecção das palavras de despertar começa quando o microfone está ligado.
+              preparing: Preparando o modelo de palavras de ativação…
+              ready: Palavras de ativação prontas.
+              error: 'Não está disponível o modelo da palavra de aviso: {error}'
+          end-judge:
+            title: Fim da fala
+            description: Depois de fazer uma pausa, um modelo de bate-papo lê a transcrição e decide se você terminou. Se não terminar, o Companheiro de WoW espera mais 3 segundos para continuar.
+            enabled: Verificar se terminei de falar
+            enabled-description: A transcrição de cada pausa é enviada ao modelo de reescritura. Quando isto estiver desligado, o Companheiro de WoW encerra o seu discurso após uma breve pausa.
+          rephrase:
+            title: Reescrita das transcrições
+            description: Um modelo de chat corrige erros de reconhecimento e remove palavras preenchidas antes que uma transcrição se torne um esboço. O texto original é mantido.
+            enabled: Reescrever transcrições
+            enabled-description: Cada transcrição finalizada é enviada para o modelo de chat selecionado. Se o modelo falhar ou demorar mais de 10 segundos, será utilizado o texto original.
+            provider: Provedor
+            provider-description: O padrão usa o modelo de bate-papo do módulo Consciência.
+            same-as-chat: Igual à conversa
+            model: Modelo
+            model-placeholder: Selecionar modelo
+          playground:
+            current: Transcrição atual
+            description: Ouça através do canal de audição ativo e mantenha cada segmento de fala concluído abaixo.
+            empty: Comece a monitorar e fale no microfone selecionado.
+            error-title: Erro de transcrição
+            listening: Ouvindo fala…
+            no-transcription: Nenhum discurso foi reconhecido neste áudio.
+            segment: Segmento de fala {number}
+            start: Iniciar monitoramento
+            stop: Parar monitoramento
+            title: Área de testes de Audição
+            transcribing: Transcrevendo…
+            transcription-failed: Falha na transcrição.
+          confidence-threshold:
+            title: Limite de confiança
+            description: Filtra as transcrições de baixa confiança para reduzir as alucinações Whisper. Os valores mais próximos de 0 são mais rígidos; arrastre para a esquerda para desativar. Apenas eficaz para os provedores que suportam o Whisper API (por exemplo, OpenAI, Groq)).
+            disabled: Desativado
+            verbose-json-note: 'Nota: Se o seu provedor não suportar respostas verbose_json, esta configuração não terá efeito.'
+            verbose-json-unsupported: O seu provedor não devolveu os segmentos verbose_json. A filtragem da confiança não teve efeito na última transcrição.
+    memory-long-term:
+      description: Configurações e gestão específicas da memória de longo prazo
+      enable: Usar memória de longo prazo
+      enable-description: O personagem lembra-se do que você fala. Quando isto está desligado, não se lembra de nada.
+      memories:
+        title: Lembranças
+        description: Cada personagem guarda seus próprios segredos, e os outros não podem vê-los. Depois de partilhares um segredo, todos os personagens sabem e não podes retomá-lo. Podes apagar qualquer segredo, mas não podes reescrever um.
+        empty: Nenhuma lembrança ainda.
+        forget: Esquecer {name}
+        make_general: Compartilhar {name} com cada personagem
+        general: Segredos compartilhados
+        entry:
+          title: Lembranças
+          description: Os segredos de cada personagem e os segredos que compartilham.
+      recipes:
+        title: Receitas
+        empty: Nenhuma receita ainda.
+        sources:
+          user: Suas
+          model: Propostas pelo personagem
+        pending: Aguarda a sua aprovação. Depois de uma aprovação, nunca mais pergunta.
+        approve: Aprovar
+        remove: Remover
+        add:
+          name: Nome
+          description: Quando usar
+          instructions: O que fazer
+          keywords:
+            label: Palavras de código
+            description: Diz uma palavra-código e o personagem usa esta receita.
+          submit: Adicionar
+        decision:
+          question: Pergunta
+          type:
+            label: Como responder
+            noul: Sim ou não
+            choice: Escolher uma opção
+          yes_means: '"Sim" significa'
+          no_means: '"Não" significa'
+          option: Significado desta opção
+          add_option: Adicionar opção
+          remove_option: Remover
+          action:
+            label: Depois
+            reply: Responder normalmente
+            stay_quiet: Ler sem responder
+            hint: Responder considerando uma observação
+            recipe: Usar outra receita depois
+          hint_text: Observação a considerar
+          target_recipe: Receita
+          keywords: O personagem só julga depois de dizeres uma palavra-código.
+          note: Após uma palavra-código, o personagem lê a conversa, escolhe uma resposta e age em função dela.
+        entry:
+          title: Receitas
+          description: As habilidades do personagem, as pistas que os iniciam e as propostas que te esperam.
+        add_button: Adicionar receita
+        types:
+          title: Escolher um tipo de receita
+          instructions:
+            title: Instruções
+            description: Passos que o personagem usa quando se encaixam, ou quando você diz uma palavra-código.
+          decision:
+            title: Decisão
+            description: Depois de uma palavra-código, o personagem responde a uma pergunta antes que ela responda. Cada resposta leva à sua própria ação.
+        styles:
+          instructions: Instruções
+          decision: Decisão
+        cancel: Cancelar
+        edit: Editar
+        save: Salvar
+        enabled: Usar {name}
+        keywords_summary: 'Palavras de código: {words}'
+        tabs:
+          conversation: Na conversa
+          auto_run: Execução automática
+          conversation_description: Receitas para conversar. Só agem quando mandam uma mensagem.
+          auto_run_description: Receitas que começam por conta própria quando um sinal chega. Cada corrida custa uma chamada modelo.
+        background:
+          label: Executar em segundo plano
+          description: Para tarefas que levam tempo, como pesquisas. Funciona no fundo e traz o resultado de volta.
+          tag: Segundo plano
+        grants: 'A aprovação permite: {what}'
+        proposals:
+          label: Deixe o personagem propor receitas
+          description: Uma receita que você pede é guardada como proposta. Só funciona depois de aprová-lo.
+        model_flow: O personagem decide o que cada corrida faz
+      title: Memória de longo prazo
+    memory-short-term:
+      description: Configurações e gestão específicas da memória de curto prazo
+      title: Memória de curto prazo
+    messaging-discord:
+      description: Conversa por texto e voz no Discord
+      title: Discord
+      enable: Ativar integração com Discord
+      enable-description: Permitir que o Companheiro de WoW interaja através do Discord
+      token: Token do bot
+      token-description: Seu token de bot do Discord
+      token-placeholder: Digite seu token de bot do Discord
+      configured: Discord configurado corretamente!
+    speech:
+      description: Síntese de fala
+      sections:
+        section:
+          playground:
+            buttons:
+              stop:
+                label: Parar
+            select-voice:
+              loading: Carregando modelo…
+              required: Selecione uma voz
+          voice-pack:
+            description: Selecionar uma voz curada para o personagem ativo
+            empty: Nenhum pacote de voz disponível
+            error: Erro ao carregar pacotes de voz
+            loading: Carregando pacotes de voz…
+            title: Pacote de voz
+          provider-voice-selection:
+            custom_model_placeholder: Digite um nome de modelo personalizado…
+            custom_voice_placeholder: Digite um ID de voz personalizado…
+            description: Selecionar o provedor de voz adequado
+            no_models: Nenhum modelo disponível
+            no_models_description: Não foram encontrados modelos para este fornecedor
+            no_voices: Nenhuma voz disponível
+            no_voices_description: Não foram encontradas vozes para este fornecedor
+            no_voices_hint: Você pode inserir um nome de voz personalizado abaixo.
+            pause: Pausar
+            play_sample: Reproduzir amostra
+            search_models_placeholder: Buscar modelos…
+            search_models_results: Encontrados {count} de {total} modelos
+            search_voices_placeholder: Buscar vozes…
+            search_voices_results: Encontradas {count} de {total} vozes
+            unsupported_voice_warning_title: Nenhuma voz compatível
+            unsupported_voice_warning_content: Tente um modelo ou fornecedor diferente. Estamos a trabalhar para apoiar toda a voz deste modelo o mais rapidamente possível. Se precisar urgentemente, por favor, avise-nos em GitHub em https://github.com/moeru-ai/airi/issues.
+            show_less: Mostrar menos
+            show_more: Mostrar mais
+            title: Provedor
+          voice-settings:
+            input-ssml:
+              placeholder: Digite texto SSML…
+            use-ssml:
+              description: Habilitar a entrada de SSML em bruto em vez de texto simples
+              label: Usar SSML personalizado
+      title: Fala
+    title: Módulos
+    vision:
+      description: Visão
+      title: Visão
+      tool-images:
+        label: Use o modelo de visão para imagens de ferramentas
+        description: O modelo de visão lê as imagens que as ferramentas retornam, como capturas de tela de Use computer, antes que o modelo de bate-papo responda. O modelo de chat recebe-os diretamente quando o seu provedor relata a entrada de imagem. Uma descrição não tem posições de pixels.
+      capture:
+        title: Frequência de captura visual
+        description: Ajuste a frequência com que o marcador de visão capta um quadro.
+        interval:
+          label: Intervalo de captura
+          description: Um valor menor captura mais frequentemente e usa mais recursos.
+      stats:
+        captures: Capturas
+        context-updates: Atualizações de contexto
+        inferences: Chamadas de reconhecimento de imagens
+        inferences-description: Todas as chamadas ao modelo de visão, imagens de chat incluídas
+        failed-inferences: Chamadas com falha
+        last-inference: Última chamada
+        error: 'Erro:'
+        last-update: Última atualização {time}
+        since-start: Desde que o aplicativo iniciou
+        never: Nunca
+      ollama:
+        title: Opções de solicitação aos provedores
+        description: Indicações de pedido específicas do fornecedor de controlo para a inferência visual.
+        thinking:
+          label: Raciocínio (Ollama)
+          description: 'Quando ligado, os pedidos de visão através do Ollama incluem o `think: true`. Quando desligados, incluem o `think: false`.'
+    x:
+      description: X / navegação e uso do Twitter
+      title: X / Twitter
+      enable: Habilitar a integração X / Twitter
+      enable-description: Permitir que o Companheiro de WoW interaja com o X / Twitter
+      api-key: Chave de API
+      api-key-description: Sua chave X / Twitter API
+      api-key-placeholder: Digite a sua chave X / Twitter API
+      api-secret: API Segredo
+      api-secret-description: Seu segredo X / Twitter API
+      api-secret-placeholder: Digite o seu segredo X / Twitter API
+      access-token: Token de acesso
+      access-token-description: Seu token de acesso X / Twitter
+      access-token-placeholder: Digite o seu token de acesso X / Twitter
+      access-token-secret: Segredo do Token de Acesso
+      access-token-secret-description: O segredo do seu token de acesso X / Twitter
+      access-token-secret-placeholder: Digite o segredo do seu token de acesso X / Twitter
+      configured: O Twitter está configurado corretamente!
+    stickers:
+      frequency: Frequência de figurinhas
+      frequency-description: Permitir adesivos nesta percentagem de respostas. O personagem ainda decide se um adesivo se encaixa.
+      frequency-options:
+        '25': Ocasionalmente (25%)
+        '50': Às vezes (50%)
+        '75': Frequentemente (75%)
+        '100': Sempre que adequado (100%)
+      title: Figurinhas
+      description: Adicionar reações de imagem opcionais para respostas de chat
+      enable: Ativar figurinhas
+      enable-description: Deixe o personagem escolher um autocolante por resposta elegível com base em seu nome e etiquetas de emoção.
+      local-only: As imagens permanecem neste dispositivo. A sincronização de chat em nuvem atualmente transfere apenas texto.
+      catalog: Figurinhas disponíveis
+      unavailable: Figurinha indisponível
+      import: Importar imagem
+      editor: Editor de figurinhas
+      image: Imagem
+      replace: Substituir imagem (opcional)
+      image-limits: PNG, JPG, WebP ou GIF. Máximo de 2 MB e 4096 × 4096 pixels.
+      choose-file: Escolher imagem
+      preview: Prévia da figurinha
+      name: Nome
+      name-limit: Use 1 ⁇ 80 caracteres. O modelo diz este nome.
+      emotions: Etiquetas de emoção
+      save: Salvar figurinha
+      cancel: Cancelar
+      edit: Editar
+      delete: Excluir
+      confirm-delete: Confirmar exclusão
+      empty: A sua biblioteca está vazia. Importa uma imagem para adicionar um adesivo.
+      history-note: Eliminar ou substituir um adesivo afeta as respostas futuras. As respostas guardadas e já preparadas mantêm a sua imagem original.
+      saved-image: Figurinha salva
+      errors:
+        name: Insira um nome com 1 ⁇ 80 caracteres.
+        emotions: Escolha pelo menos uma etiqueta de emoção válida.
+        format: Escolha uma imagem PNG, JPG, WebP ou GIF.
+        size: Escolha uma imagem menor que 2 MB.
+        image: Esta imagem não pode ser aberta. Escolha outro ficheiro.
+        dimensions: Escolha uma imagem não maior que 4096 × 4096 pixels.
+        missing: Este autocolante foi excluído numa outra janela.
+        storage: A biblioteca de adesivos não pôde ser guardada nem carregada. Tenta outra vez.
+      emotion-labels:
+        happy: Feliz
+        sad: Triste
+        confused: Confuso
+        surprised: Surpreso
+        thanks: Obrigado
+        celebrate: Comemoração
+        angry: Irritado
+        tired: Cansado
+        affectionate: Carinho
+        awkward: Constrangido
+        agree: Concordo
+        disagree: Discordo
+      artwork:
+        airi-happy: Feliz
+        airi-sad: Triste
+        airi-confused: Confuso
+        airi-surprised: Surpreso
+        airi-thanks: Obrigado
+        airi-celebrate: Comemoração
+        airi-angry: Irritado
+        airi-tired: Cansado
+        airi-affectionate: Amor
+        airi-awkward: Constrangido
+        airi-agree: Sim
+        airi-disagree: Não, obrigado
+    home-assistant:
+      title: Assistente doméstico
+      description: Deixe o Companheiro de WoW ler e controlar os seus dispositivos Home Assistant.
+      enable: Ativar Assistente de Casa
+      enable-description: Permitir que o Companheiro de WoW leia e controle os seus dispositivos
+      base-url:
+        label: Endereço
+        placeholder: http://homeassistant.local:8123
+        description: O endereço da sua instância de assistente doméstico.
+      token:
+        label: Tokens de acesso de longa duração
+        placeholder: Paste um token do seu perfil de assistente doméstico
+        description: Crie um no seu perfil de Assistente de Casa, na secção Segurança.
+        saved: Um token é armazenado. Deixe o campo vazio para o manter. Entre o token novamente quando o endereço mudar.
+      note: O token fica neste dispositivo. Não se sincroniza com a sua conta.
+      actions:
+        save: Salvar
+        test: Testar
+      status:
+        saved: Salvo.
+        saved-cleared: Salvado. O endereço mudou, então as listas de dispositivos estão vazias.
+        testing: Testando a conexão…
+        reachable: Conectado. Assistente de Casa informou entidades {count}.
+        failed: Não foi possível conectar. {message}
+        rejected-token: Introduza um token de acesso para o Assistente de Casa.
+        rejected-address: O endereço mudou. Digite o token de acesso para o novo endereço.
+        failed-policy: A lista de dispositivos não chegou à janela que executa as ferramentas, por isso o endereço não mudou. Tenta outra vez.
+        failed-policy-edit: A mudança não chegou à janela que corre as ferramentas. O modelo ainda mantém a lista anterior à mudança. Tenta outra vez.
+        failed-policy-move: O endereço mudou, mas as listas de dispositivos não chegaram à janela que executa as ferramentas. Tenta outra vez.
+        failed-policy-rollback: A salvação foi recusada. A lista de dispositivos não chegou à janela que executa as ferramentas, por isso o modelo não chega a nenhum dispositivo. Tenta outra vez.
+      access:
+        label: Acesso ao dispositivo
+        description: Escolha quais dispositivos o Companheiro de WoW lê e controla.
+        mode-all: Todos os dispositivos
+        mode-allow: Permitir lista
+        mode-deny: Lista de blocos
+        all-hint: O Companheiro de WoW atinge todos os dispositivos. Escolha uma lista para limitá-la.
+        rule-allow: Apenas os dispositivos que escolher são acessíveis.
+        rule-deny: Todos os dispositivos, exceto os que escolher, são acessíveis.
+        selected-count: Selecionado {count}
+        empty-warning: Escolha pelo menos um dispositivo. O Companheiro de WoW não chega a nada até que o faças.
+        search: Dispositivos de busca
+        reload: Dispositivos de recarga
+        loading: Dispositivos de carregamento...
+        no-devices: O Assistente de Casa não relatou nenhum dispositivo.
+        no-match: Nenhum equipamento coincide.
+        tab-all: Todos
+        shown-count: Dispositivos {shown} de {total}
+        load-more: Mostre mais {count}
+        select-matching: Selecionar todas as partidas
+        clear-matching: Limpar todos os fósforos
+      states:
+        generic:
+          on: Ligado
+          off: Desligado
+          above_horizon: Acima do horizonte
+          armed: Armados
+          armed_away: Armados .
+          armed_custom_bypass: Passagem de derivação sob medida armada
+          armed_home: Casa armada
+          armed_night: Noite armada
+          armed_vacation: Férias armadas
+          arming: Armamento
+          auto: Automático
+          below_horizon: Abaixo do horizonte
+          buffering: Ação de buffering
+          cleaning: Limpeza
+          clear-night: Claro, noite.
+          closed: Fechado
+          closing: Fechamento
+          cloudy: Nuvem
+          cool: É fixe .
+          disarmed: Desarmados
+          disarming: Desarmamento
+          docked: Acoplado
+          dry: Seco
+          eco: Eco
+          electric: Eletrônico
+          error: Erro
+          exceptional: Excepcional
+          fan_only: Apenas ventilador
+          fog: Neblina
+          gas: Gás
+          hail: '- Boa noite .'
+          heat: Calor
+          heat_cool: Calor/frigorínio
+          heat_pump: Pompada de calor
+          high_demand: Alta demanda
+          home: Início
+          idle: Ocioso
+          jammed: Enfiado
+          lightning: Relâmpago
+          lightning-rainy: Relâmpago, chuva
+          locked: Fechado
+          locking: Localização
+          mowing: Moagem
+          not_home: Afastado
+          ok: OK
+          open: Abrir
+          opening: Abertura
+          partlycloudy: Parcialmente nublado
+          paused: Pausado
+          pending: Em espera
+          performance: Desempenho
+          playing: Reproduzindo
+          pouring: Verter
+          problem: Problemas
+          rainy: Chuva
+          recording: Gravação
+          snowy: A neve
+          snowy-rainy: A neve, a chuva
+          standby: Preparação
+          stopped: Parou .
+          streaming: Transmissão
+          sunny: Sombrio
+          triggered: Trigado
+          unlocked: Desbloqueado
+          unlocking: Desbloqueamento
+          windy: Vento
+          windy-variant: Vento, nuvem
+          unknown: Desconhecido
+          unavailable: Indisponível
+        lawn_mower:
+          returning: Retorno
+        update:
+          off: Atualizado
+          on: Atualização disponível
+        vacuum:
+          returning: Retorno ao cais
+      domains:
+        air_quality: Qualidade do ar
+        alarm_control_panel: Painel de alarme
+        automation: Automatização
+        binary_sensor: Sensor binário
+        button: Botão
+        calendar: Calendário
+        camera: Câmara
+        climate: Clima
+        conversation: Conversação
+        cover: Cobertura
+        date: Data
+        datetime: Data e hora
+        device_tracker: Detector de dispositivos
+        event: Evento
+        fan: Ventilador
+        geo_location: Localização geográfica
+        group: Grupo
+        humidifier: Umidificador
+        image: Imagem
+        image_processing: Processamento de imagens
+        input_boolean: Auxiliar de toque
+        input_datetime: Assistente de data e hora
+        input_number: Assistente numérico
+        input_select: Auxiliar de descida
+        input_text: Assistente de texto
+        light: Luz
+        lock: Localização
+        media_player: Reprodutor de mídia
+        notify: Notificação
+        number: Número
+        person: Pessoa
+        remote: Remoto
+        scene: Cena
+        script: Escrito
+        select: Selecionar
+        sensor: Sensor
+        siren: Sirena
+        stt: Discurso a texto
+        sun: Sol
+        switch: Interruptor
+        text: Texto
+        time: Tempo
+        todo: Lista de tarefas
+        tts: Texto para fala
+        update: Atualizar
+        vacuum: Vacuo
+        valve: Válvula
+        water_heater: Geração de água
+        weather: Météo
+        zone: Zona
+    tool-cards:
+      title: Cartões de ferramentas
+      description: Cartões que o modelo de bate-papo faz para ferramentas e para suas respostas
+      enable: Fazer cartões para resultados da ferramenta
+      enable-description: Quando uma chamada de uma ferramenta sem um widget termina e a ferramenta ainda não tem cartão, o modelo de chat faz um para seus resultados. Uma chamada numa mensagem antiga recebe uma quando a desdobras. Cada novo cartão usa o modelo de chat.
+      reply-cards: Desenhar cartas em respostas
+      reply-cards-description: Quando um cartão responde melhor do que um texto, por exemplo, uma conversão ou uma comparação, o modelo de bate-papo desenha um em sua resposta. O cartão pertence a essa resposta e não é guardado.
+      page-description: Os modelos de cartão que o modelo de chat fez para ferramentas sem widget. Depois de você excluir um, o chat faz um novo na próxima chamada da sua ferramenta, ou quando você desenrola uma de suas chamadas.
+      empty: Ainda não há cartões. Um cartão aparece aqui depois de uma ferramenta sem um widget terminar.
+      source-tool: 'Fonte: ferramenta do aplicativo'
+      source-mcp: 'Fonte: servidor MCP {server}'
+      used: 'Última utilização: {date}'
+      show-template: Mostrar modelo
+      hide-template: Esconde modelo
+      delete: Excluir
+      deleted: O modelo de {name} foi excluído. O chat faz um novo na próxima chamada da ferramenta, ou quando você desdobrar uma de suas chamadas.
+    web-search:
+      title: Pesquisa na web
+      description: Deixe Companheiro de WoW pesquisar na web para informações atuais
+      enable: Ativar pesquisa na web
+      enable-description: Permitir que o Companheiro de WoW pesquise na web durante o chat
+      api-key: Tavily API Key
+      api-key-description: A pesquisa na Web é alimentada por Tavily. Obtenha uma chave API gratuita no tavily.com.
+      api-key-placeholder: Digite a sua chave Tavily API
+      configured: A pesquisa na Web está pronta para uso!
+    mcp-server:
+      title: Servidores MCP
+      description: Configure os servidores MCP e traga suas ferramentas para o Companheiro de WoW.
+      config-path: Arquivo de configuração
+      runtime-title: Estado da execução
+      empty: Não há servidores MCP ainda  ⁇  clique em "Adicionar servidor" abaixo para criar um, ou colar uma configuração através de "Editar JSON".
+      error-title: Ops
+      success-title: Pronto!
+      existing:
+        title: Configurado
+        description: Servidores gravados em mcp.json. Clique em qualquer linha para expandir e editar.
+        empty: Ainda nada aqui. Adicione um abaixo!
+      add:
+        title: Novo
+        description: Preencha um novo servidor, clique em "Salvar e reiniciar" e vai para "Configurado" acima.
+        pending-badge: Não salvo
+      status:
+        unknown: Não carregado
+      actions:
+        open-config: Mostrar no gerenciador de arquivos
+        apply-and-restart: Salvar e reiniciar
+        restart: Reiniciar MCP
+        add-server: Adicionar servidor
+        add-env: Adicionar variável
+        add-header: Adicionar cabeçalho
+        remove: Remover
+        test: Testar
+        edit-json: Editar JSON
+        close-json: Fechar
+        format-json: Formatar
+        reset-draft: Redefinir
+        apply-json: Aplicar
+        cancel: Cancelar
+        expand: Expandir
+        collapse: Recolher
+      fields:
+        identifier:
+          label: Identificador
+          description: Nome único; torna-se a chave em mcp.json.
+          placeholder: 'Por exemplo: Sistema de arquivos'
+        transport:
+          label: Tipo
+          description: Como o Companheiro de WoW chega a este servidor.
+          stdio: Processo local
+          http: URL remoto
+        url:
+          label: URL
+          description: Endpoint HTTP do servidor.
+          placeholder: 'Por exemplo: https://example.com/api/mcp'
+        headers:
+          label: Cabeçalhos
+          description: Os cabeçalhos enviados com cada pedido, como um token de autorização.
+          key-placeholder: Autorização
+          value-placeholder: Token bearer
+        command:
+          label: Comando
+          description: Executável gerado no estúdio.
+          placeholder: 'Por exemplo: npx'
+        args:
+          label: Argumentos
+          description: Um por linha, em ordem.
+          placeholder: |-
+            -y
+            some-package-name
+            /tmp
+        cwd:
+          label: Pasta de trabalho
+          description: Directório opcional utilizado como diretório de trabalho de processo.
+          placeholder: Por exemplo /Users/you/project
+        env:
+          label: Ambiente
+          description: Vars passou para o processo infantil.
+          key-placeholder: KEY
+          value-placeholder: valor
+        enabled:
+          label: Ativado
+      json:
+        title: Editar mcp.json
+        description: Edite o JSON bruto diretamente. Clique em "Aplicar" para carregá-lo no formulário, depois em "Salvar e reiniciar" para escrever no disco.
+        placeholder: Cole mcp.json aqui…
+      test:
+        title: Testar conexão
+        description: O Companheiro de WoW conecta-se brevemente ao servidor e lista as ferramentas expostas.
+        pick-server-label: Servidor
+        no-servers: Nada para testar ainda
+        no-server-selected: Escolha um servidor primeiro.
+        server-disabled: '"{name}" está desativado.'
+        disabled-suffix: desativado
+        untitled: sem título
+        running: Testando…
+        success: Conectado! Encontrei ferramentas {count} em {ms}ms.
+        failure: Falha na conexão após {ms} ms
+      errors:
+        empty-identifier: Servidor
+        duplicate-identifier: O identificador "{name}" é utilizado mais de uma vez  ⁇  os nomes devem ser únicos.
+        empty-command: Falta um comando para "{name}".
+        empty-url: Falta uma URL para "{name}".
+        invalid-url: '"{name}" precisa de um http absoluto ou https URL.'
+        invalid-shape: Isso não parece um válido mcp.json  ⁇  a raiz precisa de um campo "mcpServers".
+      messages:
+        opened: Abrido {path} no seu gerenciador de arquivos
+        json-applied: JSON aplicado no formulário. Clique em "Salvar e reiniciar" para persistir no disco.
+        restarted: Tudo reiniciado! {started} começou, {failed} falhou, {skipped} saltou.
+  flux:
+    title: Flux
+    buy: Carregar
+    currency: Moeda
+    description: Flux atual
+    terms: Termos
+    privacy: Política de Privacidade
+    packagesError: Não conseguiu carregar pacotes. Por favor, tente novamente mais tarde.
+    checkout:
+      success: O pagamento é bem sucedido! O seu Flux foi reforçado.
+      canceled: Pagamento cancelado.
+      error: Alguma coisa correu mal. Por favor, tente novamente mais tarde.
+    audit:
+      title: Histórico de transações
+      time: Tempo
+      type: Tipo
+      detail: Detalhe
+      amount: Valor
+      typeAddition: Recarga
+      typeConsumption: Uso
+      typeInitial: Crédito inicial
+      typePromo: Crédito promocional
+      loading: Carregando histórico…
+      empty: Nenhuma transação registrada ainda.
+      loadMore: Carregar mais
+      delayHint: Os registos de utilização podem ser atrasados até 1 minuto.
+      ttsRequests: solicitações
+    packages:
+      title: Pacotes de Flux
+      buy: Carregar
+      description: Pacotes de Flux disponíveis.
+  capacitor:
+    title: Capacitor
+    statusError: Não conseguiu carregar o seu Capacitor. Por favor, tente novamente mais tarde.
+    packagesError: Não conseguiu carregar condensadores. Por favor, tente novamente mais tarde.
+    preferenceError: Não conseguiu salvar a preferência. Por favor, tente novamente mais tarde.
+    remaining: '{percent} restante'
+    ofQuota: de {quota} Flux
+    rechargesAt: Recarrega em {date}
+    renewsAt: Renova em {date}
+    expiresAt: Termina em {date}
+    change: Alterar Capacitor
+    quota:
+      day: '{quota} Flux por dia'
+      week: '{quota} Flux por semana'
+      month: '{quota} Flux por mês'
+    perMonth: / mês
+    currentPackage: Atual
+    install: Instalar
+    upgrade: Mudar para nível superior
+    downgrade: Mudar para nível inferior
+    manageSubscription: Gerenciar assinatura
+    fallbackToFlux: Use o Flux quando o Capacitor estiver vazio
+    fallbackToFluxHint: Quando desligado, parem de conversar e falar até que o Capacitor se reabasteça.
+    checkout:
+      success: O seu Capacitor está instalado e carregado.
+      pending: Pagamento recebido. O seu Capacitor carrega em breve.
+      canceled: Compra cancelada.
+      error: Alguma coisa correu mal. Por favor, tente novamente mais tarde.
+  providers:
+    catalog:
+      edit:
+        config-id-not-found: Configuração do fornecedor não encontrada.
+        definition-id-not-found: Definição do provedor não encontrada.
+        actions:
+          more-options: Mais opções
+          delete: Excluir
+        validation:
+          failed:
+            title: Verifique as configurações do seu provedor, a validação falhou.
+            description: Você ainda pode salvar a configuração atual se quiser continuar.
+            action: Salvar mesmo assim
+        config:
+          loading: Carregando configurações do provedor…
+          load-error: Não conseguiu carregar as configurações do provedor.
+          save-error: Não conseguiu salvar as configurações do provedor.
+          retry: Tentar novamente
+          common:
+            fields:
+              field:
+                web-search:
+                  label: Pesquisa na web
+                  description: Permitir que os modelos OpenAI suportados sejam pesquisados quando necessário. Usa a sua chave API e pode incorrer em encargos de busca. Requer respostas API.
+                api-protocol:
+                  label: Protocolo da API
+                  description: Escolha o API suportado por este fornecedor e modelo.
+                api-key:
+                  label: Chave de API
+                  description: API Key utilizado para autorizar pedidos a este prestador
+                  placeholder: sk-...
+                base-url:
+                  label: URL base
+                  description: A URL base usada para se conectar a um serviço remoto. Muitas vezes parece http://localhost:11434/v1 ou https://example.com/v1.
+                  placeholder: URL base…
+                download-model:
+                  label: Baixar modelo
+                  description: Descarregar Chromium Prompt API modelo
+                headers:
+                  label: Cabeçalhos HTTP personalizados
+                  description: Adicionar cabeçalhos HTTP personalizados
+                  key:
+                    placeholder: Chave
+                  value:
+                    placeholder: Valor
+                thinking-mode:
+                  label: Modo de raciocínio
+                  description: |
+                    Controla o comportamento mental do Ollama. O GPT-OSS só suporta níveis baixos de /medium/high.
+                  options:
+                    auto: Automático (padrão do provedor)
+                    disable: Desativar
+                    enable: Ativar
+                    low: Baixo
+                    medium: Médio
+                    high: Alto
+        validators:
+          actions:
+            validate: Validar
+          empty: Nenhuma etapa de validação disponível.
+          openai-compatible:
+            check-config:
+              title: Configuração
+            check-connectivity:
+              title: Conectividade
+            check-supports-model-listing:
+              title: Listar modelos
+            check-supports-chat-completion:
+              title: Conclusão de conversa
+          apple-vision:
+            check-availability:
+              title: Disponibilidade
+          prompt-api:
+            check-availability:
+              title: Disponibilidade
+          status:
+            validating: Validando…
+            valid: Aprovado
+            invalid: Com erro
+          title: Verificações
+        providers:
+          provider:
+            ollama:
+              troubleshooting:
+                validators:
+                  openai-compatible-check-connectivity:
+                    label: Configuração adicional necessária para o Ollama
+                    content: Lamento saber que a verificação da conectividade falhou. OllamaNão se preocupe, porque... Ollama Em alguns casos, é necessária uma configuração adicional para fazê-lo passar por OllamaTens de definir <code>OLLAMA_HOST</code> explicitamente quando iniciar a Ollama aplicação ou Ollama Servidor CLI, para informações detalhadas, verifique <a href="https://airi.moeru.ai/docs/en/docs/manual/integrations/providers/chat/ollama">Ollama guia de integração</a>.
+    common:
+      continueAnyway: Continuar mesmo assim
+      goToModelSelection: Selecionar modelo →
+      fields:
+        field:
+          api-key:
+            label: Entrada de chave de API
+      section:
+        advanced:
+          fields:
+            field:
+              headers:
+                description: Adicionar cabeçalhos HTTP personalizados
+                key:
+                  placeholder: Chave
+                label: Cabeçalhos HTTP
+                value:
+                  placeholder: Valor
+          title: Avançado
+        basic:
+          description: Configurações essenciais
+          title: Básico
+        voice:
+          title: Configurações de voz
+    labels:
+      recommended: Recomendado
+    sync:
+      synced: Sincronizado
+      pending: Aguardando envio
+      not-uploaded: Não foi carregado. Complete este provedor neste dispositivo.
+    filters:
+      pricing: Preços
+      deployment: Implantação
+      all: Todos
+      free: Gratuito
+      paid: Pago
+      internal: Interno
+      local: Local
+      cloud: Nuvem
+    categories:
+      chat:
+        title: Conversa
+        description: 'Fornecedores de modelos de geração de texto. Por exemplo: OpenRouter, OpenAI, Ollama.'
+      vision:
+        title: Visão
+        description: Fornecedores de modelos de visão para compreensão de imagem.
+      speech:
+        title: Fala
+        description: 'Discurso (fornecedores de modelos de texto-discurso). Por exemplo: ElevenLabs, Azure Speech.'
+      transcription:
+        title: Transcrição
+        description: 'Transcrição (prestadores de modelos de fala-texto). Por exemplo: Whisper.cpp, OpenAI, Azure Speech'
+      artistry:
+        title: Criação de imagens
+        description: 'Fornecedores de geração de imagens e modelos de design. Por exemplo: ComfyUI, Replica.'
+        items:
+          comfyui:
+            description: Gerenciador local de geração de imagens.
+          replicate:
+            description: Serviço de inferência de modelos baseado na nuvem.
+          nanobanana:
+            description: Prévia de imagens do Google AI Studio.
+    helpinfo:
+      title: Primeira vez aqui?
+      description: |
+        O Companheiro de WoW requer que pelo menos um fornecedor de {chat} seja configurado para pensar e se comportar adequadamente. Podemos pensar nisso como o cérebro dos personagens que vivem no sistema Companheiro de WoW.
+    explained:
+      chat: 'Fornecedores de modelos de geração de texto. Por exemplo: OpenRouter, OpenAI, Ollama.'
+      Speech: 'Discurso (fornecedores de modelos de texto-discurso). Por exemplo: ElevenLabs, Azure Speech.'
+      Transcription: 'Transcrição (prestadores de modelos de fala-texto). Por exemplo: Whisper.cpp, OpenAI, Azure Speech'
+    description: LLMs, provedores de voz e outros serviços
+    provider:
+      sherpaw-transcription:
+        title: Sherpaw
+        description: Reconhecimento de voz local com modelos em conjunto ou sob demanda. Não é necessária a chave API.
+        language:
+          label: Idioma do modelo
+          description: Mostrar modelos que suportam esta linguagem. O modelo selecionado ainda detecta as línguas suportadas.
+          all: Todos os idiomas
+        model:
+          label: Modelo
+          description: Selecionar um modelo disponível. O reconhecimento detecta uma das suas línguas suportadas. Uma alteração reinicia a sessão atual.
+        asset:
+          title: Arquivos do modelo
+          unknown: Verificando arquivos…
+          bundled: Incluído no Companheiro de WoW
+          installed: Armazenado neste dispositivo
+          missing: Baixar ao usar
+          downloading: Baixando…
+          error: Falha no download
+          download: Baixar agora
+          cancel: Cancelar
+          remove: Remover download
+      apple-vision:
+        title: Apple Vision
+        description: Compreensão de imagem no dispositivo com Modelos de Fundação Apple em macOS 27 ou posterior. Não é necessária a chave API.
+      apple-speech-transcription:
+        title: Apple Speech
+        description: Reconhecimento de voz no dispositivo em macOS 26 ou posterior. Não é necessária a chave API.
+        fields:
+          locale:
+            label: Idioma e região
+            description: Use um local de fala Apple exato, como en-US ou zh-CN.
+            placeholder: en-US
+      app-local-audio-transcription:
+        title: Aplicativo (local)
+        description: https://github.com/moeru-ai/xsai-transformers
+      app-local-audio-speech:
+        title: Aplicativo (local)
+        description: https://github.com/moeru-ai/xsai-transformers
+      browser-local-audio-transcription:
+        title: Navegador (local)
+        description: https://github.com/moeru-ai/xsai-transformers
+      browser-local-audio-speech:
+        title: Navegador (local)
+        description: https://github.com/moeru-ai/xsai-transformers
+      alibaba-cloud-model-studio:
+        description: bailian.console.aliyun.com
+        title: Alibaba Cloud Model Studio
+      amazon-bedrock:
+        title: Amazon Bedrock
+        description: aws.amazon.com/bedrock
+        config:
+          api-key:
+            label: Chave de API do Bedrock
+            description: Amazon Bedrock API chave (gerado em consola AWS → Bedrock → API Chaves)
+            placeholder: bedrock-...
+          region:
+            label: Região AWS
+            description: Região AWS onde o Bedrock está habilitado (por exemplo, US East-1, US West-2)
+      anthropic:
+        description: anthropic.com
+        title: Anthropic {'|'} Claude
+        helpinfo:
+          title: Antes de começar
+          description:
+            part1: Embora a Anthropic tenha anunciado recentemente que eles estão tendo um suporte beta para a compatibilidade do OpenAI SDK
+            part2: (Você pode ler mais aqui)
+            part3: Mas devido aos detalhes da implementação vem com
+            part4: restrições que não estão alinhadas com o OpenAI SDK, atualmente não é possível usar este provedor no navegador.
+            part5: Se você precisa usar este provedor, você vai precisar de um backend proxy dedicado como uma Função sem servidor
+            part6: ou alguns serviços de contorno do CORS para contornar as restrições do CORS.
+      cloudflare-workers-ai:
+        description: cloudflare.com
+        fields:
+          field:
+            account-id:
+              description: ID de Conta Cloudflare
+              label: ID da conta
+              placeholder: O ID da sua conta Cloudflare
+            api-key:
+              placeholder: Digite sua chave de API do Cloudflare
+        title: Cloudflare Workers AI
+      common:
+        status:
+          validating: Validação
+          valid: A configuração parece ser válida.
+        fields:
+          field:
+            pitch:
+              description: Ajustar o tom do discurso sintetizado (por exemplo, mais nítido ou mais grosseiro))
+              label: Tom
+            speed:
+              description: Ajustar velocidade da fala
+              label: Velocidade
+            volume:
+              description: Ajustar volume da fala
+              label: Volume
+      voicevox:
+        description: voicevox.hiroshiba.jp
+        title: VOICEVOX
+        fields:
+          field:
+            intonation:
+              description: Ajustar o grau de variação da entonação da leitura
+              label: Entonação
+        callout_origin_title: Acessando o motor a partir de um navegador
+        callout_origin: Um navegador chega a um motor apenas nesta máquina. Para um motor em outra máquina, use a aplicação de desktop. O motor também tem que aceitar este site, que você define com --cors_policy_mode todo, ou com --allow_origin e este endereço.
+      aivis-speech:
+        description: aivis-project.com
+        title: AivisSpeech
+        fields:
+          field:
+            intonation:
+              description: Ajustar a intensidade do estilo de fala
+              label: Intensidade da expressão emocional
+        callout_origin_title: Acessando o motor a partir de um navegador
+        callout_origin: Um navegador chega a um motor apenas nesta máquina. Para um motor em outra máquina, use a aplicação de desktop. O motor também tem de aceitar este site, que você configura na página de configurações no porto 10101.
+      deepgram-tts:
+        description: deepgram.com
+        title: Deepgram
+      speech-noop:
+        title: Nenhum
+        description: Sem saída de fala.
+      comfyui:
+        settings:
+          title: ComfyUI (local)
+          heading: API nativa do ComfyUI
+          description: Conecte-se ao seu ComfyUI local e traga os seus próprios fluxos de trabalho.
+          info:
+            what_you_need:
+              label: Requisitos
+              value: ComfyUI em funcionamento local ou na sua rede.
+            how_to_export:
+              label: Como exportar
+              value: Ative o modo de desenvolvimento → “Salvar (formato da API)”.
+            scope_boundary:
+              label: Limites do escopo
+              value: Os downloads de modelos e as instalações de nós são o seu trabalho.
+          connection:
+            title: Conexão
+            connected: Conectado
+            failed: Falha na conexão
+            error_prefix: Erro
+            test: Testar
+            testing: Testando…
+            unknown_error: Erro de conexão desconhecido
+            unknown_gpu: GPU desconhecida
+            server_url:
+              label: URL do servidor
+              description: O endereço onde o ComfyUI está sendo executado
+              placeholder: http://localhost:8188
+          cors:
+            title: Bloqueio de CORS detectado
+            description: ComfyUI bloqueia pedidos de outras aplicações por padrão. Para permitir que o Companheiro de WoW se conecte, deve iniciar o ComfyUI com a bandeira `--enable-cors-header "*"`.
+            command: Python main.py --enable-cors-header "*"
+          workflows:
+            title: Modelos de fluxo de trabalho
+            upload: Enviar fluxo de trabalho
+            cancel_upload: Cancelar
+            empty: Ainda não foram enviados fluxos de trabalho. Clique em "Upload Workflow" para importar um workflow_api.json do ComfyUI.
+            exposed_parameters: Parâmetros expostos
+            summary: Nodos {nodes} · Campos expostos {fields}
+            remove: Remover
+            config_snippet: Trecho de configuração de imagens
+            copy_json: Copiar JSON
+            paste_hint: Coloque isto na sua configuração de arte do Companheiro de WoW Card para anular estes nós.
+          upload:
+            prompt: Soltar ou selecionar um arquivo workflow_api.json
+            invalid_json: JSON inválido
+            workflow_name:
+              label: Nome do fluxo de trabalho
+              description: Dê a este fluxo de trabalho um nome reconhecível
+              placeholder: 'Por exemplo: Anime Text2Img'
+            select_fields: 'Selecione campos para serem expostos ao agente de IA:'
+            fields_exposed: '{count} campo(s) exposto(s)'
+            save: Salvar fluxo de trabalho
+      replicate:
+        settings:
+          title: Replicar.ai
+          heading: Configuração do Replicate.ai
+          description: Configure as configurações de geração de imagens em nuvem.
+          api_key:
+            label: Chave de API
+            description: Seu token Replicate API (começa com r8_)
+            placeholder: R8_XXXXXXXXXXXXXXXXXXXXXXXX
+          default_model:
+            label: Modelo padrão
+            description: Falback proprietário/model string para usar se o cartão de caracteres não especificar um
+            placeholder: black-forest-labs/flux-schnell
+          aspect_ratio:
+            label: Proporção
+            description: Proporção de aspecto da imagem por defeito (por exemplo, 16:9, 1:1, 9:16)
+            placeholder: 16:9
+          inference_steps:
+            label: Etapas de inferência
+            description: Número de etapas para o processo de difusão (menor é mais rápido, maior é melhor qualidade)
+      nanobanana:
+        settings:
+          title: Nano Banana
+          heading: Nano Banana (Google AI Studio))
+          description: Configure as capacidades nativas de geração de imagens do Google Gemini.
+          api_key:
+            label: Chave de API
+            description: Sua chave Google AI Studio API
+            placeholder: '- Sim, sim.'
+          preferred_model:
+            label: Modelo preferido
+            description: O modelo de pré-visualização de imagem de Gêmeos específico a usar
+          default_resolution:
+            label: Resolução padrão
+            description: Resolução-alvo das imagens geradas
+          model_options:
+            nano_banana_2: Nano Banana 2 (Gemini 3.1 Flash Image))
+            nano_banana_pro: Nano Banana Pro (Gemini 3 Pro Image))
+            nano_banana: Nano Banana (Gemini 2.5 Flash Image))
+      deepseek:
+        description: deepseek.com
+        fields:
+          field:
+            thinking-mode:
+              description: Controla se os modelos de raciocínio do DeepSeek usam o pensamento em pedidos de chat.
+        title: DeepSeek
+      elevenlabs:
+        description: elevenlabs.io
+        fields:
+          field:
+            simularity-boost:
+              description: Aderência à semelhança de voz
+              label: Aumento de semelhança
+            speaker-boost:
+              description: Aumentar semelhança com o locutor
+              label: Reforço do locutor
+            speed:
+              description: Velocidade de geração de fala
+              label: Velocidade
+            stability:
+              description: Estabilidade e aleatoriedade da voz
+              label: Estabilidade
+            style:
+              description: Exagero do estilo da voz
+              label: Estilo
+        playground:
+          buttons:
+            button:
+              test-voice:
+                generating: Gerando…
+                label: Testar voz
+          fields:
+            field:
+              input:
+                placeholder: Digite texto para testar a voz…
+              language:
+                description: Selecionar idioma da voz
+                label: Idioma
+              voice:
+                description: Selecionar voz preferida
+                label: Voz
+          title: Área de testes de voz
+          validation:
+            error-missing-api-key: Por favor, insira uma chave API para testar a voz.
+        title: ElevenLabs
+      kokoro-local:
+        description: Interface local de texto a fala usando o Kokoro-82M.
+        fields:
+          field:
+            model:
+              label: Seleção de modelo
+              description: Os modelos menores carregam mais rapidamente, mas podem ter uma qualidade ligeiramente inferior.
+        models:
+          fp32-webgpu:
+            description: Modelo de precisão completa utilizando WebGPU - Recomendado para dispositivos suportados
+          fp32:
+            description: Modelo de precisão completa
+          fp16:
+            description: Meia precisão
+          q8:
+            description: Quantizado em 8 bits
+          q4:
+            description: Quantizado em 4 bits
+          q4f16:
+            description: 4 bits com FP16
+        playground:
+          default-text: '- Olá! - Olá! Este é um teste do sistema de texto para fala Kokoro.'
+          title: Área de testes de voz
+        title: Kokoro TTS (local)
+      fireworks:
+        description: fireworks.ai
+        title: Fireworks.ai
+      google-gemini-audio-speech:
+        description: aistudio.google.com
+        title: Google Gemini
+      microsoft-speech:
+        description: speech.microsoft.com
+        fields:
+          field:
+            region:
+              description: Região do serviço de fala
+              label: Região
+        title: Microsoft / Azure Speech
+      index-tts-vllm:
+        description: https://index-tts.github.io/
+        title: Bilibili / IndexTTS
+        callout_indextts2_unavailable_title: Suporte limitado
+        callout_indextts2_unavailable: O suporte para o IndexTTS2 não está atualmente disponível. Por favor, use o IndexTTS.
+      azure-ai-foundry:
+        description: Azure AI Foundry
+        title: Azure AI Foundry
+      minimax:
+        description: minimaxi.com
+        title: MiniMax
+      minimax-global:
+        description: minimax.io
+        title: MiniMax Global
+      minimax-speech:
+        description: minimax.io
+        errors:
+          provider-initialization-failed: Não consegui inicializar o fornecedor de voz do MiniMax.
+        fields:
+          field:
+            model:
+              description: Selecione o modelo MiniMax TTS a utilizar para geração de voz.
+              label: Modelo
+              placeholder: Selecionar modelo MiniMax…
+        playground:
+          default-text: '- Olá! - Olá! Este é um teste de síntese de fala do MiniMax.'
+        title: MiniMax Speech
+      mimo:
+        description: api.xiaomimimo.com
+        title: Xiaomi MiMo
+      mistral:
+        description: mistral.ai
+        title: Mistral
+      moonshot:
+        description: moonshot.ai
+        title: Moonshot AI
+      modelscope:
+        description: modelscope.cn
+        title: ModelScope
+      novita:
+        description: novita.ai
+        title: Novita
+      ollama:
+        description: ollama.ai
+        title: Ollama
+      openai:
+        description: openai.com
+        title: OpenAI
+      azure-openai:
+        description: Azure OpenAI API
+        title: Azure OpenAI
+      openai-compatible:
+        description: Compatível com OpenAI
+        title: Compatível com OpenAI
+      nvidia:
+        description: build.nvidia.com
+        title: NVIDIA NIM
+      n1n:
+        description: N1n.ai - Provedor de IA de alto desempenho API.
+        title: n1n
+      openpaths:
+        description: openpaths.io
+        title: OpenPaths
+      openrouter:
+        description: openrouter.ai
+        title: OpenRouter
+      openrouter-audio-speech:
+        description: openrouter.ai
+        title: OpenRouter
+      perplexity:
+        description: perplexity.ai
+        title: Perplexity
+      player2:
+        description: jogador2. jogo
+        title: Player2
+      together:
+        description: together.ai
+        title: Together.ai
+      google-generative-ai:
+        description: gemini.google.com
+        title: Google Gemini
+      groq:
+        description: groq.com
+        title: Groq
+      featherless:
+        description: featherless.ai
+        title: Featherless AI
+      lm-studio:
+        description: lmstudio.ai
+        title: LM Studio
+      vllm:
+        description: vllm.ai
+        title: vLLM
+      volcengine:
+        description: volcengine.com
+        fields:
+          field:
+            appId:
+              description: ID de aplicativo do projeto onde você pode obter em Console
+              label: ID do aplicativo
+        title: Volcano Engine
+      volcengine-coding-plan:
+        description: Volcengine Coding Plan
+        models:
+          ark-code-latest:
+            description: Utiliza o modelo selecionado no console do Plano de codificação, incluindo o Auto; as alterações são aplicáveis em 3 ⁇ 5 minutos.
+          legacy:
+            description: Modelo do Plano de Código Legado previsto para a aposentadoria. Passe para um modelo atualmente suportado.
+        title: Volcengine Coding Plan
+      byteplus:
+        description: byteplus.com
+        title: BytePlus
+      byteplus-coding-plan:
+        description: BytePlus Coding Plan
+        title: BytePlus Coding Plan
+      xai:
+        description: x.ai
+        title: xAI
+      zai:
+        description: z.ai
+        title: Z.ai
+      302-ai:
+        description: 302.AI
+        title: 302.AI
+      comet-api:
+        description: CometAPI.com
+        title: Comet API
+      cerebras:
+        description: cerebras.ai
+        title: Cerebras
+      aliyun-nls:
+        description: Aliyun NLS
+        title: Aliyun NLS
+      browser-web-speech-api:
+        description: STT nativo do navegador (requer Chrome/Edge/Safari)
+        title: Web Speech API
+      prompt-api:
+        description: Com o Prompt API, você pode enviar solicitações de linguagem natural para o modelo de fundação no Chrome.
+        title: Prompt API
+      official:
+        title: Provedor oficial
+        description: Provedor oficial de IA do Companheiro de WoW.
+        speech-title: Provedor oficial de fala
+        speech-description: Fornecedor oficial de texto a fala por Companheiro de WoW.
+        speech-streaming-title: Fornecedor oficial de discursos em streaming
+        speech-streaming-description: Fornecedor oficial de transmissão de texto a voz de baixa latência por Companheiro de WoW (WebSocket) bidireccional.
+        transcription-title: Provedor oficial de transcrição
+        transcription-description: Fornecedor oficial de transmissão de voz para texto pela Companheiro de WoW.
+      transcriptions:
+        playground:
+          title: Área de testes de transcrição
+      aihubmix:
+        title: AIHubMix
+        description: https://aihubmix.com (10% de desconto)
+    title: Provedores
+  connection:
+    description: Configurar a conexão do servidor WebSocket
+    title: Conexão
+    websocket-url:
+      description: O endereço que este aplicativo usa para se conectar ao servidor local.
+      label: Endereço do servidor
+      placeholder: ws://localhost:6121/ws
+    server-hostname:
+      label: Expor a todos
+      description: Permitir que outros dispositivos da rede local se conectem a este servidor.
+    server-auth-token:
+      label: Token de pareamento
+      description: Outros dispositivos usam este token para combinar com este servidor. O Companheiro de WoW gera um token quando este campo está vazio.
+      placeholder: Gerar automaticamente
+    qr:
+      title: Pareamento
+      description: Escreva este código QR com o aplicativo móvel. O aplicativo testa cada endereço local e salva o primeiro endereço de trabalho.
+      refresh: Atualizar
+      image-alt: Código QR de pareamento do Companheiro de WoW
+      candidates: Endereços candidatos
+      token-hint: O código QR inclui o token de paragem. Não compartilhe o código QR em público.
+      errors:
+        title: Código QR indisponível
+        unavailable: Não consegui preparar o código QR da ligação.
+    qr-scan:
+      title: Conexão rápida
+      description: Escanear o código QR do Tamagotchi para conectar rapidamente
+      instructions: Apontem a câmera para o código QR da ligação Companheiro de WoW.
+      action: Escanear
+      success:
+        title: Endereço conectado salvo
+        description: 'URL usado: {url}'
+      errors:
+        title: Falha ao escanear QR
+        failed: Não conseguiu escanear ou conectar com o código QR.
+  system:
+    experimental:
+      refresh: Atualizar políticas
+      title: Recursos experimentais
+      description: Experimente os recursos no desenvolvimento e gerencie as suas escolhas.
+      notice: As características experimentais podem ser alteradas ou removidas. As tuas escolhas aplicam-se a este dispositivo.
+      empty-title: Nenhum experimento disponível
+      load-error: As características da nuvem não estão disponíveis. As características locais permanecem disponíveis.
+      retry: Tentar novamente
+      reset: Usar padrão
+      sources:
+        default: Padrão do aplicativo
+        local: Sua escolha de dispositivo
+        global: Disponível para contas conectadas
+        account: Disponível para sua conta
+      features:
+        character_card_sync:
+          title: Sincronização de fichas na nuvem
+          description: Sincronize os seus cartões de personagem com a sua conta quando você entrar, para que eles cheguem aos seus outros dispositivos. Desligado por padrão. Um cartão que você excluir permanece no histórico da sua conta por 30 dias.
+        display_model_sync:
+          title: Sincronização de modelos na nuvem
+          description: Faça o upload dos modelos Live2D e VRM importados para a sua conta quando estiver inscrito, para que possa usá-los em outros dispositivos. Desligado por padrão.
+        fullscreen_workspace:
+          title: Área de trabalho em tela cheia
+          description: Abra as configurações e o chat em um espaço de trabalho que cobre a tela, com o personagem à esquerda. Desligado por padrão.
+          window_mode:
+            title: Modo de janela
+            description: Escolha onde se abre o espaço de trabalho.
+            single_window: 'Janela única: o personagem entra no espaço de trabalho'
+            multi_window: 'Janela separada: o personagem permanece no desktop'
+    color-scheme:
+      description: Mude a cor do palco.
+      title: Esquema de cores
+    developer:
+      description: Opções para desenvolvedores.
+      title: Desenvolvedores
+    general:
+      description: Tema escuro, idiomas e mais
+      title: Geral
+    permissions:
+      description: Ver o estado atual das permissões.
+      title: Gerenciamento de permissões
+    description: Personalize seu palco!
+    sections:
+      section:
+        custom-color:
+          fields:
+            field:
+              primary-color:
+                label: Cor principal
+                rgb-on:
+                  title: Quero dinâmico!
+          title: Esquema de cores
+        developer:
+          title: Desenvolvedor
+          sections:
+            section:
+              performance-visualizer:
+                title: Visualizador de desempenho
+                description: Mostre FPS, tempo de quadros, tarefas longas e métricas de memória do navegador suportadas
+              markdown-stress:
+                title: Teste intensivo de Markdown
+                description: Análise e renderização de marcas de estresse com cargas úteis pesadas de chat
+              tool-payloads-as-json:
+                title: Mostrar dados das ferramentas como JSON
+                description: Mostre os argumentos e resultados das chamadas da ferramenta de bate-papo como uma árvore JSON, não como campos formatados. Os cartões das respostas também fornecem os seus dados brutos.
+              plugin-host:
+                actions:
+                  enable-and-load: Ativar e carregar
+                  disable-and-unload: Desativar e descarregar
+                  import-folder: Importar pasta
+                  confirm-import: Importar extensão
+                  cancel-import: Cancelar
+                errors:
+                  enable-and-load: Falhou em habilitar e carregar o plugin {extensionId}.
+                  disable-and-unload: Não conseguiu desativar e descarregar o plugin {extensionId}.
+                  prepare-import: Não consegui inspecionar a pasta Extensão.
+                  commit-import: Não conseguiu importar a Extensão {extensionId}.
+                  cancel-import: Não conseguiu cancelar a importação da Extensão.
+                import:
+                  title: Revisar importação da extensão
+                  description: A extensão permanece desativada e descarregada após a importação.
+                  source: Pasta de origem
+                  runtimes: Ambientes de execução
+                  entrypoints: Pontos de entrada
+                  package-size: Pacote
+                  package-size-value: Arquivos {fileCount} · {totalBytes}
+                  permissions: Permissões
+                  kits: Kits
+                  no-permissions: Nenhuma permissão declarada.
+                  no-kits: Nenhum kit declarado.
+                  imported: Extensão {extensionId} importada.
+              use-magic-keys:
+                title: UseMagicKeys Tool
+                description: Cortometas de ensaio
+              audio-record:
+                title: Gravação de áudio
+                description: Teste de compostos relacionados com áudio
+              background-gradient-blending:
+                title: Background Temática mistura de cores
+                description: Test mixing & tema
+              background-removal:
+                title: Removimento de fundo (necessário WebGPUZ))
+                description: Utilidade para remoção de fundo
+              chat:
+                title: Conversa
+                description: Conversa
+              gesture-circle:
+                title: Círculo de Gestos (só no desktop) )
+                description: Teste de reconhecimento de gestos
+              image:
+                title: Imagem
+                description: Imagem
+              polaroid:
+                title: Polaroid
+                description: Utilidade para tirar imagens de modelos
+              context-flow:
+                description: Inscrever atualizações de contexto de entrada e eventos de fluxo de bate-papo de saída
+              websocket-inspector:
+                title: Inspector WebSocket
+                description: Inspeccionar o tráfego bruto do WebSocket
+              vibrant:
+                title: Extracto de cor
+                description: Extração de cores de ensaio
+              providers-transcription-realtime-aliyun-nls:
+                title: Aliyun Transcriber em tempo real
+                description: Transmitir áudio do microfone para Aliyun NLS e inspecionar transcrições ao vivo
+              performance-playground:
+                title: Área de testes de desempenho
+                description: Expressões VRM + Parque de brinquedos de sincronização de lábios TTS
+        theme-presets:
+          presets:
+            default:
+              colors:
+                color-1: Companheiro de WoW Verde
+              description: A cor verde-verde padrão, trazida por Companheiro de WoW para você!
+              title: Cor padrão
+            morandi:
+              colors:
+                color-1: Taupe
+                color-2: Amêndoas
+                color-3: Ash Grey
+                color-4: Taupe leve
+                color-5: Marfim
+                color-6: Olive Grey
+                color-7: Areia
+                color-8: Cinza quente
+              description: Tones suaves e silenciosos inspirados nas pinturas de Giorgio Morandi
+              title: Cores de Morandi
+            monet:
+              colors:
+                color-1: Céu Azul
+                color-2: Neblina
+                color-3: Areia
+                color-4: Moss Green
+                color-5: Lília de Água
+                color-6: Cereais
+                color-7: Slate Blue
+                color-8: Sage .
+              description: Paleta impressionista inspirada nas obras de Claude Monet
+              title: Colores monetários
+            japanese:
+              colors:
+                color-1: Tão
+                color-2: Taupe quente
+                color-3: Umber
+                color-4: Café
+                color-5: Bronze
+                color-6: Ouro
+                color-7: Amêndoas
+                color-8: Amber
+              description: Paleta de cores tradicional japonesa
+              title: Colores japoneses
+            nordic:
+              colors:
+                color-1: Azul nórdico
+                color-2: Gelo
+                color-3: Fiordo
+                color-4: Acero
+                color-5: Glaciar
+                color-6: Slate
+                color-7: Nuvem
+                color-8: Pedra
+              description: Esquema de cores minimalista escandinavo
+              title: Colores nórdicos
+            chinese:
+              colors:
+                color-1: Rosy Dawn
+                color-2: Vermelho chinês
+                color-3: Bruno Fumado
+                color-4: Bamboo Verde
+                color-5: Púrpura escura
+                color-6: Amarelo dourado
+                color-7: Azul Azul
+                color-8: Ócres
+              description: Colores tradicionais chineses, derivados de têxteis antigos, porcelana e pinturas
+              title: As cores tradicionais chinesas
+          title: Preset de esquema de cores
+    title: Sistema
+  page:
+    developers:
+      open-devtools:
+        title: Abrir ferramentas do desenvolvedor
+        button: Abrir
+  credits:
+    buy: Comprar
+  scene:
+    title: Cenas
+    description: Personalize o ambiente virtual para os seus personagens.
+    beta_label: Sistema de cenas
+    beta_description: Cada cartão de caracteres especifica o seu próprio fundo preferido desta galeria. Colocá-lo aqui irá configurá-lo como padrão para o caracter atualmente ativo.
+    background_image:
+      title: Fundo do personagem ativo
+      no_background: Nenhum fundo ativo para este personagem. Faça upload de uma imagem quadrada ou paisagem para obter melhores resultados.
+      upload: Enviar à galeria
+      change: Trocar fundo
+      clear: Limpar padrão
+    gallery:
+      title: Galeria de cenas
+      empty: Ainda não há imagens na galeria. Carregue um acima!
+      set_as_global: Definir como padrão do personagem
+      delete: Excluir da galeria
+      global_badge: Padrão do personagem
+      active_badge: Cena atual
+      delete_confirm: Tens a certeza de que queres apagar este fundo?
+    tip:
+      label: Dica!
+      description: O uso de uma imagem quadrada irá alavancar o corte <b>cover</b> no modo retrato, focando no centro da cena.
+sections:
+  section:
+    general:
+      title: Geral
+theme:
+  title: Tema
+  description: |
+    Use o tema de luz, o tema escuro ou o tema do seu sistema.
+  auto: Sistema
+  light: Luz
+  dark: Escuro
+title: Configurações
+voices: Voz
+vrm:
+  fps:
+    title: Limite da taxa de quadros
+    description: Limitar o renderização do VRM no estágio e na pré-visualização do modelo. Os limites mais baixos reduzem o uso do GPU sem alterar a velocidade da animação.
+    options:
+      unlimited: Ilimitado
+  change-model:
+    from-file: Carregar de arquivo
+    from-file-select: Selecionar
+    from-url: Carregar de URL
+    from-url-confirm: Carregar
+    from-url-placeholder: Digite a URL do modelo VRM
+    title: Trocar modelo
+  title: Configurações de VRM
+  scale-and-position:
+    model-info-title: Informações do tamanho do modelo
+    model-info-x: Largura (X)
+    model-info-y: Altura (Y)
+    model-info-z: Profundidade (Z)
+    tips: |
+      Editar a posição inicial do modelo VRM.
+      Os eixos de coordenadas são visualizados.
+    scale: Escala
+    x: Deslocamento X
+    y: Deslocamento Y
+    z: Deslocamento Z
+    fov: Campo de visão (graus)
+    rotation-y: Rotação (eixo Y)
+    camera-distance: Distância da câmera
+    eye-tracking-mode:
+      title: Direção do olhar
+      options:
+        option:
+          camera: Câmara
+          mouse: Mouse
+          disabled: Desativado
+  switch-to-vrm:
+    title: Mudar para avatar Live2D?
+    change-to-vrm: Clique aqui para mudar para a configuração de avatar Live2D
+  theme-color-from-model:
+    button-extract:
+      title: Extrair
+  skybox:
+    skybox-intensity: Intensidade da SkyBox
+    skybox-specular-mix: Mistura especular
+spine:
+  title: Configurações de Spine
+  scale-and-position:
+    title: Escala e posição
+    scale: Escala
+    x: X
+    y: Y
+  theme-color-from-model:
+    title: Extrair cores do modelo
+    button-extract:
+      title: Extrair
+  animation:
+    title: Animação
+    idle-animation: Animação em repouso
+    mix-duration: Duração da transição (segundos)
+    speed: Velocidade da animação
+  appearance:
+    title: Aparência
+  variant:
+    title: Variante
+    current-variant: Variante ativa
+  skin:
+    title: Aparência
+    current-skin: Aparência atual
+  rendering:
+    title: Renderização
+    max-fps: FPS máximo
+    render-scale: Escala de renderização
+  fps:
+    options:
+      unlimited: Ilimitado
+mmd:
+  title: Configurações de MMD
+  scale-and-position:
+    title: Escala e posição
+    scale: Escala
+    x: X
+    y: Y
+    rotation: Rotação
+  theme-color-from-model:
+    title: Extrair cores do modelo
+    button-extract:
+      title: Extrair
+  physics:
+    title: Física e esqueleto
+    enabled: Ativar a física (cabeça, saia, acessórios)
+    ik: Ativar IK (cinemática inversa)
+    grant: Ativar propagação de ossos adicionais
+    gravity: Força da gravidade
+  gaze:
+    title: Olhar
+    tracking: Direção do olhar
+    options:
+      cursor: Mouse
+      camera: Câmara
+      none: Desativado
+  animation:
+    title: Animação
+    idle-motion: Movimento em repouso
+    import-motion: Importar movimento (.vmd)
+    play-once: Prévia da animação
+    remove: Remover movimento
+    description: Importar arquivos de movimento VMD, definir um como o looping ocioso, ou jogar qualquer como um gesto de um tiro. Mapear emoções em movimentos para fazer gestos ao lado de expressões faciais.
+  morphs:
+    title: Transformações
+    auto: (automático)
+    revert: Voltar ao automático
+    no-morphs: Este modelo não oferece transformações.
+    description: O renderer detecta automaticamente nomes de morfologia japonesa padrão (あいうえお, まばたき). Anula um espaço aqui se o seu modelo usar nomes não padrão.
+  materials:
+    title: Materiais
+    no-materials: Este modelo não expõe materiais.
+    description: Ajustar a opacidade das peças individuais do modelo (cara, cabelo, roupa, acessórios). Coloque uma parte em zero para escondê-la.
+tachie:
+  title: Configurações de Tachie
+  archive-description: Os modelos Tachie usam arquivos .tachie.zip contendo imagens com nomes de emoção.
+  scale-and-position:
+    title: Escala e posição
+    scale: Escala
+    x: X
+    y: Y
+  theme-color-from-model:
+    title: Extrair cores do modelo
+    button-extract:
+      title: Extrair
+  rendering:
+    title: Renderização
+    render-scale: Escala de renderização
+    shadow: Sombra com a cor do tema
+websocket-secure-enabled:
+  title: Servir como WebSocket seguro (WSS)
+  description: Usar WSS para conexões móveis seguras. O Companheiro de WoW cria um certificado auto-assinado.
+wip:
+  title: Em desenvolvimento
+  description: Esta característica está actualmente em desenvolvimento e ainda não está disponível ao público. Verifique em futuras atualizações para esta funcionalidade.
+streamer-mode:
+  title: Modo streamer
+  description: Esconda o microfone e os indicadores de login na janela de caracteres.

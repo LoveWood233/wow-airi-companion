@@ -27,6 +27,7 @@ import {
   screenAmbientLightDiagnosticsWatchMs,
 } from '../../shared/screen-ambient-light-diagnostics'
 import { findDominantDisplayArea } from '../../shared/utils/electron/display'
+import { i18n } from '../modules/i18n'
 import { useStagePaintedMask } from './use-stage-painted-mask'
 
 const sourcesOptions: SourcesOptions = {
@@ -266,7 +267,7 @@ export function useScreenAmbientLight(sources: {
         // platform gets the extra hint.
         if (screens.length === 0) {
           throw new Error(window.platform === 'darwin'
-            ? 'No screen-capture source is available. Check the screen-recording permission for AIRI.'
+            ? i18n.global.t('companion-ui.errors.screen-capture', { name: i18n.global.t('companion-ui.app.name') })
             : 'No screen-capture source is available.')
         }
 

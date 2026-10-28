@@ -1,0 +1,382 @@
+character-switcher:
+  title: Trocar personagem
+  manage: Gerenciar personagens
+  empty: Nenhum personagem ainda
+  failed: Não foi possível trocar de personagem. Tente novamente.
+mobile-tools:
+  sign-in: Entrar no Companheiro de WoW
+  account-description: Conta e preferências
+  sound: Som
+  character-voice: Voz do personagem
+  title: Configurações
+  appearance: Aparência
+  application: Aplicativo
+  more: Mais
+  background: Segundo plano
+  settings: Configurações
+  about: Sobre
+  view: Ver
+  close-view: Salvar e fechar os controles de visualização
+  hearing: Audição
+  menu: Menu
+  menu-unread: Menu, {count} notificações não lidas
+chat:
+  provider-configuration:
+    title: O provedor de conversa não está configurado
+    description: Escolha e valide um provedor nas configurações antes de enviar uma mensagem.
+    action: Abrir configurações do provedor
+  voice-message:
+    recording: Gravação
+    starting: Iniciando microfone
+    preview: Mensagem de voz gravada
+    transcribing: Transcrevendo…
+    position: Posição da reprodução
+    no-speech: Nenhuma fala foi reconhecida. A mensagem de voz não foi enviada.
+  voice-composer:
+    audio: Mensagem de voz
+    transcription: Ditado
+    hold-hint: Mantenha pressionado para gravar. Clique para alternar entre mensagem de voz e ditado. Pressione Enter para gravar sem segurar.
+    listening: Ouvindo…
+    lock: Deslize para cima para travar
+    cancel-hint: Deslize para a esquerda para cancelar
+    processing: Concluindo…
+    cancel: Cancelar
+    send: Enviar mensagem de voz
+    insert: Inserir texto
+    retry: Enviar mensagem de voz novamente
+    discard: Descartar mensagem de voz
+    failed: Falha na entrada de voz
+    configure-title: Configurar Audição
+    configure-description: Selecione um provedor e modelo de transcrição em Audição para usar o ditado.
+    configure-action: Abrir Audição
+    mode: Entrada de voz
+    auto-send: Enviar ao parar a gravação
+    input-device: Microfone
+    system-default: Padrão do sistema
+    listen: Ouvir continuamente
+    push-to-talk: Pressione para falar
+    push-to-talk-unavailable: Este dispositivo não tem uma tecla de Pressione para falar, então o Companheiro de WoW não escuta. Mude o modo nas configurações de Audição.
+    wake-word: Ouvir palavras de ativação
+    hearing-settings: Mais configurações de Audição…
+    options-hint: Passe o ponteiro ou clique com o botão direito para opções
+    recording: Gravação
+    stop: Parar gravação
+    stop-send: Parar e enviar
+    play: Reproduzir gravação
+    pause: Pausar
+  voice-preview:
+    processing: Concluindo transcrição
+    device: Dispositivo de entrada de áudio
+    device-description: Selecione o microfone desta gravação.
+    device-placeholder: Selecionar microfone
+    level: Nível de entrada
+    activity: Atividade de fala
+    silence: Silêncio
+    speech: Fala
+    threshold: Limite de detecção
+    sensitivity: Sensibilidade
+    sensitivity-description: Ajuste o limite do indicador de fala.
+    start: Iniciar gravação
+    stop: Concluir gravação
+    failed: A operação de áudio falhou.
+  voice-draft:
+    title: Rascunho de voz
+    discard: Descartar rascunho
+    listening: Ouvindo
+    finalizing: Concluindo…
+    sent: Enviado
+  voice-input: Entrada de voz
+  notice:
+    label: Relatório em segundo plano de {name}
+  background-tasks:
+    label: Tarefas em segundo plano
+    stop: Parar {name}
+    dismiss: Dispensar {name}
+    status:
+      running: Trabalhando em
+      done: Concluído
+      failed: Não concluído
+      interrupted: Parou .
+  judgment:
+    running: Avaliando {name}
+    judged: '{name} avaliado'
+    invalid: Não foi possível avaliar {name}
+  judgment-tool-call:
+    answer: Resposta
+    next: Depois
+    reply: Responder normalmente
+    stay-quiet: Ficar em silêncio
+    hint: 'Responder considerando: {text}'
+    recipe-steps: Usar receita {name}
+    recipe-decision: Avaliar {name}
+    recipe-background: Transferir para a receita {name}
+  recipe:
+    using: Usando receita {name}
+    loaded: Receita {name} usada
+    started: Transferido para a receita {name}
+    pending: A receita {name} aguarda aprovação
+    disabled: A receita {name} está desativada
+    unknown: Receita {name} não encontrada
+    refused: A receita {name} não iniciou
+    failed: A receita {name} não iniciou
+  recipe-tool-call:
+    task: Tarefa
+    usable: Receitas disponíveis agora
+    pending: Esta receita aguarda sua aprovação.
+    disabled: Esta receita está desativada.
+    unknown: Nenhuma receita tem este nome.
+    refused: Não foi possível iniciar a receita.
+  invoked-skill:
+    steps: Receita {name} usada
+    background: Transferido para a receita {name}
+    decision: Receita {name} usada
+    question: Pergunta
+    yes: Sim
+    no: Não
+  home-assistant-tool-call:
+    shown: Mostrando {count} de {total} dispositivos
+  web-search-tool-call:
+    results: Resultados para "{query}" · {count}
+  tool-calls:
+    running-one: Usando {name}
+    failed-one: '{name} não concluiu'
+    combo-running: Combo ×{count}
+    combo: Combo de {count} golpes
+    combo-failed: Combo de {count} golpes, {failed} perdidos
+    arguments: Argumentos
+    result: Resultado
+    copy: Copiar dados brutos
+    copied: Copiado
+    raw: Dados brutos
+    other: Outros dados
+    widget: Widget
+    rerun: Executar novamente
+    card-making: Criando uma ficha para esta ferramenta…
+    card-remaking: Criando nova ficha…
+    card-regenerate: Criar nova ficha
+    card-failed: Não foi possível criar uma ficha para esta ferramenta
+    card-retry: Tentar novamente
+    state:
+      executing: Em execução
+      done: Concluído
+      error: Falhou
+  reply-card:
+    drawing: Desenhando ficha…
+    raw: Dados brutos
+    card: Ficha
+  error-details:
+    show: Mostrar detalhes
+    hide: Ocultar detalhes
+  images:
+    empty: Compartilhe um pensamento ou uma imagem.
+    use-vision: Usar modelo de visão para imagens da conversa
+    use-vision-description: Escolha um provedor e modelo abaixo. Ele lê imagens anexadas antes da resposta. Sem modelo de visão, as imagens vão diretamente ao modelo de conversa.
+    attach: Anexar imagens
+    remove: Remover {name}
+    unsupported: Use imagens PNG, JPEG, WebP ou GIF.
+    too-large: Cada imagem deve ter no máximo 3 MB.
+    too-many: Anexe até {count} imagens por vez.
+    total-too-large: Todas as imagens anexadas juntas devem ter no máximo 3 MB.
+    read-failed: Não foi possível ler esta imagem. Tente novamente.
+    no-description: O modelo de visão não retornou uma descrição. Verifique Configurações → Módulos → Visão e tente novamente.
+    reading: Lendo imagens…
+    description: Imagem anexada
+  actions:
+    reply: Responder
+    retry: Tentar novamente
+    send: Enviar mensagem
+    stop: Parar resposta
+  message:
+    character-name:
+      airi: Companheiro de WoW
+      core-system: Sistema central
+      you: Você
+  reply:
+    cancel: Cancelar resposta
+    message: Mensagem
+    replying-to: Respondendo a {name}
+  reasoning: Raciocínio
+  swipe-demo:
+    show-label: Mostrar rótulos
+    delete: Excluir
+    archive: Arquivar
+    pin: Fixar
+    actions: Mostrar ações
+    row: Conversa {n}
+  sessions:
+    delete-short: Excluir
+    confirm-delete-short: Confirmar exclusão
+    title: Conversas
+    new: Nova conversa
+    current: Atual
+    confirm-delete: Excluir esta conversa e suas mensagens?
+    cancel: Cancelar
+    empty: Nenhuma conversa ainda
+    cloud-badge: Sincronizado na nuvem
+    new-chat-fallback: Nova conversa
+    delete: Excluir conversa
+avatar-model-missing:
+  title: Nenhum modelo selecionado
+  unavailable-title: Este modelo não está neste dispositivo
+  description: Selecione um modelo para mostrar {name} no palco.
+  select: Selecionar modelo
+render-error:
+  title: '{renderer} não conseguiu renderizar este modelo'
+  description: O modelo está selecionado, mas o palco não conseguiu exibi-lo.
+  report-description: |-
+    {renderer} não conseguiu renderizar o modelo selecionado.
+    ID do modelo: {modelId}
+    Erro: {error}
+startup:
+  failed: Falha na inicialização
+  failed-resource: Não foi possível carregar {resource}
+  recover: Tente novamente. Se falhar outra vez, abra os detalhes abaixo.
+  recover-model: Tente novamente ou continue sem personagem. Você pode escolher outro modelo depois.
+  details: O que aconteceu?
+  close-details: Fechar detalhes
+  retry: Tentar novamente
+  continue-without-model: Continuar mesmo assim
+  model-timeout: O modelo demorou demais para carregar. Verifique a conexão e tente novamente.
+  resources:
+    auth: configurações da conta
+    modelIndex: lista de modelos
+    card: configurações do personagem
+    chat: histórico de conversas
+    services: serviços do aplicativo
+    modelData: modelos salvos
+    modelSelection: configurações do modelo
+    audio: configurações de áudio
+    route: página
+    model: modelo do personagem
+message: Diga algo…
+theme:
+  title: Tema
+  system: Sistema
+  light: Luz
+  dark: Escuro
+  switch-to-light: Mudar para tema claro
+  switch-to-dark: Mudar para tema escuro
+  switch-to-system: Seguir o tema do sistema
+send-mode:
+  title: Tecla de envio
+  enter: Enter
+  ctrl-enter: Ctrl + Enter
+  double-enter: Enter duplo
+speech-output:
+  mute: Silenciar voz
+  unmute: Ativar voz
+operations:
+  load-models: Carregar modelos
+  load-models-status:
+    loading: Carregando
+    ready: Pronto
+select-a-audio-input: Selecionar entrada de áudio
+select-a-model: Selecionar modelo
+select-a-voice: Escolher uma voz
+viewers:
+  debug-menu:
+    emotions: Emoções
+    emotions-btn:
+      angry: 😠 Irritado
+      awkward: 😳 Constrangido
+      happy: 😄 Feliz
+      neutral: 🙂 Neutro
+      question: 🤔 Pergunta
+      sad: 😫 Triste
+      surprised: 🤯 Surpreso
+      think: 🤨 Pensativo
+    vrm:
+      camera: Câmara
+      model:
+        title: Modelo
+profile-switcher:
+  no-profile: Sem perfil
+  no-profiles: Nenhum perfil ainda
+  save-as-new: Salvar como novo perfil
+  new-profile-name: Nome do perfil
+  manage: Gerenciar perfis
+promo-banner:
+  items:
+    signin:
+      watermark: Lua
+      fallbackLabel: Presente lunar
+      title: Acesso por 7 dias
+      eventName: Entre para receber poeira estelar, molduras de avatar e presentes de lançamento.
+      date: 03/28 - 04/10
+      reward: Até 120 de poeira estelar
+      cta: Entrar
+    build:
+      watermark: Construir
+      fallbackLabel: Bônus de construção
+      title: Bônus de caixa de suprimentos
+      eventName: Conclua tarefas de construção para ganhar vales extras e materiais em dobro.
+      date: 03/30 - 04/12
+      reward: 5 vales de suprimentos + materiais de melhoria
+      cta: Ver tarefas
+    spring:
+      watermark: Primavera
+      fallbackLabel: Sorteio de primavera
+      title: Carnaval de cápsulas
+      eventName: Participe do sorteio de primavera para desbloquear balões, amuletos e móveis temáticos.
+      date: 04/01 - 04/18
+      reward: Primeiro sorteio pela metade do preço + amuleto raro
+      cta: Sortear agora
+    coupon:
+      watermark: Conversar
+      fallbackLabel: Cupom
+      title: Cupom de recarga
+      eventName: Conclua interações de conversa para receber cupons de expansão e pacotes de voz.
+      date: 04/02 - 04/20
+      reward: Economize 6 em 30 / 15 em 68
+      cta: Resgatar cupom
+    home:
+      watermark: Início
+      fallbackLabel: Tema do quarto
+      title: Atualização do tema de primavera
+      eventName: Desbloqueie temas de janela, mesa e luminária para renovar seu quarto.
+      date: 04/05 - 04/22
+      reward: Bilhete gratuito de sorteio de tema ao entrar
+      cta: Ver tema
+waiting: Aguardando
+websocket-status:
+  connected: Conectado
+  disconnected: Sem conexão
+  open-settings: Abrir configurações de conexão
+computer-use:
+  label: Usar computador
+  description: Permitir que esta janela de conversa inspecione e controle aplicativos nativos neste computador.
+status:
+  preparing: Preparando microfone
+  listening: Ouvindo
+  paused: Audição pausada enquanto o Companheiro de WoW fala
+  transcribing: Transcrevendo
+  hearing-error: Não foi possível transcrever o áudio
+  no-transcript: A fala reconhecida aparecerá aqui.
+  signing-in: Conclua o acesso no navegador
+  confirming: Confirmando acesso
+  signed-in: Acesso concluído
+  sign-in-error: Falha ao entrar
+  sign-in-unconfirmed: Não foi possível confirmar sua sessão. Entre novamente.
+  dismiss: Dispensar
+  configure-hearing: Selecione e configure um provedor de Audição nas configurações.
+notifications:
+  title: Notificações
+  open: Abrir notificações
+  open-unread: Abrir notificações, {count} não lidas
+  mark-all-read: Marcar todas como lidas
+  empty: Nenhuma notificação ainda
+  loading: Carregando notificações
+  back: Voltar
+  error: Não foi possível carregar as notificações.
+  retry: Tentar novamente
+  just-now: Agora
+  kinds:
+    flux-granted:
+      title: Você recebeu {amount} Flux
+    subscription-renewed:
+      title: '{plan} renovado'
+      body: Ativo até {periodEnd}.
+    subscription-payment-failed:
+      title: Falha no pagamento da renovação
+      body: Tentaremos novamente em {retryAt}. Atualize sua forma de pagamento para manter {plan}.
+      body-no-retry: Atualize sua forma de pagamento para manter {plan}.

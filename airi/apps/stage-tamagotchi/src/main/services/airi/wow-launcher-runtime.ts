@@ -118,7 +118,7 @@ export class WowLauncher {
       }
       catch (error) {
         // A first launch has no configuration. A corrupt or unreadable file must not be overwritten by an empty state.
-        if (!(typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT'))
+        if (typeof error !== 'object' || error === null || !('code' in error) || error.code !== 'ENOENT')
           this.storageError = true
       }
     })()

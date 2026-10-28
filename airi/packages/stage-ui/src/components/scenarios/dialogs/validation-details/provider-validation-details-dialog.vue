@@ -6,6 +6,7 @@ import { useResizeObserver, useScreenSafeArea } from '@vueuse/core'
 import { DialogContent, DialogOverlay, DialogPortal, DialogRoot, DialogTitle } from 'reka-ui'
 import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot } from 'vaul-vue'
 import { computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { useBreakpoints } from '../../../../composables/use-breakpoints'
 
@@ -31,6 +32,8 @@ const selectedSteps = computed(() => {
     return failedSteps.value
   return failedSteps.value.filter(step => step.id === props.stepId)
 })
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -43,12 +46,12 @@ const selectedSteps = computed(() => {
             {{ props.title }}
           </DialogTitle>
           <Button size="sm" @click="() => showDialog = false">
-            Close
+            {{ translateCompanion('companion-extra.close-bbfa77') }}
           </Button>
         </div>
         <div :class="['flex', 'flex-col', 'gap-3']">
           <div v-if="selectedSteps.length === 0" :class="['text-sm', 'text-neutral-500', 'dark:text-neutral-400']">
-            No failed checks.
+            {{ translateCompanion('companion-extra.no-failed-checks-82f623') }}
           </div>
           <div
             v-for="step in selectedSteps"
@@ -82,12 +85,12 @@ const selectedSteps = computed(() => {
             {{ props.title }}
           </div>
           <Button size="sm" @click="() => showDialog = false">
-            Close
+            {{ translateCompanion('companion-extra.close-bbfa77') }}
           </Button>
         </div>
         <div :class="['flex', 'flex-col', 'gap-3', 'overflow-y-auto']">
           <div v-if="selectedSteps.length === 0" :class="['text-sm', 'text-neutral-500', 'dark:text-neutral-400']">
-            No failed checks.
+            {{ translateCompanion('companion-extra.no-failed-checks-82f623') }}
           </div>
           <div
             v-for="step in selectedSteps"

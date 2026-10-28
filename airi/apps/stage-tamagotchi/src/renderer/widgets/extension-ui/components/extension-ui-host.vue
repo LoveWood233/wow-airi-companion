@@ -12,6 +12,7 @@ import { useElectronEventaInvoke } from '@proj-airi/electron-vueuse'
 import { useContextBridgeStore } from '@proj-airi/stage-ui/stores/mods/api/context-bridge'
 import { isPlainObject } from 'es-toolkit'
 import { computed, shallowRef, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { widgetsIframePublish } from '../../../../shared/eventa'
 import { electronPluginGetAssetBaseUrl } from '../../../../shared/eventa/plugin/assets'
@@ -166,6 +167,8 @@ const canRenderIframe = computed(() => canRenderExtensionUi({
   iframeSrc: resolvedIframeSrc.value,
   iframeSrcdoc: iframeSrcdoc.value,
 }))
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -217,7 +220,7 @@ const canRenderIframe = computed(() => canRenderExtensionUi({
       </div>
 
       <div v-if="loading" :class="['text-sm', 'opacity-80']">
-        Loading extension UI...
+        {{ translateCompanion('companion-extra.loading-extension-ui-7c266d') }}
       </div>
 
       <div v-else-if="error" :class="['rounded-lg', 'bg-amber-500/12', 'p-3', 'text-sm', 'text-amber-100']">
@@ -233,19 +236,19 @@ const canRenderIframe = computed(() => canRenderExtensionUi({
       </div>
 
       <div v-else-if="!iframeSrc && !iframeSrcdoc" :class="['text-sm', 'opacity-80']">
-        This module is registered, but it did not declare an iframe source to mount yet.
+        {{ translateCompanion('companion-extra.this-module-is-registered-but-it-did-not-decl-c98d1d') }}
       </div>
 
       <dl v-if="moduleSnapshot" :class="['grid', 'grid-cols-[auto_1fr]', 'gap-x-3', 'gap-y-2', 'text-xs', 'opacity-80']">
-        <dt>Kit</dt>
+        <dt>{{ translateCompanion('companion-extra.kit-91bf6f') }}</dt>
         <dd>{{ moduleSnapshot.kitId }}</dd>
-        <dt>Type</dt>
+        <dt>{{ translateCompanion('companion-extra.type-3deb74') }}</dt>
         <dd>{{ moduleSnapshot.kitModuleType }}</dd>
-        <dt>Runtime</dt>
+        <dt>{{ translateCompanion('companion-extra.runtime-c4740e') }}</dt>
         <dd>{{ moduleSnapshot.runtime }}</dd>
-        <dt>Revision</dt>
+        <dt>{{ translateCompanion('companion-extra.revision-3beb9a') }}</dt>
         <dd>{{ moduleSnapshot.revision }}</dd>
-        <dt>Iframe</dt>
+        <dt>{{ translateCompanion('companion-extra.iframe-353fb2') }}</dt>
         <dd>{{ iframeSrc ? 'src configured' : (iframeSrcdoc ? 'srcdoc configured' : 'unresolved') }}</dd>
       </dl>
 

@@ -13,6 +13,7 @@ import { object, parse } from 'valibot'
 
 import { wowCompanionDemo, wowCompanionGet, wowCompanionSetAccountName, wowCompanionSetCapture, wowCompanionSetSettings } from '../../../shared/eventa/wow-companion'
 import { captureSchema, defaultSettings, demoSchema, gameProfiles, gameVersionSchema, settingsSchema } from '../../../shared/wow-companion'
+import { companionError } from '../../../shared/wow-companion-errors'
 import { accountNameSchema } from '../../../shared/wow-companion-gold'
 import { onAppBeforeQuit } from '../../libs/bootkit/lifecycle'
 import { createConfig } from '../../libs/electron/persistence'
@@ -128,10 +129,10 @@ class CompanionProfile {
   private async ensureConnected() {
     const generation = this.generation
     if (!this.settings.enabled || this.stopped)
-      throw new Error('Enable the companion connection for this game before capture or demo commands.')
+      throw new Error(companionError('connection-disabled'))
     await this.runtime.ensureReady()
     if (!this.settings.enabled || this.stopped || generation !== this.generation)
-      throw new Error('The companion connection changed before the command completed.')
+      throw new Error(companionError('connection-changed'))
   }
 
   private async poll() {
@@ -148,7 +149,7 @@ class CompanionProfile {
       }
       catch (error) {
         if (!this.stopped && this.settings.enabled && generation === this.generation) {
-          this.connectionError = errorMessageFrom(error) ?? 'WoW bridge failed to start'
+          this.connectionError = errorMessageFrom(error) ?? companionError('bridge-unavailable')
           this.client.invalidate()
         }
       }

@@ -366,6 +366,8 @@ defineExpose({
   /** The layer that holds the history, without the composer. */
   historyLayer: computed(() => viewportLayout.value?.historyLayer ?? null),
 })
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -393,7 +395,7 @@ defineExpose({
           <div :class="['chat-empty-state-icon size-14 flex items-center justify-center rounded-2xl bg-primary-100/60 text-primary-500 dark:bg-primary-900/30']">
             <span :class="['i-solar:chat-line-bold-duotone size-7']" />
           </div>
-          <span :class="['font-cute text-xl text-neutral-700 dark:text-neutral-200']">{{ assistantLabel || 'AIRI' }}</span>
+          <span :class="['font-cute text-xl text-neutral-700 dark:text-neutral-200']">{{ assistantLabel || t('companion-ui.app.name') }}</span>
           <p :class="['chat-empty-state-description text-sm text-neutral-500 dark:text-neutral-400']">
             {{ t('stage.chat.images.empty') }}
           </p>
@@ -487,7 +489,7 @@ defineExpose({
                   'absolute right-1 top-1 z-10 p-1 rounded-md bg-black/40 text-white backdrop-blur-sm',
                   'opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/60',
                 ]"
-                title="Save to computer"
+                :title="translateCompanion('companion-extra.save-to-computer-0c61d6')"
                 @click.stop="journalPreviewStore.downloadImage(entry.url || '', entry.title)"
               >
                 <div class="i-solar:download-minimalistic-bold-duotone text-[10px]" />

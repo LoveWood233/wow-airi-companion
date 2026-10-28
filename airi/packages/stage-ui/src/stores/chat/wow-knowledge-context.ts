@@ -45,7 +45,7 @@ export function withWowKnowledgeContext(conversation: Conversation, query: Omit<
     })
     if (index === currentIndex && knowledge)
       content.push({ type: 'runtime-context', entries: [{ source: knowledgeSource, text: knowledge }] })
-    if (!removed && !(index === currentIndex && knowledge))
+    if (!removed && (index !== currentIndex || !knowledge))
       return turn
     changed = true
     return { ...turn, content }

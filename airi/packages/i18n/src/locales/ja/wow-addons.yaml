@@ -1,0 +1,143 @@
+title: WoWアドオンセンター
+description: 対応するCurseForgeアドオンを探し、各World of Warcraftクライアントにインストールします。
+game-version: ゲームのエディション
+games:
+  retail: リテール
+  classic: クラシック
+  forever: Forever
+view: アドオンの表示
+browse: 探す
+installed: インストール済み
+loading: アドオンを読み込み中…
+retry: 再試行
+refresh: 更新
+search-label: アドオンを検索
+search-placeholder: アドオン名またはキーワード
+search: 検索
+category: カテゴリ
+sort-label: 並べ替え
+sort:
+  popular: 人気順
+  updated: 更新日時順
+  downloads: ダウンロード数順
+current-version: '対応ゲームバージョン: {version}'
+authors: '作者: {authors}'
+downloads: '{count}ダウンロード'
+no-results: この条件に一致する対応アドオンはありません。
+previous: 前へ
+next: 次へ
+pagination: '{page} / {pages}ページ · {total}件のアドオン'
+installed-description: 選択中のクライアントでWoW コンパニオンが管理しているアドオンの一覧です。
+none-installed: このクライアントにはWoW コンパニオンでインストールしたアドオンがありません。
+choose-update: 更新ファイルを選択
+close: ファイルの詳細を閉じる
+loading-files: 対応ファイルを読み込み中…
+no-files: 設定したゲームバージョンに対応するファイルはありません。
+compatible-files: 対応ファイル
+file-details: アドオンファイルの詳細
+required-dependencies: 必須アドオンのID
+no-dependencies: なし
+dependencies-hint: 必須の依存アドオンも一緒にインストールされます。
+current-file: このファイルはすでにインストールされています。
+install: インストール
+update: 更新
+install-success: インストールが完了しました。WoWを再起動するか、インターフェースを再読み込みしてください。
+release:
+  stable: 正式版
+  beta: ベータ版
+  alpha: アルファ版
+setup:
+  title: CurseForgeに接続してアドオンを探す
+  description: 設定にCurseForge APIキーを追加してください。有効なキーを保存すると、アドオン一覧が読み込まれます。
+  action: APIキーを設定
+  client-title: '{game}クライアントを設定'
+  client-description: アドオン設定でクライアントフォルダーと対応ゲームバージョンを選択してください。
+  configure-client: クライアントを設定
+settings:
+  title: アドオン設定
+  description: アドオンをインストールする前に、CurseForge APIキーと各WoWクライアントを設定してください。
+  key-title: CurseForgeへのアクセス
+  key-label: 新しいCurseForge APIキー
+  key-description: 空欄にすると保存済みのキーを維持します。保存済みのキーはこのフォームに表示されません。
+  key-configured: APIキー設定済み
+  key-missing: APIキー未設定
+  key-instructions: 公式APIガイドから申請フォームを開き、プロジェクト情報を入力してください。Overwolfからのメールを待ち、承認されたAPIキーをここに貼り付けてください。
+  key-link: APIキーの申請ガイドを開く
+  save-key-first: 先にAPIキーを保存してから、各クライアントの対応ゲームバージョンを選択してください。
+  directory: WoWクライアントフォルダー
+  directory-description: WoWの実行ファイルがあるフォルダーを選択してください。その中のInterface/AddOnsにアドオンをインストールします。
+  browse: 参照
+  browse-game: '{game}のフォルダーを参照'
+  version-type: 対応ゲームバージョン
+  choose-version: APIから取得したゲームバージョンを選択
+  no-version-types: CurseForgeから、このエディションの対応バージョンが返されませんでした。
+  retry-metadata: ゲームバージョンを再読み込み
+  install-target: インストール先
+  reload-hint: インストール前にWoWを終了してください。完了後、WoWを再起動するか、インターフェースを再読み込みしてください。
+  save: 設定を保存
+  cancel: キャンセル
+  back: アドオンセンターに戻る
+  saved: 設定を保存しました。
+categories:
+  all: すべてのカテゴリ
+  combat: 戦闘
+  bags-inventory: バッグと所持品
+  bags: バッグ
+  inventory: 所持品
+  classes: クラス
+  class: クラス
+  action-bars: アクションバー
+  artwork: アートワーク
+  auction-economy: オークションと経済
+  auction: オークション
+  buffs-debuffs: バフとデバフ
+  chat-communication: チャットとコミュニケーション
+  damage-dealer: ダメージディーラー
+  guild: ギルド
+  libraries: ライブラリ
+  map-minimap: マップとミニマップ
+  map: マップ
+  miscellaneous: その他
+  professions: 生産スキル
+  quests-leveling: クエストとレベル上げ
+  quests: クエスト
+  raid-boss-encounters: レイドとボス戦
+  tooltip: ツールチップ
+  unit-frames: ユニットフレーム
+  pvp: PvP
+errors:
+  unknown: リクエストに失敗しました。もう一度お試しください。
+  curseforge-api-key-required: アドオン設定にCurseForge APIキーを追加してください。
+  curseforge-unauthorized: CurseForgeがAPIキーを拒否しました。アドオン設定でキーを確認してください。
+  curseforge-rate-limited: CurseForgeのリクエスト制限に達しました。しばらく待ってから再試行してください。
+  curseforge-timeout: CurseForgeの応答がタイムアウトしました。もう一度お試しください。
+  curseforge-invalid-response: CurseForgeから無効な応答が返されました。もう一度お試しください。
+  curseforge-response-too-large: CurseForgeの応答が対応サイズを超えています。
+  curseforge-request-failed: CurseForgeへのリクエストに失敗しました。接続を確認して再試行してください。
+  curseforge-invalid-request: リクエストが無効です。設定したゲームバージョンを確認して再試行してください。
+  curseforge-too-many-files: このアドオンはファイルが多すぎるため、安全に読み込めません。別のアドオンを選択してください。
+  curseforge-too-many-redirects: ダウンロードのリダイレクトが多すぎます。後でもう一度お試しください。
+  curseforge-not-found: CurseForgeでアドオンまたはファイルが見つかりません。アドオン一覧を更新してください。
+  curseforge-disposed: アドオンサービスが停止しました。アドオンセンターを開き直して再試行してください。
+  curseforge-incompatible-version: このファイルは設定したゲームバージョンに対応していません。
+  curseforge-distribution-disabled: 作者が外部ツールによるこのアドオンのインストールを許可していません。
+  curseforge-download-unavailable: CurseForgeにこのアドオンファイルのダウンロードがありません。
+  curseforge-unsafe-download-url: ダウンロード先アドレスの検証に失敗しました。
+  curseforge-download-integrity: アドオンのダウンロードの整合性確認に失敗しました。もう一度お試しください。
+  wow-addons-settings-invalid: アドオン設定を確認して再試行してください。
+  wow-addons-directory-required: アドオン設定でWoWクライアントフォルダーを指定してください。
+  wow-addons-version-required: アドオン設定で対応ゲームバージョンを選択してください。
+  wow-addons-busy: 別のアドオン操作が進行中です。完了するまでお待ちください。
+  wow-addons-key-storage-unavailable: 安全なキー保存領域を利用できません。WoW コンパニオンを再起動して再試行してください。
+  wow-addons-key-unreadable: WoW コンパニオンが保存済みのAPIキーを読み取れません。キーをもう一度保存してください。
+  wow-addons-required-dependency: 必須の依存アドオンをインストールできませんでした。もう一度お試しください。
+  wow-addons-unmanaged-conflict: 管理対象外のアドオンフォルダーがすでにあります。移動してからインストールしてください。
+  wow-addons-folder-conflict: アドオンフォルダーが別のアドオンと競合しています。移動してからインストールしてください。
+  wow-addons-unsafe-archive: アドオンの圧縮ファイルに安全でないパスが含まれているため、インストールできません。
+  wow-addons-install-failed: インストールに失敗しました。クライアントフォルダーを確認して再試行してください。
+  wow-addons-invalid-directory: クライアントフォルダーが無効か、利用できません。アドオン設定でパスを確認してください。
+  wow-addons-invalid-archive: アドオンの圧縮ファイルが無効または安全でないため、インストールできません。
+  wow-addons-directory-conflict: 既存のアドオンフォルダーがインストール先と競合しています。そのフォルダーを移動して再試行してください。
+  wow-addons-request-failed: アドオンの操作に失敗しました。クライアントフォルダーを確認して再試行してください。
+  wow-addons-dependency-limit: 依存関係の階層が多すぎるため、安全にインストールできません。
+  wow-addons-stopped: アドオンの操作が停止しました。アドオンセンターを開き直して再試行してください。

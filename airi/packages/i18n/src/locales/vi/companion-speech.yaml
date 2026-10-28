@@ -1,0 +1,28 @@
+unknown: Không rõ
+error: Đã xảy ra lỗi không xác định.
+streaming-description: Giọng nói truyền trực tuyến có độ trễ thấp
+preview-text: Xin chào, tôi là bạn đồng hành của bạn.
+providers-empty: Chưa cấu hình nhà cung cấp giọng nói
+providers-setup: Cấu hình nhà cung cấp giọng nói
+model: Mô hình
+model-description: Nhập mô hình dùng để tạo giọng nói.
+model-manual-error: Nhập tên mô hình nếu tìm kiếm thất bại.
+model-manual-empty: Nhập tên nếu không tìm thấy mô hình.
+voice-title: Cài đặt giọng nói
+voice-description: Tùy chỉnh giọng nói của bạn đồng hành.
+current-voice: 'Giọng hiện tại: {voice}'
+voices-error: Không thể tải giọng nói
+pitch: Cao độ
+pitch-description: Điều chỉnh cao độ của giọng nói.
+ssml: Bật SSML
+ssml-description: Dùng ngôn ngữ đánh dấu giọng nói để điều khiển đầu ra.
+voice-name: Tên giọng nói
+voice-name-description: Nhập tên giọng nói tùy chỉnh.
+voice-name-placeholder: Tên giọng nói, ví dụ alloy hoặc echo
+monolingual-v1: Đơn ngữ v1
+multilingual-v1: Đa ngữ v1
+multilingual-v2: Đa ngữ v2
+custom-ssml: Dùng SSML tùy chỉnh
+custom-ssml-description: Nhập SSML thay cho văn bản thuần.
+ssml-placeholder: Nhập văn bản SSML…
+stop: Dừng

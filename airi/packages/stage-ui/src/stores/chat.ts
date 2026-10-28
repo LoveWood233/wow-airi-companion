@@ -1,4 +1,4 @@
-import type { ChatAttachment, ChatInvokedSkill, ChatOrchestratorRuntimeState, ChatOrchestratorSendOptions, Conversation, Recipe, StreamEvent, StreamOptions } from '@proj-airi/core-agent'
+import type { ChatAttachment, ChatInvokedSkill, ChatOrchestratorRuntime, ChatOrchestratorRuntimeState, ChatOrchestratorSendOptions, Conversation, Recipe, StreamEvent, StreamOptions } from '@proj-airi/core-agent'
 import type { GenerationProvider, GenerationRequest } from '@proj-airi/provider-inference'
 import type { WebSocketEventInputs } from '@proj-airi/server-sdk'
 import type { Message } from '@xsai/shared-chat'
@@ -308,6 +308,13 @@ export const useChatStore = defineStore('chat', () => {
   const activeStreamingMessage = computed(() => chatStream.activeTurns.find(turn => turn.sessionId === activeSendSessionId.value)?.message)
   const pendingQueuedSendCount = shallowRef(0)
   const requestContexts = new ChatRequestContexts()
+  // One request owns preparation and generation. Cancellation cannot miss asynchronous startup.
+  const requests = new Map<string, {
+    sessionId: string
+    abort: AbortController
+    request: ReturnType<ChatOrchestratorRuntime['submit']>
+    observationInput?: { text: string }
+  }>()
   // A turn in a recipe's own session is a background task, so every window can show and stop it.
   // Each task has its own recipe session, and the session keeps its status. Every window reads the list from the session metas.
   const backgroundTasks = computed<BackgroundTask[]>(() => {
@@ -1119,14 +1126,6 @@ export const useChatStore = defineStore('chat', () => {
         void artistryAutonomousStore.runArtistTask(messageText, toProviderHistory(sessionMessages))
     },
   })
-
-  // One request owns preparation and generation. Cancellation cannot miss asynchronous startup.
-  const requests = new Map<string, {
-    sessionId: string
-    abort: AbortController
-    request: ReturnType<typeof runtime.submit>
-    observationInput?: { text: string }
-  }>()
 
   /** Whether this window runs a request of the session. */
   function hasLocalRequest(sessionId: string) {

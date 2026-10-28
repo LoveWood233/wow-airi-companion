@@ -1,0 +1,28 @@
+unknown: ไม่ทราบ
+error: เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ
+streaming-description: เสียงสตรีมมิงที่มีความหน่วงต่ำ
+preview-text: สวัสดี ฉันคือเพื่อนคู่ใจของคุณ
+providers-empty: ยังไม่ได้ตั้งค่าผู้ให้บริการเสียง
+providers-setup: ตั้งค่าผู้ให้บริการเสียง
+model: โมเดล
+model-description: ป้อนโมเดลที่จะใช้สร้างเสียง
+model-manual-error: ป้อนชื่อโมเดลเองหากค้นหาไม่สำเร็จ
+model-manual-empty: ป้อนชื่อโมเดลเองหากไม่พบโมเดล
+voice-title: การตั้งค่าเสียง
+voice-description: ปรับแต่งเสียงพูดของเพื่อนคู่ใจ
+current-voice: 'เสียงปัจจุบัน: {voice}'
+voices-error: โหลดเสียงไม่สำเร็จ
+pitch: ระดับเสียงสูงต่ำ
+pitch-description: ปรับความสูงต่ำของเสียงพูด
+ssml: เปิดใช้ SSML
+ssml-description: ใช้ภาษามาร์กอัปเสียงพูดเพื่อควบคุมเสียงที่สร้าง
+voice-name: ชื่อเสียงพูด
+voice-name-description: ป้อนชื่อเสียงพูดที่กำหนดเอง
+voice-name-placeholder: ชื่อเสียงพูด เช่น alloy หรือ echo
+monolingual-v1: ภาษาเดียว v1
+multilingual-v1: หลายภาษา v1
+multilingual-v2: หลายภาษา v2
+custom-ssml: ใช้ SSML ที่กำหนดเอง
+custom-ssml-description: ป้อน SSML โดยตรงแทนข้อความธรรมดา
+ssml-placeholder: ป้อนข้อความ SSML…
+stop: หยุด

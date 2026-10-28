@@ -1,0 +1,143 @@
+title: Trung tâm addon WoW
+description: Tìm addon CurseForge tương thích và cài đặt cho từng phiên bản World of Warcraft.
+game-version: Phiên bản trò chơi
+games:
+  retail: Bản hiện hành
+  classic: Bản cổ điển
+  forever: Bản vĩnh viễn
+view: Danh sách addon
+browse: Khám phá
+installed: Đã cài đặt
+loading: Đang tải addon…
+retry: Thử lại
+refresh: Làm mới
+search-label: Tìm addon
+search-placeholder: Tên addon hoặc từ khóa
+search: Tìm kiếm
+category: Danh mục
+sort-label: Sắp xếp theo
+sort:
+  popular: Phổ biến
+  updated: Vừa cập nhật
+  downloads: Nhiều lượt tải nhất
+current-version: 'Phiên bản trò chơi tương thích: {version}'
+authors: 'Tác giả: {authors}'
+downloads: '{count} lượt tải'
+no-results: Không có addon tương thích khớp với các bộ lọc này.
+previous: Trước
+next: Tiếp
+pagination: 'Trang {page}/{pages} · {total} addon'
+installed-description: Danh sách addon do Bạn đồng hành WoW quản lý cho máy khách đã chọn.
+none-installed: Bạn đồng hành WoW chưa cài addon cho máy khách này.
+choose-update: Chọn bản cập nhật
+close: Đóng thông tin tệp
+loading-files: Đang tải các tệp tương thích…
+no-files: Không có tệp phù hợp với phiên bản trò chơi đã cấu hình.
+compatible-files: Tệp tương thích
+file-details: Thông tin tệp addon
+required-dependencies: ID addon bắt buộc
+no-dependencies: Không có
+dependencies-hint: Các addon phụ thuộc bắt buộc sẽ được cài cùng addon này.
+current-file: Tệp này đã được cài đặt.
+install: Cài đặt
+update: Cập nhật
+install-success: Cài đặt hoàn tất. Khởi động lại WoW hoặc tải lại giao diện để nạp addon.
+release:
+  stable: Chính thức
+  beta: Thử nghiệm beta
+  alpha: Thử nghiệm alpha
+setup:
+  title: Kết nối CurseForge để xem addon
+  description: Thêm khóa API CurseForge trong cài đặt. Danh mục addon sẽ tải sau khi bạn lưu khóa hợp lệ.
+  action: Thiết lập khóa API
+  client-title: 'Cấu hình máy khách {game}'
+  client-description: Chọn thư mục máy khách và phiên bản trò chơi tương thích trong cài đặt addon.
+  configure-client: Cấu hình máy khách
+settings:
+  title: Cài đặt addon
+  description: Cấu hình khóa API CurseForge và từng máy khách WoW trước khi cài addon.
+  key-title: Truy cập CurseForge
+  key-label: Khóa API CurseForge mới
+  key-description: Để trống để giữ khóa đã lưu. Khóa đã lưu không xuất hiện trong biểu mẫu này.
+  key-configured: Đã cấu hình khóa API
+  key-missing: Chưa cấu hình khóa API
+  key-instructions: Mở hướng dẫn API chính thức và truy cập liên kết đăng ký. Nhập thông tin dự án rồi chờ email từ Overwolf. Sau đó dán khóa API đã được duyệt vào đây.
+  key-link: Đọc hướng dẫn đăng ký khóa API
+  save-key-first: Lưu khóa API trước. Sau đó chọn phiên bản trò chơi tương thích cho từng máy khách.
+  directory: Thư mục máy khách WoW
+  directory-description: Chọn thư mục chứa tệp thực thi WoW. Addon được cài vào Interface/AddOns trong thư mục này.
+  browse: Duyệt
+  browse-game: 'Duyệt thư mục {game}'
+  version-type: Phiên bản trò chơi tương thích
+  choose-version: Chọn phiên bản trò chơi từ API
+  no-version-types: CurseForge không trả về phiên bản trò chơi được hỗ trợ cho bản này.
+  retry-metadata: Tải lại phiên bản trò chơi
+  install-target: Thư mục cài addon
+  reload-hint: Đóng WoW trước khi cài đặt. Sau khi cài đặt, khởi động lại WoW hoặc tải lại giao diện.
+  save: Lưu cài đặt
+  cancel: Hủy
+  back: Quay lại trung tâm addon
+  saved: Đã lưu cài đặt.
+categories:
+  all: Tất cả danh mục
+  combat: Chiến đấu
+  bags-inventory: Túi và hành trang
+  bags: Túi
+  inventory: Hành trang
+  classes: Lớp nhân vật
+  class: Lớp nhân vật
+  action-bars: Thanh hành động
+  artwork: Hình ảnh giao diện
+  auction-economy: Đấu giá và kinh tế
+  auction: Đấu giá
+  buffs-debuffs: Hiệu ứng có lợi và bất lợi
+  chat-communication: Trò chuyện và liên lạc
+  damage-dealer: Gây sát thương
+  guild: Bang hội
+  libraries: Thư viện
+  map-minimap: Bản đồ và bản đồ nhỏ
+  map: Bản đồ
+  miscellaneous: Khác
+  professions: Nghề nghiệp
+  quests-leveling: Nhiệm vụ và lên cấp
+  quests: Nhiệm vụ
+  raid-boss-encounters: Đột kích và trùm
+  tooltip: Chú giải
+  unit-frames: Khung đơn vị
+  pvp: Đấu người chơi
+errors:
+  unknown: Yêu cầu thất bại. Hãy thử lại.
+  curseforge-api-key-required: Thêm khóa API CurseForge trong cài đặt addon.
+  curseforge-unauthorized: CurseForge từ chối khóa API. Kiểm tra khóa trong cài đặt addon.
+  curseforge-rate-limited: CurseForge đã giới hạn yêu cầu. Chờ rồi thử lại.
+  curseforge-timeout: CurseForge không phản hồi kịp thời. Hãy thử lại.
+  curseforge-invalid-response: CurseForge trả về phản hồi không hợp lệ. Hãy thử lại.
+  curseforge-response-too-large: Phản hồi CurseForge vượt quá kích thước được hỗ trợ.
+  curseforge-request-failed: Yêu cầu CurseForge thất bại. Kiểm tra kết nối rồi thử lại.
+  curseforge-invalid-request: Yêu cầu không hợp lệ. Kiểm tra phiên bản trò chơi đã cấu hình rồi thử lại.
+  curseforge-too-many-files: Addon này có quá nhiều tệp để tải an toàn. Hãy chọn addon khác.
+  curseforge-too-many-redirects: Quá nhiều lần chuyển hướng khi tải. Hãy thử lại sau.
+  curseforge-not-found: CurseForge không tìm thấy addon hoặc tệp này. Làm mới danh sách addon.
+  curseforge-disposed: Dịch vụ addon đã dừng. Mở lại trung tâm addon rồi thử lại.
+  curseforge-incompatible-version: Tệp addon không phù hợp với phiên bản trò chơi đã cấu hình.
+  curseforge-distribution-disabled: Tác giả không cho phép cài addon này qua công cụ bên thứ ba.
+  curseforge-download-unavailable: CurseForge không có bản tải cho tệp addon này.
+  curseforge-unsafe-download-url: Địa chỉ tải không vượt qua kiểm tra.
+  curseforge-download-integrity: Bản tải addon không vượt qua kiểm tra tính toàn vẹn. Hãy thử lại.
+  wow-addons-settings-invalid: Kiểm tra cài đặt addon rồi thử lại.
+  wow-addons-directory-required: Thiết lập thư mục máy khách WoW trong cài đặt addon.
+  wow-addons-version-required: Chọn phiên bản trò chơi tương thích trong cài đặt addon.
+  wow-addons-busy: Một thao tác addon khác đang chạy. Chờ thao tác đó hoàn tất.
+  wow-addons-key-storage-unavailable: Kho khóa bảo mật không khả dụng. Khởi động lại Bạn đồng hành WoW rồi thử lại.
+  wow-addons-key-unreadable: Bạn đồng hành WoW không đọc được khóa API đã lưu. Hãy lưu lại khóa.
+  wow-addons-required-dependency: Không cài được addon phụ thuộc bắt buộc. Hãy thử lại.
+  wow-addons-unmanaged-conflict: Đã có thư mục addon ngoài phạm vi quản lý. Di chuyển thư mục đó trước khi cài addon này.
+  wow-addons-folder-conflict: Thư mục addon xung đột với addon khác. Di chuyển thư mục đó trước khi cài đặt.
+  wow-addons-unsafe-archive: Gói addon chứa đường dẫn không an toàn nên không thể cài đặt.
+  wow-addons-install-failed: Cài đặt thất bại. Kiểm tra thư mục máy khách rồi thử lại.
+  wow-addons-invalid-directory: Thư mục máy khách không hợp lệ hoặc không truy cập được. Kiểm tra đường dẫn trong cài đặt addon.
+  wow-addons-invalid-archive: Gói addon không hợp lệ hoặc không an toàn nên không thể cài đặt.
+  wow-addons-directory-conflict: Thư mục addon hiện có xung đột với lần cài đặt này. Di chuyển thư mục xung đột rồi thử lại.
+  wow-addons-request-failed: Thao tác addon thất bại. Kiểm tra thư mục máy khách rồi thử lại.
+  wow-addons-dependency-limit: Addon yêu cầu quá nhiều lớp phụ thuộc để cài đặt an toàn.
+  wow-addons-stopped: Thao tác addon đã dừng. Mở lại trung tâm addon rồi thử lại.

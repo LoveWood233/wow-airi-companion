@@ -6,7 +6,7 @@ import type { ChatRequestOptions, ModelInfo, ProviderDefinition, ProviderInstanc
 
 import { errorMessageFrom } from '@moeru/std'
 import { getGenerationProvider, withReasoning } from '@proj-airi/provider-inference'
-import { isCustomProvidersDisabled } from '@proj-airi/stage-shared'
+import { isCustomProvidersDisabled, isStageTamagotchi } from '@proj-airi/stage-shared'
 import { computedAsync, useAsyncState, useIntervalFn } from '@vueuse/core'
 import { listModels } from '@xsai/model'
 import { uniqBy } from 'es-toolkit'
@@ -896,6 +896,7 @@ export const useProviderStore = defineStore('provider', () => {
     }
 
     return [...definitions, ...visionDefinitions, ...configuredInstances]
+      .filter(metadata => !isStageTamagotchi() || getProviderDefinition(metadata.id).configuredBy !== 'authentication')
   })
 
   function getTranscriptionFeatures(providerId: string) {
@@ -988,7 +989,7 @@ export const useProviderStore = defineStore('provider', () => {
         continue
 
       const definition = getProviderDefinition(provider.id)
-      if (isCustomProvidersDisabled() && definition.requiresCredentials !== false)
+      if (!isStageTamagotchi() && isCustomProvidersDisabled() && definition.requiresCredentials !== false)
         continue
 
       const isAvailableBy = definition.isAvailableBy || (() => true)

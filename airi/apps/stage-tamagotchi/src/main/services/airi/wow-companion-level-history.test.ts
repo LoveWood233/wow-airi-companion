@@ -300,7 +300,7 @@ describe('companion level history', () => {
     await sample(31, 0)
     await history.flush()
     expect(history.read().characters).toEqual([])
-    expect(history.read().storageError).toContain('Cannot load WoW level history')
+    expect(history.read().storageError).toContain('levels-read')
     expect(await readFile(path, 'utf8')).toBe(original)
   })
 
@@ -313,7 +313,7 @@ describe('companion level history', () => {
     history = new CompanionLevelHistory(path)
     await history.load()
     await sample(32, 2000)
-    expect(history.read().storageError).toContain('Cannot load WoW level history')
+    expect(history.read().storageError).toContain('levels-read')
     expect(await readFile(path, 'utf8')).toBe(corrupt)
   })
 
@@ -326,7 +326,7 @@ describe('companion level history', () => {
     await history.load()
     await sample(31, 1000)
     expect(history.read().characters).toEqual([])
-    expect(history.read().storageError).toContain('Cannot load WoW level history')
+    expect(history.read().storageError).toContain('levels-read')
     expect(await readFile(path, 'utf8')).toBe(corrupt)
   })
 
@@ -335,7 +335,7 @@ describe('companion level history', () => {
     await sample(30, 0)
     await sample(31, 1000)
     expect(history.read().characters[0]?.records).toHaveLength(2)
-    expect(history.read().storageError).toContain('Cannot save WoW level history')
+    expect(history.read().storageError).toContain('levels-write')
     await rename(path, join(directory, 'blocked-destination'))
     await history.observe(null, 'Offline')
     expect(history.read().storageError).toBeNull()

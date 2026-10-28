@@ -7,6 +7,7 @@ import { BasicInputFile } from '@proj-airi/ui'
 import { useObjectUrl } from '@vueuse/core'
 import { nanoid } from 'nanoid'
 import { computed, nextTick, onScopeDispose, ref, shallowRef, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { colorFromElement, patchThemeSamplingHtml2CanvasClone } from '../../../../libs'
 import { useSettings } from '../../../../stores/settings'
@@ -218,6 +219,8 @@ async function applySelection(isImport = false) {
     busy.value = false
   }
 }
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -247,7 +250,7 @@ async function applySelection(isImport = false) {
                 decoding="async"
               >
               <div v-else class="h-full w-full flex items-center justify-center text-sm text-neutral-500 dark:text-neutral-400">
-                No preview
+                {{ translateCompanion('companion-extra.no-preview-e49000') }}
               </div>
             </div>
             <div class="mt-2 flex flex-col gap-1">
@@ -260,7 +263,7 @@ async function applySelection(isImport = false) {
               v-if="option.removable"
               class="trash-button absolute right-2 top-2 z-10 flex cursor-pointer items-center justify-center rounded-full bg-neutral-200/50 p-1 text-neutral-600 backdrop-blur-md transition-opacity dark:bg-neutral-800/50"
               :class="[option.id === selectedId ? 'opacity-100' : 'opacity-0']"
-              title="Remove background"
+              :title="translateCompanion('companion-extra.remove-background-e19463')"
               @click.stop="emit('remove', option)"
             >
               <div class="i-solar:trash-bin-trash-bold h-4 w-4" />
@@ -272,21 +275,21 @@ async function applySelection(isImport = false) {
           <BasicInputFile v-model="uploadingFiles" class="cursor-pointer">
             <div class="upload-button flex items-center gap-2 border border-neutral-300 rounded-lg border-dashed px-3 py-2 text-sm text-neutral-600 transition-colors dark:border-neutral-700 dark:text-neutral-300">
               <div i-solar:add-square-linear />
-              <span>Add custom background</span>
+              <span>{{ translateCompanion('companion-extra.add-custom-background-6613e1') }}</span>
             </div>
           </BasicInputFile>
         </div>
 
         <div class="border border-neutral-200 rounded-xl bg-neutral-50 p-3 dark:border-neutral-800 dark:bg-neutral-900/70">
           <p class="mb-2 text-sm text-neutral-600 dark:text-neutral-300">
-            Preview
+            {{ translateCompanion('companion-extra.preview-f1fbb2') }}
           </p>
           <label
             v-if="selectedOption?.kind === 'image'"
             class="flex items-center gap-2 pb-2 text-sm text-neutral-700 dark:text-neutral-200"
           >
             <input v-model="enableBlur" type="checkbox" class="accent-primary-500">
-            <span>Blur</span>
+            <span>{{ translateCompanion('companion-extra.blur-900aa9') }}</span>
           </label>
           <div
             ref="previewRef"
@@ -307,7 +310,7 @@ async function applySelection(isImport = false) {
                 class="h-full w-full object-cover"
               >
               <div v-else class="h-full w-full flex items-center justify-center text-neutral-500 dark:text-neutral-400">
-                Select a background
+                {{ translateCompanion('companion-extra.select-a-background-568528') }}
               </div>
             </div>
             <BackgroundGradientOverlay v-if="selectedOption?.kind === 'image'" :color="previewColor" />

@@ -20,7 +20,7 @@ export function setupAboutWindowReusable(params: {
 }) {
   return createReusableWindow(async () => {
     const window = new BrowserWindow({
-      title: 'About AIRI',
+      title: params.i18n.t('companion-ui.titles.about', { name: params.i18n.t('companion-ui.app.name') }),
       width: 670,
       height: 880,
       show: false,

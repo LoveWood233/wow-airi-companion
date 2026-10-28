@@ -4,7 +4,7 @@ character-switcher:
   empty: キャラクターはまだいません
   failed: キャラクターを切り替えられませんでした。もう一度お試しください。
 mobile-tools:
-  sign-in: AIRI にログイン
+  sign-in: WoW コンパニオン にログイン
   account-description: アカウントと設定
   sound: サウンド
   character-voice: キャラクターの声
@@ -18,6 +18,8 @@ mobile-tools:
   view: 表示
   close-view: 表示設定を保存して閉じる
   hearing: 聴覚
+  menu: メニュー
+  menu-unread: メニュー、未読通知{count}件
 chat:
   provider-configuration:
     title: チャットのプロバイダーが設定されていません
@@ -53,7 +55,7 @@ chat:
     system-default: システムの既定値
     listen: 常時聞き取る
     push-to-talk: 押して話す
-    push-to-talk-unavailable: このデバイスにはプッシュトゥトークキーがないため、AIRIは聞き取りを行いません。聴覚の設定で入力モードを変更してください。
+    push-to-talk-unavailable: このデバイスにはプッシュトゥトークキーがないため、WoW コンパニオンは聞き取りを行いません。聴覚の設定で入力モードを変更してください。
     wake-word: ウェイクワードを聞き取る
     hearing-settings: 聴覚の詳細設定…
     options-hint: カーソルを合わせるか右クリックでオプションを表示
@@ -110,6 +112,7 @@ chat:
     character-name:
       core-system: コアシステム
       you: あなた
+      airi: WoW コンパニオン
   reply:
     cancel: 返信をキャンセル
     message: メッセージ
@@ -134,6 +137,84 @@ chat:
     cloud-badge: クラウドに同期しました
     new-chat-fallback: 新しいチャット
     delete: 会話を削除
+  notice:
+    label: '{name}からのバックグラウンド報告'
+  background-tasks:
+    label: バックグラウンドタスク
+    stop: '{name}を停止'
+    dismiss: '{name}を閉じる'
+    status:
+      running: 作業中
+      done: 完了
+      failed: 未完了
+      interrupted: 停止済み
+  judgment:
+    running: '{name}を判断中'
+    judged: '{name}を判断済み'
+    invalid: '{name}を判断できませんでした'
+  judgment-tool-call:
+    answer: 回答
+    next: 次の動作
+    reply: 通常どおり応答
+    stay-quiet: 応答しない
+    hint: 次を考慮して応答：{text}
+    recipe-steps: レシピ{name}を使う
+    recipe-decision: '{name}を判断'
+    recipe-background: レシピ{name}に渡す
+  recipe:
+    using: レシピ{name}を使用中
+    loaded: レシピ{name}を使用済み
+    started: レシピ{name}に引き渡し済み
+    pending: レシピ{name}は承認待ち
+    disabled: レシピ{name}は無効
+    unknown: レシピ{name}が見つかりません
+    refused: レシピ{name}を開始できませんでした
+    failed: レシピ{name}を開始できませんでした
+  recipe-tool-call:
+    task: タスク
+    usable: 現在使えるレシピ
+    pending: このレシピは承認待ちです。
+    disabled: このレシピは無効です。
+    unknown: この名前のレシピはありません。
+    refused: レシピを開始できませんでした。
+  invoked-skill:
+    steps: レシピ{name}を使用済み
+    background: レシピ{name}に引き渡し済み
+    decision: レシピ{name}を使用済み
+    question: 質問
+    yes: はい
+    no: いいえ
+  home-assistant-tool-call:
+    shown: '{total}台中{count}台を表示'
+  web-search-tool-call:
+    results: 「{query}」の結果 · {count}
+  tool-calls:
+    running-one: '{name}を使用中'
+    failed-one: '{name}は完了しませんでした'
+    combo-running: コンボ ×{count}
+    combo: '{count}回コンボ'
+    combo-failed: '{count}回コンボ、{failed}回失敗'
+    arguments: 引数
+    result: 結果
+    copy: 元データをコピー
+    copied: コピー済み
+    raw: 元データ
+    other: その他のデータ
+    widget: ウィジェット
+    rerun: 再実行
+    card-making: このツールのカードを作成中…
+    card-remaking: 新しいカードを作成中…
+    card-regenerate: 新しいカードを作成
+    card-failed: このツールのカードを作成できませんでした
+    card-retry: 再試行
+    state:
+      executing: 実行中
+      done: 完了
+      error: 失敗
+  reply-card:
+    drawing: カードを描画中…
+    raw: 元データ
+    card: カード
 render-error:
   title: '{renderer} でこのモデルを描画できませんでした'
   description: モデルは選択されていますが、ステージに表示できませんでした。
@@ -174,6 +255,8 @@ theme:
 send-mode:
   title: キーを送信
   double-enter: Enter二回
+  enter: Enter
+  ctrl-enter: Ctrl + Enter
 speech-output:
   mute: 音声をミュート
   unmute: ミュートを解除
@@ -216,6 +299,7 @@ promo-banner:
       eventName: スターダストやアバターフレーム、ローンチ特典を受け取るにはログインしてください。
       reward: 最大120スターダスト
       cta: サインイン
+      date: 03/28 - 04/10
     build:
       watermark: ビルド
       fallbackLabel: ビルドボーナス
@@ -223,6 +307,7 @@ promo-banner:
       eventName: ビルド作業を完了してボーナスバウチャーを獲得し、資材を2倍にしよう。
       reward: 供給券5枚＋アップグレード用資材
       cta: タスクを表示
+      date: 03/30 - 04/12
     spring:
       watermark: 春
       fallbackLabel: 春の抽選会
@@ -230,6 +315,7 @@ promo-banner:
       eventName: 春の抽選会に参加して、バブルやチャーム、テーマ家具を解放しよう。
       reward: 初回半額＋レアチャーム付き
       cta: 今すぐ抽選
+      date: 04/01 - 04/18
     coupon:
       watermark: トーク
       fallbackLabel: クーポン
@@ -237,6 +323,7 @@ promo-banner:
       eventName: チャットでのやり取りを完了して、拡張パックやボイスパック用のクーポンを獲得しましょう。
       reward: 30のご利用で6お得 / 68のご利用で15お得
       cta: クーポンを受け取る
+      date: 04/02 - 04/20
     home:
       watermark: ホーム
       fallbackLabel: 部屋のテーマ
@@ -244,6 +331,7 @@ promo-banner:
       eventName: 窓・机・ナイトランプのテーマをアンロックして、部屋を刷新しましょう。
       reward: ログイン時の無料テーマ抽選チケット
       cta: テーマを表示
+      date: 04/05 - 04/22
 waiting: 待機中
 websocket-status:
   connected: 接続済み
@@ -255,7 +343,7 @@ computer-use:
 status:
   preparing: マイクを準備中
   listening: 聞き取り中
-  paused: AIRIの発話中は聞き取りを一時停止
+  paused: WoW コンパニオンの発話中は聞き取りを一時停止
   transcribing: 文字起こし中
   hearing-error: 音声を文字起こしできませんでした
   no-transcript: 認識された音声はここに表示されます。
@@ -266,3 +354,29 @@ status:
   sign-in-unconfirmed: セッションを確認できませんでした。もう一度ログインしてください。
   dismiss: 閉じる
   configure-hearing: 設定で聴覚のプロバイダーを選択し、設定してください。
+avatar-model-missing:
+  title: モデル未選択
+  unavailable-title: このモデルはこのデバイスにありません
+  description: ステージに{name}を表示するモデルを選択してください。
+  select: モデルを選択
+notifications:
+  title: 通知
+  open: 通知を開く
+  open-unread: 通知を開く、未読{count}件
+  mark-all-read: すべて既読にする
+  empty: 通知はまだありません
+  loading: 通知を読み込み中
+  back: 戻る
+  error: 通知を読み込めませんでした。
+  retry: 再試行
+  just-now: たった今
+  kinds:
+    flux-granted:
+      title: '{amount} Fluxを受け取りました'
+    subscription-renewed:
+      title: '{plan}を更新しました'
+      body: '{periodEnd}まで有効です。'
+    subscription-payment-failed:
+      title: 更新の支払いに失敗しました
+      body: '{retryAt}に再試行します。{plan}を継続するには支払い方法を更新してください。'
+      body-no-retry: '{plan}を継続するには支払い方法を更新してください。'

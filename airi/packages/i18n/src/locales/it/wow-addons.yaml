@@ -1,0 +1,143 @@
+title: Centro addon WoW
+description: Trova addon CurseForge compatibili e installali in ogni client di World of Warcraft.
+game-version: Edizione del gioco
+games:
+  retail: Retail
+  classic: Classic
+  forever: Forever
+view: Vista addon
+browse: Scopri
+installed: Installati
+loading: Caricamento addon…
+retry: Riprova
+refresh: Aggiorna
+search-label: Cerca addon
+search-placeholder: Nome o parola chiave dell'addon
+search: Cerca
+category: Categoria
+sort-label: Ordina per
+sort:
+  popular: Popolari
+  updated: Aggiornati di recente
+  downloads: Più scaricati
+current-version: 'Versione del gioco compatibile: {version}'
+authors: Di {authors}
+downloads: '{count} download'
+no-results: Nessun addon compatibile corrisponde ai filtri.
+previous: Precedente
+next: Avanti
+pagination: Pagina {page} di {pages} · {total} addon
+installed-description: Questa lista contiene gli addon gestiti da Compagno di WoW per il client selezionato.
+none-installed: Compagno di WoW non ha installato addon per questo client.
+choose-update: Scegli aggiornamento
+close: Chiudi dettagli file
+loading-files: Caricamento file compatibili…
+no-files: Nessun file corrisponde alla versione del gioco configurata.
+compatible-files: File compatibile
+file-details: Dettagli file addon
+required-dependencies: ID degli addon richiesti
+no-dependencies: Nessuno
+dependencies-hint: Le dipendenze richieste vengono installate con questo addon.
+current-file: Questo file è già installato.
+install: Installa
+update: Aggiorna
+install-success: Installazione completata. Riavvia WoW o ricarica l'interfaccia per caricare l'addon.
+release:
+  stable: Versione stabile
+  beta: Beta
+  alpha: Alfa
+setup:
+  title: Collega CurseForge per esplorare gli addon
+  description: Aggiungi la chiave API CurseForge nelle impostazioni. Il catalogo si carica dopo aver salvato una chiave valida.
+  action: Configura chiave API
+  client-title: Configura il client {game}
+  client-description: Seleziona la cartella del client e una versione compatibile nelle impostazioni addon.
+  configure-client: Configura client
+settings:
+  title: Impostazioni addon
+  description: Configura la chiave API CurseForge e ogni client WoW prima di installare addon.
+  key-title: Accesso CurseForge
+  key-label: Nuova chiave API CurseForge
+  key-description: Lascia vuoto per conservare la chiave salvata. La chiave salvata non compare mai in questo modulo.
+  key-configured: Chiave API configurata
+  key-missing: Chiave API non configurata
+  key-instructions: Apri la guida API ufficiale e segui il link al modulo di richiesta. Inserisci le informazioni del progetto e attendi l'email di Overwolf. Poi copia qui la chiave approvata.
+  key-link: Leggi la guida alla richiesta della chiave API
+  save-key-first: Salva prima la chiave API. Poi seleziona la versione del gioco compatibile per ogni client.
+  directory: Cartella del client WoW
+  directory-description: Seleziona la cartella che contiene l'eseguibile di WoW. Gli addon vengono installati in Interface/AddOns al suo interno.
+  browse: Sfoglia
+  browse-game: Sfoglia cartella {game}
+  version-type: Versione del gioco compatibile
+  choose-version: Seleziona una versione del gioco dall'API
+  no-version-types: CurseForge non ha restituito versioni supportate per questa edizione.
+  retry-metadata: Ricarica versioni del gioco
+  install-target: Gli addon vengono installati in
+  reload-hint: Chiudi WoW prima dell'installazione. Dopo, riavvia WoW o ricarica l'interfaccia.
+  save: Salva impostazioni
+  cancel: Annulla
+  back: Torna al centro addon
+  saved: Impostazioni salvate.
+categories:
+  all: Tutte le categorie
+  combat: Combattimento
+  bags-inventory: Borse e inventario
+  bags: Borse
+  inventory: Inventario
+  classes: Classi
+  class: Classi
+  action-bars: Barre delle azioni
+  artwork: Grafica
+  auction-economy: Aste ed economia
+  auction: Aste
+  buffs-debuffs: Benefici e penalità
+  chat-communication: Chat e comunicazione
+  damage-dealer: Assaltatore
+  guild: Gilda
+  libraries: Librerie
+  map-minimap: Mappa e minimappa
+  map: Mappa
+  miscellaneous: Varie
+  professions: Professioni
+  quests-leveling: Missioni e avanzamento
+  quests: Missioni
+  raid-boss-encounters: Incursioni e boss
+  tooltip: Descrizione
+  unit-frames: Riquadri unità
+  pvp: PvP
+errors:
+  unknown: Richiesta non riuscita. Riprova.
+  curseforge-api-key-required: Aggiungi una chiave API CurseForge nelle impostazioni addon.
+  curseforge-unauthorized: CurseForge ha rifiutato la chiave API. Controllala nelle impostazioni addon.
+  curseforge-rate-limited: CurseForge ha limitato le richieste. Attendi e riprova.
+  curseforge-timeout: CurseForge non ha risposto in tempo. Riprova.
+  curseforge-invalid-response: CurseForge ha restituito una risposta non valida. Riprova.
+  curseforge-response-too-large: La risposta di CurseForge supera la dimensione supportata.
+  curseforge-request-failed: Richiesta CurseForge non riuscita. Controlla la connessione e riprova.
+  curseforge-invalid-request: Richiesta non valida. Controlla la versione del gioco configurata e riprova.
+  curseforge-too-many-files: Questo addon contiene troppi file per caricarlo in sicurezza. Scegline un altro.
+  curseforge-too-many-redirects: Il download presenta troppi reindirizzamenti. Riprova più tardi.
+  curseforge-not-found: CurseForge non trova questo addon o file. Aggiorna la lista degli addon.
+  curseforge-disposed: Il servizio addon si è arrestato. Riapri il centro addon e riprova.
+  curseforge-incompatible-version: Il file addon non corrisponde alla versione del gioco configurata.
+  curseforge-distribution-disabled: L'autore non consente l'installazione di questo addon tramite strumenti di terze parti.
+  curseforge-download-unavailable: CurseForge non offre un download per questo file addon.
+  curseforge-unsafe-download-url: L'indirizzo di download non ha superato la convalida.
+  curseforge-download-integrity: Il download dell'addon non ha superato il controllo di integrità. Riprova.
+  wow-addons-settings-invalid: Controlla le impostazioni addon e riprova.
+  wow-addons-directory-required: Imposta la cartella del client WoW nelle impostazioni addon.
+  wow-addons-version-required: Seleziona una versione del gioco compatibile nelle impostazioni addon.
+  wow-addons-busy: È in corso un'altra operazione addon. Attendi che finisca.
+  wow-addons-key-storage-unavailable: L'archiviazione sicura delle chiavi non è disponibile. Riavvia Compagno di WoW e riprova.
+  wow-addons-key-unreadable: Compagno di WoW non riesce a leggere la chiave API salvata. Salvala di nuovo.
+  wow-addons-required-dependency: Impossibile installare una dipendenza richiesta dall'addon. Riprova.
+  wow-addons-unmanaged-conflict: Esiste già una cartella addon non gestita. Spostala prima di installare questo addon.
+  wow-addons-folder-conflict: Una cartella addon è in conflitto con un altro addon. Spostala prima dell'installazione.
+  wow-addons-unsafe-archive: L'archivio addon contiene percorsi non sicuri e non può essere installato.
+  wow-addons-install-failed: Installazione non riuscita. Controlla la cartella del client e riprova.
+  wow-addons-invalid-directory: La cartella del client non è valida o disponibile. Controlla il percorso nelle impostazioni addon.
+  wow-addons-invalid-archive: L'archivio addon non è valido o sicuro e non può essere installato.
+  wow-addons-directory-conflict: Una cartella addon esistente è in conflitto con l'installazione. Spostala prima di riprovare.
+  wow-addons-request-failed: Operazione addon non riuscita. Controlla la cartella del client e riprova.
+  wow-addons-dependency-limit: L'addon richiede troppe dipendenze annidate per un'installazione sicura.
+  wow-addons-stopped: Operazione addon interrotta. Riapri il centro addon e riprova.

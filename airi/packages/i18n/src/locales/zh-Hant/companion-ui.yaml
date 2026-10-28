@@ -1,0 +1,44 @@
+app:
+  name: 魔獸陪伴精靈
+titles:
+  main: '{name}'
+  settings: 魔獸陪伴精靈 · 設定
+  about: 關於{name}
+  editor: 魔獸陪伴精靈 · 編輯器
+  onboarding: 歡迎使用{name}
+  dashboard: 魔獸陪伴精靈 · 儀表板
+  overlay: 魔獸陪伴精靈 · 桌面浮層
+chat:
+  ask: 詢問{name}…
+errors:
+  screen-capture: 沒有可用的螢幕擷取來源，請檢查{name}的螢幕錄製權限。
+about:
+  version: 版本
+  branch: 分支
+  commit: 提交
+  built-on: 建置時間
+  about: 關於
+  build-info: 應用程式建置資訊
+menu:
+  file: 檔案
+  edit: 編輯
+  view: 檢視
+  window: 視窗
+  close: 關閉視窗
+  quit: 結束
+  undo: 復原
+  redo: 重做
+  cut: 剪下
+  copy: 複製
+  paste: 貼上
+  select-all: 全選
+  reload: 重新載入
+  force-reload: 強制重新載入
+  devtools: 開發者工具
+  actual-size: 實際大小
+  zoom-in: 放大
+  zoom-out: 縮小
+  fullscreen: 切換全螢幕
+  minimize: 最小化
+  zoom: 縮放視窗
+  front: 全部移至前景

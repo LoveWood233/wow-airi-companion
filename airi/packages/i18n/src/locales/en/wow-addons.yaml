@@ -1,0 +1,143 @@
+title: WoW addon center
+description: Find compatible CurseForge addons and install them into each World of Warcraft client.
+game-version: Game edition
+games:
+  retail: Retail
+  classic: Classic
+  forever: Forever
+view: Addon view
+browse: Discover
+installed: Installed
+loading: Loading addons…
+retry: Retry
+refresh: Refresh
+search-label: Search addons
+search-placeholder: Addon name or keyword
+search: Search
+category: Category
+sort-label: Sort by
+sort:
+  popular: Popular
+  updated: Recently updated
+  downloads: Most downloaded
+current-version: 'Compatible game version: {version}'
+authors: 'By {authors}'
+downloads: '{count} downloads'
+no-results: No compatible addons match these filters.
+previous: Previous
+next: Next
+pagination: 'Page {page} of {pages} · {total} addons'
+installed-description: This list contains addons managed by WoW Companion for the selected client.
+none-installed: WoW Companion has not installed addons for this client.
+choose-update: Choose update
+close: Close file details
+loading-files: Loading compatible files…
+no-files: No files match the configured game version.
+compatible-files: Compatible file
+file-details: Addon file details
+required-dependencies: Required addon IDs
+no-dependencies: None
+dependencies-hint: Required dependencies install with this addon.
+current-file: This file is already installed.
+install: Install
+update: Update
+install-success: Installation complete. Restart WoW or reload the interface to load the addon.
+release:
+  stable: Release
+  beta: Beta
+  alpha: Alpha
+setup:
+  title: Connect CurseForge to browse addons
+  description: Add your CurseForge API key in settings. The addon catalog loads after you save a valid key.
+  action: Set up API key
+  client-title: 'Configure your {game} client'
+  client-description: Select the client directory and a compatible game version in addon settings.
+  configure-client: Configure client
+settings:
+  title: Addon settings
+  description: Configure your CurseForge API key and each WoW client before you install addons.
+  key-title: CurseForge access
+  key-label: New CurseForge API key
+  key-description: Leave this empty to keep the saved key. The saved key never appears in this form.
+  key-configured: API key configured
+  key-missing: API key not configured
+  key-instructions: Open the official API guide and follow its application form link. Enter your project information and wait for an email from Overwolf. Then copy your approved API key here.
+  key-link: Read API key application guide
+  save-key-first: Save your API key first. Then select the compatible game version for each client.
+  directory: WoW client directory
+  directory-description: Select the client folder that contains the WoW executable. Addons install into Interface/AddOns within this folder.
+  browse: Browse
+  browse-game: 'Browse {game} directory'
+  version-type: Compatible game version
+  choose-version: Select an API game version
+  no-version-types: CurseForge returned no supported game versions for this edition.
+  retry-metadata: Reload game versions
+  install-target: Addons install into
+  reload-hint: Close WoW before installation. After installation, restart WoW or reload the interface.
+  save: Save settings
+  cancel: Cancel
+  back: Back to addon center
+  saved: Settings saved.
+categories:
+  all: All categories
+  combat: Combat
+  bags-inventory: Bags and inventory
+  bags: Bags
+  inventory: Inventory
+  classes: Classes
+  class: Classes
+  action-bars: Action bars
+  artwork: Artwork
+  auction-economy: Auction and economy
+  auction: Auction
+  buffs-debuffs: Buffs and debuffs
+  chat-communication: Chat and communication
+  damage-dealer: Damage dealer
+  guild: Guild
+  libraries: Libraries
+  map-minimap: Map and minimap
+  map: Map
+  miscellaneous: Miscellaneous
+  professions: Professions
+  quests-leveling: Quests and leveling
+  quests: Quests
+  raid-boss-encounters: Raid and boss encounters
+  tooltip: Tooltip
+  unit-frames: Unit frames
+  pvp: PvP
+errors:
+  unknown: The request failed. Try again.
+  curseforge-api-key-required: Add a CurseForge API key in addon settings.
+  curseforge-unauthorized: CurseForge rejected the API key. Check the key in addon settings.
+  curseforge-rate-limited: CurseForge has limited requests. Wait and try again.
+  curseforge-timeout: CurseForge did not respond in time. Try again.
+  curseforge-invalid-response: CurseForge returned an invalid response. Try again.
+  curseforge-response-too-large: The CurseForge response exceeds the supported size.
+  curseforge-request-failed: The CurseForge request failed. Check your connection and try again.
+  curseforge-invalid-request: The request is invalid. Check the configured game version and try again.
+  curseforge-too-many-files: This addon has too many files to load safely. Select another addon.
+  curseforge-too-many-redirects: The download has too many redirects. Try again later.
+  curseforge-not-found: CurseForge cannot find this addon or file. Refresh the addon list.
+  curseforge-disposed: The addon service stopped. Reopen the addon center and try again.
+  curseforge-incompatible-version: This addon file does not match the configured game version.
+  curseforge-distribution-disabled: The author does not allow this addon to install through third-party tools.
+  curseforge-download-unavailable: CurseForge has no download for this addon file.
+  curseforge-unsafe-download-url: The download address failed validation.
+  curseforge-download-integrity: The addon download failed its integrity check. Try again.
+  wow-addons-settings-invalid: Check the addon settings and try again.
+  wow-addons-directory-required: Set the WoW client directory in addon settings.
+  wow-addons-version-required: Select a compatible game version in addon settings.
+  wow-addons-busy: Another addon operation is in progress. Wait for it to finish.
+  wow-addons-key-storage-unavailable: Secure key storage is unavailable. Restart WoW Companion and try again.
+  wow-addons-key-unreadable: WoW Companion cannot read the saved API key. Save the key again.
+  wow-addons-required-dependency: A required addon dependency could not install. Try again.
+  wow-addons-unmanaged-conflict: An unmanaged addon folder already exists. Move it before you install this addon.
+  wow-addons-folder-conflict: An addon folder conflicts with another addon. Move it before you install this addon.
+  wow-addons-unsafe-archive: The addon archive contains unsafe paths and cannot install.
+  wow-addons-install-failed: Installation failed. Check the client directory and try again.
+  wow-addons-invalid-directory: The client directory is invalid or unavailable. Check the path in addon settings.
+  wow-addons-invalid-archive: The addon archive is invalid or unsafe and cannot install.
+  wow-addons-directory-conflict: An existing addon folder conflicts with this installation. Move the conflicting folder before you retry.
+  wow-addons-request-failed: The addon operation failed. Check the client directory and try again.
+  wow-addons-dependency-limit: The addon requires too many nested dependencies to install safely.
+  wow-addons-stopped: The addon operation stopped. Reopen the addon center and try again.

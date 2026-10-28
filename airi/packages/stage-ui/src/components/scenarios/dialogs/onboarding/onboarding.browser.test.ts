@@ -16,6 +16,7 @@ import OnboardingDialog from './onboarding.vue'
 import StepProviderConfiguration from './step-provider-configuration.vue'
 
 import { useAuthStore } from '../../../../stores/auth'
+import { useOnboardingStore } from '../../../../stores/onboarding'
 import { useProviderConfigStore } from '../../../../stores/providers/config'
 import { useProviderStore } from '../../../../stores/providers/provider'
 
@@ -92,9 +93,10 @@ afterEach(() => {
   localStorage.clear()
 })
 
-it('publishes the onboarding login click on the leader', async () => {
+it('keeps local onboarding available with saved cloud credentials and hides hosted providers', async () => {
   vi.stubEnv('RUNTIME_ENVIRONMENT', 'electron')
-  const namespace = `onboarding-login:${crypto.randomUUID()}`
+  localStorage.setItem('auth/v1/token', 'saved-access-token')
+  const namespace = `onboarding-local:${crypto.randomUUID()}`
   const leader = createSyncedContext(namespace, 'leader-only')
   await expect.poll(() => leader.runtime.isLeader()).toBe(true)
   const follower = createSyncedContext(namespace, 'follower-only')
@@ -103,10 +105,18 @@ it('publishes the onboarding login click on the leader', async () => {
     global: { plugins: [follower.pinia, PiniaColada, createTestI18n()] },
   })
 
-  await screen.getByRole('button', { name: 'Sign in' }).click()
+  useAuthStore(leader.pinia).token = 'saved-access-token'
+  expect(useOnboardingStore(leader.pinia).needsOnboarding).toBe(true)
+  await expect.element(screen.getByRole('button', { name: 'Sign in' })).not.toBeInTheDocument()
+  await screen.getByRole('button', { name: 'Configure a model provider' }).click()
 
-  await expect.poll(() => useAuthStore(leader.pinia).needsLogin).toBe(true)
-  await expect.poll(() => useAuthStore(follower.pinia).needsLogin).toBe(true)
+  await expect.element(screen.getByText('DeepSeek', { exact: true })).toBeInTheDocument()
+  await expect.element(screen.getByText('Xiaomi MiMo', { exact: true }).first()).toBeInTheDocument()
+  await expect.element(screen.getByText('OpenAI Compatible', { exact: true }).first()).toBeInTheDocument()
+  expect(leader.providerStore.availableProvidersMetadata.some(provider => provider.id.includes('official-provider'))).toBe(false)
+  expect(follower.providerStore.availableProvidersMetadata.some(provider => provider.id.includes('official-provider'))).toBe(false)
+  expect(useAuthStore(leader.pinia).needsLogin).toBe(false)
+  expect(localStorage.getItem('auth/v1/token')).toBe('saved-access-token')
 })
 
 // ROOT CAUSE:
@@ -126,11 +136,13 @@ it('persists configured credentials through the leader and loads the model list'
   const follower = createSyncedContext(namespace, 'follower-only')
   await expect.poll(() => follower.runtime.getLeaderId()).toBe(leader.runtime.participantId)
 
+  const configured = vi.fn()
   const screen = await render(OnboardingDialog, {
+    props: { onConfigured: configured },
     global: { plugins: [follower.pinia, PiniaColada, createTestI18n()] },
   })
 
-  await screen.getByRole('button', { name: 'Setup with your provider' }).click()
+  await screen.getByRole('button', { name: 'Configure a model provider' }).click()
 
   // The provider card is a label with a visually hidden radio input; click the
   // card title text instead of the input, which decorative elements overlap.
@@ -167,6 +179,9 @@ it('persists configured credentials through the leader and loads the model list'
     { timeout: 10_000 },
   ).toContain('grok-4.6')
   await expect.element(screen.getByText('grok-4.6')).toBeInTheDocument()
+  await screen.getByText('grok-4.6', { exact: true }).click()
+  await screen.getByRole('button', { name: 'Save and Continue' }).click()
+  expect(configured).toHaveBeenCalledOnce()
 })
 
 // ROOT CAUSE:

@@ -34,6 +34,8 @@ class GameProtocolTests(unittest.TestCase):
     def test_forever_lua_fixture_at_native_cell_size(self):
         fixture = Path(__file__).resolve().parent.parent / "WoWForeverCompanion/tests/fixtures/lua-wcf1.bin"
         expected = json.loads(fixture.with_suffix(".json").read_text(encoding="utf-8"))
+        expected.setdefault("px", None)
+        expected.setdefault("py", None)
         frame = fixture.read_bytes()
         self.assertEqual(decode_frame(frame, "WCF1"), expected)
         self.assertEqual(decode_pixels(pixels_for_frame(frame, 1), 64, 64, 1, "WCF1"), expected)

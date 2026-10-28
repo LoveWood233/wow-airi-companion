@@ -4,6 +4,7 @@ import { ChatSessionsDrawer } from '@proj-airi/stage-ui/components'
 import { useAiriCardStore } from '@proj-airi/stage-ui/stores/modules/airi-card'
 import { storeToRefs } from 'pinia'
 import { shallowRef, useTemplateRef } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import ChatSpeechMuteButton from '../components/chat-window/chat-speech-mute-button.vue'
 import ChatWindowStyleMenu from '../components/chat-window/chat-window-style-menu.vue'
@@ -19,12 +20,13 @@ const sessionsDrawerOpen = shallowRef(false)
 const interactiveArea = useTemplateRef<InstanceType<typeof InteractiveArea>>('interactive-area')
 
 useChatDraftHandover(interactiveArea)
+const { t } = useI18n()
 </script>
 
 <template>
   <ChatPageShell>
     <WindowTitleBar
-      :title="activeCard?.name || 'AIRI'"
+      :title="activeCard?.name || t('companion-ui.app.name')"
       :class="{ 'pl-20!': hasNativeControls }"
       icon="i-solar:chat-line-bold"
       @title-click="sessionsDrawerOpen = true"

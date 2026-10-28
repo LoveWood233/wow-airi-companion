@@ -2,6 +2,7 @@
 import type { WeatherEffect } from '../../../components/weather/condition-icons'
 
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import Skeleton from './Skeleton.vue'
 
@@ -86,6 +87,8 @@ const resolvedIconKey = computed<string>(() => {
 })
 
 const resolvedIconClass = computed(() => weatherIconMap[resolvedIconKey.value].icon)
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -180,7 +183,7 @@ const resolvedIconClass = computed(() => weatherIconMap[resolvedIconKey.value].i
               {{ props.wind ?? '--' }}
             </div>
             <div :class="['text-xs', 'text-white/60']">
-              Wind
+              {{ translateCompanion('companion-extra.wind-142b57') }}
             </div>
           </div>
           <div :class="['flex', 'flex-col', 'items-center', 'gap-1']">
@@ -189,7 +192,7 @@ const resolvedIconClass = computed(() => weatherIconMap[resolvedIconKey.value].i
               {{ props.precipitation ?? '--' }}
             </div>
             <div :class="['text-xs', 'text-white/60']">
-              Chance of rain
+              {{ translateCompanion('companion-extra.chance-of-rain-73cb4e') }}
             </div>
           </div>
           <div :class="['flex', 'flex-col', 'items-center', 'gap-1']">
@@ -198,7 +201,7 @@ const resolvedIconClass = computed(() => weatherIconMap[resolvedIconKey.value].i
               {{ props.humidity ?? '--' }}
             </div>
             <div :class="['text-xs', 'text-white/60']">
-              Humidity
+              {{ translateCompanion('companion-extra.humidity-65adb9') }}
             </div>
           </div>
         </div>
@@ -235,7 +238,7 @@ const resolvedIconClass = computed(() => weatherIconMap[resolvedIconKey.value].i
               {{ props.wind ?? '--' }}
             </div>
             <div :class="['text-xs', 'text-white/60']">
-              Wind
+              {{ translateCompanion('companion-extra.wind-142b57') }}
             </div>
           </div>
           <div :class="['flex', 'flex-col', 'items-center', 'gap-1']">
@@ -244,7 +247,7 @@ const resolvedIconClass = computed(() => weatherIconMap[resolvedIconKey.value].i
               {{ props.precipitation ?? '--' }}
             </div>
             <div :class="['text-xs', 'text-white/60']">
-              Chance of rain
+              {{ translateCompanion('companion-extra.chance-of-rain-73cb4e') }}
             </div>
           </div>
           <div :class="['flex', 'flex-col', 'items-center', 'gap-1']">
@@ -253,7 +256,7 @@ const resolvedIconClass = computed(() => weatherIconMap[resolvedIconKey.value].i
               {{ props.humidity ?? '--' }}
             </div>
             <div :class="['text-xs', 'text-white/60']">
-              Humidity
+              {{ translateCompanion('companion-extra.humidity-65adb9') }}
             </div>
           </div>
         </div>

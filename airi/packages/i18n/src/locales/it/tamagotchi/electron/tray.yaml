@@ -1,0 +1,27 @@
+menu:
+  labels:
+    label:
+      show: Mostra
+      adjust_sizes: Regola dimensioni
+      recommended_size: Consigliato (450x600)
+      full_height: Altezza intera
+      half_height: Metà altezza
+      full_screen: Schermo intero
+      align_to: Allinea a
+      center: Centro
+      top_left: In alto a sinistra
+      top_right: In alto a destra
+      bottom_left: In basso a sinistra
+      bottom_right: In basso a destra
+      settings: Impostazioni…
+      about: Informazioni…
+      open_inlay: Apri pannello integrato…
+      open_widgets: Apri widget…
+      open_caption: Apri sottotitoli…
+      close_caption: Chiudi sottotitoli…
+      caption_overlay: Sottotitoli sovrapposti
+      follow_window: Segui finestra
+      reset_position: Ripristina posizione
+      devtools: Strumenti per sviluppatori
+      troubleshoot_beatsync: Risolvi problemi BeatSync…
+      quit: Esci

@@ -6,7 +6,7 @@ import type { GoldState } from './wow-companion-gold'
 import type { LevelHistoryState } from './wow-companion-level-history'
 import type { EquipmentLoadoutsState } from './wow-companion-loadout'
 
-import { array, boolean, check, finite, integer, literal, looseObject, maxLength, maxValue, minLength, minValue, nullable, number, object, optional, picklist, pipe, string } from 'valibot'
+import { array, boolean, check, finite, integer, literal, looseObject, maxLength, maxValue, minLength, minValue, nullable, number, object, optional, picklist, pipe, string, transform } from 'valibot'
 
 import { equipmentSchema } from './wow-companion-equipment'
 import { equipmentComparisonSchema } from './wow-companion-equipment-comparisons'
@@ -16,6 +16,7 @@ import { copperSchema, moneyIdSchema } from './wow-companion-gold'
 import { equipmentLoadoutSchema } from './wow-companion-loadout'
 
 const count = pipe(number(), integer(), minValue(0), maxValue(Number.MAX_SAFE_INTEGER))
+const mapCoordinate = pipe(number(), finite(), integer(), minValue(0), maxValue(10000))
 const label = pipe(string(), maxLength(256))
 const encoder = new TextEncoder()
 const raceLabel = pipe(string(), minLength(1), check(value => encoder.encode(value).length <= 48, 'Race exceeds 48 UTF-8 bytes'), check(value => [...value].every((character) => {
@@ -32,8 +33,7 @@ export const gameProfiles = {
   forever: { port: 18766, protocol: 'WCF1', captureFile: 'bridge-config-forever.json', settingsNamespace: 'wow-companion-forever', goldFile: 'wow-companion-forever-gold-v1.json', historyFile: 'wow-companion-forever-equipment-history-v1.json', levelsFile: 'wow-companion-forever-level-history-v1.json', comparisonsFile: 'wow-companion-forever-equipment-comparisons-v1.json', loadoutsFile: 'wow-companion-forever-loadouts-v1.json' },
 } as const satisfies Record<GameVersion, object>
 
-/** Validated observations from the local screen decoder. The outer bridge protocol identifies the game. */
-export const snapshotSchema = looseObject({
+const snapshotFieldsSchema = looseObject({
   v: literal(3),
   session: label,
   seq: count,
@@ -48,6 +48,10 @@ export const snapshotSchema = looseObject({
   spec: count,
   map: count,
   zone: label,
+  // Snapshot v3 coordinates are additive. Earlier v3 senders omit both fields.
+  // The map ID scopes the pair. Each integer is the normalized map fraction multiplied by 10,000.
+  px: optional(nullable(mapCoordinate)),
+  py: optional(nullable(mapCoordinate)),
   combat: boolean(),
   dead: boolean(),
   online: boolean(),
@@ -57,6 +61,21 @@ export const snapshotSchema = looseObject({
   earned: copperSchema,
   spent: copperSchema,
 })
+
+/** Validated observations from the local screen decoder. The outer bridge protocol identifies the game. */
+export const snapshotSchema = pipe(snapshotFieldsSchema, check((snapshot) => {
+  const hasX = Object.hasOwn(snapshot, 'px')
+  const hasY = Object.hasOwn(snapshot, 'py')
+  return (!hasX && !hasY) || (hasX && hasY && (
+    (snapshot.px === null && snapshot.py === null)
+    || (typeof snapshot.px === 'number' && typeof snapshot.py === 'number')
+  ))
+}, 'Map coordinates require both values or two nulls.'), transform((snapshot): InferOutput<typeof snapshotFieldsSchema> => ({
+  ...snapshot,
+  // An absent pair is unknown. Offline observations and unknown maps cannot retain a current position.
+  px: snapshot.online && snapshot.map > 0 ? snapshot.px ?? null : null,
+  py: snapshot.online && snapshot.map > 0 ? snapshot.py ?? null : null,
+})))
 
 export const eventSchema = object({
   id: count,

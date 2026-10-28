@@ -1,0 +1,143 @@
+title: 魔兽插件中心
+description: 查找兼容的 CurseForge 插件，分别安装到各个魔兽世界客户端。
+game-version: 游戏版本
+games:
+  retail: 正式服
+  classic: 怀旧服
+  forever: 无限服
+view: 插件视图
+browse: 发现插件
+installed: 已安装
+loading: 正在加载插件…
+retry: 重试
+refresh: 刷新
+search-label: 搜索插件
+search-placeholder: 插件名称或关键词
+search: 搜索
+category: 分类
+sort-label: 排序方式
+sort:
+  popular: 热门插件
+  updated: 最近更新
+  downloads: 下载最多
+current-version: '兼容游戏版本：{version}'
+authors: '作者：{authors}'
+downloads: '{count} 次下载'
+no-results: 没有符合当前条件的兼容插件。
+previous: 上一页
+next: 下一页
+pagination: '第 {page} / {pages} 页 · 共 {total} 个插件'
+installed-description: 此处显示 魔兽陪伴精灵 为当前客户端管理的插件。
+none-installed: 魔兽陪伴精灵 尚未为此客户端安装插件。
+choose-update: 选择更新版本
+close: 关闭文件详情
+loading-files: 正在加载兼容文件…
+no-files: 没有与已配置游戏版本兼容的文件。
+compatible-files: 兼容文件
+file-details: 插件文件详情
+required-dependencies: 必需依赖插件 ID
+no-dependencies: 无
+dependencies-hint: 安装时同时安装必需依赖。
+current-file: 当前文件已安装。
+install: 安装
+update: 更新
+install-success: 安装完成。请重启魔兽世界或重载界面以加载插件。
+release:
+  stable: 正式版
+  beta: 测试版
+  alpha: 预览版
+setup:
+  title: 连接 CurseForge 后浏览插件
+  description: 请在设置中添加 CurseForge API 密钥。保存有效密钥后，即可加载插件目录。
+  action: 配置 API 密钥
+  client-title: '配置{game}客户端'
+  client-description: 请在插件设置中选择客户端目录和兼容的游戏版本。
+  configure-client: 配置客户端
+settings:
+  title: 插件设置
+  description: 安装插件前，请配置 CurseForge API 密钥及各个魔兽世界客户端。
+  key-title: CurseForge 访问
+  key-label: 新的 CurseForge API 密钥
+  key-description: 留空则保留已保存的密钥。此表单不会显示已保存的密钥。
+  key-configured: API 密钥已配置
+  key-missing: 尚未配置 API 密钥
+  key-instructions: 打开官方 API 申请说明，使用文中的申请表单填写项目信息，并等待 Overwolf 的邮件。审核通过后，将 API 密钥复制到此处。
+  key-link: 查看 API Key 申请说明
+  save-key-first: 请先保存 API 密钥，再为各个客户端选择兼容的游戏版本。
+  directory: 魔兽世界客户端目录
+  directory-description: 请选择包含魔兽世界可执行文件的客户端目录。插件将安装到该目录下的 Interface/AddOns 文件夹。
+  browse: 浏览
+  browse-game: '浏览{game}目录'
+  version-type: 兼容游戏版本
+  choose-version: 选择 API 提供的游戏版本
+  no-version-types: CurseForge 未返回此游戏版本支持的类型。
+  retry-metadata: 重新加载游戏版本
+  install-target: 插件安装位置
+  reload-hint: 安装前请退出魔兽世界。安装完成后，请重启游戏或重载界面。
+  save: 保存设置
+  cancel: 取消
+  back: 返回插件中心
+  saved: 设置已保存。
+categories:
+  all: 全部分类
+  combat: 战斗
+  bags-inventory: 背包与物品
+  bags: 背包
+  inventory: 物品管理
+  classes: 职业
+  class: 职业
+  action-bars: 动作条
+  artwork: 界面美化
+  auction-economy: 拍卖与经济
+  auction: 拍卖
+  buffs-debuffs: 增益与减益
+  chat-communication: 聊天与交流
+  damage-dealer: 伤害输出
+  guild: 公会
+  libraries: 插件库
+  map-minimap: 地图与小地图
+  map: 地图
+  miscellaneous: 其他
+  professions: 专业技能
+  quests-leveling: 任务与升级
+  quests: 任务
+  raid-boss-encounters: 团队副本与首领
+  tooltip: 鼠标提示
+  unit-frames: 单位框体
+  pvp: PvP
+errors:
+  unknown: 请求失败，请重试。
+  curseforge-api-key-required: 请在插件设置中添加 CurseForge API 密钥。
+  curseforge-unauthorized: CurseForge 拒绝了此 API 密钥，请在插件设置中检查密钥。
+  curseforge-rate-limited: CurseForge 已限制请求频率，请稍后重试。
+  curseforge-timeout: CurseForge 响应超时，请重试。
+  curseforge-invalid-response: CurseForge 返回的数据无效，请重试。
+  curseforge-response-too-large: CurseForge 返回的数据超出支持的大小。
+  curseforge-request-failed: CurseForge 请求失败，请检查网络连接后重试。
+  curseforge-invalid-request: 请求无效，请检查已配置的游戏版本后重试。
+  curseforge-too-many-files: 此插件的文件数量过多，无法安全加载，请选择其他插件。
+  curseforge-too-many-redirects: 下载地址的重定向次数过多，请稍后重试。
+  curseforge-not-found: CurseForge 找不到此插件或文件，请刷新插件列表。
+  curseforge-disposed: 插件服务已停止，请重新打开插件中心后重试。
+  curseforge-incompatible-version: 此插件文件与已配置的游戏版本不兼容。
+  curseforge-distribution-disabled: 作者不允许通过第三方工具安装此插件。
+  curseforge-download-unavailable: CurseForge 未提供此插件文件的下载。
+  curseforge-unsafe-download-url: 下载地址未通过安全检查。
+  curseforge-download-integrity: 插件下载未通过完整性校验，请重试。
+  wow-addons-settings-invalid: 请检查插件设置后重试。
+  wow-addons-directory-required: 请在插件设置中填写魔兽世界客户端目录。
+  wow-addons-version-required: 请在插件设置中选择兼容的游戏版本。
+  wow-addons-busy: 其他插件操作正在进行，请等待完成。
+  wow-addons-key-storage-unavailable: 安全密钥存储不可用，请重启 魔兽陪伴精灵 后重试。
+  wow-addons-key-unreadable: 魔兽陪伴精灵 无法读取已保存的 API 密钥，请重新保存。
+  wow-addons-required-dependency: 必需依赖插件安装失败，请重试。
+  wow-addons-unmanaged-conflict: 已存在未由 魔兽陪伴精灵 管理的同名插件文件夹，请先将其移走再安装。
+  wow-addons-folder-conflict: 插件文件夹与其他插件冲突，请先将其移走再安装。
+  wow-addons-unsafe-archive: 插件压缩包包含不安全的路径，无法安装。
+  wow-addons-install-failed: 安装失败，请检查客户端目录后重试。
+  wow-addons-invalid-directory: 客户端目录无效或不可用，请在插件设置中检查路径。
+  wow-addons-invalid-archive: 插件压缩包无效或不安全，无法安装。
+  wow-addons-directory-conflict: 已有插件文件夹与此次安装冲突，请先将冲突文件夹移走再重试。
+  wow-addons-request-failed: 插件操作失败，请检查客户端目录后重试。
+  wow-addons-dependency-limit: 此插件的嵌套依赖数量过多，无法安全安装。
+  wow-addons-stopped: 插件操作已停止，请重新打开插件中心后重试。

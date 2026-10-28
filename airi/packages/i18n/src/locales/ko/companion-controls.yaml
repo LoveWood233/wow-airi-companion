@@ -1,0 +1,101 @@
+click-here-to-set-up-your-transcription-providers: 음성 인식 제공자 설정
+enter-the-transcription-model-to-use-e-g-whisper-1-gpt-4o-transcribe: '음성 인식 모델을 입력하세요(예: {models}).'
+input-level: 입력 레벨
+probability-of-speech: 발화 확률
+adjust-the-threshold-for-speech-detection: 발화 감지 임곗값 조정
+pause-before-stop: 종료 전 무음 시간
+how-long-silence-must-last-before-speech-is-considered-finished: 발화가 끝났다고 판단하기까지 필요한 무음 시간
+model-based: 모델 기반
+use-ai-models-for-more-accurate-speech-detection: AI 모델로 발화를 더 정확하게 감지
+loading: 불러오는 중…
+inference-error: 추론 오류
+activated: 활성화됨
+probability: '확률:'
+voice-activity: 음성 활동
+last-2-seconds: 최근 2초
+speaking: 말하는 중
+voice-detected: 음성 감지됨
+speech-threshold: 발화 임곗값
+reset-value-to-default: 기본값으로 초기화
+head-rotation: 머리 회전
+angle-x: 각도 X
+angle-y: 각도 Y
+angle-z: 각도 Z
+left-eye-open-close: 왼쪽 눈 뜨기/감기
+right-eye-open-close: 오른쪽 눈 뜨기/감기
+left-eye-smiling: 왼쪽 눈 웃음
+right-eye-smiling: 오른쪽 눈 웃음
+eyebrows: 눈썹
+left-eyebrow-left-right: 왼쪽 눈썹 좌우 이동
+right-eyebrow-left-right: 오른쪽 눈썹 좌우 이동
+left-eyebrow-y-up-down: 왼쪽 눈썹 Y(위/아래)
+left-eyebrow-y: 왼쪽 눈썹 Y
+right-eyebrow-y-up-down: 오른쪽 눈썹 Y(위/아래)
+right-eyebrow-y: 오른쪽 눈썹 Y
+left-eyebrow-angle: 왼쪽 눈썹 각도
+right-eyebrow-angle: 오른쪽 눈썹 각도
+left-eyebrow-form-deformation: 왼쪽 눈썹 모양(변형)
+left-eyebrow-form: 왼쪽 눈썹 모양
+right-eyebrow-form-deformation: 오른쪽 눈썹 모양(변형)
+right-eyebrow-form: 오른쪽 눈썹 모양
+mouth: 입
+mouth-open-close: 입 벌리기/다물기
+mouth-form-deformation: 입 모양(변형)
+mouth-form: 입 모양
+face: 얼굴
+cheek: 볼
+body-rotation-x: 몸 회전 X
+body-rotation-y: 몸 회전 Y
+body-rotation-z: 몸 회전 Z
+breath: 호흡
+model-position: 모델 위치
+directional-light-rotation-x: 방향광 회전 X
+directional-light-rotation-y: 방향광 회전 Y
+directional-light-color: 방향광 색상
+directional-light-intensity: 방향광 강도
+ambient-light-intensity: 주변광 강도
+ambient-light-color: 주변광 색상
+hemisphere-light-intensity: 반구광 강도
+hemisphere-sky-color: 반구광 하늘 색상
+hemisphere-ground-color: 반구광 지면 색상
+tips: 도움말
+camera-fov: 카메라 시야각
+directional-light-x: 방향광 X
+directional-light-y: 방향광 Y
+directional-light-z: 방향광 Z
+albedo-glow: 알베도 발광
+godot-stage-experimental: Godot 무대(실험 기능)
+godot-view: Godot 보기
+camera-x: 카메라 X
+camera-y: 카메라 Y
+camera-z: 카메라 Z
+camera-yaw: 카메라 좌우 회전
+camera-pitch: 카메라 상하 회전
+transcription-provider-inactive: 활성화된 음성 인식 제공자가 없습니다.
+transcription-provider-unavailable: 음성 인식 제공자 설정을 사용할 수 없습니다.
+microphone-access-denied: 마이크 접근이 거부되었습니다.
+speech-detection-failed: 발화 감지에 실패했습니다.
+speaking-detected: 발화 감지됨
+volume-based: 음량 기반
+select-model-before-godot-view: Godot 무대 보기를 조정하기 전에 VRM 모델을 선택하세요.
+godot-view-unavailable: Godot 무대 보기를 받지 못했습니다. Godot 연결을 확인하세요.
+godot-no-snapshot: Godot 무대 보기 스냅샷을 받지 못함
+revision: 리비전 {revision} · {reason}
+hemisphere: 반구
+skybox: 스카이박스
+rotation-x-degrees: 회전 X(도)
+rotation-y-degrees: 회전 Y(도)
+intensity: 강도
+scale: 크기
+rotation: 회전
+glow: 발광
+mouth-vowel: 입 {vowel}
+blink: 눈 깜박임
+wink-left: 왼쪽 윙크
+wink-right: 오른쪽 윙크
+smile: 미소
+anger: 분노
+sad: 슬픔
+surprise: 놀람
+troubled: 곤란함
+serious: 진지함

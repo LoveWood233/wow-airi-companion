@@ -1,0 +1,28 @@
+unknown: 未知
+error: 發生未知錯誤。
+streaming-description: 低延遲串流語音
+preview-text: 你好，我是你的陪伴精靈。
+providers-empty: 尚未設定語音服務
+providers-setup: 設定語音服務
+model: 模型
+model-description: 輸入用於生成語音的模型。
+model-manual-error: 無法取得模型清單時，請手動輸入名稱。
+model-manual-empty: 未傳回模型時，請手動輸入名稱。
+voice-title: 聲音設定
+voice-description: 調整陪伴精靈說話的聲音。
+current-voice: 目前的聲音：{voice}
+voices-error: 無法載入聲音
+pitch: 音調
+pitch-description: 調整聲音的高低。
+ssml: 啟用 SSML
+ssml-description: 使用語音合成標記語言控制語音輸出。
+voice-name: 聲音名稱
+voice-name-description: 輸入自訂聲音的名稱。
+voice-name-placeholder: 聲音名稱，例如 alloy 或 echo
+monolingual-v1: 單語言 v1
+multilingual-v1: 多語言 v1
+multilingual-v2: 多語言 v2
+custom-ssml: 使用自訂 SSML
+custom-ssml-description: 直接輸入 SSML 標記，而不是純文字。
+ssml-placeholder: 輸入 SSML 文字…
+stop: 停止

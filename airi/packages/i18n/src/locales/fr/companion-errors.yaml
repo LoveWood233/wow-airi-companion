@@ -1,0 +1,53 @@
+bridge-local-address: La passerelle WoW doit utiliser une adresse HTTP locale.
+bridge-stopped: La passerelle WoW s’est arrêtée.
+bridge-cancelled: Le démarrage de la passerelle WoW a été annulé.
+bridge-retry: Compagnon WoW réessaiera dans 30 secondes. {detail}
+bridge-windows: La capture automatique de WoW nécessite Windows. La passerelle
+  locale ne peut pas démarrer sur ce système.
+bridge-exited: La passerelle WoW s’est fermée.
+bridge-start-failed: La passerelle WoW n’a pas pu démarrer. Vérifiez ses
+  fichiers et les paramètres de capture. {detail}
+bridge-start-exited: La passerelle WoW s’est fermée au démarrage. Vérifiez si son port est occupé.
+bridge-timeout: La passerelle WoW n’a pas été prête sous 10 secondes. Vérifiez
+  Python et les paramètres de capture locale.
+bridge-port-unavailable: Le port de la passerelle WoW locale n’a pas répondu.
+  Vérifiez le port {port} avant de réessayer.
+bridge-port-incompatible: Un service incompatible occupe le port {port}.
+  Fermez-le ou mettez à jour la passerelle WoW.
+bridge-profile-incompatible: Un service incompatible occupe le port {port}.
+  Utilisez la passerelle WoW 2.11 ou ultérieure pour le profil {game}.
+bridge-files-missing: Les fichiers de la passerelle WoW sont manquants.
+  Restaurez WOWAddons à côté des sources de Compagnon WoW ou réinstallez
+  l’application de bureau.
+bridge-python-missing: Python 3.10 ou ultérieur est introuvable. Installez
+  Python avec l’option PATH activée, puis redémarrez Compagnon WoW.
+bridge-unavailable: La passerelle WoW est indisponible.
+bridge-http: La passerelle WoW a renvoyé HTTP {status}.
+bridge-response-profile: La réponse de la passerelle WoW ne correspond pas au profil {game}.
+connection-disabled: Activez la connexion du compagnon pour ce jeu avant
+  d’utiliser les commandes de capture ou de démonstration.
+connection-changed: La connexion du compagnon a changé avant la fin de la commande.
+gold-account-unknown: Le compte local du registre d’or est introuvable.
+gold-read: Impossible de charger le registre d’or ({path}). Restaurez le
+  fichier, puis redémarrez Compagnon WoW. {detail}
+gold-write: Impossible d’enregistrer le registre d’or ({path}). Les
+  modifications sont uniquement en mémoire. Compagnon WoW réessaiera. {detail}
+levels-read: Impossible de charger l’historique des niveaux ({path}). Restaurez
+  le fichier, puis redémarrez Compagnon WoW. {detail}
+levels-write: Impossible d’enregistrer l’historique des niveaux ({path}). Les
+  modifications sont uniquement en mémoire. Compagnon WoW réessaiera. {detail}
+equipment-read: Impossible de charger l’historique d’équipement ({path}).
+  Restaurez le fichier, puis redémarrez Compagnon WoW. {detail}
+equipment-write: Impossible d’enregistrer l’historique d’équipement ({path}).
+  Les modifications sont uniquement en mémoire. Compagnon WoW réessaiera.
+  {detail}
+comparisons-read: Impossible de charger les comparaisons d’équipement ({path}).
+  Restaurez le fichier, puis redémarrez Compagnon WoW. {detail}
+comparisons-write: Impossible d’enregistrer les comparaisons d’équipement
+  ({path}). Les modifications sont uniquement en mémoire. Compagnon WoW
+  réessaiera. {detail}
+loadouts-read: Impossible de charger les instantanés d’équipement ({path}).
+  Restaurez le fichier, puis redémarrez Compagnon WoW. {detail}
+loadouts-write: Impossible d’enregistrer les instantanés d’équipement ({path}).
+  Les modifications sont uniquement en mémoire. Compagnon WoW réessaiera.
+  {detail}

@@ -18,7 +18,9 @@ import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { Format, LogLevel, setGlobalFormat, setGlobalHookPostLog, setGlobalLogLevel, useLogg } from '@guiiai/logg'
 import { createContext } from '@moeru/eventa/adapters/electron/main'
 import { hasSelectedScreenCaptureSource, initScreenCaptureForMain } from '@proj-airi/electron-screen-capture/main'
-import { app, ipcMain, protocol, session } from 'electron'
+import { resolveSupportedLocale } from '@proj-airi/i18n'
+import { effect } from 'alien-signals'
+import { app, ipcMain, Menu, protocol, session } from 'electron'
 import { noop } from 'es-toolkit'
 import { createLoggLogger, injeca, lifecycle } from 'injeca'
 import { isLinux } from 'std-env'
@@ -32,7 +34,8 @@ import { installSingleInstanceGuard } from './app/single-instance'
 import { createArtistryConfig } from './configs/artistry'
 import { createGlobalAppConfig } from './configs/global'
 import { createIOTraceRecordingConfig } from './configs/io-trace-recording'
-import { emitAppBeforeQuit, emitAppWindowAllClosed } from './libs/bootkit/lifecycle'
+import { emitAppBeforeQuit, emitAppWindowAllClosed, onAppBeforeQuit } from './libs/bootkit/lifecycle'
+import { applicationMenuTemplate } from './libs/electron/application-menu'
 import { getElectronMainDirname, setElectronMainDirname } from './libs/electron/location'
 import { createI18n } from './libs/i18n'
 import { setupAppleSpeechTranscriptionService } from './services/airi/apple-speech-transcription'
@@ -46,6 +49,7 @@ import { IOTraceRecordingService } from './services/airi/io-trace-recording'
 import { setupMcpManager } from './services/airi/mcp-servers'
 import { setupExtensionHost } from './services/airi/plugins'
 import { setupArtistryBridge } from './services/airi/widgets/artistry-bridge'
+import { setupWowAddons } from './services/airi/wow-addons'
 import { setupWowCompanion } from './services/airi/wow-companion'
 import { setupWowLauncher } from './services/airi/wow-launcher'
 import { setupWowScreenAssist } from './services/airi/wow-screen-assist'
@@ -91,13 +95,12 @@ setupDebugger()
 
 const log = useLogg('main').useGlobalConfig()
 
-const appUserDataPath = env.APP_USER_DATA_PATH?.trim()
-if (appUserDataPath) {
-  mkdirSync(appUserDataPath, { recursive: true })
-  app.setPath('userData', appUserDataPath)
-  // Browser storage and main-process records must use the same explicit profile.
-  app.setPath('sessionData', appUserDataPath)
-}
+// Keep the selected profile independent of the display name, including launcher overrides.
+const appUserDataPath = env.APP_USER_DATA_PATH?.trim() || app.getPath('userData')
+mkdirSync(appUserDataPath, { recursive: true })
+app.setPath('userData', appUserDataPath)
+app.setPath('sessionData', appUserDataPath)
+app.setName('WoW Companion')
 
 // Thanks to [@blurymind](https://github.com/blurymind),
 //
@@ -273,7 +276,8 @@ app.whenReady().then(async () => {
   const autoUpdater = injeca.provide('services:auto-updater', {
     dependsOn: { appConfig },
     build: ({ dependsOn }) => setupAutoUpdater({
-      enabled: import.meta.env.VITE_DISTRIBUTION !== 'steam',
+      // This Warcraft distribution keeps its own features and never installs upstream releases.
+      enabled: false,
       getStoredUpdateLane: () => dependsOn.appConfig.get()?.updateChannel,
       setStoredUpdateLane: (lane) => {
         const currentConfig = dependsOn.appConfig.get()
@@ -289,7 +293,24 @@ app.whenReady().then(async () => {
     dependsOn: { appConfig },
     // Translated locales hold only the strings that are translated, so a missing
     // key shows English, as it does in the renderers.
-    build: ({ dependsOn }) => createI18n({ messages, locale: dependsOn.appConfig.get()?.language, fallbackLocale: 'en' }),
+    build: ({ dependsOn }) => {
+      const locale = resolveSupportedLocale(dependsOn.appConfig.get()?.language ?? app.getLocale(), Object.keys(messages))
+      const instance = createI18n({ messages, locale, fallbackLocale: 'en' })
+      const readLocale = instance.locale as () => unknown
+      const stop = effect(() => {
+        readLocale()
+        app.setName(instance.t('companion-ui.app.name'))
+      })
+      onAppBeforeQuit(stop)
+      void app.whenReady().then(() => {
+        const stopMenu = effect(() => {
+          readLocale()
+          Menu.setApplicationMenu(Menu.buildFromTemplate(applicationMenuTemplate(instance)))
+        })
+        onAppBeforeQuit(stopMenu)
+      })
+      return instance
+    },
   })
 
   const serverChannel = injeca.provide('modules:channel-server', {
@@ -501,6 +522,7 @@ app.whenReady().then(async () => {
       const { context } = createContext(ipcMain)
       setupComputerUse(context)
       setupHomeAssistant(context)
+      setupWowAddons(context)
       setupWowCompanion(context)
       setupWowLauncher(context)
       setupWowScreenAssist(context)

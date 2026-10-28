@@ -17,9 +17,10 @@ import type { BrowserWindow, BrowserWindowConstructorOptions, Rectangle } from '
 export function createDesktopOverlayWindowOptions(params: {
   bounds: Rectangle
   preloadPath: string
+  title?: string
 }): BrowserWindowConstructorOptions {
   return {
-    title: 'AIRI Desktop Overlay',
+    title: params.title ?? 'WoW Companion',
     width: params.bounds.width,
     height: params.bounds.height,
     x: params.bounds.x,

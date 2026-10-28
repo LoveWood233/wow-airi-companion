@@ -1,0 +1,30 @@
+bridge-local-address: WoWブリッジにはローカルのHTTPアドレスが必要です。
+bridge-stopped: WoWブリッジが停止しました。
+bridge-cancelled: WoWブリッジの起動をキャンセルしました。
+bridge-retry: WoW コンパニオンは30秒後に再試行します。{detail}
+bridge-windows: WoWの自動キャプチャにはWindowsが必要です。このシステムではローカルブリッジを起動できません。
+bridge-exited: WoWブリッジが終了しました。
+bridge-start-failed: WoWブリッジを起動できませんでした。ファイルとキャプチャ設定を確認してください。{detail}
+bridge-start-exited: WoWブリッジが起動中に終了しました。ポートが使用中か確認してください。
+bridge-timeout: WoWブリッジが10秒以内に準備できませんでした。Pythonとローカルキャプチャの設定を確認してください。
+bridge-port-unavailable: ローカルWoWブリッジのポートが応答しません。再試行前にポート{port}を確認してください。
+bridge-port-incompatible: '互換性のないサービスがポート{port}を使用しています。そのサービスを終了するか、WoWブリッジを更新してください。'
+bridge-profile-incompatible: '互換性のないサービスがポート{port}を使用しています。{game}プロファイルにはWoWブリッジ2.11以降を使ってください。'
+bridge-files-missing: WoWブリッジのファイルがありません。WoW コンパニオンのソースと同じ階層にWOWAddonsを復元するか、デスクトップ版を再インストールしてください。
+bridge-python-missing: Python 3.10以降が見つかりません。PATHへの追加を有効にしてPythonをインストールし、WoW コンパニオンを再起動してください。
+bridge-unavailable: WoWブリッジを利用できません。
+bridge-http: WoWブリッジがHTTP {status}を返しました。
+bridge-response-profile: WoWブリッジの応答が{game}プロファイルと一致しません。
+connection-disabled: キャプチャやデモのコマンドを使う前に、このゲームのコンパニオン接続を有効にしてください。
+connection-changed: コマンド完了前にコンパニオンの接続が変更されました。
+gold-account-unknown: ローカルのゴールドアカウントが見つかりません。
+gold-read: ゴールド台帳（{path}）を読み込めません。ファイルを復元し、WoW コンパニオンを再起動してください。{detail}
+gold-write: ゴールド台帳（{path}）を保存できません。変更はメモリ内にのみ存在します。WoW コンパニオンが再試行します。{detail}
+levels-read: レベル履歴（{path}）を読み込めません。ファイルを復元し、WoW コンパニオンを再起動してください。{detail}
+levels-write: レベル履歴（{path}）を保存できません。変更はメモリ内にのみ存在します。WoW コンパニオンが再試行します。{detail}
+equipment-read: 装備履歴（{path}）を読み込めません。ファイルを復元し、WoW コンパニオンを再起動してください。{detail}
+equipment-write: 装備履歴（{path}）を保存できません。変更はメモリ内にのみ存在します。WoW コンパニオンが再試行します。{detail}
+comparisons-read: 装備の比較（{path}）を読み込めません。ファイルを復元し、WoW コンパニオンを再起動してください。{detail}
+comparisons-write: 装備の比較（{path}）を保存できません。変更はメモリ内にのみ存在します。WoW コンパニオンが再試行します。{detail}
+loadouts-read: 装備スナップショット（{path}）を読み込めません。ファイルを復元し、WoW コンパニオンを再起動してください。{detail}
+loadouts-write: 装備スナップショット（{path}）を保存できません。変更はメモリ内にのみ存在します。WoW コンパニオンが再試行します。{detail}

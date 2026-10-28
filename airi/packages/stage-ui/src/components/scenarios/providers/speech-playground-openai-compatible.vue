@@ -112,6 +112,8 @@ defineExpose({
   generateTestSpeech: handleGenerateTestSpeech,
   stopTestAudio,
 })
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -127,8 +129,8 @@ defineExpose({
     <div flex="~ col gap-4">
       <FieldInput
         v-model="voice"
-        label="Voice"
-        description="Enter the voice ID for your OpenAI-compatible API"
+        :label="translateCompanion('companion-extra.voice-3091c8')"
+        :description="translateCompanion('companion-extra.enter-the-voice-id-for-your-openai-compatible-04dd5f')"
         placeholder="alloy"
       />
       <FieldCheckbox

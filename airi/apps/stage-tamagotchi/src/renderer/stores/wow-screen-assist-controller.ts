@@ -1,5 +1,5 @@
-import type { ChatRequestContextInput } from '@proj-airi/stage-ui/stores/chat/request-context'
 import type { VisionInferenceInput } from '@proj-airi/stage-ui/composables/vision/use-vision-inference'
+import type { ChatRequestContextInput } from '@proj-airi/stage-ui/stores/chat/request-context'
 
 import type { WowScreenCaptureErrorCode, WowScreenCaptureRequest, WowScreenCaptureResult, WowScreenGame } from '../../shared/wow-screen-assist'
 

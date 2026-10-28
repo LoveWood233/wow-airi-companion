@@ -1,0 +1,453 @@
+title: 魔獸陪伴精靈
+description: 一起漫遊艾澤拉斯。瞭解角色狀態，在重要時刻陪你回應。
+product:
+  about-title: 關於魔獸陪伴精靈
+  description: 魔獸世界角色陪伴、語音聊天與插件管理。
+  version: 版本
+  project: 專案地址
+  third-party: 第三方許可
+  license-note: 本軟體使用開源元件，其版權與許可證保留在原始碼和發行檔案中。
+  local-provider-note: 在設定中配置聊天和語音服務，無需軟體帳號。
+connection: 遊戲連線
+last-seen: 最近有效畫面
+demo-warning: 當前為示範資料，不代表真實遊戲角色。
+model-required: 請在魔獸陪伴精靈中選擇對話服務和模型後啟用角色回應。語音沿用現有聲音設定。
+start-bridge: 開啟陪伴連線後，魔獸陪伴精靈會自動啟動本機橋接，無需單獨操作。請保持插件資料傳輸碼可見。Windows 需已安裝 Python 3.10 或更高版本。
+player: 當前角色
+level: 等級
+zone-label: 所在區域
+class-spec: 職業 / 專精編號
+faction: 陣營
+race: 種族
+identity-unknown: 未知
+factions:
+  Alliance: 聯盟
+  Horde: 部落
+  Neutral: 中立
+activity: 活動狀態
+freshness: 資料狀態
+dead: 已死亡
+combat: 戰鬥中
+exploring: 探索中
+current: 當前有效
+historical: 上次已知狀態
+no-character: 尚未讀取到角色。請檢查橋接服務和螢幕座標。
+preferences: 陪伴偏好
+preferences-description: 離開此頁面後連線仍會繼續。僅主角色視窗生成回應，避免多視窗重複播報。
+options:
+  enabled: 開啟陪伴
+  muted: 遊戲提醒靜音
+  quietInCombat: 戰鬥時免打擾
+  levelUp: 升級時祝賀
+  zone: 進入新區域時回應
+  death: 死亡時回應
+  revive: 復活後鼓勵
+  allowDemo: 允許角色回應示範事件
+hints:
+  enabled: 將當前遊戲狀態提供給角色的對話上下文。
+  muted: 繼續更新上下文，但不主動回應遊戲事件。
+  quietInCombat: 保留一個重要事件，戰鬥結束後回應；超過 30 秒的事件會丟棄。
+  levelUp: 只在同一角色會話內檢測等級提高。
+  zone: 地圖或區域改變時回應，遵守提醒間隔。
+  death: 按當前角色語氣簡短回應，可結合已知的遊戲陣營或種族調侃。
+  revive: 在角色恢復生命時回應。
+  allowDemo: 預設關閉。開啟後測試回應會使用已配置的模型和語音。
+cooldown: 兩次回應的最小間隔（秒）
+cooldown-description: 可設 0～300 秒。間隔期間只保留一個近期事件。
+capture: 螢幕位置校準
+capture-description: 預設每格 1 個物理畫素，佔用 64×64 畫素，已是當前黑白編碼格式的最小尺寸。座標按桌面物理畫素填寫。
+capture-x: 編碼區左側 X
+capture-y: 編碼區頂部 Y
+cell-size: 單元格大小（畫素）
+poll-ms: 採集間隔（毫秒）
+pause-capture: 暫停採集
+capture-help: 在遊戲輸入 /wowc compact 縮至 64×64，再用 /wowc status 檢視起點。保持傳輸碼無遮擋。若單畫素顯示模糊，可用 /wowc cell 2，並將這裡的單元格大小改為 2。
+save-preferences: 儲存陪伴偏好
+save-capture: 應用校準
+saved: 已儲存。
+failed: 操作失敗。
+demo: 連線示範
+demo-description: 無需登入遊戲即可測試。預設不會將示範資訊加入角色上下文，需要先明確開啟上方開關。
+demo-label: 示範
+start-demo: 開始示範
+stop-demo: 返回真實畫面採集
+actions:
+  level_up: 模擬升級
+  zone: 切換區域
+  death: 模擬死亡
+  revive: 模擬復活
+  combat: 切換戰鬥狀態
+events: 最近遊戲事件
+events-description: 此處記錄觀察到的事件，不代表 AI 已完成回應。靜音或被規則過濾的事件仍會顯示。
+no-events: 暫無事件。
+gold:
+  title: 金幣賬本
+  description: 按本機插件帳號統計金幣流入和流出。資料隨遊戲連線更新，並儲存在這臺電腦上。
+  current-balance: 當前角色持有金幣
+  current-unavailable: 當前金幣暫不可用。請保持真實角色線上，並使用有效的實時畫面採集。
+  empty: 尚無真實金幣記錄。請安裝更新後的插件和橋接程式，再逐個登入角色，開始建立賬本。
+  storage-error: 賬本讀取或儲存失敗，當前彙總尚未確認寫入磁碟。請檢查下方儲存錯誤和磁碟剩餘空間。
+  unnamed-account: 本機插件帳號
+  account-id: 帳號標識
+  account-name: 帳號備註
+  account-name-placeholder: 例如：主帳號
+  account-name-help: 最多 64 個字元，留空可移除備註。
+  save-name: 儲存備註
+  character-count: '已記錄角色：{count}'
+  since: 桌面開始記錄於
+  earned: 累計收入（流入）
+  spent: 累計消耗（流出）
+  net: 淨變化
+  balance: 已記錄角色餘額合計
+  character: 角色
+  realm: 伺服器
+  character-balance: 最後已知餘額
+  last-seen: 最近採集時間
+  characters-description: 此帳號已採集角色的最後已知餘額與累計收支。
+  identity-note: 使用插件在本機儲存的帳號標識歸組，不讀取登入帳號。可為每個標識填寫備註以便區分。
+  flow-note: 首次持有的餘額不算收入。郵件、交易、銀行存取及自己角色間的轉賬均計入流入或流出，不等於實際賺取或消費。
+  balance-note: 餘額僅覆蓋已登入採集的角色，採用各角色最後一次採集值，並非所有角色同時實時的餘額。不包含戰團銀行餘額。
+  demo-note: 示範資料不會進入真實賬本。金幣變化只更新聊天上下文，不會觸發主動語音提醒。
+  money: '{sign}{gold}金 {silver}銀 {copper}銅'
+status:
+  disabled: 陪伴已關閉
+  disconnected: 橋接服務未連線
+  waiting: 等待遊戲畫面
+  live: 真實角色線上
+  stale: 畫面已過期
+  demo: 示範資料
+  paused: 採集已暫停
+
+versions:
+  label: 魔獸世界版本
+  isolation: 兩個版本的連線設定、採集座標、事件、金幣記錄、裝備歷史和等級歷史獨立儲存。切換頁面會放棄尚未儲存的修改。
+  retail:
+    name: 魔獸世界正式服
+    description: 正式服專用的陪伴設定與金幣記錄。
+    capture-help: 正式服輸入 /wowc compact 縮至 64×64，再用 /wowc status 檢視起點。視窗邊框或其他顯示器會改變桌面座標。保持傳輸碼無遮擋。若單畫素顯示模糊，可用 /wowc cell 2，並將這裡的單元格大小改為 2。
+  forever:
+    name: 魔獸世界：無限
+    description: 無限服獨立的陪伴設定與金幣記錄。
+    preview: 當前為客戶端開放前的預備版本，真實遊戲相容性需待開放後驗證。陪伴連線預設關閉。
+    capture-help: 安裝無限服插件後，輸入 /wowf compact 縮至 64×64，再用 /wowf status 檢視起點。填寫該客戶端的桌面座標，並保持傳輸碼無遮擋。若單畫素顯示模糊，可用 /wowf cell 2，並將這裡的單元格大小改為 2。
+
+level-history:
+  title: 角色等級歷史
+  description: 魔獸陪伴精靈在本機按角色儲存等級記錄。耗時按現實世界的時間計算，包含離線時間。
+  empty: 暫無等級記錄。連線真實角色後，從當時的等級開始記錄。
+  storage-error: 等級歷史讀取或儲存失敗，無法確認磁碟中的記錄。請檢查錯誤資訊和可用磁碟空間。
+  current-character: 當前角色
+  account: 本機帳號標識
+  current-level: '最後觀測等級：{level}'
+  first-seen: 首次記錄
+  complete-count: 已完整記錄的單級用時數
+  average: 完整單級平均用時
+  show-records: 檢視等級歷史
+  hide-records: 收起等級歷史
+  table-description: 保留全部等級變化，最新記錄在前。日期時間使用本機時區。
+  level-change: 等級變化
+  recorded-at: 記錄時間
+  duration: 本級用時
+  source-title: 記錄說明
+  unknown-duration: 未知
+  partial: 從首次發現上一等級開始計時，並非該等級的完整用時。
+  offline-note: 兩次升級之間的離線、遊玩其他角色及關閉魔獸陪伴精靈的時間均計入。重啟後保留記錄。
+  observation-note: 魔獸陪伴精靈無法還原漏記的升級時間。首次記錄或中斷後發現的等級變化，僅代表當時發現，不能作為準確升級時間。
+  average-note: 平均用時僅統計完整觀測的單級間隔，不包含部分用時、漏記、降級或時鐘變化。
+  duration-days: '{days}天 {hours}小時 {minutes}分 {seconds}秒'
+  duration-hours: '{hours}小時 {minutes}分 {seconds}秒'
+  duration-minutes: '{minutes}分 {seconds}秒'
+  duration-seconds: '{seconds}秒'
+  source:
+    baseline: 首次發現該等級，此前升級時間未知。
+    live: 實時採集時觀察到升級。
+    gap: 中斷後或跨多個等級發現變化，實際升級時間未知。
+    decrease: 觀察到等級降低，不統計升級用時。
+    clock-change: 本機時鐘發生變化，無法統計此段用時。
+
+equipment:
+  title: 裝備獲取記錄
+  description: 魔獸陪伴精靈在本機為每個遊戲版本儲存最近 10 條記錄，最新記錄在前。超過 10 條時，自動丟棄最早的記錄。
+  empty: 暫無裝備獲取記錄。登入時已有的揹包裝備不計為新獲取。
+  bridge-update: 當前橋接僅支援角色資料。請先退出舊版獨立橋接，再重啟魔獸陪伴精靈，讓它啟動新版橋接以讀取裝備。
+  capture-note: 建議將採集間隔設為 100 毫秒，以便快速顯示裝備詢問。過長的間隔可能反覆錯過裝備分片。
+  historical: 歷史記錄
+  character: 角色
+  realm: 伺服器
+  received: 魔獸陪伴精靈接收時間
+  storage-error: 裝備記錄讀取或儲存失敗，無法確認磁碟中的記錄。請檢查錯誤資訊和可用磁碟空間。
+  unnamed: '物品 {id}'
+  unavailable: 暫未讀取到
+  item-level: 裝等
+  observed: 發現時間
+  completeness: 資料讀取情況
+  infoComplete: 基本資訊
+  statsComplete: 數值屬性
+  tooltipComplete: 提示文字
+  complete: 已讀取
+  incomplete: 未完整讀取
+  truncated: 部分文字已截短
+  show-details: 檢視裝備詳情
+  hide-details: 收起裝備詳情
+  quality: 品質
+  required-level: 需求等級
+  slot: 裝備部位
+  attributes: 數值屬性
+  no-stats: 遊戲未返回此物品的數值屬性。
+  tooltip: 詞條、特效、加成與套裝說明
+  effect-note: 這裡保留遊戲提示文字，不代表其中的套裝加成或特效當前已經啟用。
+  item-link: 物品連結
+  session-note: 重啟魔獸陪伴精靈、更換角色、過載、重置採集或切換示範後仍保留記錄。揹包新增可能來自拾取、購買、郵件或銀行取出。
+  history-note: 歷史記錄不代表當前穿戴，也不提供實時聊天上下文。裝備詢問僅使用當前實時會話中滿足條件的候選裝備。
+  read-error: 部分裝備資料未能讀取。
+  qualities:
+    '0': 粗糙
+    '1': 普通
+    '2': 優秀
+    '3': 精良
+    '4': 史詩
+    '5': 傳說
+    '6': 神器
+    '7': 傳家寶
+    '8': 魔獸世界時光徽章
+  stats:
+    ITEM_MOD_STRENGTH_SHORT: 力量
+    ITEM_MOD_AGILITY_SHORT: 敏捷
+    ITEM_MOD_INTELLECT_SHORT: 智力
+    ITEM_MOD_STAMINA_SHORT: 耐力
+    ITEM_MOD_SPIRIT_SHORT: 精神
+    ITEM_MOD_CRIT_RATING_SHORT: 暴擊
+    ITEM_MOD_HASTE_RATING_SHORT: 急速
+    ITEM_MOD_MASTERY_RATING_SHORT: 精通
+    ITEM_MOD_VERSATILITY: 全能
+    ITEM_MOD_VERSATILITY_SHORT: 全能
+    ITEM_MOD_ARMOR_SHORT: 護甲
+    RESISTANCE0_NAME: 護甲
+    ITEM_MOD_ATTACK_POWER_SHORT: 攻擊強度
+    ITEM_MOD_SPELL_POWER_SHORT: 法術強度
+    ITEM_MOD_DAMAGE_PER_SECOND_SHORT: 每秒傷害
+    ITEM_MOD_CR_AVOIDANCE_SHORT: 閃避
+    ITEM_MOD_CR_LIFESTEAL_SHORT: 吸血
+    ITEM_MOD_CR_SPEED_SHORT: 加速
+    ITEM_MOD_LIFESTEAL_SHORT: 吸血
+    ITEM_MOD_AVOIDANCE_SHORT: 閃避
+    ITEM_MOD_SPEED_SHORT: 加速
+    ITEM_MOD_DODGE_RATING_SHORT: 躲閃
+    ITEM_MOD_PARRY_RATING_SHORT: 招架
+    ITEM_MOD_BLOCK_RATING_SHORT: 格擋
+    ITEM_MOD_DEFENSE_SKILL_RATING_SHORT: 防禦
+    ITEM_MOD_HIT_RATING_SHORT: 命中
+    ITEM_MOD_EXPERTISE_RATING_SHORT: 精準
+
+equipment-swaps:
+  title: 確認換裝記錄
+  description: 新裝備明確提升、對應欄位為空，或裝等與主屬性提高但副屬性有下降時，插件會在遊戲中逐件詢問。每次換裝都需要確認。
+  confirmation: 請在遊戲內最終確認。在魔獸陪伴精靈中選擇“好”只會顯示下一步提示，不會執行換裝或向遊戲傳送輸入。
+  empty: 當前角色會話中還沒有換裝確認記錄。
+  bridge-update: 當前橋接沒有提供換裝結果。請更新插件和橋接，然後重啟魔獸陪伴精靈。
+  read-error: 部分換裝結果暫時不可用。
+  historical: 以下為上次收到的結果。連線或結果資料不可用時，魔獸陪伴精靈不會將其作為實時上下文。
+  observed: 結果時間
+  previous: 原物品
+  empty-slot: 空欄位
+  expired-reason: 詢問已過期，插件沒有執行換裝。
+  scope-note: 記錄反映過去的操作，不代表當前仍然穿戴。裝等更高不保證屬性、套裝效果或實戰收益更好。
+  status:
+    equipped: 換裝已核實
+    declined: 已拒絕
+    failed: 未能確認
+    expired: 詢問已過期
+  reason:
+    confirmed: 在你於遊戲內確認後，插件已核實該次換裝。
+    user: 你在遊戲內拒絕了此次換裝。
+    timeout: 未能確認換裝結果，請檢查遊戲穿戴欄。
+    combat: 戰鬥中斷了請求，請在戰鬥結束後重新確認。
+    changed: 物品或目標欄位發生變化，請求已停止。
+    unavailable: 所需的物品資訊或遊戲介面不可用。
+    locked: 物品被鎖定，請求已停止。
+    cursor: 滑鼠正在拖動物品，請求已停止。
+    dead: 角色已死亡，請求已停止。
+    restricted: 遊戲限制了此操作，請求已停止。
+    disabled: 換裝確認已關閉，請求已停止。
+    left_world: 角色離開了遊戲世界，請求已停止。
+  slots:
+    '1': 頭部
+    '2': 頸部
+    '3': 肩部
+    '4': 襯衣
+    '5': 胸部
+    '6': 腰部
+    '7': 腿部
+    '8': 腳部
+    '9': 腕部
+    '10': 手部
+    '11': 戒指 1
+    '12': 戒指 2
+    '13': 飾品 1
+    '14': 飾品 2
+    '15': 背部
+    '16': 主手
+    '17': 副手
+    '18': 遠端
+    '19': 戰袍
+equipment-prompt:
+  message: '恭喜獲得新裝備{name}，又能變強了！{reason}要換上這件裝備嗎？'
+  message-player: '{player}，恭喜獲得新裝備{name}，又能變強了！{reason}要換上這件裝備嗎？'
+  message-player-tradeoff: '{player}，恭喜獲得新裝備{name}，主屬性又能提高了！{reason}要換上這件裝備嗎？'
+  reason:
+    stats: '已比較當前裝備，這件已記錄的屬性有明確提升（裝等 {oldLevel} → {newLevel}）。'
+    empty: 對應裝備欄位當前為空。
+    tradeoff: '裝等 {oldLevel} → {newLevel}，{primary} {oldPrimary} → {newPrimary}，但{decreases}。屬性存在取捨，不保證綜合收益更高。'
+    separator: '；'
+  accepted: 請在遊戲內點選“確認換裝”。魔獸陪伴精靈不會向遊戲傳送輸入。
+  accept: 好
+  decline: 不用
+  timeout: 請在 10 秒內選擇。不選擇會關閉此提醒，換裝仍需在遊戲內確認。
+  description: 明確提升，或裝等和主屬性提高但副屬性有下降時，也會說明取捨並詢問；每次換裝均由你確認。
+
+idle-interaction:
+  title: 非戰鬥陪伴互動
+  messages:
+    '0': '{player}，下一段征途，你想去哪裡？'
+    '1': '{player}，趁現在平靜，喝口水歇一歇吧。我會陪著你。'
+    '2': '{player}，接下來最想換哪件裝備？'
+    '3': '{player}，艾澤拉斯的風景裡，你最喜歡哪裡？'
+
+comparison:
+  title: 新舊裝備比較
+  missing: 尚未收到匹配的比較資料，不能僅憑裝等認定提升。
+  historical: '獲得時的裝備與專精記錄：'
+  stale-spec: 這是歷史比較。當前角色或專精已不同，或暫時無法核對。
+  type: 裝備型別
+  empty-slot: 空槽
+  attribute: 屬性
+  difference: 變化
+  item-level: 物品等級
+  unknown: 未知
+  limitation: 裝等和主屬性提高時，副屬性有下降也會說明取捨並詢問。特效、套裝、插槽和資料不全仍需自行復核。
+  verdict:
+    upgrade: 明確提升
+    not_upgrade: 當前角色不適合或沒有提升
+    review: 需要複核
+  reason:
+    empty_slot: 可使用裝備填補空槽
+    stats_upgrade: 已比較屬性有提升，且沒有已記錄屬性下降
+    unusable: 當前無法使用
+    wrong_spec: 不符合記錄時的專精
+    weaker_stats: 已比較屬性更低
+    equivalent: 已比較屬性沒有提升
+    incomplete: 比較資料不全或包含暫不支援的屬性
+    unknown_spec: 無法確認專精適配
+    weapon_change: 裝備型別不同
+    complex_item: 涉及特效或裝備組合，需要自行復核
+    stat_tradeoff: 屬性存在取捨
+    primary_upgrade_tradeoff: 裝等與主屬性提高，但副屬性存在取捨，由你確認
+    no_target: 無法確認目標槽位
+
+loadout:
+  title: 當前穿戴裝備
+  description: 登入、獲取新裝備和換裝後，插件重新採集全部 19 個穿戴槽位。魔獸陪伴精靈按角色儲存最新快照，供聊天參考。
+  characters: 已儲存的角色
+  waiting: 正在等待本次登入的全套裝備快照，已有記錄僅代表上次採集時的裝備。
+  empty: 尚未收到穿戴裝備快照。請登入角色、載入新版插件，並保持傳輸碼可見。
+  received: 桌面接收時間
+  observed: 遊戲採集時間
+  historical: 以下為最近一次記錄的快照，不代表持續實時檢視穿戴欄。
+  unknown: 未知 / 暫不可讀取
+  empty-slot: 空槽位
+  incomplete: 部分物品資料未完整讀取或已截斷。
+  note: 空槽位與未知不同；套裝效果文字不代表效果已啟用。每角色的裝備快照不受最近 10 條獲取記錄限制。
+launcher:
+  title: 遊戲啟動配置
+  description: 選擇戰網或魔獸世界啟動程式，為不同遊戲版本分別儲存路徑。
+  configure: 配置遊戲啟動
+  target: 啟動目標
+  targets:
+    battle-net: 戰網
+    retail: 魔獸世界正式服
+    forever: 魔獸世界無限服
+    classic: 魔獸世界懷舊服
+  default-summary: 快捷啟動目標：{target}
+  path-label: '{target}程式路徑'
+  path-description: 請選擇對應遊戲版本安裝子目錄內的 .exe；通用 World of Warcraft Launcher.exe
+    請配置在戰網目標下。不支援快捷方式和指令碼。
+  path-placeholder: 選擇 .exe 檔案或填寫完整路徑
+  browse: 瀏覽程式
+  make-default: 將此目標設為快捷啟動預設項
+  make-default-description: 角色工具欄的啟動按鈕將啟動此處儲存的目標。
+  current-default: 此目標已設為快捷啟動預設項。
+  save: 校驗並儲存
+  clear: 移除已儲存路徑
+  retry: 重新讀取配置
+  launch-game: 啟動遊戲
+  launch-battle-net: 啟動戰網
+  quick-launch: 遊戲快捷啟動
+  quick-launch-description: 啟動已儲存的預設程式；尚未配置時開啟啟動設定。
+  saved: 程式校驗透過，配置已儲存。
+  cleared: 已移除儲存的程式路徑。
+  launched: 已傳送啟動請求。
+  unsaved: 請先校驗並儲存修改，再啟動此目標。
+  launch-note: 戰網目標會開啟戰網；遊戲程式仍可能要求登入或更新。每次啟動前都會重新檢查儲存的程式。
+  verified-program: 已透過校驗的程式
+  errors:
+    unsupported-platform: 遊戲快捷啟動目前僅支援 Windows。
+    invalid-request: 啟動配置無效，請重新選擇目標和程式。
+    invalid-path: 請填寫完整的本地程式路徑，不要包含命令列引數。
+    file-not-found: 找不到程式，請重新選擇當前安裝位置。
+    not-executable: 請選擇 Windows .exe 程式，不能選擇快捷方式、指令碼或資料夾。
+    invalid-signature: 無法驗證程式的暴雪官方簽名，請選擇安裝目錄中的官方程式。
+    wrong-product: 此程式不是所選目標對應的戰網或魔獸世界程式。
+    wrong-version: 此魔獸世界程式屬於其他版本，請選擇對應目標或正確程式。
+    unrecognized-version: 無法確認遊戲版本，請透過戰網啟動，或更新陪伴精靈以適配此版本。
+    inspection-failed: 無法完成程式檢查，請確認檔案可訪問後重試。
+    not-configured: 尚未配置此目標，請先選擇程式並儲存。
+    storage-error: 無法讀取或儲存啟動配置，請檢查應用資料目錄的訪問許可權。
+    launch-failed: 程式啟動失敗，請檢查安裝是否完整及檔案訪問許可權。
+    busy: 正在處理啟動操作，請稍候。
+    request-failed: 桌面服務未響應，請重試或重新啟動陪伴精靈。
+screen-assist:
+  title: 遊戲截圖輔助
+  description: 主動請精靈檢視當前魔獸畫面，輔助判斷地形、理解任務和尋找 NPC。
+  enabled: 請求檢視遊戲時截圖
+  enabled-description: 明確請求檢視畫面時擷取一幀遊戲視窗，普通聊天不會觸發此截圖。
+  image-use: 截圖會傳送給你選擇的視覺模型服務，原圖不儲存到本地聊天記錄。
+  target: 遊戲視窗
+  target-description: 自動識別要求只開啟一個魔獸視窗。多個版本同時執行時請選擇版本；同版本多開時請先關閉多餘視窗。
+  games:
+    auto: 自動識別
+    retail: 正式服
+    forever: 無限服
+    classic: 懷舊服
+  configure-vision: 配置視覺模型
+  vision-description: 請在視覺設定中選擇支援圖片分析的服務和模型。開啟此配置頁不會截圖。
+  examples-title: 在聊天中輸入或說出
+  examples:
+    terrain: 你幫我看看我面前這個地形，我走得過去嗎？
+    quest: 任務顯示 NPC 在這裡，但是我到了沒看見，你能帶我過去嗎？
+    scene: 幫我看看遊戲畫面，這個任務目標是什麼意思？
+  command: 也可以用 /look 加問題明確觸發截圖，例如“/look 幫我找一下附近的入口”。移動後再次提問，精靈會檢視新畫面。
+  limits: 目前支援 Windows，請保持遊戲視窗可見。單張截圖不能確認碰撞、隱藏入口或任務相位；精靈提供建議，不會操控角色。
+  capturing: 正在擷取魔獸世界視窗…
+  analyzing: 正在分析遊戲畫面…
+  ready: 遊戲畫面分析完成，正在組織回答。
+  errors:
+    unsupported-platform: 遊戲截圖輔助目前僅支援 Windows。
+    invalid-request: 遊戲版本選項無效，請在遊戲截圖輔助設定中重新選擇。
+    game-not-found: 未找到對應的魔獸世界視窗，請開啟遊戲後再試。
+    ambiguous-window: 檢測到多個對應的遊戲視窗，請選擇版本或關閉多餘視窗後再試。
+    minimized-window: 遊戲視窗已最小化，請恢復視窗後再次提問。
+    unverified-game: 無法驗證此遊戲視窗，請使用受支援的魔獸世界官方安裝程式。
+    capture-failed: 無法擷取遊戲畫面，請保持遊戲可見，或嘗試視窗模式。
+    empty-frame: 截圖為空或黑屏，請保持遊戲可見後再次提問。
+    capture-timeout: 遊戲截圖超時，請稍候再次提問。
+    busy: 正在處理另一項遊戲截圖，請等待完成。
+    window-changed: 截圖期間遊戲視窗發生變化，請再次提問以獲取新畫面。
+    vision-not-configured: 請先選擇視覺模型服務和模型，再使用遊戲截圖輔助。
+    vision-failed: 視覺模型未能完成截圖分析，請檢查模型配置後重試。
+    no-description: 視覺模型沒有返回畫面描述，請重試或選擇其他支援圖片分析的模型。
+
+coordinates:
+  title: 地圖座標
+  value: X {x} · Y {y}
+  unavailable: 目前觀測無可用座標
+  note: 目前地圖內的 0–100 座標；副本等區域可能無法取得。

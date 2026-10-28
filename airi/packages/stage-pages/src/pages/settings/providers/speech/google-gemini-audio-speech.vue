@@ -81,7 +81,7 @@ onMounted(async () => {
 async function handleGenerateSpeech(input: string, voiceId: string, _useSSML: boolean, modelId?: string) {
   const provider = await providersStore.getProviderInstance<SpeechProvider<string>>(providerId)
   if (!provider)
-    throw new Error('Failed to initialize speech provider')
+    throw new Error(t('companion-providers.speech-provider-error'))
 
   const providerConfig = providerStore.getProviderConfig(providerId)
   const modelToUse = modelId || model.value || defaultModel
@@ -112,15 +112,15 @@ const {
     <template #voice-settings>
       <FieldCombobox
         v-model="model"
-        label="Model"
-        description="Select the Gemini TTS model to use for speech generation"
+        :label="t('settings.model-select.live2d-report.model.title')"
+        :description="t('companion-providers.gemini-model-description')"
         :options="modelOptions"
-        placeholder="Select a Gemini model..."
+        :placeholder="t('companion-providers.gemini-model-placeholder')"
       />
       <FieldRange
         v-model="temperature"
-        label="Temperature"
-        description="Controls randomness in speech generation. Lower values make speech more predictable, higher values make it more creative."
+        :label="t('settings.pages.modules.consciousness.sections.section.provider-model-selection.temperature_label')"
+        :description="t('companion-providers.speech-temperature-description')"
         :min="0"
         :max="2"
         :step="0.1"
@@ -134,7 +134,7 @@ const {
         :generate-speech="handleGenerateSpeech"
         :api-key-configured="apiKeyConfigured"
         :voices-loading="speechStore.voiceCatalogStatus[providerId]?.loading ?? false"
-        default-text="Hello! This is a test of the Google Gemini Speech."
+        :default-text="t('companion-providers.gemini-test-text')"
       />
     </template>
 

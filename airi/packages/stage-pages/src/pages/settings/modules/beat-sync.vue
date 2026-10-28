@@ -141,6 +141,8 @@ onMounted(() => {
 onUnmounted(() => {
   isUpdatingFrequencies.value = false
 })
+
+const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -177,10 +179,10 @@ onUnmounted(() => {
           type="warning"
         >
           <template #title>
-            No audio detected
+            {{ translateCompanion('companion-extra.no-audio-detected-680bfe') }}
           </template>
           <template #content>
-            Please make sure that the correct permissions are granted and the audio source is playing sound.
+            {{ translateCompanion('companion-extra.please-make-sure-that-the-correct-permissions-b47bf6') }}
           </template>
         </Alert>
 
@@ -196,7 +198,7 @@ onUnmounted(() => {
             </div>
 
             <button
-              title="Reset settings"
+              :title="translateCompanion('companion-extra.reset-settings-9ba8d6')"
               flex items-center justify-center rounded-full p-2
               transition="all duration-250 ease-in-out"
               text="neutral-500 dark:neutral-400"
