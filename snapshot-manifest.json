@@ -491,8 +491,8 @@
       "sha256": "55c58630a124479588419b243f27c21479244345c584c66af95e6e79f612e5dc"
     },
     "README.md": {
-      "bytes": 12342,
-      "sha256": "c184c33f4e8d5a5e663a734d13f986ac1a15be448095fd9d4473174ab5e908ca"
+      "bytes": 12614,
+      "sha256": "fcd1eaa963e227927ea2e833a7676dbbdc47f48f1abff3c2acf25fab26a223a0"
     },
     "WOWAddons/Install-WoWCompanion.ps1": {
       "bytes": 1568,
@@ -1035,8 +1035,8 @@
       "sha256": "fb20383777bfa12d3bc1e8b5ca32a4e6345805f71f8ea4050fd15cce593d3039"
     },
     "WOWAddons/魔兽陪伴精灵-功能现状与扩展规划.md": {
-      "bytes": 23346,
-      "sha256": "8a86fbe78661add5df0f90201261edfdfcd60bc0c68258ff0f6a3e8dccc7672d"
+      "bytes": 36590,
+      "sha256": "2c1ec8c000a38e75b5717cb77b42deda8140e6dfd7f20627a5b0ceecaceea2e6"
     },
     "airi/.agents/skills/agent-browser-electron/SKILL.md": {
       "bytes": 12464,
@@ -25710,5 +25710,7 @@
     "WOWAddons/WoWMapCompanion-2.13.0.zip"
   ],
   "deliveryArchiveVersion": "2.16.0",
-  "latestSyncScope": "Macro import feature only. Other independent development changes are excluded. The deliveryArchive field refers to the historical source archive."
+  "latestSyncScope": "Macro import feature only. Other independent development changes are excluded. The deliveryArchive field refers to the historical source archive.",
+  "featureReportUpdatedAt": "2026-10-29T04:31:20.962539+00:00",
+  "featureReportScope": "Cross-session feature inventory through local desktop 2.20.0 and ongoing development. Documentation-only update; repository code and archive versions are unchanged."
 }
