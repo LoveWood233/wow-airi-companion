@@ -359,6 +359,23 @@ function Transfer.Advance()
             if #payload <= 504 then heldFrame = Protocol.Frame(payload); return end
         end
     end
+    -- Buffs and calendar share their existing quarter of data slots. Equipment bandwidth stays unchanged.
+    if macroState and ns.GroupBuffs and macroOpportunity % 8 == 5 then
+        local ok, value = pcall(ns.GroupBuffs.Next)
+        if ok and value then
+            value.v, value.kind, value.s, value.g = 1, "buff", macroState.session, macroState.guid
+            local payload = FieldsJSON(value, {"v", "kind", "s", "g", "e", "q", "st", "spell", "name", "missing", "checked", "total", "instanceType", "instanceID"})
+            if #payload <= 504 then heldFrame = Protocol.Frame(payload); return end
+        end
+    end
+    if macroState and ns.Calendar and macroOpportunity % 8 == 1 then
+        local ok, value = pcall(ns.Calendar.Next)
+        if ok and value then
+            value.v, value.kind, value.s, value.g = 1, "calendar", macroState.session, macroState.guid
+            local payload = FieldsJSON(value, {"v", "kind", "s", "g", "day", "p", "n", "title", "action", "when"})
+            if #payload <= 504 then heldFrame = Protocol.Frame(payload); return end
+        end
+    end
     local now = GetTime() or 0
     for index=#comparisons,1,-1 do
         if comparisons[index].expires<=now then

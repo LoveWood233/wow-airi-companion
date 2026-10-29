@@ -373,6 +373,68 @@ def validate_equipment_swap(value: object) -> dict:
         raise EquipmentSwapError(str(exc)) from exc
 
 
+def validate_group_buff(value: object) -> dict:
+    fields = {"v", "kind", "s", "g", "e", "q", "st", "spell", "name", "missing", "checked", "total", "instanceType", "instanceID"}
+    if not isinstance(value, dict) or set(value) != fields or value["kind"] != "buff":
+        raise FrameError("Invalid group buff frame")
+    _integer(value["v"], "v", 1, 1)
+    _text(value["s"], "s", 40, identity=True)
+    _text(value["g"], "g", 48, identity=True)
+    _integer(value["e"], "e", 0, MAX_SAFE_INTEGER)
+    _integer(value["q"], "q", 1, MAX_SAFE_INTEGER)
+    _integer(value["spell"], "spell", 0, 2147483647)
+    _integer(value["instanceID"], "instanceID", 0, 2147483647)
+    name = _text(value["name"], "name", 96)
+    for key in ("missing", "checked", "total"):
+        _integer(value[key], key, 0, 40)
+    if not 0 <= value["missing"] <= value["checked"] <= value["total"]:
+        raise FrameError("Inconsistent group buff counts")
+    if value["st"] not in ("inactive", "waiting", "ready") or "|" in name or "\x7f" in name:
+        raise FrameError("Invalid group buff status or name")
+    if value["instanceType"] not in ("unknown", "party", "raid", "pvp", "scenario"):
+        raise FrameError("Invalid group buff instance")
+    if value["st"] == "inactive":
+        if any(value[k] for k in ("spell", "name", "missing", "checked", "total", "instanceID")) or value["instanceType"] != "unknown":
+            raise FrameError("Inactive group buff carries observations")
+    elif value["e"] == 0 or value["instanceID"] == 0 or value["instanceType"] == "unknown":
+        raise FrameError("Group buff lacks entry identity")
+    if value["spell"] not in (0, 6673, 1459, 21562, 1126, 462854, 364342) or bool(value["spell"]) != bool(name):
+        raise FrameError("Invalid group buff spell")
+    if value["st"] == "ready" and (not name or value["missing"] == 0 or value["total"] < 2):
+        raise FrameError("Ready group buff lacks missing members")
+    return dict(value)
+
+
+def validate_calendar(value: object) -> dict:
+    from datetime import date, datetime, timedelta
+    fields = {"v", "kind", "s", "g", "day", "p", "n", "title", "action", "when"}
+    if not isinstance(value, dict) or set(value) != fields or value["kind"] != "calendar":
+        raise FrameError("Invalid calendar frame")
+    _integer(value["v"], "v", 1, 1)
+    _text(value["s"], "s", 40, identity=True)
+    _text(value["g"], "g", 48, identity=True)
+    _text(value["title"], "title", 160)
+    _integer(value["n"], "n", 0, 32)
+    _integer(value["p"], "p", 1, max(1, value["n"]))
+    try:
+        day = date.fromisoformat(value["day"])
+        if day.isoformat() != value["day"]:
+            raise ValueError()
+        if value["n"] == 0:
+            if (value["action"], value["title"], value["when"]) != ("none", "", ""):
+                raise ValueError()
+        else:
+            when = datetime.strptime(value["when"], "%Y-%m-%d %H:%M")
+            if not value["title"] or value["action"] not in ("start", "end", "personal_start", "personal_end", "reset", "reset_soon"):
+                raise ValueError()
+            expected = day if value["action"] in ("start", "personal_start", "reset") else day + timedelta(days=1)
+            if when.date() != expected or when.strftime("%Y-%m-%d %H:%M") != value["when"]:
+                raise ValueError()
+    except (ValueError, TypeError, OverflowError):
+        raise FrameError("Invalid calendar date or action") from None
+    return dict(value)
+
+
 def validate_macro(value: object) -> dict:
     fields = {"v", "kind", "s", "g", "q", "id", "st", "r", "hash", "bytes", "focus", "input", "chat", "combat"}
     if not isinstance(value, dict) or set(value) != fields or value["kind"] != "macro":
@@ -428,6 +490,10 @@ def validate_equipment_offer(value: object) -> dict:
 
 
 def validate_message(value: object) -> dict:
+    if isinstance(value, dict) and value.get("kind") == "buff":
+        return validate_group_buff(value)
+    if isinstance(value, dict) and value.get("kind") == "calendar":
+        return validate_calendar(value)
     if isinstance(value, dict) and value.get("kind") == "macro":
         return validate_macro(value)
     if isinstance(value, dict) and value.get("kind") == "gear":
@@ -513,6 +579,21 @@ def validate_snapshot(value: object) -> dict:
     if not result["online"] or result["map"] == 0:
         px, py = None, None
     result["px"], result["py"] = px, py
+    # Scene observations are optional in v3. Missing fields never imply an outdoor scene.
+    instance_types = ("none", "party", "raid", "pvp", "arena", "scenario", "unknown")
+    if "instanceType" in value:
+        kind = value["instanceType"]
+        if not isinstance(kind, str) or kind not in instance_types:
+            raise FrameError("字段 instanceType 不是支持的场景类型")
+        result["instanceType"] = kind if result["online"] else "unknown"
+    if "instanceID" in value:
+        instance_id = value["instanceID"]
+        if instance_id is not None:
+            if type(instance_id) is not int or not 1 <= instance_id <= 2147483647:
+                raise FrameError("字段 instanceID 必须是正整数副本标识或 null")
+            if value.get("instanceType") not in ("party", "raid", "pvp", "arena", "scenario"):
+                raise FrameError("副本标识需要已知的副本或战场类型")
+        result["instanceID"] = instance_id if result["online"] else None
     return result
 
 

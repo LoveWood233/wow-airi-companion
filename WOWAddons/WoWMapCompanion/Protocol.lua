@@ -3,7 +3,7 @@
 local _, ns = ...
 local Protocol = {}
 ns.Protocol = Protocol
-local keys = { "v", "session", "seq", "tick", "guid", "name", "realm", "level", "class", "faction", "race", "spec", "map", "px", "py", "zone", "combat", "dead", "online", "account", "moneyEpoch", "copper", "earned", "spent" }
+local keys = { "v", "session", "seq", "tick", "guid", "name", "realm", "level", "class", "faction", "race", "spec", "map", "instanceType", "instanceID", "px", "py", "zone", "combat", "dead", "online", "account", "moneyEpoch", "copper", "earned", "spent" }
 local limits = { session = 40, guid = 48, name = 48, realm = 48, class = 20, zone = 96 }
 
 local function Public(value)
@@ -11,6 +11,20 @@ local function Public(value)
     return value
 end
 Protocol.Public = Public
+
+local instanceTypes = { none = true, party = true, raid = true, pvp = true, arena = true, scenario = true, unknown = true }
+
+function Protocol.InstanceType(value)
+    value = Public(value)
+    if type(value) == "string" and instanceTypes[value] then return value end
+    return "unknown"
+end
+
+function Protocol.InstanceID(value)
+    value = Public(value)
+    if type(value) ~= "number" or value ~= value or value < 1 or value > 2147483647 or value ~= math.floor(value) then return nil end
+    return value
+end
 
 local function Coordinate(value)
     value = Public(value)
@@ -58,6 +72,7 @@ end
 
 function Protocol.JSON(snapshot)
     local items = {}
+    local includeScene = Public(snapshot.instanceType) ~= nil
     for _, key in ipairs(keys) do
         local value = Public(snapshot[key])
         local kind, encoded = type(value)
@@ -65,7 +80,9 @@ function Protocol.JSON(snapshot)
         elseif kind == "boolean" then encoded = value and "true" or "false"
         elseif kind == "number" and value == value and value ~= math.huge and value ~= -math.huge then encoded = string.format("%.0f", value)
         else encoded = "null" end
-        items[#items + 1] = Escape(key) .. ":" .. encoded
+        if includeScene or (key ~= "instanceType" and key ~= "instanceID") then
+            items[#items + 1] = Escape(key) .. ":" .. encoded
+        end
     end
     return "{" .. table.concat(items, ",") .. "}"
 end
@@ -107,6 +124,9 @@ function Protocol.Encode(snapshot)
         if key == "race" then value = Protocol.Race(value) end
         clean[key] = value
     end
+    clean.instanceType, clean.instanceID = Protocol.InstanceType(clean.instanceType), Protocol.InstanceID(clean.instanceID)
+    if clean.online ~= true then clean.instanceType = "unknown" end
+    if clean.instanceType == "none" or clean.instanceType == "unknown" then clean.instanceID = nil end
     -- Position is one atomic pair on the observed map, never a retained last-known point.
     clean.px, clean.py = Coordinate(clean.px), Coordinate(clean.py)
     if clean.px == nil or clean.py == nil or clean.online ~= true or type(clean.map) ~= "number"
@@ -120,6 +140,11 @@ function Protocol.Encode(snapshot)
             clean[key] = Protocol.UTF8Prefix(clean[key], math.max(0, #clean[key] - 8))
             payload = Protocol.JSON(clean)
         end
+    end
+    -- Optional scene metadata cannot displace required identity or financial observations.
+    if #payload > 504 then
+        clean.instanceType, clean.instanceID = nil, nil
+        payload = Protocol.JSON(clean)
     end
     if #payload > 504 and clean.race ~= nil then
         clean.race = nil

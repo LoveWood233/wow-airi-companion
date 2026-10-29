@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 from protocol import (COMPARISON_MAX_BYTES, EQUIPMENT_MAX_BYTES, LOADOUT_MAX_BYTES, GAME_PROTOCOLS, FrameError, load_json,
                       validate_equipment_fragment, validate_equipment_record, validate_equipment_swap,
                       validate_equipment_offer, validate_comparison_fragment, validate_equipment_comparison,
-                      validate_loadout_fragment, validate_equipment_loadout, validate_macro)
+                      validate_loadout_fragment, validate_equipment_loadout, validate_macro, validate_calendar, validate_group_buff)
 
 DEFAULT_CONFIG = {"x": 8, "y": 8, "cellSize": 1, "pollMs": 100, "paused": False}
 EQUIPMENT_TTL_SECONDS = 180
@@ -87,6 +87,13 @@ class CompanionState:
         self.equipment_offer: dict | None = None
         self.equipment_offer_error: str | None = None
         self.equipment_offer_expires = 0.0
+        self.group_buff_sequence = None
+        self.group_buff = None
+        self.group_buff_at = None
+        self.calendar_at = None
+        self.calendar = None
+        self.calendar_parts = {}
+        self.calendar_key = None
         self.macro_import = None
         self.macro_import_at = None
         # Comparison fragments have separate queues and error state. They cannot evict item observations or refresh their heartbeat.
@@ -104,6 +111,12 @@ class CompanionState:
         self.loadout_count = 0
 
     def _clear_equipment(self) -> None:
+        self.group_buff = None
+        self.group_buff_at = None
+        self.calendar_at = None
+        self.calendar = None
+        self.calendar_parts = {}
+        self.calendar_key = None
         self.macro_import = None
         self.macro_import_at = None
         self.equipment.clear()
@@ -406,6 +419,10 @@ class CompanionState:
             # view must not present the last recorded position as live.
             if current_snapshot is not None and status not in ("live", "demo"):
                 current_snapshot["px"], current_snapshot["py"] = None, None
+                if "instanceType" in current_snapshot:
+                    current_snapshot["instanceType"] = "unknown"
+                if "instanceID" in current_snapshot:
+                    current_snapshot["instanceID"] = None
             return {"instanceId": self.instance_id, "status": status, "source": "demo" if self.demo else "screen", "snapshot": current_snapshot,
                     "lastSeen": self.last_seen, "ageSeconds": age, "eventCursor": self.event_id,
                     "events": copy.deepcopy([e for e in self.events if after is None or e["id"] > after]),
@@ -415,6 +432,13 @@ class CompanionState:
                     "equipmentOffer": copy.deepcopy(self.equipment_offer) if status == "live" and not self.demo
                     and self.clock() < self.equipment_offer_expires else None,
                     "equipmentOfferError": self.equipment_offer_error,
+                    "groupBuff": copy.deepcopy(self.group_buff) if status == "live" and not self.demo and not self.error
+                    and self.group_buff_at is not None and self.clock() - self.group_buff_at < 6
+                    and current_snapshot and current_snapshot["online"] and not current_snapshot["combat"] and not current_snapshot["dead"]
+                    and current_snapshot.get("instanceType") == self.group_buff["instanceType"]
+                    and current_snapshot.get("instanceID") == self.group_buff["instanceID"] else None,
+                    "calendar": copy.deepcopy(self.calendar) if status == "live" and not self.demo and not self.error
+                    and self.calendar_at is not None and self.clock() - self.calendar_at < 70 else None,
                     "macroImport": copy.deepcopy(self.macro_import) if status == "live" and not self.demo
                     and not self.error and self.macro_import_at is not None and self.clock() - self.macro_import_at < 2.5 else None,
                     "equipmentComparisons": copy.deepcopy(self.equipment_comparisons),
@@ -430,6 +454,32 @@ class CompanionState:
 
     def ingest(self, snapshot: dict) -> None:
         with self.lock:
+            if snapshot.get("kind") == "buff":
+                value = validate_group_buff(snapshot)
+                if self.demo or self._status() != "live" or self.reset_baseline or self.error:
+                    return
+                if (value["s"], value["g"]) != (self.snapshot["session"], self.snapshot["guid"]):
+                    return
+                # A frozen grid cannot renew freshness. A newer clear supersedes any missing-buff observation.
+                if self.group_buff_sequence and self.group_buff_sequence[:2] == (value["s"], value["g"]) and value["q"] <= self.group_buff_sequence[2]:
+                    return
+                self.group_buff_sequence = (value["s"], value["g"], value["q"])
+                self.group_buff, self.group_buff_at = value, self.clock()
+                return
+            if snapshot.get("kind") == "calendar":
+                value = validate_calendar(snapshot)
+                if self.demo or self._status() != "live" or self.reset_baseline or self.error:
+                    return
+                if (value["s"], value["g"]) != (self.snapshot["session"], self.snapshot["guid"]):
+                    return
+                key = (value["s"], value["g"], value["day"], value["n"])
+                if self.calendar_key != key:
+                    self.calendar_key, self.calendar_parts, self.calendar = key, {}, None
+                self.calendar_at = self.clock()
+                self.calendar_parts[value["p"]] = {k: value[k] for k in ("title", "action", "when")}
+                if len(self.calendar_parts) == max(1, value["n"]):
+                    self.calendar = {"day": value["day"], "items": [self.calendar_parts[i] for i in range(1, value["n"] + 1)]}
+                return
             if snapshot.get("kind") == "macro":
                 value = validate_macro(snapshot)
                 if self.demo or self._status() != "live" or self.reset_baseline or self.error:

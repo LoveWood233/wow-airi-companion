@@ -450,3 +450,7 @@ coordinates:
   value: X {x} · Y {y}
   unavailable: 当前观测无可用坐标
   note: 当前地图内的 0–100 坐标；副本等区域可能无法获取。
+
+group-buffs:
+  reminder: '队伍里有人缺少{buff}，记得补一下。'
+  error: '队伍增益语音提醒失败，请检查语音设置。'

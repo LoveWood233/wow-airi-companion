@@ -96,6 +96,27 @@ local function SamplePosition(mapID)
     return math.floor(x * 10000 + 0.5), math.floor(y * 10000 + 0.5)
 end
 
+local function SampleInstance()
+    if not online then return "unknown", nil end
+    local instanceType, instanceID = "unknown", nil
+    if type(GetInstanceInfo) == "function" then
+        local ok, _, kind, _, _, _, _, _, id = pcall(GetInstanceInfo)
+        if ok then
+            instanceType = Protocol.InstanceType(kind)
+            if instanceType ~= "none" and instanceType ~= "unknown" then instanceID = Protocol.InstanceID(id) end
+        end
+    end
+    -- A second public API can identify the scene when full instance information is unavailable.
+    if instanceType == "unknown" and type(IsInInstance) == "function" then
+        local ok, inside, kind = pcall(IsInInstance)
+        inside, kind = Public(inside), Protocol.InstanceType(kind)
+        if ok and type(inside) == "boolean" and ((inside and kind ~= "none") or (not inside and kind == "none")) then
+            instanceType = kind
+        end
+    end
+    return instanceType, instanceID
+end
+
 local function Sample()
     if not ready then return end
     local guid = Text(Call(UnitGUID, "player"), nil, 48)
@@ -123,6 +144,7 @@ local function Sample()
     local zone = Text(mapName, nil, 96) or Text(Call(GetRealZoneText), nil, 96) or Text(Call(GetZoneText), nil, 96)
     state.map, state.zone = mapID or 0, zone or L("当前位置暂不可用")
     state.px, state.py = SamplePosition(mapID)
+    state.instanceType, state.instanceID = SampleInstance()
     state.online, state.combat, state.dead = online, combat, dead
     local seq, tick = state.seq, state.tick
     state.seq, state.tick = 0, 0
@@ -164,6 +186,8 @@ local function Initialize()
     state = { v = 3, session = string.format("%d-%d-%d", timestamp, uptime, math.random(100000, 999999)), seq = 0, tick = 0, guid = "", name = "", realm = "", level = 0, class = "", spec = 0, map = 0, zone = L("当前位置暂不可用"), combat = false, dead = false, online = false }
     Telemetry.Initialize(config)
     Transfer.SetMacroState(state)
+    if ns.Calendar then ns.Calendar.Initialize(db) end
+    if ns.GroupBuffs then ns.GroupBuffs.Initialize() end
     ConfirmEquip.Initialize(state, config, Transfer.AddSwap, Print, function(offer)
         Transfer.SetOffer(offer)
         if ready then Export() end

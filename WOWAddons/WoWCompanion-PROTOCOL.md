@@ -2,6 +2,36 @@
 
 The addon publishes a bounded snapshot through a visible black-and-white grid. The desktop bridge reads the grid without accessing game process memory.
 
+## Scene observations (2.14.0)
+
+Retail addon 2.14.0 and Forever addon 1.11.0 publish scene observations in v3 snapshots. Bridge 2.14.0 validates them.
+
+| Field | Contract |
+| --- | --- |
+| `instanceType` | Optional `none`, `party`, `raid`, `pvp`, `arena`, `scenario`, or `unknown` |
+| `instanceID` | Optional JSON `null` or an integer from 1 through 2147483647 |
+
+`none` identifies a public outdoor observation. Missing fields and `unknown` do not identify an outdoor scene.
+A positive ID requires `party`, `raid`, `pvp`, `arena`, or `scenario`.
+The ID identifies the instance map, not the player's unique lockout or run. It differs from the UI `map` ID.
+
+The addon uses the second and eighth public results of `GetInstanceInfo`. Outdoor continent IDs are not exported as instance IDs.
+If full information is unavailable, consistent public `IsInInstance` results can supply a type without an ID.
+Unavailable, invalid, and secret results clear the previous scene. Offline observations use `unknown` and `null`.
+The one-second sample and existing zone/world events refresh these observations.
+
+These fields are optional observations in the supported v3 contract. Their absence is permanent supported policy.
+Normal new-addon frames contain both fields. The grid remains 64 by 64 pixels, with a 504-byte payload limit.
+Display labels first shrink under the existing budget policy. If required fields still exceed the budget, both scene fields are omitted together.
+The existing whole-race omission rule applies next. Required identity and financial counters are never truncated.
+This capacity rule never retains an instance ID without its observed type.
+
+The bridge clears scene metadata in stale or paused current views. Historical event snapshots retain their original observations.
+A scene change updates the current snapshot. It does not add a second zone event for an unchanged UI map.
+The desktop uses fresh snapshot observations to detect arrival and suppress floor-only changes inside one instance.
+
+API definitions: [Blizzard InstanceDocumentation](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/InstanceDocumentation.lua).
+
 ## Current map coordinates (2.12.0)
 
 Retail addon 2.12.0 and Forever addon 1.9.0 add `px` and `py` to character snapshots. Bridge 2.12.0 reads these fields.
@@ -497,3 +527,13 @@ Identity and capture configuration changes clear receipts.
 The desktop uses an independent native input helper to open `/import-marco <id>`, paste text, and submit with Ctrl+Enter.
 It requires a verified game window, live combat state, matching editor receipts, and a saved-body readback.
 This adds no game-to-desktop command endpoint and does not execute the saved macro.
+
+## Group buff observations
+
+The additive `kind=buff` frame is a single WCP1 or WCF1 payload. Fields: `v=1`, `kind=buff`, session `s`, GUID `g`, entry `e`, publication sequence `q`, status `st`, spell ID `spell`, localized spell `name`, `missing`, `checked`, `total`, `instanceType`, and `instanceID`.
+
+Status is `inactive`, `waiting`, or `ready`. Counts satisfy `0 <= missing <= checked <= total <= 40`. A ready frame requires a supported learned spell and at least one confirmed missing member. Inactive frames clear all observations. Unreadable members never count as missing.
+
+The bridge exposes `groupBuff` for six seconds after a new sequence. It requires a current matching session, GUID, and instance. Frozen or older sequence numbers cannot renew freshness, even after capture resumes. Combat, death, offline status, and instance changes hide the observation.
+
+Buff and calendar frames alternate in the same reserved quarter of data slots. Each now arrives every four seconds. Heartbeat, macro, and equipment slot allocations stay unchanged. No game command is carried.

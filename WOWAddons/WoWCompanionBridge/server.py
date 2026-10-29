@@ -18,7 +18,7 @@ from protocol import GAME_PROTOCOLS, EquipmentComparisonError, EquipmentOfferErr
 from state import CompanionState, validate_config
 
 ROOT = Path(__file__).resolve().parent
-VERSION = "2.13.0"
+VERSION = "2.14.0"
 
 
 def allowed_origin(origin: str | None) -> bool:

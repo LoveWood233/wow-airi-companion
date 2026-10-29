@@ -8,11 +8,13 @@ import type { EquipmentLoadoutsState } from './wow-companion-loadout'
 
 import { array, boolean, check, finite, integer, literal, looseObject, maxLength, maxValue, minLength, minValue, nullable, number, object, optional, picklist, pipe, string, transform } from 'valibot'
 
+import { calendarSchema } from './wow-companion-calendar'
 import { equipmentSchema } from './wow-companion-equipment'
 import { equipmentComparisonSchema } from './wow-companion-equipment-comparisons'
 import { equipmentOfferSchema } from './wow-companion-equipment-offer'
 import { equipmentSwapsSchema } from './wow-companion-equipment-swaps'
 import { copperSchema, moneyIdSchema } from './wow-companion-gold'
+import { groupBuffSchema } from './wow-companion-group-buffs'
 import { equipmentLoadoutSchema } from './wow-companion-loadout'
 
 const count = pipe(number(), integer(), minValue(0), maxValue(Number.MAX_SAFE_INTEGER))
@@ -48,6 +50,9 @@ const snapshotFieldsSchema = looseObject({
   spec: count,
   map: count,
   zone: label,
+  // Scene observations are optional. Missing values do not identify an outdoor scene.
+  instanceType: optional(picklist(['none', 'party', 'raid', 'pvp', 'arena', 'scenario', 'unknown'])),
+  instanceID: optional(nullable(pipe(number(), integer(), minValue(1), maxValue(2147483647)))),
   // Snapshot v3 coordinates are additive. Earlier v3 senders omit both fields.
   // The map ID scopes the pair. Each integer is the normalized map fraction multiplied by 10,000.
   px: optional(nullable(mapCoordinate)),
@@ -70,11 +75,14 @@ export const snapshotSchema = pipe(snapshotFieldsSchema, check((snapshot) => {
     (snapshot.px === null && snapshot.py === null)
     || (typeof snapshot.px === 'number' && typeof snapshot.py === 'number')
   ))
-}, 'Map coordinates require both values or two nulls.'), transform((snapshot): InferOutput<typeof snapshotFieldsSchema> => ({
+}, 'Map coordinates require both values or two nulls.'), check(snapshot => snapshot.instanceID == null
+  || (snapshot.instanceType !== undefined && !['none', 'unknown'].includes(snapshot.instanceType)), 'Instance IDs require an observed instance type.'), transform((snapshot): InferOutput<typeof snapshotFieldsSchema> => ({
   ...snapshot,
   // An absent pair is unknown. Offline observations and unknown maps cannot retain a current position.
   px: snapshot.online && snapshot.map > 0 ? snapshot.px ?? null : null,
   py: snapshot.online && snapshot.map > 0 ? snapshot.py ?? null : null,
+  ...(!snapshot.online && snapshot.instanceType !== undefined ? { instanceType: 'unknown' as const } : {}),
+  ...(!snapshot.online && snapshot.instanceID !== undefined ? { instanceID: null } : {}),
 })))
 
 export const eventSchema = object({
@@ -105,6 +113,8 @@ export const bridgeSchema = looseObject({
   snapshot: nullable(snapshotSchema),
   lastSeen: nullable(string()),
   ageSeconds: nullable(pipe(number(), finite())),
+  calendar: calendarSchema,
+  groupBuff: groupBuffSchema,
   eventCursor: count,
   events: pipe(array(eventSchema), maxLength(500)),
   // Published bridges without equipment support remain a supported source of character observations.

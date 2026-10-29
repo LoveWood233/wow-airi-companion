@@ -61,6 +61,8 @@ vi.mock('@proj-airi/electron-vueuse', async importOriginal => ({
 }))
 
 const now = Date.parse('2026-10-22T10:00:00Z')
+
+beforeEach(() => localStorage.removeItem('wow-companion/group-buff-seen-v1'))
 const snapshot: Snapshot = {
   v: 3,
   session: 'session-1',
@@ -312,6 +314,90 @@ async function speechCompanion(state = liveState(), forever = disabledForever())
 
   return { ...result, cards, speech, sessions, sessionId, voice, controls, synthesize, output, refreshAt, observeUntil }
 }
+
+describe('group buff speech', () => {
+  beforeEach(() => vi.resetAllMocks())
+
+  function missingBuff(state: CompanionState) {
+    const bridge = state.bridge!
+    bridge.snapshot!.class = 'WARRIOR'
+    bridge.snapshot!.instanceType = 'party'
+    bridge.snapshot!.instanceID = 33
+    bridge.groupBuff = {
+      v: 1,
+      kind: 'buff',
+      s: bridge.snapshot!.session,
+      g: bridge.snapshot!.guid,
+      e: 1,
+      q: 1,
+      st: 'ready',
+      spell: 6673,
+      name: '战斗怒吼',
+      missing: 1,
+      checked: 2,
+      total: 5,
+      instanceType: 'party',
+      instanceID: 33,
+    }
+  }
+
+  it('speaks through the active voice without a chat model, deduplicates polls and permits a new entry', async () => {
+    const state = liveState()
+    const { synthesize, voice, output, refreshAt } = await speechCompanion(state)
+    missingBuff(state)
+    await refreshAt(now + 1000)
+    await expect.poll(() => JSON.stringify(synthesize.mock.calls)).toContain('队伍里有人缺少战斗怒吼')
+    await expect.poll(() => voice.activeTurns.length).toBe(0)
+    expect(output).toHaveBeenCalledTimes(1)
+    await refreshAt(now + 2000)
+    expect(output).toHaveBeenCalledTimes(1)
+    state.bridge!.groupBuff!.e++
+    await refreshAt(now + 3000)
+    await expect.poll(() => output.mock.calls.length).toBe(2)
+  })
+
+  it.each(['combat', 'filled', 'leave', 'mute', 'character'])('cancels pending speech after %s and does not repeat it', async (reason) => {
+    const state = liveState()
+    const { synthesize, voice, output, refreshAt } = await speechCompanion(state)
+    const requests = new Set<AbortSignal>()
+    synthesize.mockImplementation((_request, signal) => {
+      requests.add(signal)
+      return new Promise<null>((resolve) => {
+        signal.addEventListener('abort', () => resolve(null), { once: true })
+      })
+    })
+    missingBuff(state)
+    await refreshAt(now + 1000)
+    await expect.poll(() => requests.size).toBeGreaterThan(0)
+    if (reason === 'combat')
+      state.bridge!.snapshot!.combat = true
+    if (reason === 'filled')
+      state.bridge!.groupBuff!.st = 'waiting'
+    if (reason === 'leave')
+      state.bridge!.snapshot!.instanceType = 'none'
+    if (reason === 'mute')
+      state.settings.muted = true
+    if (reason === 'character')
+      state.bridge!.snapshot!.guid = 'Player-other'
+    await refreshAt(now + 2000)
+    await expect.poll(() => [...requests].every(signal => signal.aborted)).toBe(true)
+    await expect.poll(() => voice.activeTurns.length).toBe(0)
+    await refreshAt(now + 3000)
+    expect(output).toHaveBeenCalledTimes(1)
+  })
+
+  it('waits while globally muted without consuming the reminder', async () => {
+    const state = liveState()
+    const { controls, output, refreshAt } = await speechCompanion(state)
+    controls.setSpeechMuted(true)
+    missingBuff(state)
+    await refreshAt(now + 1000)
+    expect(output).not.toHaveBeenCalled()
+    controls.setSpeechMuted(false)
+    await refreshAt(now + 2000)
+    await expect.poll(() => output.mock.calls.length).toBe(1)
+  })
+})
 
 describe('woW companion proactive speech', () => {
   beforeEach(() => vi.resetAllMocks())

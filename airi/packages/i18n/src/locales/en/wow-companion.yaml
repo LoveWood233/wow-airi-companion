@@ -451,3 +451,7 @@ coordinates:
   unavailable: Unavailable in this observation
   note: Position within the current map (0–100). Some areas do not provide
     coordinates.
+
+group-buffs:
+  reminder: 'Someone in the group is missing {buff}. Remember to cast it.'
+  error: 'The group buff reminder failed. Check your speech settings.'

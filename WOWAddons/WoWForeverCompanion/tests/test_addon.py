@@ -394,9 +394,9 @@ class AddonTest(unittest.TestCase):
         self.assertEqual(plain, camelot)
         self.assertIn("## Interface: 16001", plain)
         self.assertIn("## SavedVariables: WoWForeverCompanionDB", plain)
-        self.assertIn("## Version: 1.9.0", plain)
+        self.assertIn("## Version: 1.12.0", plain)
         lua_files = [line.strip() for line in plain.splitlines() if line.strip().endswith(".lua")]
-        self.assertEqual(lua_files, ["Localization.lua", "Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"])
+        self.assertEqual(lua_files, ["Localization.lua", "Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "Calendar.lua", "GroupBuffs.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"])
         for filename in lua_files:
             self.assertTrue((ROOT / filename).is_file())
 
