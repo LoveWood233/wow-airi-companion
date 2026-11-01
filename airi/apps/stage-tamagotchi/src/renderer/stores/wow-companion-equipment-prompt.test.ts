@@ -107,6 +107,7 @@ function harness() {
     muted: () => muted,
     sessionId: () => sessionId,
     message: vi.fn((offer: EquipmentOffer) => `Change to ${offer.n}?`),
+    review: vi.fn(comparison => `Acquired ${comparison.candidate.name}. Compare it manually before changing equipment.`),
     accepted: () => 'Confirm the change in the game.',
     speak: vi.fn(() => {
       const done = Promise.withResolvers<void>()

@@ -4,6 +4,7 @@ import type { ChatAssistantMessage, ChatHistoryItem, ChatSlicesToolCallResult } 
 
 import { errorMessageFrom } from '@moeru/std'
 import { chatContentToInputSegments } from '@proj-airi/core-agent'
+import { cloneDeep } from 'es-toolkit'
 
 import { JUDGE_RECIPE_TOOL_NAME } from '../tools/judge-recipe'
 import { FORGET_MEMORY_TOOL_NAME, READ_MEMORY_TOOL_NAME, WRITE_MEMORY_TOOL_NAME } from '../tools/memory'
@@ -84,7 +85,9 @@ function findInvocation(message: ChatAssistantMessage, callId: string, invocatio
  * Native continuation for this round and later rounds becomes stale after the edit.
  * Repeated provider call ids require an AIRI invocation id.
  */
-export function replaceToolCallResult(message: ChatAssistantMessage, result: ToolCallResultInput, invocationId?: string): ChatAssistantMessage {
+export function replaceToolCallResult(source: ChatAssistantMessage, result: ToolCallResultInput, invocationId?: string): ChatAssistantMessage {
+  // History comes from reactive Pinia state. Copy nested rounds and slices before constructing a transportable result.
+  const message = cloneDeep(source)
   const target = findInvocation(message, result.id, invocationId)
   const occurrence = target?.occurrence ?? 0
   const toolResult = { id: result.id, isError: result.isError, result: result.result }

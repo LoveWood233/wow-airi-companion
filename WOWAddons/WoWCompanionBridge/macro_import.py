@@ -82,11 +82,31 @@ class MacroImporter:
             self.sleep(0.1)
         raise ImportFailure("receipt-timeout")
 
+    def acquire_focus(self):
+        self.native.activate()
+        deadline = self.clock() + 12
+        stable_since = None
+        while self.clock() < deadline:
+            if self.cancelled():
+                raise ImportFailure("cancelled")
+            try:
+                self.native.check()
+                if stable_since is None:
+                    stable_since = self.clock()
+                if self.clock() - stable_since >= 0.25:
+                    return
+            except ImportFailure as error:
+                if str(error) != "focus-lost":
+                    raise
+                stable_since = None
+            self.sleep(0.05)
+        raise ImportFailure("focus-not-acquired")
+
     def run(self, body, game):
         self.game = game
         body = normalize(body)
         self.native.copy(body)
-        self.native.activate()
+        self.acquire_focus()
         # Combat can delay the first action. After the first key, combat cancels instead of resuming a partial import.
         deadline = self.clock() + 90
         while True:

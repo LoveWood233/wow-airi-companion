@@ -12,7 +12,13 @@ The main process validates the body and discovers one verified Warcraft window f
 `CompanionBridgeRuntime.runMacroImport()` starts a fixed Python workflow. It passes JSON through stdin, without a shell.
 The parent keeps stdin open as a lifetime lease. Stop, disable, or application shutdown closes that lease and cancels input.
 The helper copies the macro into the clipboard and activates the game window.
+Before the first key, it waits up to 12 seconds for 250 milliseconds of continuous game focus.
+Windows can deny foreground activation. The desktop prompts the user to switch to Warcraft and keep it focused.
+An initial focus timeout returns `focus-not-acquired` without typing.
+After acquisition, lost focus stops the workflow immediately. It never reactivates a partial import.
+The tool presents localized recovery instructions for both focus failures and requires a new user request to retry.
 It waits up to 90 seconds for combat to end before it sends the first key.
+The parent limits the complete helper lifetime to 180 seconds, including focus, combat, and receipt waits.
 
 The helper opens chat, waits for chat focus, enters `/import-marco <requestId>`, and waits for the addon's focused input box.
 It pastes the body, checks its length and hash, and sends Ctrl+Enter.
@@ -46,6 +52,15 @@ A process-wide Windows mutex prevents concurrent macro import helpers.
 
 ## Delivery and limits
 
+Tool reruns copy the complete assistant history before replacing a result.
+A shallow spread retains Vue proxies in earlier rounds, message content, and display slices.
+Those proxies fail structured cloning when the next request reads its generation transcript.
+
+The shared rerun helper uses the existing deep-copy utility before constructing updated portable history.
+It still invalidates native continuations from the edited round onward, without changing unrelated invocation results.
+A browser regression exercises normal chat, macro invocation, an explicit rerun, and a later message through the real SDK.
+Only provider HTTP and desktop IPC are simulated. The test sends no input to Warcraft.
+
 The Electron resource list includes both Python helper modules.
 `Install-WoWMacroImport.ps1` installs the importer and the matching telemetry addon with backups.
 The existing clipboard is replaced with the requested macro. It is not restored.
@@ -57,6 +72,7 @@ Game rendering and real keyboard handling require live-client verification.
 
 - [BetterGI text input](https://github.com/babalae/better-genshin-impact/blob/main/BetterGenshinImpact/Core/Script/Dependence/GlobalMethod.cs)
 - [Windows SendInput](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput)
+- [Windows foreground activation restrictions](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setforegroundwindow)
 - [Blizzard macro UI source](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_MacroUI/Blizzard_MacroUI.lua)
 
 The implementation uses the existing Python runtime and Windows APIs. No BetterGI source is copied or linked.

@@ -169,6 +169,19 @@ function newEquipment(name: string, id = 1): EquipmentRecord {
   }
 }
 
+function equipmentReviewState() {
+  const state = liveState()
+  const comparison = comparisonFixture({ session: snapshot.session, guid: snapshot.guid, observedAt: now / 1000, specMatch: null, slot: 12 })
+  Object.assign(comparison.current!, { itemID: 232349, name: 'Old ring', itemLevel: 10, equipLoc: 'INVTYPE_FINGER', complex: true })
+  Object.assign(comparison.candidate, { itemID: 143902, name: '邪恶女巫玺戒', itemLevel: 19, equipLoc: 'INVTYPE_FINGER', complex: true })
+  const acquisition = newEquipment(comparison.candidate.name)
+  Object.assign(acquisition, { itemID: comparison.candidate.itemID, itemLevel: 19, equipLoc: 'INVTYPE_FINGER' })
+  state.bridge!.equipment = [acquisition]
+  state.bridge!.equipmentComparisons = [comparison]
+  state.bridge!.equipmentOffer = null
+  return state
+}
+
 function mockStates(retail: CompanionState, forever = disabledForever()) {
   invokeMocks.getState.mockImplementation(({ game }: { game: GameVersion }) => Promise.resolve(structuredClone(game === 'retail' ? retail : forever)))
 }
@@ -1441,6 +1454,38 @@ describe('woW map coordinates', () => {
 })
 
 describe('woW equipment view and chat context', () => {
+  it.each(['en', 'zh-Hans'] as const)('shows a localized review notice without equipment choices in %s', async (locale) => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(now)
+    const previousLocale = i18n.global.locale.value
+    i18n.global.locale.value = locale
+    onTestFinished(() => {
+      i18n.global.locale.value = previousLocale
+      vi.useRealTimers()
+    })
+    const { companion } = await renderPage(equipmentReviewState(), locale)
+    companion.start(true)
+    await companion.refresh('retail')
+    await expect.poll(() => companion.equipmentPrompt?.phase).toBe('review')
+    expect(companion.equipmentPrompt?.text).toContain('邪恶女巫玺戒')
+    expect(companion.equipmentPrompt?.text).toContain('10 → 19')
+    expect(companion.equipmentPrompt?.text).toContain(locale === 'en' ? 'does not confirm an upgrade' : '暂不能仅凭装等判断是否更好')
+    companion.chooseEquipmentPrompt(companion.equipmentPrompt!.id, 'accept')
+    expect(companion.equipmentPrompt?.phase).toBe('review')
+  })
+
+  it('keeps verified zone level warnings in the live player context', async () => {
+    const state = liveState()
+    Object.assign(state.bridge!.snapshot!, { level: 11, map: 249, zone: '奥丹姆' })
+    const { companion, pinia } = await renderPage(state)
+    companion.start(true)
+    await companion.refresh('retail')
+    const text = JSON.stringify(useChatContextStore(pinia).getContextsSnapshot())
+    expect(text).toContain('below a verified zone minimum')
+    expect(text).toContain('recommend returning later')
+    expect(text).toContain('Without matching evidence')
+  })
+
   beforeEach(() => vi.resetAllMocks())
 
   it('explains how to update a supported bridge that only supplies character data', async () => {

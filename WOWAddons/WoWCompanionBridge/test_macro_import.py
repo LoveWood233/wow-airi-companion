@@ -288,11 +288,75 @@ class WorkflowTests(unittest.TestCase):
             self.run_import()
         self.assertNotIn("command", self.native.actions)
 
-    def test_focus_loss_cancels(self):
+    def test_initial_focus_timeout_has_no_keys(self):
         self.native.focus = False
-        with self.assertRaisesRegex(ImportFailure, "focus-lost"):
+        with self.assertRaisesRegex(ImportFailure, "focus-not-acquired"):
             self.run_import()
         self.assertNotIn("enter", self.native.actions)
+
+    def test_delayed_initial_activation_waits_without_typing(self):
+        self.native.focus = False
+        def sleep(delay):
+            self.assertNotIn("enter", self.native.actions)
+            self.native.now += delay
+            if self.native.now >= 100.5:
+                self.native.focus = True
+        self.runner.sleep = sleep
+        self.assertTrue(self.run_import()["ok"])
+        self.assertEqual(self.native.actions.count("activate"), 1)
+        self.assertEqual(self.native.actions.count("paste"), 1)
+
+    def test_focus_lost_after_first_key_never_reactivates_or_pastes(self):
+        def read():
+            if "enter" in self.native.actions:
+                self.native.focus = False
+        self.native.on_read = read
+        with self.assertRaisesRegex(ImportFailure, "focus-lost"):
+            self.run_import()
+        self.assertEqual(self.native.actions.count("activate"), 1)
+        self.assertNotIn("command", self.native.actions)
+        self.assertNotIn("paste", self.native.actions)
+
+    def test_brief_focus_does_not_start_typing(self):
+        self.native.focus = False
+        def sleep(delay):
+            self.assertNotIn("enter", self.native.actions)
+            self.native.now += delay
+            elapsed = self.native.now - 100
+            self.native.focus = 0.1 <= elapsed < 0.2 or elapsed >= 0.6
+        self.runner.sleep = sleep
+        self.assertTrue(self.run_import()["ok"])
+        self.assertGreaterEqual(self.native.now, 100.85)
+        self.assertEqual(self.native.actions.count("activate"), 1)
+
+    def test_cancellation_while_waiting_for_focus_has_no_keys(self):
+        self.native.focus = False
+        def sleep(delay):
+            self.native.now += delay
+            self.native.cancel = True
+        self.runner.sleep = sleep
+        with self.assertRaisesRegex(ImportFailure, "cancelled"):
+            self.run_import()
+        self.assertNotIn("enter", self.native.actions)
+
+    def test_window_identity_failure_is_not_retried_as_focus_loss(self):
+        def check():
+            raise ImportFailure("window-changed")
+        self.native.check = check
+        with self.assertRaisesRegex(ImportFailure, "window-changed"):
+            self.run_import()
+        self.assertNotIn("enter", self.native.actions)
+
+    def test_activation_denial_does_not_abort_before_the_workflow_can_wait(self):
+        from macro_native import WindowsMacroInput
+        from types import SimpleNamespace
+        native = WindowsMacroInput.__new__(WindowsMacroInput)
+        checks = []
+        native.check = lambda foreground=True: checks.append(foreground)
+        native.handle = 123
+        native.user = SimpleNamespace(SetForegroundWindow=lambda handle: False)
+        native.activate()
+        self.assertEqual(checks, [False])
 
     def test_stale_demo_dead_paused_and_missing_addon(self):
         for changes in ({"status": "stale"}, {"source": "demo"}, {"macroImport": None},

@@ -3,6 +3,7 @@ import type { Tool } from '@xsai/shared-chat'
 import type { ChatAssistantMessage, ChatHistoryItem } from '../types/chat'
 
 import { describe, expect, it, vi } from 'vitest'
+import { reactive } from 'vue'
 
 import { executeToolCallRerun, replaceToolCallResult } from './tool-call-rerun'
 
@@ -42,6 +43,21 @@ function tool(name: string, execute: Tool['execute']): Tool {
 }
 
 describe('replaceToolCallResult', () => {
+  it('returns cloneable history after rerunning a call from reactive rounds', () => {
+    const message = reactive(assistantMessage({ generationTranscript: {
+      type: 'assistant',
+      id: 'turn',
+      status: 'completed',
+      rounds: [0, 1].map(index => ({ id: `round-${index}`, content: [], projectionIssues: [], toolInvocations: [{ id: `invocation-${index}`, callId: `call-${index}`, name: 'weather', arguments: '{}', execution: { status: 'succeeded' as const, output: [{ type: 'text' as const, text: 'old' }] } }], continuation: { protocol: 'chat-completions' as const, scope: 'session', data: [{ role: 'assistant' as const, content: 'old' }] } })),
+    } }))
+    const next = replaceToolCallResult(message, { id: 'call-1', result: 'updated' }, 'invocation-1')
+    expect(() => structuredClone(next)).not.toThrow()
+    expect(next.generationTranscript?.rounds[0].continuation).toBeDefined()
+    expect(next.generationTranscript?.rounds[1].continuation).toBeUndefined()
+    expect(message.generationTranscript?.rounds[1].continuation).toBeDefined()
+    expect(next.generationTranscript?.rounds[0]).not.toBe(message.generationTranscript?.rounds[0])
+  })
+
   it('updates portable history and invalidates native state after a local tool rerun', () => {
     // ROOT CAUSE:
     // A rerun updates UI tool results, but replaying the old native transcript

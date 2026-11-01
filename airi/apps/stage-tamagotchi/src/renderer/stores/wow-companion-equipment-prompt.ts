@@ -3,12 +3,13 @@ import type { EquipmentComparison } from '../../shared/wow-companion-equipment-c
 import type { EquipmentOffer } from '../../shared/wow-companion-equipment-offer'
 
 import { assessEquipment } from '../../shared/wow-companion-equipment-comparisons'
+import { hasFreshCompanionObservation } from '../utils/wow-companion-observation'
 
-/** One desktop suggestion. Acceptance only explains the required confirmation inside the game. */
+/** One desktop notice. Only a verified game offer can expose an equipment choice. */
 export interface EquipmentPrompt {
   id: string
   text: string
-  phase: 'speaking' | 'choosing' | 'accepted'
+  phase: 'speaking' | 'choosing' | 'accepted' | 'review'
   deadline: number | null
 }
 
@@ -40,13 +41,15 @@ export interface EquipmentPromptHost {
   busy: (ownedTurnId?: string) => boolean
   muted: () => boolean
   message: (offer: EquipmentOffer, comparison: EquipmentComparison) => string
+  review: (comparison: EquipmentComparison) => string
   accepted: () => string
   speak: (sessionId: string, text: string) => EquipmentPromptPlayback
 }
 
 interface Candidate {
   game: GameVersion
-  offer: EquipmentOffer
+  offer?: EquipmentOffer
+  expiresAt: number
   comparison: EquipmentComparison
   key: string
   identity: string
@@ -70,6 +73,7 @@ export class EquipmentPromptController {
   private readonly states = new Map<GameVersion, CompanionState>()
   private readonly waiting = new Set<string>()
   private readonly seen = new Map<string, number>()
+  private readonly reviewed = new Map<string, number>()
   private current: ActivePrompt | undefined
   private timer: ReturnType<typeof setTimeout> | undefined
   private stoppingAudio = 0
@@ -137,7 +141,43 @@ export class EquipmentPromptController {
     if (assessment.verdict !== 'upgrade' && assessment.reason !== 'primary_upgrade_tradeoff')
       return
     const identity = JSON.stringify([game, offer.s, offer.g])
-    return { game, offer, comparison, identity, key: JSON.stringify([game, offer.s, offer.g, offer.id]), muted: state.settings.muted }
+    return { game, offer, comparison, identity, key: JSON.stringify([game, offer.s, offer.g, offer.id]), expiresAt: offer.until * 1000, muted: state.settings.muted }
+  }
+
+  private candidates(game: GameVersion, now: number): Candidate[] {
+    const offered = this.candidate(game, now)
+    const candidates = offered ? [offered] : []
+    const state = this.states.get(game)
+    if (!state || state.game !== game || !hasFreshCompanionObservation(state, now))
+      return candidates
+    const { bridge } = state
+    const snapshot = bridge.snapshot
+    if (snapshot.combat || snapshot.dead || !this.host.currentPlayer(game, snapshot)
+      || bridge.equipmentError || bridge.equipmentComparisonError) {
+      return candidates
+    }
+
+    // A review is informational. It requires a recent acquisition, never a saved comparison or a manual bag rescan.
+    for (const comparison of [...bridge.equipmentComparisons].sort((a, b) => b.id - a.id)) {
+      if (comparison.session !== snapshot.session || comparison.guid !== snapshot.guid
+        || comparison.class !== snapshot.class || comparison.spec !== snapshot.spec
+        || comparison.observedAt * 1000 > now + 5000 || now - comparison.observedAt * 1000 > 180_000
+        || !comparison.current || comparison.candidate.itemLevel <= comparison.current.itemLevel
+        || bridge.equipmentOffer?.id === comparison.id) {
+        continue
+      }
+      const acquired = bridge.equipment?.some(item => item.source === 'bag_added' && item.id === comparison.id
+        && item.session === comparison.session && item.guid === comparison.guid
+        && item.itemID === comparison.candidate.itemID && item.observedAt === comparison.observedAt)
+      const assessment = assessEquipment(comparison)
+      if (!acquired || assessment.verdict !== 'review' || assessment.reason === 'primary_upgrade_tradeoff')
+        continue
+      const identity = JSON.stringify([game, comparison.session, comparison.guid])
+      if (comparison.id <= (this.seen.get(identity) ?? 0))
+        continue
+      candidates.push({ game, comparison, identity, key: JSON.stringify([game, comparison.session, comparison.guid, comparison.id]), expiresAt: comparison.observedAt * 1000 + 180_000, muted: state.settings.muted })
+    }
+    return candidates
   }
 
   private tick() {
@@ -146,9 +186,13 @@ export class EquipmentPromptController {
     const now = Date.now()
     const current = this.current
     if (current) {
-      const observed = this.candidate(current.game, now)
+      const observed = this.candidates(current.game, now).find(candidate => candidate.key === current.key)
+      const actionable = !current.offer && [...this.states.keys()].some((game) => {
+        const candidate = this.candidate(game, now)
+        return candidate && candidate.comparison.id > (this.seen.get(candidate.identity) ?? 0)
+      })
       if (!observed || observed.key !== current.key || (current.sessionId !== undefined && this.host.sessionId() !== current.sessionId)
-        || this.host.busy(current.playback?.turnId)) {
+        || actionable || this.host.busy(current.playback?.turnId)) {
         this.dismiss()
       }
       else if (current.view.phase === 'speaking' && !current.stopping
@@ -164,7 +208,7 @@ export class EquipmentPromptController {
       }
     }
 
-    const candidates = [...this.states.keys()].map(game => this.candidate(game, now)).filter((value): value is Candidate => !!value)
+    const candidates = [...this.states.keys()].flatMap(game => this.candidates(game, now)).sort((first, second) => Number(!!second.offer) - Number(!!first.offer))
     const validKeys = new Set(candidates.map(candidate => candidate.key))
     for (const key of this.waiting.keys()) {
       if (!validKeys.has(key))
@@ -172,10 +216,11 @@ export class EquipmentPromptController {
     }
     if (!this.current && !this.stoppingAudio) {
       for (const candidate of candidates) {
-        if (candidate.offer.id <= (this.seen.get(candidate.identity) ?? 0))
+        const seen = candidate.offer ? this.seen : this.reviewed
+        if (candidate.comparison.id <= (seen.get(candidate.identity) ?? 0))
           continue
         this.waiting.add(candidate.key)
-        if (candidate.offer.until * 1000 - now < 10_000) {
+        if (candidate.expiresAt - now < 10_000) {
           this.consume(candidate)
           continue
         }
@@ -191,7 +236,9 @@ export class EquipmentPromptController {
   }
 
   private consume(candidate: Candidate) {
-    this.seen.set(candidate.identity, Math.max(this.seen.get(candidate.identity) ?? 0, candidate.offer.id))
+    // Informational reviews cannot consume an earlier game offer that is still crossing the pixel transport.
+    const seen = candidate.offer ? this.seen : this.reviewed
+    seen.set(candidate.identity, Math.max(seen.get(candidate.identity) ?? 0, candidate.comparison.id))
     this.waiting.delete(candidate.key)
   }
 
@@ -200,9 +247,9 @@ export class EquipmentPromptController {
     const current: ActivePrompt = {
       ...candidate,
       sessionId,
-      view: { id: candidate.key, text: this.host.message(candidate.offer, candidate.comparison), phase: 'speaking', deadline: null },
+      view: { id: candidate.key, text: candidate.offer ? this.host.message(candidate.offer, candidate.comparison) : this.host.review(candidate.comparison), phase: 'speaking', deadline: null },
       // Slow speech synthesis still leaves ten seconds for a valid in-game offer.
-      speechDeadline: Math.min(now + 120_000, candidate.offer.until * 1000 - 10_000),
+      speechDeadline: Math.min(now + 120_000, candidate.expiresAt - 10_000),
       stopping: false,
     }
     this.current = current
@@ -224,14 +271,14 @@ export class EquipmentPromptController {
   private chooseAfterSpeech(current: ActivePrompt) {
     if (this.current !== current || current.stopping || current.view.phase !== 'speaking')
       return
-    const candidate = this.candidate(current.game, Date.now())
+    const candidate = this.candidates(current.game, Date.now()).find(candidate => candidate.key === current.key)
     if (!candidate || candidate.key !== current.key || (current.sessionId !== undefined && this.host.sessionId() !== current.sessionId)
-      || this.host.busy(current.playback?.turnId) || candidate.offer.until * 1000 - Date.now() < 10_000) {
+      || this.host.busy(current.playback?.turnId) || candidate.expiresAt - Date.now() < 10_000) {
       this.dismiss()
       return
     }
     current.playback = undefined
-    current.view = { ...current.view, phase: 'choosing', deadline: Date.now() + 10_000 }
+    current.view = { ...current.view, phase: current.offer ? 'choosing' : 'review', deadline: Date.now() + 10_000 }
     this.host.publish(current.view)
   }
 

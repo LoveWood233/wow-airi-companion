@@ -291,6 +291,7 @@ equipment-swaps:
     '18': Ranged
     '19': Tabard
 equipment-prompt:
+  review: 'New equipment: {name}. Item level at acquisition: {oldLevel} → {newLevel}. {reason}. A higher item level alone does not confirm an upgrade. Compare its attributes and restrictions in your bags before changing equipment.'
   message: 'Congratulations on your new equipment, {name}! This gives you another chance to grow stronger. {reason} Do you want to change equipment?'
   message-player: '{player}, congratulations on your new equipment, {name}! This gives you another chance to grow stronger. {reason} Do you want to change equipment?'
   message-player-tradeoff: '{player}, congratulations on your new equipment, {name}! It can improve your primary stat. {reason} Do you want to change equipment?'
@@ -455,3 +456,8 @@ coordinates:
 group-buffs:
   reminder: 'Someone in the group is missing {buff}. Remember to cast it.'
   error: 'The group buff reminder failed. Check your speech settings.'
+
+macro-import:
+  waiting-focus: Preparing the macro import. Switch to Warcraft and keep it in the foreground until the import finishes.
+  focus-not-acquired: Warcraft has not gained focus. Switch back to the game, then ask me to import the macro again.
+  focus-lost: Focus switched to another window during import, so input stopped. Switch back to Warcraft, then ask me to import again.

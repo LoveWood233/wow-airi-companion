@@ -23,8 +23,9 @@ export async function wowMacroImportTools(): Promise<Tool[]> {
       'Provide only the macro body, without Markdown fences. Maximum 255 UTF-8 bytes.',
       'The desktop copies it to the clipboard, waits up to 90 seconds for combat to end, opens /import-marco, pastes, and submits.',
       'Requires the WoWMacroImport addon and live companion telemetry. The game window must remain visible and available.',
+      'Before typing, the desktop waits up to 12 seconds for the game to gain stable focus. Ask the user to switch to Warcraft and keep it focused.',
       'Saves the character macro WCP Import without executing it. Only ok=true and code=saved confirm success.',
-      'On failure explain the returned code and provide the macro for manual import. Never retry automatically.',
+      'On failure present userMessage when provided. Explain recovery in plain language without echoing raw status codes. Provide the macro for manual import. Never retry automatically.',
     ].join(' '),
     parameters: {
       type: 'object',
@@ -38,7 +39,25 @@ export async function wowMacroImportTools(): Promise<Tool[]> {
     execute: async (input) => {
       const request = parse(macroImportSchema, input)
       invoke ??= createInvoker()
-      return JSON.stringify(await invoke(request))
+      // Tool discovery also runs without a renderer. UI modules load only when a user actually imports a macro.
+      const [{ i18n }, { toast }] = await Promise.all([import('../../../modules/i18n'), import('vue-sonner')])
+      const toastId = 'wow-macro-import'
+      toast.loading(i18n.global.t('wow-companion.macro-import.waiting-focus'), { id: toastId })
+      try {
+        const result = await invoke(request)
+        if (!result.ok && (result.code === 'focus-not-acquired' || result.code === 'focus-lost')) {
+          const key = result.code === 'focus-not-acquired' ? 'focus-not-acquired' : 'focus-lost'
+          const userMessage = i18n.global.t(`wow-companion.macro-import.${key}`)
+          toast.info(userMessage, { id: toastId })
+          return JSON.stringify({ ...result, userMessage, recoveryAction: 'switch-to-game-and-request-import-again' })
+        }
+        toast.dismiss(toastId)
+        return JSON.stringify(result)
+      }
+      catch (cause) {
+        toast.dismiss(toastId)
+        throw cause
+      }
     },
   })]
 }

@@ -291,6 +291,7 @@ equipment-swaps:
     '18': 远程
     '19': 战袍
 equipment-prompt:
+  review: '获得新装备{name}，获得时对比装等 {oldLevel} → {newLevel}。{reason}，暂不能仅凭装等判断是否更好，请打开背包比较属性和装备限制后决定是否换装。'
   message: '恭喜获得新装备{name}，又能变强了！{reason}要换上这件装备吗？'
   message-player: '{player}，恭喜获得新装备{name}，又能变强了！{reason}要换上这件装备吗？'
   message-player-tradeoff: '{player}，恭喜获得新装备{name}，主属性又能提高了！{reason}要换上这件装备吗？'
@@ -454,3 +455,8 @@ coordinates:
 group-buffs:
   reminder: '队伍里有人缺少{buff}，记得补一下。'
   error: '队伍增益语音提醒失败，请检查语音设置。'
+
+macro-import:
+  waiting-focus: 正在准备导入宏，请切换到魔兽世界窗口。导入完成前，请保持游戏在前台。
+  focus-not-acquired: 游戏窗口还没有获得焦点。请先切回魔兽世界，再让我导入一次。
+  focus-lost: 导入过程中切换到了其他窗口，已停止输入。请切回魔兽世界，再让我导入一次。

@@ -247,7 +247,7 @@ export class CompanionBridgeRuntime {
           cancel()
           child.kill()
           reject(new Error('macro-import-timeout'))
-        }, 130_000)
+        }, 180_000)
         controller.signal.addEventListener('abort', cancel, { once: true })
         child.stdout.on('data', (chunk: Buffer) => {
           output += chunk.toString('utf8')

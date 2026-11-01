@@ -48,6 +48,17 @@ CRC checks and rejection of blurred pixels remain unchanged. Capture settings mu
 
 ## Manual review
 
+The desktop also announces recent acquisitions that have a higher item level but still require manual comparison.
+These notices require matching live acquisition and comparison records for the current character and specialization.
+They expire three minutes after acquisition. Saved history and deliberate bag reviews cannot trigger them.
+Unknown specialization fit, complex effects, and secondary-stat tradeoffs remain unverified.
+The notice states that higher item level alone does not prove an upgrade.
+It uses the existing speech queue and caption bubble, without equipment choices or native game input.
+Mute keeps the text notice. Combat and existing conversations delay delivery within the acquisition window.
+Separate session watermarks prevent repeats without letting a newer review suppress a delayed game offer.
+An arriving game offer takes priority over informational speech after the owned audio confirms silence.
+Character changes and stale telemetry cancel active notices.
+
 Retail provides `/wowc equip check [itemID]`. Forever provides `/wowf equip check [itemID]`.
 
 Without an item ID, the command reviews current bag equipment. With an item ID, it reviews matching items.

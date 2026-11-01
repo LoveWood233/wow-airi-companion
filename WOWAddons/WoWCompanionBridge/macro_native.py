@@ -93,7 +93,7 @@ class WindowsMacroInput:
     def activate(self):
         self.check(False)
         self.user.SetForegroundWindow(self.handle)
-        self.check()
+        # Windows can deny activation or finish it asynchronously. The workflow waits before sending any input.
 
     def copy(self, text):
         self.check(False)
