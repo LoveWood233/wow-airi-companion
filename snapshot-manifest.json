@@ -500,8 +500,8 @@
       "sha256": "55c58630a124479588419b243f27c21479244345c584c66af95e6e79f612e5dc"
     },
     "README.md": {
-      "bytes": 12650,
-      "sha256": "8e6a1a2ccb52e0ffdb80d0adf7195d440dbb276afbe8574f09cec69631017bed"
+      "bytes": 14105,
+      "sha256": "01341d982bd832c022ffabaae13c55b418ca0fd4ebf343f232e173f39803bbb1"
     },
     "WOWAddons/Install-WoWCompanion.ps1": {
       "bytes": 1568,
@@ -518,34 +518,6 @@
     "WOWAddons/Start-WoWCompanion.ps1": {
       "bytes": 4481,
       "sha256": "9396b16b3f07f78e14f5c6bf36ca3d48e4c0d0cf7e7ba1711bf64c57800ed9ab"
-    },
-    "WOWAddons/WoWCompanion-2.0.0-source.zip": {
-      "bytes": 116702,
-      "sha256": "020abed2b17c66fd9c3f67e269ddf788cf3749bd7193470d13614e2edce33522"
-    },
-    "WOWAddons/WoWCompanion-2.1.0-source.zip": {
-      "bytes": 143472,
-      "sha256": "5060b1b75f4e728bece6e403fa2952968a624a475d08dbaad44486be3abc3d1e"
-    },
-    "WOWAddons/WoWCompanion-2.1.1-source.zip": {
-      "bytes": 142392,
-      "sha256": "96a3d50f810a1f828a73f8005049cb43840a8ea11298b3e5a0f072b6878b930a"
-    },
-    "WOWAddons/WoWCompanion-2.12.4-source.zip": {
-      "bytes": 732374,
-      "sha256": "5ae1d7f29ff8e0a3242c5b617f9818180e2f4e3da64fd30ac5b9e80d3dfe8286"
-    },
-    "WOWAddons/WoWCompanion-2.16.0-source.zip": {
-      "bytes": 2249465,
-      "sha256": "6d30343ceae32d1c915db9f2bea9beb52ed1f064f9fb5ac1cdcd0c0c2bf6411f"
-    },
-    "WOWAddons/WoWCompanion-2.2.0-source.zip": {
-      "bytes": 160491,
-      "sha256": "073e56c4872344330898ccf203faf57506bbbb7ce14b9dbd2e792f1bff48908d"
-    },
-    "WOWAddons/WoWCompanion-2.6.0-source.zip": {
-      "bytes": 462301,
-      "sha256": "9c56d6dc01b6f8786b67be39ffbfbb1d0c66de72be3bf3c35659aca212b128ed"
     },
     "WOWAddons/WoWCompanion-PROTOCOL.md": {
       "bytes": 40081,
@@ -659,26 +631,6 @@
       "bytes": 6793,
       "sha256": "56896dfc12ba0326bd505fbcd610d0cae2733afea8c08410d7f774f0cc8b669e"
     },
-    "WOWAddons/WoWForeverCompanion-1.10.0.zip": {
-      "bytes": 71194,
-      "sha256": "72949ae7b123189c75071a90ca0cc731bd667c443960aaf38bc856d406e370e9"
-    },
-    "WOWAddons/WoWForeverCompanion-1.12.0.zip": {
-      "bytes": 77617,
-      "sha256": "0187fab9ac2eef32c06020d115b5b1e25bb7d148259bb97c6e1928acda874eb4"
-    },
-    "WOWAddons/WoWForeverCompanion-1.3.0.zip": {
-      "bytes": 33614,
-      "sha256": "8f8dceb8e7f7e0dc6e2f95ab5287399ba619f52b28acf8afc5ef81f74bf4bf75"
-    },
-    "WOWAddons/WoWForeverCompanion-1.7.1.zip": {
-      "bytes": 47288,
-      "sha256": "a3c82e97518fd2df3e8060449429d87526e4b08b2cb3f79b4b445d0583f66562"
-    },
-    "WOWAddons/WoWForeverCompanion-1.9.0.zip": {
-      "bytes": 71207,
-      "sha256": "d7754ce7aeabb300a8cdef8ece8d9280cf8dc7d86b608fdcda2dcad0ab06620b"
-    },
     "WOWAddons/WoWForeverCompanion/Calendar.lua": {
       "bytes": 5605,
       "sha256": "431c4ac5d4814de08c5c45930cf215daae72cc7a991fbd1dae2e79105b3dbf88"
@@ -712,8 +664,8 @@
       "sha256": "c995bf074baf3659933d4180b2f8bd31c0f92b6b3622b59199e2a2a8bf175b47"
     },
     "WOWAddons/WoWForeverCompanion/README.md": {
-      "bytes": 33290,
-      "sha256": "c7abf8efc12234f05e393716db8adbe0d605227d3fc71be1b55574db01f6b8d1"
+      "bytes": 37010,
+      "sha256": "778bdc6e790b7093842558e63dc82a2ff09e4fdf663da3c29923a4cf66af7bff"
     },
     "WOWAddons/WoWForeverCompanion/Telemetry.lua": {
       "bytes": 3722,
@@ -895,42 +847,6 @@
       "bytes": 373,
       "sha256": "03e61246e45d3f2d9d1452c489d1d96e9549c9148c2c0c0f35bb2da9a2ebc6ca"
     },
-    "WOWAddons/WoWMapCompanion-1.0.0.zip": {
-      "bytes": 3821,
-      "sha256": "cced506876c056040d09c2cc2c556faf13c90b5b1bc50227c295f30f97a4a624"
-    },
-    "WOWAddons/WoWMapCompanion-2.0.0.zip": {
-      "bytes": 12406,
-      "sha256": "0c486c6473dec7ee1937c1df3f010b962138ab00c577e0dbd1f9ebdc8eb3569c"
-    },
-    "WOWAddons/WoWMapCompanion-2.1.0.zip": {
-      "bytes": 14928,
-      "sha256": "4a41ec82a0f3482bca25228c4c79a18abd1127a96f99b99eea923c06c7b6caa8"
-    },
-    "WOWAddons/WoWMapCompanion-2.1.1.zip": {
-      "bytes": 14362,
-      "sha256": "32d1ba9830d5859a956636b5aac127208cee4d82af3ddb2529aace566551aaec"
-    },
-    "WOWAddons/WoWMapCompanion-2.10.1.zip": {
-      "bytes": 47858,
-      "sha256": "ccda59a9fb4795ff7ff01ad4ee00c3c40784ae6cf3566652aac34f5a640c3d12"
-    },
-    "WOWAddons/WoWMapCompanion-2.12.0.zip": {
-      "bytes": 71263,
-      "sha256": "8101d9bf21cbe517df21b5a980b0a3428363a3ffa68812f6878b9efcb152ee82"
-    },
-    "WOWAddons/WoWMapCompanion-2.13.0.zip": {
-      "bytes": 71365,
-      "sha256": "5c03d2ff9bfb7c3caac3d32be071b69db6cdbdc688a96b5ae53746ce1ae84387"
-    },
-    "WOWAddons/WoWMapCompanion-2.15.0.zip": {
-      "bytes": 77778,
-      "sha256": "116bd89549ef7a8e9f1321c9ced8288189d72734631d360c7935bfd0f6ecf5fc"
-    },
-    "WOWAddons/WoWMapCompanion-2.6.0.zip": {
-      "bytes": 33785,
-      "sha256": "8de14b0f55da26ceb097777135f5e1913f5b37d95e5b7534469d25ef55618127"
-    },
     "WOWAddons/WoWMapCompanion/Calendar.lua": {
       "bytes": 5605,
       "sha256": "431c4ac5d4814de08c5c45930cf215daae72cc7a991fbd1dae2e79105b3dbf88"
@@ -1108,8 +1024,8 @@
       "sha256": "bc0fd556f9ec1cccb48b28a943b6333d33180415e0e013f0823724ab49259150"
     },
     "WOWAddons/build-delivery.py": {
-      "bytes": 6235,
-      "sha256": "e62bc66661d9b6098f01f63991585d9a231830662c402f9e5aeb7a1c12c18b35"
+      "bytes": 6171,
+      "sha256": "ac1784a0686f32360de1abd7f5516aa3734324b626b006b3968b8381816256c7"
     },
     "WOWAddons/calendar-verification-2026-10-29.md": {
       "bytes": 3176,
@@ -1152,8 +1068,8 @@
       "sha256": "f3f6bc4b9978aa88b7b54427cbf3bf4b4e1bc1b0382e44c5d49e86a118bc0724"
     },
     "WOWAddons/wow-companion-implementation.html": {
-      "bytes": 173158,
-      "sha256": "816ece2187004d335a8300c0202b9574297d9d65659478c19c51b37420783e41"
+      "bytes": 173902,
+      "sha256": "2cb8299b02ad033523204c502afd175be476fc499543615ad9c6f397ed815550"
     },
     "WOWAddons/魔兽陪伴精灵-使用说明.html": {
       "bytes": 18765,
@@ -25817,21 +25733,47 @@
   "retailAddonVersion": "2.15.0",
   "bridgeVersion": "2.14.0",
   "repositoryTextLineEndings": "Synced text retains each tracked file's dominant line ending. New text uses LF. Delivery archives preserve source bytes.",
-  "deliveryArchive": "WOWAddons/WoWCompanion-2.16.0-source.zip",
+  "deliveryArchive": null,
   "featureReport": "WOWAddons/魔兽陪伴精灵-功能现状与扩展规划.md",
   "verificationReport": "WOWAddons/verification-group-buffs-publish-2026-10-29.md",
   "macroAddonVersion": "1.0.0",
   "macroAddonArchives": [
-    "WOWAddons/WoWForeverCompanion-1.10.0.zip",
-    "WOWAddons/WoWMacroImport-1.0.0.zip",
-    "WOWAddons/WoWMapCompanion-2.13.0.zip"
+    "WOWAddons/WoWMacroImport-1.0.0.zip"
   ],
-  "deliveryArchiveVersion": "2.16.0",
-  "latestSyncScope": "Calendar, private schedules, raid resets, group buff voice reminders, and required scene telemetry. Other independent development features are excluded. deliveryArchive remains a historical source archive.",
+  "deliveryArchiveVersion": null,
+  "latestSyncScope": "Calendar, private schedules, raid resets, group buff voice reminders, and required scene telemetry. Other independent development features are excluded. Historical delivery archives were removed from the current branch on 2026-11-01; archiveCleanup records that change.",
   "featureReportUpdatedAt": "2026-10-29T04:31:20.962539+00:00",
   "featureReportScope": "Cross-session feature inventory through local desktop 2.20.0 and ongoing development. Documentation-only update; repository code and archive versions are unchanged.",
-  "addonArchives": [
-    "WOWAddons/WoWMapCompanion-2.15.0.zip",
-    "WOWAddons/WoWForeverCompanion-1.12.0.zip"
-  ]
+  "addonArchives": [],
+  "archiveCleanup": {
+    "date": "2026-11-01",
+    "baseCommit": "bec230d3a1d95ec83a639455a13ca28baf85eadd",
+    "removedArchives": [
+      "WOWAddons/WoWCompanion-2.0.0-source.zip",
+      "WOWAddons/WoWCompanion-2.1.0-source.zip",
+      "WOWAddons/WoWCompanion-2.1.1-source.zip",
+      "WOWAddons/WoWCompanion-2.12.4-source.zip",
+      "WOWAddons/WoWCompanion-2.16.0-source.zip",
+      "WOWAddons/WoWCompanion-2.2.0-source.zip",
+      "WOWAddons/WoWCompanion-2.6.0-source.zip",
+      "WOWAddons/WoWForeverCompanion-1.10.0.zip",
+      "WOWAddons/WoWForeverCompanion-1.12.0.zip",
+      "WOWAddons/WoWForeverCompanion-1.3.0.zip",
+      "WOWAddons/WoWForeverCompanion-1.7.1.zip",
+      "WOWAddons/WoWForeverCompanion-1.9.0.zip",
+      "WOWAddons/WoWMapCompanion-1.0.0.zip",
+      "WOWAddons/WoWMapCompanion-2.0.0.zip",
+      "WOWAddons/WoWMapCompanion-2.1.0.zip",
+      "WOWAddons/WoWMapCompanion-2.1.1.zip",
+      "WOWAddons/WoWMapCompanion-2.10.1.zip",
+      "WOWAddons/WoWMapCompanion-2.12.0.zip",
+      "WOWAddons/WoWMapCompanion-2.13.0.zip",
+      "WOWAddons/WoWMapCompanion-2.15.0.zip",
+      "WOWAddons/WoWMapCompanion-2.6.0.zip"
+    ],
+    "sourceArchiveCount": 7,
+    "addonArchiveCount": 14,
+    "removedBytes": 4655683,
+    "scope": "Remove obsolete companion installation and incremental source ZIP files from the current branch. Current sources, independent component archives, character assets, test fixtures, and Git history are retained. Other version metadata records its original synchronization scope."
+  }
 }

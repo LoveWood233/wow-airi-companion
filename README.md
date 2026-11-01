@@ -29,9 +29,9 @@
 
 [本次推送验证记录](WOWAddons/verification-group-buffs-publish-2026-10-29.md) 说明发布树的检查结果与限制。此前的 [开发环境验证记录](WOWAddons/group-buffs-verification-2026-10-29.md) 单独保留。实际副本、战场及扬声器播报仍待实机验收。
 
-历史安装包：[正式服插件 2.15.0](WOWAddons/WoWMapCompanion-2.15.0.zip) · [无限服插件 1.12.0](WOWAddons/WoWForeverCompanion-1.12.0.zip)。本次最新插件请使用对应源码目录。
+当前插件请使用 [正式服源码与安装说明](WOWAddons/WoWMapCompanion/README.md) 或 [无限服源码与安装说明](WOWAddons/WoWForeverCompanion/README.md)。旧版本插件安装包和增量 source 包已于 2026-11-01 从当前分支删除。
 
-更新后，在游戏内输入 `/reload`，并从托盘正常退出、重新启动陪伴精灵。历史源码压缩包保留原版本内容，当前代码以仓库文件为准。
+更新后，在游戏内输入 `/reload`，并从托盘正常退出、重新启动陪伴精灵。当前代码以仓库文件为准；完整源码可从仓库首页下载 ZIP 或通过 Git 克隆。
 
 [功能现状与扩展规划](WOWAddons/魔兽陪伴精灵-功能现状与扩展规划.md) 还包括其他开发会话的进展，不能据此认定本次提交已同步全部功能。[软件使用说明](WOWAddons/魔兽陪伴精灵-使用说明.html) 提供配置步骤。
 
@@ -88,7 +88,7 @@
 | `WOWAddons/WoWCompanion-PROTOCOL.md` | WCP1 数据协议与边界说明 |
 | `WOWAddons/WoWIntelAPI/` | 早期独立攻略情报接口源码，保留归档，不属于当前陪伴流程的必需组件 |
 | `WOWAddons/wow-ai-companion.html` | 早期研究方案 |
-| `WOWAddons/*.zip` | 已生成的插件和历史交付源码包 |
+| `WOWAddons/*.zip` | 保留的独立宏插件与早期情报接口包；旧版陪伴插件和 source 包已清理 |
 | `snapshot-manifest.json` | 原文件 SHA-256、AIRI 基线及本次二开文件清单 |
 
 `airi/` 和 `WOWAddons/` 保持同级，启动脚本可按相对路径找到 AIRI。原电脑上的工作目录仍为 `I:\GameTools\airi` 和 `I:\GameTools\WOWAddons`；本仓库不会改变正在使用的程序。
@@ -118,7 +118,7 @@ HTML 中出现的 `I:\GameTools\...` 是原电脑的实际路径；在其他电�
 
 ## 快照范围与验证
 
-这是可恢复的项目源码备份，不是包含依赖和 Electron 的免安装程序。保存了插件、桥接、完整 AIRI 源码、锁文件、工作区配置、补丁、资源及现有交付包。
+这是可恢复的项目源码备份，不是包含依赖和 Electron 的免安装程序。保存了插件、桥接、完整 AIRI 源码、锁文件、工作区配置、补丁、资源及仍保留的独立组件包。
 
 未上传模型 API Key、账号登录数据、`.env` 实际环境文件、依赖缓存、未被上游跟踪的构建产物、运行日志、PID、安装备份、本机金币账本、游戏 SavedVariables 或本机采集坐标配置。配置样例保留；被省略的环境文件路径列在 `snapshot-manifest.json` 中。恢复后重新配置模型服务和采集坐标。
 
@@ -130,7 +130,7 @@ HTML 中出现的 `I:\GameTools\...` 是原电脑的实际路径；在其他电�
 
 传输码保持 64×64 像素。此前 2.0 版的连续 20 次实机采集全部为 live、无错误，CRC 正确读取等级、地图与心跳；该记录不等于本轮金币功能已实机验证。
 
-`WoWCompanion-2.16.0-source.zip` 是历史 2.16.0 插件、桥接和 AIRI 改动包，内部不含 AIRI 上游全仓；本仓库的 `airi/` 才是完整源码。历史交付包保留原版本。保留的 `build-delivery.py` 使用原独立 AIRI Git 仓库的差异生成增量包，不能直接把它在本合并快照仓库中的输出当作完整备份。
+本仓库的 `airi/` 保存完整 AIRI 源码。此前的版本化插件 ZIP 和增量 source ZIP 已从当前分支删除，历史提交仍保留。`snapshot-manifest.json` 已移除相应包的文件校验项与交付路径引用，其他历史同步元数据保留原有含义。保留的 `build-delivery.py` 使用原独立 AIRI Git 仓库的差异生成增量包，不能直接把它在本合并快照仓库中的输出当作完整备份。
 
 ## 上游与许可
 

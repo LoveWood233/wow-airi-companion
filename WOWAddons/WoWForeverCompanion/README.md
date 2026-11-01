@@ -26,7 +26,7 @@
 15 级兽人进入希尔斯布莱德丘陵（20–31 级）的争夺区域会提醒。塔伦米尔为部落据点，客户端返回本方领地时豁免。
 聊天栏附地图等级与来源网页。游戏内无需联网，维护时运行 `python tools/update_exploration_levels.py` 刷新等级表。
 
-使用 `WoWForeverCompanion-1.13.0.zip` 更新插件后，完整退出并重新启动游戏，以加载新增 Lua 模块。
+从当前仓库复制完整的 `WoWForeverCompanion` 源码文件夹更新插件后，完整退出并重新启动游戏，以加载新增 Lua 模块。旧版本 ZIP 已从当前分支清理。
 本功能为游戏内文字提醒，仍需在无限客户端实机验证区域事件和领地 API。
 
 ## 1.12.0：组队增益语音提醒
@@ -79,7 +79,7 @@
 ## 将来如何安装
 
 1. 下载并退出无限客户端。在战网中选择“魔兽世界：无限”，打开该版本的安装位置，找到该客户端实际使用的 `Interface\AddOns`。公开测试资料使用过 `_classic_beta_`，**未来正式开放的目录以实际客户端为准**，不要复制到正式服的 `_retail_`。
-2. 解压 `WoWForeverCompanion-1.7.1.zip`，将整个 `WoWForeverCompanion` 文件夹放入上述 `AddOns`。
+2. 下载或克隆当前仓库，将 `WOWAddons/WoWForeverCompanion` 整个文件夹复制到上述 `AddOns`；已有版本请先备份。
 3. 确认没有多套一层目录，以下文件必须直接位于 `AddOns\WoWForeverCompanion\`：
 
 ```text

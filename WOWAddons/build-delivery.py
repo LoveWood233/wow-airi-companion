@@ -25,7 +25,7 @@ def main() -> None:
         "wow-companion-implementation.html", "魔兽陪伴精灵-使用说明.html", "WoWCompanion-PROTOCOL.md",
         "魔兽陪伴精灵-功能现状与扩展规划.md",
         "Start-WoWCompanion.cmd", "Start-WoWCompanion.ps1",
-        "Install-WoWCompanion.ps1", "Install-WoWMacroImport.ps1", "build-delivery.py", "WoWMapCompanion-2.13.0.zip", "WoWForeverCompanion-1.10.0.zip", "WoWMacroImport-1.0.0.zip",
+        "Install-WoWCompanion.ps1", "Install-WoWMacroImport.ps1", "build-delivery.py", "WoWMacroImport-1.0.0.zip",
         "research/airi-personas/sylvanas-tone.json",
     ):
         entries[f"WOWAddons/{name}"] = ROOT / name
