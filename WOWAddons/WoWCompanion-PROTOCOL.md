@@ -537,3 +537,82 @@ Status is `inactive`, `waiting`, or `ready`. Counts satisfy `0 <= missing <= che
 The bridge exposes `groupBuff` for six seconds after a new sequence. It requires a current matching session, GUID, and instance. Frozen or older sequence numbers cannot renew freshness, even after capture resumes. Combat, death, offline status, and instance changes hide the observation.
 
 Buff and calendar frames alternate in the same reserved quarter of data slots. Each now arrives every four seconds. Heartbeat, macro, and equipment slot allocations stay unchanged. No game command is carried.
+## 背包库存扩展（桥接 2.16.0）
+
+`inv` 是独立于角色心跳的只读库存分片，适用于正式服 `WCP1` 与无限服 `WCF1`。主心跳仍为 v3，最多 504 字节。
+
+每片为 `{v:1,kind:"inv",s,g,id,p,n,d}`。`s`、`g` 为会话和角色 GUID，`id` 为递增修订，`p` 从 1 开始，`n` 最多 274；`d` 为最多 240 个原始 JSON 字节的规范 Base64。中间片必须恰好 240 字节。
+
+完整 JSON 最多 65,536 字节，格式为：
+
+```json
+{"v":1,"id":1,"session":"session-1","guid":"Player-1","observedAt":1793490000,"source":"bags","bank":"unknown","complete":true,"items":[{"itemID":12359,"quantity":7}]}
+```
+
+`observedAt` 是游戏服务器采集时间，单位为秒。`items` 按物品 ID 严格升序、不可重复，最多 1,000 条；ID 与数量为 1 到 2,147,483,647 的整数。
+
+`complete` 指随身背包采集完整性，不代表银行已知，也不等于分片是否完整。受限、秘密或失败读数不能变成零；部分采集的已有数量只代表下界。银行固定 `unknown`，不读取个人银行或账号银行。
+
+接收端验证实时角色身份与全部分片后，原子发布修订，并记录独立的 `inventoryReceivedAt`。重复片不增加接收片数、不更新收到时间或角色心跳。冲突、错角色、错会话、失效修订均不能替换新库存。
+
+桥接状态增加必填可空 `inventory`、`inventoryReceivedAt`、`inventoryError`。新修订未拼完时隐藏旧库存；演示、离线、暂停、错误和过期时不提供自动库存。最多两个在途修订，20 分钟超时。采集时间过期 20 分钟或超前超过 120 秒时拒绝；备料界面采用更短的新鲜度规则。
+
+
+## 任务遥测（桥接 2.18.0）
+
+主心跳保持 v3，不增加字段。任务使用独立 `kind:qlog` 分片，字段与库存分片一致：`v,kind,s,g,id,p,n,d`；`id` 是本插件会话内单调增加的任务修订，单块最多 240 字节，最多 137 块，拼装后 UTF-8 JSON 最多 32 KiB。独立在途上限两份，20 分钟绝对超时和采集时间上限，未来容忍 120 秒；不会借分片刷新角色心跳。桌面可以使用更严格的新鲜度要求。
+
+快照字段为 `v,id,session,guid,observedAt,source:quest-log,log,completion`。
+
+- `log` 包含 `complete,truncated,total,entries`。最多 50 条，按 questID 排序。`total:null` 表示读取未知；折叠／隐藏任务导致无法覆盖完整日志时 `complete:false`，不展开或改变玩家任务界面。
+- `entries` 含 `questID,title,level,header,readyForTurnIn,failed,objectivesComplete,objectives`。文字和不可读标量为 null。`objectivesComplete` 仅表示目标列表读取完整，不代表目标已完成。`readyForTurnIn` 也不代表任务已交付。
+- 每个任务最多 8 个目标，保留 `index,text,type,fulfilled,required,finished`。不从进度文字猜数量，缺少数值不补零；目标和整份负载截断有明确覆盖标记。
+- `completion` 包含 `source,scope,complete,truncated,total,ids,turnIns`。`source` 为 `completed-api`／`session-events`／`unknown`；`scope` 固定 `unknown`，完成 API 文档没有证明其历史标记属于当前角色还是账号，不能据此称当前角色已经交付。
+- `ids` 最多 512 个去重升序 ID，仅来自 `C_QuestLog.GetAllCompletedQuestIDs` 的公开返回值。其 complete 仅指该次 API 返回集合覆盖完整，不表示所有游戏任务都已完成；截断或缺席的 ID 不足以证明未完成。
+- `turnIns` 最多 32 条去重的 `{questID,observedAt}`，只有 `QUEST_TURNED_IN` 提供真实会话交付证据，数量超过上限明确 truncated。移除任务、完成目标、关闭对话或 readyForTurnIn 均不能生成交付记录。
+
+`/api/status` 增加必填可空 `quests,questsReceivedAt,questsError`。乱序、重复、冲突和旧修订独立处理，不挤占装备／库存拼装。新修订在途时隐藏旧任务快照；不同角色／会话、离线、过期、暂停、演示和读取错误不能提供当前任务。游戏端在初次传输完成后约 60 秒重采安静日志，任务与背包公平分享后台时隙，不阻塞新装备／比较帧。
+
+正式服此链路仅提供客户端实际只读任务观测，不关联无限图鉴任务资料，也不采集任务坐标或自动操作游戏。
+
+## 已提交天赋观测（桥接 2.19.0）
+
+保持主心跳 v3，新增独立 `kind:traits` 分片，沿用 `v,kind,s,g,id,p,n,d` 字段；最多 274 块／65,536 字节，单块 240 字节。最多两份独立在途修订，20 分钟绝对拼装／采集期限，未来容忍 120 秒；不会借天赋分片刷新心跳。桌面可采用更严格的观测新鲜度，不能用接收时间替代采集时间。
+
+`TalentSnapshot` 含 `v,id,session,guid,observedAt,source:class-traits`、可空的 `clientBuild,locale,class,classID,specID,configID,configName,configType`，以及 `status,hasStagedChanges,scope:selected-nodes,complete,truncated,treeIDs,knownZeroNodes,nodes`。构建只在 GetBuildInfo 能组合出完整版本与 build 号时提供；classID 来自 UnitClass 第三公开返回值，specID 来自 GetSpecializationInfo 的真实 ID，不以 token 表或专精索引猜测。
+
+- `active` 表示稳定的实际活动配置：GetActiveConfigID、Combat／CamelotCombat 配置类型、configInfo.ID／树列表、职业／专精／构建前后一致，ConfigHasStagedChanges 两次为 false；节点 ID、rank 和 committed-entry 列表的二次指纹也一致。Combat 是配置类型，不是角色必须处于战斗。
+- `staged` 表示有未提交编辑；`unknown`／`inaccessible` 表示无法确认或读取受限。三者都不提供 selected nodes／known zeros，不读取天赋界面预览配置，不把预览效果当生效。trait 变化可中断旧 active 的首轮传输，先送小型失效修订再重新采样。
+- 最多 8 个真实 trait tree、128 个已投入或有 active rank 的节点。每个节点保留 `treeID,nodeID,ranksPurchased,activeRank,maxRanks,isAvailable,isVisible,meetsEdgeRequirements,entriesComplete,entries,conditionsComplete,conditions`。快照 active 不保证每个已投入节点都正在授予效果；投入与 active rank 分开，未知不补零。
+- 每节点最多 8 个 `entries`，每项 `entryID,definitionID,spellID,rank,isActive`。来源是 entryIDsWithCommittedRanks；entry.rank 只在与 activeEntry 精确匹配时读取，否则 null。node／entry／definition／spell 使用各自 ID 空间，不能互换或根据位序推算。
+- 最多 8 条公开条件，保留 `conditionID,isMet,playerLevel,spentAmountRequired,traitCurrencyID`。条件 ID 不匹配、secret 或缺失时不宣称条件已满足，不推导来源没有给出的前置关系。
+- `knownZeroNodes` 最多 1024 个 `{treeID,nodeID}`，只由稳定配置下两次实际读取都为 `ranksPurchased=0` 与 `activeRank=0` 的节点提供。没有导出的节点永远不能按零 rank 处理。空／未加载树、截断、部分读取有明确 coverage，完整标记只涉及本次 API 观测。
+- 两种节点列表共享 64 KiB。先截断 zero，再截断 selected，并标记 partial；采用二分前缀预算避免逐项重编码。任务／库存／天赋首轮公平轮转，装备后台保留时隙，新获取装备与比较保持优先，后续重放有界。
+
+桥接增加必填可空 `talents,talentsReceivedAt,talentsError`。更新修订在途、错会话／角色、过期、暂停、演示、错误或职业／专精与当前心跳不一致时隐藏当前观测；专精心跳短暂落后只暂缓显示，不永久拒绝已校验的新天赋修订。安静配置首轮发送结束后约 60 秒重采。采集 runtime 最低要求桥接 2.19。
+
+这条链路不调用 Commit／Load／Stage／Refund／Purchase API，不读取其他玩家，不进行 DPS 模拟或自动换装。装备解释复用已有 19 槽快照、完整实例链接、词条与 tooltip，不新增一套装备采集。
+
+## 正式服只读查询（桥接 2.17.0 引入）
+
+这是与 `WCP1`／`WCF1` 屏幕采集分离的 HTTP 查询模式。它使用同一桥接程序的 `--query-only` 分支，默认本机端口 18767，不依赖玩家状态、游戏窗口或陪伴开关。
+
+CLI 必须由主进程传入选定数据库的绝对路径、随机 64 位小写十六进制 `--query-token` 与规范 `--query-instance` UUID。所有请求携带 `X-Wow-Query-Token`。`GET /health` 返回 `mode:query-only`、`capabilities:[retail-db2]` 和该实例 UUID；主进程必须核对，不能复用采集桥接。
+
+`POST /api/retail/query` 的严格判别请求为：
+
+```json
+{"operation":"stats"}
+{"operation":"search","kind":"item","query":"瑟银","limit":20,"offset":0}
+{"operation":"fetch","id":"map:0"}
+```
+
+`kind` 为 `item`、`map`、`uimap`、`area`、`spell`、`encounter`。ID 为 0 到 2,147,483,647 的整数，不接受前导零。查询名最多 160 字符；limit 默认 20、最大 50，offset 默认 0、最大 10,000。不接受额外路径或 SQL 参数。
+
+响应固定包括 `operation`、`outcome`、可空 `source`、`entries`、`offset`、`limit`、`hasMore`、`notices` 与 ISO `receivedAt`。`outcome` 为 `ok`、`empty`、`not_found` 或 `error`；错误另附固定 `errorCode`。stats 另含 `stats.counts` 对象，以六种 kind 为键，对应当前导出记录行数。
+
+source 固定 `name:正式服本地 DB2`、`game:retail`、`product:wow`、`localOnly:true`，并附 `build`、`locale`、`exportedAt`、`hotfixesApplied`、不透明 `datasetId` 和实际依赖 `tables`。table 只含 `name/status/rows/encrypted`。datasetId 反映公开元数据、文件长度和修改时间，不是源库内容哈希证明。
+
+entry 包括 typed `id`、`kind`、`numericId`、`title`、`fields:[{key,value}]`、`links:[{kind,id,title?}]` 和 `notices`。fields 保留原 DB 列名及字符串值，NULL 省略并提示缺失，links 只能关联本地实体。每条 8 KiB，整份 512 KiB；截断字段明确提示且不删除分页行。
+
+查询只读固定八张原表（Item、ItemSparse、Map、UiMap、AreaTable、SpellName、Spell、DungeonEncounter），不执行用户 SQL 或存储视图。每次验证元数据／列签名、两秒进度预算及查询前后文件身份。数据库改动、缺失、不可读、无效和超时均作为独立错误，不冒充无查询结果。

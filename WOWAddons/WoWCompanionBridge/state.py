@@ -9,12 +9,16 @@ import threading
 import time
 import uuid
 from collections import OrderedDict, deque
+from contextlib import contextmanager
 from datetime import datetime, timezone
 
 from protocol import (COMPARISON_MAX_BYTES, EQUIPMENT_MAX_BYTES, LOADOUT_MAX_BYTES, GAME_PROTOCOLS, FrameError, load_json,
                       validate_equipment_fragment, validate_equipment_record, validate_equipment_swap,
                       validate_equipment_offer, validate_comparison_fragment, validate_equipment_comparison,
-                      validate_loadout_fragment, validate_equipment_loadout, validate_macro, validate_calendar, validate_group_buff)
+                      validate_loadout_fragment, validate_equipment_loadout, validate_macro, validate_calendar, validate_group_buff,
+                      INVENTORY_MAX_BYTES, validate_inventory_fragment, validate_inventory,
+                      QUEST_MAX_BYTES, validate_quest_fragment, validate_quests,
+                      TALENT_MAX_BYTES, validate_talent_fragment, validate_talents)
 
 DEFAULT_CONFIG = {"x": 8, "y": 8, "cellSize": 1, "pollMs": 100, "paused": False}
 EQUIPMENT_TTL_SECONDS = 180
@@ -23,6 +27,15 @@ EQUIPMENT_DEDUP_LIMIT = 256
 LOADOUT_TTL_SECONDS = 1200
 LOADOUT_PENDING_LIMIT = 2
 LOADOUT_PENDING_BYTES = LOADOUT_MAX_BYTES * LOADOUT_PENDING_LIMIT
+INVENTORY_TTL_SECONDS = 1200
+INVENTORY_PENDING_LIMIT = 2
+INVENTORY_PENDING_BYTES = INVENTORY_MAX_BYTES * INVENTORY_PENDING_LIMIT
+QUEST_TTL_SECONDS = 1200
+QUEST_PENDING_LIMIT = 2
+QUEST_PENDING_BYTES = QUEST_MAX_BYTES * QUEST_PENDING_LIMIT
+TALENT_TTL_SECONDS = 1200
+TALENT_PENDING_LIMIT = 2
+TALENT_PENDING_BYTES = TALENT_MAX_BYTES * TALENT_PENDING_LIMIT
 
 
 def known_zone(snapshot: dict) -> tuple[int, str] | None:
@@ -78,7 +91,7 @@ class CompanionState:
         self.equipment = deque(maxlen=10)
         self.equipment_error: str | None = None
         self.equipment_pending: dict[int, dict] = {}
-        self.equipment_seen: OrderedDict[int, None] = OrderedDict()
+        self.equipment_seen: OrderedDict[int, int] = OrderedDict()
         self.equipment_rejected: OrderedDict[int, float] = OrderedDict()
         self.equipment_swaps: list[dict] = []
         self.equipment_swap_error: str | None = None
@@ -100,7 +113,7 @@ class CompanionState:
         self.equipment_comparisons: list[dict] = []
         self.equipment_comparison_error: str | None = None
         self.comparison_pending: dict[int, dict] = {}
-        self.comparison_seen: OrderedDict[int, None] = OrderedDict()
+        self.comparison_seen: OrderedDict[int, int] = OrderedDict()
         self.comparison_rejected: OrderedDict[int, float] = OrderedDict()
         self.comparison_floor = 0
         self.equipment_loadout: dict | None = None
@@ -109,8 +122,121 @@ class CompanionState:
         self.loadout_rejected: OrderedDict[int, float] = OrderedDict()
         self.loadout_parts: dict[int, bytes] = {}
         self.loadout_count = 0
+        self.inventory: dict | None = None
+        self.inventory_received_at: str | None = None
+        self.inventory_error: str | None = None
+        self.inventory_pending: dict[int, dict] = {}
+        self.inventory_rejected: OrderedDict[int, float] = OrderedDict()
+        self.inventory_parts: dict[int, bytes] = {}
+        self.inventory_count = 0
+        self.quests: dict | None = None
+        self.quests_received_at: str | None = None
+        self.quests_error: str | None = None
+        self.quests_pending: dict[int, dict] = {}
+        self.quests_rejected: OrderedDict[int, float] = OrderedDict()
+        self.quests_parts: dict[int, bytes] = {}
+        self.quests_count = 0
+        self.talents: dict | None = None
+        self.talents_received_at: str | None = None
+        self.talents_error: str | None = None
+        self.talents_pending: dict[int, dict] = {}
+        self.talents_rejected: OrderedDict[int, float] = OrderedDict()
+        self.talents_parts: dict[int, bytes] = {}
+        self.talents_count = 0
+        self.capture_revision = 0
+        self.connection = {"phase": "locating", "reason": None, "attempts": 0, "consecutive": 0,
+                           "lastFrameAt": None, "calibratedAt": None, "retrySeconds": 0, "calibration": None}
+        self.transfer_results = {}
+        self.transfer_latest = {}
+        self.calendar_started = None
+
+    def report_connection(self, diagnostic: dict) -> None:
+        with self.lock:
+            self.connection = copy.deepcopy(diagnostic)
+            if diagnostic["phase"] != "connected":
+                self.fresh_at = None
+                self.reset_baseline = True
+
+    @contextmanager
+    def calibration_guard(self, config: dict, revision: int):
+        """Order calibration writes against manual changes and retries, without locking during capture or search."""
+        with self.lock:
+            if self.config != config or self.capture_revision != revision or self.demo or self.config["paused"]:
+                raise FrameError("画面读取已作废")
+            yield
+
+    def retry_connection(self) -> None:
+        with self.lock:
+            if self.demo or self.config["paused"]:
+                raise ValueError("请先结束演示并取消暂停，再重新定位")
+            self.capture_revision += 1
+            self.equipment_pending.clear()
+            self.comparison_pending.clear()
+            self.loadout_pending.clear()
+            self.inventory_pending.clear()
+            self.quests_pending.clear()
+            self.talents_pending.clear()
+            self.transfer_results.clear()
+            self.transfer_latest.clear()
+            if self.calendar is None:
+                self.calendar_key, self.calendar_parts, self.calendar_started = None, {}, None
+            self.fresh_at = None
+            self.last_tick = None
+            self.reset_baseline = True
+            self.connection = {"phase": "locating", "reason": None, "attempts": 0, "consecutive": 0,
+                               "lastFrameAt": None, "calibratedAt": None, "retrySeconds": 0, "calibration": None}
+
+    def _transfer(self, kind: str, count: int, received: int, phase: str, started: float) -> dict:
+        ttl = LOADOUT_TTL_SECONDS if kind == "gear" else EQUIPMENT_TTL_SECONDS
+        return {"kind": kind, "phase": phase, "received": received, "total": count,
+                "elapsedSeconds": round(max(0, self.clock() - started), 1), "timeoutSeconds": ttl}
+
+    def _record_transfer(self, kind: str, value: dict) -> None:
+        count = value.get("n")
+        if type(count) is not int or not 0 <= count <= 820:
+            return
+        if kind == "calendar":
+            if self.calendar_key != (value.get("s"), value.get("g"), value.get("day"), count):
+                return
+            received = len(self.calendar_parts)
+            started = self.calendar_started if self.calendar_started is not None else self.clock()
+            phase = "complete" if self.calendar is not None else "receiving"
+        else:
+            if type(value.get("id")) is not int:
+                return
+            if (not self.snapshot or (value.get("s"), value.get("g")) != (self.snapshot["session"], self.snapshot["guid"])
+                    or value["id"] < self.transfer_latest.get(kind, -1)):
+                return
+            pending, completed = {
+                "eq": (self.equipment_pending, self.equipment_seen),
+                "cmp": (self.comparison_pending, self.comparison_seen),
+                "gear": (self.loadout_pending, {self.equipment_loadout["id"]} if self.equipment_loadout else set()),
+            }[kind]
+            item = pending.get(value.get("id"))
+            if item:
+                received, count, started, phase = len(item["parts"]), item["count"], item["started"], "receiving"
+            elif value.get("id") in completed:
+                count = self.loadout_count if kind == "gear" else completed[value["id"]]
+                received, started, phase = count, self.clock(), "complete"
+            else:
+                received, started, phase = 0, self.clock(), "error"
+            self.transfer_latest[kind] = value["id"]
+        self.transfer_results[kind] = self._transfer(kind, max(1, count), received, phase, started)
+
+    def _transfers(self) -> list[dict]:
+        results = copy.deepcopy(self.transfer_results)
+        for kind, entries in (("eq", self.equipment_pending), ("cmp", self.comparison_pending), ("gear", self.loadout_pending)):
+            if entries:
+                latest = max(entries.values(), key=lambda item: item["started"])
+                results[kind] = self._transfer(kind, latest["count"], len(latest["parts"]), "receiving", latest["started"])
+        if self.calendar_started is not None and self.calendar is None and self.calendar_key:
+            results["calendar"] = self._transfer("calendar", self.calendar_key[3], len(self.calendar_parts), "receiving", self.calendar_started)
+        return list(results.values())
 
     def _clear_equipment(self) -> None:
+        self.transfer_results.clear()
+        self.transfer_latest.clear()
+        self.calendar_started = None
         self.group_buff = None
         self.group_buff_at = None
         self.calendar_at = None
@@ -143,6 +269,27 @@ class CompanionState:
         self.loadout_rejected.clear()
         self.loadout_parts.clear()
         self.loadout_count = 0
+        self.inventory = None
+        self.inventory_received_at = None
+        self.inventory_error = None
+        self.inventory_pending.clear()
+        self.inventory_rejected.clear()
+        self.inventory_parts.clear()
+        self.inventory_count = 0
+        self.quests = None
+        self.quests_received_at = None
+        self.quests_error = None
+        self.quests_pending.clear()
+        self.quests_rejected.clear()
+        self.quests_parts.clear()
+        self.quests_count = 0
+        self.talents = None
+        self.talents_received_at = None
+        self.talents_error = None
+        self.talents_pending.clear()
+        self.talents_rejected.clear()
+        self.talents_parts.clear()
+        self.talents_count = 0
 
     def _reject_equipment(self, identifier: int) -> None:
         self.equipment_pending.pop(identifier, None)
@@ -152,11 +299,19 @@ class CompanionState:
 
     def _expire_equipment(self) -> None:
         now = self.clock()
+        for identifier, expires in list(self.inventory_rejected.items()):
+            if expires <= now:
+                del self.inventory_rejected[identifier]
+        for identifier, pending in list(self.inventory_pending.items()):
+            if now - pending["started"] >= INVENTORY_TTL_SECONDS:
+                del self.inventory_pending[identifier]
+                self.inventory_error = "背包库存分片等待超时，未完成快照已丢弃"
         for identifier, expires in list(self.loadout_rejected.items()):
             if expires <= now:
                 del self.loadout_rejected[identifier]
         for identifier, pending in list(self.loadout_pending.items()):
             if now - pending["started"] >= LOADOUT_TTL_SECONDS:
+                self.transfer_results["gear"] = self._transfer("gear", pending["count"], len(pending["parts"]), "timed-out", pending["started"])
                 del self.loadout_pending[identifier]
                 self.equipment_loadout_error = "当前装备分片等待超时，已丢弃未完成快照"
         for identifier, expires in list(self.equipment_rejected.items()):
@@ -164,6 +319,7 @@ class CompanionState:
                 del self.equipment_rejected[identifier]
         for identifier, pending in list(self.equipment_pending.items()):
             if now - pending["started"] >= EQUIPMENT_TTL_SECONDS:
+                self.transfer_results["eq"] = self._transfer("eq", pending["count"], len(pending["parts"]), "timed-out", pending["started"])
                 del self.equipment_pending[identifier]
                 self.equipment_error = "装备分片等待超时，已丢弃未完成记录"
         for identifier, expires in list(self.comparison_rejected.items()):
@@ -171,8 +327,29 @@ class CompanionState:
                 del self.comparison_rejected[identifier]
         for identifier, pending in list(self.comparison_pending.items()):
             if now - pending["started"] >= EQUIPMENT_TTL_SECONDS:
+                self.transfer_results["cmp"] = self._transfer("cmp", pending["count"], len(pending["parts"]), "timed-out", pending["started"])
                 del self.comparison_pending[identifier]
                 self.equipment_comparison_error = "装备比较分片等待超时，已丢弃未完成记录"
+        if (self.calendar_started is not None and self.calendar is None
+                and now - self.calendar_started >= EQUIPMENT_TTL_SECONDS):
+            self.transfer_results["calendar"] = self._transfer("calendar", self.calendar_key[3], len(self.calendar_parts), "timed-out", self.calendar_started)
+            self.calendar_key, self.calendar_parts, self.calendar_started = None, {}, None
+
+        for identifier, expires in list(self.quests_rejected.items()):
+            if expires <= now:
+                del self.quests_rejected[identifier]
+        for identifier, pending in list(self.quests_pending.items()):
+            if now - pending["started"] >= QUEST_TTL_SECONDS:
+                del self.quests_pending[identifier]
+                self.quests_error = "任务分片等待超时，未完成快照已丢弃"
+
+        for identifier, expires in list(self.talents_rejected.items()):
+            if expires <= now:
+                del self.talents_rejected[identifier]
+        for identifier, pending in list(self.talents_pending.items()):
+            if now - pending["started"] >= TALENT_TTL_SECONDS:
+                del self.talents_pending[identifier]
+                self.talents_error = "天赋分片等待超时，未完成快照已丢弃"
 
     def _reject_loadout(self, identifier: int) -> None:
         self.loadout_pending.pop(identifier, None)
@@ -241,6 +418,242 @@ class CompanionState:
         except FrameError as exc:
             self.equipment_loadout_error = str(exc)
 
+    def _reject_inventory(self, identifier: int) -> None:
+        self.inventory_pending.pop(identifier, None)
+        self.inventory_rejected[identifier] = self.clock() + INVENTORY_TTL_SECONDS
+        while len(self.inventory_rejected) > EQUIPMENT_DEDUP_LIMIT:
+            self.inventory_rejected.popitem(last=False)
+
+    def _ingest_inventory(self, value: dict) -> None:
+        """Only complete transfers replace a revision. Capture completeness stays an independent fact."""
+        self._expire_equipment()
+        if self.demo or self._status() != "live" or self.reset_baseline or self.error:
+            self.inventory_pending.clear()
+            self.inventory_error = "背包库存需要当前角色的实时状态帧"
+            return
+        try:
+            fragment = validate_inventory_fragment(value)
+            identifier = fragment["id"]
+            if (fragment["s"], fragment["g"]) != (self.snapshot["session"], self.snapshot["guid"]):
+                raise FrameError("忽略其他角色或会话的背包库存分片")
+            raw = base64.b64decode(fragment["d"], validate=True)
+            latest = self.inventory
+            if latest is not None and identifier <= latest["id"]:
+                if identifier == latest["id"] and (fragment["n"] != self.inventory_count
+                        or self.inventory_parts.get(fragment["p"]) != hashlib.sha256(raw).digest()):
+                    raise FrameError("已完成的背包库存修订分片冲突，保留原快照")
+                return
+            if identifier in self.inventory_rejected:
+                return
+            pending = self.inventory_pending.get(identifier)
+            if pending is None:
+                if len(self.inventory_pending) >= INVENTORY_PENDING_LIMIT:
+                    oldest = min(self.inventory_pending)
+                    if identifier <= oldest:
+                        raise FrameError("背包库存在途快照已达 2 条，忽略较旧修订")
+                    del self.inventory_pending[oldest]
+                pending = {"started": self.clock(), "count": fragment["n"], "parts": {}}
+                self.inventory_pending[identifier] = pending
+            part = fragment["p"]
+            previous = pending["parts"].get(part)
+            if pending["count"] != fragment["n"] or (previous is not None and previous != raw):
+                self._reject_inventory(identifier)
+                raise FrameError("背包库存分片冲突，整套修订已丢弃")
+            used = sum(sum(len(chunk) for chunk in item["parts"].values()) for item in self.inventory_pending.values())
+            if used + (len(raw) if previous is None else 0) > INVENTORY_PENDING_BYTES:
+                self._reject_inventory(identifier)
+                raise FrameError("背包库存在途快照超过内存上限")
+            pending["parts"][part] = raw
+            if len(pending["parts"]) != pending["count"]:
+                return
+            payload = b"".join(pending["parts"][index] for index in range(1, pending["count"] + 1))
+            try:
+                record = validate_inventory(load_json(payload))
+                if (record["session"], record["guid"], record["id"]) != (fragment["s"], fragment["g"], identifier):
+                    raise FrameError("背包库存快照与分片身份不一致")
+                if not self.wall_clock() - INVENTORY_TTL_SECONDS <= record["observedAt"] <= self.wall_clock() + 120:
+                    raise FrameError("背包库存采集时间过期或超前")
+            except FrameError:
+                self._reject_inventory(identifier)
+                raise
+            self.inventory = copy.deepcopy(record)
+            self.inventory_received_at = datetime.fromtimestamp(self.wall_clock(), timezone.utc).isoformat(timespec="milliseconds")
+            self.inventory_parts = {index: hashlib.sha256(chunk).digest() for index, chunk in pending["parts"].items()}
+            self.inventory_count = pending["count"]
+            self.inventory_pending = {revision: item for revision, item in self.inventory_pending.items() if revision > identifier}
+            self.inventory_error = None
+        except FrameError as exc:
+            self.inventory_error = str(exc)
+
+    def _current_inventory(self, status: str) -> dict | None:
+        # Stale, paused, demo, foreign, and superseded captures cannot supply automatic task observations.
+        if (status != "live" or self.demo or self.error or self.inventory_error or not self.inventory
+                or not self.snapshot or not self.snapshot["online"] or self.reset_baseline
+                or (self.inventory["session"], self.inventory["guid"]) != (self.snapshot["session"], self.snapshot["guid"])
+                or not self.wall_clock() - INVENTORY_TTL_SECONDS <= self.inventory["observedAt"] <= self.wall_clock() + 120
+                or any(revision > self.inventory["id"] for revision in self.inventory_pending)):
+            return None
+        return copy.deepcopy(self.inventory)
+
+    def _reject_quests(self, identifier: int) -> None:
+        self.quests_pending.pop(identifier, None)
+        self.quests_rejected[identifier] = self.clock() + QUEST_TTL_SECONDS
+        while len(self.quests_rejected) > EQUIPMENT_DEDUP_LIMIT:
+            self.quests_rejected.popitem(last=False)
+
+    def _ingest_quests(self, value: dict) -> None:
+        """Only complete transfers replace a revision. Capture completeness stays an independent fact."""
+        self._expire_equipment()
+        if self.demo or self._status() != "live" or self.reset_baseline or self.error:
+            self.quests_pending.clear()
+            self.quests_error = "任务需要当前角色的实时状态帧"
+            return
+        try:
+            fragment = validate_quest_fragment(value)
+            identifier = fragment["id"]
+            if (fragment["s"], fragment["g"]) != (self.snapshot["session"], self.snapshot["guid"]):
+                raise FrameError("忽略其他角色或会话的任务分片")
+            raw = base64.b64decode(fragment["d"], validate=True)
+            latest = self.quests
+            if latest is not None and identifier <= latest["id"]:
+                if identifier == latest["id"] and (fragment["n"] != self.quests_count
+                        or self.quests_parts.get(fragment["p"]) != hashlib.sha256(raw).digest()):
+                    raise FrameError("已完成的任务修订分片冲突，保留原快照")
+                return
+            if identifier in self.quests_rejected:
+                return
+            pending = self.quests_pending.get(identifier)
+            if pending is None:
+                if len(self.quests_pending) >= QUEST_PENDING_LIMIT:
+                    oldest = min(self.quests_pending)
+                    if identifier <= oldest:
+                        raise FrameError("任务在途快照已达 2 条，忽略较旧修订")
+                    del self.quests_pending[oldest]
+                pending = {"started": self.clock(), "count": fragment["n"], "parts": {}}
+                self.quests_pending[identifier] = pending
+            part = fragment["p"]
+            previous = pending["parts"].get(part)
+            if pending["count"] != fragment["n"] or (previous is not None and previous != raw):
+                self._reject_quests(identifier)
+                raise FrameError("任务分片冲突，整套修订已丢弃")
+            used = sum(sum(len(chunk) for chunk in item["parts"].values()) for item in self.quests_pending.values())
+            if used + (len(raw) if previous is None else 0) > QUEST_PENDING_BYTES:
+                self._reject_quests(identifier)
+                raise FrameError("任务在途快照超过内存上限")
+            pending["parts"][part] = raw
+            if len(pending["parts"]) != pending["count"]:
+                return
+            payload = b"".join(pending["parts"][index] for index in range(1, pending["count"] + 1))
+            try:
+                record = validate_quests(load_json(payload))
+                if (record["session"], record["guid"], record["id"]) != (fragment["s"], fragment["g"], identifier):
+                    raise FrameError("任务快照与分片身份不一致")
+                if not self.wall_clock() - QUEST_TTL_SECONDS <= record["observedAt"] <= self.wall_clock() + 120:
+                    raise FrameError("任务采集时间过期或超前")
+            except FrameError:
+                self._reject_quests(identifier)
+                raise
+            self.quests = copy.deepcopy(record)
+            self.quests_received_at = datetime.fromtimestamp(self.wall_clock(), timezone.utc).isoformat(timespec="milliseconds")
+            self.quests_parts = {index: hashlib.sha256(chunk).digest() for index, chunk in pending["parts"].items()}
+            self.quests_count = pending["count"]
+            self.quests_pending = {revision: item for revision, item in self.quests_pending.items() if revision > identifier}
+            self.quests_error = None
+        except FrameError as exc:
+            self.quests_error = str(exc)
+
+    def _current_quests(self, status: str) -> dict | None:
+        # Stale, paused, demo, foreign, and superseded captures cannot supply automatic task observations.
+        if (status != "live" or self.demo or self.error or self.quests_error or not self.quests
+                or not self.snapshot or not self.snapshot["online"] or self.reset_baseline
+                or (self.quests["session"], self.quests["guid"]) != (self.snapshot["session"], self.snapshot["guid"])
+                or not self.wall_clock() - QUEST_TTL_SECONDS <= self.quests["observedAt"] <= self.wall_clock() + 120
+                or any(revision > self.quests["id"] for revision in self.quests_pending)):
+            return None
+        return copy.deepcopy(self.quests)
+
+    def _reject_talents(self, identifier: int) -> None:
+        self.talents_pending.pop(identifier, None)
+        self.talents_rejected[identifier] = self.clock() + TALENT_TTL_SECONDS
+        while len(self.talents_rejected) > EQUIPMENT_DEDUP_LIMIT:
+            self.talents_rejected.popitem(last=False)
+
+    def _ingest_talents(self, value: dict) -> None:
+        """Only complete transfers replace a revision. Capture completeness stays an independent fact."""
+        self._expire_equipment()
+        if self.demo or self._status() != "live" or self.reset_baseline or self.error:
+            self.talents_pending.clear()
+            self.talents_error = "天赋需要当前角色的实时状态帧"
+            return
+        try:
+            fragment = validate_talent_fragment(value)
+            identifier = fragment["id"]
+            if (fragment["s"], fragment["g"]) != (self.snapshot["session"], self.snapshot["guid"]):
+                raise FrameError("忽略其他角色或会话的天赋分片")
+            raw = base64.b64decode(fragment["d"], validate=True)
+            latest = self.talents
+            if latest is not None and identifier <= latest["id"]:
+                if identifier == latest["id"] and (fragment["n"] != self.talents_count
+                        or self.talents_parts.get(fragment["p"]) != hashlib.sha256(raw).digest()):
+                    raise FrameError("已完成的天赋修订分片冲突，保留原快照")
+                return
+            if identifier in self.talents_rejected:
+                return
+            pending = self.talents_pending.get(identifier)
+            if pending is None:
+                if len(self.talents_pending) >= TALENT_PENDING_LIMIT:
+                    oldest = min(self.talents_pending)
+                    if identifier <= oldest:
+                        raise FrameError("天赋在途快照已达 2 条，忽略较旧修订")
+                    del self.talents_pending[oldest]
+                pending = {"started": self.clock(), "count": fragment["n"], "parts": {}}
+                self.talents_pending[identifier] = pending
+            part = fragment["p"]
+            previous = pending["parts"].get(part)
+            if pending["count"] != fragment["n"] or (previous is not None and previous != raw):
+                self._reject_talents(identifier)
+                raise FrameError("天赋分片冲突，整套修订已丢弃")
+            used = sum(sum(len(chunk) for chunk in item["parts"].values()) for item in self.talents_pending.values())
+            if used + (len(raw) if previous is None else 0) > TALENT_PENDING_BYTES:
+                self._reject_talents(identifier)
+                raise FrameError("天赋在途快照超过内存上限")
+            pending["parts"][part] = raw
+            if len(pending["parts"]) != pending["count"]:
+                return
+            payload = b"".join(pending["parts"][index] for index in range(1, pending["count"] + 1))
+            try:
+                record = validate_talents(load_json(payload))
+                if (record["session"], record["guid"], record["id"]) != (fragment["s"], fragment["g"], identifier):
+                    raise FrameError("天赋快照与分片身份不一致")
+                if not self.wall_clock() - TALENT_TTL_SECONDS <= record["observedAt"] <= self.wall_clock() + 120:
+                    raise FrameError("天赋采集时间过期或超前")
+            except FrameError:
+                self._reject_talents(identifier)
+                raise
+            self.talents = copy.deepcopy(record)
+            self.talents_received_at = datetime.fromtimestamp(self.wall_clock(), timezone.utc).isoformat(timespec="milliseconds")
+            self.talents_parts = {index: hashlib.sha256(chunk).digest() for index, chunk in pending["parts"].items()}
+            self.talents_count = pending["count"]
+            self.talents_pending = {revision: item for revision, item in self.talents_pending.items() if revision > identifier}
+            self.talents_error = None
+        except FrameError as exc:
+            self.talents_error = str(exc)
+
+    def _current_talents(self, status: str) -> dict | None:
+        if self.talents and self.snapshot:
+            if (self.talents["class"] is not None and self.talents["class"] != self.snapshot["class"]
+                    or self.talents["specID"] is not None and self.snapshot["spec"] > 0 and self.talents["specID"] != self.snapshot["spec"]
+                    or self.game == "retail" and self.talents["configType"] == 4):
+                return None
+        # Stale, paused, demo, foreign, and superseded captures cannot supply automatic task observations.
+        if (status != "live" or self.demo or self.error or self.talents_error or not self.talents
+                or not self.snapshot or not self.snapshot["online"] or self.reset_baseline
+                or (self.talents["session"], self.talents["guid"]) != (self.snapshot["session"], self.snapshot["guid"])
+                or not self.wall_clock() - TALENT_TTL_SECONDS <= self.talents["observedAt"] <= self.wall_clock() + 120
+                or any(revision > self.talents["id"] for revision in self.talents_pending)):
+            return None
+        return copy.deepcopy(self.talents)
+
     def _reject_comparison(self, identifier: int) -> None:
         self.comparison_pending.pop(identifier, None)
         self.comparison_rejected[identifier] = self.clock() + EQUIPMENT_TTL_SECONDS
@@ -290,7 +703,7 @@ class CompanionState:
                 self._reject_comparison(identifier)
                 raise
             del self.comparison_pending[identifier]
-            self.comparison_seen[identifier] = None
+            self.comparison_seen[identifier] = fragment["n"]
             self.comparison_seen = OrderedDict(sorted(self.comparison_seen.items()))
             while len(self.comparison_seen) > EQUIPMENT_DEDUP_LIMIT:
                 removed, _ = self.comparison_seen.popitem(last=False)
@@ -341,7 +754,7 @@ class CompanionState:
                 self._reject_equipment(identifier)
                 raise
             del self.equipment_pending[identifier]
-            self.equipment_seen[identifier] = None
+            self.equipment_seen[identifier] = fragment["n"]
             while len(self.equipment_seen) > EQUIPMENT_DEDUP_LIMIT:
                 self.equipment_seen.popitem(last=False)
             self.equipment.append(copy.deepcopy(record))
@@ -423,10 +836,14 @@ class CompanionState:
                     current_snapshot["instanceType"] = "unknown"
                 if "instanceID" in current_snapshot:
                     current_snapshot["instanceID"] = None
+            current_inventory = self._current_inventory(status)
+            current_quests = self._current_quests(status)
+            current_talents = self._current_talents(status)
             return {"instanceId": self.instance_id, "status": status, "source": "demo" if self.demo else "screen", "snapshot": current_snapshot,
                     "lastSeen": self.last_seen, "ageSeconds": age, "eventCursor": self.event_id,
                     "events": copy.deepcopy([e for e in self.events if after is None or e["id"] > after]),
                     "config": dict(self.config), "error": self.error if status != "live" else None,
+                    "connection": copy.deepcopy(self.connection), "transfers": self._transfers(),
                     "equipment": copy.deepcopy(list(self.equipment)), "equipmentError": self.equipment_error,
                     "equipmentSwaps": copy.deepcopy(self.equipment_swaps), "equipmentSwapError": self.equipment_swap_error,
                     "equipmentOffer": copy.deepcopy(self.equipment_offer) if status == "live" and not self.demo
@@ -445,6 +862,15 @@ class CompanionState:
                     "equipmentComparisonError": self.equipment_comparison_error,
                     "equipmentLoadout": copy.deepcopy(self.equipment_loadout),
                     "equipmentLoadoutError": self.equipment_loadout_error,
+                    "inventory": current_inventory,
+                    "inventoryReceivedAt": self.inventory_received_at if current_inventory is not None else None,
+                    "inventoryError": self.inventory_error,
+                    "quests": current_quests,
+                    "questsReceivedAt": self.quests_received_at if current_quests is not None else None,
+                    "questsError": self.quests_error,
+                    "talents": current_talents,
+                    "talentsReceivedAt": self.talents_received_at if current_talents is not None else None,
+                    "talentsError": self.talents_error,
                     "staleAfterSeconds": 5, "protocol": self.protocol, "game": self.game}
 
     def _event(self, kind: str, title: str, detail: str, snapshot: dict) -> None:
@@ -475,10 +901,12 @@ class CompanionState:
                 key = (value["s"], value["g"], value["day"], value["n"])
                 if self.calendar_key != key:
                     self.calendar_key, self.calendar_parts, self.calendar = key, {}, None
+                    self.calendar_started = self.clock()
                 self.calendar_at = self.clock()
                 self.calendar_parts[value["p"]] = {k: value[k] for k in ("title", "action", "when")}
                 if len(self.calendar_parts) == max(1, value["n"]):
                     self.calendar = {"day": value["day"], "items": [self.calendar_parts[i] for i in range(1, value["n"] + 1)]}
+                self._record_transfer("calendar", value)
                 return
             if snapshot.get("kind") == "macro":
                 value = validate_macro(snapshot)
@@ -490,14 +918,26 @@ class CompanionState:
                     return
                 self.macro_import, self.macro_import_at = value, self.clock()
                 return
+            if snapshot.get("kind") == "qlog":
+                self._ingest_quests(snapshot)
+                return
+            if snapshot.get("kind") == "traits":
+                self._ingest_talents(snapshot)
+                return
+            if snapshot.get("kind") == "inv":
+                self._ingest_inventory(snapshot)
+                return
             if snapshot.get("kind") == "gear":
                 self._ingest_equipment_loadout(snapshot)
+                self._record_transfer("gear", snapshot)
                 return
             if snapshot.get("kind") == "cmp":
                 self._ingest_equipment_comparison(snapshot)
+                self._record_transfer("cmp", snapshot)
                 return
             if snapshot.get("kind") == "eq":
                 self._ingest_equipment(snapshot)
+                self._record_transfer("eq", snapshot)
                 return
             if snapshot.get("kind") == "swap":
                 self._ingest_equipment_swap(snapshot)
@@ -568,6 +1008,20 @@ class CompanionState:
                 self.equipment_pending.clear()
                 self.comparison_pending.clear()
                 self.loadout_pending.clear()
+                self.inventory_pending.clear()
+            self.quests_pending.clear()
+
+    def capture_inventory_error(self, message: str) -> None:
+        with self.lock:
+            self.inventory_error = message
+
+    def capture_quests_error(self, message: str) -> None:
+        with self.lock:
+            self.quests_error = message
+
+    def capture_talents_error(self, message: str) -> None:
+        with self.lock:
+            self.talents_error = message
 
     def capture_swap_error(self, message: str) -> None:
         with self.lock:
@@ -591,6 +1045,7 @@ class CompanionState:
             changed = result != self.config
             self.config = result
             if changed:
+                self.capture_revision += 1
                 self._clear_equipment()
                 self.reset_baseline = True
                 self.last_known_zone = None
@@ -607,6 +1062,7 @@ class CompanionState:
             raise ValueError("演示动作要求 enabled=true")
         with self.lock:
             if enabled != self.demo:
+                self.capture_revision += 1
                 self._clear_equipment()
                 self.demo = enabled
                 self.snapshot = None

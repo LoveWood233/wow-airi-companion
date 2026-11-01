@@ -2,6 +2,7 @@
 local _, ns = ...
 local messages = {
   enUS = {
+    ["这里对现在的你而言太早了，前面的区域，以后再来探索吧"] = "It is too early for you to be here. Come back to explore this area later.",
     ["金币暂不可用"] = "Gold unavailable",
     ["%.0f金 %d银 %d铜"] = "%.0fg %ds %dc",
     ["装备：%s · 等待资料 %d · 跳过 %d"] = "Equipment: %s · waiting for data %d · skipped %d",
@@ -106,6 +107,7 @@ local messages = {
     ["、"] = ", ",
   },
   zhCN = {
+    ["这里对现在的你而言太早了，前面的区域，以后再来探索吧"] = "这里对现在的你而言太早了，前面的区域，以后再来探索吧",
     ["金币暂不可用"] = "金币暂不可用",
     ["%.0f金 %d银 %d铜"] = "%.0f金 %d银 %d铜",
     ["装备：%s · 等待资料 %d · 跳过 %d"] = "装备：%s · 等待资料 %d · 跳过 %d",

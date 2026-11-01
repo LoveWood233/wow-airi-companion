@@ -224,7 +224,7 @@ end''')
         g.NS = ns
         g.SetupOld(16, 100, b'Worn weapon', 170, b'INVTYPE_2HWEAPON')
         load = runtime.eval(b'function(source,name,ns) assert(loadstring(source))(name,ns) end')
-        for filename in ('Protocol.lua', 'Money.lua', 'Equipment.lua', 'Transfer.lua', 'EquipmentCompare.lua', 'ConfirmEquip.lua', 'Telemetry.lua', ROOT.name + '.lua'):
+        for filename in ('Protocol.lua', 'Money.lua', 'Equipment.lua', 'Transfer.lua', 'EquipmentCompare.lua', 'ConfirmEquip.lua', 'Inventory.lua', 'Quests.lua', 'Talents.lua', 'Telemetry.lua', ROOT.name + '.lua'):
             load((ROOT / filename).read_bytes(), ROOT.name.encode(), ns)
         g.Fire(b'ADDON_LOADED', ROOT.name.encode())
         g.Model[b'guid'] = b'Player-login-new'

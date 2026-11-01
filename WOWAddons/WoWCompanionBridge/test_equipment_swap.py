@@ -15,6 +15,7 @@ from protocol import (EquipmentSwapError, FrameError, decode_frame, decode_pixel
                       encode_frame, pixels_for_frame, validate_equipment_swap)
 from server import BridgeServer, capture_loop
 from state import CompanionState
+from window import GameWindow
 from test_bridge import snapshot
 from test_equipment import fragments, record
 
@@ -222,7 +223,11 @@ class EquipmentSwapBoundaryTests(unittest.TestCase):
         capture.grab.return_value = pixels
         stop = Mock()
         stop.is_set.side_effect = [False, True]
-        with patch("server.ScreenCapture", return_value=capture):
+        windows = Mock()
+        window = GameWindow(1, 1, 1, (0, 0, 800, 600))
+        windows.discover.return_value = [window]
+        windows.inspect.return_value = window
+        with patch("capture.ScreenCapture", return_value=capture), patch("window.WindowsGameWindows", return_value=windows):
             capture_loop(state, stop)
         result = state.view()
         self.assertEqual(result["status"], "live")

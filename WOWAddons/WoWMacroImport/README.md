@@ -1,5 +1,7 @@
 # 魔兽陪伴精灵 · 宏导入
 
+实时传输与宏导入回执的关系见 [游戏插件与 AIRI 通信说明](../wow-addon-airi-communication.md)。
+
 ## 使用
 
 安装 `WoWMacroImport` 文件夹到对应客户端的 `Interface/AddOns`。

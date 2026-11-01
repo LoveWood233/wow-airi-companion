@@ -22,6 +22,12 @@ COMPARISON_MAX_PARTS = 18
 LOADOUT_MAX_BYTES = 196608
 LOADOUT_MAX_PARTS = 820
 LOADOUT_ITEM_MAX_BYTES = 8192
+INVENTORY_MAX_BYTES = 65536
+INVENTORY_MAX_PARTS = 274
+QUEST_MAX_BYTES = 32768
+QUEST_MAX_PARTS = 137
+TALENT_MAX_BYTES = 65536
+TALENT_MAX_PARTS = 274
 
 
 def frame_magic(protocol: str) -> bytes:
@@ -48,6 +54,18 @@ class EquipmentComparisonError(FrameError):
 
 class EquipmentLoadoutError(FrameError):
     """An intact current-equipment fragment failed validation, not the heartbeat."""
+
+
+class InventoryError(FrameError):
+    """An intact inventory fragment failed validation, not the character heartbeat."""
+
+
+class QuestError(FrameError):
+    """An intact task fragment failed validation, not the heartbeat."""
+
+
+class TalentError(FrameError):
+    """An intact committed-talent fragment failed, not the character heartbeat."""
 
 
 def load_json(payload: bytes) -> object:
@@ -135,6 +153,221 @@ def validate_loadout_fragment(value: object) -> dict:
         return _validate_fragment(value, "gear", LOADOUT_MAX_PARTS, LOADOUT_MAX_BYTES)
     except FrameError as exc:
         raise EquipmentLoadoutError(f"当前装备分片无效：{exc}") from exc
+
+
+def validate_inventory_fragment(value: object) -> dict:
+    try:
+        return _validate_fragment(value, "inv", INVENTORY_MAX_PARTS, INVENTORY_MAX_BYTES)
+    except FrameError as exc:
+        raise InventoryError(f"背包库存分片无效：{exc}") from exc
+
+
+def validate_inventory(value: object) -> dict:
+    """Validate aggregated carried item counts. Missing bank data is explicitly unknown."""
+    fields = {"v", "id", "session", "guid", "observedAt", "source", "bank", "complete", "items"}
+    if not isinstance(value, dict) or set(value) != fields:
+        raise FrameError("背包库存字段不完整或含未知字段")
+    _integer(value["v"], "v", 1, 1)
+    _integer(value["id"], "id", 1, 2147483647)
+    _text(value["session"], "session", 40, identity=True)
+    _text(value["guid"], "guid", 48, identity=True)
+    _integer(value["observedAt"], "observedAt", 1, 4102444800)
+    if (value["source"] != "bags" or value["bank"] != "unknown" or type(value["complete"]) is not bool
+            or not isinstance(value["items"], list) or len(value["items"]) > 1000):
+        raise FrameError("背包库存范围或完整性无效")
+    previous = 0
+    for item in value["items"]:
+        if not isinstance(item, dict) or set(item) != {"itemID", "quantity"}:
+            raise FrameError("背包库存物品字段无效")
+        identifier = _integer(item["itemID"], "itemID", 1, 2147483647)
+        _integer(item["quantity"], "quantity", 1, 2147483647)
+        if identifier <= previous:
+            raise FrameError("背包库存物品必须按编号升序且不重复")
+        previous = identifier
+    if len(json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode("utf-8")) > INVENTORY_MAX_BYTES:
+        raise FrameError("背包库存超过 65536 字节")
+    return dict(value)
+
+
+def validate_quest_fragment(value: object) -> dict:
+    try:
+        return _validate_fragment(value, "qlog", QUEST_MAX_PARTS, QUEST_MAX_BYTES)
+    except FrameError as exc:
+        raise QuestError(f"任务分片无效：{exc}") from exc
+
+
+def validate_quests(value: object) -> dict:
+    def exact(data, fields):
+        if not isinstance(data, dict) or set(data) != set(fields.split()):
+            raise FrameError("任务字段不完整或含未知字段")
+    def flag(data, key, nullable=False):
+        if type(data[key]) is not bool and not (nullable and data[key] is None):
+            raise FrameError("任务布尔值无效")
+    def count(data, key, high=2147483647, low=0, nullable=False):
+        if not (nullable and data[key] is None):
+            _integer(data[key], key, low, high)
+    def labels(data, fields):
+        for key, maximum in fields:
+            _loadout_text(data[key], key, maximum, nullable=True)
+    exact(value, "v id session guid observedAt source log completion")
+    _integer(value["v"], "v", 1, 1)
+    count(value, "id", low=1)
+    _text(value["session"], "session", 40, identity=True)
+    _text(value["guid"], "guid", 48, identity=True)
+    count(value, "observedAt", high=4102444800, low=1)
+    if value["source"] != "quest-log":
+        raise FrameError("任务来源无效")
+    log, completion = value["log"], value["completion"]
+    exact(log, "complete truncated total entries")
+    flag(log, "complete"); flag(log, "truncated"); count(log, "total", nullable=True)
+    if not isinstance(log["entries"], list) or len(log["entries"]) > 50:
+        raise FrameError("任务日志条目超过限制")
+    previous = 0
+    for entry in log["entries"]:
+        exact(entry, "questID title level header readyForTurnIn failed objectivesComplete objectives")
+        count(entry, "questID", low=1); count(entry, "level", high=255, nullable=True)
+        labels(entry, (("title", 128), ("header", 128)))
+        flag(entry, "readyForTurnIn", True); flag(entry, "failed", True); flag(entry, "objectivesComplete")
+        if entry["questID"] <= previous:
+            raise FrameError("任务编号必须升序且不重复")
+        previous = entry["questID"]
+        if not isinstance(entry["objectives"], list) or len(entry["objectives"]) > 8:
+            raise FrameError("任务目标超过限制")
+        objective_index = 0
+        for objective in entry["objectives"]:
+            exact(objective, "index text type fulfilled required finished")
+            count(objective, "index", high=8, low=1)
+            labels(objective, (("text", 256), ("type", 40)))
+            count(objective, "fulfilled", nullable=True); count(objective, "required", nullable=True); flag(objective, "finished", True)
+            if objective["index"] <= objective_index:
+                raise FrameError("任务目标编号必须升序且不重复")
+            objective_index = objective["index"]
+    if log["complete"] and (log["truncated"] or log["total"] != len(log["entries"])):
+        raise FrameError("任务日志覆盖声明不一致")
+    exact(completion, "source scope complete truncated total ids turnIns")
+    if completion["source"] not in ("completed-api", "session-events", "unknown") or completion["scope"] != "unknown":
+        raise FrameError("任务完成证据或范围无效")
+    flag(completion, "complete"); flag(completion, "truncated"); count(completion, "total", nullable=True)
+    if not isinstance(completion["ids"], list) or len(completion["ids"]) > 512 or not isinstance(completion["turnIns"], list) or len(completion["turnIns"]) > 32:
+        raise FrameError("任务完成记录超过限制")
+    previous = 0
+    for identifier in completion["ids"]:
+        _integer(identifier, "questID", 1, 2147483647)
+        if identifier <= previous:
+            raise FrameError("任务完成编号必须升序且不重复")
+        previous = identifier
+    turned_in = set()
+    for entry in completion["turnIns"]:
+        exact(entry, "questID observedAt")
+        count(entry, "questID", low=1); count(entry, "observedAt", high=value["observedAt"], low=1)
+        if entry["questID"] in turned_in:
+            raise FrameError("任务交付事件重复")
+        turned_in.add(entry["questID"])
+    if completion["complete"] and (completion["source"] != "completed-api" or completion["truncated"] or completion["total"] != len(completion["ids"])):
+        raise FrameError("任务完成覆盖声明不一致")
+    if completion["source"] != "completed-api" and (completion["ids"] or completion["total"] is not None):
+        raise FrameError("无API证据不能提供任务完成标记")
+    if len(json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode("utf-8")) > QUEST_MAX_BYTES:
+        raise FrameError("任务快照超过32768字节")
+    return dict(value)
+
+
+def validate_talent_fragment(value: object) -> dict:
+    try:
+        return _validate_fragment(value, "traits", TALENT_MAX_PARTS, TALENT_MAX_BYTES)
+    except FrameError as exc:
+        raise TalentError(f"天赋分片无效：{exc}") from exc
+
+
+def validate_talents(value: object) -> dict:
+    def exact(data, keys):
+        if not isinstance(data, dict) or set(data) != set(keys.split()):
+            raise FrameError("天赋字段不完整或含未知字段")
+    def flag(value, nullable=True):
+        if type(value) is not bool and not (nullable and value is None):
+            raise FrameError("天赋布尔字段无效")
+    def integer(value, high=2147483647, low=1, nullable=False):
+        if not (nullable and value is None):
+            _integer(value, "talent number", low, high)
+    def ordered(values, field):
+        previous = 0
+        for row in values:
+            identifier = row[field] if isinstance(row, dict) else row
+            integer(identifier)
+            if identifier <= previous:
+                raise FrameError("天赋编号必须升序且不重复")
+            previous = identifier
+    def pairs(values):
+        previous = (0, 0)
+        for row in values:
+            integer(row["treeID"]); integer(row["nodeID"])
+            pair = row["treeID"], row["nodeID"]
+            if pair <= previous or row["treeID"] not in value["treeIDs"]:
+                raise FrameError("天赋树节点排序或范围无效")
+            previous = pair
+    exact(value, "v id session guid observedAt source clientBuild locale class classID specID configID configName configType status hasStagedChanges scope complete truncated treeIDs knownZeroNodes nodes")
+    _integer(value["v"], "v", 1, 1); integer(value["id"]); integer(value["observedAt"], 4102444800)
+    _text(value["session"], "session", 40, identity=True); _text(value["guid"], "guid", 48, identity=True)
+    if value["source"] != "class-traits" or value["scope"] != "selected-nodes" or value["status"] not in ("active", "staged", "unknown", "inaccessible"):
+        raise FrameError("天赋来源或提交状态无效")
+    if value["clientBuild"] is not None and (not isinstance(value["clientBuild"], str) or len(value["clientBuild"]) > 40 or not re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+", value["clientBuild"])):
+        raise FrameError("天赋客户端构建无效")
+    if value["locale"] is not None and (not isinstance(value["locale"], str) or not re.fullmatch(r"[a-z]{2}[A-Z]{2}", value["locale"])):
+        raise FrameError("天赋客户端语言无效")
+    if value["class"] is not None and (not isinstance(value["class"], str) or len(value["class"]) > 20 or not re.fullmatch(r"[A-Z][A-Z_]+", value["class"])):
+        raise FrameError("天赋职业标识无效")
+    for key in ("classID", "specID", "configID"):
+        integer(value[key], nullable=True)
+    integer(value["configType"], 1000, 0, True)
+    _loadout_text(value["configName"], "configName", 128, nullable=True)
+    flag(value["hasStagedChanges"]); flag(value["complete"], False); flag(value["truncated"], False)
+    for key, maximum in (("treeIDs", 8), ("knownZeroNodes", 1024), ("nodes", 128)):
+        if not isinstance(value[key], list) or len(value[key]) > maximum:
+            raise FrameError("天赋列表超过限制")
+    ordered(value["treeIDs"], "treeID")
+    for zero in value["knownZeroNodes"]:
+        exact(zero, "treeID nodeID")
+    pairs(value["knownZeroNodes"])
+    for node in value["nodes"]:
+        exact(node, "treeID nodeID ranksPurchased activeRank maxRanks isAvailable isVisible meetsEdgeRequirements entriesComplete entries conditionsComplete conditions")
+        integer(node["treeID"]); integer(node["nodeID"])
+        for key in ("ranksPurchased", "activeRank", "maxRanks"):
+            integer(node[key], 1000, 0, True)
+        if not ((node["ranksPurchased"] or 0) > 0 or (node["activeRank"] or 0) > 0):
+            raise FrameError("已选节点缺少实际rank证据")
+        for key in ("isAvailable", "isVisible", "meetsEdgeRequirements"):
+            flag(node[key])
+        for key in ("entriesComplete", "conditionsComplete"):
+            flag(node[key], False)
+        for key in ("entries", "conditions"):
+            if not isinstance(node[key], list) or len(node[key]) > 8:
+                raise FrameError("天赋条目或条件超过限制")
+        for entry in node["entries"]:
+            exact(entry, "entryID definitionID spellID rank isActive")
+            integer(entry["entryID"]); integer(entry["definitionID"], nullable=True); integer(entry["spellID"], nullable=True)
+            integer(entry["rank"], 1000, 0, True); flag(entry["isActive"])
+        ordered(node["entries"], "entryID")
+        for condition in node["conditions"]:
+            exact(condition, "conditionID isMet playerLevel spentAmountRequired traitCurrencyID")
+            integer(condition["conditionID"]); flag(condition["isMet"])
+            integer(condition["playerLevel"], 255, 0, True); integer(condition["spentAmountRequired"], low=0, nullable=True)
+            integer(condition["traitCurrencyID"], nullable=True)
+        ordered(node["conditions"], "conditionID")
+    pairs(value["nodes"])
+    selected = {(node["treeID"], node["nodeID"]) for node in value["nodes"]}
+    if any((node["treeID"], node["nodeID"]) in selected for node in value["knownZeroNodes"]):
+        raise FrameError("已选节点不能同时声明零rank")
+    if value["status"] == "active" and (value["hasStagedChanges"] is not False or value["configID"] is None or value["configType"] not in (1, 4) or not value["treeIDs"]):
+        raise FrameError("已生效天赋缺少稳定提交证据")
+    if value["status"] == "staged" and value["hasStagedChanges"] is not True:
+        raise FrameError("未提交状态缺少编辑证据")
+    if value["status"] != "active" and (value["complete"] or value["nodes"] or value["knownZeroNodes"]):
+        raise FrameError("未确认生效的配置不能提供实际rank")
+    if value["complete"] and value["truncated"]:
+        raise FrameError("截断天赋不能声明完整")
+    if len(json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode("utf-8")) > TALENT_MAX_BYTES:
+        raise FrameError("天赋快照超过65536字节")
+    return dict(value)
 
 
 def _loadout_text(value: object, key: str, maximum: int, *, nullable=False, identity=False):
@@ -490,6 +723,12 @@ def validate_equipment_offer(value: object) -> dict:
 
 
 def validate_message(value: object) -> dict:
+    if isinstance(value, dict) and value.get("kind") == "traits":
+        return validate_talent_fragment(value)
+    if isinstance(value, dict) and value.get("kind") == "qlog":
+        return validate_quest_fragment(value)
+    if isinstance(value, dict) and value.get("kind") == "inv":
+        return validate_inventory_fragment(value)
     if isinstance(value, dict) and value.get("kind") == "buff":
         return validate_group_buff(value)
     if isinstance(value, dict) and value.get("kind") == "calendar":

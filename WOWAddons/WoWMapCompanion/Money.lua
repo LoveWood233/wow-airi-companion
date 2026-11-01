@@ -63,6 +63,7 @@ function Money.Sample(guid, online)
             saved.characters[guid] = currentLedger
         end
         currentLedger[key] = currentLedger[key] + amount
+        if delta ~= 0 and ns.OfflineHistory then ns.OfflineHistory.Money(guid, delta, copper, currentLedger.epoch) end
     end
     previousCopper = copper
     return saved.account, currentLedger.epoch, copper, currentLedger.earned, currentLedger.spent

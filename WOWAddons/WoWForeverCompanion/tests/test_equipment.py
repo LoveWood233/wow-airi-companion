@@ -267,7 +267,7 @@ C_Container.GetContainerItemInfo=function(bag,slot) if bag==0 and slot==1 then r
         ns = lua.table()
         load = lua.eval(b"function(source,name,ns) assert(loadstring(source))(name,ns) end")
         addon = ROOT.name.encode()
-        for filename in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", ROOT.name + ".lua"):
+        for filename in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", ROOT.name + ".lua"):
             load((ROOT / filename).read_bytes(), addon, ns)
         lua.globals().Fire(b"ADDON_LOADED", addon)
         lua.globals().Fire(b"PLAYER_ENTERING_WORLD")

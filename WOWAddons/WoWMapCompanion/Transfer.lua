@@ -9,6 +9,9 @@ local heldFrame, dropped = nil, 0
 local swaps, swapCursor, dataOpportunity = {}, 0, 0
 local offer, offerOpportunity = nil, 0
 local gear, gearPart, gearReplay = nil, 0, false
+local inventory, inventoryPart = nil, 0
+local quests, questPart, snapshotOpportunity = nil, 0, 0
+local talents, talentPart, snapshotCursor = nil, 0, 0
 local comparisons, comparisonCursor, currentComparison, comparisonPart, comparisonReplay = {}, 0, nil, 0, false
 local alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 local keys = { "v", "id", "session", "guid", "itemID", "itemGUID", "link", "name", "type", "subtype", "equipLoc", "quality", "itemLevel", "requiredLevel", "stats", "tooltip", "quantity", "observedAt", "source", "infoComplete", "statsComplete", "tooltipComplete", "truncated" }
@@ -44,6 +47,12 @@ local function FieldsJSON(record, fieldKeys)
             local items = {}
             for _, line in ipairs(value) do items[#items + 1] = Value(line) end
             encoded = "[" .. table.concat(items, ",") .. "]"
+        elseif key == "items" then
+            local items = {}
+            for _, item in ipairs(value) do
+                items[#items + 1] = '{"itemID":' .. Value(item.itemID) .. ',"quantity":' .. Value(item.quantity) .. '}'
+            end
+            encoded = "[" .. table.concat(items, ",") .. "]"
         else encoded = Value(value) end
         result[#result + 1] = Escape(key) .. ":" .. encoded
     end
@@ -52,6 +61,131 @@ end
 
 
 function Transfer.JSON(record) return FieldsJSON(record, keys) end
+
+function Transfer.InventoryJSON(record)
+    return FieldsJSON(record, { "v", "id", "session", "guid", "observedAt", "source", "bank", "complete", "items" })
+end
+
+function Transfer.EncodeInventory(record)
+    local body = Transfer.InventoryJSON(record)
+    if #body > 65536 then return nil, "inventory exceeds 65536 bytes" end
+    local count, frames = math.ceil(#body / 240), {}
+    for part = 1, count do
+        local payload = '{"v":1,"kind":"inv","s":' .. Value(record.session) .. ',"g":' .. Value(record.guid)
+            .. ',"id":' .. Value(record.id) .. ',"p":' .. part .. ',"n":' .. count
+            .. ',"d":' .. Escape(Transfer.Base64(string.sub(body, (part - 1) * 240 + 1, part * 240))) .. '}'
+        if #payload > 504 then return nil, "inventory fragment exceeds 504 bytes" end
+        frames[part] = Protocol.Frame(payload)
+    end
+    return frames, body
+end
+
+function Transfer.SetInventory(record)
+    if not record then inventory, inventoryPart = nil, 0; return true end
+    local frames = Transfer.EncodeInventory(record)
+    if not frames then dropped = dropped + 1; return false end
+    inventory, inventoryPart = { frames = frames, fresh = true }, 0
+    return true
+end
+
+function Transfer.InventoryBusy() return inventory and inventory.fresh or false end
+
+local function NextInventory()
+    inventoryPart = inventoryPart % #inventory.frames + 1
+    heldFrame = inventory.frames[inventoryPart]
+    if inventoryPart == #inventory.frames then inventory.fresh = false end
+end
+
+function Transfer.QuestsJSON(record)
+    local entries = {}
+    for _, entry in ipairs(record.log.entries) do
+        local objectives = {}
+        for _, objective in ipairs(entry.objectives) do
+            objectives[#objectives + 1] = FieldsJSON(objective, {"index", "text", "type", "fulfilled", "required", "finished"})
+        end
+        local fields = FieldsJSON(entry, {"questID", "title", "level", "header", "readyForTurnIn", "failed", "objectivesComplete"})
+        entries[#entries + 1] = string.sub(fields, 1, -2) .. ',"objectives":[' .. table.concat(objectives, ",") .. ']}'
+    end
+    local ids, turnIns = {}, {}
+    for _, id in ipairs(record.completion.ids) do ids[#ids + 1] = Value(id) end
+    for _, entry in ipairs(record.completion.turnIns) do turnIns[#turnIns + 1] = FieldsJSON(entry, {"questID", "observedAt"}) end
+    local log = FieldsJSON(record.log, {"complete", "truncated", "total"})
+    local completion = FieldsJSON(record.completion, {"source", "scope", "complete", "truncated", "total"})
+    local root = FieldsJSON(record, {"v", "id", "session", "guid", "observedAt", "source"})
+    return string.sub(root, 1, -2) .. ',"log":' .. string.sub(log, 1, -2) .. ',"entries":[' .. table.concat(entries, ",") .. ']},"completion":'
+        .. string.sub(completion, 1, -2) .. ',"ids":[' .. table.concat(ids, ",") .. '],"turnIns":[' .. table.concat(turnIns, ",") .. ']}}'
+end
+function Transfer.EncodeQuests(record)
+    local body = Transfer.QuestsJSON(record)
+    if #body > 32768 then return nil, "quests exceed 32768 bytes" end
+    local count, frames = math.ceil(#body / 240), {}
+    for part = 1, count do
+        local payload = '{"v":1,"kind":"qlog","s":' .. Value(record.session) .. ',"g":' .. Value(record.guid)
+            .. ',"id":' .. Value(record.id) .. ',"p":' .. part .. ',"n":' .. count
+            .. ',"d":' .. Escape(Transfer.Base64(string.sub(body, (part - 1) * 240 + 1, part * 240))) .. '}'
+        if #payload > 504 then return nil, "quest fragment exceeds 504 bytes" end
+        frames[part] = Protocol.Frame(payload)
+    end
+    return frames, body
+end
+function Transfer.SetQuests(record)
+    if not record then quests, questPart = nil, 0; return true end
+    local frames = Transfer.EncodeQuests(record)
+    if not frames then dropped = dropped + 1; return false end
+    quests, questPart = { frames = frames, fresh = true }, 0
+    return true
+end
+function Transfer.QuestsBusy() return quests and quests.fresh or false end
+local function NextQuests()
+    questPart = questPart % #quests.frames + 1
+    heldFrame = quests.frames[questPart]
+    if questPart == #quests.frames then quests.fresh = false end
+end
+
+function Transfer.TalentsJSON(record)
+    local trees, zeros, nodes = {}, {}, {}
+    for _, id in ipairs(record.treeIDs) do trees[#trees + 1] = Value(id) end
+    for _, node in ipairs(record.knownZeroNodes) do zeros[#zeros + 1] = FieldsJSON(node, {"treeID", "nodeID"}) end
+    for _, node in ipairs(record.nodes) do
+        local entries, conditions = {}, {}
+        for _, entry in ipairs(node.entries) do
+            entries[#entries + 1] = FieldsJSON(entry, {"entryID", "definitionID", "spellID", "rank", "isActive"})
+        end
+        for _, condition in ipairs(node.conditions) do
+            conditions[#conditions + 1] = FieldsJSON(condition, {"conditionID", "isMet", "playerLevel", "spentAmountRequired", "traitCurrencyID"})
+        end
+        local fields = FieldsJSON(node, {"treeID", "nodeID", "ranksPurchased", "activeRank", "maxRanks", "isAvailable", "isVisible", "meetsEdgeRequirements", "entriesComplete", "conditionsComplete"})
+        nodes[#nodes + 1] = string.sub(fields, 1, -2) .. ',"entries":[' .. table.concat(entries, ",") .. '],"conditions":[' .. table.concat(conditions, ",") .. ']}'
+    end
+    local fields = FieldsJSON(record, {"v", "id", "session", "guid", "observedAt", "source", "clientBuild", "locale", "class", "classID", "specID", "configID", "configName", "configType", "status", "hasStagedChanges", "scope", "complete", "truncated"})
+    return string.sub(fields, 1, -2) .. ',"treeIDs":[' .. table.concat(trees, ",") .. '],"knownZeroNodes":[' .. table.concat(zeros, ",") .. '],"nodes":[' .. table.concat(nodes, ",") .. ']}'
+end
+function Transfer.EncodeTalents(record)
+    local body = Transfer.TalentsJSON(record)
+    if #body > 65536 then return nil, "talents exceed 65536 bytes" end
+    local count, frames = math.ceil(#body / 240), {}
+    for part = 1, count do
+        local payload = '{"v":1,"kind":"traits","s":' .. Value(record.session) .. ',"g":' .. Value(record.guid)
+            .. ',"id":' .. Value(record.id) .. ',"p":' .. part .. ',"n":' .. count
+            .. ',"d":' .. Escape(Transfer.Base64(string.sub(body, (part - 1) * 240 + 1, part * 240))) .. '}'
+        if #payload > 504 then return nil, "talent fragment exceeds 504 bytes" end
+        frames[part] = Protocol.Frame(payload)
+    end
+    return frames, body
+end
+function Transfer.SetTalents(record)
+    if not record then talents, talentPart = nil, 0; return true end
+    local frames = Transfer.EncodeTalents(record)
+    if not frames then dropped = dropped + 1; return false end
+    talents, talentPart = { frames = frames, fresh = true }, 0
+    return true
+end
+function Transfer.TalentsBusy() return talents and talents.fresh or false end
+local function NextTalents()
+    talentPart = talentPart % #talents.frames + 1
+    heldFrame = talents.frames[talentPart]
+    if talentPart == #talents.frames then talents.fresh = false end
+end
 
 function Transfer.Base64(bytes)
     local result = {}
@@ -417,6 +551,28 @@ function Transfer.Advance()
     if freshComparison and currentComparison and not currentComparison.fresh then currentComparison, comparisonPart = nil, 0 end
     local freshEquipment = current and current.fresh or false
     for _, entry in ipairs(records) do if entry.fresh then freshEquipment = true; break end end
+    -- Fresh observation streams rotate fairly; their replays take only one quarter of background slots.
+    if not freshComparison and not freshEquipment then
+        snapshotOpportunity = snapshotOpportunity + 1
+        local pending = {}
+        if inventory and inventory.fresh then pending[#pending + 1] = NextInventory end
+        if quests and quests.fresh then pending[#pending + 1] = NextQuests end
+        if talents and talents.fresh then pending[#pending + 1] = NextTalents end
+        if #pending > 0 and not (gear and gear.fresh and snapshotOpportunity % 4 == 0) then
+            snapshotCursor = snapshotCursor % #pending + 1
+            pending[snapshotCursor]()
+            return
+        elseif #pending == 0 and snapshotOpportunity % 4 == 1 then
+            if inventory then pending[#pending + 1] = NextInventory end
+            if quests then pending[#pending + 1] = NextQuests end
+            if talents then pending[#pending + 1] = NextTalents end
+            if #pending > 0 then
+                snapshotCursor = snapshotCursor % #pending + 1
+                pending[snapshotCursor]()
+                return
+            end
+        end
+    end
     if gear and not freshComparison and not freshEquipment then
         -- Gear gets all remaining data slots for its first pass, then alternates with ordinary replays.
         if gear.fresh or gearReplay or (#records == 0 and #comparisons == 0) then

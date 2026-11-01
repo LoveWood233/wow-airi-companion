@@ -99,7 +99,7 @@ class AddonTest(unittest.TestCase):
         self.lua.execute(MOCK)
         self.ns = self.lua.table()
         self.load = self.lua.eval(b"function(source, name, ns) local f, err = loadstring(source); assert(f, err); return f(name, ns) end")
-        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
+        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
             self.load((ROOT / name).read_bytes(), b"WoWForeverCompanion", self.ns)
         self.lua.globals().Fire(b"ADDON_LOADED", b"WoWForeverCompanion")
         self.lua.globals().Fire(b"PLAYER_ENTERING_WORLD")
@@ -375,7 +375,7 @@ class AddonTest(unittest.TestCase):
                 lua.execute(b'WoWForeverCompanionDB={sentinel=42}; WoWMapCompanionDB={sentinel=99}')
                 ns = lua.table()
                 load = lua.eval(b"function(source, ns) assert(loadstring(source))('WoWForeverCompanion', ns) end")
-                for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
+                for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
                     load((ROOT / name).read_bytes(), ns)
                 g = lua.globals()
                 g.Fire(b"ADDON_LOADED", b"WoWForeverCompanion")
@@ -394,16 +394,16 @@ class AddonTest(unittest.TestCase):
         self.assertEqual(plain, camelot)
         self.assertIn("## Interface: 16001", plain)
         self.assertIn("## SavedVariables: WoWForeverCompanionDB", plain)
-        self.assertIn("## Version: 1.12.0", plain)
+        self.assertIn("## Version: 1.17.0", plain)
         lua_files = [line.strip() for line in plain.splitlines() if line.strip().endswith(".lua")]
-        self.assertEqual(lua_files, ["Localization.lua", "Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "Calendar.lua", "GroupBuffs.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"])
+        self.assertEqual(lua_files, ["Localization.lua", "Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "OfflineHistory.lua", "Inventory.lua", "Quests.lua", "Talents.lua", "Calendar.lua", "GroupBuffs.lua", "ExplorationLevels.lua", "ExplorationWarning.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"])
         for filename in lua_files:
             self.assertTrue((ROOT / filename).is_file())
 
     def reload_with_saved_settings(self):
         self.lua.execute(MOCK)
         ns = self.lua.table()
-        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
+        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
             self.load((ROOT / name).read_bytes(), b"WoWForeverCompanion", ns)
         self.lua.globals().Fire(b"ADDON_LOADED", b"WoWForeverCompanion")
         self.lua.globals().Fire(b"PLAYER_ENTERING_WORLD")
@@ -486,7 +486,7 @@ class AddonTest(unittest.TestCase):
         # Reset client runtime objects while retaining its account-wide SavedVariables table.
         self.lua.execute(MOCK)
         ns = self.lua.table()
-        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
+        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
             self.load((ROOT / name).read_bytes(), b"WoWForeverCompanion", ns)
         g.Fire(b"ADDON_LOADED", b"WoWForeverCompanion")
         g.Model[b"copper"] = 900000

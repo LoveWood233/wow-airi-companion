@@ -488,7 +488,7 @@ class EquipmentCompareTest(unittest.TestCase):
         g.NS=ns
         g.SetupOld(5,100,b"Old chest",100)
         load=runtime.eval(b'function(source,name,ns) assert(loadstring(source))(name,ns) end')
-        for filename in ('Protocol.lua','Money.lua','Equipment.lua','Transfer.lua','EquipmentCompare.lua','ConfirmEquip.lua','Telemetry.lua',ROOT.name+'.lua'):
+        for filename in ('Protocol.lua','Money.lua','Equipment.lua','Transfer.lua','EquipmentCompare.lua','ConfirmEquip.lua','Inventory.lua','Quests.lua','Talents.lua','Telemetry.lua',ROOT.name+'.lua'):
             load((ROOT/filename).read_bytes(),ROOT.name.encode(),ns)
         g.Fire(b'ADDON_LOADED',ROOT.name.encode());g.Fire(b'PLAYER_ENTERING_WORLD');g.AdvanceTime(2)
         self.assertEqual([g.Tickers[i][b'delay'] for i in range(1,len(g.Tickers)+1)],[1,0.25])

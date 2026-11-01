@@ -9,6 +9,7 @@ local ready, online, combat, dead = false, false, false, false
 local refreshTimers = {}
 local defaults = { telemetry = true, x = 8, y = 8, cell = 1 }
 local lastBusinessJSON, currentJSON
+local savingHistory = false
 
 local function Call(fn, ...)
     if type(fn) ~= "function" then return nil end
@@ -75,6 +76,7 @@ local function Export()
     currentJSON = payload
     -- The client flushes these on reload/logout, never as live disk writes.
     db.snapshot, db.snapshotJSON = clean, payload
+    if ns.OfflineHistory then ns.OfflineHistory.Observe(clean, payload, savingHistory) end
     db.updatedAt = Number(Call(GetServerTime) or Call(time), 0)
     Telemetry.Render(Transfer.Current(bytes))
 end
@@ -146,6 +148,7 @@ local function Sample()
     state.px, state.py = SamplePosition(mapID)
     state.instanceType, state.instanceID = SampleInstance()
     state.online, state.combat, state.dead = online, combat, dead
+    if ns.ExplorationWarning then ns.ExplorationWarning.Observe(state) end
     local seq, tick = state.seq, state.tick
     state.seq, state.tick = 0, 0
     local businessJSON = Protocol.JSON(state)
@@ -170,6 +173,7 @@ local function Initialize()
     if type(WoWForeverCompanionDB) ~= "table" then WoWForeverCompanionDB = {} end
     db = WoWForeverCompanionDB
     Money.Initialize(db)
+    if ns.OfflineHistory then ns.OfflineHistory.Initialize(db, "forever") end
     if type(db.settings) ~= "table" then db.settings = {} end
     config = db.settings
     config.panel = nil
@@ -195,12 +199,21 @@ local function Initialize()
     Equipment.Initialize(state, function(record)
         Transfer.Add(record)
         ConfirmEquip.Add(record)
-    end, Transfer.SetGear)
+    end, function(record)
+        if ns.OfflineHistory then ns.OfflineHistory.Equipment(record) end
+        Transfer.SetGear(record)
+    end)
+    ns.Inventory.Initialize(state, Transfer.SetInventory, Transfer.InventoryBusy)
+    ns.Quests.Initialize(state, Transfer.SetQuests, Transfer.QuestsBusy)
+    ns.Talents.Initialize(state, Transfer.SetTalents, Transfer.TalentsBusy)
     ready = true
     ticker = C_Timer.NewTicker(1, function()
         state.tick = (state.tick + 1) % 2147483647
         Sample()
         ConfirmEquip.Tick()
+        ns.Inventory.Tick()
+        ns.Quests.Tick()
+        ns.Talents.Tick()
         Export()
     end)
     -- Keep business heartbeats at one second while each data frame remains visible for 250 ms.
@@ -213,9 +226,17 @@ end
 
 local events = CreateFrame("Frame")
 for _, event in ipairs({ "ADDON_LOADED", "PLAYER_ENTERING_WORLD", "PLAYER_LEAVING_WORLD", "PLAYER_LOGOUT", "PLAYER_MONEY", "PLAYER_LEVEL_UP", "ZONE_CHANGED_NEW_AREA", "ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "PLAYER_SPECIALIZATION_CHANGED", "NEUTRAL_FACTION_SELECT_RESULT", "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "PLAYER_DEAD", "PLAYER_ALIVE", "PLAYER_UNGHOST", "UI_SCALE_CHANGED", "DISPLAY_SIZE_CHANGED", "BAG_UPDATE_DELAYED", "PLAYER_EQUIPMENT_CHANGED", "ITEM_PUSH", "GET_ITEM_INFO_RECEIVED", "ITEM_DATA_LOAD_RESULT" }) do events:RegisterEvent(event) end
+for _, event in ipairs({"QUEST_LOG_UPDATE", "QUEST_ACCEPTED", "QUEST_REMOVED", "QUEST_WATCH_UPDATE", "QUEST_TURNED_IN"}) do events:RegisterEvent(event) end
+
+for _, event in ipairs({"PLAYER_TALENT_UPDATE", "TRAIT_CONFIG_UPDATED", "TRAIT_CONFIG_LIST_UPDATED", "TRAIT_NODE_CHANGED", "TRAIT_TREE_CHANGED"}) do events:RegisterEvent(event) end
+
 events:SetScript("OnEvent", function(_, event, arg1, arg2)
     if event == "ADDON_LOADED" then if arg1 == addonName then Initialize() end; return end
     if not ready then return end
+    ns.Inventory.OnEvent(event)
+    ns.Quests.OnEvent(event, arg1)
+    ns.Talents.OnEvent(event, arg1)
+    if string.sub(event, 1, 6) == "QUEST_" or string.sub(event, 1, 6) == "TRAIT_" or event == "PLAYER_TALENT_UPDATE" then return end
     ConfirmEquip.OnEvent(event, arg1, arg2)
     if event ~= "PLAYER_ENTERING_WORLD" then Equipment.OnEvent(event, arg1, arg2) end
     if event == "PLAYER_ENTERING_WORLD" then
@@ -226,10 +247,12 @@ events:SetScript("OnEvent", function(_, event, arg1, arg2)
         ScheduleRefresh()
         Equipment.OnEvent(event, arg1, arg2)
     elseif event == "PLAYER_LEAVING_WORLD" or event == "PLAYER_LOGOUT" then
+        savingHistory = true
         CancelRefreshTimers()
         online = false
         Sample()
         Export()
+        savingHistory = false
     elseif event == "BAG_UPDATE_DELAYED" or event == "PLAYER_EQUIPMENT_CHANGED" or event == "ITEM_PUSH" or event == "GET_ITEM_INFO_RECEIVED" or event == "ITEM_DATA_LOAD_RESULT" then return
     elseif event == "PLAYER_MONEY" then Sample()
     elseif event == "PLAYER_LEVEL_UP" then pendingLevel = Number(arg1, pendingLevel, 255); Sample()

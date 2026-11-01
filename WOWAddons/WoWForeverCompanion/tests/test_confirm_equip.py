@@ -524,7 +524,7 @@ Native=false; NS.ConfirmEquip.OnEvent("PLAYER_EQUIPMENT_CHANGED")''')
     def test_main_wires_acquisition_accept_and_pixel_result(self):
         self.setUp()
         load = self.lua.eval(b"function(source,name,ns) assert(loadstring(source))(name,ns) end")
-        for filename in ("Money.lua", "Telemetry.lua", ROOT.name + ".lua"):
+        for filename in ("Money.lua", "Inventory.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", ROOT.name + ".lua"):
             load((ROOT / filename).read_bytes(), ROOT.name.encode(), self.ns)
         self.g.Fire(b"ADDON_LOADED", ROOT.name.encode()); self.g.Fire(b"PLAYER_ENTERING_WORLD")
         self.g.AdvanceTime(2)
@@ -733,7 +733,7 @@ Native=false; NS.ConfirmEquip.OnEvent("PLAYER_EQUIPMENT_CHANGED")''')
 
     def test_main_replaces_ready_pixels_when_game_popup_is_closed(self):
         load = self.lua.eval(b"function(source,name,ns) assert(loadstring(source))(name,ns) end")
-        for filename in ("Money.lua", "Telemetry.lua", ROOT.name + ".lua"):
+        for filename in ("Money.lua", "Inventory.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", ROOT.name + ".lua"):
             load((ROOT / filename).read_bytes(), ROOT.name.encode(), self.ns)
         self.g.Fire(b"ADDON_LOADED", ROOT.name.encode()); self.g.Fire(b"PLAYER_ENTERING_WORLD")
         self.g.AdvanceTime(2)
