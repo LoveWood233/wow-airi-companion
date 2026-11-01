@@ -10,8 +10,11 @@ import { errorMessageFrom } from '@moeru/std'
 import { app, dialog, safeStorage } from 'electron'
 import { integer, maxLength, maxValue, minValue, number, object, optional, parse, picklist, pipe, string } from 'valibot'
 
-import { wowAddonsChooseDirectory, wowAddonsFiles, wowAddonsGetSettings, wowAddonsInstall, wowAddonsInstalled, wowAddonsMetadata, wowAddonsSaveSettings, wowAddonsSearch } from '../../../shared/eventa/wow-addons'
+import { wowAddonsChooseDirectory, wowAddonsFiles, wowAddonsGetSettings, wowAddonsInstall, wowAddonsInstalled, wowAddonsInstallRecommendation, wowAddonsMetadata, wowAddonsRecommend, wowAddonsSaveSettings, wowAddonsSearch } from '../../../shared/eventa/wow-addons'
+import { addonRecommendationRequestSchema } from '../../../shared/wow-addon-recommendations'
+import { resolveAddonVersionType } from '../../../shared/wow-addons'
 import { onAppBeforeQuit } from '../../libs/bootkit/lifecycle'
+import { WowAddonRecommendations } from './wow-addon-recommendations'
 import { CurseForgeCatalog } from './wow-addons-catalog'
 import { validateClientDirectory, WowAddonInstaller } from './wow-addons-install'
 import { addonGameSchema, addonIdSchema, addonSettingsUpdateSchema, WowAddonSettings } from './wow-addons-settings'
@@ -44,6 +47,7 @@ export function setupWowAddons(context: ReturnType<typeof createContext>['contex
   const settings = new WowAddonSettings(join(app.getPath('userData'), 'wow-addons-v1.json'), safeStorage)
   const installer = new WowAddonInstaller(join(app.getPath('userData'), 'wow-addons-backups'))
   let catalog: CurseForgeCatalog | undefined
+  let recommendations: WowAddonRecommendations | undefined
   let mutationActive = false
   let mutationFinished: Promise<void> | undefined
   let stopped = false
@@ -75,16 +79,15 @@ export function setupWowAddons(context: ReturnType<typeof createContext>['contex
     }
   }
 
-  async function requireVersion(game: AddonGame, typeId: number) {
+  async function requireVersion(game: AddonGame, typeId?: number) {
     const saved = settings.read().clients[game]
-    if (!saved.gameVersionTypeId)
-      throw new Error('wow-addons-version-required')
-    if (saved.gameVersionTypeId !== typeId)
-      throw new Error('curseforge-incompatible-version')
     const metadata = await client().getMetadata()
-    if (!metadata.versionTypes.some(type => type.id === typeId && type.group === game))
+    const version = resolveAddonVersionType(metadata, game, saved.gameVersionTypeId)
+    if (!version)
+      throw new Error(saved.gameVersionTypeId ? 'curseforge-incompatible-version' : 'wow-addons-version-required')
+    if (typeId !== undefined && typeId !== version.id)
       throw new Error('curseforge-incompatible-version')
-    return saved
+    return { ...saved, gameVersionTypeId: version.id }
   }
 
   async function saveSettings(input: AddonSettingsUpdate) {
@@ -105,17 +108,15 @@ export function setupWowAddons(context: ReturnType<typeof createContext>['contex
     // A key change creates a fresh catalog cache. In-flight reads retain only their original trusted host and cannot mutate local files.
     catalog?.dispose()
     catalog = undefined
+    recommendations = undefined
     return value
   }
 
   async function install(input: AddonInstallRequest): Promise<InstalledAddon> {
     const request = parse(installRequest, input)
-    const saved = settings.read().clients[request.game]
+    const saved = await requireVersion(request.game)
     if (!saved.directory)
       throw new Error('wow-addons-directory-required')
-    if (!saved.gameVersionTypeId)
-      throw new Error('wow-addons-version-required')
-    await requireVersion(request.game, saved.gameVersionTypeId)
     const directory = await validateClientDirectory(saved.directory, request.game)
     const api = client()
     const prior = settings.installed(request.game).filter(item => item.clientDirectory === directory)
@@ -199,6 +200,24 @@ export function setupWowAddons(context: ReturnType<typeof createContext>['contex
       return settings.installed(game).filter(item => item.clientDirectory === directory)
     })),
     defineInvokeHandler(context, wowAddonsInstall, input => result(() => mutate(() => install(input)))),
+    defineInvokeHandler(context, wowAddonsRecommend, input => result(async () => {
+      const request = parse(addonRecommendationRequestSchema, input)
+      const api = client()
+      const saved = await requireVersion(request.game)
+      const metadata = await api.getMetadata()
+      const version = resolveAddonVersionType(metadata, request.game, saved.gameVersionTypeId)
+      if (!version)
+        throw new Error('curseforge-incompatible-version')
+      recommendations ??= new WowAddonRecommendations(api)
+      return recommendations.search(request, metadata, version)
+    })),
+    defineInvokeHandler(context, wowAddonsInstallRecommendation, input => result(() => mutate(async () => {
+      if (!recommendations)
+        throw new Error('wow-addons-recommendation-expired')
+      const selection = recommendations.select(input)
+      await requireVersion(selection.game, selection.versionTypeId)
+      return install(selection)
+    }))),
     defineInvokeHandler(context, wowAddonsChooseDirectory, input => result(async () => {
       const { game } = parse(gameRequest, input)
       const selection = await dialog.showOpenDialog({

@@ -27,7 +27,7 @@ const versionTypeSchema = v.object({
 const modSchema = v.object({
   id: idSchema,
   gameId: v.literal(1),
-  classId: v.literal(447),
+  classId: v.literal(1),
   name: v.string(),
   summary: v.string(),
   logo: v.nullable(v.object({ thumbnailUrl: v.string() })),
@@ -64,7 +64,7 @@ const fileResponseSchema = v.object({ data: fileSchema })
 const latestFilesResponseSchema = v.object({ data: v.object({
   id: idSchema,
   gameId: v.literal(1),
-  classId: v.literal(447),
+  classId: v.literal(1),
   latestFiles: v.array(fileSchema),
 }) })
 const downloadResponseSchema = v.object({ data: v.nullable(v.string()) })
@@ -242,7 +242,7 @@ export class CurseForgeCatalog {
     }
     const query = new URLSearchParams({
       gameId: '1',
-      classId: '447',
+      classId: '1',
       gameVersionTypeId: String(request.gameVersionTypeId),
       searchFilter: request.search.trim(),
       index: String(request.index),
@@ -311,6 +311,21 @@ export class CurseForgeCatalog {
     return summary(response.data)
   }
 
+  /** Reads the API's latest tagged files without scanning a project's full historical archive. */
+  async getLatestCompatibleFiles(modId: number, gameVersionTypeId: number): Promise<AddonFile[]> {
+    assertId(modId)
+    const metadata = await this.getMetadata()
+    if (!metadata.versionTypes.some(type => type.id === gameVersionTypeId))
+      fail('incompatible-version')
+    const response = await this.request(`/mods/${modId}`, latestFilesResponseSchema)
+    if (response.data.id !== modId)
+      fail('invalid-response')
+    return response.data.latestFiles.filter(file => file.modId === modId && file.isAvailable)
+      .map(addonFile)
+      .filter(file => file.gameVersionTypeIds.includes(gameVersionTypeId))
+      .sort((a, b) => Date.parse(b.fileDate) - Date.parse(a.fileDate))
+  }
+
   async getFile(modId: number, fileId: number): Promise<AddonFile> {
     assertId(modId)
     assertId(fileId)
@@ -367,12 +382,12 @@ export class CurseForgeCatalog {
 
   private async loadMetadata(): Promise<AddonMetadata> {
     const [categories, versionTypes] = await Promise.all([
-      this.request('/categories?gameId=1&classId=447', categoriesResponseSchema),
+      this.request('/categories?gameId=1&classId=1', categoriesResponseSchema),
       this.request('/games/1/version-types', versionTypesResponseSchema),
     ])
     return {
       categories: categories.data
-        .filter(category => category.classId === 447 || category.id === 447)
+        .filter(category => category.classId === 1 || category.id === 1)
         .map(category => ({ id: category.id, name: category.name, slug: category.slug, parentCategoryId: category.parentCategoryId })),
       versionTypes: versionTypes.data.map(type => ({ id: type.id, name: type.name, slug: type.slug, group: versionGroup(type.name, type.slug) })),
     }

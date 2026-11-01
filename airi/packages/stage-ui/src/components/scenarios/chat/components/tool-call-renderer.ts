@@ -28,6 +28,8 @@ export type ChatToolCallRendererRegistry = Partial<Record<string, Component>>
 
 /** What a widget reads from one tool result. */
 export interface ChatToolCallWidgetReading {
+  /** Opens an actionable result once. The owner can still collapse it after viewing the choices. */
+  autoOpen?: boolean
   /** The props of the widget component. `defineToolCallWidget` checks them against the component. */
   props: object
   /** The fields of the result that the props do not cover. The row shows them under the widget, so no field is lost. */
@@ -78,7 +80,7 @@ type PropsOf<TComponent> = TComponent extends abstract new (...args: never[]) =>
  */
 export function defineToolCallWidget<TComponent extends Component>(
   component: TComponent,
-  read: (result: unknown, args: string) => { props: PropsOf<TComponent>, rest?: unknown, failed?: boolean } | undefined,
+  read: (result: unknown, args: string) => { props: PropsOf<TComponent>, rest?: unknown, failed?: boolean, autoOpen?: boolean } | undefined,
   options?: Pick<ChatToolCallWidget, 'title'>,
 ): ChatToolCallWidget {
   return { component, read, ...options }

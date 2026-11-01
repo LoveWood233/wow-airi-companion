@@ -227,6 +227,16 @@ describe('woW addon center', () => {
     await expect.poll(() => invokes.install.mock.lastCall?.[0].fileId).toBe(200)
   })
 
+  it('shows the catalog with a valid key and a uniquely identified version when no branch was saved', async () => {
+    const configured = settings()
+    configured.clients.retail.gameVersionTypeId = null
+    invokes.settings.mockResolvedValue({ ok: true, data: configured })
+    const { screen } = await renderPage()
+    await expect.element(screen.getByRole('button', { name: 'Compatible addon', exact: true })).toBeVisible()
+    expect(invokes.search.mock.calls[0][0].gameVersionTypeId).toBe(1)
+    expect(invokes.save).not.toHaveBeenCalled()
+  })
+
   it('ignores late catalog and file results after changing editions', async () => {
     let resolveSearch: (result: AddonResult<AddonSearchResult>) => void = () => {}
     invokes.search.mockImplementationOnce(() => new Promise((resolve) => {

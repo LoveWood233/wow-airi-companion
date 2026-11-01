@@ -6,6 +6,7 @@ import en from '@proj-airi/i18n/locales/en'
 import { createPinia, disposePinia, setActivePinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { render } from 'vitest-browser-vue'
+import { defineComponent, h, markRaw } from 'vue'
 import { createI18n } from 'vue-i18n'
 
 import ChatToolCallGroup from './tool-call-group.vue'
@@ -32,6 +33,18 @@ function mount(results: Record<number, ChatSlicesToolCallResult>) {
 }
 
 describe('tool call group', () => {
+  it('opens an interactive widget once and respects the owner collapsing it afterward', async () => {
+    const widget = markRaw(defineComponent({ setup: () => () => h('button', 'Choose an addon') }))
+    const widgets = { home_assistant_call_service: { component: widget, read: () => ({ props: {}, autoOpen: true }) } }
+    const results = { 1: { type: 'tool-call-result' as const, id: 'call-light', result: 'choices' } }
+    const screen = render(ChatToolCallGroup, { props: { items: items.slice(0, 1), widgets, resultOf: index => results[index as 1] }, global: { plugins: [createI18n({ legacy: false, locale: 'en', messages: { en } })] } })
+    await expect.element(screen.getByRole('button', { name: 'Choose an addon' })).toBeVisible()
+    await screen.getByRole('button', { name: 'Home assistant call service', exact: true }).click()
+    await expect.element(screen.getByRole('button', { name: 'Choose an addon' })).not.toBeInTheDocument()
+    await screen.rerender({ resultOf: index => results[index as 1] })
+    await expect.element(screen.getByRole('button', { name: 'Choose an addon' })).not.toBeInTheDocument()
+  })
+
   // While calls stream in, the pill counts the combo. Settled, it reports the hits and the misses.
   it('counts the combo while calls run, then reports hits and misses', async () => {
     const running = mount({ 1: { type: 'tool-call-result', id: 'call-light', result: 'ok' } })

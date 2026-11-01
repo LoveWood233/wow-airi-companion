@@ -1,3 +1,4 @@
+import type { AddonRecommendationReport, AddonRecommendationRequest, AddonRecommendationSelection } from '../wow-addon-recommendations'
 import type { AddonFile, AddonGame, AddonInstallRequest, AddonMetadata, AddonResult, AddonSearchRequest, AddonSearchResult, AddonSettings, AddonSettingsUpdate, InstalledAddon } from '../wow-addons'
 
 import { defineInvokeEventa } from '@moeru/eventa'
@@ -10,3 +11,5 @@ export const wowAddonsSearch = defineInvokeEventa<AddonResult<AddonSearchResult>
 export const wowAddonsFiles = defineInvokeEventa<AddonResult<AddonFile[]>, { game: AddonGame, modId: number, gameVersionTypeId: number }>('eventa:invoke:wow-addons:files')
 export const wowAddonsInstall = defineInvokeEventa<AddonResult<InstalledAddon>, AddonInstallRequest>('eventa:invoke:wow-addons:install')
 export const wowAddonsInstalled = defineInvokeEventa<AddonResult<InstalledAddon[]>, { game: AddonGame }>('eventa:invoke:wow-addons:installed')
+export const wowAddonsRecommend = defineInvokeEventa<AddonResult<AddonRecommendationReport>, AddonRecommendationRequest>('eventa:invoke:wow-addons:recommend')
+export const wowAddonsInstallRecommendation = defineInvokeEventa<AddonResult<InstalledAddon>, AddonRecommendationSelection>('eventa:invoke:wow-addons:recommendation:install')

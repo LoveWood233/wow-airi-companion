@@ -9,7 +9,7 @@ import { crc32 } from 'node:zlib'
 import { createContext, defineInvoke } from '@moeru/eventa'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { wowAddonsChooseDirectory, wowAddonsFiles, wowAddonsGetSettings, wowAddonsInstall, wowAddonsInstalled, wowAddonsMetadata, wowAddonsSaveSettings, wowAddonsSearch } from '../../../shared/eventa/wow-addons'
+import { wowAddonsChooseDirectory, wowAddonsFiles, wowAddonsGetSettings, wowAddonsInstall, wowAddonsInstalled, wowAddonsInstallRecommendation, wowAddonsMetadata, wowAddonsRecommend, wowAddonsSaveSettings, wowAddonsSearch } from '../../../shared/eventa/wow-addons'
 import { emitAppBeforeQuit } from '../../libs/bootkit/lifecycle'
 import { setupWowAddons } from './wow-addons'
 import { CurseForgeCatalog } from './wow-addons-catalog'
@@ -120,6 +120,7 @@ describe('wow addons IPC orchestration', () => {
       return structuredClone(candidate)
     })
     vi.spyOn(CurseForgeCatalog.prototype, 'getFiles').mockImplementation(async modId => structuredClone(files.get(modId) ?? []))
+    vi.spyOn(CurseForgeCatalog.prototype, 'getLatestCompatibleFiles').mockImplementation(async modId => (files.get(modId) ?? []).map(file => ({ ...file, sha1: 'a'.repeat(40) })))
     vi.spyOn(CurseForgeCatalog.prototype, 'download').mockImplementation(async file => archive(file.modId))
     vi.spyOn(CurseForgeCatalog.prototype, 'search').mockResolvedValue({ addons: [], index: 0, pageSize: 20, totalCount: 0 })
     vi.spyOn(CurseForgeCatalog.prototype, 'dispose')
@@ -156,9 +157,61 @@ describe('wow addons IPC orchestration', () => {
     const search = await defineInvoke(context, wowAddonsSearch)({ game: 'retail', gameVersionTypeId: 901, search: '', index: 0, sort: 'popular' })
 
     expect(metadata).toEqual({ ok: false, error: 'curseforge-api-key-required' })
-    expect(search).toEqual({ ok: false, error: 'wow-addons-version-required' })
+    expect(search).toEqual({ ok: false, error: 'curseforge-api-key-required' })
     expect(CurseForgeCatalog.prototype.getMetadata).not.toHaveBeenCalled()
     expect(CurseForgeCatalog.prototype.search).not.toHaveBeenCalled()
+  })
+
+  it('searches a uniquely identified client branch when only the key and client folder were configured', async () => {
+    clients.retail.gameVersionTypeId = null
+    await configure()
+    const response = await defineInvoke(context, wowAddonsSearch)({ game: 'retail', gameVersionTypeId: 901, search: 'bags', index: 0, sort: 'downloads' })
+    expect(response.ok).toBe(true)
+    const saved = await defineInvoke(context, wowAddonsGetSettings)()
+    expect(saved.ok && saved.data.clients.retail.gameVersionTypeId).toBeNull()
+  })
+
+  it('recommends without installation and installs the selected bound file with its required dependencies', async () => {
+    await configure()
+    files.set(1, [file(1, [2])])
+    files.set(2, [file(2)])
+    vi.mocked(CurseForgeCatalog.prototype.search).mockResolvedValue({ addons: [addon(1)], index: 0, pageSize: 20, totalCount: 1 })
+    const recommendation = await defineInvoke(context, wowAddonsRecommend)({ game: 'retail', query: 'bags' })
+    expect(recommendation.ok).toBe(true)
+    if (!recommendation.ok)
+      throw new Error(recommendation.error)
+    expect(CurseForgeCatalog.prototype.download).not.toHaveBeenCalled()
+    const response = await defineInvoke(context, wowAddonsInstallRecommendation)({ recommendationId: recommendation.data.id, modId: 1 })
+    expect(response.ok).toBe(true)
+    expect(CurseForgeCatalog.prototype.download).toHaveBeenCalledTimes(2)
+    expect((await installed()).map(addon => addon.modId)).toEqual([2, 1])
+    expect(await readdir(join(clients.retail.directory, 'Interface', 'AddOns'))).toEqual(['Addon1', 'Addon2'])
+  })
+
+  it('rejects unknown selections and recommendations invalidated by a settings change', async () => {
+    await configure()
+    vi.mocked(CurseForgeCatalog.prototype.search).mockResolvedValue({ addons: [addon(1)], index: 0, pageSize: 20, totalCount: 1 })
+    const recommendation = await defineInvoke(context, wowAddonsRecommend)({ game: 'retail', query: 'bags' })
+    if (!recommendation.ok)
+      throw new Error(recommendation.error)
+    const invalid = await defineInvoke(context, wowAddonsInstallRecommendation)({ recommendationId: recommendation.data.id, modId: 999 })
+    expect(invalid).toEqual({ ok: false, error: 'wow-addons-recommendation-invalid' })
+    await configure()
+    const expired = await defineInvoke(context, wowAddonsInstallRecommendation)({ recommendationId: recommendation.data.id, modId: 1 })
+    expect(expired).toEqual({ ok: false, error: 'wow-addons-recommendation-expired' })
+    expect(CurseForgeCatalog.prototype.download).not.toHaveBeenCalled()
+  })
+
+  it('rechecks author restrictions when the user selects a previously downloadable recommendation', async () => {
+    await configure()
+    vi.mocked(CurseForgeCatalog.prototype.search).mockResolvedValue({ addons: [addon(1)], index: 0, pageSize: 20, totalCount: 1 })
+    const recommendation = await defineInvoke(context, wowAddonsRecommend)({ game: 'retail', query: 'bags' })
+    if (!recommendation.ok)
+      throw new Error(recommendation.error)
+    addons.set(1, { ...addon(1), allowDistribution: false })
+    const response = await defineInvoke(context, wowAddonsInstallRecommendation)({ recommendationId: recommendation.data.id, modId: 1 })
+    expect(response).toEqual({ ok: false, error: 'curseforge-distribution-disabled' })
+    expect(CurseForgeCatalog.prototype.download).not.toHaveBeenCalled()
   })
 
   it('persists client folders and the encrypted key without returning the key over IPC', async () => {

@@ -106,6 +106,8 @@ categories:
   unit-frames: Unit frames
   pvp: PvP
 errors:
+  wow-addons-recommendation-expired: This recommendation expired or the app restarted. Ask for new addon recommendations.
+  wow-addons-recommendation-invalid: The selected addon is not part of this recommendation. Search again before choosing.
   unknown: The request failed. Try again.
   curseforge-api-key-required: Add a CurseForge API key in addon settings.
   curseforge-unauthorized: CurseForge rejected the API key. Check the key in addon settings.
@@ -141,3 +143,12 @@ errors:
   wow-addons-request-failed: The addon operation failed. Check the client directory and try again.
   wow-addons-dependency-limit: The addon requires too many nested dependencies to install safely.
   wow-addons-stopped: The addon operation stopped. Reopen the addon center and try again.
+
+recommendations:
+  title: Recommended Warcraft addons
+  ranking: Matched to your client branch, ranked by relevance then total downloads. Up to five results.
+  project: CurseForge project
+  source: 'Source: CurseForge. Install downloads to the matching configured client and handles required dependencies.'
+  installing: Downloading and installing…
+  installed: Installed
+  expired: This recommendation expired. Ask again for current versions.

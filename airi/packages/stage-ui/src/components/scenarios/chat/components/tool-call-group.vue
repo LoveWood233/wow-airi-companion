@@ -8,7 +8,7 @@ import type { ChatToolCallWidgetRegistry } from './tool-call-renderer'
 import { TransitionVertical } from '@proj-airi/ui'
 import { usePreferredReducedMotion } from '@vueuse/core'
 import { animate, createSpring } from 'animejs'
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import CardView from '../../../../libs/cards/card-view.vue'
@@ -149,6 +149,22 @@ const STATE_DOTS: Partial<Record<ToolCallState, string>> = {
 
 const open = ref(false)
 const openCalls = ref(new Set<string>())
+const mounted = ref(false)
+onMounted(() => {
+  mounted.value = true
+})
+const openedWidgets = new Set<string>()
+watch([calls, mounted], ([values, ready]) => {
+  if (!ready)
+    return
+  const actionable = values.filter(call => call.widget?.autoOpen && !openedWidgets.has(call.key))
+  if (!actionable.length)
+    return
+  for (const call of actionable)
+    openedWidgets.add(call.key)
+  open.value = true
+  openCalls.value = new Set([...openCalls.value, ...actionable.map(call => call.key)])
+}, { immediate: true })
 // Rows that exist when the group opens unfold with it. Only a call that arrives while the group is open slides in on its own.
 let rowsAtOpen = new Set<string>()
 watch(open, (value) => {

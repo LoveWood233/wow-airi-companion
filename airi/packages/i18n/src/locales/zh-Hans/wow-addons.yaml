@@ -106,6 +106,8 @@ categories:
   unit-frames: 单位框体
   pvp: PvP
 errors:
+  wow-addons-recommendation-expired: 这次推荐已过期或程序已重启，请重新询问插件推荐。
+  wow-addons-recommendation-invalid: 无法确认所选插件属于这次推荐，请重新搜索后选择。
   unknown: 请求失败，请重试。
   curseforge-api-key-required: 请在插件设置中添加 CurseForge API 密钥。
   curseforge-unauthorized: CurseForge 拒绝了此 API 密钥，请在插件设置中检查密钥。
@@ -141,3 +143,12 @@ errors:
   wow-addons-request-failed: 插件操作失败，请检查客户端目录后重试。
   wow-addons-dependency-limit: 此插件的嵌套依赖数量过多，无法安全安装。
   wow-addons-stopped: 插件操作已停止，请重新打开插件中心后重试。
+
+recommendations:
+  title: 为你推荐的魔兽插件
+  ranking: 已筛选对应客户端分支，按相关度、总下载量排序，最多显示 5 项。
+  project: CurseForge 项目页
+  source: 来源：CurseForge。选择“安装”后，将下载到插件设置中对应的客户端，并处理必需依赖。
+  installing: 正在下载并安装…
+  installed: 已安装
+  expired: 这次推荐已过期，请重新询问以获取最新版本。

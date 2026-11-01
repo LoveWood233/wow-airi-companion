@@ -36,6 +36,14 @@ export interface AddonMetadata {
   versionTypes: AddonVersionType[]
 }
 
+/** Resolves an explicit branch or the only matching API branch. Ambiguous Classic branches require selection. */
+export function resolveAddonVersionType(metadata: AddonMetadata | undefined, game: AddonGame, selectedId: number | null | undefined): AddonVersionType | undefined {
+  const choices = metadata?.versionTypes.filter(type => type.group === game)
+  if (selectedId != null)
+    return choices?.find(type => type.id === selectedId)
+  return choices?.length === 1 ? choices[0] : undefined
+}
+
 export interface AddonSummary {
   id: number
   name: string
