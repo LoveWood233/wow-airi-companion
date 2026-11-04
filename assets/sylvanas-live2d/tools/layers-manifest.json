@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "description": "Unmodified source PNGs, listed from bottom to top. L/R follow the character's own sides.",
+  "layers_bottom_to_top": [
+    { "name": "CapeBack", "source": "../source/layers/cape-back-v1.png", "visible": true },
+    { "name": "Body", "source": "../source/layers/body-base-v1.png", "visible": true },
+    { "name": "Head", "source": "../source/layers/head-base-v1.png", "visible": true },
+    { "name": "EyeL", "source": "../source/layers/eye-left-open-v1.png", "visible": true },
+    { "name": "EyeR", "source": "../source/layers/eye-right-open-v1.png", "visible": true },
+    { "name": "MouthClosed", "source": "../source/layers/mouth-closed-v1.png", "visible": true },
+    { "name": "MouthOpen", "source": "../source/layers/mouth-open-v1.png", "visible": false }
+  ]
+}

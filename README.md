@@ -70,6 +70,12 @@
 
 该角色采用手动导入，未替换默认形象。首次导入需要按资产说明设置透明混合模式。源贴图、生成提示词、绑定脚本和验证记录一并保存在资产目录。
 
+## Live2D Q 版角色
+
+[希尔瓦娜斯 Q 版 Live2D 基础模型](assets/sylvanas-live2d/README.md)：约 2.5 头身，紫色兜帽、银发、灰蓝肤色、红瞳，冷傲中带一点傲娇。
+
+提供[Live2D 导入 ZIP](assets/sylvanas-live2d/output/sylvanas-chibi-v1.live2d.zip)、Cubism 源工程、七层可编辑 PSD 与[制作说明](assets/sylvanas-live2d/production-guide.md)。基础版绑定独立双眼开闭、口型和循环呼吸；验收范围与高级绑定计划见资产说明。
+
 ## 项目内容
 
 | 路径 | 内容 |
@@ -80,6 +86,7 @@
 | `WOWAddons/WoWCompanionBridge/` | Windows 屏幕采集、协议解码、事件状态、本机校准页面和测试 |
 | `airi/` | AIRI 上游完整源码快照，包含本次修改和新增的魔兽陪伴功能 |
 | `assets/sylvanas-companion/` | 希尔瓦娜斯 v0.3 导入包、可重建源文件、预览与来源说明 |
+| `assets/sylvanas-live2d/` | 希尔瓦娜斯 Q 版 Live2D 导入包、Cubism 源工程、七层 PSD、提示词与验证记录 |
 | `WOWAddons/Start-WoWCompanion.cmd` | 启动已构建的 AIRI 桌面端，由 AIRI 自动管理桥接 |
 | `WOWAddons/Install-WoWCompanion.ps1` | 将插件安装到正式服 AddOns 目录 |
 | `WOWAddons/魔兽陪伴精灵-使用说明.html` | 启动、模型配置和日常使用说明 |

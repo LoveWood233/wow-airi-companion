@@ -1,0 +1,62 @@
+[
+  {
+    "parameters": {},
+    "name": "default"
+  },
+  {
+    "parameters": {
+      "ParamEyeROpen": 0,
+      "ParamMouthOpenY": 0,
+      "ParamEyeLOpen": 0
+    },
+    "name": "eyes-closed"
+  },
+  {
+    "parameters": {
+      "ParamMouthOpenY": 0
+    },
+    "name": "mouth-0"
+  },
+  {
+    "parameters": {
+      "ParamMouthOpenY": 0.005
+    },
+    "name": "mouth-0_005"
+  },
+  {
+    "parameters": {
+      "ParamMouthOpenY": 0.01
+    },
+    "name": "mouth-0_01"
+  },
+  {
+    "parameters": {
+      "ParamMouthOpenY": 0.25
+    },
+    "name": "mouth-0_25"
+  },
+  {
+    "parameters": {
+      "ParamMouthOpenY": 0.5
+    },
+    "name": "mouth-0_5"
+  },
+  {
+    "parameters": {
+      "ParamMouthOpenY": 1
+    },
+    "name": "mouth-1"
+  },
+  {
+    "parameters": {
+      "ParamBreath": 0
+    },
+    "name": "breath-0"
+  },
+  {
+    "parameters": {
+      "ParamBreath": 1
+    },
+    "name": "breath-1"
+  }
+]

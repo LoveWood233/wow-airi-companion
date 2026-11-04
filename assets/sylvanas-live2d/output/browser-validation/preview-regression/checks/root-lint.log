@@ -1,0 +1,5 @@
+$ moeru-lint .
+'moeru-lint' is not recognized as an internal or external command,
+operable program or batch file.
+command not found: moeru-lint
+[ELIFECYCLE] Command failed with exit code 127.

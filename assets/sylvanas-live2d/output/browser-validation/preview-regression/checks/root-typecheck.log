@@ -1,0 +1,5 @@
+$ turbo run typecheck -F="./packages/*" -F="./apps/*" -F="./server/**" -F="./services/*"
+'turbo' is not recognized as an internal or external command,
+operable program or batch file.
+command not found: turbo
+[ELIFECYCLE] Command failed with exit code 127.

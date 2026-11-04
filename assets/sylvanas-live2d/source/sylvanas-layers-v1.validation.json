@@ -1,0 +1,148 @@
+{
+  "scope": "PSD container packaging only. No Live2D rig, model, or runtime validation.",
+  "container_validation_passed": true,
+  "pixel_policy": "Unmodified RGBA bytes. No cropping, resizing, repainting, or source PNG writes.",
+  "canvas_size": [
+    1143,
+    1376
+  ],
+  "layer_order": "bottom_to_top",
+  "layer_count": 7,
+  "output_file": "sylvanas-layers-v1.psd",
+  "output_bytes": 9060866,
+  "output_sha256": "4b9fd5b42d5e95590c7cae9543080797425a344d2fd06d8714a2592f2c3404ec",
+  "library_versions": {
+    "psd-tools": "1.17.4",
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4"
+  },
+  "manifest_sha256": "6172a444f7793f57f615794ae40fb63512553d33a6236a9771d27dd2780d7a31",
+  "layers": [
+    {
+      "name": "CapeBack",
+      "source": "../source/layers/cape-back-v1.png",
+      "size": [
+        1143,
+        1376
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "visible": true,
+      "opacity": 255,
+      "png_sha256": "1865189fe9373d029424b51f6b563c27e676dd4c174a2aedffa1edb404748db3",
+      "source_rgba_sha256": "2319ac90fad68de13a82af49952e64f7a11809e06c0cf8697c3a874a6206fbfc",
+      "psd_layer_rgba_sha256": "2319ac90fad68de13a82af49952e64f7a11809e06c0cf8697c3a874a6206fbfc",
+      "rgba_roundtrip_identical": true
+    },
+    {
+      "name": "Body",
+      "source": "../source/layers/body-base-v1.png",
+      "size": [
+        1143,
+        1376
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "visible": true,
+      "opacity": 255,
+      "png_sha256": "29fa87cca1ba5d4481f604e093302fb3b9a4337c1f2daec45f68bf3a1ef8286e",
+      "source_rgba_sha256": "21db5cb9957da848211dea392e74af36b99307c28e193796a48c67aa5b50677a",
+      "psd_layer_rgba_sha256": "21db5cb9957da848211dea392e74af36b99307c28e193796a48c67aa5b50677a",
+      "rgba_roundtrip_identical": true
+    },
+    {
+      "name": "Head",
+      "source": "../source/layers/head-base-v1.png",
+      "size": [
+        1143,
+        1376
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "visible": true,
+      "opacity": 255,
+      "png_sha256": "4c880f9c8a69017818b2c7304f1d3787fe315b3d6f38f7e981f683588e5fb9d1",
+      "source_rgba_sha256": "7465becace572d2ee5c89d956afd8259cb4e639f40b6837a5392fb0785cc94ca",
+      "psd_layer_rgba_sha256": "7465becace572d2ee5c89d956afd8259cb4e639f40b6837a5392fb0785cc94ca",
+      "rgba_roundtrip_identical": true
+    },
+    {
+      "name": "EyeL",
+      "source": "../source/layers/eye-left-open-v1.png",
+      "size": [
+        1143,
+        1376
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "visible": true,
+      "opacity": 255,
+      "png_sha256": "af80143930dd2e46468656c34d8fe45b780c0ceaecec9d395d1ee0e5d6f60f15",
+      "source_rgba_sha256": "9c8019a688a3d951ff486dbbe33eacba994c407f1a3fbe6c510de3bd0b7ed74c",
+      "psd_layer_rgba_sha256": "9c8019a688a3d951ff486dbbe33eacba994c407f1a3fbe6c510de3bd0b7ed74c",
+      "rgba_roundtrip_identical": true
+    },
+    {
+      "name": "EyeR",
+      "source": "../source/layers/eye-right-open-v1.png",
+      "size": [
+        1143,
+        1376
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "visible": true,
+      "opacity": 255,
+      "png_sha256": "ed2d3ea5555d3e3ad93f6aa447793da78d4c3d9e9190ca3803bf4e7d0f77fa64",
+      "source_rgba_sha256": "bff90db4dc597237ea51992d0fa99ca5600354e3dc8e5c6b9b6f14b88f74fdb5",
+      "psd_layer_rgba_sha256": "bff90db4dc597237ea51992d0fa99ca5600354e3dc8e5c6b9b6f14b88f74fdb5",
+      "rgba_roundtrip_identical": true
+    },
+    {
+      "name": "MouthClosed",
+      "source": "../source/layers/mouth-closed-v1.png",
+      "size": [
+        1143,
+        1376
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "visible": true,
+      "opacity": 255,
+      "png_sha256": "47463d0b5349483c19a205d07322dba902fc96ea8fec713e6ed968106e16518b",
+      "source_rgba_sha256": "7bd18a0bb2dcf28c408e29d8286f247af2791ab181e679f6d304ccd7c7009076",
+      "psd_layer_rgba_sha256": "7bd18a0bb2dcf28c408e29d8286f247af2791ab181e679f6d304ccd7c7009076",
+      "rgba_roundtrip_identical": true
+    },
+    {
+      "name": "MouthOpen",
+      "source": "../source/layers/mouth-open-v1.png",
+      "size": [
+        1143,
+        1376
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "visible": false,
+      "opacity": 255,
+      "png_sha256": "3756b5bdf08cab469be016321adfebe0dae77f0c38bc7642b94675e125007b78",
+      "source_rgba_sha256": "e1b6498e5732e6d205be1d6922828685b71090e489f88549c5093f61a98e03e0",
+      "psd_layer_rgba_sha256": "e1b6498e5732e6d205be1d6922828685b71090e489f88549c5093f61a98e03e0",
+      "rgba_roundtrip_identical": true
+    }
+  ]
+}

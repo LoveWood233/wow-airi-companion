@@ -1,0 +1,257 @@
+{
+  "kind": "Cubism Core parsing and individual parameter-boundary inspection",
+  "ok": true,
+  "modelSettingsPath": "E:\\PythonWorkspace\\wow-airi-companion\\assets\\sylvanas-live2d\\output\\runtime\\sylvanas-chibi-v1.model3.json",
+  "coreScriptPath": "D:\\CodexData\\visualizations\\2026\\10\\28\\01a180d2-2bfb-70d3-802b-10423a349d51\\core-validation\\live2dcubismcore.min.js",
+  "coreSourceUrlProvidedByCaller": null,
+  "coordinateAndColorTolerance": 1e-7,
+  "failures": [],
+  "consoleMessages": [
+    "Live2D Cubism SDK Core Version 5.0.0"
+  ],
+  "limits": [
+    "Compatibility is limited to the supplied Core script and its recorded SHA-256.",
+    "Source URL metadata is supplied by the caller. This tool does not verify its origin.",
+    "Each parameter is tested at its minimum and maximum with all other parameters at their defaults.",
+    "Interior keyforms and combined parameter states are not tested.",
+    "Changed drawable data does not prove an acceptable visible gesture.",
+    "No AIRI import, persistence, rendering, motion playback, physics or speech timing is tested."
+  ],
+  "fileReferences": [
+    {
+      "relativePath": "sylvanas-chibi-v1.moc3",
+      "bytes": 14144,
+      "sha256": "a1823fbca288aa373f0842a00313ece459d57c7fcd14ffd3bc54e3b08d6fdf80"
+    },
+    {
+      "relativePath": "sylvanas-chibi-v1.2048/texture_00.png",
+      "bytes": 1727157,
+      "sha256": "857505a653fd4361e4c0d640d2b7439a46631318233918113221f8d0b6f44957",
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "relativePath": "sylvanas-chibi-v1.cdi3.json",
+      "bytes": 2198,
+      "sha256": "8869283efc9f60d57a1e2faccf8c8a8fb91db5ef1981e0bf80410d09f5298c64"
+    },
+    {
+      "relativePath": "motions/airi-idle-breath.motion3.json",
+      "bytes": 691,
+      "sha256": "952bff7ce2ee6b24f4c8740661ede41bd9b53baac2449f48910b812b7a95fc06"
+    }
+  ],
+  "headerAscii": "MOC3",
+  "headerBytes": [
+    77,
+    79,
+    67,
+    51,
+    5,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "coreSha256": "944988f1523c9f888afe3611b630121ff503ea6246971d2eeee76f45cbfb8004",
+  "coreVersion": 83886080,
+  "coreVersionHex": "0x05000000",
+  "coreVersionParts": [
+    5,
+    0,
+    0
+  ],
+  "latestMocVersion": 5,
+  "mocVersion": 5,
+  "mocConsistency": 1,
+  "modelCreated": true,
+  "parameterCount": 27,
+  "parameterIds": [
+    "ParamAngleX",
+    "ParamAngleY",
+    "ParamAngleZ",
+    "ParamEyeLOpen",
+    "ParamEyeLSmile",
+    "ParamEyeROpen",
+    "ParamEyeRSmile",
+    "ParamEyeBallX",
+    "ParamEyeBallY",
+    "ParamBrowLY",
+    "ParamBrowRY",
+    "ParamBrowLX",
+    "ParamBrowRX",
+    "ParamBrowLAngle",
+    "ParamBrowRAngle",
+    "ParamBrowLForm",
+    "ParamBrowRForm",
+    "ParamMouthForm",
+    "ParamMouthOpenY",
+    "ParamCheek",
+    "ParamBodyAngleX",
+    "ParamBodyAngleY",
+    "ParamBodyAngleZ",
+    "ParamBreath",
+    "ParamHairFront",
+    "ParamHairSide",
+    "ParamHairBack"
+  ],
+  "drawableCount": 7,
+  "drawableIds": [
+    "MouthOpen",
+    "MouthClosed",
+    "EyeR",
+    "EyeL",
+    "Head",
+    "Body",
+    "CapeBack"
+  ],
+  "vertexCounts": [
+    6,
+    4,
+    13,
+    13,
+    49,
+    36,
+    30
+  ],
+  "totalVertexCount": 151,
+  "partCount": 0,
+  "canvas": {
+    "width": 1143,
+    "height": 1376,
+    "pixelsPerUnit": 1143
+  },
+  "allTestedBoundaryStatesFinite": true,
+  "testedBoundaryStateCount": 54,
+  "parameterEffects": [
+    {
+      "id": "ParamEyeLOpen",
+      "value": 0,
+      "drawables": [
+        {
+          "id": "EyeL",
+          "index": 3,
+          "changedVertexCoordinateCount": 26,
+          "maxVertexCoordinateDelta": 0.06296375393867493,
+          "opacity": null,
+          "drawOrder": null,
+          "multiplyColor": null,
+          "screenColor": null
+        }
+      ]
+    },
+    {
+      "id": "ParamEyeROpen",
+      "value": 0,
+      "drawables": [
+        {
+          "id": "EyeR",
+          "index": 2,
+          "changedVertexCoordinateCount": 26,
+          "maxVertexCoordinateDelta": 0.052495598793029785,
+          "opacity": null,
+          "drawOrder": null,
+          "multiplyColor": null,
+          "screenColor": null
+        }
+      ]
+    },
+    {
+      "id": "ParamMouthOpenY",
+      "value": 1,
+      "drawables": [
+        {
+          "id": "MouthOpen",
+          "index": 0,
+          "changedVertexCoordinateCount": 6,
+          "maxVertexCoordinateDelta": 0.052819594740867615,
+          "opacity": {
+            "before": 0,
+            "after": 1
+          },
+          "drawOrder": null,
+          "multiplyColor": null,
+          "screenColor": null
+        },
+        {
+          "id": "MouthClosed",
+          "index": 1,
+          "changedVertexCoordinateCount": 0,
+          "maxVertexCoordinateDelta": 0,
+          "opacity": {
+            "before": 1,
+            "after": 0
+          },
+          "drawOrder": null,
+          "multiplyColor": null,
+          "screenColor": null
+        }
+      ]
+    },
+    {
+      "id": "ParamBreath",
+      "value": 1,
+      "drawables": [
+        {
+          "id": "Body",
+          "index": 5,
+          "changedVertexCoordinateCount": 72,
+          "maxVertexCoordinateDelta": 0.003547072410583496,
+          "opacity": null,
+          "drawOrder": null,
+          "multiplyColor": null,
+          "screenColor": null
+        }
+      ]
+    }
+  ],
+  "changedParameterEffectCount": 4,
+  "parametersWithDrawableEffects": [
+    "ParamEyeLOpen",
+    "ParamEyeROpen",
+    "ParamMouthOpenY",
+    "ParamBreath"
+  ],
+  "expectedEffects": [
+    {
+      "id": "ParamEyeLOpen",
+      "present": true,
+      "passed": true,
+      "changedDrawables": [
+        "EyeL"
+      ]
+    },
+    {
+      "id": "ParamEyeROpen",
+      "present": true,
+      "passed": true,
+      "changedDrawables": [
+        "EyeR"
+      ]
+    },
+    {
+      "id": "ParamMouthOpenY",
+      "present": true,
+      "passed": true,
+      "changedDrawables": [
+        "MouthOpen",
+        "MouthClosed"
+      ]
+    },
+    {
+      "id": "ParamBreath",
+      "present": true,
+      "passed": true,
+      "changedDrawables": [
+        "Body"
+      ]
+    }
+  ]
+}

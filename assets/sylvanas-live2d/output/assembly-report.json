@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "scope": "Package structure and byte preservation. No Core, renderer or animation playback verification.",
+  "sourceModel": {
+    "path": "E:\\PythonWorkspace\\wow-airi-companion\\assets\\sylvanas-live2d\\output\\editor-export\\sylvanas-chibi-v1.model3.json",
+    "sha256": "6c9f80a1bd8ac5a17ef9ff0f097d2f9d3ac6cd9d62966db0c813a230d5e4ea82"
+  },
+  "runtimeDirectory": "E:\\PythonWorkspace\\wow-airi-companion\\assets\\sylvanas-live2d\\output\\runtime",
+  "modelSettings": "sylvanas-chibi-v1.model3.json",
+  "archive": {
+    "path": "E:\\PythonWorkspace\\wow-airi-companion\\assets\\sylvanas-live2d\\output\\sylvanas-chibi-v1.live2d.zip",
+    "bytes": 1664093,
+    "sha256": "fb7dbae27c1cd59d332e27ff801c2b0066fbc030a251ea3d5bbbd6c12b6c6db5"
+  },
+  "groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    }
+  ],
+  "generatedIdleMotion": {
+    "path": "motions/airi-idle-breath.motion3.json",
+    "durationSeconds": 4,
+    "range": [
+      0,
+      1
+    ],
+    "parameter": "ParamBreath"
+  },
+  "preservedSourceResources": [
+    {
+      "reference": "sylvanas-chibi-v1.2048/texture_00.png",
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\assets\\sylvanas-live2d\\output\\editor-export\\sylvanas-chibi-v1.2048\\texture_00.png",
+      "archivePath": "sylvanas-chibi-v1.2048/texture_00.png",
+      "bytes": 1727157,
+      "sha256": "857505a653fd4361e4c0d640d2b7439a46631318233918113221f8d0b6f44957"
+    },
+    {
+      "reference": "sylvanas-chibi-v1.cdi3.json",
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\assets\\sylvanas-live2d\\output\\editor-export\\sylvanas-chibi-v1.cdi3.json",
+      "archivePath": "sylvanas-chibi-v1.cdi3.json",
+      "bytes": 2198,
+      "sha256": "8869283efc9f60d57a1e2faccf8c8a8fb91db5ef1981e0bf80410d09f5298c64"
+    },
+    {
+      "reference": "sylvanas-chibi-v1.moc3",
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\assets\\sylvanas-live2d\\output\\editor-export\\sylvanas-chibi-v1.moc3",
+      "archivePath": "sylvanas-chibi-v1.moc3",
+      "bytes": 14144,
+      "sha256": "d81927bbb184292cf461c8f744697a00e6f0a46d0f75c5d48223e99359e60455"
+    }
+  ],
+  "files": [
+    {
+      "path": "motions/airi-idle-breath.motion3.json",
+      "bytes": 691,
+      "sha256": "952bff7ce2ee6b24f4c8740661ede41bd9b53baac2449f48910b812b7a95fc06"
+    },
+    {
+      "path": "sylvanas-chibi-v1.2048/texture_00.png",
+      "bytes": 1727157,
+      "sha256": "857505a653fd4361e4c0d640d2b7439a46631318233918113221f8d0b6f44957"
+    },
+    {
+      "path": "sylvanas-chibi-v1.cdi3.json",
+      "bytes": 2198,
+      "sha256": "8869283efc9f60d57a1e2faccf8c8a8fb91db5ef1981e0bf80410d09f5298c64"
+    },
+    {
+      "path": "sylvanas-chibi-v1.moc3",
+      "bytes": 14144,
+      "sha256": "d81927bbb184292cf461c8f744697a00e6f0a46d0f75c5d48223e99359e60455"
+    },
+    {
+      "path": "sylvanas-chibi-v1.model3.json",
+      "bytes": 662,
+      "sha256": "33b869f4433d4a3ed8c04d2e6fff516fe4cf72e6e4a850513b73736afe2b8a80"
+    }
+  ]
+}

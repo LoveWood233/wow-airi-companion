@@ -1,0 +1,36 @@
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "sylvanas-chibi-v1.moc3",
+    "Textures": [
+      "sylvanas-chibi-v1.2048/texture_00.png"
+    ],
+    "DisplayInfo": "sylvanas-chibi-v1.cdi3.json",
+    "Motions": {
+      "Idle": [
+        {
+          "File": "motions/airi-idle-breath.motion3.json",
+          "FadeInTime": 0.5,
+          "FadeOutTime": 0.5
+        }
+      ]
+    }
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    }
+  ]
+}

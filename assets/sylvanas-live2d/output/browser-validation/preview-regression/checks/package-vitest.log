@@ -1,0 +1,178 @@
+
+ RUN  v4.1.11 E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d
+
+ ❯ |node| src/controls/manifest.test.ts (0 test)
+ ❯ |node| src/utils/opfs-loader.test.ts (0 test)
+ ❯ |node| src/utils/live2d-validator.test.ts (0 test)
+(!) Failed to run dependency scan. Skipping dependency pre-bundling. Error: The following dependencies are imported but could not be resolved:
+
+  @pixi/app (imported by E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/filters/screen-ambient-light.browser.test.ts)
+  @pixi/sprite (imported by E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/filters/screen-ambient-light.browser.test.ts)
+  @pixi/extensions (imported by E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/filters/screen-ambient-light.browser.test.ts)
+  @pixi/ticker (imported by E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/filters/screen-ambient-light.browser.test.ts)
+  @pixi/core (imported by E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/filters/screen-ambient-light.ts)
+  @pixi/constants (imported by E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/filters/screen-ambient-light.ts)
+  es-toolkit (imported by E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/filters/screen-ambient-light.ts)
+
+Are they installed?
+    at file:///C:/Users/10413/AppData/Local/Temp/wow-airi-knowledge-validation-20261028/node_modules/vite/dist/node/chunks/node.js:28519:33
+    at async file:///C:/Users/10413/AppData/Local/Temp/wow-airi-knowledge-validation-20261028/node_modules/vite/dist/node/chunks/node.js:35839:15
+ ❯ |node| src/utils/live2d-zip-loader.test.ts (0 test)
+ ❯ |node| src/composables/live2d/motion-control-spring.test.ts (0 test)
+ ❯ |node| src/stores/motion-control.test.ts (0 test)
+ ❯ |node| src/composables/live2d/motion-manager.test.ts (0 test)
+ ❯ |node| src/composables/live2d/eye-tracking.test.ts (2 tests | 2 failed) 105ms
+     × maps a plain tracking source into Live2D render coordinates 94ms
+     × returns an off-canvas focus target when tracking source is absent 9ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |node| src/controls/manifest.test.ts [ src/controls/manifest.test.ts ]
+Error: Cannot find package 'jszip' imported from E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/controls/manifest.test.ts
+ ❯ src/controls/manifest.test.ts:1:1
+      1| import JSZip from 'jszip'
+       | ^
+      2|
+      3| import { describe, expect, it, vi } from 'vitest'
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  |node| src/stores/motion-control.test.ts [ src/stores/motion-control.test.ts ]
+Error: Cannot find package '@proj-airi/model-driver-magic-live2d' imported from E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/stores/motion-control.ts
+ ❯ src/stores/motion-control.ts:3:1
+      1| import type { Pose } from '@proj-airi/model-driver-magic-live2d'
+      2|
+      3| import { neutralPose } from '@proj-airi/model-driver-magic-live2d'
+       | ^
+      4| import { useBroadcastChannel } from '@vueuse/core'
+      5| import { defineStore } from 'pinia'
+ ❯ src/stores/motion-control.test.ts:4:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  |node| src/utils/live2d-validator.test.ts [ src/utils/live2d-validator.test.ts ]
+Error: Cannot find package 'jszip' imported from E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/utils/live2d-validator.test.ts
+ ❯ src/utils/live2d-validator.test.ts:1:1
+      1| import JSZip from 'jszip'
+       | ^
+      2|
+      3| import { describe, expect, it } from 'vitest'
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  |node| src/utils/live2d-zip-loader.test.ts [ src/utils/live2d-zip-loader.test.ts ]
+Error: Cannot find package 'jszip' imported from E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/utils/live2d-zip-loader.test.ts
+ ❯ src/utils/live2d-zip-loader.test.ts:1:1
+      1| import JSZip from 'jszip'
+       | ^
+      2|
+      3| import { afterEach, beforeEach, describe, expect, it, vi } from 'vites…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  |node| src/utils/opfs-loader.test.ts [ src/utils/opfs-loader.test.ts ]
+Error: Cannot find package 'jszip' imported from E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/utils/opfs-loader.test.ts
+ ❯ src/utils/opfs-loader.test.ts:1:1
+      1| import JSZip from 'jszip'
+       | ^
+      2|
+      3| import { afterEach, beforeEach, describe, expect, it, vi } from 'vites…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  |node| src/composables/live2d/motion-control-spring.test.ts [ src/composables/live2d/motion-control-spring.test.ts ]
+Error: Cannot find package '@proj-airi/model-driver-magic-live2d' imported from E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/stores/motion-control.ts
+ ❯ src/stores/motion-control.ts:3:1
+      1| import type { Pose } from '@proj-airi/model-driver-magic-live2d'
+      2|
+      3| import { neutralPose } from '@proj-airi/model-driver-magic-live2d'
+       | ^
+      4| import { useBroadcastChannel } from '@vueuse/core'
+      5| import { defineStore } from 'pinia'
+ ❯ src/composables/live2d/motion-control-spring.test.ts:5:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  |node| src/composables/live2d/motion-manager.test.ts [ src/composables/live2d/motion-manager.test.ts ]
+Error: Cannot find package '@proj-airi/model-driver-magic-live2d' imported from E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/stores/motion-control.ts
+ ❯ src/stores/motion-control.ts:3:1
+      1| import type { Pose } from '@proj-airi/model-driver-magic-live2d'
+      2|
+      3| import { neutralPose } from '@proj-airi/model-driver-magic-live2d'
+       | ^
+      4| import { useBroadcastChannel } from '@vueuse/core'
+      5| import { defineStore } from 'pinia'
+ ❯ src/composables/live2d/motion-manager.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |node| src/composables/live2d/eye-tracking.test.ts > useLive2DEyeFocusFor > maps a plain tracking source into Live2D render coordinates
+ FAIL  |node| src/composables/live2d/eye-tracking.test.ts > useLive2DEyeFocusFor > returns an off-canvas focus target when tracking source is absent
+Error: Cannot find package '@proj-airi/model-driver-magic-live2d' imported from E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/stores/motion-control.ts
+ ❯ src/stores/motion-control.ts:3:1
+      1| import type { Pose } from '@proj-airi/model-driver-magic-live2d'
+      2|
+      3| import { neutralPose } from '@proj-airi/model-driver-magic-live2d'
+       | ^
+      4| import { useBroadcastChannel } from '@vueuse/core'
+      5| import { defineStore } from 'pinia'
+ ❯ src/stores/index.ts:2:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: browserType.launch: Executable doesn't exist at C:\Users\10413\AppData\Local\ms-playwright\chromium_headless_shell-1234\chrome-headless-shell-win64\chrome-headless-shell.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     pnpm exec playwright install                           ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+ ❯ C:/Users/10413/AppData/Local/Temp/wow-airi-knowledge-validation-20261028/node_modules/@vitest/browser-playwright/dist/index.js:941:55
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { log: [] }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  8 failed | 7 passed (17)
+      Tests  2 failed | 37 passed (39)
+     Errors  1 error
+   Start at  01:51:35
+   Duration  1.09s (transform 4.18s, setup 0ms, import 2.85s, tests 205ms, environment 1ms)
+
+error during close browserType.launch: Executable doesn't exist at C:\Users\10413\AppData\Local\ms-playwright\chromium_headless_shell-1234\chrome-headless-shell-win64\chrome-headless-shell.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     pnpm exec playwright install                           ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+    at C:\Users\10413\AppData\Local\Temp\wow-airi-knowledge-validation-20261028\node_modules\@vitest\browser-playwright\dist\index.js:941:55 {
+  log: [],
+  name: 'Error',
+  type: 'Unhandled Error',
+  stacks: [
+    {
+      method: '',
+      file: 'C:/Users/10413/AppData/Local/Temp/wow-airi-knowledge-validation-20261028/node_modules/@vitest/browser-playwright/dist/index.js',
+      line: 941,
+      column: 55
+    }
+  ]
+}
+undefined
+E:\PythonWorkspace\wow-airi-companion\airi\packages\stage-ui-live2d:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vitest run

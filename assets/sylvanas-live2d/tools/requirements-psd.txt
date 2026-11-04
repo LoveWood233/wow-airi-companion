@@ -1,0 +1,4 @@
+# Install in an isolated environment. The PNG sources are never modified.
+psd-tools[composite]==1.17.4
+Pillow==10.3.0
+numpy==1.26.4

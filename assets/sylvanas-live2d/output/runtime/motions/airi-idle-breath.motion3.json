@@ -1,0 +1,41 @@
+{
+  "Version": 3,
+  "Meta": {
+    "Duration": 4.0,
+    "Fps": 30.0,
+    "Loop": true,
+    "AreBeziersRestricted": true,
+    "CurveCount": 1,
+    "TotalSegmentCount": 2,
+    "TotalPointCount": 7,
+    "UserDataCount": 0,
+    "TotalUserDataSize": 0
+  },
+  "FadeInTime": 0.5,
+  "FadeOutTime": 0.5,
+  "Curves": [
+    {
+      "Target": "Parameter",
+      "Id": "ParamBreath",
+      "Segments": [
+        0.0,
+        0.0,
+        1,
+        0.6666666666666666,
+        0.0,
+        1.3333333333333333,
+        1.0,
+        2.0,
+        1.0,
+        1,
+        2.6666666666666665,
+        1.0,
+        3.3333333333333335,
+        0.0,
+        4.0,
+        0.0
+      ]
+    }
+  ],
+  "UserData": []
+}

@@ -1,0 +1,475 @@
+{
+  "kind": "Actual repository Live2D ZIP validator, preview utility, and runtime browser inspection",
+  "ok": true,
+  "mode": "final-zip",
+  "limits": [
+    "This standalone harness does not test AIRI model storage, Electron selection, stage persistence, motions, physics, or speech timing.",
+    "Browser distributions use the exact installed package versions. Imports share their real globals.",
+    "Runtime effect checks cover requested parameter boundaries. Only explicitly supplied named states add intermediate or combined-state coverage.",
+    "A non-empty render requires visual review of the saved PNGs."
+  ],
+  "sources": [
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+constants@6.5.10\\node_modules\\@pixi\\constants\\dist\\browser\\constants.js",
+      "sha256": "d33455be1b998a88b6eca84c0f59b58c3e27ffc989beeb778859739723429d1e",
+      "bytes": 23928
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+settings@6.5.10_@pixi+constants@6.5.10\\node_modules\\@pixi\\settings\\dist\\browser\\settings.js",
+      "sha256": "491efa2d89799bf9bd648b2d364f46bbd988022c3be8c6ee66fd58f76d92072f",
+      "bytes": 16573
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+runner@6.5.10\\node_modules\\@pixi\\runner\\dist\\browser\\runner.js",
+      "sha256": "a1f3e8da88d76d0614e0cea98aa8972e5e765ce737e7fdcf084ec859c478f218",
+      "bytes": 6203
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+math@6.5.10\\node_modules\\@pixi\\math\\dist\\browser\\math.js",
+      "sha256": "df409367d72951d7173afebaaabbdde2458fcd6864300b0a994c7db6f5863d79",
+      "bytes": 64625
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+extensions@6.5.10\\node_modules\\@pixi\\extensions\\dist\\browser\\extensions.js",
+      "sha256": "20b3ef3e6f106b9c4923b2732ac66b733b27352a54266547e8f21c7abe22c5b7",
+      "bytes": 18600
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+utils@6.5.10_@pixi+co_518d331c01ad55f6f6b9bf6d71479633\\node_modules\\@pixi\\utils\\dist\\browser\\utils.js",
+      "sha256": "5711eb61921c1e9319ce71e0321d547b1843bd08637caaa6adcccd8afd607b9c",
+      "bytes": 135009
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+ticker@6.5.10_@pixi+e_7640a10e183d5b982c332ffbdfa856bd\\node_modules\\@pixi\\ticker\\dist\\browser\\ticker.js",
+      "sha256": "2b44cf4763b85f3c7bdbbf55844ea80f8159e7a874fef554026702ba08c232f3",
+      "bytes": 29689
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+core@6.5.10_@pixi+con_8f169bb17119c72603f2e2b153ecd34d\\node_modules\\@pixi\\core\\dist\\browser\\core.js",
+      "sha256": "60566a65adfc258b2beb6c8396fc96e4a8c5ef480c161bdbbf17dbce1f18c49f",
+      "bytes": 479665
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+display@6.5.10_@pixi+_b25ff57838f6b0289e412f793418aa57\\node_modules\\@pixi\\display\\dist\\browser\\display.js",
+      "sha256": "44401ee24bc22ccc0e9f1973cda62e4c7c0072d1303479e43d9b39d033491750",
+      "bytes": 90326
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+sprite@6.5.10_@pixi+c_fdabe8e2e8ff7151b749d0fd7b08c8a0\\node_modules\\@pixi\\sprite\\dist\\browser\\sprite.js",
+      "sha256": "5fb26644d679e079c18c68305dbcdc1694b0046ec32797369d44781c959019e3",
+      "bytes": 29427
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+app@6.5.10_@pixi+core_81c6af1eef4e218bc7b991aa9e130120\\node_modules\\@pixi\\app\\dist\\browser\\app.js",
+      "sha256": "700603526af352f7949ef74fcf49cf632744c1626226251593b1b9b1b73a1fd7",
+      "bytes": 13372
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+loaders@6.5.10_@pixi+_6a59bb6e7cb55ecbabfcf63c0c13e654\\node_modules\\@pixi\\loaders\\dist\\browser\\loaders.js",
+      "sha256": "7c24539452bb5154e07be347d9d0ec49425fcd7a45e5f2a6a2328e65032116b8",
+      "bytes": 85271
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@pixi+interaction@6.5.10_@p_e64a2c38583fb669fa278ee0d75e91cd\\node_modules\\@pixi\\interaction\\dist\\browser\\interaction.js",
+      "sha256": "b61cb12c92cc7374f53f1ab931b53b3e549ea6514e093f17da23a383ecd895ca",
+      "bytes": 103837
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\jszip@3.10.1\\node_modules\\jszip\\dist\\jszip.min.js",
+      "sha256": "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e",
+      "bytes": 97630
+    },
+    {
+      "path": "D:\\CodexData\\visualizations\\2026\\10\\28\\01a180d2-2bfb-70d3-802b-10423a349d51\\core-validation\\live2dcubismcore.min.js",
+      "sha256": "944988f1523c9f888afe3611b630121ff503ea6246971d2eeee76f45cbfb8004",
+      "bytes": 206678
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\pixi-live2d-display@0.4.0_p_00b8c32a5e81b85122c43ad7919949ff\\node_modules\\pixi-live2d-display\\dist\\cubism4.js",
+      "sha256": "fb65789289e4471b6b70829ea3a188c97174f2ebfa840bc0f3fc6ab7ce238075",
+      "bytes": 224911
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\vue@3.5.41_typescript@6.0.3\\node_modules\\vue\\dist\\vue.runtime.esm-browser.js",
+      "sha256": "3a7ae618665b2cacc25396cf81250f76c5060a2e54fcfda1dbcf9fac2e8f9bdd",
+      "bytes": 388491
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\packages\\stage-ui-live2d\\src\\contexts\\expressions.ts",
+      "sha256": "afe4e16be9f3f2dc37f22c499c1c9f30a2f1443c8c70e74a68a56b2a78781899",
+      "bytes": 11181
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\packages\\stage-ui-live2d\\src\\utils\\decode-zip-filename.ts",
+      "sha256": "2db91a13c12c43cf562dd40f22a85535a4e809aff3a3d171a390f6ef44544bd0",
+      "bytes": 940
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\packages\\stage-ui-live2d\\src\\controls\\manifest.ts",
+      "sha256": "8278b58d8cb41c786501aa090812707885b2d7c1e049ed81df32d0e05c49c345",
+      "bytes": 8339
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\packages\\stage-ui-live2d\\src\\utils\\live2d-zip-loader.ts",
+      "sha256": "f22ecadce705ac3dc4e518443c33acb6e79f20468619bb994cc9b16cb4fe3b0d",
+      "bytes": 10088
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\packages\\stage-ui-live2d\\src\\utils\\live2d-validator.ts",
+      "sha256": "81a4df2b3f6f8d96060800e713f0d32c13a9347644068dcc7e7f93c53f54597f",
+      "bytes": 19375
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\node_modules\\.pnpm\\@lemonneko+crop-empty-pixels@0.1.1\\node_modules\\@lemonneko\\crop-empty-pixels\\dist\\index.js",
+      "sha256": "3902f3825b8244ab204c90a25e83dac893e1bca1cf245e982fbecd381c0e7d41",
+      "bytes": 1219
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\airi\\packages\\stage-ui-live2d\\src\\utils\\live2d-preview.ts",
+      "sha256": "ebb2d2c1d82b676a8132ffe6a9344b8b5b81970ae2f8adf5b993f6021bb5ee65",
+      "bytes": 3244
+    },
+    {
+      "path": "D:\\CodexData\\visualizations\\2026\\10\\28\\01a180d2-2bfb-70d3-802b-10423a349d51\\live2d-browser-validation\\browser-entry.mjs",
+      "sha256": "11fb12cc1fead4631e3279a5ac68faca538e0045fb9addf7579094ffe8b1cd97",
+      "bytes": 14922
+    },
+    {
+      "path": "E:\\PythonWorkspace\\wow-airi-companion\\assets\\sylvanas-live2d\\output\\sylvanas-chibi-v1.live2d.zip",
+      "sha256": "9fdceff393b5b267ea1ab81fc91566c6be1ccdec1c0adc857b5793c9f6ac9fce",
+      "bytes": 1664095
+    }
+  ],
+  "errors": [],
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "You are running a development build of Vue.\nMake sure to use the production build (*.prod.js) when deploying for production."
+    },
+    {
+      "type": "info",
+      "text": "[validation] repository-preview-start"
+    },
+    {
+      "type": "log",
+      "text": "\n %c %c %c PixiJS 6.5.10 - ✰ WebGL 2 ✰  %c  %c  http://www.pixijs.com/  %c %c ♥%c♥%c♥ \n\n background: #ff66a5; padding:5px 0; background: #ff66a5; padding:5px 0; color: #ff66a5; background: #030307; padding:5px 0; background: #ff66a5; padding:5px 0; background: #ffc3dc; padding:5px 0; background: #ff66a5; padding:5px 0; color: #ff2424; background: #fff; padding:5px 0; color: #ff2424; background: #fff; padding:5px 0; color: #ff2424; background: #fff; padding:5px 0;"
+    },
+    {
+      "type": "info",
+      "text": "[ZipLoader] Extracted CDI data from: sylvanas-chibi-v1.cdi3.json"
+    },
+    {
+      "type": "log",
+      "text": "[CSM][I]Live2D Cubism Core version: 05.00.0000 (83886080)\n"
+    },
+    {
+      "type": "log",
+      "text": "[CSM][I]CubismFramework.startUp() is complete.\n"
+    },
+    {
+      "type": "log",
+      "text": "[CSM][I]CubismFramework.initialize() is complete.\n"
+    },
+    {
+      "type": "log",
+      "text": "Live2D Cubism SDK Core Version 5.0.0"
+    },
+    {
+      "type": "info",
+      "text": "[validation] repository-preview-returned"
+    },
+    {
+      "type": "info",
+      "text": "[validation] separate-runtime-inspection-start"
+    },
+    {
+      "type": "info",
+      "text": "[ZipLoader] Extracted CDI data from: sylvanas-chibi-v1.cdi3.json"
+    },
+    {
+      "type": "log",
+      "text": "Live2D Cubism SDK Core Version 5.0.0"
+    },
+    {
+      "type": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently"
+    },
+    {
+      "type": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently"
+    },
+    {
+      "type": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently"
+    },
+    {
+      "type": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently"
+    },
+    {
+      "type": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently"
+    },
+    {
+      "type": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently"
+    },
+    {
+      "type": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently"
+    },
+    {
+      "type": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently"
+    },
+    {
+      "type": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently"
+    }
+  ],
+  "browserVersion": "156.0.8078.4",
+  "environment": {
+    "coreVersion": 83886080,
+    "webglVersion": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+    "renderer": "WebKit WebGL"
+  },
+  "result": {
+    "ok": true,
+    "requiresReview": false,
+    "validation": {
+      "fileName": "sylvanas-chibi-v1.live2d.zip",
+      "status": "VALID",
+      "model": {
+        "type": "model3",
+        "entryPoint": "sylvanas-chibi-v1.model3.json",
+        "archiveFileCount": 5,
+        "moc": {
+          "path": "sylvanas-chibi-v1.moc3",
+          "version": 5,
+          "size": 14144
+        }
+      },
+      "resources": {
+        "textures": {
+          "discovered": 1,
+          "referenced": 1
+        },
+        "motions": {
+          "discovered": 1,
+          "referenced": 1,
+          "parsed": 1
+        },
+        "expressions": {
+          "discovered": 0,
+          "referenced": 0,
+          "parsed": 0
+        },
+        "parameters": {
+          "parsed": 27,
+          "source": "display-info"
+        }
+      },
+      "issues": []
+    },
+    "preview": {
+      "width": 169,
+      "height": 225,
+      "nonTransparentPixels": 20155,
+      "image": {
+        "file": "airi-preview.png",
+        "bytes": 60153,
+        "sha256": "a8589bd3253467ca6e0bd48bf65e6f4622d18f8d71c4451263a10be4b752314e"
+      }
+    },
+    "runtime": {
+      "parameterIds": [
+        "ParamAngleX",
+        "ParamAngleY",
+        "ParamAngleZ",
+        "ParamEyeLOpen",
+        "ParamEyeLSmile",
+        "ParamEyeROpen",
+        "ParamEyeRSmile",
+        "ParamEyeBallX",
+        "ParamEyeBallY",
+        "ParamBrowLY",
+        "ParamBrowRY",
+        "ParamBrowLX",
+        "ParamBrowRX",
+        "ParamBrowLAngle",
+        "ParamBrowRAngle",
+        "ParamBrowLForm",
+        "ParamBrowRForm",
+        "ParamMouthForm",
+        "ParamMouthOpenY",
+        "ParamCheek",
+        "ParamBodyAngleX",
+        "ParamBodyAngleY",
+        "ParamBodyAngleZ",
+        "ParamBreath",
+        "ParamHairFront",
+        "ParamHairSide",
+        "ParamHairBack"
+      ],
+      "drawableIds": [
+        "MouthOpen",
+        "MouthClosed",
+        "EyeR",
+        "EyeL",
+        "Head",
+        "Body",
+        "CapeBack"
+      ],
+      "defaultFrame": {
+        "width": 1400,
+        "height": 1680,
+        "nonTransparentPixels": 609740
+      },
+      "expectedEffects": [
+        {
+          "id": "ParamEyeLOpen",
+          "passed": true,
+          "boundaries": [
+            {
+              "value": 0,
+              "changedDrawables": [
+                "EyeL"
+              ],
+              "changedPixelCount": 8223,
+              "width": 1400,
+              "height": 1680,
+              "nonTransparentPixels": 609740,
+              "image": {
+                "file": "parameter-0-boundary-0.png",
+                "bytes": 1390543,
+                "sha256": "ce0a86cca30e605a156d93e286e4416186ef82480e904ba1cd86371c2813b5c3"
+              }
+            },
+            {
+              "value": 1,
+              "changedDrawables": [],
+              "changedPixelCount": 0,
+              "width": 1400,
+              "height": 1680,
+              "nonTransparentPixels": 609740,
+              "image": {
+                "file": "parameter-0-boundary-1.png",
+                "bytes": 1398003,
+                "sha256": "0a963087c49cbc379ffb1182a0d2c43628ca33e5fe871280abe640de9e18299a"
+              }
+            }
+          ]
+        },
+        {
+          "id": "ParamEyeROpen",
+          "passed": true,
+          "boundaries": [
+            {
+              "value": 0,
+              "changedDrawables": [
+                "EyeR"
+              ],
+              "changedPixelCount": 7102,
+              "width": 1400,
+              "height": 1680,
+              "nonTransparentPixels": 609740,
+              "image": {
+                "file": "parameter-1-boundary-0.png",
+                "bytes": 1393648,
+                "sha256": "d23ad75687c97219ba70347198da66428f9d11cac3ebec02450f1865f6b3e4b3"
+              }
+            },
+            {
+              "value": 1,
+              "changedDrawables": [],
+              "changedPixelCount": 0,
+              "width": 1400,
+              "height": 1680,
+              "nonTransparentPixels": 609740,
+              "image": {
+                "file": "parameter-1-boundary-1.png",
+                "bytes": 1398003,
+                "sha256": "0a963087c49cbc379ffb1182a0d2c43628ca33e5fe871280abe640de9e18299a"
+              }
+            }
+          ]
+        },
+        {
+          "id": "ParamMouthOpenY",
+          "passed": true,
+          "boundaries": [
+            {
+              "value": 0,
+              "changedDrawables": [],
+              "changedPixelCount": 0,
+              "width": 1400,
+              "height": 1680,
+              "nonTransparentPixels": 609740,
+              "image": {
+                "file": "parameter-2-boundary-0.png",
+                "bytes": 1398003,
+                "sha256": "0a963087c49cbc379ffb1182a0d2c43628ca33e5fe871280abe640de9e18299a"
+              }
+            },
+            {
+              "value": 1,
+              "changedDrawables": [
+                "MouthOpen",
+                "MouthClosed"
+              ],
+              "changedPixelCount": 1243,
+              "width": 1400,
+              "height": 1680,
+              "nonTransparentPixels": 609740,
+              "image": {
+                "file": "parameter-2-boundary-1.png",
+                "bytes": 1398776,
+                "sha256": "3b98227645daca0e0ab3c3686608210b628ff0577cac77e7fab23a034fd776e0"
+              }
+            }
+          ]
+        },
+        {
+          "id": "ParamBreath",
+          "passed": true,
+          "boundaries": [
+            {
+              "value": 0,
+              "changedDrawables": [],
+              "changedPixelCount": 0,
+              "width": 1400,
+              "height": 1680,
+              "nonTransparentPixels": 609740,
+              "image": {
+                "file": "parameter-3-boundary-0.png",
+                "bytes": 1398003,
+                "sha256": "0a963087c49cbc379ffb1182a0d2c43628ca33e5fe871280abe640de9e18299a"
+              }
+            },
+            {
+              "value": 1,
+              "changedDrawables": [
+                "Body"
+              ],
+              "changedPixelCount": 209108,
+              "width": 1400,
+              "height": 1680,
+              "nonTransparentPixels": 611179,
+              "image": {
+                "file": "parameter-3-boundary-1.png",
+                "bytes": 1399851,
+                "sha256": "3dd6d40c22901459fcda4fe8b8885b2232ef2c8dcd8c689f47316ea713f0adda"
+              }
+            }
+          ]
+        }
+      ],
+      "sampledStates": [],
+      "defaultImage": {
+        "file": "runtime-default.png",
+        "bytes": 1398003,
+        "sha256": "0a963087c49cbc379ffb1182a0d2c43628ca33e5fe871280abe640de9e18299a"
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "check": "Read-only PNG metadata and alpha inspection; no model validation performed.",
+  "images": [
+    {
+      "file": "concept-v1.png",
+      "width": 1144,
+      "height": 1375,
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "content_bbox_alpha_gt_16": [
+        181,
+        16,
+        967,
+        1360
+      ],
+      "sha256": "1d7b77f3d37d928c64f61905c0a88b749163c73ae65c448d6eee7c697fe3f8c3"
+    },
+    {
+      "file": "concept-v2.png",
+      "width": 1143,
+      "height": 1376,
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "content_bbox_alpha_gt_16": [
+        241,
+        126,
+        901,
+        1243
+      ],
+      "sha256": "b5c6bfba63fd6ed5527c10c437e380bb604ecf6c0f37a94aaa9cf40d9addcb75"
+    }
+  ]
+}

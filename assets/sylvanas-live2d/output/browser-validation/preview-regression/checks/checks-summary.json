@@ -1,0 +1,34 @@
+[
+  {
+    "name": "package-typecheck",
+    "command": "pnpm --config.verify-deps-before-run=false -F @proj-airi/stage-ui-live2d typecheck",
+    "cwd": "E:\\PythonWorkspace\\wow-airi-companion\\airi",
+    "exitCode": 127,
+    "log": "D:\\CodexData\\visualizations\\2026\\10\\28\\01a180d2-2bfb-70d3-802b-10423a349d51\\preview-fix-checks\\after-fix\\package-typecheck.log",
+    "firstError": "command not found: vue-tsc"
+  },
+  {
+    "name": "package-vitest",
+    "command": "pnpm --config.verify-deps-before-run=false -F @proj-airi/stage-ui-live2d exec vitest run",
+    "cwd": "E:\\PythonWorkspace\\wow-airi-companion\\airi",
+    "exitCode": 1,
+    "log": "D:\\CodexData\\visualizations\\2026\\10\\28\\01a180d2-2bfb-70d3-802b-10423a349d51\\preview-fix-checks\\after-fix\\package-vitest.log",
+    "firstError": "(!) Failed to run dependency scan. Skipping dependency pre-bundling. Error: The following dependencies are imported but could not be resolved:"
+  },
+  {
+    "name": "root-typecheck",
+    "command": "pnpm --config.verify-deps-before-run=false typecheck",
+    "cwd": "E:\\PythonWorkspace\\wow-airi-companion\\airi",
+    "exitCode": 127,
+    "log": "D:\\CodexData\\visualizations\\2026\\10\\28\\01a180d2-2bfb-70d3-802b-10423a349d51\\preview-fix-checks\\after-fix\\root-typecheck.log",
+    "firstError": "command not found: turbo"
+  },
+  {
+    "name": "root-lint",
+    "command": "pnpm --config.verify-deps-before-run=false lint",
+    "cwd": "E:\\PythonWorkspace\\wow-airi-companion\\airi",
+    "exitCode": 127,
+    "log": "D:\\CodexData\\visualizations\\2026\\10\\28\\01a180d2-2bfb-70d3-802b-10423a349d51\\preview-fix-checks\\after-fix\\root-lint.log",
+    "firstError": "command not found: moeru-lint"
+  }
+]
