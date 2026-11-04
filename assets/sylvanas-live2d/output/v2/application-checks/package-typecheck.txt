@@ -1,0 +1,7 @@
+$ vue-tsc --noEmit
+'vue-tsc' is not recognized as an internal or external command,
+operable program or batch file.
+command not found: vue-tsc
+E:\PythonWorkspace\wow-airi-companion\airi\packages\stage-ui-live2d:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @proj-airi/stage-ui-live2d@ typecheck: `vue-tsc --noEmit`
+Exit status 127

@@ -1,0 +1,29 @@
+
+ RUN  v4.1.11 E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d
+
+ ❯ |node| src/composables/live2d/motion-manager.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |node| src/composables/live2d/motion-manager.test.ts [ src/composables/live2d/motion-manager.test.ts ]
+Error: Cannot find package '@proj-airi/model-driver-magic-live2d' imported from E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d/src/stores/motion-control.ts
+ ❯ src/stores/motion-control.ts:3:1
+      1| import type { Pose } from '@proj-airi/model-driver-magic-live2d'
+      2|
+      3| import { neutralPose } from '@proj-airi/model-driver-magic-live2d'
+       | ^
+      4| import { useBroadcastChannel } from '@vueuse/core'
+      5| import { defineStore } from 'pinia'
+ ❯ src/composables/live2d/motion-manager.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  11:20:11
+   Duration  303ms (transform 47ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
+undefined
+E:\PythonWorkspace\wow-airi-companion\airi\packages\stage-ui-live2d:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vitest run --project node src/composables/live2d/motion-manager.test.ts

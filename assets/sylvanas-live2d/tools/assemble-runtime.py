@@ -11,6 +11,12 @@ import zipfile
 
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 IDLE_PATH = "motions/airi-idle-breath.motion3.json"
+COMPANION_IDLE_PATH = "motions/airi-idle-companion.motion3.json"
+YAWN_PATH = "motions/airi-yawn.motion3.json"
+COMPANION_IDLE_DURATION = 48.0
+YAWN_START = 35.0
+YAWN_DURATION = 5.2
+IDLE_BLINK_STARTS = (4.6, 11.0, 17.8, 24.1, 30.7, 44.7)
 PARAMETER_GROUPS = {
     "EyeBlink": ["ParamEyeLOpen", "ParamEyeROpen"],
     "LipSync": ["ParamMouthOpenY"],
@@ -74,7 +80,88 @@ def idle_motion():
     }
 
 
-def assemble(model_path, output_directory, archive_path, report_path):
+def eased_curve(parameter_id, keyframes):
+    """Create restricted cubic segments with zero velocity at each keyframe."""
+    segments = list(keyframes[0])
+    for (start_time, start_value), (end_time, end_value) in zip(keyframes, keyframes[1:]):
+        step = (end_time - start_time) / 3
+        if step <= 0:
+            raise ValueError("Motion keyframe times must increase")
+        segments.extend([
+            1, start_time + step, start_value,
+            end_time - step, end_value, end_time, end_value,
+        ])
+    return {"Target": "Parameter", "Id": parameter_id, "Segments": segments}
+
+
+def motion_document(duration, loop, curves):
+    segment_count = sum((len(curve["Segments"]) - 2) // 7 for curve in curves)
+    return {
+        "Version": 3,
+        "Meta": {
+            "Duration": duration,
+            "Fps": 30.0,
+            "Loop": loop,
+            "AreBeziersRestricted": True,
+            "CurveCount": len(curves),
+            "TotalSegmentCount": segment_count,
+            "TotalPointCount": len(curves) + 3 * segment_count,
+            "UserDataCount": 0,
+            "TotalUserDataSize": 0,
+        },
+        "FadeInTime": 0.3,
+        "FadeOutTime": 0.3,
+        "Curves": curves,
+        "UserData": [],
+    }
+
+
+def yawn_curves(start, duration, blink_starts=()):
+    # Finish the return before the 0.3-second SDK fade-out starts.
+    eye_keys = [(0.0, 1.0), (0.7, 0.35), (1.3, 0.06), (2.8, 0.0), (4.1, 0.45), (4.8, 1.0), (5.2, 1.0)]
+    mouth_keys = [(0.0, 0.0), (0.5, 0.06), (1.3, 1.0), (3.2, 1.0), (4.4, 0.35), (4.8, 0.0), (5.2, 0.0)]
+
+    def positioned(keys, blinks=()):
+        result = [(time + start, value) for time, value in keys]
+        if start > 0:
+            result.insert(0, (0.0, keys[0][1]))
+        if result[-1][0] < duration:
+            result.append((duration, keys[-1][1]))
+        for blink_start in blinks:
+            result.extend([
+                (blink_start, 1.0),
+                (blink_start + 0.075, 0.0),
+                (blink_start + 0.125, 0.0),
+                (blink_start + 0.305, 1.0),
+            ])
+        return sorted(result)
+
+    return [
+        eased_curve("ParamEyeLOpen", positioned(eye_keys, blink_starts)),
+        eased_curve("ParamEyeROpen", positioned(eye_keys, blink_starts)),
+        eased_curve("ParamMouthOpenY", positioned(mouth_keys)),
+    ]
+
+
+def generated_motions(profile):
+    if profile == "basic-v1":
+        return [("Idle", IDLE_PATH, idle_motion())]
+    if profile != "companion-v2":
+        raise ValueError(f"Unknown motion profile: {profile}")
+
+    breath_keys = [(float(time), float((time // 2) % 2)) for time in range(0, 49, 2)]
+    idle_curves = [eased_curve("ParamBreath", breath_keys), *yawn_curves(YAWN_START, COMPANION_IDLE_DURATION, IDLE_BLINK_STARTS)]
+    standalone_curves = [
+        eased_curve("ParamBreath", [(0.0, 0.0), (1.8, 1.0), (3.0, 0.9), (4.8, 0.0), (YAWN_DURATION, 0.0)]),
+        *yawn_curves(0.0, YAWN_DURATION),
+    ]
+    return [
+        ("Idle", COMPANION_IDLE_PATH, motion_document(COMPANION_IDLE_DURATION, True, idle_curves)),
+        ("Yawn", YAWN_PATH, motion_document(YAWN_DURATION, False, standalone_curves)),
+    ]
+
+
+def assemble(model_path, output_directory, archive_path, report_path, profile="basic-v1"):
     model_path = model_path.resolve(strict=True)
     source_directory = model_path.parent
     original_model_bytes = model_path.read_bytes()
@@ -117,12 +204,16 @@ def assemble(model_path, output_directory, archive_path, report_path):
     motions = packaged_settings["FileReferences"].setdefault("Motions", {})
     if not isinstance(motions, dict):
         raise ValueError("FileReferences.Motions must be an object")
-    if motions.get("Idle"):
-        raise ValueError("Source already defines Idle motions. Review them before adding the generated breath motion.")
-    if IDLE_PATH.casefold() in canonical_names or model_path.name.casefold() in canonical_names:
+    if model_path.name.casefold() in canonical_names:
         raise ValueError("A generated file path conflicts with a source resource")
-    motions["Idle"] = [{"File": IDLE_PATH, "FadeInTime": 0.5, "FadeOutTime": 0.5}]
-    files[IDLE_PATH] = encode_json(idle_motion())
+    generated = generated_motions(profile)
+    for group, name, motion in generated:
+        if motions.get(group):
+            raise ValueError(f"Source already defines {group} motions. Review them before adding generated motions.")
+        if name.casefold() in canonical_names:
+            raise ValueError(f"A generated file path conflicts with a source resource: {name}")
+        motions[group] = [{"File": name, "FadeInTime": motion["FadeInTime"], "FadeOutTime": motion["FadeOutTime"]}]
+        files[name] = encode_json(motion)
     files[model_path.name] = encode_json(packaged_settings)
 
     destinations = [path.resolve() for path in [output_directory, archive_path, report_path]]
@@ -171,7 +262,11 @@ def assemble(model_path, output_directory, archive_path, report_path):
         "modelSettings": model_path.name,
         "archive": {"path": str(archive_path), "bytes": archive_path.stat().st_size, "sha256": sha256(archive_path.read_bytes())},
         "groups": packaged_settings["Groups"],
-        "generatedIdleMotion": {"path": IDLE_PATH, "durationSeconds": 4, "range": [0, 1], "parameter": "ParamBreath"},
+        "motionProfile": profile,
+        "generatedMotions": [{
+            "group": group, "path": name, "durationSeconds": motion["Meta"]["Duration"],
+            "loop": motion["Meta"]["Loop"], "parameters": [curve["Id"] for curve in motion["Curves"]],
+        } for group, name, motion in generated],
         "preservedSourceResources": source_files,
         "files": [{"path": name, "bytes": len(data), "sha256": sha256(data)} for name, data in sorted(files.items())],
     }
@@ -186,9 +281,10 @@ def main():
     parser.add_argument("--output-dir", type=Path, required=True, help="New directory for runtime resources")
     parser.add_argument("--zip", type=Path, required=True, help="New import ZIP outside the runtime directory")
     parser.add_argument("--report", type=Path, required=True, help="New JSON byte-preservation report")
+    parser.add_argument("--profile", choices=["basic-v1", "companion-v2"], default="basic-v1", help="Motion profile. Default: basic-v1")
     args = parser.parse_args()
     try:
-        report = assemble(args.model, args.output_dir, args.zip, args.report)
+        report = assemble(args.model, args.output_dir, args.zip, args.report, args.profile)
     except (OSError, ValueError, zipfile.BadZipFile) as error:
         print(f"Assembly failed: {error}", file=sys.stderr)
         return 1

@@ -1,0 +1,8 @@
+
+ RUN  v4.1.11 E:/PythonWorkspace/wow-airi-companion/airi/packages/stage-ui-live2d
+
+
+ Test Files  2 passed (2)
+      Tests  13 passed (13)
+   Start at  11:31:36
+   Duration  307ms (transform 42ms, setup 0ms, import 126ms, tests 11ms, environment 0ms)

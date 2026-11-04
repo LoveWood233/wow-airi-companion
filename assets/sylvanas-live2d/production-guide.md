@@ -2,19 +2,21 @@
 
 更新：2026-11-04。
 
-## 基础 v1 与源文件
+## v2 与源文件
 
 用户已确定：经典黑暗游侠、紫色兜帽、银发、灰蓝肤色、红瞳，约 2.5 头身，冷傲中带一点傲娇。
 
-本机使用 Cubism Editor 5.3.04，路径为 `D:\Program Files\Live2D Cubism 5.3`。基础模型已通过 SDK 5.0 输出设置真实导出，Core 与仓库模块的浏览器检查通过。
+本机使用 Cubism Editor 5.3.04，路径为 `D:\Program Files\Live2D Cubism 5.3`。v2 已通过 SDK 5.0 输出设置真实导出，六项 Core 参数与浏览器动作检查通过。
 
 交付文件：
 
-- [AIRI 运行 ZIP](output/sylvanas-chibi-v1.live2d.zip)。
-- [Cubism 源工程](source/sylvanas-layers-v1.cmo3)与[七层 PSD](source/sylvanas-layers-v1.psd)。
-- [运行模型预览](output/preview.png)与[全身视觉参考](source/concept-v2.png)。
+- [v2 AIRI 运行 ZIP](output/sylvanas-chibi-v2.live2d.zip)。
+- [v2 Cubism 源工程](source/sylvanas-layers-v2.cmo3)与复用的[七层 PSD](source/sylvanas-layers-v1.psd)。
+- [v2 运行预览](output/v2/preview.png)、[视线与哈欠视频](output/v2/browser-validation/gaze-and-yawn.webm)与[全身视觉参考](source/concept-v2.png)。
 
-运行包包含 7 个 Drawable、一张 2048 × 2048 贴图、模型设置、CDI 和 4 秒循环呼吸动作。当前实际绑定 4 个参数：左右眼开闭、嘴开闭与呼吸。保留的其余默认参数没有实际变形。
+运行包包含 7 个 Drawable、一张 2048 × 2048 贴图、模型设置、CDI、48 秒 Idle 与 5.2 秒 Yawn 动作。当前实际绑定 6 个参数：左右眼开闭、嘴开闭、呼吸及水平与垂直视线。保留的其余默认参数没有实际变形。
+
+v1 源工程与历史输出保留不变。v2 的源工程、原始导出、运行副本和验收报告分别独立保存，新功能以 v2 报告为准。
 
 ## 形象基准
 
@@ -39,10 +41,16 @@ PSD 封装脚本保留原始 PNG 像素。重建命令见 `python tools/pack-psd
 | --- | --- | --- |
 | `ParamEyeLOpen` | 0–1，默认 1 | 左眼原图网格垂直压细至闭眼，1 时正常睁眼 |
 | `ParamEyeROpen` | 0–1，默认 1 | 右眼独立控制，使用同类闭眼形变 |
-| `ParamMouthOpenY` | 0–1，默认 0 | 闭嘴与张嘴两层切换，张嘴网格从扁平形逐渐打开 |
+| `ParamEyeBallX` | -1–1，默认 0 | 双眼内部区域的水平局部形变 |
+| `ParamEyeBallY` | -1–1，默认 0 | 双眼内部区域的垂直局部形变，与 X 合成四角方向 |
+| `ParamMouthOpenY` | 0–1，默认 0 | 闭嘴与张嘴两层切换，最大开口改窄并增高，供哈欠与说话使用 |
 | `ParamBreath` | 0–1，默认 0 | 1 时身体网格放大至 101% |
 
 眼睛的闭合来自原眼睛网格压缩，并非重画的闭眼眼线。闭眼关键形已压薄并缩窄，双眼间保留鼻梁间隙；精细眼部拆层仍属后续目标。
+
+视线绑定通过 EyeL/EyeR 内部网格点的小幅局部位移完成，并合成水平与垂直参数的四角关键形。它没有新增独立虹膜或眼白图层，也不驱动头部转动。
+
+浏览器目视检查未见明显错位、拉裂或越界，上视时两眼位移幅度略有差异。当前七层网格方案的精度有限，改进独立虹膜与眼睑需进一步拆层。
 
 ### 嘴开闭的关键形
 
@@ -61,47 +69,61 @@ PSD 封装脚本保留原始 PNG 像素。重建命令见 `python tools/pack-psd
 - `EyeBlink`：`ParamEyeLOpen`、`ParamEyeROpen`。
 - `LipSync`：`ParamMouthOpenY`。
 
-`FileReferences.Motions.Idle` 引用 `motions/airi-idle-breath.motion3.json`。该动作持续 4 秒，循环驱动 `ParamBreath` 在 0 → 1 → 0 之间变化。
+`FileReferences.Motions.Idle` 引用 `motions/airi-idle-companion.motion3.json`。该动作持续 48 秒，保持四秒呼吸周期，包含普通眨眼与一次哈欠。
 
-动作由脚本编写合法曲线，只控制呼吸，不控制眼睛或嘴。它使用 Editor 中已经绑定的呼吸关键形，不能创建 MOC3、网格或关键形。
+| 时序 | 内容 |
+| --- | --- |
+| 每四秒 | `ParamBreath` 平滑完成 0 → 1 → 0 |
+| 4.6、11、17.8、24.1、30.7、44.7 秒 | 普通眨眼，75 毫秒闭眼、50 毫秒停留、180 毫秒睁眼 |
+| 35–40.2 秒 | 缓慢闭眼、张嘴停留、闭嘴和睁眼，构成一次哈欠 |
+| 48 秒结束 | 恢复循环起点的参数值 |
 
-在 AIRI 中启用眨眼，并将“眨眼模式”设为“强制”。该计时器可在 Idle 呼吸期间驱动双眼。SDK 自带眨眼在循环动作更新期间会跳过，因此只开启内置自动模式无法保证同时眨眼。
+`FileReferences.Motions.Yawn` 另有 `motions/airi-yawn.motion3.json`，持续 5.2 秒，文件本身不循环。它在 4.8 秒恢复睁眼、闭嘴和静息呼吸，并保持至结束，覆盖 SDK 的 0.3 秒淡出。
+
+常态空闲动作选择 `Idle`。AIRI 的空闲动画选择器会重启所选动作，因此选 `Yawn` 会反复打哈欠，不能把非循环文件当作选择器只播放一次的保证。
+
+v2 选择“自动”眨眼模式。普通眨眼已写在动作中，可以在已有安装版保留哈欠闭眼。旧应用的“强制”模式会覆盖动作眼值，本轮代码修复后才支持正确叠加。
+
+动作没有写 `ParamEyeBallX/Y`，视线由鼠标实时控制。旧应用有粗略的 SDK 方向跟随，本轮应用适配器进一步修复模型中心与近中心归中。平滑归中需要更新应用，模型 ZIP 不会更新已安装程序代码。
+
+这些动作使用 Editor 中已绑定的关键形。脚本只编写合法曲线，不能创建 MOC3、网格或关键形。
 
 ## 导出与组装
 
 先完成纹理图集，通过 Cubism Editor 的 `File → Export Embedded File → Export as MOC3` 导出，并使用 SDK 5.0 输出设置。
 
-保存 `.cmo3` 与 `.model3.json`，保留 Editor 原始导出目录 `output/editor-export/`。[官方导出说明](https://docs.live2d.com/en/cubism-editor-manual/export-moc3-motion3-files/)
+保存 `.cmo3` 与 `.model3.json`，v2 的 Editor 原始导出目录为 `output/v2/editor-export/`。[官方导出说明](https://docs.live2d.com/en/cubism-editor-manual/export-moc3-motion3-files/)
 
 运行包实际结构为：
 
 ```text
-sylvanas-chibi-v1.live2d.zip
-  sylvanas-chibi-v1.model3.json
-  sylvanas-chibi-v1.moc3
-  sylvanas-chibi-v1.cdi3.json
-  sylvanas-chibi-v1.2048/
+sylvanas-chibi-v2.live2d.zip
+  sylvanas-chibi-v2.model3.json
+  sylvanas-chibi-v2.moc3
+  sylvanas-chibi-v2.cdi3.json
+  sylvanas-chibi-v2.2048/
     texture_00.png
   motions/
-    airi-idle-breath.motion3.json
+    airi-idle-companion.motion3.json
+    airi-yawn.motion3.json
 ```
 
 本版没有物理设置和独立表情文件。模型设置仅引用实际存在的包内资源。
 
-使用 [assemble-runtime.py](tools/assemble-runtime.py) 组装运行副本，完整命令和输出规则见[组装说明](tools/assemble-runtime-usage.md)。工具不覆盖已有输出，重新导出时使用新的输出路径。
+使用 [assemble-runtime.py](tools/assemble-runtime.py) 的 `--profile companion-v2` 组装运行副本，完整命令和输出规则见[组装说明](tools/assemble-runtime-usage.md)。工具不覆盖已有输出，重新导出时使用新的输出路径。
 
-组装工具只调整运行副本的模型设置并新增呼吸动作，保留原始 `.moc3`、PNG 贴图和 CDI 字节。哈希记录见[组装报告](output/assembly-report.json)。
+组装工具只调整运行副本的模型设置并新增动作，保留原始 `.moc3`、PNG 贴图和 CDI 字节。运行副本为 `output/v2/runtime/`，哈希记录见[v2 组装报告](output/v2/assembly-report.json)。
 
 `.cmo3`、PSD 和部件 PNG 属于制作源文件，与运行 ZIP 分开保存。本次没有制作 `.can3` 时间轴工程。
 
 ## AIRI 导入与验收
 
 1. 打开“设置 → 模型 → 选择模型 → 导入 → Live2D”。
-2. 选择完整的 `sylvanas-chibi-v1.live2d.zip`，点击新增模型卡片应用。
-3. 开启“启用眨眼”，将“眨眼模式”设为“强制”，待机动画选择本包的 `Idle`。
-4. 检查全身显示、透明背景与图层顺序。
-5. 分别检查左右眼 0 和 1，以及口型 0、0.01、中间值和 1。
-6. 播放呼吸循环，检查动作首尾、双眼与口型组合。
+2. 选择完整的 `sylvanas-chibi-v2.live2d.zip`，点击新增 v2 模型卡片应用。
+3. 开启鼠标跟踪和眨眼，将“眨眼模式”设为“自动”，待机动画选择本包的 `Idle`。
+4. 检查全身显示、透明背景、图层顺序和鼠标视线方向。
+5. 分别检查双眼开闭、视线九方向与闭眼组合，以及口型 0、0.01、中间值和 1。
+6. 播放完整 Idle，检查普通眨眼、循环呼吸、第 35 秒哈欠及动作结束后的闭嘴。
 7. 实际播放语音，检查嘴部动作和结束后的闭嘴状态。
 8. 缩小到桌宠尺寸并重启 AIRI，检查显示与资源重新加载。
 
@@ -112,21 +134,26 @@ sylvanas-chibi-v1.live2d.zip
 - [桌面渲染入口](../../airi/apps/stage-tamagotchi/src/renderer/index.html)。
 - [ZIP loader](../../airi/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts)与[模型校验器](../../airi/packages/stage-ui-live2d/src/utils/live2d-validator.ts)。
 - [模型组件](../../airi/packages/stage-ui-live2d/src/components/scenes/live2d/Model.vue)、[参数动画](../../airi/packages/stage-ui-live2d/src/composables/live2d/animation.ts)和[动作管理](../../airi/packages/stage-ui-live2d/src/composables/live2d/motion-manager.ts)。
+- [焦点适配器](../../airi/packages/stage-ui-live2d/src/utils/model-focus.ts)和[眨眼驱动](../../airi/packages/stage-ui-live2d/src/composables/live2d/eye-blink.ts)。
 
-当前状态：基础 v1 已导出，Core 与仓库模块的浏览器检查通过。
+当前状态：v2 已真实导出，六项 Core 参数与浏览器动作检查通过。
 
 | 报告 | 检查范围 |
 | --- | --- |
-| [assembly-report.json](output/assembly-report.json) | 资源引用、ZIP 与原始导出资源字节保留 |
-| [core-validation.json](output/core-validation.json) | Core 解析、模型一致性与四个参数的绘制变化 |
-| [浏览器报告](output/browser-validation/report.json) | 仓库校验器、ZIP 加载器、三次预览、四项参数与 Idle 实际渲染通过 |
-| [预览修复与项目检查](output/preview-fix-validation.md) | 含 Idle 模型的预览清理回归，以及 typecheck、Vitest 和 lint 的环境阻碍 |
+| [v2 assembly-report.json](output/v2/assembly-report.json) | 资源引用、ZIP 与原始导出资源字节保留通过 |
+| [v2 core-validation.json](output/v2/core-validation.json) | Core 解析、模型一致性与六个参数的绘制变化通过 |
+| [v2 浏览器报告](output/v2/browser-validation/report.json) | 六参数、28 个参数组合、11 个指针位置、哈欠精确闭嘴与完整 48 秒 Idle 通过，浏览器错误为空 |
+| [v2 应用驱动检查](output/v2/application-validation.md) | 焦点归中与强制眨眼修复、定向回归和其余检查的环境阻碍 |
 
-Core 工具的命令见[运行数据检查](tools/validate-runtime-usage.md)。浏览器检查覆盖指定中间值、实际渲染与循环呼吸，未运行完整桌面应用的插件组合、语音时序或重启持久化。项目 typecheck、Vitest 和 lint 因缺失工具与依赖未通过，具体结果见预览修复说明。
+Core 工具的命令见[运行数据检查](tools/validate-runtime-usage.md)，浏览器复跑步骤见[v2 检查工具说明](output/v2/browser-validation/tools/usage.md)。实际 Idle 播放约 48.97 秒，包含普通眨眼、哈欠与生产强制眨眼插件；哈欠结束后嘴参数为 0、闭嘴层不透明度为 1、张嘴层为 0。
+
+浏览器验收范围以 v2 报告为准，本轮未运行完整 Electron 应用的设置导入、全局鼠标输入、语音时序或重启持久化。类型检查、关联回归和 lint 的环境阻碍见应用驱动检查。
+
+历史 [v1 运行包](output/sylvanas-chibi-v1.live2d.zip)、[源工程](source/sylvanas-layers-v1.cmo3)、[原导出](output/editor-export/sylvanas-chibi-v1.model3.json)和[原验收记录](output/preview-fix-validation.md)保持不变。
 
 ## 后续精细拆层与高级绑定
 
-本版保留默认的 27 个参数，但只有 4 个实际绑定。转头、视线、头发与披风物理、眉毛和额外表情均未制作。
+本版保留默认的 27 个参数，6 个实际绑定。基础视线已经制作，转头、头发与披风物理、眉毛和额外表情尚未制作。
 
 以下是后续精细拆层清单，不是本版已交付的独立部件。角色左右仍按自身方向命名 `L`、`R`。
 
@@ -155,7 +182,6 @@ Core 工具的命令见[运行数据检查](tools/validate-runtime-usage.md)。�
 | 参数 ID | 建议范围 | 用途 |
 | --- | --- | --- |
 | `ParamAngleX` / `ParamAngleY` / `ParamAngleZ` | -30 至 30，默认 0 | 头部轻转、俯仰与倾斜 |
-| `ParamEyeBallX` / `ParamEyeBallY` | -1 至 1，默认 0 | 视线移动 |
 | `ParamMouthForm` | -1 至 1，默认 0 | 嘴角与表情变化 |
 | `ParamBodyAngleX` / `ParamBodyAngleY` / `ParamBodyAngleZ` | -10 至 10，默认 0 | 身体小幅转动 |
 

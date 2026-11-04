@@ -48,6 +48,7 @@ import { Emotion, EmotionNeutralMotionName } from '../../../constants/emotions'
 import { useLive2D } from '../../../contexts/live2d'
 import { ScreenAmbientLightFilter } from '../../../filters/screen-ambient-light'
 import { getLive2DMotionControlModelOffset, useL2dViewControl, useLive2DMotionControl, useLive2dParams } from '../../../stores'
+import { focusLive2DModelAt } from '../../../utils/model-focus'
 
 const props = withDefaults(defineProps<{
   modelSrc?: string
@@ -925,7 +926,7 @@ watch(focusAt, (value) => {
   if (!props.eyeTracking)
     return
 
-  model.value.focus(value.x, value.y)
+  focusLive2DModelAt(model.value, value)
 })
 
 onMounted(() => {

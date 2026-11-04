@@ -1,0 +1,223 @@
+[
+  {
+    "name": "default",
+    "parameters": {}
+  },
+  {
+    "name": "eyes-closed",
+    "parameters": {
+      "ParamEyeLOpen": 0,
+      "ParamEyeROpen": 0
+    }
+  },
+  {
+    "name": "gaze-x-1-y-1-eyes1",
+    "parameters": {
+      "ParamEyeBallX": -1,
+      "ParamEyeBallY": -1,
+      "ParamEyeLOpen": 1,
+      "ParamEyeROpen": 1
+    }
+  },
+  {
+    "name": "gaze-x-1-y-1-eyes0",
+    "parameters": {
+      "ParamEyeBallX": -1,
+      "ParamEyeBallY": -1,
+      "ParamEyeLOpen": 0,
+      "ParamEyeROpen": 0
+    }
+  },
+  {
+    "name": "gaze-x-1-y0-eyes1",
+    "parameters": {
+      "ParamEyeBallX": -1,
+      "ParamEyeBallY": 0,
+      "ParamEyeLOpen": 1,
+      "ParamEyeROpen": 1
+    }
+  },
+  {
+    "name": "gaze-x-1-y0-eyes0",
+    "parameters": {
+      "ParamEyeBallX": -1,
+      "ParamEyeBallY": 0,
+      "ParamEyeLOpen": 0,
+      "ParamEyeROpen": 0
+    }
+  },
+  {
+    "name": "gaze-x-1-y1-eyes1",
+    "parameters": {
+      "ParamEyeBallX": -1,
+      "ParamEyeBallY": 1,
+      "ParamEyeLOpen": 1,
+      "ParamEyeROpen": 1
+    }
+  },
+  {
+    "name": "gaze-x-1-y1-eyes0",
+    "parameters": {
+      "ParamEyeBallX": -1,
+      "ParamEyeBallY": 1,
+      "ParamEyeLOpen": 0,
+      "ParamEyeROpen": 0
+    }
+  },
+  {
+    "name": "gaze-x0-y-1-eyes1",
+    "parameters": {
+      "ParamEyeBallX": 0,
+      "ParamEyeBallY": -1,
+      "ParamEyeLOpen": 1,
+      "ParamEyeROpen": 1
+    }
+  },
+  {
+    "name": "gaze-x0-y-1-eyes0",
+    "parameters": {
+      "ParamEyeBallX": 0,
+      "ParamEyeBallY": -1,
+      "ParamEyeLOpen": 0,
+      "ParamEyeROpen": 0
+    }
+  },
+  {
+    "name": "gaze-x0-y0-eyes1",
+    "parameters": {
+      "ParamEyeBallX": 0,
+      "ParamEyeBallY": 0,
+      "ParamEyeLOpen": 1,
+      "ParamEyeROpen": 1
+    }
+  },
+  {
+    "name": "gaze-x0-y0-eyes0",
+    "parameters": {
+      "ParamEyeBallX": 0,
+      "ParamEyeBallY": 0,
+      "ParamEyeLOpen": 0,
+      "ParamEyeROpen": 0
+    }
+  },
+  {
+    "name": "gaze-x0-y1-eyes1",
+    "parameters": {
+      "ParamEyeBallX": 0,
+      "ParamEyeBallY": 1,
+      "ParamEyeLOpen": 1,
+      "ParamEyeROpen": 1
+    }
+  },
+  {
+    "name": "gaze-x0-y1-eyes0",
+    "parameters": {
+      "ParamEyeBallX": 0,
+      "ParamEyeBallY": 1,
+      "ParamEyeLOpen": 0,
+      "ParamEyeROpen": 0
+    }
+  },
+  {
+    "name": "gaze-x1-y-1-eyes1",
+    "parameters": {
+      "ParamEyeBallX": 1,
+      "ParamEyeBallY": -1,
+      "ParamEyeLOpen": 1,
+      "ParamEyeROpen": 1
+    }
+  },
+  {
+    "name": "gaze-x1-y-1-eyes0",
+    "parameters": {
+      "ParamEyeBallX": 1,
+      "ParamEyeBallY": -1,
+      "ParamEyeLOpen": 0,
+      "ParamEyeROpen": 0
+    }
+  },
+  {
+    "name": "gaze-x1-y0-eyes1",
+    "parameters": {
+      "ParamEyeBallX": 1,
+      "ParamEyeBallY": 0,
+      "ParamEyeLOpen": 1,
+      "ParamEyeROpen": 1
+    }
+  },
+  {
+    "name": "gaze-x1-y0-eyes0",
+    "parameters": {
+      "ParamEyeBallX": 1,
+      "ParamEyeBallY": 0,
+      "ParamEyeLOpen": 0,
+      "ParamEyeROpen": 0
+    }
+  },
+  {
+    "name": "gaze-x1-y1-eyes1",
+    "parameters": {
+      "ParamEyeBallX": 1,
+      "ParamEyeBallY": 1,
+      "ParamEyeLOpen": 1,
+      "ParamEyeROpen": 1
+    }
+  },
+  {
+    "name": "gaze-x1-y1-eyes0",
+    "parameters": {
+      "ParamEyeBallX": 1,
+      "ParamEyeBallY": 1,
+      "ParamEyeLOpen": 0,
+      "ParamEyeROpen": 0
+    }
+  },
+  {
+    "name": "mouth-0",
+    "parameters": {
+      "ParamMouthOpenY": 0
+    }
+  },
+  {
+    "name": "mouth-0.005",
+    "parameters": {
+      "ParamMouthOpenY": 0.005
+    }
+  },
+  {
+    "name": "mouth-0.01",
+    "parameters": {
+      "ParamMouthOpenY": 0.01
+    }
+  },
+  {
+    "name": "mouth-0.25",
+    "parameters": {
+      "ParamMouthOpenY": 0.25
+    }
+  },
+  {
+    "name": "mouth-0.5",
+    "parameters": {
+      "ParamMouthOpenY": 0.5
+    }
+  },
+  {
+    "name": "mouth-1",
+    "parameters": {
+      "ParamMouthOpenY": 1
+    }
+  },
+  {
+    "name": "breath-0",
+    "parameters": {
+      "ParamBreath": 0
+    }
+  },
+  {
+    "name": "breath-1",
+    "parameters": {
+      "ParamBreath": 1
+    }
+  }
+]

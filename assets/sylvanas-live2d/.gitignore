@@ -1,6 +1,8 @@
 # The browser validation tool rebuilds these files.
 output/browser-validation/bundle.mjs
 output/browser-validation/bundle.mjs.map
+output/v2/browser-validation/bundle.mjs
+output/v2/browser-validation/bundle.mjs.map
 
 # Keep the logs linked from the validation notes.
 !output/browser-validation/preview-regression/checks/*.log

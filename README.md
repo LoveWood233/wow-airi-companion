@@ -72,9 +72,9 @@
 
 ## Live2D Q 版角色
 
-[希尔瓦娜斯 Q 版 Live2D 基础模型](assets/sylvanas-live2d/README.md)：约 2.5 头身，紫色兜帽、银发、灰蓝肤色、红瞳，冷傲中带一点傲娇。
+[希尔瓦娜斯 Q 版 Live2D v2](assets/sylvanas-live2d/README.md)：约 2.5 头身，紫色兜帽、银发、灰蓝肤色、红瞳，冷傲中带一点傲娇。
 
-提供[Live2D 导入 ZIP](assets/sylvanas-live2d/output/sylvanas-chibi-v1.live2d.zip)、Cubism 源工程、七层可编辑 PSD 与[制作说明](assets/sylvanas-live2d/production-guide.md)。基础版绑定独立双眼开闭、口型和循环呼吸；验收范围与高级绑定计划见资产说明。
+提供[Live2D v2 导入 ZIP](assets/sylvanas-live2d/output/sylvanas-chibi-v2.live2d.zip)、Cubism 源工程、七层可编辑 PSD 与[制作说明](assets/sylvanas-live2d/production-guide.md)。v2 增加鼠标视线跟随、内置眨眼与打哈欠，保留口型和循环呼吸。导入后开启鼠标跟踪，将眨眼模式设为“自动”，空闲动画选择 `Idle`。
 
 ## 项目内容
 
