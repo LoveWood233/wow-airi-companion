@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useDisplayModelsStore } from '@proj-airi/stage-ui/stores/display-models'
+import { useSettingsStageModel } from '@proj-airi/stage-ui/stores/settings/stage-model'
+import { storeToRefs } from 'pinia'
 import { computed, onMounted, shallowRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -14,12 +16,13 @@ const props = withDefaults(defineProps<{
 
 const { t } = useI18n()
 const displayModelsStore = useDisplayModelsStore()
-const model = computed(() => displayModelsStore.displayModels.find(item => item.id === props.modelId))
+const { runtimeEnabled } = storeToRefs(useSettingsStageModel())
+const model = computed(() => runtimeEnabled.value ? displayModelsStore.displayModels.find(item => item.id === props.modelId) : undefined)
 const previewImage = computed(() => model.value?.previewImage)
 const failedImage = shallowRef<string>()
 
 onMounted(async () => {
-  if (displayModelsStore.displayModels.length === 0)
+  if (runtimeEnabled.value && displayModelsStore.displayModels.length === 0)
     await displayModelsStore.loadDisplayModelsFromIndexedDB()
 })
 </script>
@@ -44,7 +47,7 @@ onMounted(async () => {
     <div
       v-else
       role="img"
-      :aria-label="t('settings.pages.card.model_not_bound')"
+      :aria-label="runtimeEnabled ? t('settings.pages.card.model_not_bound') : alt || t('settings.pages.card.creation.name')"
       :class="[
         'absolute inset-0 flex items-center justify-center',
         'text-primary-300 dark:text-primary-700',

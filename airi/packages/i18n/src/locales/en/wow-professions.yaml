@@ -1,0 +1,167 @@
+title: Professions and materials
+description: Find recipes, plan skill levels, and calculate the materials you still need.
+game: Chinese WoW Forever
+game-note: This planner uses Forever records. Retail recipes and inventory stay separate.
+modes:
+  recipe: Recipe materials
+  leveling: Profession leveling
+recipe:
+  title: Add recipes to a plan
+  search: Recipe name
+  search-description: Search the database, then choose the exact recipe.
+  search-placeholder: For example, a recipe or crafted item
+  find: Find recipes
+  empty: No matching recipes. Try another name.
+  results: Matching recipes
+  add: Add to plan
+  added: In plan
+  count: Craft count
+  count-description: Number of crafts, rather than the number of items produced.
+  quantity: Planned quantity
+  unit: Quantity means
+  crafts: Craft count
+  products: Finished item count
+  products-unavailable: Finished item counts require one product with a known output quantity.
+  remove: Remove recipe
+  selected: Selected recipes
+  none: Add a recipe to calculate its materials.
+  output: 'Output per craft: {quantity}'
+  output-unknown: Output per craft is unknown.
+  skill: 'Required skill: {skill}'
+  choose: Select a recipe
+leveling:
+  title: Plan a skill range
+  profession: Profession
+  profession-description: Choose a profession from the database.
+  from: Current skill
+  to: Target skill
+  range-description: Enter a skill range from 1 to 300.
+  route: Recipe availability
+  best: All recipes, including patterns
+  free: Recipes without a pattern requirement
+  load: Build leveling plan
+  steps: Suggested crafts
+  span: 'Skill {from}–{to}'
+  crafts: '{count} crafts'
+  prep: Intermediate material
+  training: Training checkpoints
+  training-at: 'At skill {skill}: learn {name}'
+  training-level: 'Required character level: {level}'
+  training-assumed: Level requirement assumed from original rules
+  training-note: These are source requirements. A skill value does not prove that your character meets every learning condition.
+  estimate: Skill gains are estimates. Yellow and green recipes can require more crafts.
+  no-route: No supported route covers this skill range.
+inventory:
+  title: Materials you already have
+  character: '{name} · {realm}'
+  observed: 'Bags observed: {time}'
+  ready: A complete bag snapshot for the current character is available.
+  unknown: No current complete bag snapshot is available. Bag counts remain unknown.
+  partial: The bag snapshot is incomplete. Its counts are not a complete inventory.
+  stale: The bag snapshot belongs to an earlier session or is no longer current.
+  bank-unknown: Bank contents are unknown. Enter any additional materials below.
+  manual-note: Additional quantities are added to observed bags. Do not enter the same bag materials twice.
+  manual: Additional quantity
+  manual-description: Materials held outside the observed bags, such as bank materials you checked yourself.
+  clear: Clear additional quantities
+  related-material: Related material
+  related-description: This includes intermediate materials made within a leveling route.
+  choose-material: Choose a material
+  new-extra: Additional stock total
+  new-extra-description: This updates the manually entered total for this item. Observed bag quantities remain separate.
+  save-extra: Save additional stock
+  saved-extra: Saved additional stock
+  remove-extra: Remove additional stock
+plan:
+  title: Combined material list
+  empty: Choose recipes or generate a leveling plan first.
+  required: Required
+  bags: Applied from bags
+  known-bags: Applied known bags
+  extra: Additional
+  missing: Still needed
+  missing-upper-bound: Need at most
+  unknown: Unknown
+  missing-unknown: Bag contents are unknown. Missing quantities cannot be confirmed.
+  no-missing: The recorded materials cover this plan.
+  copy: Copy list
+  copied: Material list copied.
+  copy-failed: The clipboard is unavailable. Select and copy the material list.
+  item-id: 'Item ID: {id}'
+  source: Recipe source
+  products: 'Products remaining after the plan: {products}'
+  invalid-number: Enter a whole number within the supported range.
+budget:
+  title: Optional purchase estimate
+  description: Request collected auction prices for the missing materials. This does not place orders.
+  estimate: Estimate purchase cost
+  total: 'Known subtotal: {price}'
+  incomplete: Missing data or snapshot limitations prevent a confirmed total cost.
+  missing-prices: Some materials have no usable price. The subtotal is not the complete cost.
+  historical: These are collected listings, not live prices or guaranteed purchase costs.
+  collected: 'Price collection: {time}'
+  scope: 'Market scope: {scope}'
+  unknown-scope: The source does not specify the realm or faction scope.
+  scope-unverified: This estimate uses the listed market snapshot. Its realm and faction do not establish applicability to your character.
+  unit: 'Unit estimate: {price}'
+  no-price: No usable collected price
+  stale: The collected price snapshot is old. Refresh prices before a purchase decision.
+  money: '{gold}g {silver}s {copper}c'
+source:
+  original-received: 'Original source query: {time}'
+  cache-hit: Read from query cache
+  cache-served: 'Cache read: {time}'
+  cache-expires: 'Cache expires: {time}'
+  title: Data source
+  build: 'Data build: {build}'
+  unknown-build: Unknown
+  received: 'Query received: {time}'
+  updated: 'Source updated: {time}'
+  method: Calculation assumptions
+  open: Open source page
+  uncertainty: Incomplete or estimated records cannot prove that you can craft this plan.
+busy: Loading database records…
+retry: Retry
+notices:
+  invalid-quantity: A quantity is outside the supported whole-number range.
+  quantity-overflow: This plan exceeds the supported calculation range.
+  invalid-selection: One or more recipe selections cannot be calculated.
+  ambiguous-product: Select one product before a finished-item calculation.
+  unknown-yield: The recipe has no fixed output quantity.
+  incomplete-reagents: Some ingredients have no complete item identity or quantity.
+  incomplete-recipe: The recipe record is incomplete.
+  hidden-product: This product is not publicly named. Confirm its availability in the game.
+  conflicting-source-link: The recipe identifier and source link do not match.
+  estimated-skillups: Skill gains are estimates. Actual craft counts can differ.
+  route-materials-unresolved: Some intermediate materials cannot be resolved from the available records.
+  incomplete-route: The available route does not cover the complete requested range.
+  missing-route-recipes: Some route recipes have no usable detail record.
+  inventory-incomplete: Bag quantities are partial. Missing quantities are upper bounds.
+  price-date-unknown: The source collection label has no verified timestamp.
+  price-date-future: The price collection timestamp is in the future.
+  price-stale: The price snapshot exceeds the estimate's freshness window.
+  price-incomplete: Some materials have no usable price. The subtotal is incomplete.
+  conflicting-prices: The source returned conflicting prices for the same item.
+  conflicting-price-snapshots: Prices from different market snapshots cannot form one estimate.
+  price-overflow: The price estimate exceeds the supported range. The material list remains available.
+  variant-price-unverified: The listing can refer to an unverified item variant. Its price is excluded.
+  incomplete: The source record is incomplete.
+  estimated: Some quantities are estimates.
+  truncated: The returned list is partial.
+  inventory-unknown: Current bag quantities are unknown.
+  bank-unknown: Bank quantities are unknown.
+  price-missing: Some material prices are unavailable.
+errors:
+  unavailable: The Forever database is unavailable. Check the MCP connection and retry.
+  invalid: The returned record cannot support a material calculation.
+  no-results: No matching records were returned.
+  invalid-range: Enter a current skill below the target skill, within 1–300.
+  invalid-quantity: Enter a positive whole craft count.
+  unsupported-game: This planner currently supports Chinese WoW Forever.
+  request-failed: The query failed. Check the connection and retry.
+  invalid-input: Check the entered values and try again.
+  generic: The operation failed. Check the entered values and connection, then retry.
+  source-unavailable: The Forever database is unavailable. Check the MCP connection and retry.
+  recipe-unavailable: This recipe has no complete material record for the requested calculation.
+  inventory-unknown: Current bag quantities are unknown. The material requirement remains available.
+  price-unavailable: Collected prices are unavailable. The material plan remains available.

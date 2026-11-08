@@ -1,0 +1,88 @@
+title: Warcraft reference
+plan-recipe: Plan materials
+game: WoW Forever · China
+query: Query
+build: Data build
+unknown-build: Not provided by this response
+build-created-at: Snapshot built
+updated-at: Data updated
+collected-at: Prices collected
+received-at: Query received
+cache:
+  status: Result delivery
+  hit: From cache
+  miss: Source queried and cached
+  source-received-at: Original source query
+  served-at: Result returned
+  expires-at: Cache expires
+  note: This result reuses a recorded query. Reading the cache does not update the source data or its collection time.
+realm: Realm and market
+temporary: Temporary
+incomplete: Incomplete
+more: Show all listed details
+less: Show fewer details
+expand-entry: 'Toggle details for {title}'
+partial: 'Showing {count} entries of {total}. Open the source for the remaining records.'
+partial-unknown: 'Showing {count} entries. More records are available in the source.'
+search-help: Search results are summaries. Open an entry for its details and conditions.
+source-note: Player-made database. Missing fields remain unknown. Check applicable game conditions in the source.
+titles:
+  loading: Looking up Warcraft references
+  success: Warcraft references
+  empty: No matching Warcraft records
+  error: Warcraft lookup failed
+  invalid: Warcraft response unavailable
+modes:
+  search: Search results
+  detail: Record details
+  list: Reference list
+kinds:
+  item: Item
+  recipe: Recipe
+  quest: Quest
+  npc: NPC
+  instance: Instance
+  map: Map
+states:
+  loading: Waiting for the database response.
+  empty: No matching records were returned. Try a different name or a known record ID.
+  error: The lookup failed. Check the MCP connection and try again. No replacement facts were added.
+  invalid: This response cannot be shown as a reference card. The original result remains available in the raw view.
+notices:
+  temporary: Some fields use third-party temporary data. Their source and conditions still apply.
+  incomplete: This response contains incomplete or truncated information. Check the source for its scope.
+  truncated: The card shows a bounded selection of this response. Open the source or raw view for the remaining fields.
+  approximate: Some positions or conditions are approximate. Check the source before using them.
+  auction: Prices are collected listings, not live sales. Check the collection time, realm, and market.
+  snapshot: These records describe a data snapshot. First-seen versions do not establish current availability.
+  other: The source includes additional scope or data limitations.
+fields:
+  level: Level
+  min-level: Required level
+  item-level: Item level
+  quality: Quality
+  profession: Profession
+  category: Category
+  zone: Zone
+  faction: Faction
+  players: Players
+  boss-count: Boss encounters
+  source-type: Record source
+  temporary-source: Temporary source
+  uses-count: Recipes using this material
+  craft-at: Crafting station
+  other: Additional information
+sections:
+  materials: Materials
+  products: Products
+  objectives: Objectives
+  rewards: Rewards
+  quest-chain: Quest chain
+  locations: Locations
+  bosses: Bosses
+  sources: Sources
+  uses: Uses
+  givers: Quest givers and turn-ins
+  temporary-drops: Temporary drop information
+  details: Details
+  other: Additional details

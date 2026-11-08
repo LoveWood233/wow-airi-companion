@@ -1,4 +1,5 @@
 import type { createContext } from '@moeru/eventa/adapters/electron/main'
+import type { WowDataCachePort } from '@proj-airi/stage-shared/wow-knowledge'
 
 import type {
   ElectronMcpApplyResult,
@@ -14,6 +15,7 @@ import type {
   ElectronMcpToolDescriptor,
 } from '../../../../shared/eventa'
 
+import { createHash } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
@@ -23,6 +25,7 @@ import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js'
 import { defineInvokeHandler } from '@moeru/eventa'
 import { errorMessageFrom } from '@moeru/std'
+import { WowMcpCacheRuntime } from '@proj-airi/stage-ui/libs/wow-mcp-cache-runtime'
 import { app, shell } from 'electron'
 
 import {
@@ -188,11 +191,16 @@ function describeRuntime(
  * `applyAndRestart` replaces the sessions from disk. `stopAll` closes them.
  * Discovery returns a complete catalog or rejects with all server failures.
  */
-export function createMcpManager(): McpManager {
+export function createMcpManager(cache: WowDataCachePort): McpManager {
   const log = useLogg('main/mcp').useGlobalConfig()
   const sessions = new Map<string, McpServerSession>()
   const runtimeStatuses = new Map<string, ElectronMcpServerRuntimeStatus>()
   let updatedAt = Date.now()
+  const cachedRuntime = new WowMcpCacheRuntime({ listTools, callTool: callToolUncached }, cache, () => {
+    const session = sessions.get('wuxianwow')
+    // The disk key contains only this digest, never connection arguments, headers, or environment values.
+    return session ? createHash('sha256').update(JSON.stringify(session.config)).digest('hex') : undefined
+  })
 
   const setRuntimeStatus = (status: ElectronMcpServerRuntimeStatus) => {
     runtimeStatuses.set(status.name, status)
@@ -225,6 +233,7 @@ export function createMcpManager(): McpManager {
   }
 
   const stopAll = async () => {
+    cachedRuntime.invalidate()
     const entries = [...sessions.entries()]
     for (const [name, session] of entries) {
       await closeSession(session)
@@ -298,7 +307,7 @@ export function createMcpManager(): McpManager {
     return result
   }
 
-  const listTools = async (): Promise<ElectronMcpToolDescriptor[]> => {
+  async function listTools(): Promise<ElectronMcpToolDescriptor[]> {
     const entries = [...sessions.entries()].sort(([left], [right]) => left.localeCompare(right))
     const listResult = await Promise.allSettled(entries.map(async ([serverName, session]) => {
       const response = await session.client.listTools(undefined, {
@@ -335,7 +344,7 @@ export function createMcpManager(): McpManager {
     return tools
   }
 
-  const callTool = async (payload: ElectronMcpCallToolPayload): Promise<ElectronMcpCallToolResult> => {
+  async function callToolUncached(payload: ElectronMcpCallToolPayload): Promise<ElectronMcpCallToolResult> {
     const { serverName, toolName } = parseQualifiedToolName(payload.name)
     const session = sessions.get(serverName)
     if (!session) {
@@ -485,8 +494,8 @@ export function createMcpManager(): McpManager {
     ensureConfigFile,
     openConfigFile,
     applyAndRestart,
-    listTools,
-    callTool,
+    listTools: () => cachedRuntime.listTools(),
+    callTool: payload => cachedRuntime.callTool(payload),
     stopAll,
     getRuntimeStatus,
     readConfigText,
@@ -495,9 +504,9 @@ export function createMcpManager(): McpManager {
   }
 }
 
-export async function setupMcpManager() {
+export async function setupMcpManager(cache: WowDataCachePort) {
   const log = useLogg('main/mcp').useGlobalConfig()
-  const manager = createMcpManager()
+  const manager = createMcpManager(cache)
 
   onAppBeforeQuit(async () => {
     await manager.stopAll()

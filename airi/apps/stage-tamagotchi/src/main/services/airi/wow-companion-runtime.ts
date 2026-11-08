@@ -3,6 +3,7 @@ import type { ChildProcessWithoutNullStreams } from 'node:child_process'
 
 import type { GameVersion } from '../../../shared/wow-companion'
 import type { MacroImportRequest } from '../../../shared/wow-macro-import'
+import type { SetupEnvironment } from '../../../shared/wow-setup'
 import type { GameCaptureWindow } from './wow-screen-assist-runtime'
 
 import process from 'node:process'
@@ -19,6 +20,7 @@ import { integer, literal, looseObject, minLength, minValue, number, optional, p
 
 import { gameProfiles, gameVersionSchema } from '../../../shared/wow-companion'
 import { companionError } from '../../../shared/wow-companion-errors'
+import { companionBridgeFiles } from '../../../shared/wow-delivery'
 import { macroImportResultSchema } from '../../../shared/wow-macro-import'
 
 const execFileAsync = promisify(execFile)
@@ -80,6 +82,33 @@ export class CompanionBridgeRuntime {
   /** Returns lifecycle diagnostics, not a live game observation. */
   read() {
     return { status: this.status, error: this.error }
+  }
+
+  /** Checks prerequisites without starting a bridge, writing calibration, or changing connection settings. */
+  async inspectEnvironment(): Promise<SetupEnvironment> {
+    const result: SetupEnvironment = {
+      python: { status: 'failed', code: 'python-missing' },
+      resources: { status: 'failed', code: 'resources-missing' },
+      runtime: this.read(),
+    }
+    if (this.options.platform !== 'win32') {
+      result.python.code = 'windows-required'
+      return result
+    }
+    const source = resolve(this.options.appPath, '..', '..', '..', 'WOWAddons', 'WoWCompanionBridge')
+    const bundled = join(this.options.resourcesPath, 'wow-companion-bridge')
+    const directory = await this.isFile(join(bundled, 'server.py')) ? bundled : source
+    const required = await Promise.all(companionBridgeFiles.filter(file => file.endsWith('.py')).map(file => this.isFile(join(directory, file))))
+    if (required.every(Boolean))
+      result.resources = { status: 'passed', code: 'resources-found' }
+    if (result.resources.status === 'passed' && result.runtime.status === 'error')
+      result.resources = { status: 'failed', code: 'bridge-runtime-error' }
+    try {
+      result.pythonPath = await this.findPython(AbortSignal.timeout(12_000))
+      result.python = { status: 'passed', code: 'python-found' }
+    }
+    catch { /* Missing or inaccessible Python remains a failed prerequisite. */ }
+    return result
   }
 
   /** Starts at most one helper and waits until its health endpoint is ready. */
@@ -157,7 +186,7 @@ export class CompanionBridgeRuntime {
       signal.throwIfAborted()
       const python = await this.findPython(signal)
       signal.throwIfAborted()
-      const child = spawn(python, [resources.script, '--game', this.options.game ?? 'retail', '--port', new URL(this.baseUrl).port || '80', '--config', resources.config, '--managed-stdin'], {
+      const child = spawn(python, ['-B', '-X', 'utf8', resources.script, '--game', this.options.game ?? 'retail', '--port', new URL(this.baseUrl).port || '80', '--config', resources.config, '--managed-stdin'], {
         cwd: dirname(resources.script),
         windowsHide: true,
         shell: false,
@@ -235,7 +264,7 @@ export class CompanionBridgeRuntime {
       if (!await this.isFile(script))
         throw new Error('macro-import-files-missing')
       const result = await new Promise<string>((resolveResult, reject) => {
-        const child = spawn(python, [script], {
+        const child = spawn(python, ['-B', '-X', 'utf8', script], {
           windowsHide: true,
           shell: false,
           stdio: ['pipe', 'pipe', 'pipe'],
@@ -311,8 +340,8 @@ export class CompanionBridgeRuntime {
     }
     const result = safeParse(healthSchema, value)
     const version = result.success && /^2\.(\d+)\.\d+$/.exec(result.output.version)
-    // Full equipment snapshots require the bridge's gear decoder.
-    if (!response.ok || !result.success || !version || Number(version[1]) < 11
+    // Material planning requires the inventory decoder and its required nullable status fields.
+    if (!response.ok || !result.success || !version || Number(version[1]) < 19
       || result.output.protocol !== gameProfiles[game].protocol
       || (result.output.game !== undefined && result.output.game !== game)
       || (game === 'forever' && result.output.game !== game)) {
@@ -346,6 +375,37 @@ export class CompanionBridgeRuntime {
   }
 
   private async findPython(signal: AbortSignal) {
+    const bundledDirectory = join(this.options.resourcesPath, 'wow-companion-python')
+    try {
+      const bundled = await stat(bundledDirectory)
+      if (!bundled.isDirectory())
+        throw new Error(companionError('bridge-python-missing'))
+    }
+    catch (cause) {
+      // Installed bundles never fall back to a machine interpreter when their runtime is damaged.
+      if (!(cause instanceof Error) || !('code' in cause) || cause.code !== 'ENOENT')
+        throw new Error(companionError('bridge-python-missing'))
+      if (this.options.appPath.endsWith('.asar') || await this.isFile(join(this.options.resourcesPath, 'wow-companion-release.json')))
+        throw new Error(companionError('bridge-python-missing'))
+      return this.findInstalledPython(signal)
+    }
+    signal.throwIfAborted()
+    const executable = join(bundledDirectory, 'python.exe')
+    if (!await this.isFile(executable))
+      throw new Error(companionError('bridge-python-missing'))
+    try {
+      const result = await execFileAsync(executable, ['-B', '-X', 'utf8', '-c', 'import ctypes,dataclasses,http.server,json,sqlite3,struct,threading,sys; print(json.dumps({"executable":sys.executable,"major":sys.version_info.major,"minor":sys.version_info.minor}))'], { windowsHide: true, timeout: 3500, maxBuffer: 8192, encoding: 'utf8', signal })
+      const python = safeParse(pythonSchema, JSON.parse(result.stdout))
+      if (python.success && resolve(python.output.executable).toLowerCase() === resolve(executable).toLowerCase())
+        return executable
+    }
+    catch {
+      signal.throwIfAborted()
+    }
+    throw new Error(companionError('bridge-python-missing'))
+  }
+
+  private async findInstalledPython(signal: AbortSignal) {
     const directories = (process.env.PATH ?? '').split(delimiter).map(path => path.replace(/^"|"$/g, '')).filter(Boolean)
     // Resolve PATH entries before execution. WindowsApps aliases can open the Store instead of running Python.
     for (const program of ['python.exe', 'py.exe']) {
@@ -358,7 +418,7 @@ export class CompanionBridgeRuntime {
           continue
         try {
           const args = program === 'py.exe' ? ['-3'] : []
-          args.push('-c', 'import json,sys; print(json.dumps({"executable":sys.executable,"major":sys.version_info.major,"minor":sys.version_info.minor}))')
+          args.push('-B', '-X', 'utf8', '-c', 'import json,sys; print(json.dumps({"executable":sys.executable,"major":sys.version_info.major,"minor":sys.version_info.minor}))')
           const result = await execFileAsync(executable, args, { windowsHide: true, timeout: 3500, maxBuffer: 8192, encoding: 'utf8', signal })
           const python = safeParse(pythonSchema, JSON.parse(result.stdout))
           if (python.success && !/[\\/]WindowsApps(?:[\\/]|$)/i.test(python.output.executable) && await this.isFile(python.output.executable))

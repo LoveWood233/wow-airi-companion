@@ -160,5 +160,9 @@ packages/i18n/glossary/glossary.tbx
 apps/*/public/sherpaw/
 apps/*/src/renderer/public/sherpaw/
 
+# Local Windows release outputs and the reproducible embedded Python download.
+apps/stage-tamagotchi/dist-portable-*/
+apps/stage-tamagotchi/resources/wow-companion-python/
+
 # Vieval caches and report artifacts
 .vieval

@@ -1,0 +1,64 @@
+{
+  "@context": [
+    "https://schema.org",
+    "https://wuxianwow.com/vocab"
+  ],
+  "@graph": [
+    {
+      "@id": "https://wuxianwow.com/id/item:12359",
+      "@type": [
+        "Thing",
+        "wxw:Item"
+      ],
+      "identifier": "item:12359",
+      "name": "瑟银锭",
+      "description": "瑟银锭：材料（装等 50）；由采矿配方「熔炼瑟银」制作，被 132 条配方用作材料。数据取自国服客户端 1.60.1.70707。",
+      "url": "https://wuxianwow.com/item/12359",
+      "image": [
+        "https://wuxianwow.com/data/icons/133221.webp",
+        "https://wuxianwow.com/share/133221.jpg"
+      ],
+      "mainEntityOfPage": {
+        "@id": "https://wuxianwow.com/item/12359#webpage"
+      },
+      "wxw:quality": "普通",
+      "wxw:itemLevel": 50,
+      "wxw:sellPrice": 600,
+      "wxw:madeBy": [
+        {
+          "@id": "https://wuxianwow.com/id/recipe:8796",
+          "name": "熔炼瑟银"
+        }
+      ],
+      "wxw:usedBy": [
+        {
+          "@id": "https://wuxianwow.com/id/recipe:9159",
+          "name": "瑟银护甲"
+        },
+        {
+          "@id": "https://wuxianwow.com/id/recipe:9160",
+          "name": "瑟银腰带"
+        },
+        {
+          "@id": "https://wuxianwow.com/id/recipe:9161",
+          "name": "瑟银护腕"
+        }
+      ],
+      "wxw:usedByCount": 132,
+      "wxw:firstSeenIn": {
+        "@id": "https://wuxianwow.com/build/1.60.1.70094",
+        "name": "1.60.1.70094"
+      },
+      "wxw:game": {
+        "@id": "https://wuxianwow.com/#game"
+      },
+      "wxw:sourceBuild": "1.60.1.70707"
+    },
+    {
+      "@id": "https://wuxianwow.com/#dataset",
+      "@type": "Dataset",
+      "version": "1.60.1.70707",
+      "dateModified": "2026-10-30"
+    }
+  ]
+}

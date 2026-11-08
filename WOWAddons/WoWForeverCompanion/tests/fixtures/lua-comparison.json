@@ -1,5 +1,5 @@
 {
-  "v": 1,
+  "v": 2,
   "id": 1,
   "session": "1700000000-12500-123456",
   "guid": "Player-1-00000001",
@@ -49,5 +49,21 @@
     ],
     "complex": false,
     "complete": true
-  }
+  },
+  "assessment": {
+    "verdict": "upgrade",
+    "reason": "stats_upgrade"
+  },
+  "deltas": [
+    {
+      "key": "ITEM_MOD_HASTE_RATING_SHORT",
+      "before": 42,
+      "after": 42
+    },
+    {
+      "key": "ITEM_MOD_INTELLECT_SHORT",
+      "before": 100,
+      "after": 150
+    }
+  ]
 }

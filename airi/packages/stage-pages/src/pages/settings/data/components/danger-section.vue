@@ -4,15 +4,21 @@ import type { DataSettingsStatusEmits } from '../status'
 import { useAnalytics } from '@proj-airi/stage-ui/composables'
 import { useDataMaintenance } from '@proj-airi/stage-ui/composables/use-data-maintenance'
 import { DoubleCheckButton } from '@proj-airi/ui'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { createDataSettingsStatusHelpers } from '../status'
 
+const props = defineProps<{
+  /** Host cleanup runs after shared conversation cancellation and card resets, before success is reported. */
+  afterDeleteAll?: () => Promise<void>
+}>()
 const emit = defineEmits<DataSettingsStatusEmits>()
 const { t } = useI18n()
 const { trackDataAction } = useAnalytics()
 const { deleteAllData, resetProvidersSettings } = useDataMaintenance()
 const { emitStatus, handleActionError } = createDataSettingsStatusHelpers(emit)
+const deletingAll = ref(false)
 
 async function resetProviders() {
   try {
@@ -26,13 +32,20 @@ async function resetProviders() {
 }
 
 async function deleteAll() {
+  if (deletingAll.value)
+    return
+  deletingAll.value = true
   try {
     await deleteAllData()
+    await props.afterDeleteAll?.()
     trackDataAction({ action: 'app_data_cleared' })
     emitStatus(t('settings.pages.data.status.all_deleted'))
   }
   catch (error) {
     handleActionError(error)
+  }
+  finally {
+    deletingAll.value = false
   }
 }
 </script>
@@ -61,7 +74,7 @@ async function deleteAll() {
               </p>
             </div>
             <div :class="['flex flex-col items-start gap-2']">
-              <DoubleCheckButton @confirm="resetProviders">
+              <DoubleCheckButton :disabled="deletingAll" @confirm="resetProviders">
                 {{ t('settings.pages.data.sections.providers.reset') }}
                 <template #confirm>
                   {{ t('settings.pages.data.confirmations.yes') }}
@@ -83,7 +96,7 @@ async function deleteAll() {
               </p>
             </div>
             <div :class="['flex flex-col items-start gap-2']">
-              <DoubleCheckButton @confirm="deleteAll">
+              <DoubleCheckButton :loading="deletingAll" @confirm="deleteAll">
                 {{ t('settings.pages.data.sections.all.delete') }}
                 <template #confirm>
                   {{ t('settings.pages.data.confirmations.yes') }}

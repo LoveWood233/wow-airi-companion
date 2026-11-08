@@ -1,4 +1,5 @@
 import type { ElectronMainContextExtensions, ElectronMainEmitOptions } from '@moeru/eventa/adapters/electron/main'
+import type { WowDataCachePort } from '@proj-airi/stage-shared/wow-knowledge'
 
 import { mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
@@ -10,6 +11,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { electronMcpCallTool, electronMcpListTools } from '../../../../shared/eventa'
 import { createMcpManager, createMcpServersService } from './index'
+
+function cachePort(): WowDataCachePort {
+  return { generation: 0, get: vi.fn(async () => undefined), put: vi.fn(async () => undefined), invalidate: vi.fn(), clear: vi.fn(async () => {}) }
+}
 
 const appMock = vi.hoisted(() => ({
   getPath: vi.fn(),
@@ -24,6 +29,7 @@ const clientMocks = vi.hoisted(() => ({
   close: vi.fn(),
   connect: vi.fn(),
   listTools: vi.fn(),
+  callTool: vi.fn(),
 }))
 
 vi.mock('electron', () => ({
@@ -51,6 +57,7 @@ vi.mock('@modelcontextprotocol/sdk/client/index.js', () => ({
     close = clientMocks.close
     connect = clientMocks.connect
     listTools = clientMocks.listTools
+    callTool = clientMocks.callTool
   },
 }))
 
@@ -110,7 +117,7 @@ describe('createMcpManager', () => {
     await writeFile(join(userDataPath, 'mcp.json'), JSON.stringify({
       mcpServers: Object.fromEntries(serverNames.map(name => [name, { command: 'test-mcp-server' }])),
     }))
-    const manager = createMcpManager()
+    const manager = createMcpManager(cachePort())
     managers.push(manager)
     expect((await manager.applyAndRestart()).failed).toEqual([])
     return manager
@@ -203,8 +210,7 @@ describe('createMcpManager', () => {
   })
 
   it('includes stderr captured during connect failures in MCP server test results', async () => {
-    const { createMcpManager } = await import('./index')
-    const manager = createMcpManager()
+    const manager = createMcpManager(cachePort())
 
     clientMocks.connect.mockImplementationOnce(async (transport: { stderr: NodeJS.WritableStream }) => {
       transport.stderr.write('Missing required environment variable: API_KEY\n')
@@ -224,8 +230,7 @@ describe('createMcpManager', () => {
   })
 
   it('reaches a remote server over streamable HTTP and sends its headers', async () => {
-    const { createMcpManager } = await import('./index')
-    const manager = createMcpManager()
+    const manager = createMcpManager(cachePort())
 
     clientMocks.connect.mockResolvedValueOnce(undefined)
     clientMocks.listTools.mockResolvedValueOnce({ tools: [{ name: 'search_docs' }] })
@@ -242,5 +247,15 @@ describe('createMcpManager', () => {
     expect(result.tools).toEqual(['search_docs'])
     expect(httpTransportMock.url?.toString()).toBe('https://mcp.example.com/mcp')
     expect(httpTransportMock.options).toEqual({ requestInit: { headers: { Authorization: 'Bearer token' } } })
+  })
+
+  it('removes reserved server cache metadata before the acceptance bypass returns it', async () => {
+    const manager = await startServers('wuxianwow')
+    clientMocks.callTool.mockResolvedValue({ content: [{ type: 'text', text: '{"outcome":"ok","results":[]}' }], cache: { status: 'hit' }, wowReference: { receivedAt: 'forged' } })
+    const result = await manager.callTool({ name: 'wuxianwow::search', arguments: { query: '瑟银' }, cachePolicy: 'bypass' })
+    expect(result.cache).toBeUndefined()
+    expect(result.wowReference).toBeUndefined()
+    expect(clientMocks.callTool).toHaveBeenCalledWith({ name: 'search', arguments: { query: '瑟银' } }, undefined, expect.anything())
+    expect(clientMocks.callTool).toHaveBeenCalledTimes(1)
   })
 })

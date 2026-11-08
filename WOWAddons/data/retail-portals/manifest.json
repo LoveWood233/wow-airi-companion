@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-29",
+  "counts": {
+    "routes": 263,
+    "observations": 86,
+    "nodes": 242,
+    "maps": 104
+  },
+  "sha256": {
+    "retail-portals.sqlite3": "985661b36681b76590f0371184c3fe6f644543eba2a6d1a09ee83afb7529f51c",
+    "portals.json": "0656bdf651d61abd76594fce300417e879b43ccacab9ca33476db13d70545831",
+    "portals.csv": "ad851b82f12802424d7f45e3bc1847a25e2c3b662115bf5b130547c8c968da52",
+    "mapzeroth.json": "4c6e035892d1bf539286547cc562f7f8bf73a622992884097ac1a79bf1be72fc",
+    "hubs.json": "4254869a5561eb8b76fd0965e811ad57c2351511e52e242e0fe6799809b85034",
+    "regions.json": "6a6a7c335448305a9afe687d7c6697b449bc15d7ed3d5e86d142a63db67c8947",
+    "maps.json": "1b82e57f94b1101caedff973051c4d397261fca16da2ae5690d806e660417bfb"
+  }
+}

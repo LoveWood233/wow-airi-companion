@@ -56,6 +56,10 @@ class EquipmentLoadoutError(FrameError):
     """An intact current-equipment fragment failed validation, not the heartbeat."""
 
 
+class ItemStorageError(FrameError):
+    """A container fragment failed independently of the character heartbeat."""
+
+
 class InventoryError(FrameError):
     """An intact inventory fragment failed validation, not the character heartbeat."""
 
@@ -209,7 +213,7 @@ def validate_quests(value: object) -> dict:
     def labels(data, fields):
         for key, maximum in fields:
             _loadout_text(data[key], key, maximum, nullable=True)
-    exact(value, "v id session guid observedAt source log completion")
+    exact(value, "v id session guid observedAt source log completion" + (" advice" if isinstance(value, dict) and "advice" in value else ""))
     _integer(value["v"], "v", 1, 1)
     count(value, "id", low=1)
     _text(value["session"], "session", 40, identity=True)
@@ -267,6 +271,34 @@ def validate_quests(value: object) -> dict:
         raise FrameError("任务完成覆盖声明不一致")
     if completion["source"] != "completed-api" and (completion["ids"] or completion["total"] is not None):
         raise FrameError("无API证据不能提供任务完成标记")
+    if "advice" in value:
+        advice = value["advice"]
+        exact(advice, "v playerLevel candidates")
+        _integer(advice["v"], "quest advice version", 1, 1)
+        count(advice, "playerLevel", high=255, low=1, nullable=True)
+        if not isinstance(advice["candidates"], list) or len(advice["candidates"]) > 83 or (advice["playerLevel"] is None and advice["candidates"]):
+            raise FrameError("任务提醒候选超过范围或缺少角色等级")
+        known = {entry["questID"] for entry in log["entries"]}
+        seen = set()
+        for candidate in advice["candidates"]:
+            exact(candidate, "kind questID eventAt")
+            count(candidate, "questID", low=1)
+            if candidate["kind"] not in ("ready", "turned-in", "level-risk", "leveling"):
+                raise FrameError("任务提醒类别无效")
+            event = candidate["kind"] in ("turned-in", "leveling")
+            if event:
+                count(candidate, "eventAt", high=value["observedAt"], low=1)
+            elif candidate["eventAt"] is not None:
+                raise FrameError("状态提醒不能伪造事件时间")
+            identity = candidate["kind"], candidate["questID"], candidate["eventAt"]
+            if identity in seen:
+                raise FrameError("任务提醒候选重复")
+            seen.add(identity)
+            if candidate["kind"] == "turned-in":
+                if not any(entry["questID"] == candidate["questID"] and entry["observedAt"] == candidate["eventAt"] for entry in completion["turnIns"]):
+                    raise FrameError("任务交付提醒缺少事件证据")
+            elif candidate["questID"] not in known:
+                raise FrameError("任务提醒缺少日志条目")
     if len(json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode("utf-8")) > QUEST_MAX_BYTES:
         raise FrameError("任务快照超过32768字节")
     return dict(value)
@@ -377,7 +409,7 @@ def _loadout_text(value: object, key: str, maximum: int, *, nullable=False, iden
     return result
 
 
-def validate_loadout_item(value: object) -> dict:
+def validate_loadout_item(value: object, *, allow_unequippable=False) -> dict:
     fields = {"itemID", "itemGUID", "link", "name", "type", "subtype", "equipLoc", "quality",
               "itemLevel", "requiredLevel", "stats", "tooltip", "infoComplete", "statsComplete",
               "tooltipComplete", "truncated"}
@@ -390,7 +422,7 @@ def validate_loadout_item(value: object) -> dict:
         raise FrameError("当前装备物品链接与标识不一致")
     for key in ("itemGUID", "name", "type", "subtype", "equipLoc"):
         label = _loadout_text(value[key], key, 128, nullable=True)
-        if label == "":
+        if label == "" and key != "equipLoc":
             raise FrameError(f"当前装备字段 {key} 不允许空文字，未知值必须使用 null")
     for key, maximum in (("quality", 8), ("requiredLevel", 255)):
         if value[key] is not None:
@@ -418,7 +450,9 @@ def validate_loadout_item(value: object) -> dict:
     for line in tooltip:
         if not _loadout_text(line, "tooltip", 256):
             raise FrameError("当前装备说明行不能为空")
-    if value["infoComplete"] and (any(not value[key] for key in ("name", "type", "subtype", "equipLoc"))
+    required_labels = ("name", "type", "subtype") if allow_unequippable else ("name", "type", "subtype", "equipLoc")
+    if value["infoComplete"] and (any(not value[key] for key in required_labels)
+                                  or (allow_unequippable and value["equipLoc"] is None)
                                   or any(value[key] is None for key in ("quality", "itemLevel", "requiredLevel"))):
         raise FrameError("完整当前装备缺少物品资料")
     if value["tooltipComplete"] and not tooltip:
@@ -500,10 +534,10 @@ def _comparison_item(value: object, *, candidate: bool):
 def validate_equipment_comparison(value: object) -> dict:
     """Validate observed attributes. The bridge never decides which item is better."""
     fields = {"v", "id", "session", "guid", "class", "spec", "primary", "observedAt", "slot",
-              "usable", "specMatch", "current", "candidate"}
+              "usable", "specMatch", "current", "candidate", "assessment", "deltas"}
     if not isinstance(value, dict) or set(value) != fields:
         raise FrameError("装备比较记录字段不完整或含未知字段")
-    _integer(value["v"], "v", 1, 1)
+    _integer(value["v"], "v", 2, 2)
     _integer(value["id"], "id", 1, 2147483647)
     _comparison_text(value["session"], "session", 40, identity=True)
     _comparison_text(value["guid"], "guid", 48, identity=True)
@@ -526,6 +560,28 @@ def validate_equipment_comparison(value: object) -> dict:
             raise FrameError("已知比较槽位必须在 1–19 范围")
         _comparison_item(value["current"], candidate=False)
     _comparison_item(value["candidate"], candidate=True)
+    assessment = value["assessment"]
+    reasons = {"empty_slot": "upgrade", "stats_upgrade": "upgrade", "unusable": "not_upgrade", "wrong_spec": "not_upgrade",
+               "weaker_stats": "not_upgrade", "equivalent": "not_upgrade", "incomplete": "review", "unknown_spec": "review",
+               "weapon_change": "review", "complex_item": "review", "stat_tradeoff": "review", "primary_upgrade_tradeoff": "review", "no_target": "review"}
+    if (not isinstance(assessment, dict) or set(assessment) != {"verdict", "reason"}
+            or not isinstance(assessment["reason"], str) or reasons.get(assessment["reason"]) != assessment["verdict"]):
+        raise FrameError("Invalid addon equipment assessment")
+    deltas = value["deltas"]
+    if not isinstance(deltas, list) or len(deltas) > 64:
+        raise FrameError("Invalid equipment differences")
+    before = {stat["key"]: stat["value"] for stat in (value["current"]["stats"] if value["current"] else [])}
+    after = {stat["key"]: stat["value"] for stat in value["candidate"]["stats"]}
+    seen = set()
+    for delta in deltas:
+        if not isinstance(delta, dict) or set(delta) != {"key", "before", "after"}:
+            raise FrameError("Invalid equipment difference fields")
+        key = _comparison_text(delta["key"], "delta.key", 64)
+        if (not key or key in seen or key not in before and key not in after
+                or isinstance(delta["before"], bool) or isinstance(delta["after"], bool)
+                or delta["before"] != before.get(key, 0) or delta["after"] != after.get(key, 0)):
+            raise FrameError("Equipment differences do not match observed facts")
+        seen.add(key)
     return value
 
 
@@ -677,7 +733,7 @@ def validate_macro(value: object) -> dict:
     _text(value["g"], "g", 48, identity=True)
     _integer(value["q"], "q", 1, MAX_SAFE_INTEGER)
     _integer(value["hash"], "hash", 0, 4294967295)
-    _integer(value["bytes"], "bytes", 0, 1048576)
+    _integer(value["bytes"], "bytes", 0, 2097152)
     if value["id"] != "" and (not isinstance(value["id"], str) or not re.fullmatch(r"[0-9a-f]{32}", value["id"])):
         raise FrameError("Invalid macro request ID")
     if value["st"] not in ("idle", "ready", "edited", "saved", "error", "closed"):
@@ -722,7 +778,29 @@ def validate_equipment_offer(value: object) -> dict:
         raise EquipmentOfferError(str(exc)) from exc
 
 
+def validate_life(value: object) -> dict:
+    fields = {"v", "kind", "s", "g", "l", "c", "t"}
+    if not isinstance(value, dict) or set(value) != fields or value.get("kind") != "life":
+        raise FrameError("Invalid life telemetry fields")
+    if type(value["v"]) is not int or value["v"] != 1:
+        raise FrameError("Invalid life telemetry version")
+    for key, maximum in (("s", 40), ("g", 48), ("l", 40)):
+        if not isinstance(value[key], str) or not 1 <= len(value[key]) <= maximum or not re.fullmatch(r"[A-Za-z0-9_-]+", value[key]):
+            raise FrameError("Invalid life telemetry identity")
+    for key in ("c", "t"):
+        if type(value[key]) is not int or not 0 <= value[key] <= 2147483647:
+            raise FrameError("Invalid life telemetry counter")
+    return dict(value)
+
+
 def validate_message(value: object) -> dict:
+    if isinstance(value, dict) and value.get("kind") == "life":
+        return validate_life(value)
+    if isinstance(value, dict) and value.get("kind") == "store":
+        try:
+            return _validate_fragment(value, "store", 8739, 2097152)
+        except FrameError as exc:
+            raise ItemStorageError(str(exc)) from exc
     if isinstance(value, dict) and value.get("kind") == "traits":
         return validate_talent_fragment(value)
     if isinstance(value, dict) and value.get("kind") == "qlog":
@@ -804,6 +882,17 @@ def validate_snapshot(value: object) -> dict:
         if type(item) is not bool:
             raise FrameError(f"字段 {key} 必须是布尔值")
         result[key] = item
+    has_login, has_combat_ends = "loginId" in value, "combatEnds" in value
+    if has_login != has_combat_ends:
+        raise FrameError("字段 loginId、combatEnds 必须成对传入或同时省略")
+    if has_login:
+        login_id, combat_ends = value["loginId"], value["combatEnds"]
+        if not isinstance(login_id, str) or re.fullmatch(r"[A-Za-z0-9_-]{1,40}", login_id) is None:
+            raise FrameError("字段 loginId 必须是 1–40 字节的登录标识")
+        if type(combat_ends) is not int or not 0 <= combat_ends <= 2147483647:
+            raise FrameError("字段 combatEnds 必须是 0–2147483647 的整数")
+        if result["online"]:
+            result["loginId"], result["combatEnds"] = login_id, combat_ends
     # Both omitted fields are a supported v3 snapshot without position data.
     # A present pair uses map-relative fractions scaled by 10000, not screen pixels.
     has_x, has_y = "px" in value, "py" in value

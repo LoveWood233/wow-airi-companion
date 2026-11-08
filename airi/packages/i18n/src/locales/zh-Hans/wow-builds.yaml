@@ -1,0 +1,223 @@
+title: 天赋与配装解释
+description: 结合真实天赋、装备快照与对应版本资料作解释，不模拟伤害，也不会更改角色。
+games:
+  forever: 《魔兽世界：无限》国服
+  retail: 魔兽世界正式服
+current:
+  title: 已观察的角色配置
+  character: '{name} · {realm} · {level} 级'
+  unknown: 暂无当前有效的角色观察。
+  talents: 当前天赋观察
+  talents-unknown: 当前天赋选择未知，缺少某个节点不能证明有未分配点数。
+  equipment: 最近穿戴快照
+  equipment-unknown: 暂无与当前角色匹配的有效装备快照。
+  observed: '游戏采集时间：{time}'
+  specialization: '专精编号：{id}'
+  unknown-value: 未知
+  empty-slot: 已观察到此装备位为空
+  unknown-slot: 此装备位内容未知
+  item: '物品 {id}'
+  item-level: '物品等级：{level}'
+  required-level: '需求等级：{level}'
+  incomplete: 部分物品详情未知，缺少的属性不能当作零。
+  details: 已观察的属性与提示文本
+  historical: 以上为标注时间的游戏观察；提示文本列出套装效果，不代表套装效果已经生效。
+  selected-scope: 仅覆盖已选择节点及明确观察到零等级的节点，其他缺少的节点保持未知。
+  talent-coverage: '已选择 {count} 个节点，明确观察到零等级的节点 {zeros} 个。'
+  partial: 快照不完整或已截断，缺少的记录保持未知。
+  config: '天赋配置：{name}'
+  class-id: '实际职业编号：{id}'
+  node: '节点 {id}'
+  entry: '条目 {id}'
+  purchased: '已投入点数：{rank}'
+  active-rank: '生效等级：{rank}'
+  max-rank: '最高等级：{rank}'
+  selected: 实际选中
+  not-selected: 尚未标记为选中
+  zeros: 明确观察到零等级的节点
+  build: '客户端构建：{build}'
+  active: 已稳定读取实际提交的天赋
+  staged: 发现未提交的天赋编辑，尚不能确认实际生效配置；不会读取草稿节点。
+  inaccessible: 当前无法访问客户端天赋接口。
+  status-unknown: 尚不能确认已经提交的天赋配置。
+query:
+  game: 游戏资料版本
+  title: 查询与解释资料
+  talents: 天赋资料
+  plan: 对照粘贴的天赋方案
+  gear: 与当前装备位比较物品
+  submit: 查询资料
+  results: 上次解释结果
+  no-query: 手动提交查询后读取解释结果。
+  empty: 没有返回匹配资料。
+  unavailable: 所需资料来源或当前角色事实暂不可用。
+  text: 名称或编号
+  paste: 天赋方案文本
+  slot: 需要比较的当前装备位
+  item: 候选物品编号
+  search: 查询天赋
+  compare-plan: 对照天赋方案
+  compare-gear: 比较装备
+  description: 编辑草稿不会发送请求；解释以结果标注的游戏版本和角色证据为准。
+  class-id: 职业编号
+  level: 天赋资料使用的等级
+  node: 天赋节点编号（可留空）
+  spell: 技能编号
+  spells: 技能资料
+  use-player: 使用实际角色条件
+  open-source: 在无限图鉴查看这份资料
+  plan-help: '可粘贴支持的天赋网站链接、加点串，或 JSON 数组，例如 {example}。位置和技能编号不能当作节点编号，暂不支持正式服游戏内导入码。'
+  no-simulation: 数值差异用于解释已知事实，不能据此保证更高伤害、最优方案或套装效果已经生效。
+  stale: 角色观察已在这次解释之后发生变化；以下来源和采集时间仍对应上次结果，请重新查询以对照最新快照。
+  unsupported: 暂不支持此输入格式或跨版本方案，不能将其当作已解码的天赋配置。
+nodes:
+  title: 天赋节点
+  name-unknown: '天赋节点 {id}'
+  group: '天赋树或分组：{name}'
+  current: 已生效等级
+  purchased: 已投入点数
+  planned: 方案投入
+  delta: 投入差
+  maximum: 最高等级
+  mapping: '资料映射：{status}'
+  same-build: 客户端构建一致
+  unverified: 尚未核实跨构建映射
+  observation-only: 仅有客户端观察
+  prerequisites: 已知前置节点
+  any: 来源中的任一前置条件
+  gate: '来源点数门槛：{count}'
+  rank: '第 {rank} 级'
+  spell: '查询技能 {id}'
+  node: '查询节点 {id}'
+  active-spells: 已观察的生效技能编号
+  no-prerequisites: 暂无已核实的前置资料，不能据此认定此节点可用。
+  conditions: 已观察的客户端条件
+  condition: '条件 {id}'
+  met: 本次观察已满足
+  unmet: 本次观察未满足
+  condition-level: '等级条件：{level}'
+  condition-spent: '需要投入的点数：{count}'
+  available: '是否可用：{value}'
+  visible: '是否可见：{value}'
+  edges: '是否满足连线条件：{value}'
+  yes: 是
+  no: 否
+plan:
+  title: 方案规范化与对照
+  source-validated: 来源已规范化此方案，不能据此认定当前角色能够直接应用。
+  source-adjusted: 来源已调整此方案，请先核对调整内容再使用对照结果。
+  partial: 方案对照不完整，缺少的当前等级与前置条件保持未知。
+  normalized: 来源返回的规范化方案
+  total: '方案投入点数：{count}'
+  cap: '来源点数上限：{count}'
+  remaining: '来源剩余点数：{count}'
+gear:
+  title: 当前装备位与目录物品对照
+  baseline: 已观察的穿戴物品
+  candidate: 目录中的候选物品
+  compatibility: '装备位适配：{status}'
+  compatible: 部位匹配
+  incompatible: 部位不匹配
+  unknown: 尚未核实
+  basis: '对照依据：{status}'
+  base-reference: 目录基础物品参考，未确认附加参数实例
+  unresolved: 尚未确定的参考
+  differences: 可用的数值差异
+  attribute: 属性
+  current: 已观察物品
+  proposed: 目录物品
+  delta: 基础资料差值
+  effects: 来源中的效果描述
+  raw-fields: 来源原始字段
+  instance: 已观察的完整物品链接
+  catalog-stats: 可用的目录属性
+  no-differences: 暂无完整且能够比较的数值属性。
+spell:
+  title: 技能资料
+  id: '技能 {id}'
+  origin: '来源类别：{origin}'
+  raw-fields: 来源中的原始字段
+source:
+  title: 来源证据
+  build: '资料版本：{build}'
+  observed: '游戏采集时间：{time}'
+  received: '来源查询时间：{time}'
+  cache-hit: 此次读取查询缓存
+  cache-read: '缓存读取时间：{time}'
+  cache-expires: '缓存失效时间：{time}'
+  locale: '资料语言：{locale}'
+  exported: 'DB2 导出时间：{time}'
+  hotfixes: 此 DB2 快照尚未叠加热修数据。
+  encrypted: 部分来源段已加密，已经解码的行不能代表完整覆盖。
+fields:
+  line: 技能系
+  kind: 技能类别
+  school: 伤害学派
+  level: 来源中的技能等级
+  rank_count: 来源中的技能等级数量
+  weapon-min: 基础武器伤害下限
+  weapon-max: 基础武器伤害上限
+  weapon-speed: 基础武器速度
+  weapon-dps: 基础武器每秒伤害
+notices:
+  committed-talents-unavailable: 暂无此职业稳定提交的天赋观察。
+  build-mapping-unverified: 来源与客户端构建尚不能证明节点精确对应，当前等级保持未知。
+  current-rank-unknown: 当前等级未知，缺少某个已选节点不代表其等级为零。
+  node-reference-unavailable: 暂无此节点已核实的资料记录。
+  plan-rank-exceeds-node: 方案指定等级超过已知节点上限，不计算其等级差异。
+  base-item-not-instance: 目录描述的是基础物品，未确认与实际完整物品链接对应的附加参数实例。
+  no-performance-score: 不计算伤害模拟、属性权重或最佳配装排名。
+  other-slots-not-summed: 仅比较明确选择的单个装备位，不叠加或移除其他装备位。
+  equipment-observation-unavailable: 暂无匹配的穿戴物品快照。
+  baseline-slot-unknown: 所选装备位内容未知，不将其当作空槽。
+  slot-compatibility-unknown: 尚未核实部位匹配，也未确认职业、种族、等级与专精条件。
+  slot-incompatible: 来源物品的部位与所选装备位不匹配。
+  weapon-pair-requires-review: 主副手之间的关系需要另外核对。
+  two-hand-requires-review: 双手物品可能影响副手位置，此次对照不会自动移除副手。
+  baseline-stats-partial: 已观察物品的属性不完整或已截断，缺少的值保持未知。
+  candidate-stats-partial: 目录属性不完整，缺少的值不能当作零。
+  retail-observations-only: 正式服天赋结果仅使用实际客户端观察，不套用无限服天赋机制。
+  missing-nodes-not-zero: 只有明确观察到的零等级才能作为零，其他缺席节点保持未知。
+  prerequisites-partial: 前置条件尚未完整核实。
+  local-db2-only: 此处正式服资料仅来自所选本地 DB2 快照。
+  raw-spell-template: 原始技能模板不能代表角色当前等级下的最终效果。
+  level-scaling-unresolved: 尚未解析等级缩放与角色最终技能数值。
+  raw-item-fields: 展示原始 DB2 字段，不把缩放分布直接解释为固定属性。
+  item-scaling-unresolved: 尚未解析本地物品缩放与附加参数实例属性。
+  base-spell-values: 技能描述来自来源基础数值，尚未核实角色最终效果。
+  source-level-capped: 无限服来源最多接受 60 级，此次来源查询按 60 级处理。
+  description-unavailable: 来源尚未提供可用的技能描述。
+  proc-rate-unverified: 效果文本不能证明触发概率、覆盖率或套装效果已经生效。
+  effects-unavailable: 暂无已核实的目录效果描述。
+  purchased-node-inactive: 此节点已有点数投入，但本次观察未显示由其生效的技能。
+  result-truncated: 解释已达到节点数量上限，未展示的节点保持未知。
+  source-adjusted-node: 来源调整了一个节点，尚未提供具体原因。
+errors:
+  invalid-query: 请检查游戏版本、职业、等级、节点或技能编号及装备位。
+  invalid-plan: 方案格式无效，请使用支持的天赋链接或明确 nodeId/rank 的 JSON 数组。
+  source-unavailable: 资料来源暂不可用，请检查 MCP 连接后重试。
+  source-invalid: 来源返回的记录不受支持或与请求不匹配。
+  telemetry-unavailable: 角色观察暂不可用或在查询期间发生变化，请检查游戏连接后重试。
+  unsupported-plan: 所选游戏暂不支持此方案格式，不会解码游戏内导入码。
+  database-unavailable: 正式服本地数据库暂不可用，请先在只读数据库设置中选择并验证。
+  generic: 解释暂时无法载入，请检查输入内容与资料连接。
+slots:
+  1: 头部
+  2: 颈部
+  3: 肩部
+  4: 衬衣
+  5: 胸部
+  6: 腰部
+  7: 腿部
+  8: 脚部
+  9: 手腕
+  10: 手
+  11: 手指 1
+  12: 手指 2
+  13: 饰品 1
+  14: 饰品 2
+  15: 背部
+  16: 主手
+  17: 副手
+  18: 远程／圣物
+  19: 战袍

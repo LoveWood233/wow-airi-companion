@@ -501,7 +501,7 @@
     },
     "README.md": {
       "bytes": 17625,
-      "sha256": "077ac26d1c73106d2b7b8fdfbdfe02b69306348231ade11d7551e7100ba6c6e5"
+      "sha256": "4d7404fda6515b81468794ee408ebed9702d73efa60ad2e02f5d98891b48ca86"
     },
     "WOWAddons/Install-WoWCompanion.ps1": {
       "bytes": 1568,
@@ -25775,5 +25775,30 @@
     "addonArchiveCount": 14,
     "removedBytes": 4655683,
     "scope": "Remove obsolete companion installation and incremental source ZIP files from the current branch. Current sources, independent component archives, character assets, test fixtures, and Git history are retained. Other version metadata records its original synchronization scope."
+  },
+  "consolidation": {
+    "date": "2026-11-08",
+    "canonicalRoot": "I:\\GameTools\\wow-airi-companion",
+    "desktopSource": "airi",
+    "companionSource": "WOWAddons",
+    "desktopRelease": "2.27.1",
+    "formerDesktopRoot": "I:\\GameTools\\airi",
+    "formerDesktopRootExists": false,
+    "dependencyJunctionsRebased": 10146,
+    "dependencyMetadataFilesRebased": 800,
+    "backupDirectory": "backups/migration-20261108-001",
+    "sourceGitMetadataArchived": true,
+    "nestedDesktopGitRemovedFromActiveSource": true,
+    "targetFeaturesPreserved": [
+      "explicit fixed player address preference",
+      "standalone speech notification transcript"
+    ],
+    "targetObsoleteBehaviorSuperseded": [
+      "desktop second equipment confirmation",
+      "JSON inventory storage",
+      "old chatter scheduler"
+    ],
+    "originalSnapshotListsAreHistorical": true,
+    "gitPublication": "Consolidation included in the product repository publication. Confirm the current checkout baseline with git rev-parse HEAD."
   }
 }

@@ -26,10 +26,10 @@ def item(**changes):
 
 
 def comparison(**changes):
-    value = {"v": 1, "id": 1, "session": "test-session", "guid": "Player-1-TEST", "class": "MAGE",
+    value = {"v": 2, "id": 1, "session": "test-session", "guid": "Player-1-TEST", "class": "MAGE",
              "spec": 64, "primary": 4, "observedAt": 1792800000, "slot": 5, "usable": True, "specMatch": True,
              "current": item(itemID=1000, itemLevel=140, stats=[{"key": "ITEM_MOD_INTELLECT_SHORT", "value": 90}]),
-             "candidate": item()}
+             "candidate": item(), "assessment": {"verdict":"upgrade","reason":"stats_upgrade"}, "deltas": []}
     value.update(changes)
     return value
 
@@ -44,6 +44,24 @@ def fragments(value=None, *, raw=None, envelope=None):
 
 
 class ComparisonProtocolTests(unittest.TestCase):
+    def test_live_requires_addon_conclusion_and_valid_reason_pair(self):
+        for patch in ({"v": 1}, {"assessment": {"verdict": "upgrade", "reason": "complex_item"}},
+                      {"assessment": {"verdict": "upgrade", "reason": []}}, {"assessment": None}):
+            with self.subTest(patch=patch), self.assertRaises(FrameError):
+                validate_equipment_comparison(comparison(**patch))
+
+    def test_differences_bind_to_observed_stats_without_recalculating_the_verdict(self):
+        valid = comparison(assessment={"verdict": "review", "reason": "complex_item"},
+                           deltas=[{"key": "ITEM_MOD_INTELLECT_SHORT", "before": 90, "after": 100}])
+        self.assertEqual(validate_equipment_comparison(valid), valid)
+        for delta in ({"key": "ITEM_MOD_INTELLECT_SHORT", "before": 90, "after": 1000},
+                      {"key": "INVENTED", "before": 0, "after": 0},
+                      {"key": "ITEM_MOD_INTELLECT_SHORT", "before": True, "after": 100}):
+            with self.subTest(delta=delta), self.assertRaises(FrameError):
+                validate_equipment_comparison(comparison(deltas=[delta]))
+        with self.assertRaises(FrameError):
+            validate_equipment_comparison(comparison(deltas=valid["deltas"] * 2))
+
     def test_both_game_frames_round_trip_utf8_and_independent_kind(self):
         expected = comparison(candidate=item(name='测试"长袍\\中文'))
         for protocol in ("WCP1", "WCF1"):

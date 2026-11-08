@@ -6,6 +6,7 @@ import type { SyncedPiniaRuntime } from 'pinia-plugin-synced'
 
 import type { ChatHistoryItem, ChatToolReference } from '../types/chat'
 import type { ChatSessionTaskStatus, StoredVoiceInterruption } from '../types/chat-session'
+import type { AppliedChatRequestContext } from './chat/request-context'
 import type { ToolCallRerunPayload } from './tool-call-rerun'
 
 import { errorMessageFrom } from '@moeru/std'
@@ -53,6 +54,7 @@ import { ChatRequestContexts } from './chat/request-context'
 import { staysLocal } from './chat/session-locality'
 import { useChatSessionStore } from './chat/session-store'
 import { useChatStreamStore } from './chat/stream-store'
+import { UserInputs } from './chat/user-input'
 import { currentWowKnowledgeGame, withWowKnowledgeContext } from './chat/wow-knowledge-context'
 import { useContextObservabilityStore } from './devtools/context-observability'
 import { useMemoryStore } from './memory'
@@ -308,12 +310,18 @@ export const useChatStore = defineStore('chat', () => {
   const activeStreamingMessage = computed(() => chatStream.activeTurns.find(turn => turn.sessionId === activeSendSessionId.value)?.message)
   const pendingQueuedSendCount = shallowRef(0)
   const requestContexts = new ChatRequestContexts()
+  const userInputs = new UserInputs()
+  let userInputOwnerActive = true
+  // Only accepted local owner sends grant input observation. Transcripts can finish after their reply.
+  const userInputSources = new Map<string, { sessionId: string, personaId: string, signal: AbortSignal, completed: boolean }>()
   // One request owns preparation and generation. Cancellation cannot miss asynchronous startup.
   const requests = new Map<string, {
     sessionId: string
     abort: AbortController
     request: ReturnType<ChatOrchestratorRuntime['submit']>
     observationInput?: { text: string }
+    userInputGranted?: boolean
+    userInputPersonaId?: string
   }>()
   // A turn in a recipe's own session is a background task, so every window can show and stop it.
   // Each task has its own recipe session, and the session keeps its status. Every window reads the list from the session metas.
@@ -346,6 +354,7 @@ export const useChatStore = defineStore('chat', () => {
    * A promoted renderer restarts the leader-owned cloud consumer.
    */
   async function initialize(syncedPinia: SyncedPiniaRuntime) {
+    userInputOwnerActive = true
     stopLeadershipListener ??= syncedPinia.onLeadershipChange((isLeader) => {
       if (!isLeader) {
         chatSession.dispose()
@@ -370,6 +379,9 @@ export const useChatStore = defineStore('chat', () => {
 
   /** Stops chat consumers that belong to this window. */
   function dispose() {
+    userInputOwnerActive = false
+    userInputSources.clear()
+    userInputs.clear()
     requestContexts.clear()
     stopLeadershipListener?.()
     stopLeadershipListener = undefined
@@ -635,6 +647,7 @@ export const useChatStore = defineStore('chat', () => {
     const sourceTools = async () => [
       ...(typeof tools === 'function' ? await tools() ?? [] : tools ?? []),
       ...memory.enabled ? await createMemoryTools({ read: name => memory.read(name, persona), write: entry => memory.write(entry, persona), forget: name => memory.forget(name, persona) }) : [],
+      ...await userTurnTools(sessionId, correlation.turnId),
     ]
     // A recipe's own session runs only that recipe. It cannot start recipes, save them, or choose silence.
     if (isTaskSession(sessionId))
@@ -686,6 +699,7 @@ export const useChatStore = defineStore('chat', () => {
     // Only a new local owner send grants live observations. Notices, remote input, and replay have no grant.
     const requestKey = correlation ? JSON.stringify([correlation.conversationId, correlation.turnId]) : undefined
     const observationInput = requestKey ? requests.get(requestKey)?.observationInput : undefined
+    let observationImages: AppliedChatRequestContext['imageDescriptions'] | undefined
     if (requestContexts.size && correlation && observationInput && options?.abortSignal) {
       const pendingTranscript = liveTranscripts.get(requestKey!)
       if (pendingTranscript)
@@ -694,12 +708,14 @@ export const useChatStore = defineStore('chat', () => {
       const stored = chatSession.getSessionMessages(correlation.conversationId).find(message => message.id === correlation.turnId)
       // Voice capture already owns transcription. Never create another audio request to decide whether to capture a screen.
       const text = observationInput.text.trim() || stored?.audioTranscripts?.filter(Boolean).join('\n') || ''
-      context = await requestContexts.apply(context, {
+      const observed = await requestContexts.apply(context, {
         sessionId: correlation.conversationId,
         turnId: correlation.turnId,
         text,
         signal: options.abortSignal,
       })
+      context = observed.conversation
+      observationImages = observed.imageDescriptions
     }
 
     const visionStore = useVisionStore()
@@ -721,6 +737,10 @@ export const useChatStore = defineStore('chat', () => {
         const { runVisionInference } = useVisionInference()
         const currentTurnId = context.turns.findLast(turn => turn.type === 'user')?.id
         providerContext = await describeChatImages(providerContext, async (imageDataUrl, question, turnId, imageIndex) => {
+          // Live images already have a visual read. Its request-local receipt bypasses durable attachment caches.
+          const observed = observationImages?.find(image => image.turnId === turnId && image.url === imageDataUrl)
+          if (observed)
+            return observed.description
           const sessionId = options?.requestCorrelation?.conversationId
           const cachedDescription = sessionId
             ? getImageDescription(sessionId, turnId, imageIndex)
@@ -1060,6 +1080,20 @@ export const useChatStore = defineStore('chat', () => {
     unwrapMessage: message => toRaw(message),
     onStateChange: syncRuntimeState,
     onSendSettled: (event) => {
+      const key = JSON.stringify([event.sessionId, event.turnId])
+      const source = userInputSources.get(key)
+      if (event.status === 'cancelled') {
+        userInputs.cancel(event.sessionId, event.turnId)
+        userInputSources.delete(key)
+      }
+      else if (source) {
+        source.completed = true
+        publishUserInput(event.sessionId, event.turnId, true)
+        if (!liveTranscripts.has(key)) {
+          userInputSources.delete(key)
+          userInputs.release(event.sessionId, event.turnId)
+        }
+      }
       settleOwnedTurnSpan(event)
       getSpeechBusContext().emit(voiceGenerationEnded, event)
     },
@@ -1072,6 +1106,12 @@ export const useChatStore = defineStore('chat', () => {
     onUserMessageAppended: ({ sessionId, message, messageText, source, model, provider, roundId, turnIndex }) => {
       if (isTaskSession(sessionId))
         return
+      const request = requests.get(JSON.stringify([sessionId, roundId]))
+      if (userInputOwnerActive && request?.userInputGranted && request.userInputPersonaId
+        && isOwnerSession(sessionId) && !request.abort.signal.aborted && !message.notice) {
+        userInputSources.set(JSON.stringify([sessionId, roundId]), { sessionId, personaId: request.userInputPersonaId, signal: request.abort.signal, completed: false })
+        publishUserInput(sessionId, roundId)
+      }
       analyticsHooks.onUserMessageAppended?.({
         sessionId,
         message,
@@ -1200,6 +1240,40 @@ export const useChatStore = defineStore('chat', () => {
     return [...names].map(name => ({ name }))
   }
 
+  /** Projects only the persisted source message. Generated replies, notices, and old history never grant a source. */
+  function publishUserInput(sessionId: string, messageId: string, allowKnownText = false) {
+    const key = JSON.stringify([sessionId, messageId])
+    const source = userInputSources.get(key)
+    if (!userInputOwnerActive || !source || source.signal.aborted || liveTranscripts.has(key))
+      return
+    const message = chatSession.getSessionMessagesIfLoaded(sessionId)?.find(message => message.id === messageId)
+    if (message?.role !== 'user' || message.notice)
+      return
+    const audioCount = Array.isArray(message.content) ? message.content.filter(part => part.type === 'input_audio').length : 0
+    const transcripts = message.audioTranscripts?.map(text => text.trim())
+    if (!allowKnownText && audioCount && (!transcripts || transcripts.length < audioCount || transcripts.some(text => !text)))
+      return
+    const texts = new Set([extractMessageText(message).trim(), ...transcripts ?? []])
+    texts.delete('')
+    userInputs.publish({ sessionId, messageId, personaId: source.personaId, text: [...texts].join('\n'), signal: source.signal })
+  }
+
+  /** Custom turn tools can await an already-running ASR, but never create another transcription request. */
+  async function userTurnTools(sessionId: string, turnId: string) {
+    if (!userInputs.hasToolFactories)
+      return []
+    const key = JSON.stringify([sessionId, turnId])
+    const source = userInputSources.get(key)
+    if (!source || source.signal.aborted)
+      return []
+    const pendingTranscript = liveTranscripts.get(key)
+    if (pendingTranscript)
+      await waitWithSignal(pendingTranscript.promise, source.signal)
+    source.signal.throwIfAborted()
+    publishUserInput(sessionId, turnId)
+    return userInputs.tools(sessionId, turnId)
+  }
+
   function writeAudioTranscript(sessionId: string, messageId: string, index: number, text: string) {
     const messages = chatSession.getSessionMessagesIfLoaded(sessionId)
     if (!messages?.some(message => message.id === messageId))
@@ -1211,6 +1285,7 @@ export const useChatStore = defineStore('chat', () => {
       audioTranscripts[index] = text
       return { ...message, audioTranscripts }
     }))
+    publishUserInput(sessionId, messageId)
   }
 
   /**
@@ -1232,6 +1307,11 @@ export const useChatStore = defineStore('chat', () => {
     }
     liveTranscripts.get(key)?.resolve()
     liveTranscripts.delete(key)
+    publishUserInput(payload.sessionId, payload.messageId)
+    if (userInputSources.get(key)?.completed) {
+      userInputSources.delete(key)
+      userInputs.release(payload.sessionId, payload.messageId)
+    }
   }
 
   function appendSendError(sessionId: string, error: unknown) {
@@ -1268,6 +1348,10 @@ export const useChatStore = defineStore('chat', () => {
     const characterId = chatSession.sessionMetas[payload.sessionId]?.characterId
     if (!characterId)
       throw new Error('The target session has no character')
+
+    const request = requests.get(JSON.stringify([payload.sessionId, payload.messageId]))
+    if (request?.userInputGranted)
+      request.userInputPersonaId = characterId
 
     const { provider: providerId, model: modelId } = cardStore.getModules(characterId).consciousness
 
@@ -1385,6 +1469,7 @@ export const useChatStore = defineStore('chat', () => {
       sessionId: payload.sessionId,
       abort,
       request,
+      userInputGranted: origin === 'owner' && !payload.input && !extra.background && isOwnerSend(payload, extra),
       // A manually chosen image requests attachment analysis, not an additional live screen capture.
       observationInput: origin === 'owner' && !payload.input && !extra.background
         && !payload.attachments?.some(attachment => attachment.type === 'image') && isOwnerSend(payload, extra)
@@ -1426,6 +1511,8 @@ export const useChatStore = defineStore('chat', () => {
 
   /** Cancels one identified generation through the elected leader. */
   async function cancelTurn(turn: { sessionId: string, turnId: string }) {
+    userInputSources.delete(JSON.stringify([turn.sessionId, turn.turnId]))
+    userInputs.cancel(turn.sessionId, turn.turnId)
     requests.get(JSON.stringify([turn.sessionId, turn.turnId]))?.abort.abort(new DOMException('Chat turn cancelled', 'AbortError'))
     runtime.cancelTurn(turn)
   }
@@ -1559,6 +1646,11 @@ export const useChatStore = defineStore('chat', () => {
   }
 
   async function cancelPendingSends(sessionId?: string) {
+    for (const [key, source] of userInputSources) {
+      if (!sessionId || source.sessionId === sessionId)
+        userInputSources.delete(key)
+    }
+    userInputs.cancel(sessionId)
     for (const request of requests.values()) {
       if (!sessionId || request.sessionId === sessionId)
         request.abort.abort(new DOMException('Chat turn cancelled', 'AbortError'))
@@ -1602,6 +1694,8 @@ export const useChatStore = defineStore('chat', () => {
 
     // Registration stays in this renderer. It neither replicates callbacks nor changes synchronized state.
     registerRequestContext: requestContexts.register.bind(requestContexts),
+    registerUserInputObserver: userInputs.register.bind(userInputs),
+    registerUserTurnTools: userInputs.registerTools.bind(userInputs),
 
     clearHooks: runtime.hooks.clearHooks,
 

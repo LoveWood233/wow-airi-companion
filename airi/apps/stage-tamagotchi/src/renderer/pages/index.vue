@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { ModelSettingsRuntimeSnapshot } from '@proj-airi/stage-ui/components/scenarios/settings/model-settings/runtime'
-
 import type { FullscreenGlideCurve, FullscreenMode } from '../../shared/eventa'
 
 import { errorMessageFrom } from '@moeru/std'
@@ -12,14 +10,7 @@ import {
   useElectronMouseInWindow,
   useElectronRelativeMouse,
 } from '@proj-airi/electron-vueuse'
-import { useModelStore, useThreeSceneIsTransparentAtPoint } from '@proj-airi/stage-ui-three'
 import { HearingStatus, HoloCoupon } from '@proj-airi/stage-ui/components'
-import {
-  createEmptyModelSettingsRuntimeSnapshot,
-  resolveComponentStateToRuntimePhase,
-} from '@proj-airi/stage-ui/components/scenarios/settings/model-settings/runtime'
-import { WidgetStage } from '@proj-airi/stage-ui/components/scenes'
-import { useCanvasPixelIsTransparentAtPoint } from '@proj-airi/stage-ui/composables/canvas-alpha'
 import { useVoiceListening } from '@proj-airi/stage-ui/composables/voice-input-mode'
 import { FULLSCREEN_WORKSPACE_FLAG } from '@proj-airi/stage-ui/libs/feature-flags'
 import { useFeatureFlagsStore } from '@proj-airi/stage-ui/stores/feature-flags'
@@ -28,11 +19,13 @@ import { useSettings } from '@proj-airi/stage-ui/stores/settings'
 import { useVoiceStore } from '@proj-airi/stage-ui/stores/voice'
 import { refDebounced } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
+import { ContextMenuContent, ContextMenuItem, ContextMenuPortal, ContextMenuRoot, ContextMenuTrigger } from 'reka-ui'
 import { computed, nextTick, onMounted, onScopeDispose, ref, shallowRef, toRef, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { toast } from 'vue-sonner'
 
+import DshPetStage from '../components/dsh-pet-stage.vue'
 import FullscreenBackdrop from '../components/fullscreen/fullscreen-backdrop.vue'
 import FullscreenOverlay from '../components/fullscreen/fullscreen-overlay.vue'
 import ControlsIslandRoot from '../components/stage-islands/controls-island/controls-island-root.vue'
@@ -40,22 +33,22 @@ import ControlsIsland from '../components/stage-islands/controls-island/index.vu
 import ResourceStatusIsland from '../components/stage-islands/resource-status-island/index.vue'
 import SpeechCaptionBubble from '../components/stage-islands/speech-caption-bubble.vue'
 
-import { defaultFullscreenSurface, electronAppIsWayland, electronFullscreenExit, electronFullscreenSetMode, electronMainWindowEnterFullscreen, electronMainWindowGetFullscreenState, electronMainWindowSetFullscreenBounds, electronOpenInlay, electronOpenOnboarding, electronOpenSettings } from '../../shared/eventa'
+import { defaultFullscreenSurface, electronAppIsWayland, electronFullscreenExit, electronFullscreenSetMode, electronMainWindowEnterFullscreen, electronMainWindowGetFullscreenState, electronMainWindowSetFullscreenBounds, electronOpenChat, electronOpenInlay, electronOpenOnboarding, electronOpenSettings, electronStartDraggingWindow } from '../../shared/eventa'
 import { fullscreenHostPages, fullscreenSurfaceOf } from '../components/fullscreen/surfaces'
-import { useModelSettingsRuntimeOwner } from '../composables/model-settings-runtime-owner'
+import { useDshPetSpeech } from '../composables/use-dsh-pet-speech'
 import { useFullscreenHost } from '../composables/use-fullscreen-host'
 import { provideFullscreenLayout } from '../composables/use-fullscreen-layout'
 import { usePushToTalkShortcut } from '../composables/use-push-to-talk-shortcut'
-import { useScreenAmbientLight } from '../composables/use-screen-ambient-light'
 import { stageOpaqueAttribute } from '../composables/use-stage-painted-mask'
+import { useWowGuideStartup } from '../composables/use-wow-guide-startup'
 import { useControlsIslandStore } from '../stores/controls-island'
+import { useDshPetStore } from '../stores/dsh-pet'
 import { useFullscreenStore } from '../stores/fullscreen'
 import { useStageWindowLifecycleStore } from '../stores/stage-window-lifecycle'
 import { useToolSelectionStore } from '../stores/tools'
 import { useWowCompanionStore } from '../stores/wow-companion'
-import { equipmentPromptActions } from '../stores/wow-companion-equipment-prompt'
+import { isPetCanvasTransparent } from '../utils/dsh-pet-alpha'
 import { resolveFadeOnHoverInteraction } from '../utils/fade-on-hover'
-import { shouldSampleStageTransparency } from '../utils/stage-three-transparency'
 
 const hearingStatusElement = ref<HTMLElement>()
 const authStatusElement = ref<HTMLElement>()
@@ -63,26 +56,17 @@ const { isOutside: outsideHearingStatus } = useElectronMouseInElement(hearingSta
 const { isOutside: outsideAuthStatus } = useElectronMouseInElement(authStatusElement)
 const controlsIslandRef = ref<InstanceType<typeof ControlsIsland>>()
 const controlsIslandInteractionActive = shallowRef(false)
-const widgetStageRef = ref<InstanceType<typeof WidgetStage>>()
+const widgetStageRef = ref<InstanceType<typeof DshPetStage>>()
 const speechCaption = ref('')
-const speechCaptionBubbleRef = ref<InstanceType<typeof SpeechCaptionBubble>>()
-const { isOutside: outsideCaptionAccept } = useElectronMouseInElement(toRef(() => speechCaptionBubbleRef.value?.acceptElement))
-const { isOutside: outsideCaptionDecline } = useElectronMouseInElement(toRef(() => speechCaptionBubbleRef.value?.declineElement))
 const wowCompanion = useWowCompanionStore()
-const { equipmentPrompt } = storeToRefs(wowCompanion)
-const { t } = useI18n()
-const captionActions = computed(() => equipmentPromptActions(equipmentPrompt.value, t))
-const captionActionsInteractive = computed(() => equipmentPrompt.value?.phase === 'choosing'
-  && (!outsideCaptionAccept.value || !outsideCaptionDecline.value || speechCaptionBubbleRef.value?.actionsFocused))
-
+const { equipmentPrompt, chatterCaption } = storeToRefs(wowCompanion)
 // Prompt text owns this surface until it closes. Discard its ordinary speech captions to prevent a stale return.
 watch(equipmentPrompt, () => speechCaption.value = '', { flush: 'sync' })
 function handleSpeechCaption(text: string) {
+  if (text)
+    wowCompanion.clearChatterCaption()
   speechCaption.value = equipmentPrompt.value ? '' : text
 }
-// The stage canvas alpha tells the sampler which pixels of the window AIRI
-// paints, so it can read the desktop showing through behind the character.
-useScreenAmbientLight({ stageCanvas: () => widgetStageRef.value?.canvasElement() })
 const stageCanvas = toRef(() => widgetStageRef.value?.canvasElement())
 const componentStateStage = ref<'pending' | 'loading' | 'mounted'>('pending')
 const stageMounted = computed(() => componentStateStage.value === 'mounted')
@@ -97,6 +81,7 @@ const shouldFadeOnCursorWithin = ref(false)
 const onboardingStore = useOnboardingStore()
 const openOnboarding = useElectronEventaInvoke(electronOpenOnboarding)
 const openSettings = useElectronEventaInvoke(electronOpenSettings)
+useWowGuideStartup()
 
 const { isOutside: isOutsideWindow } = useElectronMouseInWindow()
 // The island already pairs its cursor signal with a DOM one and owns that decision, so
@@ -104,34 +89,33 @@ const { isOutside: isOutsideWindow } = useElectronMouseInWindow()
 const isOutside = computed(() => controlsIslandRef.value?.isOutside ?? true)
 const isOutsideFor250Ms = refDebounced(isOutside, 250)
 const { x: relativeMouseX, y: relativeMouseY } = useElectronRelativeMouse()
-// NOTICE: In real-world use cases of Fade on Hover feature, the cursor may move around the edge of the
-// model rapidly, causing flickering effects when checking pixel transparency strictly.
-// Here we use render-target pixel sampling to keep detection aligned with the actual render output.
-const isTransparentByPixels = useCanvasPixelIsTransparentAtPoint(
-  stageCanvas,
-  relativeMouseX,
-  relativeMouseY,
-  { regionRadius: 25 },
-)
-const isTransparentByThree = useThreeSceneIsTransparentAtPoint(
-  widgetStageRef,
-  relativeMouseX,
-  relativeMouseY,
-  { regionRadius: 25 },
-)
-const isTransparentByPixelsExact = useCanvasPixelIsTransparentAtPoint(
-  stageCanvas,
-  relativeMouseX,
-  relativeMouseY,
-)
-const isTransparentByThreeExact = useThreeSceneIsTransparentAtPoint(
-  widgetStageRef,
-  relativeMouseX,
-  relativeMouseY,
-)
+const isTransparentByPixels = computed(() => isPetCanvasTransparent(stageCanvas.value, relativeMouseX.value, relativeMouseY.value, 25))
+const isTransparentByPixelsExact = computed(() => isPetCanvasTransparent(stageCanvas.value, relativeMouseX.value, relativeMouseY.value))
 
 const settingsStore = useSettings()
-const { alwaysOnTop, stageModelRenderer, stageModelSelectedUrl } = storeToRefs(settingsStore)
+const { alwaysOnTop } = storeToRefs(settingsStore)
+const pet = useDshPetStore()
+const petSpeech = useDshPetSpeech()
+watch(petSpeech.caption, handleSpeechCaption)
+const petMenuOpen = ref(false)
+const petSleeping = ref(false)
+const petFacing = ref<'left' | 'right'>('left')
+const petAnimation = ref<string>()
+const openPetChat = useElectronEventaInvoke(electronOpenChat)
+const startPetDrag = useElectronEventaInvoke(electronStartDraggingWindow)
+onMounted(() => void pet.initialize())
+watch(() => pet.pack.id, () => {
+  petSleeping.value = false
+  petAnimation.value = undefined
+})
+function playRandomPetAction() {
+  petSleeping.value = false
+  const actions = pet.pack.animations.categories
+    .filter(category => !category.noMirror || petFacing.value === 'left')
+    .flatMap(category => category.actions)
+    .filter(action => action !== petAnimation.value)
+  petAnimation.value = actions[Math.floor(Math.random() * actions.length)] ?? pet.pack.animations.idle[0]
+}
 function handleStageRenderError(error: Error) {
   stageError.value = error
 }
@@ -140,16 +124,8 @@ function handleStageRenderError(error: Error) {
 function handleStageReset() {
   stageError.value = undefined
 }
-const modelStore = useModelStore()
-const { sceneMutationLocked, scenePhase } = storeToRefs(modelStore)
 const { stagePaused } = storeToRefs(useStageWindowLifecycleStore())
 const { fadeOnHoverEnabled } = storeToRefs(useControlsIslandStore())
-const modelSettingsRuntimeOwnerInstanceId = `tamagotchi-main-stage:${Math.random().toString(36).slice(2, 10)}`
-const shouldUseThreeTransparencyHitTest = computed(() => shouldSampleStageTransparency({
-  componentState: componentStateStage.value,
-  stageModelRenderer: stageModelRenderer.value,
-  stagePaused: stagePaused.value,
-}))
 /**
  * Drives the Auto Hide fade. `true` means "do not fade", so any case without a usable
  * region sampler reports `true` and the stage stays visible.
@@ -157,12 +133,6 @@ const shouldUseThreeTransparencyHitTest = computed(() => shouldSampleStageTransp
 const isTransparent = computed(() => {
   if (stagePaused.value || componentStateStage.value !== 'mounted' || !fadeOnHoverEnabled.value)
     return true
-
-  // TresCanvas leaves preserveDrawingBuffer off, so VRM's canvas reads back empty and
-  // has to sample an offscreen render target. Every other renderer keeps its last frame
-  // readable, and a renderer with no canvas samples nothing and stays visible.
-  if (stageModelRenderer.value === 'vrm')
-    return shouldUseThreeTransparencyHitTest.value ? isTransparentByThree.value : true
 
   return isTransparentByPixels.value
 })
@@ -177,11 +147,11 @@ const isTransparent = computed(() => {
  */
 const isPointerOverStageCanvas = ref(false)
 watch(
-  [relativeMouseX, relativeMouseY, stageCanvas, captionActions],
+  [relativeMouseX, relativeMouseY, stageCanvas],
   () => {
     isPointerOverStageCanvas.value = document.elementFromPoint(relativeMouseX.value, relativeMouseY.value) === stageCanvas.value
   },
-  // Prompt buttons can appear or disappear under a still cursor. Read the new DOM before deciding click-through.
+  // Read the updated canvas before deciding whether the stage receives pointer input.
   { immediate: true, flush: 'post' },
 )
 /**
@@ -205,9 +175,6 @@ const isTransparentForMouseEvents = computed(() => {
   if (!isPointerOverStageCanvas.value)
     return false
 
-  if (stageModelRenderer.value === 'vrm')
-    return shouldUseThreeTransparencyHitTest.value ? isTransparentByThreeExact.value : false
-
   return isTransparentByPixelsExact.value
 })
 
@@ -226,98 +193,7 @@ const cursorAwayFromWindow = computed(() => !isWayland.value && isOutsideWindow.
 
 const setIgnoreMouseEvents = useElectronEventaInvoke(electron.window.setIgnoreMouseEvents)
 
-const controlsOverlayActive = computed(() => controlsIslandRef.value?.overlayActive ?? false)
-
-const modelSettingsRuntimeSnapshot = computed<ModelSettingsRuntimeSnapshot>(() => {
-  const hasModel = !!stageModelSelectedUrl.value
-
-  if (stageModelRenderer.value === 'live2d') {
-    const phase = resolveComponentStateToRuntimePhase(componentStateStage.value, { hasModel })
-
-    return createEmptyModelSettingsRuntimeSnapshot({
-      ownerInstanceId: modelSettingsRuntimeOwnerInstanceId,
-      renderer: 'live2d',
-      phase,
-      controlsLocked: hasModel ? phase !== 'mounted' : false,
-      previewAvailable: hasModel,
-      canCapturePreview: false,
-      updatedAt: Date.now(),
-    })
-  }
-
-  if (stageModelRenderer.value === 'vrm') {
-    return createEmptyModelSettingsRuntimeSnapshot({
-      ownerInstanceId: modelSettingsRuntimeOwnerInstanceId,
-      renderer: 'vrm',
-      phase: hasModel ? scenePhase.value : 'no-model',
-      controlsLocked: hasModel
-        ? (!stageMounted.value || sceneMutationLocked.value)
-        : false,
-      previewAvailable: hasModel,
-      canCapturePreview: false,
-      updatedAt: Date.now(),
-    })
-  }
-
-  if (stageModelRenderer.value === 'spine') {
-    const phase = resolveComponentStateToRuntimePhase(componentStateStage.value, { hasModel })
-
-    return createEmptyModelSettingsRuntimeSnapshot({
-      ownerInstanceId: modelSettingsRuntimeOwnerInstanceId,
-      renderer: 'spine',
-      phase,
-      controlsLocked: hasModel ? phase !== 'mounted' : false,
-      previewAvailable: hasModel,
-      canCapturePreview: false,
-      updatedAt: Date.now(),
-    })
-  }
-
-  if (stageModelRenderer.value === 'tachie') {
-    const phase = resolveComponentStateToRuntimePhase(componentStateStage.value, { hasModel })
-
-    return createEmptyModelSettingsRuntimeSnapshot({
-      ownerInstanceId: modelSettingsRuntimeOwnerInstanceId,
-      renderer: 'tachie',
-      phase,
-      controlsLocked: hasModel ? phase !== 'mounted' : false,
-      previewAvailable: hasModel,
-      canCapturePreview: false,
-      updatedAt: Date.now(),
-    })
-  }
-
-  if (stageModelRenderer.value === 'mmd') {
-    const phase = resolveComponentStateToRuntimePhase(componentStateStage.value, { hasModel })
-
-    return createEmptyModelSettingsRuntimeSnapshot({
-      ownerInstanceId: modelSettingsRuntimeOwnerInstanceId,
-      renderer: 'mmd',
-      phase,
-      controlsLocked: hasModel ? phase !== 'mounted' : false,
-      previewAvailable: hasModel,
-      canCapturePreview: false,
-      updatedAt: Date.now(),
-    })
-  }
-
-  if (stageModelRenderer.value === 'godot') {
-    return createEmptyModelSettingsRuntimeSnapshot({
-      ownerInstanceId: modelSettingsRuntimeOwnerInstanceId,
-      renderer: 'godot',
-      phase: hasModel ? 'mounted' : 'no-model',
-      controlsLocked: false,
-      previewAvailable: false,
-      canCapturePreview: false,
-      updatedAt: Date.now(),
-    })
-  }
-
-  return createEmptyModelSettingsRuntimeSnapshot({
-    ownerInstanceId: modelSettingsRuntimeOwnerInstanceId,
-    updatedAt: Date.now(),
-  })
-})
+const controlsOverlayActive = computed(() => petMenuOpen.value || controlsIslandRef.value?.overlayActive || false)
 
 const fullscreen = useFullscreenStore()
 const { phase: fullscreenPhase, active: fullscreenActive } = storeToRefs(fullscreen)
@@ -612,7 +488,7 @@ function handleFadeOnHoverInteractionChange() {
     return
   }
 
-  if (controlsOverlayActive.value || !outsideHearingStatus.value || !outsideAuthStatus.value || captionActionsInteractive.value) {
+  if (controlsOverlayActive.value || !outsideHearingStatus.value || !outsideAuthStatus.value) {
     // Portaled controls must receive clicks even outside the Island's bounds.
     isIgnoringMouseEvents.value = false
     shouldFadeOnCursorWithin.value = false
@@ -655,16 +531,10 @@ function handleFadeOnHoverInteractionChange() {
 }
 
 watch(
-  [outsideHearingStatus, outsideAuthStatus, captionActionsInteractive, isOutside, isOutsideFor250Ms, isPointerOverStageCanvas, isAroundWindowBorder, isAroundWindowBorderFor250Ms, isOutsideWindow, isTransparent, isTransparentForMouseEvents, controlsOverlayActive, fadeOnHoverEnabled, alwaysOnTop, stagePaused, isWayland, fullscreenActive],
+  [outsideHearingStatus, outsideAuthStatus, isOutside, isOutsideFor250Ms, isPointerOverStageCanvas, isAroundWindowBorder, isAroundWindowBorderFor250Ms, isOutsideWindow, isTransparent, isTransparentForMouseEvents, controlsOverlayActive, fadeOnHoverEnabled, alwaysOnTop, stagePaused, isWayland, fullscreenActive],
   handleFadeOnHoverInteractionChange,
   { immediate: true },
 )
-
-useModelSettingsRuntimeOwner({
-  ownerInstanceId: modelSettingsRuntimeOwnerInstanceId,
-  renderer: () => stageModelRenderer.value,
-  runtimeSnapshot: modelSettingsRuntimeSnapshot,
-})
 
 const voice = useVoiceStore()
 const toolSelection = useToolSelectionStore()
@@ -698,11 +568,6 @@ onMounted(() => {
   if (onboardingStore.needsOnboarding)
     openOnboarding()
 })
-
-const cursorPosition = computed(() => ({
-  x: relativeMouseX.value,
-  y: relativeMouseY.value,
-}))
 
 const { t: translateCompanion } = useI18n({ useScope: 'global' })
 </script>
@@ -750,23 +615,55 @@ const { t: translateCompanion } = useI18n({ useScope: 'global' })
         <div v-show="!fullscreenActive">
           <ResourceStatusIsland />
         </div>
-        <WidgetStage
-          ref="widgetStageRef"
-          v-model:state="componentStateStage"
-          h-full w-full
-          flex-1
-          :cursor-position="cursorPosition"
-          :paused="stagePaused"
-          @error="handleStageRenderError"
-          @reset="handleStageReset"
-          @speech-caption="handleSpeechCaption"
-          @select-avatar-model="openSettings({ route: '/settings/models' })"
-        />
+        <ContextMenuRoot v-model:open="petMenuOpen">
+          <ContextMenuTrigger as-child>
+            <DshPetStage
+              ref="widgetStageRef"
+              v-model:state="componentStateStage"
+              v-model:sleeping="petSleeping" v-model:facing="petFacing"
+              h-full
+              w-full
+              flex-1
+              :pack="pet.pack"
+              :speaking="petSpeech.speaking.value"
+              :thinking="petSpeech.thinking.value"
+              :emotion="petSpeech.emotion.value"
+              :animation="petAnimation"
+              :scale="pet.scale"
+              :paused="stagePaused"
+              @error="handleStageRenderError"
+              @reset="handleStageReset"
+              @drag-start="startPetDrag().catch(() => {}).finally(() => widgetStageRef?.endDrag())"
+            />
+          </ContextMenuTrigger>
+          <ContextMenuPortal>
+            <ContextMenuContent :class="['z-9999 min-w-40 rounded-xl border p-1 shadow-lg', 'border-neutral-200 bg-white text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white']">
+              <ContextMenuItem :disabled="!pet.pack.animations.sleep?.length" :class="['cursor-pointer rounded-lg px-3 py-2 outline-none data-[highlighted]:bg-primary-100 dark:data-[highlighted]:bg-primary-900 data-[disabled]:opacity-40']" @select="petSleeping = !petSleeping">
+                {{ translateCompanion(petSleeping ? 'dsh-pet.wake' : 'dsh-pet.sleep') }}
+              </ContextMenuItem>
+              <ContextMenuItem :class="['cursor-pointer rounded-lg px-3 py-2 outline-none data-[highlighted]:bg-primary-100 dark:data-[highlighted]:bg-primary-900']" @select="petFacing = petFacing === 'left' ? 'right' : 'left'">
+                {{ translateCompanion('dsh-pet.flip') }}
+              </ContextMenuItem>
+              <ContextMenuItem :class="['cursor-pointer rounded-lg px-3 py-2 outline-none data-[highlighted]:bg-primary-100 dark:data-[highlighted]:bg-primary-900']" @select="playRandomPetAction">
+                {{ translateCompanion('dsh-pet.random') }}
+              </ContextMenuItem>
+              <ContextMenuItem :class="['cursor-pointer rounded-lg px-3 py-2 outline-none data-[highlighted]:bg-primary-100 dark:data-[highlighted]:bg-primary-900']" @select="openPetChat()">
+                {{ translateCompanion('dsh-pet.chat') }}
+              </ContextMenuItem>
+              <ContextMenuItem :class="['cursor-pointer rounded-lg px-3 py-2 outline-none data-[highlighted]:bg-primary-100 dark:data-[highlighted]:bg-primary-900']" @select="openSettings({ route: '/settings/models' })">
+                {{ translateCompanion('dsh-pet.settings') }}
+              </ContextMenuItem>
+            </ContextMenuContent>
+          </ContextMenuPortal>
+        </ContextMenuRoot>
+        <div v-if="stageError" role="alert" :class="['absolute left-4 right-4 top-12 z-50 rounded-xl border border-red-300 bg-white/95 p-4 text-sm dark:bg-neutral-900/95']">
+          <p>{{ translateCompanion('dsh-pet.preview-error') }}</p>
+          <button type="button" :class="['mt-2 rounded-lg bg-primary-100 px-3 py-2 dark:bg-primary-900']" @click="openSettings({ route: '/settings/models' })">
+            {{ translateCompanion('dsh-pet.settings') }}
+          </button>
+        </div>
         <SpeechCaptionBubble
-          ref="speechCaptionBubbleRef"
-          :text="equipmentPrompt?.text ?? speechCaption"
-          :actions="captionActions"
-          @choose="wowCompanion.chooseEquipmentPrompt"
+          :text="equipmentPrompt?.text ?? (chatterCaption || speechCaption)"
         />
         <HoloCoupon />
         <div v-show="!fullscreenActive">

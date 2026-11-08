@@ -1,0 +1,76 @@
+{
+  "operation": "fetch",
+  "outcome": "ok",
+  "source": {
+    "name": "正式服本地 DB2",
+    "game": "retail",
+    "product": "wow",
+    "localOnly": true,
+    "build": "12.1.5.70575",
+    "locale": "zhCN",
+    "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+    "hotfixesApplied": false,
+    "datasetId": "3a9114ba7cd89e708e54bde1793e3fd34a97e70b582ad9ee1663849284870203",
+    "tables": [
+      {
+        "name": "SpellName",
+        "status": "decoded_with_encrypted_sections",
+        "rows": 416090,
+        "encrypted": true
+      },
+      {
+        "name": "Spell",
+        "status": "decoded_with_encrypted_sections",
+        "rows": 416090,
+        "encrypted": true
+      }
+    ]
+  },
+  "entries": [
+    {
+      "id": "spell:16153",
+      "kind": "spell",
+      "numericId": 16153,
+      "title": "熔炼瑟银",
+      "fields": [
+        {
+          "key": "ID",
+          "value": "16153"
+        },
+        {
+          "key": "Name_lang",
+          "value": "熔炼瑟银"
+        },
+        {
+          "key": "NameSubtext_lang",
+          "value": ""
+        },
+        {
+          "key": "Description_lang",
+          "value": "使矿工可以将瑟银矿石熔炼成一块瑟银锭。需要有熔炉才能进行。"
+        },
+        {
+          "key": "AuraDescription_lang",
+          "value": ""
+        }
+      ],
+      "links": [],
+      "notices": [
+        "client-db2-only",
+        "hotfixes-not-applied",
+        "encrypted-sections",
+        "raw-spell-template"
+      ]
+    }
+  ],
+  "offset": 0,
+  "limit": 1,
+  "hasMore": false,
+  "notices": [
+    "client-db2-only",
+    "hotfixes-not-applied",
+    "encrypted-sections",
+    "raw-spell-template"
+  ],
+  "receivedAt": "2026-11-01T05:07:34.258882+00:00"
+}

@@ -36,7 +36,7 @@ function itemName(result: EquipmentSwap) {
         </p>
       </header>
       <p :class="['text-sm text-neutral-600 dark:text-neutral-300']">
-        {{ tn('confirmation') }}
+        {{ t('wow-companion.equipment-prompt.description') }}
       </p>
       <p v-if="bridge?.equipmentSwapError" role="status" :class="['break-words text-sm text-amber-700 dark:text-amber-300']">
         {{ tn('read-error') }} {{ bridge.equipmentSwapError }}

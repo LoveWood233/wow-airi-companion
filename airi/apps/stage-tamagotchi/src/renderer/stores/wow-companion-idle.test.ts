@@ -4,10 +4,33 @@ import type { IdleEligibility } from './wow-companion-idle'
 import { describe, expect, it } from 'vitest'
 
 import { loadoutStateFixture } from '../../shared/wow-companion-loadout.test-helper'
-import { CompanionIdlePolicy } from './wow-companion-idle'
+import { CompanionIdlePolicy, normalizeInteractionMinutes, normalizeRegularInteractionMinutes } from './wow-companion-idle'
 
 const startedAt = Date.parse('2026-10-26T10:00:00Z')
 const ready: IdleEligibility = { eligible: true, busy: false }
+
+describe('ordinary chatter frequency', () => {
+  it.each([
+    [2, 2],
+    [2.4, 2],
+    [4.8, 5],
+    [30, 30],
+    [0, 5],
+    [1, 5],
+    [1.9, 5],
+    [-1, 5],
+    [30.1, 5],
+    [60, 5],
+    [Number.NaN, 5],
+    [Number.POSITIVE_INFINITY, 5],
+    [true, 5],
+    ['10', 5],
+    [null, 5],
+    [undefined, 5],
+  ])('normalizes ordinary interval %s to %s whole minutes', (input, expected) => {
+    expect(normalizeRegularInteractionMinutes(input)).toBe(expected)
+  })
+})
 
 function observe(policy: CompanionIdlePolicy, state: CompanionState, elapsed: number, eligibility = ready) {
   state.bridge!.lastSeen = new Date(startedAt + elapsed).toISOString()
@@ -26,6 +49,72 @@ function continueUntil(policy: CompanionIdlePolicy, state: CompanionState, from:
 }
 
 describe('noncombat companion interaction schedule', () => {
+  it('restarts a full interval when the scene changes with the same frequency', () => {
+    const policy = new CompanionIdlePolicy()
+    const state = loadoutStateFixture()
+    state.bridge!.snapshot!.instanceType = 'none'
+    continueUntil(policy, state, 0, 59_000)
+    state.bridge!.snapshot!.instanceType = 'party'
+    expect(observe(policy, state, 60_000)).toBeUndefined()
+    expect(continueUntil(policy, state, 61_000, 119_000)).toEqual([])
+    expect(observe(policy, state, 120_000)).toBe(state.bridge!.snapshot)
+  })
+
+  it('does not accumulate chatter while quiet-hour eligibility is disabled', () => {
+    const policy = new CompanionIdlePolicy()
+    const state = loadoutStateFixture()
+    continueUntil(policy, state, 0, 59_000)
+    continueUntil(policy, state, 60_000, 180_000, { eligible: false, busy: false })
+    expect(observe(policy, state, 181_000)).toBeUndefined()
+    expect(continueUntil(policy, state, 182_000, 240_000)).toEqual([])
+    expect(observe(policy, state, 241_000)).toBe(state.bridge!.snapshot)
+  })
+  it('supports a continuous sixty-minute interval with no early interaction', () => {
+    const policy = new CompanionIdlePolicy()
+    const state = loadoutStateFixture()
+    for (let elapsed = 0; elapsed < 3_600_000; elapsed += 10_000) {
+      state.bridge!.lastSeen = new Date(startedAt + elapsed).toISOString()
+      state.bridge!.ageSeconds = 0
+      expect(policy.observe(state, startedAt + elapsed, ready, 60)).toBeUndefined()
+    }
+    state.bridge!.lastSeen = new Date(startedAt + 3_600_000).toISOString()
+    expect(policy.observe(state, startedAt + 3_600_000, ready, 60)).toBe(state.bridge!.snapshot)
+    expect(policy.observe(state, startedAt + 3_600_000, ready, 60)).toBeUndefined()
+  })
+
+  it('starts a new full interval when the frequency changes', () => {
+    const policy = new CompanionIdlePolicy()
+    const state = loadoutStateFixture()
+    continueUntil(policy, state, 0, 59_000)
+    for (let elapsed = 60_000; elapsed < 180_000; elapsed += 1000) {
+      state.bridge!.lastSeen = new Date(startedAt + elapsed).toISOString()
+      state.bridge!.ageSeconds = 0
+      expect(policy.observe(state, startedAt + elapsed, ready, 2)).toBeUndefined()
+    }
+    state.bridge!.lastSeen = new Date(startedAt + 180_000).toISOString()
+    expect(policy.observe(state, startedAt + 180_000, ready, 2)).toBe(state.bridge!.snapshot)
+    state.bridge!.lastSeen = new Date(startedAt + 181_000).toISOString()
+    expect(policy.observe(state, startedAt + 181_000, ready, 1)).toBeUndefined()
+    expect(continueUntil(policy, state, 182_000, 240_000)).toEqual([])
+    expect(observe(policy, state, 241_000)).toBe(state.bridge!.snapshot)
+  })
+
+  it.each([
+    [0, 1],
+    [-100, 1],
+    [1, 1],
+    [4.8, 5],
+    [60, 60],
+    [1000, 60],
+    [Number.NaN, 1],
+    [Number.POSITIVE_INFINITY, 1],
+    [true, 1],
+    ['5', 1],
+    [null, 1],
+  ])('keeps interval %s within its supported whole-minute range', (input, expected) => {
+    expect(normalizeInteractionMinutes(input)).toBe(expected)
+  })
+
   it('keeps the one-minute interval while coordinates and heartbeat sequences change', () => {
     const policy = new CompanionIdlePolicy()
     const state = loadoutStateFixture()

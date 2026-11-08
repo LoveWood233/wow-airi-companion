@@ -6,6 +6,7 @@ local Public, Prefix = ns.Protocol.Public, ns.Protocol.UTF8Prefix
 local owner, publish, busy, timer, active, dirty
 local revision, lastCapture, lastSignature = 0, nil, nil
 local turnIns, turnInTruncated, identity = {}, false, nil
+local levelUpAt, levelUpLevel
 
 local function Call(fn, ...)
     if type(fn) ~= "function" then return nil end
@@ -48,7 +49,37 @@ end
 local function ResetIdentity(key)
     if key ~= identity then
         identity, turnIns, turnInTruncated, lastSignature, lastCapture = key, {}, false, nil, nil
+        levelUpAt, levelUpLevel = nil, nil
     end
+end
+
+-- Game facts select candidates once. The desktop owns delivery, cooldown and speech receipts.
+local function Advice(log, observedAt)
+    local level = Integer(Call(UnitLevel, "player"), 1, 255)
+    local advice = { v = 1, playerLevel = level, candidates = {} }
+    if not level then return advice end
+    for _, event in ipairs(turnIns) do
+        if observedAt >= event.observedAt and observedAt - event.observedAt <= 180 then
+            advice.candidates[#advice.candidates + 1] = { kind = "turned-in", questID = event.questID, eventAt = event.observedAt }
+        end
+    end
+    local leveling
+    for _, quest in ipairs(log.entries) do
+        if quest.failed ~= true then
+            if quest.readyForTurnIn == true then
+                advice.candidates[#advice.candidates + 1] = { kind = "ready", questID = quest.questID }
+            elseif quest.level then
+                if quest.level - level >= 5 then
+                    advice.candidates[#advice.candidates + 1] = { kind = "level-risk", questID = quest.questID }
+                end
+                if not leveling and quest.level >= level - 5 and quest.level <= level + 2 then leveling = quest end
+            end
+        end
+    end
+    if leveling and levelUpAt and levelUpLevel == level and observedAt >= levelUpAt and observedAt - levelUpAt <= 120 then
+        advice.candidates[#advice.candidates + 1] = { kind = "leveling", questID = leveling.questID, eventAt = levelUpAt }
+    end
+    return advice
 end
 local function Schedule()
     dirty = true
@@ -130,13 +161,15 @@ function Quests.Scan()
         completion.complete = completion.complete and not completion.truncated
     elseif #turnIns > 0 then completion.source = "session-events" end
     if key ~= Identity() then return end
-    local record = { v = 1, id = 1, session = owner.session, guid = owner.guid, observedAt = 1, source = "quest-log", log = log, completion = completion }
+    local record = { v = 1, id = 1, session = owner.session, guid = owner.guid, observedAt = 1, source = "quest-log", log = log, completion = completion,
+        advice = Advice(log, observedAt) }
     -- Trim only explicit coverage, not the main heartbeat or other transfer queues.
     local body = ns.Transfer.QuestsJSON(record)
     -- Reserve room for the real revision and epoch replacing the one-byte signature placeholders.
     while #body > 32700 and #log.entries > 0 do
         table.remove(log.entries)
         log.complete, log.truncated = false, true
+        record.advice = Advice(log, observedAt)
         body = ns.Transfer.QuestsJSON(record)
     end
     local signature = body
@@ -163,6 +196,12 @@ function Quests.OnEvent(event, questID)
         for index = #turnIns, 1, -1 do if turnIns[index].questID == id then table.remove(turnIns, index) end end
         turnIns[#turnIns + 1] = { questID = id, observedAt = now }
         if #turnIns > 32 then table.remove(turnIns, 1); turnInTruncated = true end
+        Schedule()
+    elseif event == "PLAYER_LEVEL_UP" then
+        local key, level, now = Identity(), Integer(questID, 1, 255), Integer(Call(GetServerTime), 1, 4102444800)
+        if not active or not key or not level or not now then return end
+        ResetIdentity(key)
+        levelUpAt, levelUpLevel = now, level
         Schedule()
     elseif event == "QUEST_LOG_UPDATE" or event == "QUEST_ACCEPTED" or event == "QUEST_REMOVED" or event == "QUEST_WATCH_UPDATE" then Schedule() end
 end

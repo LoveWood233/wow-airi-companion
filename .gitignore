@@ -11,6 +11,16 @@ logs/
 *.log
 *.pid
 backups/
+dist-*/
+*.exe
+*.exe.blockmap
+*.sha256
+WOWAddons/WoWCompanion-*.zip
+WOWAddons/WoWCompanionDataHub-*.zip
+WOWAddons/output/
+airi/apps/stage-tamagotchi/resources/wow-companion-python/
+**/bridge-config*.json*
+!**/bridge-config.example.json
 
 # Local credentials and machine-specific configuration
 .env

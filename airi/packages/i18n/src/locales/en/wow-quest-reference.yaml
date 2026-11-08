@@ -1,0 +1,42 @@
+title: Quest and leveling reference
+games:
+  forever: WoW Forever
+  retail: WoW Retail
+states:
+  empty: No matching task was found in the observed data.
+  unavailable: Quest evidence is unavailable. Open the assistant to check the source.
+  error: The quest query failed. Open the assistant for details.
+limits: Missing prerequisites and coordinates remain unknown. A task listing does not prove availability or safety.
+level: Quest level
+temporary: Temporary
+temporary-note: Some actors or locations use temporary third-party data.
+open-source: Open in 无限图鉴
+open-assistant: Open quest assistant
+partial-list: This card shows part of the results. Open the assistant to search or inspect details.
+partial-source: Source coverage is incomplete. Missing tasks and details remain unknown.
+source: Source
+quest-log: Character quest telemetry
+build: Client build
+received-at: Original reference query
+observed-at: Quest observation
+cache:
+  hit: Cache served
+  miss: Fresh query served
+  expires: Cache expires
+progress:
+  unknown: Player progress unknown
+  active: In the current quest log
+  ready-to-turn-in: Ready for turn-in
+  objectives-complete: Observed objectives complete, turn-in unverified
+  failed: Marked failed in the quest log
+  completed-flag: Client completion flag, scope unknown
+  turned-in: Observed session turn-in
+risks:
+  minimum-level: The required level exceeds the requested player level.
+  higher-level: The quest level exceeds the requested player level.
+  elite: Elite task
+  dungeon: Dungeon task
+  raid: Raid task
+  pvp: PvP task
+  timed: Timed task
+  faction-mismatch: The recorded faction differs from the requested faction.

@@ -11,7 +11,7 @@ import { errorMessageFrom } from '@moeru/std'
 import { array, check, integer, literal, maxLength, maxValue, minValue, number, parse, pipe, regex, safeParse, strictObject, string } from 'valibot'
 
 import { snapshotSchema } from '../../../shared/wow-companion'
-import { equipmentComparisonSchema } from '../../../shared/wow-companion-equipment-comparisons'
+import { equipmentComparisonSchema, liveEquipmentComparisonSchema } from '../../../shared/wow-companion-equipment-comparisons'
 import { companionError } from '../../../shared/wow-companion-errors'
 import { moneyIdSchema } from '../../../shared/wow-companion-gold'
 
@@ -45,6 +45,9 @@ function identity(account: string, record: EquipmentComparison) {
  * Writes are serialized and atomic. A corrupt source blocks mutations and remains untouched.
  */
 export class CompanionEquipmentComparisons {
+  /** Backup import uses the normal comparison validation rules. */
+  static validateBackup(value: unknown) { return parse(historySchema, value) }
+
   private history: SavedHistory = { version: 1, entries: [], seen: [] }
   private storageError: string | null = null
   private blocked = false
@@ -75,7 +78,7 @@ export class CompanionEquipmentComparisons {
         const snapshot = safeParse(snapshotSchema, bridge.snapshot)
         if (snapshot.success && snapshot.output.online && Array.isArray(bridge.equipmentComparisons)) {
           for (const candidate of bridge.equipmentComparisons) {
-            const record = safeParse(equipmentComparisonSchema, candidate)
+            const record = safeParse(liveEquipmentComparisonSchema, candidate)
             if (record.success && record.output.guid === snapshot.output.guid && record.output.session === snapshot.output.session)
               this.accept(snapshot.output, record.output)
           }

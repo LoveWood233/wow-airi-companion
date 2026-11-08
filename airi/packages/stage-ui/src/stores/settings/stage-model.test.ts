@@ -24,6 +24,23 @@ vi.mock('@vueuse/core', async (importOriginal) => {
 })
 
 describe('settings stage model store', () => {
+  it('keeps a desktop-owned renderer disabled without downloading the saved model', async () => {
+    setActivePinia(createPinia())
+    const models = useDisplayModelsStore()
+    const ensure = vi.spyOn(models, 'ensureDisplayModelAvailable').mockResolvedValue(undefined)
+    const store = useSettingsStageModel()
+    await store.setRuntimeEnabled(false)
+    store.stageModelSelected = 'saved-live2d-model'
+    await store.initializeStageModel()
+    store.setStageModelRenderer('godot')
+    expect(store.stageModelSelected).toBe('saved-live2d-model')
+    expect(store.stageModelRenderer).toBe('disabled')
+    expect(store.stageModelSelectedUrl).toBeUndefined()
+    expect(ensure).not.toHaveBeenCalled()
+    await store.resetState()
+    expect(store.runtimeEnabled).toBe(false)
+  })
+
   beforeEach(() => {
     setActivePinia(createPinia())
     resetLegacyModelIdentity.mockReset()

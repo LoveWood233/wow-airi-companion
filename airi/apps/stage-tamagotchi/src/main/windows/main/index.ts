@@ -118,7 +118,7 @@ export async function setupMainWindow(params: {
     title: params.i18n.t('companion-ui.titles.main', { name: params.i18n.t('companion-ui.app.name') }),
     minWidth: minimumWidth,
     width: Math.max(mainWindowConfig?.width ?? 450.0, minimumWidth),
-    height: mainWindowConfig?.height ?? 600.0,
+    height: mainWindowConfig?.height ?? 440.0,
     x: mainWindowConfig?.x,
     y: mainWindowConfig?.y,
     show: false,

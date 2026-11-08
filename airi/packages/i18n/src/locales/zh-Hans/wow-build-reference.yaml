@@ -1,0 +1,58 @@
+title: 天赋与配装资料
+operations:
+  talents: 天赋解释
+  compare-talents: 天赋方案对照
+  spell: 关联技能
+  compare-item: 装备对比
+games:
+  forever: 魔兽世界：无限
+  retail: 魔兽世界正式服
+states:
+  empty: 此来源未找到匹配记录。
+  unavailable: 当前缺少必要证据，请打开助手检查来源。
+  unsupported: 暂不支持此方案格式，请使用支持的链接或明确节点清单。
+  error: 资料查询失败，请打开助手查看详情。
+limits: 缺失证据保持未知，基础说明未包含全部角色加成；本解释不代表 DPS 或最优配装。
+unknown: 未知
+current-rank: 已观察生效等级
+purchased-rank: 已观察投入点数
+planned-rank: 方案投入
+rank-delta: 投入差
+planned-description: 方案投入对应的基础说明
+current-description: 已观察等级的基础说明
+mapping:
+  same-build: 资料与观察的客户端构建一致。
+  unverified: 尚未核实资料与当前天赋的映射。
+  observation-only: 仅有实际观察，缺少的资料保持未知。
+plans:
+  source-validated: 来源已解析此方案。
+  source-adjusted: 来源调整了此方案，请核对以下变更。
+  partial: 仅对照明确列出的节点，未列出不代表零点。
+partial-nodes: 此卡仅展示部分节点，可打开助手查看完整解释。
+open-node: 查看此节点解释
+open-source: 在无限图鉴查看
+open-assistant: 打开天赋与配装助手
+spell-unresolved: 暂无已解析的技能说明，原始模板不能当作缩放后的实际效果。
+slots:
+  compatible: 部位匹配，角色能否使用尚未核实。
+  incompatible: 部位不匹配。
+  unknown: 部位是否匹配仍未知。
+item-basis: 比较最近穿戴实例与基础物品资料，数量差不等于实战收益。
+stat: 属性
+observed: 穿戴快照
+catalog: 基础资料
+delta: 数量差
+stats-unresolved: 来源缺少可比较的数值属性，未知值不会补为零。
+weapon-review: 武器组合与双手切换需另行核对，此处不会合计或移除其他部位。
+source: 来源
+sources:
+  talent-observation: 已提交天赋观察
+  equipment-observation: 最近穿戴快照
+build: 客户端构建
+received-at: 原始资料查询时间
+observed-at: 游戏采集时间
+exported-at: 数据库导出时间
+cache:
+  hit: 缓存提供时间
+  miss: 本次查询提供时间
+  expires: 缓存过期时间

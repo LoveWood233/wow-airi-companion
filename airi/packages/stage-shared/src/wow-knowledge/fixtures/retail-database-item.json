@@ -1,0 +1,90 @@
+{
+  "operation": "fetch",
+  "outcome": "ok",
+  "source": {
+    "name": "正式服本地 DB2",
+    "game": "retail",
+    "product": "wow",
+    "localOnly": true,
+    "build": "12.1.5.70575",
+    "locale": "zhCN",
+    "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+    "hotfixesApplied": false,
+    "datasetId": "3a9114ba7cd89e708e54bde1793e3fd34a97e70b582ad9ee1663849284870203",
+    "tables": [
+      {
+        "name": "Item",
+        "status": "decoded_with_encrypted_sections",
+        "rows": 213784,
+        "encrypted": true
+      },
+      {
+        "name": "ItemSparse",
+        "status": "decoded_with_encrypted_sections",
+        "rows": 175625,
+        "encrypted": true
+      }
+    ]
+  },
+  "entries": [
+    {
+      "id": "item:12359",
+      "kind": "item",
+      "numericId": 12359,
+      "title": "瑟银锭",
+      "fields": [
+        {
+          "key": "ID",
+          "value": "12359"
+        },
+        {
+          "key": "Display_lang",
+          "value": "瑟银锭"
+        },
+        {
+          "key": "ItemLevel",
+          "value": "10"
+        },
+        {
+          "key": "RequiredLevel",
+          "value": "0"
+        },
+        {
+          "key": "OverallQualityID",
+          "value": "1"
+        },
+        {
+          "key": "ClassID",
+          "value": "7"
+        },
+        {
+          "key": "SubclassID",
+          "value": "7"
+        },
+        {
+          "key": "InventoryType",
+          "value": "0"
+        },
+        {
+          "key": "Description_lang",
+          "value": ""
+        }
+      ],
+      "links": [],
+      "notices": [
+        "client-db2-only",
+        "hotfixes-not-applied",
+        "encrypted-sections"
+      ]
+    }
+  ],
+  "offset": 0,
+  "limit": 1,
+  "hasMore": false,
+  "notices": [
+    "client-db2-only",
+    "hotfixes-not-applied",
+    "encrypted-sections"
+  ],
+  "receivedAt": "2026-11-01T05:07:34.258882+00:00"
+}

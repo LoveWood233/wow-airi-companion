@@ -112,8 +112,15 @@ function Transfer.QuestsJSON(record)
     local log = FieldsJSON(record.log, {"complete", "truncated", "total"})
     local completion = FieldsJSON(record.completion, {"source", "scope", "complete", "truncated", "total"})
     local root = FieldsJSON(record, {"v", "id", "session", "guid", "observedAt", "source"})
+    local advice = ""
+    if record.advice then
+        local candidates = {}
+        for _, candidate in ipairs(record.advice.candidates) do candidates[#candidates + 1] = FieldsJSON(candidate, {"kind", "questID", "eventAt"}) end
+        advice = ',"advice":' .. string.sub(FieldsJSON(record.advice, {"v", "playerLevel"}), 1, -2)
+            .. ',"candidates":[' .. table.concat(candidates, ",") .. ']}'
+    end
     return string.sub(root, 1, -2) .. ',"log":' .. string.sub(log, 1, -2) .. ',"entries":[' .. table.concat(entries, ",") .. ']},"completion":'
-        .. string.sub(completion, 1, -2) .. ',"ids":[' .. table.concat(ids, ",") .. '],"turnIns":[' .. table.concat(turnIns, ",") .. ']}}'
+        .. string.sub(completion, 1, -2) .. ',"ids":[' .. table.concat(ids, ",") .. '],"turnIns":[' .. table.concat(turnIns, ",") .. ']}' .. advice .. '}'
 end
 function Transfer.EncodeQuests(record)
     local body = Transfer.QuestsJSON(record)
@@ -240,6 +247,92 @@ local gearItemKeys = { "itemID", "itemGUID", "link", "name", "type", "subtype", 
 local function GearItemJSON(item)
     return FieldsJSON(item, gearItemKeys)
 end
+local storageItemKeys = { "itemID", "itemGUID", "link", "name", "type", "subtype", "equipLoc", "quality", "itemLevel", "requiredLevel", "stats", "tooltip", "infoComplete", "statsComplete", "tooltipComplete", "truncated", "classID", "subclassID" }
+-- Completed container revisions are cached for replay; only changed containers replace their queued frame train.
+local storage, storageOrder, storageCursor, storagePart = {}, {}, 0, 0
+local function StorageSlotJSON(entry, version)
+    local item = entry.item
+    local function ItemJSON() return FieldsJSON(item, version == 2 and storageItemKeys or gearItemKeys) end
+    if item then
+        local body = ItemJSON()
+        while #body > 8192 and #item.tooltip > 0 do
+            table.remove(item.tooltip)
+            item.truncated, item.tooltipComplete = true, false
+            body = ItemJSON()
+        end
+        if #body > 8192 then return nil end
+    end
+    return '{"slot":' .. Value(entry.slot) .. ',"state":' .. Value(entry.state)
+        .. ',"quantity":' .. Value(entry.quantity) .. ',"item":' .. (item and ItemJSON() or "null") .. '}'
+end
+function Transfer.StorageSlotsJSON(record)
+    local slots = {}
+    for _, entry in ipairs(record.slots) do
+        local value = StorageSlotJSON(entry, record.v)
+        if not value then return nil end
+        slots[#slots + 1] = value
+    end
+    return '[' .. table.concat(slots, ',') .. ']'
+end
+function Transfer.StorageJSON(record)
+    local slots = Transfer.StorageSlotsJSON(record)
+    if not slots then return nil end
+    return '{"v":' .. Value(record.v) .. ',"id":' .. Value(record.id) .. ',"session":' .. Value(record.session)
+        .. ',"guid":' .. Value(record.guid) .. ',"observedAt":' .. Value(record.observedAt)
+        .. ',"scope":' .. Value(record.scope) .. ',"container":' .. Value(record.container)
+        .. ',"capacity":' .. Value(record.capacity) .. ',"complete":' .. Value(record.complete)
+        .. ',"cached":' .. Value(record.cached) .. ',"slots":' .. slots .. '}'
+end
+function Transfer.EncodeStorage(record)
+    if type(record) ~= "table" or (record.v ~= 1 and record.v ~= 2) or type(record.slots) ~= "table" or #record.slots ~= record.capacity or #record.slots > 200 then return nil end
+    local body = Transfer.StorageJSON(record)
+    if not body or #body > 2097152 then return nil end
+    return { body = body, count = math.ceil(#body / 240), session = record.session, guid = record.guid, id = record.id }
+
+end
+function Transfer.SetStorage(record)
+    local key = record.scope .. ":" .. record.container
+    local encoded = Transfer.EncodeStorage(record)
+    if not encoded then return false end
+    if not storage[key] then
+        if #storageOrder >= 40 then return false end
+        storageOrder[#storageOrder + 1] = key
+    end
+    encoded.fresh = not record.cached
+    if storageOrder[storageCursor] == key and storagePart > 0 then
+        -- Finish the immutable in-flight revision. Repeated loot changes coalesce into one latest successor.
+        storage[key].next = encoded
+    else storage[key] = encoded end
+    return true
+end
+function Transfer.ClearStorage()
+    storage, storageOrder, storageCursor, storagePart = {}, {}, 0, 0
+end
+local function StoragePending()
+    for _, key in ipairs(storageOrder) do if storage[key].fresh then return true end end
+    return false
+end
+local function NextStorage()
+    if storagePart == 0 then
+        local selected
+        for offset = 1, #storageOrder do
+            local index = (storageCursor + offset - 1) % #storageOrder + 1
+            if storage[storageOrder[index]].fresh then selected = index; break end
+        end
+        storageCursor = selected or (storageCursor % #storageOrder + 1)
+    end
+    local record = storage[storageOrder[storageCursor]]
+    storagePart = storagePart + 1
+    local payload = '{"v":1,"kind":"store","s":' .. Value(record.session) .. ',"g":' .. Value(record.guid)
+        .. ',"id":' .. record.id .. ',"p":' .. storagePart .. ',"n":' .. record.count
+        .. ',"d":' .. Escape(Transfer.Base64(string.sub(record.body, (storagePart - 1) * 240 + 1, storagePart * 240))) .. '}'
+    heldFrame = Protocol.Frame(payload)
+    if storagePart == record.count then
+        storagePart, record.fresh = 0, false
+        if record.next then storage[storageOrder[storageCursor]] = record.next end
+    end
+end
+
 function Transfer.GearJSON(record)
     local slots = {}
     for _, entry in ipairs(record.slots) do
@@ -300,7 +393,7 @@ local function NextGear()
     if gearPart == #gear.frames then gear.fresh = false; gearReplay = false end
 end
 
-local comparisonKeys = { "v", "id", "session", "guid", "class", "spec", "primary", "observedAt", "slot", "usable", "specMatch", "current", "candidate" }
+local comparisonKeys = { "v", "id", "session", "guid", "class", "spec", "primary", "observedAt", "slot", "usable", "specMatch", "current", "candidate", "assessment", "deltas" }
 local comparisonItemKeys = { "itemID", "name", "itemLevel", "equipLoc", "type", "subtype", "stats", "complex", "complete" }
 local function ComparisonItem(item)
     if not item then return "null" end
@@ -320,6 +413,14 @@ function Transfer.ComparisonJSON(record)
     local values = {}
     for _, key in ipairs(comparisonKeys) do
         local encoded = (key=="current" or key=="candidate") and ComparisonItem(record[key]) or Value(record[key])
+        if key=="assessment" then
+            local decision=record.assessment or {}
+            encoded='{"verdict":'..Value(decision.verdict)..',"reason":'..Value(decision.reason)..'}'
+        elseif key=="deltas" then
+            local entries={}
+            for _,delta in ipairs(record.deltas or {}) do entries[#entries+1]='{"key":'..Value(delta.key)..',"before":'..Value(delta.before)..',"after":'..Value(delta.after)..'}' end
+            encoded='['..table.concat(entries,',')..']'
+        end
         values[#values+1] = Escape(key)..":"..encoded
     end
     return "{"..table.concat(values,",").."}"
@@ -357,7 +458,7 @@ local function ValidComparisonItem(item,candidate)
     return true
 end
 function Transfer.EncodeComparison(record)
-    if type(record)~="table" or record.v~=1 or not ComparisonNumber(record.id,1,2147483647,true)
+    if type(record)~="table" or record.v~=2 or not ComparisonNumber(record.id,1,2147483647,true)
         or not ComparisonText(record.session,40) or not string.match(record.session,"^[A-Za-z0-9_-]+$")
         or not ComparisonText(record.guid,48) or not string.match(record.guid,"^[A-Za-z0-9_-]+$")
         or not ComparisonText(record.class,32) or not string.match(record.class,"^[A-Z_]+$")
@@ -366,6 +467,18 @@ function Transfer.EncodeComparison(record)
         or type(record.usable)~="boolean" or (record.specMatch~=nil and type(record.specMatch)~="boolean")
         or not ValidComparisonItem(record.candidate,true) or (record.slot==0)~=(record.current==nil)
         or (record.current and not ValidComparisonItem(record.current,false)) then return nil,"invalid comparison facts" end
+    if type(record.assessment)~="table" or type(record.deltas)~="table" or #record.deltas>64 then return nil,"missing addon assessment" end
+    local reasons={empty_slot="upgrade",stats_upgrade="upgrade",unusable="not_upgrade",wrong_spec="not_upgrade",weaker_stats="not_upgrade",equivalent="not_upgrade",
+        incomplete="review",unknown_spec="review",weapon_change="review",complex_item="review",stat_tradeoff="review",primary_upgrade_tradeoff="review",no_target="review"}
+    if reasons[record.assessment.reason]~=record.assessment.verdict then return nil,"invalid addon assessment" end
+    local before,after,seen={},{},{}
+    for _,stat in ipairs(record.current and record.current.stats or {}) do before[stat.key]=stat.value end
+    for _,stat in ipairs(record.candidate.stats) do after[stat.key]=stat.value end
+    for _,delta in ipairs(record.deltas) do
+        if not ComparisonText(delta.key,64) or delta.key=="" or seen[delta.key] or (before[delta.key]==nil and after[delta.key]==nil)
+            or delta.before~=(before[delta.key] or 0) or delta.after~=(after[delta.key] or 0) then return nil,"invalid comparison differences" end
+        seen[delta.key]=true
+    end
     local body=Transfer.ComparisonJSON(record)
     if #body>4096 then return nil,"comparison exceeds 4096 bytes" end
     local frames,count={},math.ceil(#body/240)
@@ -479,11 +592,20 @@ end
 local macroState, macroOpportunity
 function Transfer.SetMacroState(state) macroState, macroOpportunity = state, 0 end
 
+function Transfer.LifeFrame()
+    if macroState then return Protocol.EncodeLife(macroState) end
+end
+
 function Transfer.Advance()
     equipmentPhase = not equipmentPhase
     heldFrame = nil
     if not equipmentPhase then return end
     macroOpportunity = (macroOpportunity or 0) + 1
+    -- One existing macro slot every two seconds carries life progress. State phases stay unchanged.
+    if macroOpportunity % 4 == 2 then
+        local frame = Transfer.LifeFrame()
+        if frame then heldFrame = frame; return end
+    end
     local importer = WoWCompanionMacroImport
     if macroState and importer and type(importer.Telemetry) == "function" and macroOpportunity % 2 == 0 then
         local ok, value = pcall(importer.Telemetry)
@@ -555,6 +677,7 @@ function Transfer.Advance()
     if not freshComparison and not freshEquipment then
         snapshotOpportunity = snapshotOpportunity + 1
         local pending = {}
+        if StoragePending() then pending[#pending + 1] = NextStorage end
         if inventory and inventory.fresh then pending[#pending + 1] = NextInventory end
         if quests and quests.fresh then pending[#pending + 1] = NextQuests end
         if talents and talents.fresh then pending[#pending + 1] = NextTalents end
@@ -563,6 +686,7 @@ function Transfer.Advance()
             pending[snapshotCursor]()
             return
         elseif #pending == 0 and snapshotOpportunity % 4 == 1 then
+            if #storageOrder > 0 then pending[#pending + 1] = NextStorage end
             if inventory then pending[#pending + 1] = NextInventory end
             if quests then pending[#pending + 1] = NextQuests end
             if talents then pending[#pending + 1] = NextTalents end

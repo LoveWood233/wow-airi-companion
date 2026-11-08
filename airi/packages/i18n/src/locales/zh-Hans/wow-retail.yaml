@@ -1,0 +1,80 @@
+title: 正式服本地资料
+game: 魔兽世界正式服 · 本地数据
+source: 来源
+source-unavailable: 暂无已验证的本地快照
+build: 数据构建版本
+locale: 数据语言
+exported-at: 快照导出时间
+received-at: 查询接收时间
+cache:
+  status: 返回方式
+  hit: 命中缓存
+  miss: 来源查询后缓存
+  source-received-at: 原始来源查询时间
+  served-at: 本次返回时间
+  expires-at: 缓存到期时间
+  note: 本次未重新执行这条记录查询，原始来源回执和快照导出时间保持不变。
+dataset: 快照标识
+hotfixes: 服务器热修
+hotfixes-no: 未叠加
+hotfixes-yes: 导出清单标注已叠加
+record-id: 记录 ID
+query: 查询
+open-local: 打开本地资料
+open-entry: '打开{title}的本地资料'
+toggle-entry: '展开或收起{title}的原始字段'
+related: 关联本地记录
+more: 展开全部已列字段
+less: 收起字段
+empty-text: 空文本
+tables: 来源数据表
+table-rows: '已解码 {count} 行'
+page: '从偏移 {offset} 起显示 {count} 条记录，仍有更多匹配。下一页需要手动查询。'
+partial: 结果包含缺失、加密或截断数据，不能据此认定完整的服务器状态。
+source-note: 本地客户端快照。原始列名与技能模板保留来源含义，不据此判断实际游戏收益或可用性。
+operations:
+  search: 本地资料搜索
+  fetch: 本地记录详情
+  stats: 本地数据库概览
+kinds:
+  item: 物品
+  map: 底层地图
+  uimap: 世界地图区域
+  area: 地区
+  spell: 技能
+  encounter: 副本首领战
+states:
+  loading: 正在等待本地查询结果。
+  empty: 此快照没有匹配记录，可以换个名称或使用已知 ID。
+  not-found: 此 ID 不在已解码快照中，不能据此断言游戏内不存在该记录。
+  error: 本地查询失败，请检查所选数据库后重试。
+  invalid: 无法确认此结果属于对应的正式服本地查询，原始结果仍可查看。
+titles:
+  loading: 正在查询正式服本地资料
+  success: 正式服本地资料
+  empty: 没有本地匹配资料
+  not-found: 未找到本地记录
+  error: 本地数据库查询失败
+  invalid: 本地资料响应不可用
+table-status:
+  decoded: 已解码导出
+  decoded_with_encrypted_sections: 导出含加密分段
+notices:
+  client-db2-only: 资料来自客户端 DB2，不包含服务器专有资料或玩家完成进度。
+  hotfixes-not-applied: 此导出未叠加服务器热修，当前游戏中的数值可能不同。
+  encrypted-sections: 部分来源表含加密分段，已解码行不代表全部游戏记录。
+  missing-fields: 来源中部分字段缺失，缺失信息保留为未知。
+  raw-spell-template: 技能说明可能含客户端原始占位符，不是已计算的角色实际数值。
+  map-id-not-uimap-id: 底层地图 ID 与世界地图区域 ID 使用不同编号空间。
+  content-tuning-not-exploration-level: 等级缩放编号不能直接当作旧世探索等级或个人练级建议。
+  result-truncated: 部分字段或文字已截断，以限制响应大小。
+errors:
+  database-unconfigured: 请先在数据库设置中选择正式服本地导出。
+  database-missing: 所选数据库文件不存在，请选择可用的导出。
+  database-unreadable: 无法读取所选数据库，请检查位置和访问权限。
+  database-invalid: 所选文件不是受支持的正式服导出，或没有通过校验。
+  database-changed: 查询期间数据库发生变化，请使用稳定的导出重试。
+  query-invalid: 查询参数无效，请检查资料类型、ID 或搜索文字。
+  query-timeout: 本地查询超时，请缩小搜索范围后重试。
+  query-failed: 本地查询失败，没有补造替代资料。
+  bridge-unavailable: 本地查询服务不可用，请检查服务状态后重试。

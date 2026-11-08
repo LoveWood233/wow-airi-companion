@@ -1,0 +1,1130 @@
+{
+  "outcome": "ok",
+  "id": 1424,
+  "fetch_id": "map:1424",
+  "title": "希尔斯布莱德丘陵",
+  "url": "https://wuxianwow.com/atlas/1424",
+  "kind": "区域",
+  "type": "zone",
+  "system": "world",
+  "parent": 1415,
+  "continent": 1415,
+  "level": {
+    "max": 31,
+    "min": 20
+  },
+  "level_text": "20–31 级",
+  "new_in_160": false,
+  "instance_count": 0,
+  "taxi_count": 2,
+  "area_count": 15,
+  "quest_count": 0,
+  "art": "https://wuxianwow.com/data/maps/1424.webp",
+  "quest_levels": {
+    "min": 20,
+    "max": 42,
+    "quests": 51,
+    "note": "这里（含子区域）服务器确认的任务的等级；level_text 是客户端里这张地图的等级区间（多由子区域的探索等级 AreaTable.ExplorationLevel 推得，见 level_source）"
+  },
+  "lore": {
+    "entities": [
+      {
+        "id": 300,
+        "name": "希尔斯布莱德丘陵",
+        "kind": "地点",
+        "summary": "关押祖尔金之地附近；联军集结地",
+        "url": "https://wuxianwow.com/lore/n/300"
+      },
+      {
+        "id": 108,
+        "name": "敦霍尔德城堡",
+        "kind": "地点",
+        "summary": "布莱克摩尔的城堡",
+        "url": "https://wuxianwow.com/lore/n/108"
+      },
+      {
+        "id": 396,
+        "name": "无尽之海",
+        "kind": "地点",
+        "summary": "塞拉摩濒临的大海",
+        "url": "https://wuxianwow.com/lore/n/396"
+      },
+      {
+        "id": 511,
+        "name": "索拉丁之墙",
+        "kind": "地点",
+        "summary": "靠近部落哨站，被遗忘者一方的集结地",
+        "url": "https://wuxianwow.com/lore/n/511"
+      },
+      {
+        "id": 410,
+        "name": "南海镇",
+        "kind": "地点",
+        "summary": "部落夜袭偷船的港镇",
+        "url": "https://wuxianwow.com/lore/n/410"
+      }
+    ],
+    "events_here": [
+      {
+        "id": 1021,
+        "title": "婴儿拒食将死",
+        "year": "第 1 年",
+        "where": "敦霍尔德城堡",
+        "cite": "《氏族之王》第二章",
+        "url": "https://wuxianwow.com/lore/e/1021"
+      },
+      {
+        "id": 1022,
+        "title": "塔莉的提议",
+        "year": "第 1 年",
+        "where": "敦霍尔德城堡",
+        "cite": "《氏族之王》第二章",
+        "url": "https://wuxianwow.com/lore/e/1022"
+      },
+      {
+        "id": 1023,
+        "title": "福克斯顿一家得赏",
+        "year": "第 1 年至第 2 年",
+        "where": "敦霍尔德城堡",
+        "cite": "《氏族之王》第二章",
+        "url": "https://wuxianwow.com/lore/e/1023"
+      },
+      {
+        "id": 1060,
+        "title": "落在童年的丘陵",
+        "year": "第 1 年至第 3 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《萨尔：巨龙的黄昏》第七章",
+        "url": "https://wuxianwow.com/lore/e/1060"
+      },
+      {
+        "id": 1061,
+        "title": "化名混入黑石卫兵",
+        "year": "第 1 年至第 3 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《萨尔：巨龙的黄昏》第七章",
+        "url": "https://wuxianwow.com/lore/e/1061"
+      },
+      {
+        "id": 1062,
+        "title": "奥格瑞姆答应联手",
+        "year": "第 1 年至第 3 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《萨尔：巨龙的黄昏》第七章",
+        "url": "https://wuxianwow.com/lore/e/1062"
+      },
+      {
+        "id": 1063,
+        "title": "杜隆坦夫妇遇害",
+        "year": "第 1 年至第 3 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《萨尔：巨龙的黄昏》第七章",
+        "url": "https://wuxianwow.com/lore/e/1063"
+      },
+      {
+        "id": 1064,
+        "title": "放走刺客，向父亲许诺",
+        "year": "第 1 年至第 3 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《萨尔：巨龙的黄昏》第七章",
+        "url": "https://wuxianwow.com/lore/e/1064"
+      },
+      {
+        "id": 1065,
+        "title": "溪中的龙影",
+        "year": "第 1 年至第 3 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《萨尔：巨龙的黄昏》第七章",
+        "url": "https://wuxianwow.com/lore/e/1065"
+      },
+      {
+        "id": 1066,
+        "title": "刺客追来，布莱克摩尔将至",
+        "year": "第 1 年至第 3 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《萨尔：巨龙的黄昏》第七章",
+        "url": "https://wuxianwow.com/lore/e/1066"
+      },
+      {
+        "id": 1067,
+        "title": "萨尔被夺走",
+        "year": "第 2 年",
+        "where": "敦霍尔德城堡",
+        "cite": "《氏族之王》第二章",
+        "url": "https://wuxianwow.com/lore/e/1067"
+      },
+      {
+        "id": 1154,
+        "title": "洛萨整军议战",
+        "year": "第 4 年至第 7 年",
+        "where": "南海镇",
+        "cite": "《黑暗之潮》第七章",
+        "url": "https://wuxianwow.com/lore/e/1154"
+      },
+      {
+        "id": 1155,
+        "title": "精灵舰队抵达",
+        "year": "第 4 年至第 7 年",
+        "where": "南海镇",
+        "cite": "《黑暗之潮》第七章",
+        "url": "https://wuxianwow.com/lore/e/1155"
+      },
+      {
+        "id": 1156,
+        "title": "奥蕾莉亚自愿相助",
+        "year": "第 4 年至第 7 年",
+        "where": "南海镇",
+        "cite": "《黑暗之潮》第七章",
+        "url": "https://wuxianwow.com/lore/e/1156"
+      },
+      {
+        "id": 1157,
+        "title": "部落将登陆希尔斯布莱德",
+        "year": "第 4 年至第 7 年",
+        "where": "南海镇",
+        "cite": "《黑暗之潮》第七章",
+        "url": "https://wuxianwow.com/lore/e/1157"
+      },
+      {
+        "id": 1158,
+        "title": "战前紧张",
+        "year": "第 4 年至第 7 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《黑暗之潮》第八章",
+        "url": "https://wuxianwow.com/lore/e/1158"
+      },
+      {
+        "id": 1159,
+        "title": "部落登陆与首次冲锋",
+        "year": "第 4 年至第 7 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《黑暗之潮》第八章",
+        "url": "https://wuxianwow.com/lore/e/1159"
+      },
+      {
+        "id": 1160,
+        "title": "盾墙与死亡骑士",
+        "year": "第 4 年至第 7 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《黑暗之潮》第八章",
+        "url": "https://wuxianwow.com/lore/e/1160"
+      },
+      {
+        "id": 1161,
+        "title": "食人魔冲垮盾墙",
+        "year": "第 4 年至第 7 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《黑暗之潮》第八章",
+        "url": "https://wuxianwow.com/lore/e/1161"
+      },
+      {
+        "id": 1162,
+        "title": "卡德加召闪电",
+        "year": "第 4 年至第 7 年",
+        "where": "希尔斯布莱德丘陵",
+        "cite": "《黑暗之潮》第八章",
+        "url": "https://wuxianwow.com/lore/e/1162"
+      }
+    ],
+    "events_total": 88,
+    "note": "无限世界书（魔兽小说与编年史设定集）里的同一个人物、地点或势力，逐条人工核对；书中内容只到《无限》当下（第 25 年）。详情用 lore_entity / lore_event。"
+  },
+  "new_reason": null,
+  "map_id": 0,
+  "area_id": 267,
+  "bounds": {
+    "ui": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "world": [
+      [
+        -1733.3333,
+        -2133.3333
+      ],
+      [
+        400,
+        1066.6666
+      ]
+    ]
+  },
+  "art_size": [
+    1002,
+    668
+  ],
+  "level_source": "AreaTable.ExplorationLevel（子区域的探索等级区间）",
+  "children": [
+    {
+      "id": 1459,
+      "name": "奥特兰克山谷",
+      "url": "https://wuxianwow.com/atlas/1459",
+      "level_text": null,
+      "new_in_160": false
+    }
+  ],
+  "trip_url": "https://wuxianwow.com/trip?zone=1424&at=0,-711,-515&map=1",
+  "areas": [
+    {
+      "id": 271,
+      "level": 22,
+      "name": "南海镇",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.4965,
+      "y": 0.5539
+    },
+    {
+      "id": 272,
+      "level": 20,
+      "name": "塔伦米尔",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.6113,
+      "y": 0.2582
+    },
+    {
+      "id": 275,
+      "level": 21,
+      "name": "敦霍尔德城堡",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.7685,
+      "y": 0.4079
+    },
+    {
+      "id": 285,
+      "level": 21,
+      "name": "南点哨塔",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.1547,
+      "y": 0.4603
+    },
+    {
+      "id": 286,
+      "level": 22,
+      "name": "希尔斯布莱德农场",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.3493,
+      "y": 0.4491
+    },
+    {
+      "id": 287,
+      "name": "希尔斯布莱德",
+      "new": false,
+      "parent": 267
+    },
+    {
+      "id": 288,
+      "level": 27,
+      "name": "碧玉矿洞",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.262,
+      "y": 0.5726
+    },
+    {
+      "id": 289,
+      "level": 26,
+      "name": "奈杉德哨岗",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.6387,
+      "y": 0.5539
+    },
+    {
+      "id": 290,
+      "level": 30,
+      "name": "丹加洛克",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.7211,
+      "y": 0.7148
+    },
+    {
+      "id": 294,
+      "level": 30,
+      "name": "东部海滩",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.6188,
+      "y": 0.7448
+    },
+    {
+      "id": 295,
+      "level": 30,
+      "name": "西部海岸",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.3568,
+      "y": 0.6811
+    },
+    {
+      "id": 896,
+      "level": 30,
+      "name": "赎罪岛",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.1722,
+      "y": 0.7972
+    },
+    {
+      "id": 1056,
+      "level": 31,
+      "name": "达隆山",
+      "new": false,
+      "parent": 267,
+      "pos_source": "WorldMapOverlay",
+      "x": 0.509,
+      "y": 0.3368
+    },
+    {
+      "id": 1057,
+      "name": "索拉丁之墙",
+      "new": false,
+      "parent": 267
+    },
+    {
+      "id": 2397,
+      "name": "无尽之海",
+      "new": false,
+      "parent": 267
+    }
+  ],
+  "instances": [],
+  "taxi_nodes": [
+    {
+      "id": 14,
+      "faction": "联盟",
+      "name": "南海镇，希尔斯布莱德",
+      "x": 0.4944,
+      "y": 0.521
+    },
+    {
+      "id": 13,
+      "faction": "部落",
+      "name": "塔伦米尔，希尔斯布莱德",
+      "x": 0.6021,
+      "y": 0.1875
+    }
+  ],
+  "transports": [
+    {
+      "kind": "船",
+      "dock": "南海镇（希尔斯布莱德丘陵 50.7, 70.4）",
+      "map": 1424,
+      "coords": [
+        50.7,
+        70.4
+      ],
+      "to": [
+        "奥伯丁（黑海岸 32.3, 44.1）"
+      ],
+      "flight_points": [
+        {
+          "id": 14,
+          "name": "南海镇，希尔斯布莱德",
+          "faction": "联盟",
+          "yards": 393
+        },
+        {
+          "id": 13,
+          "name": "塔伦米尔，希尔斯布莱德",
+          "faction": "部落",
+          "yards": 1144
+        }
+      ],
+      "source": "客户端 TaxiPath 11167"
+    }
+  ],
+  "skyborne_nodes": {
+    "elemental_convergences": [
+      {
+        "x": 0.6342,
+        "y": 0.4627,
+        "coords": "63.4, 46.3"
+      }
+    ],
+    "ley_lines": [
+      {
+        "x": 0.2619,
+        "y": 0.2384,
+        "coords": "26.2, 23.8"
+      }
+    ]
+  },
+  "skyborne_nodes_source": "临时 · Skyborne Leyline & Convergence Marker（CurseForge 插件，MIT）：魔网 = 高阶会天裔「阅读魔网」（联盟），元素交汇处 = 塑风者天裔「天穹视界」（部落）；游戏只在小地图上显示、客户端的表里没有，以游戏里为准",
+  "flight_paths": [],
+  "quest_pois": [],
+  "quests_url": "https://wuxianwow.com/quests?zone=%E5%B8%8C%E5%B0%94%E6%96%AF%E5%B8%83%E8%8E%B1%E5%BE%B7%E4%B8%98%E9%99%B5",
+  "quest_pois_note": "任务地图标记（QuestPOIBlob / QuestPOIPoint）：kind start = 接任务处，end = 交任务处，obj = 某个目标的区域（objective_id 为任务目标编号，任务的 requirements 按它对应）；alt = 同一标记的另一处位置",
+  "quest_givers": [
+    {
+      "name": "亡灵哨兵莱什",
+      "npc": 2214,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "南点哨塔",
+      "points": [
+        {
+          "x": 0.2079,
+          "y": 0.474,
+          "coords": "20.8, 47.4"
+        }
+      ],
+      "quests": [
+        {
+          "id": 494,
+          "title": "进攻的时机",
+          "level": 20,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/494"
+        }
+      ]
+    },
+    {
+      "name": "药剂师林度恩",
+      "npc": 2216,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "塔伦米尔",
+      "points": [
+        {
+          "x": 0.6144,
+          "y": 0.1906,
+          "coords": "61.4, 19.1"
+        }
+      ],
+      "quests": [
+        {
+          "id": 496,
+          "title": "受难药剂",
+          "level": 22,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/496"
+        },
+        {
+          "id": 499,
+          "title": "受难药剂",
+          "level": 22,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/499"
+        },
+        {
+          "id": 501,
+          "title": "痛苦药剂",
+          "level": 24,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/501"
+        },
+        {
+          "id": 502,
+          "title": "痛苦药剂",
+          "level": 24,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/502"
+        }
+      ],
+      "quests_more": 9
+    },
+    {
+      "name": "克鲁斯克",
+      "npc": 2229,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "塔伦米尔",
+      "points": [
+        {
+          "x": 0.6324,
+          "y": 0.2066,
+          "coords": "63.2, 20.7"
+        }
+      ],
+      "quests": [
+        {
+          "id": 498,
+          "title": "拯救行动",
+          "level": 22,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/498"
+        },
+        {
+          "id": 503,
+          "title": "高迪尔",
+          "level": 36,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/503"
+        },
+        {
+          "id": 507,
+          "title": "奥里登·匹瑞诺德",
+          "level": 42,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/507"
+        },
+        {
+          "id": 533,
+          "title": "秘密潜入",
+          "level": 34,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/533"
+        }
+      ],
+      "quests_more": 1
+    },
+    {
+      "name": "治安官雷德帕斯",
+      "npc": 2263,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "南海镇",
+      "points": [
+        {
+          "x": 0.4947,
+          "y": 0.5873,
+          "coords": "49.5, 58.7"
+        }
+      ],
+      "quests": [
+        {
+          "id": 500,
+          "title": "破碎岭食人魔",
+          "level": 36,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/500"
+        },
+        {
+          "id": 504,
+          "title": "破碎岭好战者",
+          "level": 40,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/504"
+        },
+        {
+          "id": 561,
+          "title": "法尔林的证据",
+          "level": 32,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/561"
+        }
+      ]
+    },
+    {
+      "name": "赫尼·马雷布镇长",
+      "npc": 2276,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "南海镇",
+      "points": [
+        {
+          "x": 0.4814,
+          "y": 0.5911,
+          "coords": "48.1, 59.1"
+        }
+      ],
+      "quests": [
+        {
+          "id": 505,
+          "title": "辛迪加刺客",
+          "level": 33,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/505"
+        },
+        {
+          "id": 512,
+          "title": "贵族之死",
+          "level": 36,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/512"
+        },
+        {
+          "id": 523,
+          "title": "男爵之死",
+          "level": 40,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/523"
+        },
+        {
+          "id": 537,
+          "title": "黑暗议会",
+          "level": 40,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/537"
+        }
+      ]
+    },
+    {
+      "name": "博学者迪布斯",
+      "npc": 2277,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "南海镇",
+      "points": [
+        {
+          "x": 0.5057,
+          "y": 0.5709,
+          "coords": "50.6, 57.1"
+        }
+      ],
+      "quests": [
+        {
+          "id": 514,
+          "title": "铁炉堡的译码者",
+          "level": 34,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/514"
+        },
+        {
+          "id": 540,
+          "title": "保全书籍",
+          "level": 38,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/540"
+        },
+        {
+          "id": 542,
+          "title": "向米尔顿回复",
+          "level": 38,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/542"
+        },
+        {
+          "id": 554,
+          "title": "解码高手",
+          "level": 40,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/554"
+        }
+      ]
+    },
+    {
+      "name": "梅里萨拉",
+      "npc": 2278,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "塔伦米尔",
+      "points": [
+        {
+          "x": 0.6263,
+          "y": 0.2065,
+          "coords": "62.6, 20.6"
+        }
+      ],
+      "quests": [
+        {
+          "id": 518,
+          "title": "意志之冠",
+          "level": 39,
+          "side": "部落",
+          "confirmed": false,
+          "title_temporary": true,
+          "url": "https://wuxianwow.com/quest/518"
+        },
+        {
+          "id": 519,
+          "title": "意志之冠",
+          "level": 41,
+          "side": "部落",
+          "confirmed": false,
+          "title_temporary": true,
+          "url": "https://wuxianwow.com/quest/519"
+        },
+        {
+          "id": 520,
+          "title": "意志之冠",
+          "level": 43,
+          "side": "部落",
+          "confirmed": false,
+          "title_temporary": true,
+          "url": "https://wuxianwow.com/quest/520"
+        },
+        {
+          "id": 521,
+          "title": "意志之冠",
+          "level": 43,
+          "side": "部落",
+          "confirmed": false,
+          "title_temporary": true,
+          "url": "https://wuxianwow.com/quest/521"
+        }
+      ]
+    },
+    {
+      "name": "高级执行官达萨利亚",
+      "npc": 2215,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "塔伦米尔",
+      "points": [
+        {
+          "x": 0.6233,
+          "y": 0.2045,
+          "coords": "62.3, 20.4"
+        }
+      ],
+      "quests": [
+        {
+          "id": 527,
+          "title": "希尔斯布莱德之战",
+          "level": 24,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/527"
+        },
+        {
+          "id": 528,
+          "title": "希尔斯布莱德之战",
+          "level": 25,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/528"
+        },
+        {
+          "id": 529,
+          "title": "希尔斯布莱德之战",
+          "level": 26,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/529"
+        },
+        {
+          "id": 532,
+          "title": "希尔斯布莱德之战",
+          "level": 26,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/532"
+        }
+      ],
+      "quests_more": 3
+    },
+    {
+      "name": "法尔林·奥里涅尔中尉",
+      "npc": 2228,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "南海镇",
+      "points": [
+        {
+          "x": 0.5146,
+          "y": 0.5839,
+          "coords": "51.5, 58.4"
+        }
+      ],
+      "quests": [
+        {
+          "id": 536,
+          "title": "清理海岸",
+          "level": 30,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/536"
+        },
+        {
+          "id": 559,
+          "title": "法尔林的证据",
+          "level": 32,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/559"
+        },
+        {
+          "id": 560,
+          "title": "法尔林的证据",
+          "level": 32,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/560"
+        },
+        {
+          "id": 562,
+          "title": "升官之道",
+          "level": 32,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/562"
+        }
+      ],
+      "quests_more": 1
+    },
+    {
+      "name": "大法师沃迪恩·伍德格莱尔",
+      "npc": 2410,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "塔伦米尔",
+      "points": [
+        {
+          "x": 0.616,
+          "y": 0.2085,
+          "coords": "61.6, 20.8"
+        }
+      ],
+      "quests": [
+        {
+          "id": 544,
+          "title": "入室偷窃",
+          "level": 33,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/544"
+        },
+        {
+          "id": 545,
+          "title": "达拉然巡逻队",
+          "level": 35,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/545"
+        }
+      ]
+    },
+    {
+      "name": "亡灵卫兵沙穆萨",
+      "npc": 2418,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "塔伦米尔",
+      "points": [
+        {
+          "x": 0.6211,
+          "y": 0.197,
+          "coords": "62.1, 19.7"
+        }
+      ],
+      "quests": [
+        {
+          "id": 546,
+          "title": "死亡的纪念品",
+          "level": 25,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/546"
+        }
+      ]
+    },
+    {
+      "name": "亡灵卫兵亨伯特",
+      "npc": 2419,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "塔伦米尔",
+      "points": [
+        {
+          "x": 0.6276,
+          "y": 0.2021,
+          "coords": "62.8, 20.2"
+        }
+      ],
+      "quests": [
+        {
+          "id": 547,
+          "title": "亨伯特的长剑",
+          "level": 30,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/547"
+        }
+      ]
+    },
+    {
+      "name": "WANTED",
+      "npc": null,
+      "object": 1763,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "塔伦米尔",
+      "points": [
+        {
+          "x": 0.6263,
+          "y": 0.2075,
+          "coords": "62.6, 20.8"
+        }
+      ],
+      "quests": [
+        {
+          "id": 549,
+          "title": "通缉：辛迪加成员",
+          "level": 22,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/549"
+        },
+        {
+          "id": 566,
+          "title": "通缉：瓦杜斯男爵",
+          "level": 40,
+          "side": "部落",
+          "confirmed": false,
+          "title_temporary": true,
+          "url": "https://wuxianwow.com/quest/566"
+        }
+      ]
+    },
+    {
+      "name": "学徒塞万德",
+      "npc": 2429,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "塔伦米尔",
+      "points": [
+        {
+          "x": 0.6388,
+          "y": 0.1966,
+          "coords": "63.9, 19.7"
+        }
+      ],
+      "quests": [
+        {
+          "id": 552,
+          "title": "赫尔库拉的复仇",
+          "level": 33,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/552"
+        },
+        {
+          "id": 553,
+          "title": "赫尔库拉的复仇",
+          "level": 33,
+          "side": "部落",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/553"
+        }
+      ]
+    },
+    {
+      "name": "厨师杰森",
+      "npc": 2430,
+      "object": null,
+      "source": [
+        "QuestieDB（临时）"
+      ],
+      "place": "南海镇",
+      "points": [
+        {
+          "x": 0.5189,
+          "y": 0.5868,
+          "coords": "51.9, 58.7"
+        }
+      ],
+      "quests": [
+        {
+          "id": 555,
+          "title": "海龟汤",
+          "level": 31,
+          "side": "联盟",
+          "confirmed": true,
+          "title_temporary": false,
+          "url": "https://wuxianwow.com/quest/555"
+        }
+      ]
+    }
+  ],
+  "quest_givers_note": "接任务的人（地图集的「接任务」图层）：每个任务的接任务处——客户端任务地图标记，没有的用第三方临时数据（QuestieDB 的接任务 NPC 刷新点、RestedXP 练级指南的地点，source 标「临时」）；同一个 NPC 在这张图上的几处刷新点合为一项（points）；quests 的 confirmed = 服务器的任务缓存里有记录（游戏里确实存在，网站默认只列这些），title_temporary = 任务名来自临时数据",
+  "coordinates_note": "x / y 为地图图片的比例（0–1，左上为原点），乘以 100 即游戏内常用的区域坐标；副本入口 source：Map.Corpse（尸体落点，副本门口，精确）/ AreaPOI（精确）/ WorldMapOverlay（子区域已探索区域块中心，approx）/ UiMap（整区域副本的区域中心，approx），confidence high / medium / low，source_detail 说明依据；x 为 null 的副本没有入口坐标",
+  "text": "希尔斯布莱德丘陵（区域 · 20–31 级）\n副本入口：—\n飞行点：南海镇，希尔斯布莱德(联盟)、塔伦米尔，希尔斯布莱德(部落)\n接任务：29 处，任务 71 个（服务器确认 61 个）",
+  "quest_givers_total": 29,
+  "quest_givers_more": "只列了前 15 个接任务的人、每人前 4 个任务；全部用 fetch map:1424，或 quests 传 zone",
+  "matched_by": "id"
+}

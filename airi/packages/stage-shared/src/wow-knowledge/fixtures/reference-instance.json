@@ -1,0 +1,168 @@
+{
+  "outcome": "ok",
+  "id": 36,
+  "fetch_id": "instance:36",
+  "title": "死亡矿井",
+  "url": "https://wuxianwow.com/instance/36",
+  "kind": "地下城",
+  "level": {
+    "group": [
+      17,
+      26
+    ],
+    "max": null,
+    "min": 10,
+    "target": 16
+  },
+  "level_text": "进入 10 级 · 目标 16 级",
+  "players_text": "5 / 10 人",
+  "zone": "西部荒野",
+  "entrance": {
+    "zone": "西部荒野",
+    "area": null,
+    "continent": "东部王国",
+    "source": "Map.Corpse",
+    "confidence": "high",
+    "approx": false,
+    "source_detail": "Map 36.Corpse (-11207.8, 1681.2) on Map 0",
+    "world_xy": [
+      -11207.8,
+      1681.2
+    ],
+    "continent_map_id": 0,
+    "zone_ui_map": 1436,
+    "atlas": [
+      {
+        "name": "西部荒野",
+        "ui_map": 1436,
+        "x": 0.3816,
+        "y": 0.7748,
+        "url": "https://wuxianwow.com/atlas/1436?i=36"
+      },
+      {
+        "name": "艾泽拉斯",
+        "ui_map": 947,
+        "x": 0.6919,
+        "y": 0.7083,
+        "url": "https://wuxianwow.com/atlas/947?i=36"
+      },
+      {
+        "name": "东部王国",
+        "ui_map": 1415,
+        "x": 0.4068,
+        "y": 0.7958,
+        "url": "https://wuxianwow.com/atlas/1415?i=36"
+      },
+      {
+        "name": "东部王国",
+        "ui_map": 1463,
+        "x": 0.3778,
+        "y": 0.7811,
+        "url": "https://wuxianwow.com/atlas/1463?i=36"
+      }
+    ]
+  },
+  "boss_count": 8,
+  "bosses": [
+    {
+      "order": 1,
+      "name": "拉克佐",
+      "encounter_id": 2741,
+      "npc_id": 902741,
+      "url": "https://wuxianwow.com/npc/902741",
+      "portrait": "https://wuxianwow.com/data/bosses/2741.webp",
+      "model_image": "https://wuxianwow.com/data/bosses/2741_model.webp",
+      "fallback_icon": null,
+      "new_in_160": false,
+      "untranslated": false
+    },
+    {
+      "order": 2,
+      "name": "斯尼德",
+      "encounter_id": 2742,
+      "npc_id": 902742,
+      "url": "https://wuxianwow.com/npc/902742",
+      "portrait": "https://wuxianwow.com/data/bosses/2742.webp",
+      "model_image": "https://wuxianwow.com/data/bosses/2742_model.webp",
+      "fallback_icon": null,
+      "new_in_160": false,
+      "untranslated": false
+    },
+    {
+      "order": 3,
+      "name": "矿工约翰森",
+      "encounter_id": 3676,
+      "npc_id": 903676,
+      "url": "https://wuxianwow.com/npc/903676",
+      "portrait": "https://wuxianwow.com/data/bosses/3676.webp",
+      "model_image": "https://wuxianwow.com/data/bosses/3676_model.webp",
+      "fallback_icon": null,
+      "new_in_160": false,
+      "untranslated": false
+    },
+    {
+      "order": 4,
+      "name": "基尔尼格",
+      "encounter_id": 2743,
+      "npc_id": 902743,
+      "url": "https://wuxianwow.com/npc/902743",
+      "portrait": "https://wuxianwow.com/data/bosses/2743.webp",
+      "model_image": "https://wuxianwow.com/data/bosses/2743_model.webp",
+      "fallback_icon": null,
+      "new_in_160": false,
+      "untranslated": false
+    },
+    {
+      "order": 5,
+      "name": "绿皮船长",
+      "encounter_id": 2744,
+      "npc_id": 902744,
+      "url": "https://wuxianwow.com/npc/902744",
+      "portrait": "https://wuxianwow.com/data/bosses/2744.webp",
+      "model_image": "https://wuxianwow.com/data/bosses/2744_model.webp",
+      "fallback_icon": null,
+      "new_in_160": false,
+      "untranslated": false
+    },
+    {
+      "order": 6,
+      "name": "重拳先生",
+      "encounter_id": 2745,
+      "npc_id": 902745,
+      "url": "https://wuxianwow.com/npc/902745",
+      "portrait": "https://wuxianwow.com/data/bosses/2745.webp",
+      "model_image": "https://wuxianwow.com/data/bosses/2745_model.webp",
+      "fallback_icon": null,
+      "new_in_160": false,
+      "untranslated": false
+    },
+    {
+      "order": 7,
+      "name": "曲奇",
+      "encounter_id": 2746,
+      "npc_id": 902746,
+      "url": "https://wuxianwow.com/npc/902746",
+      "portrait": "https://wuxianwow.com/data/bosses/2746.webp",
+      "model_image": "https://wuxianwow.com/data/bosses/2746_model.webp",
+      "fallback_icon": null,
+      "new_in_160": false,
+      "untranslated": false
+    },
+    {
+      "order": 8,
+      "name": "艾德温·范克里夫",
+      "encounter_id": 2747,
+      "npc_id": 902747,
+      "url": "https://wuxianwow.com/npc/902747",
+      "portrait": "https://wuxianwow.com/data/bosses/2747.webp",
+      "model_image": "https://wuxianwow.com/data/bosses/2747_model.webp",
+      "fallback_icon": null,
+      "new_in_160": false,
+      "untranslated": false
+    }
+  ],
+  "incomplete": false,
+  "entry_note": "进门条件：客户端只有进入等级（level_text），钥匙、前置任务（进门任务）与声望要求在服务器上，客户端数据里没有，所以这里没写不等于没有。相关任务可用 quests 按副本名查（zone 或 query），多为临时数据（QuestieDB），转述时注明「临时」",
+  "loot_note": "掉落数据在 客户端的冒险指南（JournalEncounter / JournalEncounterItem）中为空；客户端的来源类型表虽有“首领掉落”一项，但没有一件物品标成它（史诗装备多标「任务」「商人」，见 item_usage 的 source_type）。首领详情（npcs，id = 900000 + 首领战 ID）的 temporary_drops 是 QuestieDB 的临时掉落（经典旧世数据，没有掉落率），转述时注明「临时」",
+  "text": "死亡矿井（地下城 · 5 / 10 人 · 进入 10 级 · 目标 16 级 · 西部荒野）\n入口：西部荒野（-11207.8, 1681.2，Map.Corpse）\n首领：拉克佐、斯尼德、矿工约翰森、基尔尼格、绿皮船长、重拳先生、曲奇、艾德温·范克里夫\n进门条件：客户端只有进入等级（level_text），钥匙、前置任务（进门任务）与声望要求在服务器上，客户端数据里没有，所以这里没写不等于没有。相关任务可用 quests 按副本名查（zone 或 query），多为临时数据（QuestieDB），转述时注明「临时」"
+}

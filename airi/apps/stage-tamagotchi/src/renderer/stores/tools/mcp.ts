@@ -22,6 +22,7 @@ export const useTamagotchiMcpToolsStore = defineStore('tamagotchi-mcp-tools', ()
 
   async function refresh() {
     const tools = await Promise.all(createMcpTools({
+      trustedWowEvidence: true,
       listTools: () => listMcpTools(),
       callTool: payload => callMcpTool(payload),
     }))

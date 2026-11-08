@@ -16,6 +16,7 @@ import { useAiriCardStore } from '@proj-airi/stage-ui/stores/modules/airi-card'
 import { useConsciousnessStore } from '@proj-airi/stage-ui/stores/modules/consciousness'
 import { useVisionStore } from '@proj-airi/stage-ui/stores/modules/vision'
 import { useProviderStore } from '@proj-airi/stage-ui/stores/providers/provider'
+import { useSettingsStageModel } from '@proj-airi/stage-ui/stores/settings/stage-model'
 import { Button, FieldInput, FieldValues, GhostButton, IconButton } from '@proj-airi/ui'
 import { ComboboxSelect } from '@proj-airi/ui/components/form'
 import { isEqual } from 'es-toolkit'
@@ -70,6 +71,7 @@ const consciousnessStore = useConsciousnessStore()
 const visionStore = useVisionStore()
 const providersStore = useProviderStore()
 const displayModelsStore = useDisplayModelsStore()
+const stageModelSettings = useSettingsStageModel()
 
 const consciousnessProvider = computed(() => cardStore.moduleDefaults?.consciousness.provider ?? '')
 const visionProvider = computed(() => cardStore.moduleDefaults?.vision.provider ?? '')
@@ -893,7 +895,7 @@ function handleBack() {
                   <FieldInput v-model="cardNickname" :label="t('settings.pages.card.creation.nickname')" :description="t('settings.pages.card.creation.fields_info.nickname')" />
                 </div>
                 <div :class="['grid grid-cols-1 gap-5', 'sm:grid-cols-2']">
-                  <div :class="['flex flex-col gap-1.5']">
+                  <div v-if="stageModelSettings.runtimeEnabled" :class="['flex flex-col gap-1.5']">
                     <label :class="moduleFieldLabelClasses">
                       {{ t('settings.pages.card.body-model') }}
                     </label>

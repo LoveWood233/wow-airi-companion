@@ -34,6 +34,9 @@ export default defineConfig({
     },
     build: {
       externalizeDeps: {
+        // Main imports only this package's pure MCP cache adapter. Its exports point to TypeScript source,
+        // which must be bundled because Electron cannot strip types inside packaged node_modules.
+        exclude: ['@proj-airi/stage-ui'],
         include: [
           // Native modules that have `__dirname` usages. Externalize to avoid bundling
           // them into ESM and causing issues in runtime.

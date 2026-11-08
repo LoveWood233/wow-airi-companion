@@ -1,0 +1,390 @@
+{
+  "@context": [
+    "https://schema.org",
+    "https://wuxianwow.com/vocab"
+  ],
+  "@graph": [
+    {
+      "@id": "https://wuxianwow.com/id/recipe:6858",
+      "@type": [
+        "Thing",
+        "wxw:Recipe"
+      ],
+      "identifier": "recipe:6858",
+      "name": "实心炸药",
+      "description": "实心炸药：工程学配方（零件）。材料：坚固的石头×2；产出：实心炸药；技能 175 变黄、185 变绿、195 变灰。数据取自国服客户端 1.60.1.70707。",
+      "url": "https://wuxianwow.com/recipe/6858",
+      "image": [
+        "https://wuxianwow.com/data/icons/134380.webp",
+        "https://wuxianwow.com/share/134380.jpg"
+      ],
+      "mainEntityOfPage": {
+        "@id": "https://wuxianwow.com/recipe/6858#webpage"
+      },
+      "wxw:profession": {
+        "@id": "https://wuxianwow.com/id/profession:202",
+        "name": "工程学"
+      },
+      "wxw:category": {
+        "@id": "https://wuxianwow.com/recipes?skill=202&cat=2515",
+        "name": "零件"
+      },
+      "wxw:reagent": [
+        {
+          "@type": "wxw:ItemQuantity",
+          "wxw:item": {
+            "@id": "https://wuxianwow.com/id/item:7912",
+            "name": "坚固的石头"
+          },
+          "wxw:count": 2
+        }
+      ],
+      "wxw:product": [
+        {
+          "@type": "wxw:ItemQuantity",
+          "wxw:item": {
+            "@id": "https://wuxianwow.com/id/item:10505",
+            "name": "实心炸药"
+          },
+          "wxw:count": 1
+        }
+      ],
+      "wxw:skillYellow": 175,
+      "wxw:skillGreen": 185,
+      "wxw:skillGrey": 195,
+      "wxw:spellId": 12585,
+      "wxw:firstSeenIn": {
+        "@id": "https://wuxianwow.com/build/1.60.1.70094",
+        "name": "1.60.1.70094"
+      },
+      "wxw:game": {
+        "@id": "https://wuxianwow.com/#game"
+      },
+      "wxw:sourceBuild": "1.60.1.70707",
+      "wxw:note": [
+        "学习需求（橙）在 客户端数据中未填。",
+        "变绿取变黄与变灰的中点；变黄 / 变灰取自 SkillLineAbility 的 TrivialSkillLineRankLow / High，与客户端技能提升判定一致。"
+      ]
+    },
+    {
+      "@id": "https://wuxianwow.com/#dataset",
+      "@type": "Dataset",
+      "name": "无限图鉴数据（《魔兽世界：无限》国服客户端 1.60.1.70707）",
+      "url": "https://wuxianwow.com/about",
+      "version": "1.60.1.70707",
+      "dateModified": "2026-10-30",
+      "inLanguage": "zh-CN",
+      "isAccessibleForFree": true,
+      "description": "无限图鉴整理的《魔兽世界：无限》结构化 JSON：配方、物品、套装、装备库、种族、天赋、职业技能书、传承树、副本与首领、成就、任务、NPC 与 NPC 外观、称号、声望、地图集、专业指南、露营设施与系统专题，以及逐版本比对的版本账本。来源：国服客户端 1.60.1.70707 的数据表，合并游戏服务器发给客户端的热修与缓存；第三方临时数据（QuestieDB、RestedXP）单独标注。只读、免费开放，引用请注明来源「无限图鉴 wuxianwow.com」。",
+      "measurementTechnique": "从客户端的 CASC 数据表导出，合并客户端的热修缓存与 WDB 缓存，每个客户端版本与上一版逐条比对",
+      "keywords": [
+        "魔兽世界无限",
+        "魔兽世界：无限",
+        "World of Warcraft",
+        "配方",
+        "物品",
+        "副本",
+        "成就",
+        "天赋"
+      ],
+      "creator": {
+        "@id": "https://wuxianwow.com/#org"
+      },
+      "publisher": {
+        "@id": "https://wuxianwow.com/#org"
+      },
+      "about": {
+        "@id": "https://wuxianwow.com/#game"
+      },
+      "usageInfo": "https://wuxianwow.com/legal",
+      "isBasedOn": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "《魔兽世界：无限》国服客户端",
+          "softwareVersion": "1.60.1.70707",
+          "applicationCategory": "GameApplication"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "游戏服务器发给客户端的热修与缓存",
+          "description": "客户端的热修缓存与 WDB 缓存：物品资料、向服务器查询过的任务标题与文本等"
+        }
+      ],
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "name": "manifest.json",
+          "contentUrl": "https://wuxianwow.com/data/manifest.json",
+          "encodingFormat": "application/json",
+          "contentSize": "8 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "professions.json",
+          "contentUrl": "https://wuxianwow.com/data/professions.json",
+          "encodingFormat": "application/json",
+          "contentSize": "7 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "categories.json",
+          "contentUrl": "https://wuxianwow.com/data/categories.json",
+          "encodingFormat": "application/json",
+          "contentSize": "18 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "recipes.json",
+          "contentUrl": "https://wuxianwow.com/data/recipes.json",
+          "encodingFormat": "application/json",
+          "contentSize": "792 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "items.json",
+          "contentUrl": "https://wuxianwow.com/data/items.json",
+          "encodingFormat": "application/json",
+          "contentSize": "3.2 MB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "itemsets.json",
+          "contentUrl": "https://wuxianwow.com/data/itemsets.json",
+          "encodingFormat": "application/json",
+          "contentSize": "315 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "gear.json",
+          "contentUrl": "https://wuxianwow.com/data/gear.json",
+          "encodingFormat": "application/json",
+          "contentSize": "99 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "epics.json",
+          "contentUrl": "https://wuxianwow.com/data/epics.json",
+          "encodingFormat": "application/json",
+          "contentSize": "15 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "races.json",
+          "contentUrl": "https://wuxianwow.com/data/races.json",
+          "encodingFormat": "application/json",
+          "contentSize": "16 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "talents.json",
+          "contentUrl": "https://wuxianwow.com/data/talents.json",
+          "encodingFormat": "application/json",
+          "contentSize": "241 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "titles.json",
+          "contentUrl": "https://wuxianwow.com/data/titles.json",
+          "encodingFormat": "application/json",
+          "contentSize": "22 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "factions.json",
+          "contentUrl": "https://wuxianwow.com/data/factions.json",
+          "encodingFormat": "application/json",
+          "contentSize": "189 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "atlas.json",
+          "contentUrl": "https://wuxianwow.com/data/atlas.json",
+          "encodingFormat": "application/json",
+          "contentSize": "2.2 MB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "spellbook.json",
+          "contentUrl": "https://wuxianwow.com/data/spellbook.json",
+          "encodingFormat": "application/json",
+          "contentSize": "988 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "instances.json",
+          "contentUrl": "https://wuxianwow.com/data/instances.json",
+          "encodingFormat": "application/json",
+          "contentSize": "103 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "achievements.json",
+          "contentUrl": "https://wuxianwow.com/data/achievements.json",
+          "encodingFormat": "application/json",
+          "contentSize": "274 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "quests.json",
+          "contentUrl": "https://wuxianwow.com/data/quests.json",
+          "encodingFormat": "application/json",
+          "contentSize": "3.4 MB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "questlines.json",
+          "contentUrl": "https://wuxianwow.com/data/questlines.json",
+          "encodingFormat": "application/json",
+          "contentSize": "1 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "npcs.json",
+          "contentUrl": "https://wuxianwow.com/data/npcs.json",
+          "encodingFormat": "application/json",
+          "contentSize": "145 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "looks.json",
+          "contentUrl": "https://wuxianwow.com/data/looks.json",
+          "encodingFormat": "application/json",
+          "contentSize": "1.7 MB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "bundle.json",
+          "contentUrl": "https://wuxianwow.com/data/bundle.json",
+          "encodingFormat": "application/json",
+          "contentSize": "32 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "transmog.json",
+          "contentUrl": "https://wuxianwow.com/data/transmog.json",
+          "encodingFormat": "application/json",
+          "contentSize": "788 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "profession_guide.json",
+          "contentUrl": "https://wuxianwow.com/data/profession_guide.json",
+          "encodingFormat": "application/json",
+          "contentSize": "397 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "camping.json",
+          "contentUrl": "https://wuxianwow.com/data/camping.json",
+          "encodingFormat": "application/json",
+          "contentSize": "41 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "commerce.json",
+          "contentUrl": "https://wuxianwow.com/data/commerce.json",
+          "encodingFormat": "application/json",
+          "contentSize": "64 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "pvp.json",
+          "contentUrl": "https://wuxianwow.com/data/pvp.json",
+          "encodingFormat": "application/json",
+          "contentSize": "177 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "pingmeter.json",
+          "contentUrl": "https://wuxianwow.com/data/pingmeter.json",
+          "encodingFormat": "application/json",
+          "contentSize": "19 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "rulesets.json",
+          "contentUrl": "https://wuxianwow.com/data/rulesets.json",
+          "encodingFormat": "application/json",
+          "contentSize": "16 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "experience.json",
+          "contentUrl": "https://wuxianwow.com/data/experience.json",
+          "encodingFormat": "application/json",
+          "contentSize": "21 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "combatui.json",
+          "contentUrl": "https://wuxianwow.com/data/combatui.json",
+          "encodingFormat": "application/json",
+          "contentSize": "13 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "charpanel.json",
+          "contentUrl": "https://wuxianwow.com/data/charpanel.json",
+          "encodingFormat": "application/json",
+          "contentSize": "10 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "groupfinder.json",
+          "contentUrl": "https://wuxianwow.com/data/groupfinder.json",
+          "encodingFormat": "application/json",
+          "contentSize": "25 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "calendar.json",
+          "contentUrl": "https://wuxianwow.com/data/calendar.json",
+          "encodingFormat": "application/json",
+          "contentSize": "17 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "hunterpets.json",
+          "contentUrl": "https://wuxianwow.com/data/hunterpets.json",
+          "encodingFormat": "application/json",
+          "contentSize": "15 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "mounts.json",
+          "contentUrl": "https://wuxianwow.com/data/mounts.json",
+          "encodingFormat": "application/json",
+          "contentSize": "51 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "stat_names.json",
+          "contentUrl": "https://wuxianwow.com/data/stat_names.json",
+          "encodingFormat": "application/json",
+          "contentSize": "3 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "classes.json",
+          "contentUrl": "https://wuxianwow.com/data/classes.json",
+          "encodingFormat": "application/json",
+          "contentSize": "1 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "source_types.json",
+          "contentUrl": "https://wuxianwow.com/data/source_types.json",
+          "encodingFormat": "application/json",
+          "contentSize": "1 KB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "legacy_trees.json",
+          "contentUrl": "https://wuxianwow.com/data/legacy_trees.json",
+          "encodingFormat": "application/json",
+          "contentSize": "52 KB"
+        }
+      ]
+    }
+  ]
+}

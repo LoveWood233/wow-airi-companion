@@ -1,5 +1,6 @@
 import type { createContext } from '@moeru/eventa/adapters/electron/main'
 
+import type { BackupFile, BackupSelection } from '../../../shared/wow-backup'
 import type { CaptureSettings, CompanionSettings, CompanionState, DemoRequest, GameVersion } from '../../../shared/wow-companion'
 import type { MacroImportRequest } from '../../../shared/wow-macro-import'
 
@@ -10,23 +11,32 @@ import { join } from 'node:path'
 import { defineInvokeHandler } from '@moeru/eventa'
 import { errorMessageFrom } from '@moeru/std'
 import { app } from 'electron'
-import { object, parse } from 'valibot'
+import { maxLength, minLength, nullable, object, parse, pipe, string } from 'valibot'
 
-import { wowCompanionDemo, wowCompanionGet, wowCompanionSetAccountName, wowCompanionSetCapture, wowCompanionSetSettings } from '../../../shared/eventa/wow-companion'
+import { wowCompanionDemo, wowCompanionGet, wowCompanionReconnect, wowCompanionSetAccountName, wowCompanionSetCapture, wowCompanionSetSettings } from '../../../shared/eventa/wow-companion'
+import { wowItemStorageClear, wowItemStorageQuery } from '../../../shared/eventa/wow-companion-item-storage'
+import { wowMemoryActivate, wowMemoryClaimNotice, wowMemoryClear, wowMemoryCleared, wowMemoryCollect, wowMemoryCollectEquipment, wowMemoryEdit, wowMemoryExpireGoals, wowMemoryForget, wowMemoryGet, wowMemoryGetCapacity, wowMemoryRemember, wowMemorySetLimit, wowMemorySuppress } from '../../../shared/eventa/wow-companion-memory'
 import { wowMacroImport } from '../../../shared/eventa/wow-macro-import'
+import { wowSetupEnvironment } from '../../../shared/eventa/wow-setup'
 import { captureSchema, defaultSettings, demoSchema, gameProfiles, gameVersionSchema, settingsSchema } from '../../../shared/wow-companion'
 import { companionError } from '../../../shared/wow-companion-errors'
 import { accountNameSchema } from '../../../shared/wow-companion-gold'
+import { itemStorageQuerySchema } from '../../../shared/wow-companion-item-storage'
+import { claimMemoryNoticeSchema, collectEquipmentMemorySchema, collectMemorySchema, editMemorySchema, expireSessionGoalsSchema, memoryEntryActionSchema, memoryScopeSchema, rememberMemorySchema, setMemoryLimitSchema, suggestedMemoryGrowthRules, suppressMemorySchema } from '../../../shared/wow-companion-memory'
 import { macroImportSchema } from '../../../shared/wow-macro-import'
 import { onAppBeforeQuit } from '../../libs/bootkit/lifecycle'
 import { createConfig } from '../../libs/electron/persistence'
+import { CompanionArchive } from './wow-companion-archive'
 import { CompanionBridgeClient } from './wow-companion-client'
 import { CompanionEquipmentComparisons } from './wow-companion-equipment-comparisons'
 import { CompanionEquipmentHistory } from './wow-companion-equipment-history'
 import { CompanionGoldLedger } from './wow-companion-gold'
+import { CompanionItemStorage } from './wow-companion-item-storage'
 import { CompanionLevelHistory } from './wow-companion-level-history'
 import { CompanionLoadouts } from './wow-companion-loadouts'
+import { CompanionMemoryRepository } from './wow-companion-memory'
 import { CompanionBridgeRuntime } from './wow-companion-runtime'
+import { CompanionSavedHistory } from './wow-companion-saved-history'
 import { WindowsGameCapture } from './wow-screen-assist-windows'
 
 const getSchema = object({ game: gameVersionSchema })
@@ -38,9 +48,16 @@ let importingMacro = false
 
 /** Each profile owns one poller, lifecycle generation, settings, gold ledger, equipment history, and level history. */
 class CompanionProfile {
+  async snapshotForBackup(): Promise<BackupFile> {
+    await Promise.all([this.gold.flush(), this.equipmentHistory.flush(), this.levelHistory.flush(), this.equipmentComparisons.flush(), this.equipmentLoadouts.flush()])
+    return { id: `${this.game}-settings`, data: JSON.stringify(this.settings) }
+  }
+
   private readonly config
   private settings: CompanionSettings
   private readonly client: CompanionBridgeClient
+  private readonly archive: CompanionArchive
+  private readonly savedHistory: CompanionSavedHistory
   private readonly runtime: CompanionBridgeRuntime
   readonly gold: CompanionGoldLedger
   private readonly equipmentHistory: CompanionEquipmentHistory
@@ -52,7 +69,7 @@ class CompanionProfile {
   private connectionError: string | null = null
   private timer: ReturnType<typeof setTimeout> | undefined
 
-  constructor(private readonly game: GameVersion) {
+  constructor(private readonly game: GameVersion, private readonly memories: CompanionMemoryRepository, private readonly items: CompanionItemStorage) {
     const profile = gameProfiles[game]
     const defaults = { ...defaultSettings, enabled: game === 'retail' }
     this.config = createConfig(profile.settingsNamespace, 'v1.json', settingsSchema, { default: defaults, autoHeal: true })
@@ -71,6 +88,8 @@ class CompanionProfile {
     this.levelHistory = new CompanionLevelHistory(join(app.getPath('userData'), profile.levelsFile))
     this.equipmentComparisons = new CompanionEquipmentComparisons(join(app.getPath('userData'), profile.comparisonsFile))
     this.equipmentLoadouts = new CompanionLoadouts(join(app.getPath('userData'), profile.loadoutsFile))
+    this.archive = new CompanionArchive(join(app.getPath('userData'), `wow-companion-${game}-archive-v1.json`), game)
+    this.savedHistory = new CompanionSavedHistory(app.getPath('userData'), game)
   }
 
   read(): CompanionState {
@@ -85,11 +104,16 @@ class CompanionProfile {
       levelHistory: this.levelHistory.read(),
       equipmentComparisons: this.equipmentComparisons.read(),
       equipmentLoadouts: this.equipmentLoadouts.read(),
+      itemStorage: this.items.read(this.game),
     }
   }
 
   start() {
     void this.poll()
+  }
+
+  inspectEnvironment() {
+    return this.runtime.inspectEnvironment()
   }
 
   async importMacro(request: MacroImportRequest) {
@@ -140,6 +164,12 @@ class CompanionProfile {
     return this.read()
   }
 
+  async reconnect() {
+    await this.ensureConnected()
+    await this.client.update('/api/reconnect', {})
+    return this.read()
+  }
+
   async demo(request: DemoRequest) {
     await this.ensureConnected()
     await this.client.update('/api/demo', {
@@ -155,6 +185,7 @@ class CompanionProfile {
     this.client.dispose()
     clearTimeout(this.timer)
     await Promise.all([this.gold.flush(), this.equipmentHistory.flush(), this.levelHistory.flush(), this.equipmentComparisons.flush(), this.equipmentLoadouts.flush(), this.runtime.dispose()])
+    await this.archive.flush()
   }
 
   private async ensureConnected() {
@@ -167,7 +198,8 @@ class CompanionProfile {
   }
 
   private async poll() {
-    await Promise.all([this.gold.load(), this.equipmentHistory.load(), this.levelHistory.load(), this.equipmentComparisons.load(), this.equipmentLoadouts.load()])
+    await Promise.all([this.gold.load(), this.equipmentHistory.load(), this.levelHistory.load(), this.equipmentComparisons.load(), this.equipmentLoadouts.load(), this.items.load()])
+    await this.savedHistory.refresh()
     const generation = this.generation
     if (this.settings.enabled && !this.stopped) {
       try {
@@ -190,6 +222,29 @@ class CompanionProfile {
       const bridge = this.settings.enabled && !this.connectionError ? state.bridge : null
       const error = this.connectionError ?? state.error
       await Promise.all([this.gold.observe(bridge, error), this.equipmentHistory.observe(bridge, error), this.levelHistory.observe(bridge, error), this.equipmentComparisons.observe(bridge, error), this.equipmentLoadouts.observe(bridge, error)])
+      await this.memories.observe({ game: this.game, bridge, error, levels: this.levelHistory.read() })
+      if (bridge && !error && bridge.status === 'live' && bridge.source === 'screen'
+        && bridge.snapshot?.online && !bridge.config.paused && bridge.itemStorageRevision !== undefined) {
+        this.items.reportTransferError(this.game, bridge.itemStorageError ?? null)
+        try {
+          for (let pageIndex = 0; pageIndex < 4; pageIndex++) {
+            const after = this.items.after(this.game, bridge.instanceId)
+            if (after >= bridge.itemStorageRevision)
+              break
+            const page = await this.client.readItemStorage(after)
+            if (this.stopped || !this.settings.enabled || generation !== this.generation)
+              break
+            await this.items.observe(this.game, bridge, page)
+            if (!page.hasMore || this.items.after(this.game, bridge.instanceId) <= after)
+              break
+          }
+        }
+        catch (cause) {
+          if (!this.stopped && generation === this.generation)
+            this.items.reportTransferError(this.game, errorMessageFrom(cause) ?? 'Item storage transfer unavailable')
+        }
+      }
+      await this.archive.observe(this.read(), false, this.savedHistory.read())
       if (!this.stopped)
         this.timer = setTimeout(() => this.poll(), 250)
     }
@@ -201,11 +256,88 @@ class CompanionProfile {
  * IPC validates the game key before it selects a fixed profile. Requests cannot select files, executables, or network addresses.
  */
 export function setupWowCompanion(context: ReturnType<typeof createContext>['context']) {
+  const memories = new CompanionMemoryRepository(join(app.getPath('userData'), 'wow-companion-memory-v1.json'), { growth: suggestedMemoryGrowthRules })
+  const items = new CompanionItemStorage(join(app.getPath('userData'), 'wow-companion-items.sqlite'))
   const profiles = {
-    retail: new CompanionProfile('retail'),
-    forever: new CompanionProfile('forever'),
+    retail: new CompanionProfile('retail', memories, items),
+    forever: new CompanionProfile('forever', memories, items),
   }
   const disposers = [
+    defineInvokeHandler(context, wowItemStorageClear, async () => {
+      await items.clear()
+    }),
+    defineInvokeHandler(context, wowItemStorageQuery, async (input) => {
+      const request = parse(itemStorageQuerySchema, input)
+      await items.load()
+      return items.query(request)
+    }),
+    defineInvokeHandler(context, wowMemoryGet, async (input) => {
+      const scope = parse(memoryScopeSchema, input)
+      await memories.load()
+      return memories.read(scope)
+    }),
+    defineInvokeHandler(context, wowMemorySetLimit, async (input) => {
+      const request = parse(setMemoryLimitSchema, input)
+      await memories.setLimit(request)
+      return memories.read({ personaId: request.personaId })
+    }),
+    defineInvokeHandler(context, wowMemoryGetCapacity, async (input) => {
+      const scope = parse(memoryScopeSchema, input)
+      await memories.load()
+      return memories.readCapacity(scope)
+    }),
+    defineInvokeHandler(context, wowMemoryClaimNotice, input => memories.claimNotice(parse(claimMemoryNoticeSchema, input))),
+    defineInvokeHandler(context, wowMemoryActivate, input => memories.setActivePersona(parse(object({ personaId: nullable(pipe(string(), minLength(1), maxLength(160))) }), input).personaId)),
+    defineInvokeHandler(context, wowMemoryRemember, async (input) => {
+      const request = parse(rememberMemorySchema, input)
+      if (!await memories.remember(request))
+        throw new Error('memory-entry-unavailable')
+      return memories.read({ personaId: request.personaId, ...(request.character ? { character: request.character } : {}) })
+    }),
+    defineInvokeHandler(context, wowMemoryEdit, async (input) => {
+      const request = parse(editMemorySchema, input)
+      if (!await memories.edit(request))
+        throw new Error('memory-entry-unavailable')
+      return memories.read({ personaId: request.personaId })
+    }),
+    defineInvokeHandler(context, wowMemoryCollect, async (input) => {
+      const request = parse(collectMemorySchema, input)
+      if (!await memories.collect(request))
+        throw new Error('memory-entry-unavailable')
+      return memories.read({ personaId: request.personaId })
+    }),
+    defineInvokeHandler(context, wowMemoryCollectEquipment, async (input) => {
+      const request = parse(collectEquipmentMemorySchema, input)
+      const verified = profiles[request.character.game].read().equipmentHistory.entries.find(entry => entry.account === request.character.account
+        && entry.record.guid === request.character.guid && entry.record.session === request.record.session && entry.record.id === request.record.id)
+      if (!verified)
+        throw new Error('memory-equipment-unavailable')
+      if (!await memories.collectEquipment({ ...request, record: verified.record, characterName: verified.name }))
+        throw new Error('memory-entry-unavailable')
+      return memories.read({ personaId: request.personaId })
+    }),
+    defineInvokeHandler(context, wowMemorySuppress, async (input) => {
+      const request = parse(suppressMemorySchema, input)
+      if (!await memories.suppress(request))
+        throw new Error('memory-entry-unavailable')
+      return memories.read({ personaId: request.personaId })
+    }),
+    defineInvokeHandler(context, wowMemoryForget, async (input) => {
+      const request = parse(memoryEntryActionSchema, input)
+      if (!await memories.forget(request))
+        throw new Error('memory-entry-unavailable')
+      return memories.read({ personaId: request.personaId })
+    }),
+    defineInvokeHandler(context, wowMemoryExpireGoals, async (input) => {
+      const request = parse(expireSessionGoalsSchema, input)
+      await memories.expireSessionGoals(request)
+      return memories.read({ personaId: request.personaId, ...(request.character ? { character: request.character } : {}) })
+    }),
+    defineInvokeHandler(context, wowMemoryClear, async () => {
+      await memories.clear()
+      context.emit(wowMemoryCleared, undefined)
+    }),
+    defineInvokeHandler(context, wowSetupEnvironment, input => profiles[parse(getSchema, input).game].inspectEnvironment()),
     defineInvokeHandler(context, wowMacroImport, (input) => {
       const request = parse(macroImportSchema, input)
       return profiles[request.game].importMacro(request)
@@ -213,6 +345,10 @@ export function setupWowCompanion(context: ReturnType<typeof createContext>['con
     defineInvokeHandler(context, wowCompanionGet, (input) => {
       const { game } = parse(getSchema, input)
       return profiles[game].read()
+    }),
+    defineInvokeHandler(context, wowCompanionReconnect, async (input) => {
+      const { game } = parse(getSchema, input)
+      return profiles[game].reconnect()
     }),
     defineInvokeHandler(context, wowCompanionSetAccountName, async (input) => {
       const { game, request } = parse(accountRequestSchema, input)
@@ -237,5 +373,12 @@ export function setupWowCompanion(context: ReturnType<typeof createContext>['con
   onAppBeforeQuit(async () => {
     disposers.forEach(dispose => dispose())
     await Promise.all(Object.values(profiles).map(profile => profile.dispose()))
+    await memories.flush()
+    await items.close()
   })
+  return { snapshotForBackup: async (selection: BackupSelection): Promise<BackupFile[]> => [
+    ...await Promise.all(Object.values(profiles).map(profile => profile.snapshotForBackup())),
+    ...(selection.settings ? [{ id: 'companion-memories' as const, data: await memories.serializeBackup() }] : []),
+    ...(selection.history ? [{ id: 'item-storage' as const, data: await items.serializeBackup() }] : []),
+  ] }
 }

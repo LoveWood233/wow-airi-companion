@@ -1,0 +1,149 @@
+{
+  "outcome": "ok",
+  "id": "npc:902747",
+  "npc_id": 902747,
+  "name": "艾德温·范克里夫",
+  "subname": null,
+  "url": "https://wuxianwow.com/npc/902747",
+  "source": "encounter",
+  "boss": true,
+  "classification": "首领",
+  "type": null,
+  "level": null,
+  "dungeon": "死亡矿井",
+  "instance": {
+    "id": 36,
+    "fetch_id": "instance:36",
+    "name": "死亡矿井",
+    "level_text": "进入 10 级 · 目标 16 级",
+    "kind": "地下城",
+    "level": {
+      "group": [
+        17,
+        26
+      ],
+      "max": null,
+      "min": 10,
+      "target": 16
+    },
+    "url": "https://wuxianwow.com/instance/36"
+  },
+  "difficulty": null,
+  "new_in_160": false,
+  "summon_spell": null,
+  "teaching_item": null,
+  "portrait": "https://wuxianwow.com/data/bosses/2747.webp",
+  "model_image": "https://wuxianwow.com/data/bosses/2747_model.webp",
+  "fallback_icon": null,
+  "family": null,
+  "pet": null,
+  "display_id": null,
+  "icon": null,
+  "cache_texts": null,
+  "note": "Creature.db2 只含客户端预置生物（宠物、坐骑与少量 NPC），其余 NPC 由服务器下发；首领来自 DungeonEncounter（id = 900000 + 首领战 ID），无出生点、掉落与区域数据。",
+  "encounter": {
+    "id": 2747,
+    "dungeon": "死亡矿井",
+    "map_id": 36,
+    "difficulty_id": 0,
+    "difficulty": null,
+    "position": 8,
+    "of": 8,
+    "bosses": [
+      {
+        "npc_id": 902741,
+        "name": "拉克佐",
+        "difficulty": null,
+        "url": "https://wuxianwow.com/npc/902741",
+        "portrait": "https://wuxianwow.com/data/bosses/2741.webp"
+      },
+      {
+        "npc_id": 902742,
+        "name": "斯尼德",
+        "difficulty": null,
+        "url": "https://wuxianwow.com/npc/902742",
+        "portrait": "https://wuxianwow.com/data/bosses/2742.webp"
+      },
+      {
+        "npc_id": 903676,
+        "name": "矿工约翰森",
+        "difficulty": null,
+        "url": "https://wuxianwow.com/npc/903676",
+        "portrait": "https://wuxianwow.com/data/bosses/3676.webp"
+      },
+      {
+        "npc_id": 902743,
+        "name": "基尔尼格",
+        "difficulty": null,
+        "url": "https://wuxianwow.com/npc/902743",
+        "portrait": "https://wuxianwow.com/data/bosses/2743.webp"
+      },
+      {
+        "npc_id": 902744,
+        "name": "绿皮船长",
+        "difficulty": null,
+        "url": "https://wuxianwow.com/npc/902744",
+        "portrait": "https://wuxianwow.com/data/bosses/2744.webp"
+      },
+      {
+        "npc_id": 902745,
+        "name": "重拳先生",
+        "difficulty": null,
+        "url": "https://wuxianwow.com/npc/902745",
+        "portrait": "https://wuxianwow.com/data/bosses/2745.webp"
+      },
+      {
+        "npc_id": 902746,
+        "name": "曲奇",
+        "difficulty": null,
+        "url": "https://wuxianwow.com/npc/902746",
+        "portrait": "https://wuxianwow.com/data/bosses/2746.webp"
+      },
+      {
+        "npc_id": 902747,
+        "name": "艾德温·范克里夫",
+        "difficulty": null,
+        "url": "https://wuxianwow.com/npc/902747",
+        "portrait": "https://wuxianwow.com/data/bosses/2747.webp"
+      }
+    ],
+    "note": "position / of / bosses：同一副本同一难度的首领战（DungeonEncounter 按 OrderIndex），difficulty / difficulty_id 是这份列表的难度（0 = 通用）；通用的首领战并进不与它们同名的难度，与副本页的首领列表同一规则"
+  },
+  "temporary_drops": {
+    "source": "Spyglass",
+    "note": "临时数据：客户端的冒险指南没有掉落；这是 Spyglass（WoW Forever 的掉落浏览插件）整理的这个首领的掉落，大多没有掉落率；not_in_client 为客户端里没有这件物品的资料（名称是 Spyglass 的英文名）；官方数据出现后替换",
+    "items": [
+      {
+        "item_id": 5191,
+        "name": "残酷倒钩",
+        "quality": 3,
+        "url": "https://wuxianwow.com/item/5191"
+      },
+      {
+        "item_id": 5193,
+        "name": "兄弟会斗篷",
+        "quality": 3,
+        "url": "https://wuxianwow.com/item/5193"
+      },
+      {
+        "item_id": 5202,
+        "name": "海盗的罩衫",
+        "quality": 3,
+        "url": "https://wuxianwow.com/item/5202"
+      }
+    ]
+  },
+  "text": "艾德温·范克里夫（首领 · 首领 · 死亡矿井）\n死亡矿井 第 8/8 个首领\n副本：instance:36（地下城 · 进入 10 级 · 目标 16 级）\n掉落（临时 · Spyglass）：残酷倒钩、兄弟会斗篷、海盗的罩衫、黑暗迪菲亚护甲、图样：捕兽者的皮帽、图样：防御者的皮帽、图样：图腾师的皮帽、图样：智慧皮帽、图样：金丝无瑕护腿、图样：金丝闪光护腿、未寄出的信",
+  "lore": {
+    "entities": [
+      {
+        "id": 1010,
+        "name": "艾德温·范克里夫",
+        "kind": "人物",
+        "summary": "天才石匠，迪菲亚兄弟会首领",
+        "url": "https://wuxianwow.com/lore/n/1010"
+      }
+    ],
+    "note": "无限世界书（魔兽小说与编年史设定集）里的同一个人物、地点或势力，逐条人工核对；书中内容只到《无限》当下（第 25 年）。详情用 lore_entity / lore_event。"
+  }
+}

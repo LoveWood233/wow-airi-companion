@@ -2,7 +2,7 @@
   {
     "name": "same-level-actual-stat-upgrade",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -52,7 +52,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "upgrade",
+        "reason": "stats_upgrade"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 151
+        }
+      ]
     },
     "assessment": {
       "verdict": "upgrade",
@@ -62,7 +78,7 @@
   {
     "name": "empty-slot",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -103,7 +119,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "upgrade",
+        "reason": "empty_slot"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 0,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 0,
+          "after": 151
+        }
+      ]
     },
     "assessment": {
       "verdict": "upgrade",
@@ -113,7 +145,7 @@
   {
     "name": "unusable",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -163,7 +195,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "not_upgrade",
+        "reason": "unusable"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 151
+        }
+      ]
     },
     "assessment": {
       "verdict": "not_upgrade",
@@ -173,7 +221,7 @@
   {
     "name": "wrong-spec",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -223,7 +271,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "not_upgrade",
+        "reason": "wrong_spec"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 151
+        }
+      ]
     },
     "assessment": {
       "verdict": "not_upgrade",
@@ -233,7 +297,7 @@
   {
     "name": "unknown-target",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -264,7 +328,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "review",
+        "reason": "no_target"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 0,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 0,
+          "after": 151
+        }
+      ]
     },
     "assessment": {
       "verdict": "review",
@@ -274,7 +354,7 @@
   {
     "name": "incomplete",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -324,7 +404,23 @@
         ],
         "complex": false,
         "complete": false
-      }
+      },
+      "assessment": {
+        "verdict": "review",
+        "reason": "incomplete"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 151
+        }
+      ]
     },
     "assessment": {
       "verdict": "review",
@@ -334,7 +430,7 @@
   {
     "name": "unknown-spec",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -384,7 +480,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "review",
+        "reason": "unknown_spec"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 151
+        }
+      ]
     },
     "assessment": {
       "verdict": "review",
@@ -394,7 +506,7 @@
   {
     "name": "complex",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -444,7 +556,23 @@
         ],
         "complex": true,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "review",
+        "reason": "complex_item"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 151
+        }
+      ]
     },
     "assessment": {
       "verdict": "review",
@@ -454,7 +582,7 @@
   {
     "name": "different-weapon-family",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -504,7 +632,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "review",
+        "reason": "weapon_change"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 151
+        }
+      ]
     },
     "assessment": {
       "verdict": "review",
@@ -514,7 +658,7 @@
   {
     "name": "weaker",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -564,7 +708,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "not_upgrade",
+        "reason": "weaker_stats"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 140
+        }
+      ]
     },
     "assessment": {
       "verdict": "not_upgrade",
@@ -574,7 +734,7 @@
   {
     "name": "equivalent",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -624,7 +784,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "not_upgrade",
+        "reason": "equivalent"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 150
+        }
+      ]
     },
     "assessment": {
       "verdict": "not_upgrade",
@@ -634,7 +810,7 @@
   {
     "name": "mixed",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -684,7 +860,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "review",
+        "reason": "stat_tradeoff"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 20
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 160
+        }
+      ]
     },
     "assessment": {
       "verdict": "review",
@@ -694,7 +886,7 @@
   {
     "name": "primary-upgrade-secondary-tradeoff",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -744,7 +936,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "review",
+        "reason": "primary_upgrade_tradeoff"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 20
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 160
+        }
+      ]
     },
     "assessment": {
       "verdict": "review",
@@ -754,7 +962,7 @@
   {
     "name": "primary-upgrade-core-stat-loss",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -812,7 +1020,28 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "review",
+        "reason": "stat_tradeoff"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 20
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 160
+        },
+        {
+          "key": "ITEM_MOD_STAMINA_SHORT",
+          "before": 200,
+          "after": 199
+        }
+      ]
     },
     "assessment": {
       "verdict": "review",
@@ -822,7 +1051,7 @@
   {
     "name": "lower-level-up-stats",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -872,7 +1101,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "review",
+        "reason": "stat_tradeoff"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 151
+        }
+      ]
     },
     "assessment": {
       "verdict": "review",
@@ -882,7 +1127,7 @@
   {
     "name": "ignore-inactive-primary",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -940,7 +1185,23 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "upgrade",
+        "reason": "stats_upgrade"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 151
+        }
+      ]
     },
     "assessment": {
       "verdict": "upgrade",
@@ -950,7 +1211,7 @@
   {
     "name": "unknown-stat-key",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -1004,7 +1265,28 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "review",
+        "reason": "incomplete"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 42,
+          "after": 42
+        },
+        {
+          "key": "ITEM_MOD_INTELLECT_SHORT",
+          "before": 150,
+          "after": 151
+        },
+        {
+          "key": "UNKNOWN_EFFECT",
+          "before": 0,
+          "after": 100
+        }
+      ]
     },
     "assessment": {
       "verdict": "review",
@@ -1014,7 +1296,7 @@
   {
     "name": "actual-retribution-hammer",
     "comparison": {
-      "v": 1,
+      "v": 2,
       "id": 1,
       "session": "1700000000-12500-123456",
       "guid": "Player-1-00000001",
@@ -1088,7 +1370,38 @@
         ],
         "complex": false,
         "complete": true
-      }
+      },
+      "assessment": {
+        "verdict": "not_upgrade",
+        "reason": "wrong_spec"
+      },
+      "deltas": [
+        {
+          "key": "ITEM_MOD_DAMAGE_PER_SECOND_SHORT",
+          "before": 17.6,
+          "after": 20.769229888916
+        },
+        {
+          "key": "ITEM_MOD_HASTE_RATING_SHORT",
+          "before": 26,
+          "after": 16
+        },
+        {
+          "key": "ITEM_MOD_STAMINA_SHORT",
+          "before": 131,
+          "after": 201
+        },
+        {
+          "key": "ITEM_MOD_STRENGTH_SHORT",
+          "before": 24,
+          "after": 18
+        },
+        {
+          "key": "ITEM_MOD_VERSATILITY",
+          "before": 22,
+          "after": 17
+        }
+      ]
     },
     "assessment": {
       "verdict": "not_upgrade",

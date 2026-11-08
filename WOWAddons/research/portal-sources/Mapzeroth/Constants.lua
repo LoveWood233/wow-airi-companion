@@ -1,0 +1,126 @@
+local addonName, addon = ...
+
+-- Yards per second at 100% run speed. Everything faster is a bonus multiplier
+-- on top of this (see the design doc, section 3).
+addon.WALK_SPEED = 7
+
+-- Roads wind: real walking distance is longer than the straight line between
+-- two points. Walk costs multiply the straight-line distance by this, or by a
+-- per-map value from addon.PathFactors (measured; see Data/Forever/PathFactors.lua).
+-- 1.15 is a guess for open country, nudged down from 1.3 after Elwynn's main
+-- road measured 1.06 (cities measured 1.7-2.0). Refine with more samples.
+addon.DEFAULT_PATH_FACTOR = 1.15
+
+-- The player's other addon, which pins where ley lines and convergences have been found: the picker points to it
+-- (UI/Panel.lua) until they have it or dismiss the pointer. WoW can't open links, so the popup offers the URL to copy.
+-- SLLCM_FOLDERS: its AddOns folder names (the released one, and the dev copy).
+addon.SLLCM_NAME = "Skyborne Ley Line & Convergence Marker"
+addon.SLLCM_URL = "https://www.curseforge.com/wow/addons/sllcm"
+addon.SLLCM_FOLDERS = { "SkyborneLeyLineConvergenceMarker", "SkyborneLeyLineConvergenceMarker-Dev" }
+
+-- The author's Discord for addon development (a permanent invite): the settings page's Community row offers it to copy.
+addon.DISCORD_URL = "https://discord.gg/KkcnJPQQ5M"
+
+-- Seconds added per loading screen when totalling a route.
+addon.DEFAULT_LOADING_SCREEN_TAX = 10     -- the player can change it (Options.lua)
+
+-- The fraction of an extra flight leg's own time saved by flying straight through: a through-ticket
+-- doesn't land and take off again. Measured 15-45 s per ticket in game; 0.10 is a cautious start (10 s off
+-- a 100 s leg, 30 s off a 300 s one). A fraction, not a flat number of seconds, so a short leg can never
+-- be saved down to nothing (or below: a flat 10 s made a loop of 8 s legs cheaper every lap).
+-- Keep equal to CHAIN_SAVING in tools/gen_flights.py.
+addon.FLIGHT_CHAIN_SAVING = 0.10
+
+-- A profession trainer won't talk to a player whose rank is too far below the trainer's top rank: an
+-- Artisan (rank 4) trainer told an Apprentice (rank 1) "you need more training". Observed for that one
+-- case; a trainer whose top rank is at most this many above the player's own is taken to talk to them
+-- (so an Apprentice can learn Journeyman from an Expert-tier trainer, and then talk to the Artisan).
+addon.PROFESSION_TRAINER_REACH = 2
+
+-- The skill range each tier of profession trainer teaches recipes over (Journeyman, Expert, Artisan,
+-- Master), from the NPC's title (`tier` in Pois.lua). They overlap: from the next tier's required skill
+-- on, either trainer has something. A trainer is worth a trip while the player's skill is inside its range.
+addon.PROFESSION_TIER_SKILL = { { 0, 75 }, { 50, 150 }, { 125, 225 }, { 200, 300 } }
+
+-- Auto-generated `fly` edges (only where a ruleset has flying) connect nodes
+-- within this many yards of each other, continent-wide.
+addon.MAX_AUTO_EDGE_DISTANCE = 3000
+
+-- Flying from where the player stands (TravelGraph:AddStart), when they start in the open where flying is allowed:
+-- getting on the mount takes MOUNT_SECONDS, and a flight that would take under MIN_FLY_SECONDS isn't offered (it
+-- is a short walk). FLY_SPEED is yards a second: at the +750% a skyriding player really covers ground (a flying
+-- mount without skyriding is +410%, 35.7 yards a second), on the 7 yards a second of WALK_SPEED.
+addon.FLY_SPEED = addon.WALK_SPEED * (1 + 7.50)
+addon.MOUNT_SECONDS = 1.5
+addon.MIN_FLY_SECONDS = 3
+
+-- Using an equippable teleport item (a cloak, ring, trinket, tabard...) that isn't worn takes an equip step first.
+-- Seconds that step is priced at unless the item's own `equipCooldown` (Data/Modern/Abilities.lua) says
+-- otherwise: most items can be used the moment they are put on
+-- (checked in game for the ones we have), so 0; the odd one has a cooldown after equipping.
+addon.DEFAULT_EQUIP_SECONDS = 0
+
+-- What an authored walk edge with no cost of its own takes when the distance between its ends can't be
+-- measured (two maps the client won't project onto one another: Oribos and its Ring). The edge says the
+-- walk exists, so it is kept at a plausible price, not dropped and the places beyond it cut off.
+addon.UNMEASURED_WALK_SECONDS = 20
+
+-- An ability whose cooldown is this short or shorter is back before a trip needs it again (Dreamwalk into the druids'
+-- Emerald Dreamway, Death Gate, Zen Pilgrimage: 60 s), so a round trip or a tour can use it on any leg, as often as it
+-- likes. A longer one (the hearthstone, a dungeon's teleport) is spent by the first leg that uses it. A consumable is
+-- spent either way: the bags may hold only one.
+addon.REUSABLE_COOLDOWN = 300
+
+-- Every travel method a step can have, and what each part of the addon makes of it:
+--   kind     how the trip window follows it (Navigation.lua): walk, flight, transport, ability, portal
+--   style    how a route draws it and which theme colour it takes (MapRoute.lua, UI/RouteLines.lua, UI/Themes):
+--            foot, flight, boat, ability
+--   screens  loading screens an edge of this method incurs when it doesn't say (edge.loadingScreens overrides)
+--   ability  the step is the player using a spell or item of their own: its text names that, not where it lands
+-- A method not listed here is taken as walk (addon:Method).
+addon.METHODS = {
+    walk        = { kind = "walk",      style = "foot",    screens = 0 },
+    transition  = { kind = "walk",      style = "foot",    screens = 0 },
+    fly         = { kind = "walk",      style = "foot",    screens = 0 },
+    phaseswitch = { kind = "walk",      style = "foot",    screens = 0 },
+    taxi        = { kind = "flight",    style = "flight",  screens = 0 },
+    ship        = { kind = "transport", style = "boat",    screens = 0 },
+    zeppelin    = { kind = "transport", style = "boat",    screens = 0 },
+    tram        = { kind = "transport", style = "boat",    screens = 2 },
+    teleport    = { kind = "ability",   style = "ability", screens = 1, ability = true },
+    hearthstone = { kind = "ability",   style = "ability", screens = 1 },
+    equip       = { kind = "ability",   style = "ability", screens = 0 },
+    portal      = { kind = "portal",    style = "ability", screens = 1 },
+}
+
+function addon:Method(method)
+    return addon.METHODS[method] or addon.METHODS.walk
+end
+
+-- Flavour-specific tables (classes, holidays, perks) live in Data/<flavour>/Game.lua, not here.
+
+-- An item function by name: C_Item's, else the old global (Retail 12.x has dropped globals like IsEquippableItem and
+-- EquipItemByName; checking only for the global made every item look unwearable). Nil when the client has neither.
+function addon.ItemFn(name)
+    return (C_Item and C_Item[name]) or _G[name]
+end
+
+-- INTERIM until Forever's release gives it a .toc suffix of its own (docs/DESIGN.md section 1, then remove this).
+-- Which game this client is: "forever" or "modern". One .toc loads both datasets and each data file skips itself
+-- unless it is this game's (the first line after its header: `if addon.RULESET ~= "forever" then return end`).
+-- One .toc because the client can't be told apart by .toc name: Forever reports WOW_PROJECT_ID ==
+-- WOW_PROJECT_MAINLINE and so loads a _Mainline .toc too, and has no suffix of its own (a _Forever .toc is ignored;
+-- both checked in game 2026-09-24). The interface version is the only reliable discriminator: 16001 for Forever vs a
+-- six-digit number for Modern.
+addon.RULESET_INTERFACE_THRESHOLD = 20000
+
+-- override is "forever" | "modern" | nil (auto-detect).
+function addon:GetRuleset(override)
+    if override == "forever" or override == "modern" then
+        return override
+    end
+    local _, _, _, interfaceVersion = GetBuildInfo()
+    return (interfaceVersion < addon.RULESET_INTERFACE_THRESHOLD) and "forever" or "modern"
+end
+
+addon.RULESET = addon:GetRuleset()

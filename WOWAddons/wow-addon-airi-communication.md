@@ -1,10 +1,10 @@
 # 游戏插件与 AIRI 通信说明
 
-更新日期：2026-11-01。本文介绍本仓库中的实际通信链路、源码入口和排查方法。
+更新日期：2026-11-04。本文介绍本仓库中的实际通信链路、源码入口和排查方法。
 
 ## 1. 通信链路
 
-实时链路分为四层。游戏内插件采集公开数据并显示传输码。Python 桥接读取屏幕像素，校验并解码。AIRI 主进程读取本机 HTTP 接口，保存已经接收到的数据。聊天界面通过 Eventa IPC 获取状态，再决定是否增加聊天上下文或发出语音提醒。
+实时链路分为四层。游戏内插件采集公开数据并显示传输码。Python 桥接读取屏幕像素，校验并解码。AIRI 主进程读取本机 HTTP 接口，保存已经接收到的数据。聊天界面通过 Eventa IPC 获取状态，用于聊天上下文及提醒。2.25.0 起，装备结论和任务候选由插件提供；固定通知共用语音与字幕，不请求聊天模型。
 
 ```mermaid
 flowchart TD
@@ -15,7 +15,7 @@ flowchart TD
     HTTP --> Main[AIRI Electron 主进程]
     Main --> IPC[Eventa IPC]
     IPC --> Chat[角色状态、聊天上下文与语音提醒]
-    Main --> Disk[AIRI 本地 JSON 记录]
+    Main --> Disk[本地档案 JSON 与物品 SQLite]
     Lua --> SV[SavedVariables 内存对象]
     SV --> Save[游戏在重载或登出时保存的 Lua 文件]
 ```
@@ -28,10 +28,10 @@ Python 桥接不调用大模型。模型服务和语音服务由 AIRI 配置。�
 
 | 组件 | 本次同步版本 | 作用 | 源码 |
 | --- | --- | --- | --- |
-| 正式服插件 | 2.19.0 | 采集正式服数据，显示 WCP1 网格 | [WoWMapCompanion](WoWMapCompanion/) |
-| 无限服插件 | 1.17.0 | 独立采集无限服数据，显示 WCF1 网格 | [WoWForeverCompanion](WoWForeverCompanion/) |
+| 正式服插件 | 2.25.0 | 采集正式服数据，显示 WCP1 网格 | [WoWMapCompanion](WoWMapCompanion/) |
+| 无限服插件 | 1.21.0 | 独立采集无限服数据，显示 WCF1 网格 | [WoWForeverCompanion](WoWForeverCompanion/) |
 | 宏导入插件 | 1.0.0 | 校验、保存宏，提供操作回执 | [WoWMacroImport](WoWMacroImport/) |
-| 本机桥接 | 2.19.0 | 采集屏幕、解码、维护状态、提供 HTTP | [WoWCompanionBridge](WoWCompanionBridge/) |
+| 本机桥接 | 2.25.0 | 采集屏幕、解码、维护状态、提供 HTTP | [WoWCompanionBridge](WoWCompanionBridge/) |
 | AIRI 桌面端 | 以仓库源码为准 | 管理桥接、轮询、存储、聊天和语音 | [桌面服务](../airi/apps/stage-tamagotchi/src/main/services/airi/) |
 
 正式服与无限服分别使用 `retail`、`forever` 配置，不混用角色、金币或事件。怀旧服插件推荐和安装功能不代表本仓库已经提供怀旧服实时遥测。
@@ -80,6 +80,7 @@ CRC 用于发现传输损坏，不提供加密或身份认证。可见网格中�
 | `eq` | 新获得的装备 |
 | `cmp` | 装备比较 |
 | `gear` | 当前全身装备快照 |
+| `store` | [Full carried and bank item containers](../airi/docs/ai/adr/wow-item-storage.md) |
 | `inv` | 背包库存 |
 | `qlog` | 任务日志 |
 | `traits` | 已提交的天赋配置 |
@@ -118,6 +119,7 @@ CRC 用于发现传输损坏，不提供加密或身份认证。可见网格中�
 | --- | --- | --- |
 | GET | `/health` | 服务版本、游戏和协议 |
 | GET | `/api/status` | 当前状态、快照、事件、分片结果及错误 |
+| GET | `/api/item-storage?after=N` | Changed item container page |
 | GET | `/api/events?after=N` | 游标之后的事件 |
 | GET | `/api/frame.bmp` | 当前采集预览 |
 | POST | `/api/config` | 位置、格宽、间隔、暂停状态 |
@@ -163,9 +165,7 @@ Lua 导出时更新 `db.snapshot` 和 `db.snapshotJSON`。离线历史模块把�
 `snapshotJSON` 是上述 Lua 文件中的字符串字段，不是插件自行创建的独立 `.json` 文件。
 金币历史是公开钱包变化的观测，不自动知道每笔变化购买了什么。升级耗时保留完整、部分或未知标记。
 
-**本仓库当前的边界：**这里的通用 Python 遥测服务只从屏幕网格接收角色数据。当前提交的 AIRI `CompanionProfile` 没有扫描 SavedVariables 或导入 `snapshotJSON` 的入口。
-因此，本次发布的插件具有离线保存能力，但不能据此认定这份 AIRI 已经实现离线历史自动补录。
-后续接入文件导入器时，需要单独选择文件、解析 Lua 字符串、校验 JSON、按游戏与角色去重，并保留观测时间。不能直接执行用户存档中的 Lua。
+**当前实现：** `CompanionSavedHistory` 每 30 秒检查用户已配置客户端目录中的 SavedVariables，解析已保存的 `snapshotJSON` 并保留观测来源。它不执行存档 Lua。导入历史不能把旧角色状态恢复成实时在线，也不能把在线累计耗时当作包含离线的现实时间。
 
 AIRI 已接收到的数据则由主进程保存到应用用户数据目录。它与游戏 SavedVariables 分离。
 例如正式服的 `wow-companion-gold-v1.json`、`wow-companion-loadouts-v1.json`、`wow-companion-level-history-v1.json`。无限服使用含 `forever` 的对应文件名。

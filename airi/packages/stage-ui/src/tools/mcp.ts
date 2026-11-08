@@ -1,8 +1,12 @@
+import type { WowDataCacheEvidence, WowReferenceEvidence } from '@proj-airi/stage-shared/wow-knowledge'
 import type { Tool } from '@xsai/shared-chat'
 
 import { errorMessageFrom } from '@moeru/std'
 import { tool } from '@xsai/tool'
+import { check, parse, pipe, record, string, unknown } from 'valibot'
 import { z } from 'zod'
+
+import { WowReferenceRuntime } from '../libs/wow-reference-runtime'
 
 /**
  * Describes an MCP tool that can be exposed to the shared LLM runtime.
@@ -40,6 +44,8 @@ export interface McpToolDescriptor {
 export interface McpCallToolPayload {
   name: string
   arguments?: Record<string, unknown>
+  /** Internal acceptance calls bypass both persistent caching and metadata preflight. Models cannot set this field. */
+  cachePolicy?: 'bypass'
 }
 
 /**
@@ -59,6 +65,8 @@ export interface McpCallToolResult {
   structuredContent?: Record<string, unknown>
   toolResult?: unknown
   isError?: boolean
+  cache?: WowDataCacheEvidence
+  wowReference?: WowReferenceEvidence
 }
 
 /**
@@ -76,6 +84,8 @@ export interface McpCallToolResult {
 export interface McpToolRuntime {
   listTools: () => Promise<McpToolDescriptor[]>
   callTool: (payload: McpCallToolPayload) => Promise<McpCallToolResult>
+  /** Only the desktop main-process transport can supply trusted receipt metadata. */
+  trustedWowEvidence?: boolean
 }
 
 /** The proxy tool that calls an MCP tool. Each call names the MCP tool in its `name` argument, as `server::tool`. */
@@ -88,13 +98,14 @@ export const MCP_CALL_TOOL_NAME = 'builtIn_mcpCallTool'
  * error result. Runtime owners register these tools in the shared LLM tool store.
  */
 export function createMcpTools(runtime: McpToolRuntime): Array<Promise<Tool>> {
+  const references = new WowReferenceRuntime(runtime)
   return [
     tool({
       name: 'builtIn_mcpListTools',
       description: 'List all available MCP tools. Call this first to discover tool names before calling builtIn_mcpCallTool.',
       execute: async () => {
         try {
-          const tools = await runtime.listTools()
+          const tools = await references.listTools()
           if (tools.length === 0)
             return 'No MCP tools are available. Do not retry discovery during this assistant turn.'
 
@@ -114,8 +125,9 @@ export function createMcpTools(runtime: McpToolRuntime): Array<Promise<Tool>> {
       description: 'Call an MCP tool by name. Use builtIn_mcpListTools first to get available tool names.',
       execute: async ({ name, arguments: argsJson }) => {
         try {
-          const args = argsJson ? JSON.parse(argsJson) : {}
-          return await runtime.callTool({ name, arguments: args })
+          const decoded: unknown = argsJson ? JSON.parse(argsJson) : {}
+          const args = parse(pipe(unknown(), check(value => value !== null && typeof value === 'object' && !Array.isArray(value)), record(string(), unknown())), decoded)
+          return await references.callTool({ name, arguments: args })
         }
         catch (error) {
           return {

@@ -12,7 +12,7 @@ class OfflineHistoryTests(unittest.TestCase):
         if folder == "WoWForeverCompanion": lua.execute(b'function GetBuildInfo() return "1.60.1","build","date",16001 end')
         lua.execute(b'clock=100; function GetTime() return clock end; function GetServerTime() return 1700000000+clock end')
         ns = lua.table()
-        for name in ('Protocol.lua', 'Money.lua', 'Equipment.lua', 'Transfer.lua', 'OfflineHistory.lua', 'EquipmentCompare.lua', 'ConfirmEquip.lua', 'Inventory.lua', 'Quests.lua', 'Talents.lua', 'Telemetry.lua', folder+'.lua'):
+        for name in ('Protocol.lua', 'Money.lua', 'Equipment.lua', 'Transfer.lua', 'OfflineHistory.lua', 'EquipmentCompare.lua', 'ConfirmEquip.lua', 'Inventory.lua', 'ItemStorage.lua', 'Quests.lua', 'Talents.lua', 'Telemetry.lua', folder+'.lua'):
             lua.execute((root/name).read_bytes(), folder.encode(), ns)
         lua.globals().Fire(b'ADDON_LOADED', folder.encode())
         lua.globals().Fire(b'PLAYER_ENTERING_WORLD')
@@ -35,7 +35,7 @@ class OfflineHistoryTests(unittest.TestCase):
             if folder == "WoWForeverCompanion": lua.execute(b'function GetBuildInfo() return "1.60.1","build","date",16001 end')
             lua.execute(b'clock=500; function GetTime() return clock end; function GetServerTime() return 1700000000+clock end; Model.level=30; Model.copper=99900')
             second = lua.table()
-            for name in ('Protocol.lua','Money.lua','Equipment.lua','Transfer.lua','OfflineHistory.lua','EquipmentCompare.lua','ConfirmEquip.lua','Inventory.lua','Quests.lua','Talents.lua','Telemetry.lua',folder+'.lua'):
+            for name in ('Protocol.lua','Money.lua','Equipment.lua','Transfer.lua','OfflineHistory.lua','EquipmentCompare.lua','ConfirmEquip.lua','Inventory.lua', 'ItemStorage.lua','Quests.lua','Talents.lua','Telemetry.lua',folder+'.lua'):
                 lua.execute((root/name).read_bytes(), folder.encode(), second)
             g.Fire(b'ADDON_LOADED', folder.encode()); g.Fire(b'PLAYER_ENTERING_WORLD')
             lua.execute(b'clock=501; Model.copper=99850; Fire("PLAYER_MONEY"); Fire("PLAYER_LOGOUT")')

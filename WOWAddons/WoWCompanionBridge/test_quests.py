@@ -68,6 +68,28 @@ class QuestProtocolTests(unittest.TestCase):
             with self.subTest(change=change), self.assertRaises(QuestError):
                 encode_frame({**fragments(quests())[0], **change})
 
+    def test_addon_advice_is_optional_bounded_and_correlated_without_rejudging_rules(self):
+        advice = {"v": 1, "playerLevel": 15, "candidates": [{"kind": "level-risk", "questID": 42, "eventAt": None}]}
+        self.assertEqual(validate_quests(quests(advice=advice))["advice"], advice)
+        mutations = [
+            lambda value: value["advice"].update(v=2),
+            lambda value: value["advice"].update(playerLevel=None),
+            lambda value: value["advice"]["candidates"][0].update(questID=43),
+            lambda value: value["advice"]["candidates"][0].update(kind="invented"),
+            lambda value: value["advice"]["candidates"][0].update(eventAt=1700000000),
+            lambda value: value["advice"]["candidates"][0].update(kind="turned-in", eventAt=1700000000),
+            lambda value: value["advice"]["candidates"].append(copy.deepcopy(value["advice"]["candidates"][0])),
+            lambda value: value["advice"]["candidates"][0].update(kind="leveling", eventAt=1700000001),
+        ]
+        for mutation in mutations:
+            value = quests(advice=copy.deepcopy(advice))
+            mutation(value)
+            with self.subTest(value=value), self.assertRaises(FrameError):
+                validate_quests(value)
+        record = quests(advice={"v": 1, "playerLevel": 15, "candidates": [{"kind": "turned-in", "questID": 9, "eventAt": 1700000000}]})
+        record["completion"]["turnIns"] = [{"questID": 9, "observedAt": 1700000000}]
+        self.assertEqual(validate_quests(record), record)
+
     def test_real_lua_frames_for_both_clients_match_the_python_contract(self):
         for game, addon, magic in [("retail", "WoWMapCompanion", "WCP1"), ("forever", "WoWForeverCompanion", "WCF1")]:
             folder = Path(__file__).resolve().parent.parent / addon / "tests" / "fixtures"

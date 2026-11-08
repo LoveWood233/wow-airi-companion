@@ -63,6 +63,7 @@ const games = ['auto', 'retail', 'forever', 'classic'] as const
         <li>{{ tn('examples.terrain') }}</li>
         <li>{{ tn('examples.quest') }}</li>
         <li>{{ tn('examples.scene') }}</li>
+        <li>{{ tn('examples.equipment') }}</li>
       </ul>
       <p :class="['text-sm text-neutral-600 dark:text-neutral-300']">
         {{ tn('command') }}

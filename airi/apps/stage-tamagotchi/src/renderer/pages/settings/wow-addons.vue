@@ -13,7 +13,7 @@ meta:
   subtitleKey: settings.title
   descriptionKey: wow-addons.description
   icon: i-solar:widget-add-bold-duotone
-  settingsEntry: true
+  settingsTool: true
   order: 8.2
   stageTransition:
     name: slide

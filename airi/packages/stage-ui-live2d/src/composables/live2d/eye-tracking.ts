@@ -23,7 +23,7 @@ export interface Live2DEyeFocusSource {
  * - The canvas element exposes a client rect in that same coordinate space.
  *
  * Returns:
- * - A computed world-space focus point in canvas render coordinates.
+ * - A computed focus point suitable for `Live2DModel.focus(x, y)`.
  */
 export function useLive2DEyeFocusFor(options: {
   canvas: MaybeRefOrGetter<HTMLCanvasElement | undefined>

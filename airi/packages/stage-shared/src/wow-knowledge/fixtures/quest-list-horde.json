@@ -1,0 +1,133 @@
+{
+  "outcome": "ok",
+  "total": 48,
+  "page": 1,
+  "page_size": 4,
+  "limit": 4,
+  "offset": 0,
+  "has_more": true,
+  "matched": {
+    "side_rule": "部落的任务，加上没有阵营记录、不在联盟地盘（区域里有阵营记录的任务八成是联盟的）的",
+    "zones": [
+      "贫瘠之地"
+    ]
+  },
+  "view": "confirmed",
+  "totals": {
+    "confirmed": 48,
+    "all": 48
+  },
+  "view_note": "view：confirmed 是服务器确认的任务（服务器的任务缓存里有记录，游戏里确实存在），按等级排；all 是客户端 QuestV2 的全部任务 ID（多数只有编号或客户端线索），按 ID 排（有关键词时按相关度）；auto（默认）按关键词、任务线、起始物品系列或线索类型查时用 all，其余用 confirmed，与网站 /quests 相同；sort 可另指定。totals 是两个视图在同样筛选下的数量",
+  "quests_total": 6737,
+  "confirmed_total": 2875,
+  "new_in_160_total": 1767,
+  "quests_meta_hint": "传 meta: true 取客户端表统计、任务线列表与加密段说明",
+  "results": [
+    {
+      "id": "quest:844",
+      "quest_id": 844,
+      "title": "平原陆行鸟的威胁",
+      "display_name": "平原陆行鸟的威胁",
+      "url": "https://wuxianwow.com/quest/844",
+      "level": 12,
+      "zone": "贫瘠之地",
+      "temporary_side": "部落",
+      "min_level": 10,
+      "zone_group": "卡利姆多",
+      "confirmed": true,
+      "temporary_givers": [
+        {
+          "name": "瑟格拉·黑棘",
+          "kind": "npc"
+        }
+      ],
+      "reward_brief": "910 经验 · 5银 · 奥格瑞玛声望 +100",
+      "chain": {
+        "position": 2,
+        "length": 12,
+        "temporary": false
+      },
+      "new_in_160": false,
+      "era": "classic"
+    },
+    {
+      "id": "quest:871",
+      "quest_id": 871,
+      "title": "野猪人的袭击",
+      "display_name": "野猪人的袭击",
+      "url": "https://wuxianwow.com/quest/871",
+      "level": 12,
+      "zone": "贫瘠之地",
+      "temporary_side": "部落",
+      "min_level": 9,
+      "zone_group": "卡利姆多",
+      "confirmed": true,
+      "temporary_givers": [
+        {
+          "name": "索克",
+          "kind": "npc"
+        }
+      ],
+      "reward_brief": "910 经验 · 奥格瑞玛声望 +100",
+      "new_in_160": false,
+      "era": "classic"
+    },
+    {
+      "id": "quest:845",
+      "quest_id": 845,
+      "title": "斑马的威胁",
+      "display_name": "斑马的威胁",
+      "url": "https://wuxianwow.com/quest/845",
+      "level": 13,
+      "zone": "贫瘠之地",
+      "temporary_side": "部落",
+      "min_level": 10,
+      "zone_group": "卡利姆多",
+      "confirmed": true,
+      "temporary_givers": [
+        {
+          "name": "瑟格拉·黑棘",
+          "kind": "npc"
+        }
+      ],
+      "reward_brief": "910 经验 · 6银 · 奥格瑞玛声望 +100",
+      "chain": {
+        "position": 3,
+        "length": 12,
+        "temporary": false
+      },
+      "new_in_160": false,
+      "era": "classic"
+    },
+    {
+      "id": "quest:869",
+      "quest_id": 869,
+      "title": "偷钱的迅猛龙",
+      "display_name": "偷钱的迅猛龙",
+      "url": "https://wuxianwow.com/quest/869",
+      "level": 13,
+      "zone": "贫瘠之地",
+      "temporary_side": "部落",
+      "min_level": 9,
+      "zone_group": "卡利姆多",
+      "confirmed": true,
+      "temporary_givers": [
+        {
+          "name": "加兹罗格",
+          "kind": "npc"
+        }
+      ],
+      "reward_brief": "910 经验 · 6银 · 奥格瑞玛声望 +100",
+      "chain": {
+        "position": 1,
+        "length": 2,
+        "temporary": false
+      },
+      "new_in_160": false,
+      "era": "classic"
+    }
+  ],
+  "rows_note": "列表行省略空字段（null 与空列表）；完整记录用 fetch 或给 id",
+  "filter_note": "等级、区域与阵营用服务器的记录，没有时用 QuestieDB 的（临时）；接任务的人（temporary_givers 与 giver 筛选）来自 QuestieDB 或 RestedXP 练级指南（临时）",
+  "note": "任务标题、目标与描述由服务器下发（source 为 cache 的取自本机任务缓存），客户端数据里没有；name_hint 只是线索，不是标题。数据来源与采集记录的全文：meta: true，或按 id 查单个任务"
+}

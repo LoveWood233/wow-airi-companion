@@ -1,0 +1,309 @@
+{
+  "outcome": "ok",
+  "id": "quest:844",
+  "title": "平原陆行鸟的威胁",
+  "text": "平原陆行鸟的威胁（任务 #844）\n任务链（第 2/12 步）：瑟格拉·黑棘 → 【平原陆行鸟的威胁】 → 斑马的威胁 → 草原上的徘徊者 → 埃其亚基 → 狂暴的镰爪龙 → 乔恩·星眼 → 伊沙姆哈尔 → 被激怒的雷霆蜥蜴 → 雷鹰的嘶鸣 → 玛伦·星眼 → 依沙瓦克\n地图标记（贫瘠之地）：接任务 · 交任务 瑟格拉·黑棘（临时）：十字路口（52.2, 31.0）；目标 1 陆行鸟的喙 × 7（临时）：十字路口（51.1, 26.2） · 掉落自 敏捷的平原陆行鸟、巨型平原陆行鸟、暴躁的平原陆行鸟\n临时（QuestieDB，官方数据出现后替换）：接任务 瑟格拉·黑棘；交任务 瑟格拉·黑棘；阵营 部落\n目标：收集7个陆行鸟的喙，把它们交给十字路口的瑟格拉·黑棘。\n需要：陆行鸟的喙 ×7\n描述：你的第一个任务是非常简单的。\n\n东边的平原陆行鸟总是对我们的食物补给心怀鬼胎，它们已经成了十字路口的一大祸害。\n\n杀掉那些平原陆行鸟，把它们的鸟喙给我带回来。\n等级：12（10 级可接）\n区域：贫瘠之地\n奖励：910 经验；5银；奥格瑞玛声望 +100\n前一个任务：瑟格拉·黑棘\n下一个任务：斑马的威胁",
+  "url": "https://wuxianwow.com/quest/844",
+  "metadata": {
+    "id": "quest:844",
+    "quest_id": 844,
+    "name_hint": null,
+    "hint_from": null,
+    "display_name": "平原陆行鸟的威胁",
+    "temporary_name": null,
+    "quest_line": null,
+    "zones": [],
+    "level": 12,
+    "zone": "贫瘠之地",
+    "side": null,
+    "temporary_side": "部落",
+    "achievements": [],
+    "clue_kinds": [],
+    "type": null,
+    "min_level": 10,
+    "temporary_level": null,
+    "temporary_min_level": null,
+    "temporary_zone": null,
+    "zone_group": "卡利姆多",
+    "confirmed": true,
+    "temporary_givers": [
+      {
+        "name": "瑟格拉·黑棘",
+        "kind": "npc"
+      }
+    ],
+    "reward_brief": "910 经验 · 5银 · 奥格瑞玛声望 +100",
+    "chain": {
+      "position": 2,
+      "length": 12,
+      "temporary": false
+    },
+    "new_in_160": false,
+    "era": "classic",
+    "source": "cache",
+    "category": null,
+    "time_limit_s": null,
+    "requirements": [
+      {
+        "type": "item",
+        "objective_id": 380805,
+        "item_id": 5087,
+        "url": null,
+        "name": "陆行鸟的喙",
+        "count": 7,
+        "description": null,
+        "optional": false,
+        "text": "陆行鸟的喙 ×7"
+      }
+    ],
+    "reward": {
+      "xp": 910,
+      "xp_level_share": "12 级升级需要 10100 经验，这个任务给 9%（任务等级下的满额；角色比任务等级高时游戏会减少）",
+      "money_copper": 500,
+      "money": "5银",
+      "items": [],
+      "choose_one": [],
+      "reputation": [
+        {
+          "faction_id": 76,
+          "faction": "奥格瑞玛",
+          "amount": 100
+        }
+      ],
+      "currencies": [],
+      "spell": null
+    },
+    "provided_item": null,
+    "previous_quests": [
+      {
+        "quest_id": 860,
+        "name": "瑟格拉·黑棘",
+        "url": "https://wuxianwow.com/quest/860"
+      }
+    ],
+    "next_quest": {
+      "quest_id": 845,
+      "name": "斑马的威胁",
+      "url": "https://wuxianwow.com/quest/845"
+    },
+    "quest_chain": [
+      {
+        "quest_id": 860,
+        "name": "瑟格拉·黑棘",
+        "url": "https://wuxianwow.com/quest/860",
+        "current": false,
+        "temporary_link": false
+      },
+      {
+        "quest_id": 844,
+        "name": "平原陆行鸟的威胁",
+        "url": "https://wuxianwow.com/quest/844",
+        "current": true,
+        "temporary_link": false
+      },
+      {
+        "quest_id": 845,
+        "name": "斑马的威胁",
+        "url": "https://wuxianwow.com/quest/845",
+        "current": false,
+        "temporary_link": false
+      },
+      {
+        "quest_id": 903,
+        "name": "草原上的徘徊者",
+        "url": "https://wuxianwow.com/quest/903",
+        "current": false,
+        "temporary_link": false
+      },
+      {
+        "quest_id": 881,
+        "name": "埃其亚基",
+        "url": "https://wuxianwow.com/quest/881",
+        "current": false,
+        "temporary_link": false
+      },
+      {
+        "quest_id": 905,
+        "name": "狂暴的镰爪龙",
+        "url": "https://wuxianwow.com/quest/905",
+        "current": false,
+        "temporary_link": false
+      },
+      {
+        "quest_id": 3261,
+        "name": "乔恩·星眼",
+        "url": "https://wuxianwow.com/quest/3261",
+        "current": false,
+        "temporary_link": false
+      },
+      {
+        "quest_id": 882,
+        "name": "伊沙姆哈尔",
+        "url": "https://wuxianwow.com/quest/882",
+        "current": false,
+        "temporary_link": false
+      },
+      {
+        "quest_id": 907,
+        "name": "被激怒的雷霆蜥蜴",
+        "url": "https://wuxianwow.com/quest/907",
+        "current": false,
+        "temporary_link": false
+      },
+      {
+        "quest_id": 913,
+        "name": "雷鹰的嘶鸣",
+        "url": "https://wuxianwow.com/quest/913",
+        "current": false,
+        "temporary_link": false
+      },
+      {
+        "quest_id": 874,
+        "name": "玛伦·星眼",
+        "url": "https://wuxianwow.com/quest/874",
+        "current": false,
+        "temporary_link": false
+      },
+      {
+        "quest_id": 873,
+        "name": "依沙瓦克",
+        "url": "https://wuxianwow.com/quest/873",
+        "current": false,
+        "temporary_link": false
+      }
+    ],
+    "quest_chain_note": "quest_chain：整条任务链，按先后排（服务器的前后任务，没有时用 QuestieDB 的）；temporary_link 为 true 的任务是靠 QuestieDB 的前后关系连上的（临时）",
+    "objectives": [],
+    "poi": null,
+    "map_marks": [
+      {
+        "map": {
+          "ui_map": 1413,
+          "name": "贫瘠之地",
+          "url": "https://wuxianwow.com/atlas/1413",
+          "art": "https://wuxianwow.com/data/maps/1413.webp"
+        },
+        "marks": [
+          {
+            "kind": "both",
+            "label": "接任务 · 交任务",
+            "objective": null,
+            "areas": null,
+            "place": "十字路口",
+            "x": 0.5223,
+            "y": 0.3101,
+            "coords": "52.2, 31.0",
+            "source": "QuestieDB（临时）",
+            "who": "瑟格拉·黑棘",
+            "text": "接任务 · 交任务 瑟格拉·黑棘（临时）：十字路口（52.2, 31.0）"
+          },
+          {
+            "kind": "obj",
+            "label": "陆行鸟的喙 × 7",
+            "objective": 1,
+            "areas": 1,
+            "place": "十字路口",
+            "x": 0.5112,
+            "y": 0.2615,
+            "coords": "51.1, 26.2",
+            "source": "QuestieDB（临时）",
+            "who": null,
+            "by": [
+              {
+                "kind": "npc",
+                "id": 3246,
+                "name": "敏捷的平原陆行鸟",
+                "temporary": true,
+                "no_record": true,
+                "note": "这个 NPC 只在第三方临时数据（任务标记）里，图鉴没有它的记录，fetch 不到"
+              },
+              {
+                "kind": "npc",
+                "id": 3244,
+                "name": "巨型平原陆行鸟",
+                "temporary": true,
+                "no_record": true,
+                "note": "这个 NPC 只在第三方临时数据（任务标记）里，图鉴没有它的记录，fetch 不到"
+              },
+              {
+                "kind": "npc",
+                "id": 3245,
+                "name": "暴躁的平原陆行鸟",
+                "temporary": true,
+                "no_record": true,
+                "note": "这个 NPC 只在第三方临时数据（任务标记）里，图鉴没有它的记录，fetch 不到"
+              }
+            ],
+            "via": "掉落自 敏捷的平原陆行鸟、巨型平原陆行鸟、暴躁的平原陆行鸟",
+            "text": "目标 1 陆行鸟的喙 × 7（临时）：十字路口（51.1, 26.2） · 掉落自 敏捷的平原陆行鸟、巨型平原陆行鸟、暴躁的平原陆行鸟"
+          }
+        ]
+      }
+    ],
+    "temporary": {
+      "source": "QuestieDB",
+      "repo": "https://github.com/Questie/QuestieDB",
+      "commit": "f86bce5bf6a10bfa5342678c3544598013a40783",
+      "license": "GPL-3.0（仓库 2026-10-21 起有 LICENSE.md：Questie 团队同意按 GPLv3 复制，其余没写明的内容默认保留所有权利）；站长 2026-10-25 定：按 GPLv3 使用并署名 QuestieDB（Questie 团队）",
+      "name": null,
+      "level": null,
+      "min_level": null,
+      "zone": null,
+      "category": null,
+      "objectives_text": [],
+      "starts": [
+        {
+          "kind": "npc",
+          "id": 3338,
+          "name": "瑟格拉·黑棘",
+          "title": null
+        }
+      ],
+      "ends": [
+        {
+          "kind": "npc",
+          "id": 3338,
+          "name": "瑟格拉·黑棘",
+          "title": null
+        }
+      ],
+      "objectives": [],
+      "objective_levels": [],
+      "side": "部落",
+      "previous_quests": [],
+      "next_quest": null,
+      "conditions": {
+        "prerequisites_all": [],
+        "prerequisites_one_of": [],
+        "exclusive_with": [],
+        "taken_under": null,
+        "races": [],
+        "classes": [],
+        "skill": null,
+        "reputation_min": null,
+        "reputation_max": null,
+        "carry_items": [],
+        "repeatable": false
+      },
+      "reward": null,
+      "note": "临时数据：官方数据（客户端数据表、服务器下发的任务缓存）没有这些字段，暂用 QuestieDB（Questie 插件的数据库，经典旧世数据，坐标已换算到无限的地图）；官方数据出现后由它替换。接 / 交任务的 NPC、接任务条件（conditions）与目标怪物的等级（objective_levels）官方数据里没有，全部来自这里；任务目标与奖励只在服务器没有这个任务的记录时给出，阵营只在服务器记录不限种族时给出，前后任务只在服务器没给时给出"
+    },
+    "guide_text": "【平原陆行鸟的威胁】12 级（10 级可接） · 贫瘠之地 · 部落\n接：瑟格拉·黑棘（十字路口 52.2, 31.0）\n做：陆行鸟的喙 ×7，掉落自 敏捷的平原陆行鸟、巨型平原陆行鸟、暴躁的平原陆行鸟（十字路口 51.1, 26.2）\n交：回到瑟格拉·黑棘\n奖励：910 经验 · 5银 · 奥格瑞玛声望 +100\n前置：瑟格拉·黑棘\n后续：斑马的威胁\nhttps://wuxianwow.com/quest/844（含 QuestieDB 临时数据）",
+    "guide_note": "guide_text：给玩家的一段攻略文字（接、做、交、奖励、前后任务与网址），与任务页的「复制攻略」相同，可以直接转给玩家",
+    "map_marks_note": "map_marks：任务地图标记画在区域地图上——kind start 接任务处、end 交任务处、both 接与交在同一处、obj 目标区域（objective 是 requirements 里的序号——服务器没有目标时是 temporary.objectives 里的，areas 是区域个数，places 是各区域所在的子区域）；x / y 为地图图片比例（0–1），coords 即游戏里的区域坐标；place 为所在子区域；source 为 QuestieDB（临时）的是接 / 交任务 NPC 的位置（who），或目标所需怪物 / 物件刷新点聚成的区域（by：在那里刷新的 NPC 与物件，via：掉落自 … 等），explore 为任务要去探索的地点（排在目标之后）；source 为 RestedXP（临时）的是 RestedXP 练级指南里接 / 交任务的地点（who：与之对话的 NPC）与做任务的区域；官方标记出现后不再使用",
+    "start_items": [],
+    "complete_spells": [],
+    "complete_spells_internal": [],
+    "achievement_criteria": [],
+    "lua_hint": null,
+    "quest_labels": [],
+    "cache_texts": [
+      "收集7个陆行鸟的喙，把它们交给十字路口的瑟格拉·黑棘。",
+      "你的第一个任务是非常简单的。$B$B东边的平原陆行鸟总是对我们的食物补给心怀鬼胎，它们已经成了十字路口的一大祸害。$B$B杀掉那些平原陆行鸟，把它们的鸟喙给我带回来。"
+    ],
+    "sources": {
+      "cache_texts": "本机 WDB 缓存"
+    },
+    "note": "任务标题、描述与目标由服务器下发，不在 客户端数据内（QuestV2CliTask / QuestObjective 是 0 段空表，并非加密；Campaign / ZoneStory / Scenario / ScenarioStep 同样为空）；name_hint 是客户端里最接近名称的线索（成就条件 / 起始物品 / 完成法术 / 成就 / 界面插件 / 完成法术内部名），不是任务标题。每个字段的 source_* 说明它来自哪张客户端表。QuestV2 另有 92 个任务 ID 锁在客户端未附带密钥的加密段里。source 为 cache 的任务，标题与 cache_texts（[目标, 描述, 完成文本]，按位置）取自服务器下发层的任务缓存（questcache.wdb）：客户端向服务器查询过的任务才有（游戏里见过的，或按任务 ID 查询过的）。采集方式：AI Agent 通过无限工坊（https://wuxianwow.com/workshop）在运行中的游戏里执行 Lua，按 ID 向服务器查询任务与任务目标里的生物，服务器的答复由游戏写进本机缓存（questcache.wdb、creaturecache.wdb），退出游戏后由管线解析；只用游戏自带的接口，不模拟键鼠、不读写内存、不改客户端文件。查询记录：2026-10-07 任务 · 1.60 新增的任务 1761 个，答复 689 个；2026-10-07 任务 · 其余任务 4848 个，答复 1305 个；2026-10-07 任务 · 缺内容的任务再查一次 4779 个，答复 14 个；2026-10-08 生物 · 任务目标里的生物 330 个，全部答复；2026-10-11 任务 · 缺内容的任务再查一次（客户端 1.60.1.70338） 4768 个，答复 113 个；2026-10-14 生物 · 首领临时掉落：QuestieDB 里掉首领装备的精英 / 首领级 NPC 的官方名（按名字对不上首领时用） 340 个，答复 338 个；2026-10-20 任务 · 缺内容的任务再查一次（客户端 1.60.1.70450） 4675 个，答复 609 个；2026-10-20 任务 · 交叉验证源 Polestar 列出、客户端任务表与服务器缓存都没有的任务（答复的进了服务器任务缓存；网站的任务清单只收客户端任务表里的，还没收录） 725 个，答复 108 个；2026-10-21 生物 · 无限世界书书层人物的生物编号（编号取自 QuestieDB，查到的拿官方模型编号做头像） 54 个，全部答复；2026-10-21 任务 · 物品来源临时层用到、服务器没有记录的任务（网站有的 440 个、网站没有的 143 个） 583 个，答复 9 个；2026-10-21 物品 · 物品来源临时层里网站显示不出的物品（客户端没有记录的 59 件、记录被剥掉的 2 件；只导入这些答复） 61 个，答复 41 个；2026-10-21 生物 · 物品来源临时层里没有首领页的掉落 NPC 42 个，答复 8 个；2026-10-23 物品 · 战斗模拟器用到与能换、网站没有的物品（客户端没有记录的 92 件、记录在却不在收录范围的 9 件；只导入客户端没有记录的 26 件答复；没答复的 66 件重问一遍仍无答复） 101 个，答复 35 个；2026-10-25 任务 · 物品任务奖励换成 Polestar forever-db 后少了的 27 条涉及的 13 个任务；答复的 95384、95776 转为官方（277256、279888、279889） 13 个，答复 2 个；2026-10-25 物品 · 首领临时掉落（QuestieDB 那部分）里客户端没有资料的物品；答复的 8 件导入（石窟利刃、希望信标、宝窟腿甲、斩石者、冒险者木盔、阿扎达斯之石、烙印皮护腕、生锈的锁甲战靴），438 件服务器答复不存在 446 个，答复 8 个；2026-10-25 物品 · 首领临时掉落（QuestieDB 那部分）里客户端没有资料、上一轮没问到的 23 件（邮差套装、铁纹套装、祖尔格拉布的戒指等）；全部不存在，记进 pipeline/server_absent.json 23 个，答复 0 个；2026-10-25 生物 · 还没有模型和头像的副本首领：按编号段扫名字（卡拉赞墓穴、洛丹伦废墟、领主大厅、血色领地等 15,005 个编号），找到罪业先驱、卡戎、戴苏鲁斯、碎拳·破血者、丑陋的地精（金科尔等五个地精）；屠夫、茵弗努斯没有同名生物，复生议会有六个候选未定 15005 个，答复 2416 个；2026-10-25 creature_display · 上面这些首领与候选的服务器下发显示（PlayerModel:SetCreature → GetDisplayInfo，每个隔 3 秒读两遍核对） 22 个，全部答复；2026-10-25 物品 · 网站上客户端只有编号、没有资料的物品（「未知物品」，大多是套装部件）；答复的 4 件导入（紫罗兰巫师的凉鞋 / 护腿 / 裹手、锯齿小刀），其余 1,815 件服务器答不存在，照旧保留（站长定：客户端有编号和位置的先留着） 1819 个，答复 4 个；2026-10-25 物品 · 客户端物品表里没有资料、网站也没收的编号（装备 4,447 个等）；答复的 108 件全是装备，导入进装备库（圣力手套、炽炎战斧、紫罗兰巫师套装的其余部件、投掷武器等） 5803 个，答复 108 个；2026-10-25 任务 · 缺内容的任务再查一次（客户端 1.60.1.70450），加上 Polestar 列出、客户端任务表与服务器缓存都没有的任务；答复的进了服务器任务缓存（新增 76 条、更新 111 条） 4785 个，答复 374 个；2026-10-25 生物 · 没有等级的 20 个职业展示 NPC（人类猎人、矮人战士等）：服务器给的等级就是 ??，没有可补的 20 个，答复 0 个。"
+  }
+}

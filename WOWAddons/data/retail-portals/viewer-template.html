@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><title>魔兽世界正式服 · 传送门本地数据库</title>
+<style>
+:root{color-scheme:dark;--bg:#111821;--panel:#1b2632;--line:#35485c;--ink:#e6edf5;--muted:#a8bbcc;--accent:#f5ce7b}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1440px;margin:auto;padding:36px 24px}h1{font-size:30px;line-height:1.3}h2{margin-top:40px;font-size:21px}p{color:var(--muted);max-width:1080px}a{color:var(--accent);text-underline-offset:3px}a:focus-visible,input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.metrics{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}.metric{background:var(--panel);padding:16px 24px;border:1px solid var(--line);border-radius:12px}.metric b{color:var(--accent);font-size:26px;margin-right:10px}.controls{display:flex;gap:14px;flex-wrap:wrap;margin:24px 0}.controls label{display:flex;flex-direction:column;gap:6px;flex:1;min-width:180px}input,select,button{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:10px}.table{overflow:auto;border:1px solid var(--line);border-radius:10px}table{border-collapse:collapse;width:100%;min-width:1000px;text-align:left}th,td{padding:14px;vertical-align:top;border-bottom:1px solid var(--line)}th{background:var(--panel)}td small{display:block;color:var(--muted);margin-top:5px}summary{cursor:pointer;color:var(--accent)}code{font-family:Consolas,monospace;word-break:break-all}.note{border-left:3px solid var(--accent);padding:12px 18px;background:var(--panel)}.sources{padding-left:22px}.sources li{margin:12px 0}.hidden{display:none}button{cursor:pointer}#result{color:var(--accent)}@media(max-width:600px){main{padding:24px 16px}h1{font-size:25px}.controls label{min-width:100%}.metric{padding:12px 16px}}
+</style></head><body><main>
+<p>魔兽陪伴精灵 / 本地参考资料 / 正式服</p><h1>传送门：位置与来往地区</h1>
+<p>核对日期：2026-10-29。主数据来自 Mapzeroth 2.0.5 的 Modern 数据，按独立方向保存。此页完全离线，可按地图、地区或阵营查找。</p>
+<div class="metrics"><div class="metric"><b id="route-count">—</b>有向路线</div><div class="metric"><b id="map-count">—</b>地图</div><div class="metric"><b id="observation-count">—</b>独立资料观测</div></div>
+<p class="note">坐标是相应 UI 地图的 0～100 比例值，必须结合地图 ID、楼层及相位使用。图中起点可能是门户或门户区域参考点；目的节点是导航锚点，不能当成已实测的落点。来源有记录不等于当前角色已解锁。未核实的条件和来源差异保留在详情中。</p>
+<p>数据库：<a href="retail-portals.sqlite3">SQLite</a> · <a href="portals.csv">CSV</a> · <a href="portals.json">完整 JSON</a> · <a href="README.md">字段与查询说明</a>。该数据库尚未接入桌面端聊天或路线导航。</p>
+<div class="controls"><label>起点地图<select id="map"><option value="">全部地图</option></select></label><label>搜索起点 / 目的地<input id="search" type="search" placeholder="暴风城、Silvermoon、Oribos…"></label><label>阵营筛选<select id="faction"><option value="">全部</option><option value="Alliance">联盟与未注明阵营</option><option value="Horde">部落与未注明阵营</option><option value="Unknown">仅未注明阵营</option></select></label><label>资料状态<select id="quality"><option value="">隐藏已知疑点</option><option value="all">显示全部，包括已知疑点</option></select></label></div>
+<p id="result" role="status" aria-live="polite"></p>
+<div class="table"><table><thead><tr><th>起点地区 / 门或参考点</th><th>入口参考坐标</th><th>前往地区</th><th>阵营与条件</th><th>来源及核对详情</th></tr></thead><tbody id="rows"></tbody></table></div>
+<h2>独立资料与坐标差异</h2><p>Wiki / 苏拉玛资料作为独立观测保存，不直接覆盖主数据，不重复累加为新的主数据路线。地区与方向相同只是候选匹配；距离接近也不能证明楼层、相位和位置完全一致。</p>
+<details><summary>查看独立观测列表</summary><div class="table"><table><thead><tr><th>方向</th><th>观测坐标</th><th>对照结果</th><th>说明与来源</th></tr></thead><tbody id="observations"></tbody></table></div></details>
+<h2>来源与维护</h2><ol class="sources" id="sources"></ol>
+<p>本次整理不调用聊天模型，不读取登录密钥，也不修改游戏。临时任务门、赛季门、职业和相位专属连接可能有遗漏或变化。请按来源更新时间复核。现代地图 ID 不与怀旧服或无限服互换。</p>
+</main><script id="catalog" type="application/json">__PORTAL_DATA__</script><script>
+'use strict';
+const catalog=JSON.parse(document.getElementById('catalog').textContent);
+const byId=Object.fromEntries(catalog.sources.map(source=>[source.id,source]));
+const factions={Alliance:'联盟',Horde:'部落',Neutral:'中立',Unknown:'来源未注明'};
+const comparisons={nearby:'坐标接近，仍需核对楼层/相位',different:'坐标存在差异，保留两份数据',direction_only:'仅能对照方向',not_matched:'主数据未匹配到此方向',map_unresolved:'地图 ID 待核实'};
+function element(tag,text){const node=document.createElement(tag);if(text!==undefined)node.textContent=text;return node;}
+function link(url,text){const node=element('a',text);try{const parsed=new URL(url);if(parsed.protocol==='https:'){node.href=parsed.href;node.target='_blank';node.rel='noopener noreferrer';}}catch{}return node;}
+function number(value){return value==null?'未知':Number(value).toFixed(2);}
+function sourcesInto(cell,ids){for(const id of ids){const source=byId[id];if(source){cell.append(link(source.url,source.title),element('br'));}}}
+document.getElementById('route-count').textContent=catalog.routes.length;
+document.getElementById('map-count').textContent=new Set(catalog.routes.flatMap(row=>[row.source_map_id,row.destination_map_id])).size;
+document.getElementById('observation-count').textContent=catalog.observations.length;
+const maps=new Map(catalog.routes.map(row=>[row.source_map_id,row.source_map_name_zh+' / '+row.source_map_name_en]));
+for(const [id,label] of [...maps].sort((a,b)=>a[1].localeCompare(b[1],'zh-CN'))){const option=element('option',label+' (#'+id+')');option.value=id;document.getElementById('map').append(option);}
+function render(){
+ const map=document.getElementById('map').value,term=document.getElementById('search').value.trim().toLocaleLowerCase(),faction=document.getElementById('faction').value,includeUncertain=document.getElementById('quality').value==='all';
+ const selected=catalog.routes.filter(row=>(includeUncertain||row.availability!=='uncertain')&&(!map||String(row.source_map_id)===map)&&(!faction||row.faction===faction||faction!=='Unknown'&&['Unknown','Neutral'].includes(row.faction))&&(!term||[row.source_map_name_zh,row.source_map_name_en,row.source_point_name,row.destination_name_zh,row.destination_name_en,row.destination_point_name].some(value=>value.toLocaleLowerCase().includes(term))));
+ const body=document.getElementById('rows');body.replaceChildren();
+ for(const row of selected){const tr=element('tr');const start=element('td',row.source_map_name_zh);start.append(element('small',row.source_map_name_en+' · #'+row.source_map_id),element('small',row.source_point_name));
+ const coords=element('td',number(row.source_x)+'，'+number(row.source_y));coords.append(element('small',row.source_floor||'楼层未注明'));
+ const end=element('td',row.destination_name_zh);end.append(element('small',row.destination_name_en+' · #'+row.destination_map_id),element('small',row.destination_point_name));
+ const req=element('td',factions[row.faction]||row.faction);req.append(element('small',row.requirements_zh));
+ const info=element('td');const detail=element('details');detail.append(element('summary','来源与原始标识'));detail.append(link(row.source_url,'查看固定版本来源'),element('small',row.source_section),element('small',row.from_node+' → '+row.to_node),element('small',row.notes_zh),element('small',row.reverse_from_bidirectional?'由来源明确的双向边展开回程':'来源明确记录的方向'),element('small','仅来源核对，未在当前角色实测'));
+ if(row.independent_observations?.length){for(const observation of row.independent_observations){detail.append(element('small','独立资料：'+number(observation.source_x)+'，'+number(observation.source_y)+' · '+(comparisons[observation.comparison]||observation.comparison)+' · '+(observation.source_floor||'楼层未注明')));sourcesInto(detail,observation.source_ids);}}
+ if(row.availability==='uncertain')detail.append(element('small','已知来源疑点：请勿直接据此指路'));
+ info.append(detail);tr.append(start,coords,end,req,info);body.append(tr);}
+ document.getElementById('result').textContent='显示 '+selected.length+' / '+catalog.routes.length+' 条路线';
+}
+for(const id of ['map','search','faction','quality'])document.getElementById(id).addEventListener(id==='search'?'input':'change',render);
+for(const row of catalog.observations){const tr=element('tr'),start=element('td',row.source_map_name_zh+' → '+row.destination_name_zh);start.append(element('small',(row.source_map_id?'#'+row.source_map_id:'地图 ID 未核实')+' · '+(row.source_floor||'楼层未注明')));const coords=element('td',number(row.source_x)+'，'+number(row.source_y));const check=element('td',comparisons[row.comparison]||row.comparison);const notes=element('td',row.requirements_zh);notes.append(element('small',row.notes_zh||''));sourcesInto(notes,row.source_ids);tr.append(start,coords,check,notes);document.getElementById('observations').append(tr);}
+for(const source of catalog.sources){const li=element('li');li.append(link(source.url,source.title),element('small',' · '+source.license+' · 核对 '+source.reviewed_at));if(source.revision)li.append(element('small',' · 版本 '+source.revision));document.getElementById('sources').append(li);}
+render();
+</script></body></html>

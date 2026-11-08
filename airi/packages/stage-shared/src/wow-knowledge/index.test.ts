@@ -93,9 +93,38 @@ describe('warcraft reference retrieval', () => {
     expect(createWowKnowledgeContext({ text: '', game: 'retail' })).toBe('')
   })
 
+  it('prefers wuxianwow for Forever even without local matches and preserves explicit game scope', () => {
+    const explicit = createWowKnowledgeContext({ text: '魔兽世界：无限的瑟银锭', game: 'retail' })
+    const observed = createWowKnowledgeContext({ text: '瑟银锭', game: 'forever' })
+    for (const context of [explicit, observed]) {
+      expect(context).toContain('wuxianwow::search')
+      expect(context).toContain('无限图鉴 wuxianwow.com')
+      expect(context).toContain('webpage links')
+      expect(context).toContain('say so explicitly')
+      expect(context).toContain('collection time')
+      expect(context).toContain('Search hits are summaries')
+      expect(context).toContain('Fetch the selected typed id')
+      expect(context).toContain('临时')
+      expect(context).toContain('Do not invent a card payload')
+    }
+    expect(createWowKnowledgeContext({ text: '正式服瑟银锭', game: 'forever' })).not.toContain('wuxianwow')
+    expect(createWowKnowledgeContext({ text: '怀旧服瑟银锭', game: 'forever' })).not.toContain('wuxianwow')
+  })
+
   it('retains a single role query and unambiguous recruitment phrases', () => {
     expect(searchWowKnowledge({ text: '奶', locale: 'zh-Hans' }).entries.some(entry => entry.id === 'zh-role-healer')).toBe(true)
     expect(searchWowKnowledge({ text: '缺奶', locale: 'zh-Hans' }).entries.some(entry => entry.id === 'zh-role-healer')).toBe(true)
+  })
+
+  it('routes Retail facts to the native local database without borrowing Forever evidence', () => {
+    const context = createWowKnowledgeContext({ text: '正式服瑟银锭', game: 'forever' })
+    expect(context).toContain('builtIn_wowRetailQuery')
+    expect(context).toContain('正式服本地 DB2')
+    expect(context).toContain('export time')
+    expect(context).toContain('encrypted-section')
+    expect(context).toContain('map:0')
+    expect(context).not.toContain('wuxianwow')
+    expect(createWowKnowledgeContext({ text: '无限服瑟银锭', game: 'retail' })).not.toContain('builtIn_wowRetailQuery')
   })
 
   it('bounds the reference context and retains its source and version labels', () => {

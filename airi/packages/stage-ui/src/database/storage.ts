@@ -7,5 +7,15 @@ export const storage = createStorage({
   driver: memoryDriver(),
 })
 
-storage.mount('local', indexedDbDriver({ base: 'airi-local' }))
+const localDriver = indexedDbDriver({ base: 'airi-local' })
+storage.mount('local', localDriver)
 storage.mount('outbox', indexedDbDriver({ base: 'airi-sync-queue' }))
+
+/** Enumerates canonical keys for saved local data. Driver keys include their physical prefix, which callers must not pass back to storage. */
+export async function localStorageKeys(): Promise<string[]> {
+  if (!localDriver.getKeys)
+    throw new Error('Local storage cannot enumerate saved data')
+  const keys = await localDriver.getKeys('', {})
+  return keys.filter((key): key is string => typeof key === 'string' && key.startsWith('airi-local:'))
+    .map(key => `local:${key.slice('airi-local:'.length)}`)
+}

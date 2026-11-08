@@ -1,0 +1,85 @@
+{
+  "operation": "stats",
+  "outcome": "ok",
+  "source": {
+    "name": "正式服本地 DB2",
+    "game": "retail",
+    "product": "wow",
+    "localOnly": true,
+    "build": "12.1.5.70575",
+    "locale": "zhCN",
+    "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+    "hotfixesApplied": false,
+    "datasetId": "3a9114ba7cd89e708e54bde1793e3fd34a97e70b582ad9ee1663849284870203",
+    "tables": [
+      {
+        "name": "Item",
+        "status": "decoded_with_encrypted_sections",
+        "rows": 213784,
+        "encrypted": true
+      },
+      {
+        "name": "ItemSparse",
+        "status": "decoded_with_encrypted_sections",
+        "rows": 175625,
+        "encrypted": true
+      },
+      {
+        "name": "Map",
+        "status": "decoded",
+        "rows": 1187,
+        "encrypted": false
+      },
+      {
+        "name": "UiMap",
+        "status": "decoded",
+        "rows": 1967,
+        "encrypted": false
+      },
+      {
+        "name": "AreaTable",
+        "status": "decoded_with_encrypted_sections",
+        "rows": 10024,
+        "encrypted": true
+      },
+      {
+        "name": "SpellName",
+        "status": "decoded_with_encrypted_sections",
+        "rows": 416090,
+        "encrypted": true
+      },
+      {
+        "name": "Spell",
+        "status": "decoded_with_encrypted_sections",
+        "rows": 416090,
+        "encrypted": true
+      },
+      {
+        "name": "DungeonEncounter",
+        "status": "decoded",
+        "rows": 1358,
+        "encrypted": false
+      }
+    ]
+  },
+  "entries": [],
+  "offset": 0,
+  "limit": 0,
+  "hasMore": false,
+  "notices": [
+    "client-db2-only",
+    "hotfixes-not-applied",
+    "encrypted-sections"
+  ],
+  "receivedAt": "2026-11-01T05:07:34.258882+00:00",
+  "stats": {
+    "counts": {
+      "item": 213784,
+      "map": 1187,
+      "uimap": 1967,
+      "area": 10024,
+      "spell": 416090,
+      "encounter": 1358
+    }
+  }
+}

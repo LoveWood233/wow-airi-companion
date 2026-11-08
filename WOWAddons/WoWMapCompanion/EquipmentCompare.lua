@@ -185,6 +185,21 @@ local function Inventory(slot)
     return Item(link)
 end
 local function Canonical(value) return value=="INVTYPE_ROBE" and "INVTYPE_CHEST" or value end
+function Compare.Deltas(value)
+    local before,after,keys={},{},{}
+    for _, pair in ipairs({{value.current and value.current.stats or {},before},{value.candidate.stats,after}}) do
+        for _, stat in ipairs(pair[1]) do
+            if not primaryValues[stat.key] or primaryValues[stat.key]==value.primary then
+                pair[2][stat.key]=stat.value; keys[stat.key]=true
+            end
+        end
+    end
+    local names,result={},{}
+    for key in pairs(keys) do names[#names+1]=key end
+    table.sort(names)
+    for _, key in ipairs(names) do result[#result+1]={key=key,before=before[key] or 0,after=after[key] or 0} end
+    return result
+end
 function Compare.Evaluate(value)
     local function Result(verdict,reason) return {verdict=verdict,reason=reason} end
     if not value.usable then return Result("not_upgrade","unusable") end
@@ -295,9 +310,11 @@ function Compare.Capture(owner,record,forcedSlot)
     if type(equipped)~="boolean" or not playerLevel or not required then candidate.complete=false end
     local worn=target and Inventory(target) or nil
     if not worn then target=0 end
-    local value={v=1,id=record.id,session=owner.session,guid=owner.guid,class=class,spec=spec,primary=primary or 0,
+    local value={v=2,id=record.id,session=owner.session,guid=owner.guid,class=class,spec=spec,primary=primary or 0,
         observedAt=math.floor(Number(Call(GetServerTime),0,4102444800) or 0),slot=target or 0,
         usable=equipped~=false and (not playerLevel or not required or playerLevel>=required),
         specMatch=match,current=worn,candidate=candidate}
-    return value,Compare.Evaluate(value)
+    value.assessment=Compare.Evaluate(value)
+    value.deltas=Compare.Deltas(value)
+    return value,value.assessment
 end

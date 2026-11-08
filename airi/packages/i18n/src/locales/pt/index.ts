@@ -5,14 +5,17 @@ import companionExtra from './companion-extra.yaml'
 import companionProviders from './companion-providers.yaml'
 import companionSpeech from './companion-speech.yaml'
 import companionUi from './companion-ui.yaml'
+import dshPet from './dsh-pet.yaml'
 import server from './server'
 import settings from './settings.yaml'
 import stage from './stage.yaml'
 import tamagotchi from './tamagotchi'
 import wowAddons from './wow-addons.yaml'
 import wowCompanion from './wow-companion.yaml'
+import wowStatistics from './wow-statistics.yaml'
 
 export default {
+  'dsh-pet': dshPet,
   base,
   server,
   settings,
@@ -26,4 +29,5 @@ export default {
   'companion-ui': companionUi,
   'wow-addons': wowAddons,
   'wow-companion': wowCompanion,
+  'wow-statistics': wowStatistics,
 }

@@ -28,6 +28,8 @@
     "./constants/*": "./src/constants/*.ts",
     "./constants": "./src/constants/index.ts",
     "./directives/*": "./src/directives/*.ts",
+    "./database/storage": "./src/database/storage.ts",
+    "./database/repos/chat-assets.repo": "./src/database/repos/chat-assets.repo.ts",
     "./features/devtools/motion/live2d": "./src/features/devtools/motion/live2d/index.ts",
     "./features/motions/live2d": "./src/features/motions/live2d/index.ts",
     "./libs/inference/adapters/*": "./src/libs/inference/adapters/*.ts",

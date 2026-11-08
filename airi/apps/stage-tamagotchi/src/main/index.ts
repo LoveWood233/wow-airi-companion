@@ -20,7 +20,7 @@ import { createContext } from '@moeru/eventa/adapters/electron/main'
 import { hasSelectedScreenCaptureSource, initScreenCaptureForMain } from '@proj-airi/electron-screen-capture/main'
 import { resolveSupportedLocale } from '@proj-airi/i18n'
 import { effect } from 'alien-signals'
-import { app, ipcMain, Menu, protocol, session } from 'electron'
+import { app, dialog, ipcMain, Menu, protocol, session } from 'electron'
 import { noop } from 'es-toolkit'
 import { createLoggLogger, injeca, lifecycle } from 'injeca'
 import { isLinux } from 'std-env'
@@ -42,6 +42,7 @@ import { setupAppleSpeechTranscriptionService } from './services/airi/apple-spee
 import { setupAppleVisionService } from './services/airi/apple-vision'
 import { setupServerChannel } from './services/airi/channel-server'
 import { setupComputerUse } from './services/airi/computer-use'
+import { setupDshPet } from './services/airi/dsh-pet'
 import { setupGodotStageManager } from './services/airi/godot-stage'
 import { setupHomeAssistant } from './services/airi/home-assistant'
 import { setupBuiltInServer } from './services/airi/http-server'
@@ -50,9 +51,17 @@ import { setupMcpManager } from './services/airi/mcp-servers'
 import { setupExtensionHost } from './services/airi/plugins'
 import { setupArtistryBridge } from './services/airi/widgets/artistry-bridge'
 import { setupWowAddons } from './services/airi/wow-addons'
+import { recoverWowBackup, setupWowBackup } from './services/airi/wow-backup'
 import { setupWowCompanion } from './services/airi/wow-companion'
+import { setupWowDataCache, WowDataCache } from './services/airi/wow-data-cache'
+import { setupWowDataUpdate } from './services/airi/wow-data-update'
+import { setupWowDelivery } from './services/airi/wow-delivery'
 import { setupWowLauncher } from './services/airi/wow-launcher'
+import { markLocalUpdateReady, setupWowLocalUpdate } from './services/airi/wow-local-update'
+import { setupWowRetailDatabase } from './services/airi/wow-retail-database'
 import { setupWowScreenAssist } from './services/airi/wow-screen-assist'
+import { setupWowSetup } from './services/airi/wow-setup'
+import { setupWowStatistics } from './services/airi/wow-statistics'
 import { setupAutoUpdater } from './services/electron/auto-updater'
 import { setupSherpawModelAssetsProtocol } from './services/electron/bundled-sherpaw-assets'
 import { setupGlobalShortcutService } from './services/electron/global-shortcut'
@@ -86,6 +95,9 @@ protocol.registerSchemesAsPrivileged([{
   scheme: 'airi-model',
   privileges: { standard: true, secure: true, supportFetchAPI: true, corsEnabled: true, stream: true },
 }, {
+  scheme: 'dsh-pet',
+  privileges: { standard: true, secure: true, supportFetchAPI: true, corsEnabled: true, stream: true },
+}, {
   scheme: 'airi-sherpaw',
   privileges: { standard: true, secure: true, supportFetchAPI: true, corsEnabled: true, stream: true },
 }])
@@ -96,7 +108,7 @@ setupDebugger()
 const log = useLogg('main').useGlobalConfig()
 
 // Keep the selected profile independent of the display name, including launcher overrides.
-const appUserDataPath = env.APP_USER_DATA_PATH?.trim() || app.getPath('userData')
+const appUserDataPath = env.APP_USER_DATA_PATH?.trim() || join(app.getPath('home'), '.airi-wow-companion')
 mkdirSync(appUserDataPath, { recursive: true })
 app.setPath('userData', appUserDataPath)
 app.setPath('sessionData', appUserDataPath)
@@ -164,7 +176,7 @@ if (isLinux) {
 // Dev runs use the Electron default icon, so replace it with a marked dev icon.
 if (is.dev)
   app.dock?.setIcon(devIcon)
-electronApp.setAppUserModelId('ai.moeru.airi')
+electronApp.setAppUserModelId('ai.wow.companion')
 
 // Track the real user-facing AIRI window because the process also owns hidden utility windows.
 // The second-instance handler should restore the main UI instead of accidentally surfacing internals.
@@ -247,10 +259,27 @@ if (shouldStartMainProcess) {
 
 let fileLogger: FileLoggerHandle = nullFileLoggerHandle
 let skipFileLogging = false
+let restoringBackup = false
+let startingWindows = true
 
 app.whenReady().then(async () => {
   if (!shouldStartMainProcess) {
     return
+  }
+
+  const recoveryI18n = createI18n({ messages, locale: resolveSupportedLocale(app.getLocale(), Object.keys(messages)), fallbackLocale: 'en' })
+  restoringBackup = true
+  try {
+    await recoverWowBackup(recoveryI18n.t('wow-companion.backup.title'))
+  }
+  catch (error) {
+    log.withError(error).error('Backup recovery stopped startup')
+    dialog.showErrorBox(recoveryI18n.t('wow-companion.backup.title'), recoveryI18n.t('wow-companion.backup.startup-failed'))
+    app.quit()
+    return
+  }
+  finally {
+    restoringBackup = false
   }
 
   setupSherpawModelAssetsProtocol(resolve(getElectronMainDirname(), '..', 'renderer'))
@@ -336,8 +365,17 @@ app.whenReady().then(async () => {
     build: ({ dependsOn }) => setupAppleVisionService(dependsOn),
   })
 
+  const dataCache = injeca.provide('services:wow-data-cache', {
+    build: () => {
+      const cache = new WowDataCache(join(app.getPath('userData'), 'wow-data-cache', 'v1'))
+      onAppBeforeQuit(() => cache.dispose())
+      return cache
+    },
+  })
+
   const mcpManager = injeca.provide('modules:mcp-manager', {
-    build: async () => setupMcpManager(),
+    dependsOn: { dataCache },
+    build: async ({ dependsOn }) => setupMcpManager(dependsOn.dataCache),
   })
 
   const ioTraceRecording = injeca.provide('services:io-trace-recording', {
@@ -517,20 +555,32 @@ app.whenReady().then(async () => {
   }
 
   injeca.invoke({
-    dependsOn: { mainWindow, tray, serverChannel, airiHttpServer, godotStageManager, pluginHost, mcpManager, onboardingWindow: onboardingWindowManager, widgetsWindow: widgetsManager, spotlightWindow, artistryConfig },
+    dependsOn: { mainWindow, tray, serverChannel, airiHttpServer, godotStageManager, pluginHost, mcpManager, dataCache, onboardingWindow: onboardingWindowManager, widgetsWindow: widgetsManager, spotlightWindow, artistryConfig, i18n },
     callback: async (deps) => {
+      startingWindows = false
       const { context } = createContext(ipcMain)
       setupComputerUse(context)
       setupHomeAssistant(context)
+      setupWowStatistics(context)
+      setupDshPet(context)
       setupWowAddons(context)
-      setupWowCompanion(context)
+      const companion = setupWowCompanion(context)
+      const backups = setupWowBackup(context, key => deps.i18n.t(key), companion.snapshotForBackup)
+      setupWowDelivery(context)
+      setupWowLocalUpdate(context, backups.prepareUpdate)
       setupWowLauncher(context)
+      const stopCache = setupWowDataCache(context, deps.dataCache)
+      onAppBeforeQuit(stopCache)
+      const database = setupWowRetailDatabase(context, deps.dataCache)
+      setupWowDataUpdate(context, database)
+      setupWowSetup(context)
       setupWowScreenAssist(context)
       await setupArtistryBridge({
         widgetsManager: deps.widgetsWindow,
         context,
         artistryConfig: deps.artistryConfig,
       })
+      await markLocalUpdateReady(deps.mainWindow)
     },
   })
 
@@ -551,6 +601,8 @@ app.whenReady().then(async () => {
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
+  if (restoringBackup || startingWindows)
+    return
   emitAppWindowAllClosed()
 
   if (platform !== 'darwin') {

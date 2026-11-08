@@ -1,0 +1,80 @@
+{
+  "operation": "fetch",
+  "outcome": "ok",
+  "source": {
+    "name": "正式服本地 DB2",
+    "game": "retail",
+    "product": "wow",
+    "localOnly": true,
+    "build": "12.1.5.70575",
+    "locale": "zhCN",
+    "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+    "hotfixesApplied": false,
+    "datasetId": "3a9114ba7cd89e708e54bde1793e3fd34a97e70b582ad9ee1663849284870203",
+    "tables": [
+      {
+        "name": "AreaTable",
+        "status": "decoded_with_encrypted_sections",
+        "rows": 10024,
+        "encrypted": true
+      }
+    ]
+  },
+  "entries": [
+    {
+      "id": "area:272",
+      "kind": "area",
+      "numericId": 272,
+      "title": "塔伦米尔",
+      "fields": [
+        {
+          "key": "ID",
+          "value": "272"
+        },
+        {
+          "key": "AreaName_lang",
+          "value": "塔伦米尔"
+        },
+        {
+          "key": "ContinentID",
+          "value": "0"
+        },
+        {
+          "key": "ParentAreaID",
+          "value": "267"
+        },
+        {
+          "key": "ContentTuningID",
+          "value": "11"
+        },
+        {
+          "key": "FactionGroupMask",
+          "value": "0"
+        }
+      ],
+      "links": [
+        {
+          "kind": "map",
+          "id": "map:0",
+          "title": "东部王国"
+        }
+      ],
+      "notices": [
+        "client-db2-only",
+        "hotfixes-not-applied",
+        "encrypted-sections",
+        "content-tuning-not-exploration-level"
+      ]
+    }
+  ],
+  "offset": 0,
+  "limit": 1,
+  "hasMore": false,
+  "notices": [
+    "client-db2-only",
+    "hotfixes-not-applied",
+    "encrypted-sections",
+    "content-tuning-not-exploration-level"
+  ],
+  "receivedAt": "2026-11-01T05:07:34.258882+00:00"
+}

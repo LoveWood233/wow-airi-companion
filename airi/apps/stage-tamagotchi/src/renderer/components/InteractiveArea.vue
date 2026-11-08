@@ -29,7 +29,6 @@ import JournalToolCallBlock from './chat-tool-renderers/journal-tool-call-block.
 import ChatViewportLayout from './chat-viewport-layout.vue'
 
 import { electronOpenSettings } from '../../shared/eventa'
-import { WOW_ADDON_RECOMMENDATION_TOOL_NAME } from '../../shared/wow-addon-recommendations'
 import { useHearingInputChannel } from '../composables/use-hearing-input-channel'
 import { computerUseToolReferences, useToolSelectionStore, widgetToolReferences } from '../stores/tools'
 import { COMPUTER_USE_READ_IMAGE_TOOL_NAME, COMPUTER_USE_TOOL_NAME } from '../stores/tools/builtin/computer-use'
@@ -37,7 +36,6 @@ import { WEATHER_TOOL_NAME } from '../stores/tools/builtin/weather'
 import { computerUseReadImageToolCallWidget } from './chat-tool-renderers/computer-use-read-image-tool-call-widget'
 import { computerUseToolCallWidget } from './chat-tool-renderers/computer-use/widget'
 import { weatherToolCallWidget } from './chat-tool-renderers/weather-tool-call-widget'
-import { wowAddonRecommendationsWidget } from './chat-tool-renderers/wow-addon-recommendations'
 
 const props = withDefaults(defineProps<{
   /**
@@ -140,7 +138,6 @@ const toolCallRenderers = {
   text_journal: JournalToolCallBlock,
 } satisfies ChatToolCallRendererRegistry
 const toolCallWidgets = {
-  [WOW_ADDON_RECOMMENDATION_TOOL_NAME]: wowAddonRecommendationsWidget,
   [WEATHER_TOOL_NAME]: weatherToolCallWidget,
   [COMPUTER_USE_TOOL_NAME]: computerUseToolCallWidget,
   [COMPUTER_USE_READ_IMAGE_TOOL_NAME]: computerUseReadImageToolCallWidget,

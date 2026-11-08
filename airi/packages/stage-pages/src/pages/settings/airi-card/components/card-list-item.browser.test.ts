@@ -1,6 +1,7 @@
 import en from '@proj-airi/i18n/locales/en'
 
 import { DisplayModelFormat, useDisplayModelsStore } from '@proj-airi/stage-ui/stores/display-models'
+import { useSettingsStageModel } from '@proj-airi/stage-ui/stores/settings/stage-model'
 import { createPinia, disposePinia } from 'pinia'
 import { afterEach, describe, expect, it } from 'vitest'
 import { cleanup, render } from 'vitest-browser-vue'
@@ -19,7 +20,7 @@ const props = {
   modelId: 'model',
 }
 
-async function renderItem(syncState?: 'synced' | 'pending' | 'refused', isActive = false, modelId = props.modelId) {
+async function renderItem(syncState?: 'synced' | 'pending' | 'refused', isActive = false, modelId = props.modelId, runtimeEnabled = true) {
   const pinia = createPinia()
   useDisplayModelsStore(pinia).displayModels = [{
     id: 'model',
@@ -30,6 +31,7 @@ async function renderItem(syncState?: 'synced' | 'pending' | 'refused', isActive
     previewImage: 'data:image/png;base64,preview',
     importedAt: 0,
   }]
+  useSettingsStageModel(pinia).setRuntimeEnabled(runtimeEnabled)
   const router = createRouter({
     history: createMemoryHistory(),
     routes: [{ path: '/:pathMatch(.*)*', component: { template: '<div />' } }],
@@ -87,6 +89,14 @@ describe('card list item', () => {
     const placeholder = screen.container.querySelector('[role="img"]')
     expect(placeholder?.getAttribute('aria-label')).toBe('No model selected')
     expect(placeholder?.querySelector('svg[data-icon="ghost-smile-bold-duotone"]')).not.toBeNull()
+    disposePinia(pinia)
+  })
+
+  it('shows a static persona icon when the host uses video pets', async () => {
+    const { screen, pinia } = await renderItem(undefined, false, props.modelId, false)
+    expect(screen.container.querySelector('img')).toBeNull()
+    expect(screen.container.querySelector('[role="img"]')).not.toBeNull()
+    expect(useDisplayModelsStore(pinia).displayModels[0]?.id).toBe('model')
     disposePinia(pinia)
   })
 })

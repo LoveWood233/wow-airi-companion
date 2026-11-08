@@ -1,0 +1,247 @@
+[
+  {
+    "outcome": "ok",
+    "id": "recipe:6863",
+    "title": "不牢固的扳机",
+    "text": "不牢固的扳机（工程学 · 零件）\n效果：—\n材料：秘银锭×1、魔纹布×1、实心炸药×1\n工具：铁匠锤、弧光扳手\n制作地点：需要在铁砧旁边\n产出：不牢固的扳机×1",
+    "url": "https://wuxianwow.com/recipe/6863",
+    "metadata": {
+      "id": "recipe:6863",
+      "kind": "recipe",
+      "recipe_id": 6863,
+      "spell_id": 12591,
+      "game_link": "|cffffd000|Henchant:12591|h[工程学: 不牢固的扳机]|h|r",
+      "product_game_link": "|cffffffff|Hitem:10560:::::::::::::|h[不牢固的扳机]|h|r",
+      "game_link_note": "客户端聊天超链接转义串；聊天框会过滤「|」，要贴进游戏需用宏：/run ChatFrame1EditBox:Insert(\"…\")，宏里把 | 写成 \\124",
+      "profession": "工程学",
+      "category": "工程学 › 零件",
+      "new_in_160": false,
+      "effect": "",
+      "reagents": [
+        {
+          "item_id": 3860,
+          "name": "秘银锭",
+          "count": 1,
+          "hidden": false
+        },
+        {
+          "item_id": 4338,
+          "name": "魔纹布",
+          "count": 1,
+          "hidden": false
+        },
+        {
+          "item_id": 10505,
+          "name": "实心炸药",
+          "count": 1,
+          "hidden": false
+        }
+      ],
+      "products": [
+        {
+          "item_id": 10560,
+          "name": "不牢固的扳机",
+          "count": 1,
+          "hidden": false,
+          "quality": 1,
+          "ilvl": 40,
+          "req_level": 0
+        }
+      ],
+      "product_hidden": false,
+      "equipment": null,
+      "taught_by": [],
+      "taught_by_note": "来自 ItemEffect 学习法术；来源只列客户端能证明的声望奖励，商人 / 掉落 / 任务奖励不在 客户端数据内",
+      "skill_up_range": [
+        200,
+        240
+      ],
+      "min_rank": 1,
+      "tools": [
+        "铁匠锤",
+        "弧光扳手"
+      ],
+      "craft_at": "铁砧"
+    }
+  },
+  {
+    "outcome": "ok",
+    "id": "recipe:6868",
+    "title": "秘银外壳",
+    "text": "秘银外壳（工程学 · 零件）\n效果：—\n材料：秘银锭×3\n工具：铁匠锤、弧光扳手\n制作地点：需要在铁砧旁边\n产出：秘银外壳×1",
+    "url": "https://wuxianwow.com/recipe/6868",
+    "metadata": {
+      "id": "recipe:6868",
+      "kind": "recipe",
+      "recipe_id": 6868,
+      "spell_id": 12599,
+      "game_link": "|cffffd000|Henchant:12599|h[工程学: 秘银外壳]|h|r",
+      "product_game_link": "|cffffffff|Hitem:10561:::::::::::::|h[秘银外壳]|h|r",
+      "game_link_note": "客户端聊天超链接转义串；聊天框会过滤「|」，要贴进游戏需用宏：/run ChatFrame1EditBox:Insert(\"…\")，宏里把 | 写成 \\124",
+      "profession": "工程学",
+      "category": "工程学 › 零件",
+      "new_in_160": false,
+      "effect": "",
+      "reagents": [
+        {
+          "item_id": 3860,
+          "name": "秘银锭",
+          "count": 3,
+          "hidden": false
+        }
+      ],
+      "products": [
+        {
+          "item_id": 10561,
+          "name": "秘银外壳",
+          "count": 1,
+          "hidden": false,
+          "quality": 1,
+          "ilvl": 43,
+          "req_level": 0
+        }
+      ],
+      "product_hidden": false,
+      "equipment": null,
+      "taught_by": [],
+      "taught_by_note": "来自 ItemEffect 学习法术；来源只列客户端能证明的声望奖励，商人 / 掉落 / 任务奖励不在 客户端数据内",
+      "skill_up_range": [
+        215,
+        255
+      ],
+      "min_rank": 1,
+      "tools": [
+        "铁匠锤",
+        "弧光扳手"
+      ],
+      "craft_at": "铁砧"
+    }
+  },
+  {
+    "outcome": "ok",
+    "id": "recipe:6946",
+    "title": "地精爆炸盒",
+    "text": "地精爆炸盒（工程学 · 装置）\n效果：—\n材料：秘银外壳×1、实心炸药×2、黄金能量核心×1、秘银锭×2\n工具：铁匠锤、弧光扳手\n制作地点：需要在铁砧旁边\n产出：未公开物品 #10580×1",
+    "url": "https://wuxianwow.com/recipe/6946",
+    "metadata": {
+      "id": "recipe:6946",
+      "kind": "recipe",
+      "recipe_id": 6946,
+      "spell_id": 12720,
+      "game_link": "|cffffd000|Henchant:12720|h[工程学: 地精爆炸盒]|h|r",
+      "product_game_link": "|cffffffff|Hitem:10580:::::::::::::|h[未公开物品 #10580]|h|r",
+      "game_link_note": "客户端聊天超链接转义串；聊天框会过滤「|」，要贴进游戏需用宏：/run ChatFrame1EditBox:Insert(\"…\")，宏里把 | 写成 \\124",
+      "profession": "工程学",
+      "category": "工程学 › 装置",
+      "new_in_160": false,
+      "effect": "",
+      "reagents": [
+        {
+          "item_id": 10561,
+          "name": "秘银外壳",
+          "count": 1,
+          "hidden": false
+        },
+        {
+          "item_id": 10505,
+          "name": "实心炸药",
+          "count": 2,
+          "hidden": false
+        },
+        {
+          "item_id": 10558,
+          "name": "黄金能量核心",
+          "count": 1,
+          "hidden": false
+        },
+        {
+          "item_id": 3860,
+          "name": "秘银锭",
+          "count": 2,
+          "hidden": false
+        }
+      ],
+      "products": [
+        {
+          "item_id": 10580,
+          "name": "未公开物品 #10580",
+          "count": 1,
+          "hidden": true
+        }
+      ],
+      "product_hidden": true,
+      "equipment": null,
+      "taught_by": [],
+      "taught_by_note": "来自 ItemEffect 学习法术；来源只列客户端能证明的声望奖励，商人 / 掉落 / 任务奖励不在 客户端数据内",
+      "skill_up_range": [
+        235,
+        255
+      ],
+      "min_rank": 1,
+      "tools": [
+        "铁匠锤",
+        "弧光扳手"
+      ],
+      "craft_at": "铁砧"
+    }
+  },
+  {
+    "outcome": "ok",
+    "id": "recipe:6878",
+    "title": "秘银螺旋弹",
+    "text": "秘银螺旋弹（工程学 · 弹药）\n效果：优秀弹药 · 装等 49 · 需求 44 级\n材料：秘银锭×2、实心炸药×2\n工具：铁匠锤\n制作地点：需要在铁砧旁边\n产出：秘银螺旋弹×200",
+    "url": "https://wuxianwow.com/recipe/6878",
+    "metadata": {
+      "id": "recipe:6878",
+      "kind": "recipe",
+      "recipe_id": 6878,
+      "spell_id": 12621,
+      "game_link": "|cffffd000|Henchant:12621|h[工程学: 秘银螺旋弹]|h|r",
+      "product_game_link": "|cff1eff00|Hitem:10513:::::::::::::|h[秘银螺旋弹]|h|r",
+      "game_link_note": "客户端聊天超链接转义串；聊天框会过滤「|」，要贴进游戏需用宏：/run ChatFrame1EditBox:Insert(\"…\")，宏里把 | 写成 \\124",
+      "profession": "工程学",
+      "category": "工程学 › 弹药",
+      "new_in_160": false,
+      "effect": "优秀弹药 · 装等 49 · 需求 44 级",
+      "reagents": [
+        {
+          "item_id": 3860,
+          "name": "秘银锭",
+          "count": 2,
+          "hidden": false
+        },
+        {
+          "item_id": 10505,
+          "name": "实心炸药",
+          "count": 2,
+          "hidden": false
+        }
+      ],
+      "products": [
+        {
+          "item_id": 10513,
+          "name": "秘银螺旋弹",
+          "count": 200,
+          "hidden": false,
+          "quality": 2,
+          "ilvl": 49,
+          "slot": "弹药",
+          "req_level": 44
+        }
+      ],
+      "product_hidden": false,
+      "equipment": null,
+      "taught_by": [],
+      "taught_by_note": "来自 ItemEffect 学习法术；来源只列客户端能证明的声望奖励，商人 / 掉落 / 任务奖励不在 客户端数据内",
+      "skill_up_range": [
+        245,
+        285
+      ],
+      "min_rank": 1,
+      "tools": [
+        "铁匠锤"
+      ],
+      "craft_at": "铁砧"
+    }
+  }
+]

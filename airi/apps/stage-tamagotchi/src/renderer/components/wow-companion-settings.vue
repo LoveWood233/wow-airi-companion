@@ -1,29 +1,38 @@
 <script setup lang="ts">
 import type { CaptureSettings, CompanionSettings, DemoRequest, GameVersion } from '../../shared/wow-companion'
+import type { EquipmentHistoryEntry } from '../../shared/wow-companion-equipment-history'
 
 import { errorMessageFrom } from '@moeru/std'
+import { useAiriCardStore } from '@proj-airi/stage-ui/stores/modules/airi-card'
 import { useConsciousnessStore } from '@proj-airi/stage-ui/stores/modules/consciousness'
-import { Button, FieldCheckbox, FieldInput, Input, SettingsCard } from '@proj-airi/ui'
-import { computed, onMounted, reactive, ref, watch } from 'vue'
+import { Button, Collapsible, FieldCheckbox, FieldInput, Input, Radio, SettingsCard } from '@proj-airi/ui'
+import { computed, defineAsyncComponent, onMounted, reactive, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-
-import WowCompanionEquipmentSwaps from './wow-companion-equipment-swaps.vue'
-import WowCompanionEquipment from './wow-companion-equipment.vue'
-import WowCompanionLevelHistory from './wow-companion-level-history.vue'
-import WowCompanionLoadout from './wow-companion-loadout.vue'
 
 import { defaultSettings } from '../../shared/wow-companion'
 import { formatCompanionError } from '../../shared/wow-companion-errors'
 import { useWowCompanionStore } from '../stores/wow-companion'
+import { useWowCompanionMemoriesStore } from '../stores/wow-companion-memories'
+import { useWowPlayerAddressSettingsStore } from '../stores/wow-player-address-settings'
 
 const props = defineProps<{ game: GameVersion }>()
+const WowCompanionEquipmentSwaps = defineAsyncComponent(() => import('./wow-companion-equipment-swaps.vue'))
+const WowCompanionEquipment = defineAsyncComponent(() => import('./wow-companion-equipment.vue'))
+const WowCompanionItemStorage = defineAsyncComponent(() => import('./wow-companion-item-storage.vue'))
+const WowCompanionLevelHistory = defineAsyncComponent(() => import('./wow-companion-level-history.vue'))
+const WowCompanionLoadout = defineAsyncComponent(() => import('./wow-companion-loadout.vue'))
+const WowConnectionStatus = defineAsyncComponent(() => import('./wow-connection-status.vue'))
+
 // Route wrappers key this component by game. Pending actions retain their original profile.
 const game = props.game
 const router = useRouter()
 const { t, locale } = useI18n()
 const tn = (key: string) => t(`wow-companion.${key}`)
 const companion = useWowCompanionStore()
+const memories = useWowCompanionMemoriesStore()
+const cards = useAiriCardStore()
+const collectingMemory = ref(false)
 const profile = companion.profiles[game]
 const consciousness = useConsciousnessStore()
 const settings = reactive<CompanionSettings>({ ...defaultSettings, enabled: game === 'retail' })
@@ -38,6 +47,60 @@ const goldActionError = ref('')
 const storedAccountNames = new Map<string, string>()
 const settingsLoaded = ref(false)
 const captureLoaded = ref(false)
+const archivesOpen = ref(false)
+const diagnosticsOpen = ref(false)
+const activityOpen = ref(false)
+const panelId = useId()
+const playerAddress = useWowPlayerAddressSettingsStore()
+const addressMode = ref<string>(playerAddress.mode)
+const customAddress = ref(playerAddress.customName)
+const addressInvalid = ref(false)
+const addressSaved = ref(false)
+
+watch(() => [playerAddress.mode, playerAddress.customName] as const, ([mode, name]) => {
+  addressMode.value = mode
+  customAddress.value = name
+  addressInvalid.value = false
+  addressSaved.value = false
+}, { flush: 'sync' })
+
+function clearAddressFeedback() {
+  addressInvalid.value = false
+  addressSaved.value = false
+}
+
+function selectAddressMode(mode: string) {
+  addressMode.value = mode
+  addressInvalid.value = false
+  addressSaved.value = false
+  if (mode === 'character')
+    playerAddress.setCharacterName()
+}
+
+function saveCustomAddress() {
+  addressInvalid.value = !playerAddress.setCustomName(customAddress.value)
+  addressSaved.value = !addressInvalid.value
+  if (addressSaved.value)
+    customAddress.value = playerAddress.customName
+}
+
+async function collectEquipmentMemory(entry: EquipmentHistoryEntry) {
+  if (collectingMemory.value)
+    return
+  collectingMemory.value = true
+  actionError.value = ''
+  message.value = ''
+  try {
+    await memories.collectEquipment({ personaId: cards.activeCardId, character: { game, account: entry.account, guid: entry.record.guid }, characterName: entry.name, record: entry.record })
+    message.value = t('wow-companion.memory.notifications.saved')
+  }
+  catch {
+    actionError.value = t('wow-companion.memory.notifications.operation-failed')
+  }
+  finally {
+    collectingMemory.value = false
+  }
+}
 
 const bridge = computed(() => profile.state.bridge)
 const snapshot = computed(() => bridge.value?.snapshot)
@@ -106,13 +169,13 @@ watch(() => profile.state, (value) => {
   }
 }, { immediate: true })
 
-async function perform(action: () => Promise<void>) {
+async function perform(action: () => Promise<void>, success = 'saved') {
   busy.value = true
   actionError.value = ''
   message.value = ''
   try {
     await action()
-    message.value = tn('saved')
+    message.value = tn(success)
   }
   catch (cause) {
     actionError.value = errorMessageFrom(cause) ?? tn('failed')
@@ -198,7 +261,7 @@ onMounted(() => companion.start())
         <p :class="['text-sm text-neutral-500 dark:text-neutral-400']">
           {{ tn('start-bridge') }}
         </p>
-        <p v-if="error" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
+        <p v-if="error && (actionError || profile.error || profile.state.error || !bridge?.connection?.reason)" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
           {{ formatCompanionError(error, t) }}
         </p>
         <p v-if="message" role="status" :class="['text-sm text-primary-600 dark:text-primary-300']">
@@ -265,132 +328,6 @@ onMounted(() => companion.start())
       </div>
     </SettingsCard>
 
-    <WowCompanionLevelHistory :game="game" :history="profile.state.levelHistory" :current="status === 'live' && !error && snapshot?.online ? snapshot : null" />
-    <WowCompanionLoadout :game="game" :history="profile.state.equipmentLoadouts" :current="status === 'live' && !error && snapshot?.online ? snapshot : null" :error="bridge?.equipmentLoadoutError ?? null" />
-    <WowCompanionEquipment :game="game" :bridge="bridge" :history="profile.state.equipmentHistory" :comparisons="profile.state.equipmentComparisons" />
-    <WowCompanionEquipmentSwaps :bridge="bridge" :current="isCurrent && !error && Boolean(snapshot?.online)" />
-
-    <SettingsCard>
-      <header>
-        <h2 :class="['text-lg font-semibold']">
-          {{ tn('gold.title') }}
-        </h2>
-        <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
-          {{ tn('gold.description') }}
-        </p>
-      </header>
-      <div :class="['flex flex-col gap-5']">
-        <div :class="['rounded-xl p-4', 'bg-neutral-50 dark:bg-neutral-900']">
-          <p :class="['text-sm text-neutral-500 dark:text-neutral-400']">
-            {{ tn('gold.current-balance') }}
-          </p>
-          <p v-if="currentMoney !== null" :class="['mt-1 text-xl font-semibold tabular-nums']">
-            {{ formatMoney(currentMoney) }}
-          </p>
-          <p v-else :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
-            {{ tn('gold.current-unavailable') }}
-          </p>
-        </div>
-        <p v-if="profile.state.gold.storageError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
-          {{ tn('gold.storage-error') }} {{ formatCompanionError(profile.state.gold.storageError, t) }}
-        </p>
-        <p v-if="goldActionError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
-          {{ formatCompanionError(goldActionError, t) }}
-        </p>
-        <p v-if="goldMessage" role="status" :class="['text-sm text-primary-600 dark:text-primary-300']">
-          {{ goldMessage }}
-        </p>
-        <p v-if="!goldAccounts.length" :class="['text-sm text-neutral-500 dark:text-neutral-400']">
-          {{ tn('gold.empty') }}
-        </p>
-        <article
-          v-for="account in goldAccounts" :key="account.account"
-          :aria-label="account.name || account.account"
-          :class="['min-w-0 rounded-xl p-4', 'border border-neutral-200 dark:border-neutral-800', 'flex flex-col gap-4']"
-        >
-          <div>
-            <h3 :class="['font-semibold']">
-              {{ account.name || tn('gold.unnamed-account') }}
-            </h3>
-            <p :class="['mt-1 break-all text-xs text-neutral-500 dark:text-neutral-400']">
-              {{ tn('gold.account-id') }} {{ account.account }}
-            </p>
-            <p :class="['mt-1 text-xs text-neutral-500 dark:text-neutral-400']">
-              {{ t('wow-companion.gold.character-count', { count: account.characterCount }) }} · {{ tn('gold.since') }} {{ formatDate(account.firstSeen) }}
-            </p>
-          </div>
-          <form :class="['flex flex-col gap-2 sm:flex-row sm:items-end']" @submit.prevent="saveAccountName(account.account)">
-            <div :class="['min-w-0 flex-1']">
-              <label :for="`gold-account-${game}-${account.account}`" :class="['mb-1 block text-sm']">{{ tn('gold.account-name') }}</label>
-              <Input
-                :id="`gold-account-${game}-${account.account}`" v-model="accountNames[account.account]"
-                type="text" :maxlength="64" :placeholder="tn('gold.account-name-placeholder')"
-                :disabled="Boolean(goldSavingAccount)" :aria-describedby="`gold-account-${game}-help-${account.account}`"
-              />
-              <p :id="`gold-account-${game}-help-${account.account}`" :class="['mt-1 text-xs text-neutral-500 dark:text-neutral-400']">
-                {{ tn('gold.account-name-help') }}
-              </p>
-            </div>
-            <Button type="submit" color="primary" variant="primary" :loading="goldSavingAccount === account.account" :disabled="Boolean(goldSavingAccount)">
-              {{ tn('gold.save-name') }}
-            </Button>
-          </form>
-          <dl :class="['grid grid-cols-1 gap-4 sm:grid-cols-2']">
-            <div v-for="field in summaryFields" :key="field">
-              <dt :class="['text-xs text-neutral-500 dark:text-neutral-400']">
-                {{ tn(`gold.${field}`) }}
-              </dt>
-              <dd :class="['mt-1 break-words font-medium tabular-nums']">
-                {{ formatMoney(account[field]) }}
-              </dd>
-            </div>
-          </dl>
-          <div :class="['overflow-x-auto']">
-            <table :class="['w-full text-left text-sm']">
-              <caption :class="['mb-2 text-left text-xs text-neutral-500 dark:text-neutral-400']">
-                {{ tn('gold.characters-description') }}
-              </caption>
-              <thead :class="['text-neutral-500 dark:text-neutral-400']">
-                <tr>
-                  <th v-for="column in ['character', 'realm', 'character-balance', 'earned', 'spent', 'last-seen']" :key="column" scope="col" :class="['whitespace-nowrap px-2 py-2 font-medium']">
-                    {{ tn(`gold.${column}`) }}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="character in account.characters" :key="character.guid" :class="['border-t border-neutral-200 dark:border-neutral-800']">
-                  <th scope="row" :class="['whitespace-nowrap px-2 py-3 font-medium']">
-                    {{ character.name }}
-                  </th>
-                  <td :class="['whitespace-nowrap px-2 py-3']">
-                    {{ character.realm }}
-                  </td>
-                  <td :class="['whitespace-nowrap px-2 py-3 tabular-nums']">
-                    {{ formatMoney(character.copper) }}
-                  </td>
-                  <td :class="['whitespace-nowrap px-2 py-3 tabular-nums']">
-                    {{ formatMoney(character.earned) }}
-                  </td>
-                  <td :class="['whitespace-nowrap px-2 py-3 tabular-nums']">
-                    {{ formatMoney(character.spent) }}
-                  </td>
-                  <td :class="['whitespace-nowrap px-2 py-3 text-xs text-neutral-500 dark:text-neutral-400']">
-                    <time :datetime="new Date(character.lastSeen).toISOString()">{{ formatDate(character.lastSeen) }}</time>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </article>
-        <ul :class="['list-disc pl-5 text-xs text-neutral-500 dark:text-neutral-400', 'flex flex-col gap-2']">
-          <li>{{ tn('gold.identity-note') }}</li>
-          <li>{{ tn('gold.flow-note') }}</li>
-          <li>{{ tn('gold.balance-note') }}</li>
-          <li>{{ tn('gold.demo-note') }}</li>
-        </ul>
-      </div>
-    </SettingsCard>
-
     <SettingsCard>
       <header>
         <h2 :class="['text-lg font-semibold']">
@@ -408,75 +345,299 @@ onMounted(() => companion.start())
             {{ tn('save-preferences') }}
           </Button>
         </div>
-      </div>
-    </SettingsCard>
-
-    <SettingsCard>
-      <header>
-        <h2 :class="['text-lg font-semibold']">
-          {{ tn('capture') }}
-        </h2>
-        <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
-          {{ tn('capture-description') }}
-        </p>
-      </header>
-      <div :class="['grid grid-cols-2 gap-4']">
-        <FieldInput v-model="capture.x" type="number" :label="tn('capture-x')" :disabled="busy" />
-        <FieldInput v-model="capture.y" type="number" :label="tn('capture-y')" :disabled="busy" />
-        <FieldInput v-model="capture.cellSize" type="number" :label="tn('cell-size')" :disabled="busy" />
-        <FieldInput v-model="capture.pollMs" type="number" :min="100" :max="5000" :step="100" :label="tn('poll-ms')" :disabled="busy" />
-        <FieldCheckbox v-model="capture.paused" :label="tn('pause-capture')" :disabled="busy" />
-      </div>
-      <p :class="['my-4 text-sm text-neutral-500']">
-        {{ tn(`versions.${game}.capture-help`) }}
-      </p>
-      <Button :loading="busy" :disabled="!bridge || !profile.state.settings.enabled" @click="perform(() => companion.setCapture(game, { ...capture }))">
-        {{ tn('save-capture') }}
-      </Button>
-    </SettingsCard>
-
-    <SettingsCard>
-      <header>
-        <h2 :class="['text-lg font-semibold']">
-          {{ tn('demo') }}
-        </h2>
-        <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
-          {{ tn('demo-description') }}
-        </p>
-      </header>
-      <div :class="['flex flex-wrap gap-2']">
-        <Button :loading="busy" :disabled="!bridge || !profile.state.settings.enabled" @click="demo(bridge?.source !== 'demo')">
-          {{ tn(bridge?.source === 'demo' ? 'stop-demo' : 'start-demo') }}
-        </Button>
-        <Button v-for="action in demoActions" :key="action" :disabled="busy || !profile.state.settings.enabled || bridge?.source !== 'demo'" @click="demo(true, action)">
-          {{ tn(`actions.${action}`) }}
-        </Button>
-      </div>
-    </SettingsCard>
-
-    <SettingsCard>
-      <header>
-        <h2 :class="['text-lg font-semibold']">
-          {{ tn('events') }}
-        </h2>
-        <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
-          {{ tn('events-description') }}
-        </p>
-      </header>
-      <ol v-if="bridge?.events.length" :class="['flex max-h-80 flex-col gap-3 overflow-y-auto']">
-        <li v-for="event in [...bridge.events].reverse()" :key="event.id" :class="['rounded-lg p-3', 'bg-neutral-50 dark:bg-neutral-900']">
-          <div :class="['flex items-center justify-between gap-3 text-sm']">
-            <strong>{{ event.demo ? `[${tn('demo-label')}] ` : '' }}{{ event.title }}</strong>
-            <time :datetime="event.timestamp" :class="['shrink-0 text-xs text-neutral-500']">{{ new Date(event.timestamp).toLocaleTimeString() }}</time>
-          </div>
-          <p :class="['mt-1 text-sm text-neutral-500']">
-            {{ event.detail }}
+        <div :class="['flex flex-col items-start gap-2']">
+          <Button @click="router.push('/settings/wow-chatter')">
+            {{ tn('chatter.title') }}
+          </Button>
+          <p :class="['text-sm text-neutral-500 dark:text-neutral-400']">
+            {{ tn('chatter.description') }}
           </p>
-        </li>
-      </ol>
-      <p v-else :class="['text-sm text-neutral-500']">
-        {{ tn('no-events') }}
-      </p>
+        </div>
+      </div>
+    </SettingsCard>
+
+    <SettingsCard>
+      <section :aria-label="tn('player-address.title')" :class="['flex flex-col gap-4']">
+        <h2 :class="['text-lg font-semibold']">
+          {{ tn('player-address.title') }}
+        </h2>
+        <p :class="['text-sm text-neutral-500 dark:text-neutral-400']">
+          {{ tn('player-address.description') }}
+        </p>
+        <div role="radiogroup" :aria-label="tn('player-address.title')" :class="['flex flex-col gap-2']">
+          <Radio
+            :id="`${game}-address-character`" :model-value="addressMode" :name="`${game}-player-address`"
+            value="character" :title="tn('player-address.character')"
+            :class="['focus-within:outline focus-within:outline-2 focus-within:outline-primary-400']"
+            @update:model-value="selectAddressMode"
+          />
+          <p :class="['px-3 text-xs text-neutral-500 dark:text-neutral-400']">
+            {{ tn('player-address.character-hint') }}
+          </p>
+          <Radio
+            :id="`${game}-address-custom`" :model-value="addressMode" :name="`${game}-player-address`"
+            value="custom" :title="tn('player-address.custom')"
+            :class="['focus-within:outline focus-within:outline-2 focus-within:outline-primary-400']"
+            @update:model-value="selectAddressMode"
+          />
+        </div>
+        <div v-if="addressMode === 'custom'" :class="['flex flex-col gap-3']">
+          <label :for="`${game}-address-name`" :class="['text-sm font-medium']">
+            {{ tn('player-address.custom-label') }}
+          </label>
+          <Input
+            :id="`${game}-address-name`" v-model="customAddress" type="text" autocomplete="off"
+            :aria-invalid="addressInvalid" :aria-describedby="`${game}-address-hint${addressInvalid ? ` ${game}-address-error` : ''}`"
+            @update:model-value="clearAddressFeedback"
+            @keydown.enter.prevent="saveCustomAddress"
+          />
+          <p :id="`${game}-address-hint`" :class="['text-xs text-neutral-500 dark:text-neutral-400']">
+            {{ tn('player-address.custom-hint') }}
+          </p>
+          <p v-if="addressInvalid" :id="`${game}-address-error`" role="alert" :class="['text-sm text-red-600 dark:text-red-400']">
+            {{ tn('player-address.invalid') }}
+          </p>
+          <p v-if="addressSaved" role="status" :class="['text-sm text-primary-600 dark:text-primary-300']">
+            {{ tn('player-address.saved') }}
+          </p>
+          <Button :class="['self-start']" @click="saveCustomAddress">
+            {{ tn('player-address.save') }}
+          </Button>
+        </div>
+        <p :class="['text-sm text-neutral-500 dark:text-neutral-400']">
+          {{ tn('player-address.conversation-hint') }}
+        </p>
+      </section>
+    </SettingsCard>
+
+    <SettingsCard>
+      <Collapsible v-model="archivesOpen">
+        <template #trigger="{ visible, setVisible }">
+          <Button :aria-expanded="visible" :aria-controls="`${panelId}-archives`" :icon="visible ? 'i-solar:alt-arrow-up-linear' : 'i-solar:alt-arrow-down-linear'" @click="setVisible(!visible)">
+            {{ tn('archives.title') }}
+          </Button>
+        </template>
+        <div :id="`${panelId}-archives`" :class="['mt-4 min-w-0 flex flex-col gap-5']" data-testid="wow-archives">
+          <p :class="['text-sm text-neutral-500 dark:text-neutral-400']">
+            {{ tn('archives.description') }}
+          </p>
+          <WowCompanionLevelHistory :game="game" :history="profile.state.levelHistory" :current="status === 'live' && !error && snapshot?.online ? snapshot : null" />
+          <WowCompanionLoadout :game="game" :history="profile.state.equipmentLoadouts" :current="status === 'live' && !error && snapshot?.online ? snapshot : null" :error="bridge?.equipmentLoadoutError ?? null" />
+          <WowCompanionItemStorage :game="game" :summary="profile.state.itemStorage" />
+          <WowCompanionEquipment :game="game" :bridge="bridge" :history="profile.state.equipmentHistory" :comparisons="profile.state.equipmentComparisons" :collecting="collectingMemory" @collect-memory="collectEquipmentMemory" />
+          <WowCompanionEquipmentSwaps :bridge="bridge" :current="isCurrent && !error && Boolean(snapshot?.online)" />
+
+          <SettingsCard>
+            <header>
+              <h2 :class="['text-lg font-semibold']">
+                {{ tn('gold.title') }}
+              </h2>
+              <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+                {{ tn('gold.description') }}
+              </p>
+            </header>
+            <div :class="['flex flex-col gap-5']">
+              <div :class="['rounded-xl p-4', 'bg-neutral-50 dark:bg-neutral-900']">
+                <p :class="['text-sm text-neutral-500 dark:text-neutral-400']">
+                  {{ tn('gold.current-balance') }}
+                </p>
+                <p v-if="currentMoney !== null" :class="['mt-1 text-xl font-semibold tabular-nums']">
+                  {{ formatMoney(currentMoney) }}
+                </p>
+                <p v-else :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+                  {{ tn('gold.current-unavailable') }}
+                </p>
+              </div>
+              <p v-if="profile.state.gold.storageError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
+                {{ tn('gold.storage-error') }} {{ formatCompanionError(profile.state.gold.storageError, t) }}
+              </p>
+              <p v-if="goldActionError" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
+                {{ formatCompanionError(goldActionError, t) }}
+              </p>
+              <p v-if="goldMessage" role="status" :class="['text-sm text-primary-600 dark:text-primary-300']">
+                {{ goldMessage }}
+              </p>
+              <p v-if="!goldAccounts.length" :class="['text-sm text-neutral-500 dark:text-neutral-400']">
+                {{ tn('gold.empty') }}
+              </p>
+              <article
+                v-for="account in goldAccounts" :key="account.account"
+                :aria-label="account.name || account.account"
+                :class="['min-w-0 rounded-xl p-4', 'border border-neutral-200 dark:border-neutral-800', 'flex flex-col gap-4']"
+              >
+                <div>
+                  <h3 :class="['font-semibold']">
+                    {{ account.name || tn('gold.unnamed-account') }}
+                  </h3>
+                  <p :class="['mt-1 break-all text-xs text-neutral-500 dark:text-neutral-400']">
+                    {{ tn('gold.account-id') }} {{ account.account }}
+                  </p>
+                  <p :class="['mt-1 text-xs text-neutral-500 dark:text-neutral-400']">
+                    {{ t('wow-companion.gold.character-count', { count: account.characterCount }) }} · {{ tn('gold.since') }} {{ formatDate(account.firstSeen) }}
+                  </p>
+                </div>
+                <form :class="['flex flex-col gap-2 sm:flex-row sm:items-end']" @submit.prevent="saveAccountName(account.account)">
+                  <div :class="['min-w-0 flex-1']">
+                    <label :for="`gold-account-${game}-${account.account}`" :class="['mb-1 block text-sm']">{{ tn('gold.account-name') }}</label>
+                    <Input
+                      :id="`gold-account-${game}-${account.account}`" v-model="accountNames[account.account]"
+                      type="text" :maxlength="64" :placeholder="tn('gold.account-name-placeholder')"
+                      :disabled="Boolean(goldSavingAccount)" :aria-describedby="`gold-account-${game}-help-${account.account}`"
+                    />
+                    <p :id="`gold-account-${game}-help-${account.account}`" :class="['mt-1 text-xs text-neutral-500 dark:text-neutral-400']">
+                      {{ tn('gold.account-name-help') }}
+                    </p>
+                  </div>
+                  <Button type="submit" color="primary" variant="primary" :loading="goldSavingAccount === account.account" :disabled="Boolean(goldSavingAccount)">
+                    {{ tn('gold.save-name') }}
+                  </Button>
+                </form>
+                <dl :class="['grid grid-cols-1 gap-4 sm:grid-cols-2']">
+                  <div v-for="field in summaryFields" :key="field">
+                    <dt :class="['text-xs text-neutral-500 dark:text-neutral-400']">
+                      {{ tn(`gold.${field}`) }}
+                    </dt>
+                    <dd :class="['mt-1 break-words font-medium tabular-nums']">
+                      {{ formatMoney(account[field]) }}
+                    </dd>
+                  </div>
+                </dl>
+                <div :class="['overflow-x-auto']">
+                  <table :class="['w-full text-left text-sm']">
+                    <caption :class="['mb-2 text-left text-xs text-neutral-500 dark:text-neutral-400']">
+                      {{ tn('gold.characters-description') }}
+                    </caption>
+                    <thead :class="['text-neutral-500 dark:text-neutral-400']">
+                      <tr>
+                        <th v-for="column in ['character', 'realm', 'character-balance', 'earned', 'spent', 'last-seen']" :key="column" scope="col" :class="['whitespace-nowrap px-2 py-2 font-medium']">
+                          {{ tn(`gold.${column}`) }}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="character in account.characters" :key="character.guid" :class="['border-t border-neutral-200 dark:border-neutral-800']">
+                        <th scope="row" :class="['whitespace-nowrap px-2 py-3 font-medium']">
+                          {{ character.name }}
+                        </th>
+                        <td :class="['whitespace-nowrap px-2 py-3']">
+                          {{ character.realm }}
+                        </td>
+                        <td :class="['whitespace-nowrap px-2 py-3 tabular-nums']">
+                          {{ formatMoney(character.copper) }}
+                        </td>
+                        <td :class="['whitespace-nowrap px-2 py-3 tabular-nums']">
+                          {{ formatMoney(character.earned) }}
+                        </td>
+                        <td :class="['whitespace-nowrap px-2 py-3 tabular-nums']">
+                          {{ formatMoney(character.spent) }}
+                        </td>
+                        <td :class="['whitespace-nowrap px-2 py-3 text-xs text-neutral-500 dark:text-neutral-400']">
+                          <time :datetime="new Date(character.lastSeen).toISOString()">{{ formatDate(character.lastSeen) }}</time>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+              <ul :class="['list-disc pl-5 text-xs text-neutral-500 dark:text-neutral-400', 'flex flex-col gap-2']">
+                <li>{{ tn('gold.identity-note') }}</li>
+                <li>{{ tn('gold.flow-note') }}</li>
+                <li>{{ tn('gold.balance-note') }}</li>
+                <li>{{ tn('gold.demo-note') }}</li>
+              </ul>
+            </div>
+          </SettingsCard>
+        </div>
+      </Collapsible>
+    </SettingsCard>
+    <SettingsCard>
+      <Collapsible v-model="diagnosticsOpen">
+        <template #trigger="{ visible, setVisible }">
+          <Button :aria-expanded="visible" :aria-controls="`${panelId}-diagnostics`" @click="setVisible(!visible)">
+            {{ tn('archives.diagnostics') }}
+          </Button>
+        </template>
+        <div :id="`${panelId}-diagnostics`" :class="['mt-4 min-w-0 flex flex-col gap-5']" data-testid="wow-diagnostics">
+          <WowConnectionStatus :bridge="bridge" :enabled="profile.state.settings.enabled" :busy="busy" @retry="perform(() => companion.reconnect(game), 'connection-details.retry-started')" />
+          <SettingsCard>
+            <header>
+              <h2 :class="['text-lg font-semibold']">
+                {{ tn('capture') }}
+              </h2>
+              <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+                {{ tn('capture-description') }}
+              </p>
+            </header>
+            <div :class="['grid grid-cols-2 gap-4']">
+              <FieldInput v-model="capture.x" type="number" :label="tn('capture-x')" :disabled="busy" />
+              <FieldInput v-model="capture.y" type="number" :label="tn('capture-y')" :disabled="busy" />
+              <FieldInput v-model="capture.cellSize" type="number" :label="tn('cell-size')" :disabled="busy" />
+              <FieldInput v-model="capture.pollMs" type="number" :min="100" :max="5000" :step="100" :label="tn('poll-ms')" :disabled="busy" />
+              <FieldCheckbox v-model="capture.paused" :label="tn('pause-capture')" :disabled="busy" />
+            </div>
+            <p :class="['my-4 text-sm text-neutral-500']">
+              {{ tn(`versions.${game}.capture-help`) }}
+            </p>
+            <Button :loading="busy" :disabled="!bridge || !profile.state.settings.enabled" @click="perform(() => companion.setCapture(game, { ...capture }))">
+              {{ tn('save-capture') }}
+            </Button>
+          </SettingsCard>
+        </div>
+      </Collapsible>
+    </SettingsCard>
+    <SettingsCard>
+      <Collapsible v-model="activityOpen">
+        <template #trigger="{ visible, setVisible }">
+          <Button :aria-expanded="visible" :aria-controls="`${panelId}-activity`" @click="setVisible(!visible)">
+            {{ tn('archives.activity') }}
+          </Button>
+        </template>
+        <div :id="`${panelId}-activity`" :class="['mt-4 min-w-0 flex flex-col gap-5']" data-testid="wow-activity">
+          <SettingsCard>
+            <header>
+              <h2 :class="['text-lg font-semibold']">
+                {{ tn('demo') }}
+              </h2>
+              <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+                {{ tn('demo-description') }}
+              </p>
+            </header>
+            <div :class="['flex flex-wrap gap-2']">
+              <Button :loading="busy" :disabled="!bridge || !profile.state.settings.enabled" @click="demo(bridge?.source !== 'demo')">
+                {{ tn(bridge?.source === 'demo' ? 'stop-demo' : 'start-demo') }}
+              </Button>
+              <Button v-for="action in demoActions" :key="action" :disabled="busy || !profile.state.settings.enabled || bridge?.source !== 'demo'" @click="demo(true, action)">
+                {{ tn(`actions.${action}`) }}
+              </Button>
+            </div>
+          </SettingsCard>
+
+          <SettingsCard>
+            <header>
+              <h2 :class="['text-lg font-semibold']">
+                {{ tn('events') }}
+              </h2>
+              <p :class="['mt-1 text-sm text-neutral-500 dark:text-neutral-400']">
+                {{ tn('events-description') }}
+              </p>
+            </header>
+            <ol v-if="bridge?.events.length" :class="['flex max-h-80 flex-col gap-3 overflow-y-auto']">
+              <li v-for="event in [...bridge.events].reverse()" :key="event.id" :class="['rounded-lg p-3', 'bg-neutral-50 dark:bg-neutral-900']">
+                <div :class="['flex items-center justify-between gap-3 text-sm']">
+                  <strong>{{ event.demo ? `[${tn('demo-label')}] ` : '' }}{{ event.title }}</strong>
+                  <time :datetime="event.timestamp" :class="['shrink-0 text-xs text-neutral-500']">{{ new Date(event.timestamp).toLocaleTimeString() }}</time>
+                </div>
+                <p :class="['mt-1 text-sm text-neutral-500']">
+                  {{ event.detail }}
+                </p>
+              </li>
+            </ol>
+            <p v-else :class="['text-sm text-neutral-500']">
+              {{ tn('no-events') }}
+            </p>
+          </SettingsCard>
+        </div>
+      </Collapsible>
     </SettingsCard>
   </div>
 </template>

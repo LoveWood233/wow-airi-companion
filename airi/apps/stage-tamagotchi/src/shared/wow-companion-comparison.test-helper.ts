@@ -1,4 +1,4 @@
-import type { EquipmentComparison } from './wow-companion-equipment-comparisons'
+import type { LiveEquipmentComparison } from './wow-companion-equipment-comparisons'
 
 /**
  * Creates a fully observed, simple cloth upgrade for transport, persistence, and prompt tests.
@@ -6,7 +6,7 @@ import type { EquipmentComparison } from './wow-companion-equipment-comparisons'
  * comparisonFixture({ specMatch: false })
  * // => a comparison that cannot request equipment changes
  */
-export function comparisonFixture(changes: Partial<EquipmentComparison> = {}): EquipmentComparison {
+export function comparisonFixture(changes: Partial<LiveEquipmentComparison> = {}): LiveEquipmentComparison {
   const current = {
     itemID: 99,
     name: 'Old robe',
@@ -19,7 +19,9 @@ export function comparisonFixture(changes: Partial<EquipmentComparison> = {}): E
     complete: true,
   }
   return {
-    v: 1,
+    v: 2,
+    assessment: { verdict: 'upgrade', reason: 'stats_upgrade' },
+    deltas: [{ key: 'ITEM_MOD_INTELLECT_SHORT', before: 10, after: 12 }, { key: 'ITEM_MOD_STAMINA_SHORT', before: 20, after: 24 }],
     id: 1,
     session: 'login',
     guid: 'Player-1',

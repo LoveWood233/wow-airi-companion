@@ -1250,6 +1250,8 @@ export const useAiriCardStore = defineStore('airi-card', () => {
   }
 
   async function loadActiveLive2DModelControls() {
+    if (!useSettingsStageModel(pinia).runtimeEnabled)
+      return
     const generation = ++live2DControlLoadGeneration
     activeLive2DModelControls.value = emptyLive2DModelControls
 

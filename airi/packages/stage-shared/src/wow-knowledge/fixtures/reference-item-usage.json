@@ -1,0 +1,46 @@
+{
+  "outcome": "ok",
+  "id": "item:12359",
+  "title": "瑟银锭",
+  "url": "https://wuxianwow.com/item/12359",
+  "kind": "item",
+  "game_link": "|cffffffff|Hitem:12359:::::::::::::|h[瑟银锭]|h|r",
+  "item_id": 12359,
+  "quality": 1,
+  "ilvl": 50,
+  "req_level": 0,
+  "sell": 600,
+  "sell_text": "6银",
+  "hidden": false,
+  "equipment": null,
+  "source_type": null,
+  "source_note": "来源类型来自 ItemModifiedAppearance；首领掉落数据（冒险指南）在 客户端中为空",
+  "made_by": [
+    {
+      "recipe_id": 8796,
+      "name": "熔炼瑟银",
+      "profession": "采矿"
+    }
+  ],
+  "used_by": [
+    {
+      "recipe_id": 9159,
+      "name": "瑟银护甲",
+      "profession": "锻造"
+    },
+    {
+      "recipe_id": 9160,
+      "name": "瑟银腰带",
+      "profession": "锻造"
+    },
+    {
+      "recipe_id": 9161,
+      "name": "瑟银护腕",
+      "profession": "锻造"
+    }
+  ],
+  "used_by_count": 132,
+  "temporary_dropped_by": null,
+  "text": "瑟银锭 · 装等 50\n\n售价：6银\n由 1 条配方制作，被 132 条配方使用。",
+  "matched_by": "id"
+}

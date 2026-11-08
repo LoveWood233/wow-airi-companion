@@ -3,6 +3,7 @@ import type { InferOutput } from 'valibot'
 import type { EquipmentComparisonsState } from './wow-companion-equipment-comparisons'
 import type { EquipmentHistoryState } from './wow-companion-equipment-history'
 import type { GoldState } from './wow-companion-gold'
+import type { ItemStorageSummary } from './wow-companion-item-storage'
 import type { LevelHistoryState } from './wow-companion-level-history'
 import type { EquipmentLoadoutsState } from './wow-companion-loadout'
 
@@ -10,12 +11,16 @@ import { array, boolean, check, finite, integer, literal, looseObject, maxLength
 
 import { calendarSchema } from './wow-companion-calendar'
 import { equipmentSchema } from './wow-companion-equipment'
-import { equipmentComparisonSchema } from './wow-companion-equipment-comparisons'
+import { liveEquipmentComparisonSchema } from './wow-companion-equipment-comparisons'
 import { equipmentOfferSchema } from './wow-companion-equipment-offer'
 import { equipmentSwapsSchema } from './wow-companion-equipment-swaps'
 import { copperSchema, moneyIdSchema } from './wow-companion-gold'
 import { groupBuffSchema } from './wow-companion-group-buffs'
+import { inventorySnapshotSchema } from './wow-companion-inventory'
 import { equipmentLoadoutSchema } from './wow-companion-loadout'
+import { questSnapshotSchema } from './wow-companion-quests'
+import { talentSnapshotSchema } from './wow-companion-talents'
+import { connectionSchema, transferSchema } from './wow-connection'
 
 const count = pipe(number(), integer(), minValue(0), maxValue(Number.MAX_SAFE_INTEGER))
 const mapCoordinate = pipe(number(), finite(), integer(), minValue(0), maxValue(10000))
@@ -38,6 +43,9 @@ export const gameProfiles = {
 const snapshotFieldsSchema = looseObject({
   v: literal(3),
   session: label,
+  // This pair spans one game login, including UI reloads and desktop reconnections. Session remains a transport identity.
+  loginId: optional(moneyIdSchema),
+  combatEnds: optional(pipe(number(), integer(), minValue(0), maxValue(2147483647))),
   seq: count,
   tick: count,
   guid: label,
@@ -75,15 +83,23 @@ export const snapshotSchema = pipe(snapshotFieldsSchema, check((snapshot) => {
     (snapshot.px === null && snapshot.py === null)
     || (typeof snapshot.px === 'number' && typeof snapshot.py === 'number')
   ))
-}, 'Map coordinates require both values or two nulls.'), check(snapshot => snapshot.instanceID == null
-  || (snapshot.instanceType !== undefined && !['none', 'unknown'].includes(snapshot.instanceType)), 'Instance IDs require an observed instance type.'), transform((snapshot): InferOutput<typeof snapshotFieldsSchema> => ({
-  ...snapshot,
-  // An absent pair is unknown. Offline observations and unknown maps cannot retain a current position.
-  px: snapshot.online && snapshot.map > 0 ? snapshot.px ?? null : null,
-  py: snapshot.online && snapshot.map > 0 ? snapshot.py ?? null : null,
-  ...(!snapshot.online && snapshot.instanceType !== undefined ? { instanceType: 'unknown' as const } : {}),
-  ...(!snapshot.online && snapshot.instanceID !== undefined ? { instanceID: null } : {}),
-})))
+}, 'Map coordinates require both values or two nulls.'), check((snapshot) => {
+  const hasLogin = Object.hasOwn(snapshot, 'loginId')
+  const hasCount = Object.hasOwn(snapshot, 'combatEnds')
+  return (!hasLogin && !hasCount) || (hasLogin && hasCount && typeof snapshot.loginId === 'string' && typeof snapshot.combatEnds === 'number')
+}, 'Login progress requires both the login identity and combat count.'), check(snapshot => snapshot.instanceID == null
+  || (snapshot.instanceType !== undefined && !['none', 'unknown'].includes(snapshot.instanceType)), 'Instance IDs require an observed instance type.'), transform((snapshot): InferOutput<typeof snapshotFieldsSchema> => {
+  const { loginId, combatEnds, ...observations } = snapshot
+  return {
+    ...observations,
+    ...(snapshot.online && loginId !== undefined && combatEnds !== undefined ? { loginId, combatEnds } : {}),
+    // An absent pair is unknown. Offline observations and unknown maps cannot retain a current position.
+    px: snapshot.online && snapshot.map > 0 ? snapshot.px ?? null : null,
+    py: snapshot.online && snapshot.map > 0 ? snapshot.py ?? null : null,
+    ...(!snapshot.online && snapshot.instanceType !== undefined ? { instanceType: 'unknown' as const } : {}),
+    ...(!snapshot.online && snapshot.instanceID !== undefined ? { instanceID: null } : {}),
+  }
+}))
 
 export const eventSchema = object({
   id: count,
@@ -126,12 +142,26 @@ export const bridgeSchema = looseObject({
   // Bridges without offers still provide character observations and equipment history.
   equipmentOffer: optional(nullable(equipmentOfferSchema)),
   equipmentOfferError: optional(nullable(pipe(string(), maxLength(2048)))),
-  equipmentComparisons: pipe(array(equipmentComparisonSchema), maxLength(10)),
+  equipmentComparisons: pipe(array(liveEquipmentComparisonSchema), maxLength(10)),
   equipmentComparisonError: nullable(pipe(string(), maxLength(2048))),
   equipmentLoadout: nullable(equipmentLoadoutSchema),
   equipmentLoadoutError: nullable(pipe(string(), maxLength(2048))),
+  inventory: nullable(inventorySnapshotSchema),
+  inventoryReceivedAt: nullable(string()),
+  inventoryError: nullable(pipe(string(), maxLength(2048))),
+  quests: nullable(questSnapshotSchema),
+  questsReceivedAt: nullable(string()),
+  questsError: nullable(pipe(string(), maxLength(2048))),
+  talents: nullable(talentSnapshotSchema),
+  talentsReceivedAt: nullable(string()),
+  talentsError: nullable(pipe(string(), maxLength(2048))),
+  itemStorageRevision: optional(count),
+  itemStorageError: optional(nullable(pipe(string(), maxLength(2048)))),
   config: captureSchema,
   error: nullable(string()),
+  // Diagnostic reporting is a separate bridge capability. Sources without it still provide character observations.
+  connection: optional(nullable(connectionSchema)),
+  transfers: optional(pipe(array(transferSchema), maxLength(4))),
 })
 
 /** Persisted user choices. Demo forwarding is separate from synthetic capture. */
@@ -177,6 +207,7 @@ export interface CompanionState {
   levelHistory: LevelHistoryState
   equipmentComparisons: EquipmentComparisonsState
   equipmentLoadouts: EquipmentLoadoutsState
+  itemStorage?: ItemStorageSummary
 }
 
 export const demoSchema = object({

@@ -56,7 +56,11 @@ describe('game screenshot assistance settings', () => {
 
   it('opens the existing vision configuration and explains screenshot use', async () => {
     const { router } = await mount()
-    await expect.element(page.getByText('The screenshot goes to your selected vision provider.', { exact: false })).toBeVisible()
+    await expect.element(page.getByText('The screenshot goes to your vision provider.', { exact: false })).toBeVisible()
+    await expect.element(page.getByText('Image-capable chat services also receive it for this turn.', { exact: false })).toBeVisible()
+    await expect.element(page.getByText('Text-only chat uses its description.', { exact: false })).toBeVisible()
+    await expect.element(page.getByText('Take a look at this.', { exact: true })).toBeVisible()
+    await expect.element(page.getByText('Look at my equipment. How does it look?', { exact: true })).toBeVisible()
     await expect.element(page.getByText('For an explicit capture, start your message with /look', { exact: false })).toBeVisible()
     await page.getByRole('button', { name: 'Configure vision model', exact: true }).click()
     expect(router.currentRoute.value.path).toBe('/settings/modules/vision')
@@ -80,6 +84,8 @@ describe('game screenshot assistance settings', () => {
     await expect.element(page.getByRole('heading', { name: '游戏截图辅助', exact: true })).toBeVisible()
     await expect.element(page.getByRole('button', { name: '怀旧服', exact: true })).toBeVisible()
     await expect.element(page.getByText('任务显示 NPC 在这里', { exact: false })).toBeVisible()
+    await expect.element(page.getByText('看看这个，帮我分析一下。', { exact: true })).toBeVisible()
+    await expect.element(page.getByText('看看我的装备，怎么样？', { exact: true })).toBeVisible()
     expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(document.documentElement.clientWidth + 1)
     const captureDirectory = import.meta.env.VITE_LAUNCHER_CAPTURE_DIR
     if (captureDirectory)

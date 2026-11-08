@@ -1,5 +1,42 @@
 # `@proj-airi/stage-shared`
 
+## Structured Warcraft references
+
+`wow-knowledge` exports `readWowReferenceAnswer`, source evidence types, and safe source URL and build readers.
+These functions normalize supported recorded MCP results without network access or model inference.
+The chat widget and MCP transport share this boundary. See [the design](../../docs/ai/adr/wow-structured-reference-answers.md).
+
+## Profession material calculations
+
+`wow-knowledge` also exports bounded crafting readers and pure recipe and skill-route calculations.
+They merge material identities, share inventory balances, reuse intermediate products, and preserve incomplete evidence.
+See [the profession planner design](../../docs/ai/adr/wow-profession-materials.md).
+
+## Retail query contracts
+
+`wow-knowledge` exports strict local Retail query contracts and a reader for recorded native-tool answers.
+They retain source build, locale, snapshot identity, and dependent table limits without exposing filesystem paths.
+See [the Retail query design](../../docs/ai/adr/wow-retail-database.md).
+
+## Warcraft cache contracts
+
+`wow-knowledge` exports bounded cache keys, evidence contracts, and the wuxianwow caching policy.
+Game, build, locale, source snapshot, connection, tool, and arguments isolate records.
+Adapters preserve original source times and record cache serving times separately.
+See [the cache design](../../docs/ai/adr/wow-data-updates-and-cache.md). Filesystem ownership belongs to the desktop main process.
+
+## Quest references
+
+`wow-knowledge` exports bounded quest queries, source readers, progress evidence, risk explanations, and recorded-answer validation.
+Client completion flags, task readiness, objective coverage, and session turn-ins retain separate meanings.
+Forever references never establish Retail quest facts. See [the quest design](../../docs/ai/adr/wow-quest-and-leveling-assistant.md).
+
+## Talent and equipment explanations
+
+`wow-knowledge` exports strict build queries, talent-plan readers, investment differences, explicit-slot equipment comparisons, and recorded-result validation.
+Committed observations remain separate from reference descriptions. Missing values, draft choices, and item-instance uncertainty retain explicit limits.
+See [the explanation design](../../docs/ai/adr/wow-talents-and-equipment-explanations.md).
+
 Shared contracts and runtime-neutral helpers for AIRI stage applications and UI packages.
 
 ## Use this package

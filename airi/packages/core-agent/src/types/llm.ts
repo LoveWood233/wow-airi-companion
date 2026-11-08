@@ -76,6 +76,13 @@ export interface StreamOptions {
   onStreamEvent?: (event: StreamEvent) => void | Promise<void>
   /** Called once after the full stream, including tool rounds, has settled. */
   onUsage?: (usage: LlmUsage) => void | Promise<void>
+  /**
+   * Observes each SDK generation separately, including retries and provider switches.
+   * One SDK generation can include several HTTP tool rounds. This is independent of
+   * the turn-level `onUsage`; subscribe to only one when accumulating token totals.
+   * Failures without readable SDK usage report `unavailable`. Observer errors are ignored.
+   */
+  onRequestUsage?: (usage: LlmUsage) => void | Promise<void>
   /** Internal correlation kept out of the provider request body. */
   requestCorrelation?: {
     conversationId: string

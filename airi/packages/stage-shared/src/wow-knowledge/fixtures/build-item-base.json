@@ -1,0 +1,48 @@
+{
+  "outcome": "ok",
+  "id": "item:277979",
+  "title": "殴斗者的羊肉",
+  "url": "https://wuxianwow.com/item/277979",
+  "preview_url": "https://wuxianwow.com/transmog?o=AQKAENv7EAA",
+  "kind": "item",
+  "game_link": "|cff1eff00|Hitem:277979:::::::::::::|h[殴斗者的羊肉]|h|r",
+  "game_link_note": "客户端聊天超链接转义串；聊天框会过滤「|」，要贴进游戏需用宏：/run ChatFrame1EditBox:Insert(\"…\")，宏里把 | 写成 \\124",
+  "item_id": 277979,
+  "quality": 2,
+  "ilvl": 44,
+  "slot": "单手",
+  "req_level": 1,
+  "sell": 15501,
+  "sell_text": "1金 55银 1铜",
+  "hidden": false,
+  "equipment": {
+    "slot": "单手",
+    "weapon_type": "单手锤",
+    "ilvl": 44,
+    "req_level": 1,
+    "damage": {
+      "dps": 25.9,
+      "max": 81,
+      "min": 44,
+      "speed": 2.4
+    },
+    "stats": [
+      {
+        "stat": "精神",
+        "value": 6
+      },
+      {
+        "stat": "耐力",
+        "value": 5
+      }
+    ]
+  },
+  "source_type": "任务",
+  "source_note": "来源类型来自 ItemModifiedAppearance；首领掉落数据（冒险指南）在 客户端中为空",
+  "made_by": [],
+  "used_by": [],
+  "used_by_count": 0,
+  "temporary_dropped_by": null,
+  "text": "殴斗者的羊肉 · 单手 · 装等 44\n属性：44–81 伤害 · 速度 2.4 · DPS 25.9；+6 精神，+5 耐力\n\n售价：1金 55银 1铜\n由 0 条配方制作，被 0 条配方使用。",
+  "matched_by": "id"
+}

@@ -397,6 +397,64 @@ describe('streamFrom tool errors', () => {
     expect(onUsage).toHaveBeenCalledWith({ source: 'unavailable' })
   })
 
+  it('observes one SDK total across several tool rounds while retaining the turn callback', async () => {
+    const onUsage = vi.fn()
+    const onRequestUsage = vi.fn()
+    streamTextMock.mockReturnValueOnce(createMockStreamResult(
+      Promise.resolve([]),
+      Promise.resolve({ inputTokens: 30, outputTokens: 9, totalTokens: 39 }),
+      Promise.resolve([
+        { role: 'assistant', content: '', tool_calls: [{ id: 'call-1', type: 'function', function: { name: 'lookup', arguments: '{}' } }] },
+        { role: 'tool', tool_call_id: 'call-1', content: 'found' },
+        { role: 'assistant', content: 'Finished' },
+      ]),
+    ))
+
+    await streamFrom({ model: 'model-a', chatProvider: provider, conversation: { turns: [] }, options: { onUsage, onRequestUsage } })
+
+    const expected = { source: 'reported', inputTokens: 30, outputTokens: 9, totalTokens: 39 }
+    expect(onRequestUsage).toHaveBeenCalledExactlyOnceWith(expected)
+    expect(onUsage).toHaveBeenCalledExactlyOnceWith(expected)
+  })
+
+  it('retains readable SDK usage when generation fails without replacing the original failure', async () => {
+    const onRequestUsage = vi.fn()
+    const streamError = new Error('original provider failure')
+    streamTextMock.mockImplementationOnce(() => createMockStreamResult(
+      Promise.reject(streamError),
+      Promise.resolve({ inputTokens: 10, outputTokens: 2, totalTokens: 12 }),
+    ))
+
+    await expect(streamFrom({ model: 'model-a', chatProvider: provider, conversation: { turns: [] }, options: { onRequestUsage } })).rejects.toBe(streamError)
+    expect(onRequestUsage).toHaveBeenCalledExactlyOnceWith({ source: 'reported', inputTokens: 10, outputTokens: 2, totalTokens: 12 })
+  })
+
+  it('records failed SDK usage as unavailable without discarding a preceding successful SDK total', async () => {
+    const onRequestUsage = vi.fn()
+    const streamError = new Error('second generation failed')
+    streamTextMock.mockReturnValueOnce(createMockStreamResult(Promise.resolve([]), Promise.resolve({ inputTokens: 7, outputTokens: 3, totalTokens: 10 })))
+    await streamFrom({ model: 'model-a', chatProvider: provider, conversation: { turns: [] }, options: { onRequestUsage } })
+    streamTextMock.mockImplementationOnce(() => createMockStreamResult(Promise.reject(streamError), Promise.reject(streamError)))
+
+    await expect(streamFrom({ model: 'model-a', chatProvider: provider, conversation: { turns: [] }, options: { onRequestUsage } })).rejects.toBe(streamError)
+
+    expect(onRequestUsage.mock.calls).toEqual([
+      [{ source: 'reported', inputTokens: 7, outputTokens: 3, totalTokens: 10 }],
+      [{ source: 'unavailable' }],
+    ])
+  })
+
+  it('does not wait for a broken SDK usage promise on failure or let observer errors escape', async () => {
+    const streamError = new Error('cancelled generation')
+    const onRequestUsage = vi.fn(() => {
+      throw new Error('observer failure')
+    })
+    streamTextMock.mockImplementationOnce(() => createMockStreamResult(Promise.reject(streamError), new Promise(() => {})))
+
+    await expect(streamFrom({ model: 'model-a', chatProvider: provider, conversation: { turns: [] }, options: { onRequestUsage } })).rejects.toBe(streamError)
+    await vi.waitFor(() => expect(onRequestUsage).toHaveBeenCalledExactlyOnceWith({ source: 'unavailable' }))
+  })
+
   it('marks usage unavailable when the final usage object has no token fields', async () => {
     const onUsage = vi.fn()
     streamTextMock.mockReturnValueOnce(createMockStreamResult(

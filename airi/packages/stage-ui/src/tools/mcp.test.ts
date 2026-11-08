@@ -2,6 +2,7 @@ import type { JsonSchema } from 'xsschema'
 
 import type { McpToolRuntime } from './mcp'
 
+import { readWowReferenceAnswer } from '@proj-airi/stage-shared/wow-knowledge'
 import { describe, expect, it, vi } from 'vitest'
 
 import { createMcpTools, mcp } from './mcp'
@@ -35,6 +36,25 @@ describe('tools mcp schema', () => {
 })
 
 describe('mcp discovery', () => {
+  it('keeps structured reference cards tied to actual proxy results and discovered source metadata', async () => {
+    const runtime = createRuntime()
+    vi.mocked(runtime.listTools).mockResolvedValue([{ name: 'wuxianwow::stats', serverName: 'wuxianwow', toolName: 'stats', inputSchema: {} }])
+    vi.mocked(runtime.callTool).mockImplementation(async payload => ({ content: [{ type: 'text', text: JSON.stringify(payload.name === 'wuxianwow::stats'
+      ? { outcome: 'ok', product: 'wowf', build: '1.60.1.70707' }
+      : { outcome: 'ok', results: [{ id: 'item:12359', kind: 'item', title: '瑟银锭', url: 'https://wuxianwow.com/item/12359', snippet: '' }], total: 1 }) }] }))
+    const [list, call] = await Promise.all(createMcpTools(runtime))
+    await list.execute({}, { messages: [], toolCallId: 'list-references' })
+    const args = { name: 'wuxianwow::search', arguments: '{"query":"瑟银锭"}' }
+    const result = await call.execute(args, { messages: [], toolCallId: 'search-references' })
+    const card = readWowReferenceAnswer(result, JSON.stringify(args))
+    expect(card?.status).toBe('success')
+    expect(card?.game).toBe('forever')
+    expect(card?.build).toBe('1.60.1.70707')
+    expect(card?.entries[0]?.id).toBe('item:12359')
+    expect(card?.entries[0]?.url).toBe('https://wuxianwow.com/item/12359')
+    expect(runtime.callTool).toHaveBeenCalledWith({ name: 'wuxianwow::search', arguments: { query: '瑟银锭' } })
+    expect(runtime.callTool).toHaveBeenCalledWith({ name: 'wuxianwow::stats', arguments: {} })
+  })
   // https://github.com/moeru-ai/airi/issues/2779
   // ROOT CAUSE:
   //
@@ -104,5 +124,13 @@ describe('mcp discovery', () => {
     const result = await callTool.execute({ name: 'memory::missing', arguments: '{}' }, { messages: [], toolCallId: 'call-failed' })
 
     expect(result).toEqual({ isError: true, content: [{ type: 'text', text: 'Unknown tool.' }] })
+  })
+
+  it.each(['null', '[]', '"query"', '{broken'])('rejects a non-object invocation payload %s before the MCP transport', async (argumentsJson) => {
+    const runtime = createRuntime()
+    const [, call] = await Promise.all(createMcpTools(runtime))
+    const result = await call.execute({ name: 'wuxianwow::search', arguments: argumentsJson }, { messages: [], toolCallId: 'invalid-reference' })
+    expect(result).toMatchObject({ isError: true })
+    expect(runtime.callTool).not.toHaveBeenCalled()
   })
 })

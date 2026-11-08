@@ -1,0 +1,53 @@
+{
+  "outcome": "ok",
+  "id": "item:12640",
+  "title": "狮心头盔",
+  "url": "https://wuxianwow.com/item/12640",
+  "preview_url": "https://wuxianwow.com/transmog?o=AQIB4GIA",
+  "kind": "item",
+  "game_link": "|cffa335ee|Hitem:12640:::::::::::::|h[狮心头盔]|h|r",
+  "game_link_note": "客户端聊天超链接转义串；聊天框会过滤「|」，要贴进游戏需用宏：/run ChatFrame1EditBox:Insert(\"…\")，宏里把 | 写成 \\124",
+  "item_id": 12640,
+  "quality": 4,
+  "ilvl": 61,
+  "slot": "头部",
+  "req_level": 56,
+  "sell": 21894,
+  "sell_text": "2金 18银 94铜",
+  "hidden": false,
+  "equipment": {
+    "slot": "头部",
+    "armor_type": "板甲",
+    "ilvl": 61,
+    "req_level": 56,
+    "armor": 565,
+    "stats": [
+      {
+        "stat": "力量",
+        "value": 18
+      },
+      {
+        "stat": "爆击等级",
+        "value": 28
+      },
+      {
+        "stat": "命中等级",
+        "value": 20
+      }
+    ]
+  },
+  "source_type": "专业制造",
+  "source_note": "来源类型来自 ItemModifiedAppearance；首领掉落数据（冒险指南）在 客户端中为空",
+  "made_by": [
+    {
+      "recipe_id": 9331,
+      "name": "狮心头盔",
+      "profession": "锻造"
+    }
+  ],
+  "used_by": [],
+  "used_by_count": 0,
+  "temporary_dropped_by": null,
+  "text": "狮心头盔 · 头部 · 装等 61\n属性：565 护甲；+18 力量，+28 爆击等级，+20 命中等级\n\n售价：2金 18银 94铜\n由 1 条配方制作，被 0 条配方使用。",
+  "matched_by": "exact"
+}

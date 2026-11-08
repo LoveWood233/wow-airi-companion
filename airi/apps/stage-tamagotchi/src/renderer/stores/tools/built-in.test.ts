@@ -37,7 +37,7 @@ describe('useTamagotchiBuiltinToolsStore', async () => {
 
     await useTamagotchiBuiltinToolsStore().refresh()
 
-    expect(toolsStore.activeTools.map(tool => tool.function.name)).toEqual(['wow_import_macro', 'wow_recommend_addons'])
+    expect(toolsStore.activeTools.map(tool => tool.function.name)).toEqual(['wow_import_macro', 'builtIn_wowRetailQuery', 'builtIn_wowQuestAssistant', 'builtIn_wowBuildAssistant'])
     expect(toolsStore.tools.map(tool => ({
       id: tool.id,
       defaultActive: tool.defaultActive,
@@ -48,7 +48,9 @@ describe('useTamagotchiBuiltinToolsStore', async () => {
       { id: 'tamagotchi:computer_use', defaultActive: false },
       { id: 'tamagotchi:computer_use_read_image', defaultActive: false },
       { id: 'tamagotchi:wow_import_macro', defaultActive: true },
-      { id: 'tamagotchi:wow_recommend_addons', defaultActive: true },
+      { id: 'tamagotchi:builtIn_wowRetailQuery', defaultActive: true },
+      { id: 'tamagotchi:builtIn_wowQuestAssistant', defaultActive: true },
+      { id: 'tamagotchi:builtIn_wowBuildAssistant', defaultActive: true },
     ])
     expect(toolsStore.tools.filter(tool => tool.requiresExplicitSelection).map(tool => tool.function.name)).toEqual(['computer_use', 'computer_use_read_image'])
     expect(toolsStore.getToolsByNames('get_weather')[0]?.function.name).toBe('get_weather')

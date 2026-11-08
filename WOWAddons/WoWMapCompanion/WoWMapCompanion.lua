@@ -10,6 +10,7 @@ local refreshTimers = {}
 local defaults = { telemetry = true, x = 8, y = 8, cell = 1 }
 local lastBusinessJSON, currentJSON
 local savingHistory = false
+local loginProgress
 
 local function Call(fn, ...)
     if type(fn) ~= "function" then return nil end
@@ -90,10 +91,48 @@ local function SampleInstance()
     return instanceType, instanceID
 end
 
+-- The transport session changes on every UI load. This record survives reload only after an explicit reload event.
+local function ObserveLogin(isInitialLogin, isReloadingUi)
+    isInitialLogin, isReloadingUi = Public(isInitialLogin), Public(isReloadingUi)
+    local guid = Public(Call(UnitGUID, "player"))
+    if type(guid) ~= "string" or guid == "" or type(isInitialLogin) ~= "boolean"
+        or type(isReloadingUi) ~= "boolean" or (isInitialLogin and isReloadingUi) then
+        loginProgress = nil
+        return
+    end
+    if isInitialLogin then
+        loginProgress = { guid = guid, id = state.session, count = 0, armed = false }
+        db.loginProgress = loginProgress
+    elseif isReloadingUi then
+        local saved = db.loginProgress
+        local id
+        if type(saved) == "table" then id = Protocol.LoginProgress(saved.id, saved.count) end
+        loginProgress = id and saved.guid == guid and type(saved.armed) == "boolean" and saved or nil
+    elseif loginProgress and loginProgress.guid ~= guid then
+        loginProgress = nil
+    end
+end
+
+-- Count event transitions, including several short fights between telemetry samples. Duplicate end events add nothing.
+local function ObserveCombat(entering)
+    if not loginProgress then return end
+    if entering then
+        loginProgress.armed = true
+    elseif loginProgress.armed then
+        loginProgress.armed = false
+        if loginProgress.count < 2147483647 then loginProgress.count = loginProgress.count + 1
+        else loginProgress = nil; db.loginProgress = nil end
+    end
+end
+
 local function Sample()
     if not ready then return end
     local guid = Text(Call(UnitGUID, "player"), nil, 48)
     state.guid = guid or state.guid or ""
+    state.loginId, state.combatEnds = nil, nil
+    if online and guid and loginProgress and loginProgress.guid == guid then
+        state.loginId, state.combatEnds = Protocol.LoginProgress(loginProgress.id, loginProgress.count)
+    end
     state.account, state.moneyEpoch, state.copper, state.earned, state.spent = Money.Sample(guid, online)
     state.name = Text(Call(UnitName, "player"), state.name or "", 48)
     state.realm = Text(Call(GetRealmName), state.realm or "", 48)
@@ -173,6 +212,7 @@ local function Initialize()
         if ns.OfflineHistory then ns.OfflineHistory.Equipment(record) end
         Transfer.SetGear(record)
     end)
+    ns.ItemStorage.Initialize(state, db)
     ns.Inventory.Initialize(state, Transfer.SetInventory, Transfer.InventoryBusy)
     ns.Quests.Initialize(state, Transfer.SetQuests, Transfer.QuestsBusy)
     ns.Talents.Initialize(state, Transfer.SetTalents, Transfer.TalentsBusy)
@@ -181,6 +221,7 @@ local function Initialize()
         state.tick = (state.tick + 1) % 2147483647
         Sample()
         ConfirmEquip.Tick()
+        ns.ItemStorage.Tick()
         ns.Inventory.Tick()
         ns.Quests.Tick()
         ns.Talents.Tick()
@@ -195,6 +236,7 @@ local function Initialize()
 end
 
 local events = CreateFrame("Frame")
+for _, event in ipairs({ "BANKFRAME_OPENED", "BANKFRAME_CLOSED", "PLAYERBANKSLOTS_CHANGED", "PLAYERREAGENTBANKSLOTS_CHANGED", "BANK_TABS_CHANGED", "PLAYER_ACCOUNT_BANK_TAB_SLOTS_CHANGED" }) do pcall(events.RegisterEvent, events, event) end
 for _, event in ipairs({ "ADDON_LOADED", "PLAYER_ENTERING_WORLD", "PLAYER_LEAVING_WORLD", "PLAYER_LOGOUT", "PLAYER_MONEY", "PLAYER_LEVEL_UP", "ZONE_CHANGED_NEW_AREA", "ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "PLAYER_SPECIALIZATION_CHANGED", "NEUTRAL_FACTION_SELECT_RESULT", "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "PLAYER_DEAD", "PLAYER_ALIVE", "PLAYER_UNGHOST", "UI_SCALE_CHANGED", "DISPLAY_SIZE_CHANGED", "BAG_UPDATE_DELAYED", "PLAYER_EQUIPMENT_CHANGED", "ITEM_PUSH", "GET_ITEM_INFO_RECEIVED", "ITEM_DATA_LOAD_RESULT" }) do events:RegisterEvent(event) end
 for _, event in ipairs({"QUEST_LOG_UPDATE", "QUEST_ACCEPTED", "QUEST_REMOVED", "QUEST_WATCH_UPDATE", "QUEST_TURNED_IN"}) do events:RegisterEvent(event) end
 
@@ -203,6 +245,7 @@ for _, event in ipairs({"PLAYER_TALENT_UPDATE", "TRAIT_CONFIG_UPDATED", "TRAIT_C
 events:SetScript("OnEvent", function(_, event, arg1, arg2)
     if event == "ADDON_LOADED" then if arg1 == addonName then Initialize() end; return end
     if not ready then return end
+    ns.ItemStorage.OnEvent(event)
     ns.Inventory.OnEvent(event)
     ns.Quests.OnEvent(event, arg1)
     ns.Talents.OnEvent(event, arg1)
@@ -210,6 +253,7 @@ events:SetScript("OnEvent", function(_, event, arg1, arg2)
     ConfirmEquip.OnEvent(event, arg1, arg2)
     if event ~= "PLAYER_ENTERING_WORLD" then Equipment.OnEvent(event, arg1, arg2) end
     if event == "PLAYER_ENTERING_WORLD" then
+        ObserveLogin(arg1, arg2)
         online = true
         local isCombat, isDead = Call(InCombatLockdown), Call(UnitIsDeadOrGhost, "player")
         if type(isCombat) == "boolean" then combat = isCombat end
@@ -217,6 +261,7 @@ events:SetScript("OnEvent", function(_, event, arg1, arg2)
         ScheduleRefresh()
         Equipment.OnEvent(event, arg1, arg2)
     elseif event == "PLAYER_LEAVING_WORLD" or event == "PLAYER_LOGOUT" then
+        if event == "PLAYER_LOGOUT" then loginProgress = nil end
         savingHistory = true
         CancelRefreshTimers()
         online = false
@@ -226,8 +271,8 @@ events:SetScript("OnEvent", function(_, event, arg1, arg2)
     elseif event == "BAG_UPDATE_DELAYED" or event == "PLAYER_EQUIPMENT_CHANGED" or event == "ITEM_PUSH" or event == "GET_ITEM_INFO_RECEIVED" or event == "ITEM_DATA_LOAD_RESULT" then return
     elseif event == "PLAYER_MONEY" then Sample()
     elseif event == "PLAYER_LEVEL_UP" then pendingLevel = Number(arg1, pendingLevel, 255); Sample()
-    elseif event == "PLAYER_REGEN_DISABLED" then combat = true; Sample()
-    elseif event == "PLAYER_REGEN_ENABLED" then combat = false; Sample()
+    elseif event == "PLAYER_REGEN_DISABLED" then ObserveCombat(true); combat = true; Sample()
+    elseif event == "PLAYER_REGEN_ENABLED" then ObserveCombat(false); combat = false; Sample()
     elseif event == "PLAYER_DEAD" then dead = true; Sample()
     elseif event == "PLAYER_ALIVE" or event == "PLAYER_UNGHOST" then
         local isDead = Call(UnitIsDeadOrGhost, "player")

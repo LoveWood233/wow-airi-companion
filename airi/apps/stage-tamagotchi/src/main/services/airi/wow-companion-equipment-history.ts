@@ -46,6 +46,9 @@ function identity(account: string, record: EquipmentRecord) {
  * Writes are serialized and atomic. A corrupt source blocks mutations and remains untouched.
  */
 export class CompanionEquipmentHistory {
+  /** Backup import uses the normal history validation rules. */
+  static validateBackup(value: unknown) { return parse(historySchema, value) }
+
   private history: SavedHistory = { version: 1, entries: [], seen: [] }
   private storageError: string | null = null
   private blocked = false

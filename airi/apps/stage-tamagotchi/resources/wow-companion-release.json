@@ -1,0 +1,452 @@
+{
+  "format": "wow-companion-release",
+  "version": 1,
+  "releaseVersion": "2.27.1",
+  "appVersion": "0.12.0-beta.5",
+  "bridgeVersion": "2.25.0",
+  "addons": {
+    "retail": "2.25.0",
+    "forever": "1.21.0"
+  },
+  "python": {
+    "minimum": "3.10",
+    "modules": []
+  },
+  "files": [
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/Calendar.lua",
+      "bytes": 5719,
+      "sha256": "79b1036d02c1d0c110e00147fe6bbb78c953fb1523036f197a82c4f180729533"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/ConfirmEquip.lua",
+      "bytes": 25443,
+      "sha256": "a7493e07e518bcf0c9c338d58f026e23a6f107bc88358cc53eda3ed55e2dc585"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/Equipment.lua",
+      "bytes": 23920,
+      "sha256": "200002fe28d27ade8d0f7517703928af0b47a996eba9e30b74ca493ffa1b0b5d"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/EquipmentCompare.lua",
+      "bytes": 19847,
+      "sha256": "5ff511acccb40f04e8b41eb4efb1a31ba97929cb769345876d362acb5f2f20de"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/GroupBuffs.lua",
+      "bytes": 5854,
+      "sha256": "11f659bf0104e002e9704bd1803024d7d31481cd3b79123db2a092c501be88d1"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/Inventory.lua",
+      "bytes": 4768,
+      "sha256": "bab38f8600645345dd954ad82ea23314685d17fc48ebd26f5e2976227f54ddbc"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/ItemStorage.lua",
+      "bytes": 12655,
+      "sha256": "c4d8566d66114408466a3d46c9fcb13c15109fdce359b469b54ac46a1849797f"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/Localization.lua",
+      "bytes": 97246,
+      "sha256": "e702994227fe3958be62e146503bbeb43e7099395ff3137ee659637beccd097f"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/Money.lua",
+      "bytes": 3258,
+      "sha256": "6154f7d740b12a77e08937217743ddf7865914e130dd6bf7d007bc4707b8456b"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/OfflineHistory.lua",
+      "bytes": 5622,
+      "sha256": "183e3cc7d406177124474741f94bcf69f57c6f0a33c7a3ae8546bc5b9b3b55ed"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/Protocol.lua",
+      "bytes": 9162,
+      "sha256": "34e04b9e39c36f4efd7f82d339e84d431b4980449a278cfde83233e420095a36"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/Quests.lua",
+      "bytes": 10990,
+      "sha256": "5894ab78d3501278a9656aefe2e322df4850110f218e1ef29ba9ff24b8352361"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/Talents.lua",
+      "bytes": 15258,
+      "sha256": "5fbd1e397f442dfc8121b085d5722895f12ea5bb769ecfd4a0badf4d8a4fa18e"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/Telemetry.lua",
+      "bytes": 3631,
+      "sha256": "92cc380cef1d5e33db52fd1a034a699ab0b44886dca2e3ad9af97a650d5a282e"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/Transfer.lua",
+      "bytes": 40716,
+      "sha256": "0d0b36fe8ecbd1e84f673adb8449d317d2d5299d137df8a3739e48b33e66543a"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/WoWMapCompanion.lua",
+      "bytes": 17421,
+      "sha256": "7d06626f8fdc3f9de9b74528647cb7303a2f50c88a2a39077a9f96550b518c96"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/WoWMapCompanion.toc",
+      "bytes": 1924,
+      "sha256": "30935b946ecaa19e4664eeff6447d8d2bf9a43c267657338e9c8635011aab062"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/Calendar.lua",
+      "bytes": 5719,
+      "sha256": "79b1036d02c1d0c110e00147fe6bbb78c953fb1523036f197a82c4f180729533"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/ConfirmEquip.lua",
+      "bytes": 25443,
+      "sha256": "a7493e07e518bcf0c9c338d58f026e23a6f107bc88358cc53eda3ed55e2dc585"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/Equipment.lua",
+      "bytes": 23920,
+      "sha256": "200002fe28d27ade8d0f7517703928af0b47a996eba9e30b74ca493ffa1b0b5d"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/EquipmentCompare.lua",
+      "bytes": 19847,
+      "sha256": "5ff511acccb40f04e8b41eb4efb1a31ba97929cb769345876d362acb5f2f20de"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/ExplorationLevels.lua",
+      "bytes": 2508,
+      "sha256": "3623ef60f8974a1abbcdc4e52103f46182f62656bffeb95e2fa00ab03c138cbb"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/ExplorationWarning.lua",
+      "bytes": 2524,
+      "sha256": "0903c6f2b8dcd12955165f353e79b7d022ab0a30b822400f915439036cf693fd"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/GroupBuffs.lua",
+      "bytes": 5854,
+      "sha256": "11f659bf0104e002e9704bd1803024d7d31481cd3b79123db2a092c501be88d1"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/Inventory.lua",
+      "bytes": 4768,
+      "sha256": "bab38f8600645345dd954ad82ea23314685d17fc48ebd26f5e2976227f54ddbc"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/ItemStorage.lua",
+      "bytes": 12655,
+      "sha256": "c4d8566d66114408466a3d46c9fcb13c15109fdce359b469b54ac46a1849797f"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/Localization.lua",
+      "bytes": 97246,
+      "sha256": "e702994227fe3958be62e146503bbeb43e7099395ff3137ee659637beccd097f"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/Money.lua",
+      "bytes": 3258,
+      "sha256": "6154f7d740b12a77e08937217743ddf7865914e130dd6bf7d007bc4707b8456b"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/OfflineHistory.lua",
+      "bytes": 5622,
+      "sha256": "183e3cc7d406177124474741f94bcf69f57c6f0a33c7a3ae8546bc5b9b3b55ed"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/Protocol.lua",
+      "bytes": 9162,
+      "sha256": "a66362e29adc11ba12c2d53f6b5077b9f06e7518209cba0bb689e97bb7d6dcf9"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/Quests.lua",
+      "bytes": 10990,
+      "sha256": "5894ab78d3501278a9656aefe2e322df4850110f218e1ef29ba9ff24b8352361"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/Talents.lua",
+      "bytes": 15258,
+      "sha256": "5fbd1e397f442dfc8121b085d5722895f12ea5bb769ecfd4a0badf4d8a4fa18e"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/Telemetry.lua",
+      "bytes": 3638,
+      "sha256": "0ec61eb12f5e07522f3f8b08219e80f839fa7bf5936f416af11954490ef08e86"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/Transfer.lua",
+      "bytes": 40716,
+      "sha256": "0d0b36fe8ecbd1e84f673adb8449d317d2d5299d137df8a3739e48b33e66543a"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/WoWForeverCompanion.lua",
+      "bytes": 19424,
+      "sha256": "68aa7c314c6e94bbac763b8e8fcc7217fa783a3c518b2f65a7b21cf31e02db71"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/WoWForeverCompanion.toc",
+      "bytes": 2000,
+      "sha256": "37083f53c0bb65b2c6065d7454ec9a13edc9e27164cd7aa5b0bc212cfb8d28f5"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/WoWForeverCompanion_Camelot.toc",
+      "bytes": 2000,
+      "sha256": "37083f53c0bb65b2c6065d7454ec9a13edc9e27164cd7aa5b0bc212cfb8d28f5"
+    },
+    {
+      "path": "wow-companion-bridge/server.py",
+      "bytes": 21650,
+      "sha256": "83a456e939fe248350355aa8234288dddba282f319cd6cfe5b1eb1b7884a1fee"
+    },
+    {
+      "path": "wow-companion-bridge/capture.py",
+      "bytes": 4223,
+      "sha256": "7befe922a218362a7f74c92545edf827a137ef9c861009ac0d071ffd4f25cfe4"
+    },
+    {
+      "path": "wow-companion-bridge/geometry.py",
+      "bytes": 11290,
+      "sha256": "92af992484ba5cc5fdb9aa6fe397651db073792e263fb1a59cb38369225c4f62"
+    },
+    {
+      "path": "wow-companion-bridge/connection.py",
+      "bytes": 9913,
+      "sha256": "4931b3e8e9a2a3ef042efdd63b9cc85a202306233c359c77944b74f1ff8e397e"
+    },
+    {
+      "path": "wow-companion-bridge/window.py",
+      "bytes": 5781,
+      "sha256": "9cb4dad88bf68c50342d8ef8983ec8222bcde8dac71326d06b0bc62aa27db034"
+    },
+    {
+      "path": "wow-companion-bridge/protocol.py",
+      "bytes": 51861,
+      "sha256": "02b0016cabb2b7db92f1daaad93ed6b02e200775dd269eea298212846c141eda"
+    },
+    {
+      "path": "wow-companion-bridge/state.py",
+      "bytes": 66643,
+      "sha256": "d2ed6df18ff4deb7f939322474a2e35954f8686109d0d72fefebabdc2ae853cd"
+    },
+    {
+      "path": "wow-companion-bridge/item_storage.py",
+      "bytes": 7041,
+      "sha256": "bbf61c65a8e47bc142cb0f3a75740bfcdbe9049f2ea8c2b7db6e59723530c18c"
+    },
+    {
+      "path": "wow-companion-bridge/macro_import.py",
+      "bytes": 8368,
+      "sha256": "0cb616697d7babee1b86df74619a5e490df81a9d5175ea1153afd580647a6934"
+    },
+    {
+      "path": "wow-companion-bridge/macro_native.py",
+      "bytes": 7355,
+      "sha256": "bb5a1468230c0dd12d4bc6e2fa2ecb86a0dec1ea56978b155596093df21f0689"
+    },
+    {
+      "path": "wow-companion-bridge/retail_query.py",
+      "bytes": 17071,
+      "sha256": "cd131fbf3f1533dbf96fb99164cf9c92c12b289652529a088a3d6b59de9b1aff"
+    },
+    {
+      "path": "wow-companion-bridge/index.html",
+      "bytes": 9850,
+      "sha256": "223b184c4eea09b824480c5d7d78fd2c3bd124d61e6aab74ba872ce32f168195"
+    },
+    {
+      "path": "wow-companion-python/LICENSE.txt",
+      "bytes": 35407,
+      "sha256": "935cf13e19f8c31b497d20b05d73623431a226b230c3599bc30fa3348979bc68"
+    },
+    {
+      "path": "wow-companion-python/_asyncio.pyd",
+      "bytes": 79072,
+      "sha256": "c833cfdab82da58163acdada02cdb2b92d42bc543e1b5519dbcbe4d3805a98fc"
+    },
+    {
+      "path": "wow-companion-python/_bz2.pyd",
+      "bytes": 87776,
+      "sha256": "9590a3f4b7c0801cd379341d40bb89b5dc9a4e232c9498b6f3bc6b5e99d4ae7f"
+    },
+    {
+      "path": "wow-companion-python/_ctypes.pyd",
+      "bytes": 143072,
+      "sha256": "adf71d85781a2fe937fcc44c0961498e2cf30849f9863ff7b5f7510817cea952"
+    },
+    {
+      "path": "wow-companion-python/_decimal.pyd",
+      "bytes": 290016,
+      "sha256": "9605f332fb52636d77a3125abc7e42ba22b3838dcf136d81f37fe5875cbd62d6"
+    },
+    {
+      "path": "wow-companion-python/_elementtree.pyd",
+      "bytes": 138976,
+      "sha256": "77707cb19dc91eb634d70f31b21022ee4c6ea5ce834c6952bc56ba00c6fd644d"
+    },
+    {
+      "path": "wow-companion-python/_hashlib.pyd",
+      "bytes": 68832,
+      "sha256": "9052a85ac9947afbbdfdd62b0cad7501b668e6107832cefaa4b76377d710dae0"
+    },
+    {
+      "path": "wow-companion-python/_lzma.pyd",
+      "bytes": 160992,
+      "sha256": "9ff9f63ad79f161722106e029b4c3afc6494848fd73f9bcc2ed5434a15c71bde"
+    },
+    {
+      "path": "wow-companion-python/_multiprocessing.pyd",
+      "bytes": 38624,
+      "sha256": "7606f4044ffc923eac208f5bc5acb1dea14fe8edf2efe08a63e11177f4c7a016"
+    },
+    {
+      "path": "wow-companion-python/_overlapped.pyd",
+      "bytes": 58080,
+      "sha256": "8f35ff35e76a2308ce0a50200fb01b55569f30952098239f7e000f3da1393a61"
+    },
+    {
+      "path": "wow-companion-python/_queue.pyd",
+      "bytes": 36576,
+      "sha256": "51a3d8e40b061db4fc77f9a3b18e6c2f912c4edf467e46c95ac325d35f2be4df"
+    },
+    {
+      "path": "wow-companion-python/_remote_debugging.pyd",
+      "bytes": 105184,
+      "sha256": "d4351e7236bd94e0a3242fdb6f26b914b9629b567ab63ec5f2a3661bcc1b7041"
+    },
+    {
+      "path": "wow-companion-python/_socket.pyd",
+      "bytes": 87776,
+      "sha256": "11f2ace2a37e59bf0f2fcfcc2523307408fa2e7f0aec561bc7531a8db130a83c"
+    },
+    {
+      "path": "wow-companion-python/_sqlite3.pyd",
+      "bytes": 133344,
+      "sha256": "33e91d0de7924180012c86efb17611ec589b93f90b321ed9ec3c2f4c99fae5be"
+    },
+    {
+      "path": "wow-companion-python/_ssl.pyd",
+      "bytes": 193248,
+      "sha256": "56fdbe70896e4b3c6d4e8897fad1d011129354172566832371289edca0d85a21"
+    },
+    {
+      "path": "wow-companion-python/_uuid.pyd",
+      "bytes": 28384,
+      "sha256": "ad949327a9730feefc7f2c14db9b1b43f4351df1aad3688dc1e68e4a23f7e81c"
+    },
+    {
+      "path": "wow-companion-python/_wmi.pyd",
+      "bytes": 40160,
+      "sha256": "c8f6705d2da1be12b10050a1311b7c865fd79f11404cfad1a70b3f8962051056"
+    },
+    {
+      "path": "wow-companion-python/_zoneinfo.pyd",
+      "bytes": 51936,
+      "sha256": "cbc875a462df36415e17c1ef182e50b541697e4d5ef9199c38737888de4317ad"
+    },
+    {
+      "path": "wow-companion-python/_zstd.pyd",
+      "bytes": 503520,
+      "sha256": "7a7b50c580428daf3d43c87b121988d2e8c7af9533fa2195f1aef8652fc2c489"
+    },
+    {
+      "path": "wow-companion-python/libcrypto-3.dll",
+      "bytes": 6021880,
+      "sha256": "75495fe0e079ab00d49be740d3c710a0b94e3f74f9648cb7cc9f768fc7f52319"
+    },
+    {
+      "path": "wow-companion-python/libffi-8.dll",
+      "bytes": 39696,
+      "sha256": "eff52743773eb550fcc6ce3efc37c85724502233b6b002a35496d828bd7b280a"
+    },
+    {
+      "path": "wow-companion-python/libssl-3.dll",
+      "bytes": 1308920,
+      "sha256": "8957182a9c385bfd9f3f790921de2ddc614cf91f99edbed4e9e5446a46504e32"
+    },
+    {
+      "path": "wow-companion-python/libtommath.dll",
+      "bytes": 95456,
+      "sha256": "b1834c6e5a2789cff054bafe96d6c96db18b3a9d72c4df88711ef9c7c8bc45d9"
+    },
+    {
+      "path": "wow-companion-python/pyexpat.pyd",
+      "bytes": 202464,
+      "sha256": "87b0f7401749bd19bddf8872c17965a99142928fdefab0b513ded9c116f3da6b"
+    },
+    {
+      "path": "wow-companion-python/python.cat",
+      "bytes": 602294,
+      "sha256": "1621ec5a5ade1c57d38c1a0ef26535c878fcbfd260205e8335177a35d31d13b2"
+    },
+    {
+      "path": "wow-companion-python/python.exe",
+      "bytes": 106208,
+      "sha256": "d718435b892db4ad5b547d12fec61be7baa7faf7a58d857ea58053be24c7a000"
+    },
+    {
+      "path": "wow-companion-python/python3.dll",
+      "bytes": 73952,
+      "sha256": "7bb0a7df2d5cb829319dd8d122039843e2a762361bb5a61bb5d24ca34f4040b5"
+    },
+    {
+      "path": "wow-companion-python/python314._pth",
+      "bytes": 43,
+      "sha256": "06ba7334444a68b53c4e17e546d116b358d9dd50a325ccbea6c7663ce79c3b2c"
+    },
+    {
+      "path": "wow-companion-python/python314.dll",
+      "bytes": 6816992,
+      "sha256": "d8a06cc6ca3348925ea29e343e1c5c5895fe0bb433ff913e1cee44caf358aa6a"
+    },
+    {
+      "path": "wow-companion-python/python314.zip",
+      "bytes": 4158438,
+      "sha256": "4e97b321fe7f470c5a2cda0414f2b9caa896835edadf03eef251a0ebc3c24cc3"
+    },
+    {
+      "path": "wow-companion-python/pythonw.exe",
+      "bytes": 104672,
+      "sha256": "36392dade900489423a15686340bf5f95a64d661d9322bb4c0e0f1d4e6a84cb7"
+    },
+    {
+      "path": "wow-companion-python/runtime-source.json",
+      "bytes": 9270,
+      "sha256": "ac91c9a355c01e3a1c84d9ee7e7049e29f31cf07b2c9aa7f5a636b8172c739ab"
+    },
+    {
+      "path": "wow-companion-python/select.pyd",
+      "bytes": 33504,
+      "sha256": "0da869c017fd3231cfc1c1e4c4bef1bb7bf5cba38236e6d7bf1630c3507c5a1d"
+    },
+    {
+      "path": "wow-companion-python/sqlite3.dll",
+      "bytes": 1584864,
+      "sha256": "679cac0aa7dc1f9ba3c188565884c29a954b64f8bfbcc3b0e2163ee05b492b45"
+    },
+    {
+      "path": "wow-companion-python/unicodedata.pyd",
+      "bytes": 758496,
+      "sha256": "4c4e9f9e71e299a7e0093830e79f955f2b12b4eb0a6bb45003d42256b6e5985d"
+    },
+    {
+      "path": "wow-companion-python/vcruntime140.dll",
+      "bytes": 178616,
+      "sha256": "d1f4225df2cd877dbf130d5668a021dce3f94118455ff5ec952061c30afc9ce7"
+    },
+    {
+      "path": "wow-companion-python/vcruntime140_1.dll",
+      "bytes": 50112,
+      "sha256": "a7146c08f89fe5b04541ab507cdb59ff7b44534d4ba3c668a426c6450a03434e"
+    },
+    {
+      "path": "wow-companion-python/winsound.pyd",
+      "bytes": 32992,
+      "sha256": "df409ab34d986e3379b55a42f88e3879f903be7dc952cf8c066f704b69511723"
+    }
+  ]
+}

@@ -1,0 +1,978 @@
+{
+  "metadata": {
+    "reviewed_at": "2026-10-29",
+    "coordinate_system": "Blizzard UiMapID, not InstanceID or the pre-8.0 WorldMapAreaID",
+    "coverage": "All map IDs used by portal edge endpoints in Mapzeroth Data/Modern/Edges.lua at 905f1d89adcf0551dedcd4277cce2cc1cde914be",
+    "notes_zh": "地图名称来自固定数据源中的地点上下文及单独交叉核对，中文标签由本项目整理。缺少可靠图名时保留null，并以地图ID显示。部分标签附带地区或楼层限定用于消歧，不声称逐项等于当前客户端C_Map返回的本地化名称。"
+  },
+  "sources": [
+    {
+      "id": "wiki-uimap-ids",
+      "title": "Warcraft Wiki contributors — UiMapID",
+      "url": "https://warcraft.wiki.gg/wiki/UiMapID",
+      "license": "CC-BY-SA-4.0",
+      "reviewed_at": "2026-10-29",
+      "revision": null
+    }
+  ],
+  "maps": [
+    {
+      "map_id": 7,
+      "name_zh": "莫高雷",
+      "name_en": "Mulgore",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 10,
+      "name_zh": "北贫瘠之地",
+      "name_en": "Northern Barrens",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 15,
+      "name_zh": "荒芜之地",
+      "name_en": "Badlands",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 17,
+      "name_zh": "诅咒之地",
+      "name_en": "Blasted Lands",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 18,
+      "name_zh": "提瑞斯法林地（旧相位）",
+      "name_en": "Tirisfal Glades (past)",
+      "notes_zh": "源容器含 map18_art19，旧相位。与当前相位 map2070 分开保留。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 23,
+      "name_zh": "东瘟疫之地",
+      "name_en": "Eastern Plaguelands",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 24,
+      "name_zh": "圣光之愿礼拜堂",
+      "name_en": "Light's Hope Chapel",
+      "notes_zh": "Wiki UiMapID 列表确认为 Light's Hope Chapel 微型地图。Sanctum of Light 是该源节点所在区域，不把节点名替代地图名。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5",
+        "wiki-uimap-ids"
+      ]
+    },
+    {
+      "map_id": 26,
+      "name_zh": "辛特兰",
+      "name_en": "The Hinterlands",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 27,
+      "name_zh": "丹莫罗",
+      "name_en": "Dun Morogh",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 30,
+      "name_zh": "新工匠镇",
+      "name_en": "New Tinkertown",
+      "notes_zh": "Wiki UiMapID 列表确认为 New Tinkertown 微型地图。源中 Gnomeregan/teleporter 节点不表示 map30 就是诺莫瑞根副本。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5",
+        "wiki-uimap-ids"
+      ]
+    },
+    {
+      "map_id": 35,
+      "name_zh": "黑石山·黑石深渊入口",
+      "name_en": "Blackrock Mountain - Blackrock Depths",
+      "notes_zh": "Wiki UiMapID 列表中的黑石山入口微型地图，不是 InstanceID 230 的黑石深渊副本。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5",
+        "wiki-uimap-ids"
+      ]
+    },
+    {
+      "map_id": 37,
+      "name_zh": "艾尔文森林",
+      "name_en": "Elwynn Forest",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 47,
+      "name_zh": "暮色森林",
+      "name_en": "Duskwood",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 50,
+      "name_zh": "北荆棘谷",
+      "name_en": "Northern Stranglethorn",
+      "notes_zh": "地图标签按北荆棘谷记录，源节点是格罗姆高营地；不把营地名替代整个地图名。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 52,
+      "name_zh": "西部荒野",
+      "name_en": "Westfall",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 57,
+      "name_zh": "泰达希尔",
+      "name_en": "Teldrassil",
+      "notes_zh": "源包含旧黑海岸相位关联，达纳苏斯毁灭前后的可用性另外读取路线相位条件。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 62,
+      "name_zh": "黑海岸",
+      "name_en": "Darkshore",
+      "notes_zh": "源含多个 art 相位，地图 ID 一样不代表传送门在所有相位存在。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 69,
+      "name_zh": "菲拉斯",
+      "name_en": "Feralas",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 74,
+      "name_zh": "时光之穴",
+      "name_en": "Caverns of Time",
+      "notes_zh": "时光之穴的地图坐标，不能套用塔纳利斯大地图坐标。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 80,
+      "name_zh": "月光林地",
+      "name_en": "Moonglade",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 81,
+      "name_zh": "希利苏斯",
+      "name_en": "Silithus",
+      "notes_zh": "源含 map81_art86 和 map81_art962，相位条件保留在路线中。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 84,
+      "name_zh": "暴风城",
+      "name_en": "Stormwind City",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 85,
+      "name_zh": "奥格瑞玛",
+      "name_en": "Orgrimmar",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 87,
+      "name_zh": "铁炉堡",
+      "name_en": "Ironforge",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 88,
+      "name_zh": "雷霆崖",
+      "name_en": "Thunder Bluff",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 89,
+      "name_zh": "达纳苏斯",
+      "name_en": "Darnassus",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 95,
+      "name_zh": "幽魂之地（旧区域）",
+      "name_en": "Ghostlands (Burning Crusade)",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 97,
+      "name_zh": "秘蓝岛",
+      "name_en": "Azuremyst Isle",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 100,
+      "name_zh": "地狱火半岛",
+      "name_en": "Hellfire Peninsula",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 103,
+      "name_zh": "埃索达",
+      "name_en": "The Exodar",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 110,
+      "name_zh": "银月城（燃烧的远征旧区域）",
+      "name_en": "Silvermoon City (Burning Crusade)",
+      "notes_zh": "正式服里的燃烧的远征旧银月城。不是怀旧服数据，也不是新银月城2393。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 111,
+      "name_zh": "沙塔斯城",
+      "name_en": "Shattrath City",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 116,
+      "name_zh": "灰熊丘陵",
+      "name_en": "Grizzly Hills",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 117,
+      "name_zh": "嚎风峡湾",
+      "name_en": "Howling Fjord",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 122,
+      "name_zh": "奎尔丹纳斯岛（旧区域）",
+      "name_en": "Isle of Quel'Danas (Burning Crusade)",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 125,
+      "name_zh": "达拉然（诺森德）",
+      "name_en": "Dalaran (Northrend)",
+      "notes_zh": "诺森德达拉然，必须与627破碎群岛达拉然区分。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 198,
+      "name_zh": "海加尔山",
+      "name_en": "Mount Hyjal",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 204,
+      "name_zh": "无底海渊",
+      "name_en": "Abyssal Depths",
+      "notes_zh": "Wiki UiMapID 列表确认为 Abyssal Depths，无底海渊是瓦丝琪尔的子区域，不将整个瓦丝琪尔203套在此坐标上。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5",
+        "wiki-uimap-ids"
+      ]
+    },
+    {
+      "map_id": 207,
+      "name_zh": "深岩之洲",
+      "name_en": "Deepholm",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 241,
+      "name_zh": "暮光高地（原地图）",
+      "name_en": "Twilight Highlands",
+      "notes_zh": "与主源1275保留为不同 UI 地图 ID，坐标不得因名称相同直接互换。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 245,
+      "name_zh": "托尔巴拉德半岛",
+      "name_en": "Tol Barad Peninsula",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 371,
+      "name_zh": "翡翠林",
+      "name_en": "The Jade Forest",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 379,
+      "name_zh": "昆莱山",
+      "name_en": "Kun-Lai Summit",
+      "notes_zh": "源含 peak_past 容器，武僧旧晴日峰门户的过去状态由路线条件说明。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5",
+        "wiki-uimap-ids"
+      ]
+    },
+    {
+      "map_id": 388,
+      "name_zh": "螳螂高原",
+      "name_en": "Townlong Steppes",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 407,
+      "name_zh": "暗月岛",
+      "name_en": "Darkmoon Island",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 504,
+      "name_zh": "雷神岛",
+      "name_en": "Isle of Thunder",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 525,
+      "name_zh": "霜火岭",
+      "name_en": "Frostfire Ridge",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 539,
+      "name_zh": "影月谷（德拉诺）",
+      "name_en": "Shadowmoon Valley (Draenor)",
+      "notes_zh": "德拉诺影月谷，不能与外域影月谷的同名区域混用。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 543,
+      "name_zh": "戈尔隆德",
+      "name_en": "Gorgrond",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 554,
+      "name_zh": "永恒岛",
+      "name_en": "Timeless Isle",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 622,
+      "name_zh": "暴风之盾",
+      "name_en": "Stormshield",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 624,
+      "name_zh": "战争之矛",
+      "name_en": "Warspear",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 627,
+      "name_zh": "达拉然（破碎群岛）",
+      "name_en": "Dalaran (Broken Isles)",
+      "notes_zh": "破碎群岛达拉然，必须与125诺森德达拉然区分。剧情阶段会影响访问。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 630,
+      "name_zh": "阿苏纳",
+      "name_en": "Azsuna",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 641,
+      "name_zh": "瓦尔莎拉",
+      "name_en": "Val'sharah",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 648,
+      "name_zh": "阿彻鲁斯·黑锋要塞",
+      "name_en": "Acherus: The Ebon Hold",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 652,
+      "name_zh": "雷霆图腾",
+      "name_en": "Thunder Totem",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 680,
+      "name_zh": "苏拉玛",
+      "name_en": "Suramar",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 709,
+      "name_zh": null,
+      "name_en": null,
+      "notes_zh": "unknown：源容器 temple_of_five_dawns.map709 指向五晨寺武僧大厅区域，但未独立确认当前客户端地图标题。保留 map709，不以位置名猜地图名。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 715,
+      "name_zh": "翡翠梦境之路",
+      "name_en": "The Emerald Dreamway",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 747,
+      "name_zh": "梦境林地",
+      "name_en": "The Dreamgrove",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 830,
+      "name_zh": "克罗库恩",
+      "name_en": "Krokuun",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 862,
+      "name_zh": "祖达萨",
+      "name_en": "Zuldazar",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 863,
+      "name_zh": "纳兹米尔",
+      "name_en": "Nazmir",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 864,
+      "name_zh": "沃顿",
+      "name_en": "Vol'dun",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 882,
+      "name_zh": "艾瑞达斯",
+      "name_en": "Eredath",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 883,
+      "name_zh": "维迪卡尔号（阿古斯）",
+      "name_en": "The Vindicaar (Argus)",
+      "notes_zh": "阿古斯维迪卡尔号独立地图，源中的克罗库恩/艾瑞达斯飞行点仍各自使用830/882。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 885,
+      "name_zh": "安托兰废土",
+      "name_en": "Antoran Wastes",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 895,
+      "name_zh": "提拉加德海峡",
+      "name_en": "Tiragarde Sound",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 896,
+      "name_zh": "德鲁斯瓦",
+      "name_en": "Drustvar",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 940,
+      "name_zh": "维迪卡尔号（艾泽拉斯）",
+      "name_en": "The Vindicaar (Azeroth)",
+      "notes_zh": "艾泽拉斯维迪卡尔号地图，不与阿古斯883混用。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 942,
+      "name_zh": "斯托颂谷地",
+      "name_en": "Stormsong Valley",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 1161,
+      "name_zh": "伯拉勒斯",
+      "name_en": "Boralus",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 1163,
+      "name_zh": "达萨罗·巨擘封印",
+      "name_en": "The Great Seal, Dazar'alor",
+      "notes_zh": "源 Containers.lua 明确此容器为达萨罗巨擘封印内室。与1165城市大地图、862祖达萨分开保留。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 1165,
+      "name_zh": "达萨罗",
+      "name_en": "Dazar'alor",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 1275,
+      "name_zh": "暮光高地（另一地图版本）",
+      "name_en": "Twilight Highlands",
+      "notes_zh": "主源把龙喉港和该区域部分节点记在此 ID。与原241不同，未把二者坐标强行合并。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 1355,
+      "name_zh": "纳沙塔尔",
+      "name_en": "Nazjatar",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 1527,
+      "name_zh": "奥丹姆（尼奥罗萨相位）",
+      "name_en": "Uldum",
+      "notes_zh": "源使用 map1527_art260，与旧奥丹姆249有区别，不替换为旧图坐标。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 1543,
+      "name_zh": "噬渊",
+      "name_en": "The Maw",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 1670,
+      "name_zh": "奥利波斯（命运之环主层）",
+      "name_en": "Oribos - Ring of Fates",
+      "notes_zh": "根据 Settlements.lua 和主层转移垫节点确定奥利波斯主层。1671是另一楼层坐标系。 用于未注明楼层的目的地区域匹配时，Oribos 对应上游 ORIBOS 节点的1670主层；不认定为实测落点。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ],
+      "aliases_en": [
+        "Oribos"
+      ]
+    },
+    {
+      "map_id": 1671,
+      "name_zh": "奥利波斯（转移之环飞行层）",
+      "name_en": "Oribos - Ring of Transference",
+      "notes_zh": "源节点明确为 Ring of Transference 飞行管理员层；与1670主层分开保留。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 1961,
+      "name_zh": "刻希亚",
+      "name_en": "Korthia",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 1970,
+      "name_zh": "扎雷殁提斯",
+      "name_en": "Zereth Mortis",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2022,
+      "name_zh": "觉醒海岸",
+      "name_en": "The Waking Shores",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2070,
+      "name_zh": "提瑞斯法林地（当前相位）",
+      "name_en": "Tirisfal Glades (present)",
+      "notes_zh": "源容器 map2070_art1136 为当前提瑞斯法相位，与18旧相位分开保留。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2112,
+      "name_zh": "瓦德拉肯",
+      "name_en": "Valdrakken",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2200,
+      "name_zh": "翡翠梦境",
+      "name_en": "The Emerald Dream",
+      "notes_zh": "翡翠梦境图，不是巨龙群岛开放区阿梅达希尔2239。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2214,
+      "name_zh": "喧鸣深窟",
+      "name_en": "The Ringing Deeps",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2239,
+      "name_zh": "阿梅达希尔（巨龙群岛）",
+      "name_en": "Amirdrassil (Dragon Isles)",
+      "notes_zh": "源在本图记录贝拉梅斯及阿梅达希尔旅行点，和翡翠梦境2200分开。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ],
+      "aliases_en": [
+        "Bel'ameth",
+        "Amirdrassil"
+      ]
+    },
+    {
+      "map_id": 2255,
+      "name_zh": "艾基-卡赫特",
+      "name_en": "Azj-Kahet",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2266,
+      "name_zh": "时间流",
+      "name_en": "The Timeways",
+      "notes_zh": "季节性门户集散地图。路线可用性依赖版本和赛季，不能只看地图存在。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2339,
+      "name_zh": "多恩诺嘉尔",
+      "name_en": "Dornogal",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2346,
+      "name_zh": "安德麦",
+      "name_en": "Undermine",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2351,
+      "name_zh": "烈风海岸（家宅社区）",
+      "name_en": "Razorwind Shores",
+      "notes_zh": "源容器 razorwind_shores.map2351。中文暂采用项目译名，以英文名和ID辨认。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2352,
+      "name_zh": "创始者之角（家宅社区）",
+      "name_en": "Founder's Point",
+      "notes_zh": "源容器 founders_point.map2352。家宅社区存在独立地图坐标。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2393,
+      "name_zh": "银月城（至暗之夜）",
+      "name_en": "Silvermoon City (Midnight)",
+      "notes_zh": "至暗之夜新银月城，Settlements.lua expansion=12。不能套用旧银月城110坐标。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2395,
+      "name_zh": "永歌森林（至暗之夜）",
+      "name_en": "Eversong Woods (Midnight)",
+      "notes_zh": "至暗之夜永歌森林，包含风行者之塔、安宁地和晴风村节点。不是燃烧的远征旧永歌森林94。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2405,
+      "name_zh": "虚空风暴（至暗之夜）",
+      "name_en": "Voidstorm",
+      "notes_zh": "源的 voidstorm.map2405 节点确定此图为Voidstorm。PORTAL_HARANDAR_VOIDSTORM 却写成 harandar.map2405，见质量问题，不能据此改写地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2413,
+      "name_zh": "哈兰达尔",
+      "name_en": "Harandar",
+      "notes_zh": "名称按固定版本源节点、容器及地区语境整理，中文为项目地图标签；不是运行中客户端的实时地图名称。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2472,
+      "name_zh": "卡雷什",
+      "name_en": "K'aresh",
+      "notes_zh": "源 karesh.map2472，包含塔扎维什和卡雷什飞行点。其他来源坐标有差异，实际客户端仍需核对。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2512,
+      "name_zh": null,
+      "name_en": null,
+      "notes_zh": "unknown：源节点 PORTAL_COILED_ISLE_SILVERMOON 和 Tokka's Landing 位于此 ID，未独立确认地图正式名称，保留ID。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2541,
+      "name_zh": null,
+      "name_en": "Arcantina",
+      "notes_zh": "英文名由 arcantina.map2541 及 ARCANTINA_ENTRANCE 注释确认；中文正式译名尚未核实，保留空值。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2576,
+      "name_zh": "哈兰达尔·巢穴（内层地图）",
+      "name_en": "The Den, Harandar",
+      "notes_zh": "源 The Den Flightmaster 和根路使用此内层图，与2413哈兰达尔外部大图坐标不可直接互换。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    },
+    {
+      "map_id": 2649,
+      "name_zh": null,
+      "name_en": null,
+      "notes_zh": "unknown：源 PORTAL_MAGISTERS_SILVERMOON 的 UI mapID 为2649，未独立核实其地图标题。不要误用同数值的副本 InstanceID（圣焰隐修院）作为此图名。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    }
+  ],
+  "quality_issues": [
+    {
+      "node_id": "PORTAL_HARANDAR_VOIDSTORM",
+      "code": "source_map_conflict",
+      "notes_zh": "Nodes_IsolatedMaps.lua:30 的节点名和container前缀指向Harandar，但mapID=2405与同文件的Voidstorm节点一致。保留原ID，未核实前不能作为可靠的位置推荐。",
+      "source_ids": [
+        "mapzeroth-modern-2.0.5"
+      ]
+    }
+  ]
+}

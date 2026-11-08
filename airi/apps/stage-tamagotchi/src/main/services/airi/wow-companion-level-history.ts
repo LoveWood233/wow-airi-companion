@@ -101,6 +101,9 @@ interface Observation {
  * Atomic writes retain every level record. Invalid files block mutations and remain untouched.
  */
 export class CompanionLevelHistory {
+  /** Backup import uses the normal history validation rules. */
+  static validateBackup(value: unknown) { return parse(historySchema, value) }
+
   private history: SavedHistory = { version: 1, characters: [] }
   private active: Observation | null = null
   private storageError: string | null = null

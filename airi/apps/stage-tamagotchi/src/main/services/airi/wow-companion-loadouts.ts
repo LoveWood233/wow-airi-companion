@@ -43,6 +43,9 @@ function freeze(value: object) {
  * Only live matching sessions can replace equipment. Login precedence changes once per observed session, including across desktop restarts.
  */
 export class CompanionLoadouts {
+  /** Backup import uses the normal current-equipment validation rules. */
+  static validateBackup(value: unknown) { return parse(fileSchema, value) }
+
   private data: SavedFile = { version: 1, entries: [], latestCharacter: null, seenSessions: [] }
   private storageError: string | null = null
   private blocked = false

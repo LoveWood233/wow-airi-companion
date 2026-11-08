@@ -1,0 +1,80 @@
+title: Local Retail records
+game: WoW Retail · local data
+source: Source
+source-unavailable: No verified local snapshot
+build: Data build
+locale: Data language
+exported-at: Snapshot exported
+received-at: Query received
+cache:
+  status: Result delivery
+  hit: From cache
+  miss: Source queried and cached
+  source-received-at: Original source query
+  served-at: Result returned
+  expires-at: Cache expires
+  note: This record query was not repeated. The original source receipt and snapshot export time remain unchanged.
+dataset: Snapshot identifier
+hotfixes: Server hotfixes
+hotfixes-no: Not applied
+hotfixes-yes: Marked as applied in the export
+record-id: Record ID
+query: Query
+open-local: Open local record
+open-entry: 'Open local record for {title}'
+toggle-entry: 'Toggle raw fields for {title}'
+related: Related local records
+more: Show all listed fields
+less: Show fewer fields
+empty-text: Empty text
+tables: Source tables
+table-rows: '{count} decoded rows'
+page: 'Showing {count} records from offset {offset}. More matches remain. Request the next page explicitly.'
+partial: The result has missing, encrypted, or truncated data. It does not establish the complete server state.
+source-note: Local client snapshot. Raw column names and spell templates retain their source meaning. This card makes no gameplay or availability claim.
+operations:
+  search: Local record search
+  fetch: Local record details
+  stats: Local database overview
+kinds:
+  item: Item
+  map: Base map
+  uimap: World map region
+  area: Area
+  spell: Spell
+  encounter: Dungeon encounter
+states:
+  loading: Waiting for the local query response.
+  empty: No matching records in this snapshot. Try another name or a known ID.
+  not-found: This ID is absent from the decoded snapshot. Its absence does not establish that the game has no such record.
+  error: The local lookup failed. Check the selected database and retry.
+  invalid: This result cannot be verified as a matching local Retail query. The original result remains available in the raw view.
+titles:
+  loading: Querying local Retail data
+  success: Local Retail data
+  empty: No local matches
+  not-found: Local record not found
+  error: Local database query failed
+  invalid: Local response unavailable
+table-status:
+  decoded: Decoded export
+  decoded_with_encrypted_sections: Export includes encrypted sections
+notices:
+  client-db2-only: These records come from client DB2 files. Server-only facts and player progress are outside this source.
+  hotfixes-not-applied: Server hotfixes were not applied to this export. Current game values can differ.
+  encrypted-sections: Some source tables contain encrypted sections. Decoded rows do not represent every game record.
+  missing-fields: Some source fields are missing. Missing fields remain unknown.
+  raw-spell-template: Spell descriptions can contain raw client placeholders. They are not evaluated character-specific values.
+  map-id-not-uimap-id: Base map IDs and world map region IDs use different namespaces.
+  content-tuning-not-exploration-level: Content tuning IDs do not establish a classic exploration level or a personal leveling recommendation.
+  result-truncated: Some fields or text were truncated to keep the response bounded.
+errors:
+  database-unconfigured: Choose a local Retail database in the database settings first.
+  database-missing: The selected database file is missing. Select an available export.
+  database-unreadable: The selected database cannot be read. Check its location and access permissions.
+  database-invalid: The selected file is not a supported Retail export or failed validation.
+  database-changed: The database changed during the query. Retry against a stable export.
+  query-invalid: The query parameters are invalid. Check the record type, ID, or search text.
+  query-timeout: The local query timed out. Narrow the search and retry.
+  query-failed: The local query failed. No replacement records were added.
+  bridge-unavailable: The local query service is unavailable. Check its status and retry.

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { BridgeStatus, GameVersion } from '../../shared/wow-companion'
 import type { EquipmentComparisonsState } from '../../shared/wow-companion-equipment-comparisons'
-import type { EquipmentHistoryState } from '../../shared/wow-companion-equipment-history'
+import type { EquipmentHistoryEntry, EquipmentHistoryState } from '../../shared/wow-companion-equipment-history'
 
 import { Button, Collapsible, SettingsCard } from '@proj-airi/ui'
 import { computed } from 'vue'
@@ -11,7 +11,8 @@ import WowCompanionEquipmentComparison from './wow-companion-equipment-compariso
 
 import { formatCompanionError } from '../../shared/wow-companion-errors'
 
-const props = defineProps<{ game: GameVersion, bridge: BridgeStatus | null, history: EquipmentHistoryState, comparisons: EquipmentComparisonsState }>()
+const props = defineProps<{ game: GameVersion, bridge: BridgeStatus | null, history: EquipmentHistoryState, comparisons: EquipmentComparisonsState, collecting?: boolean }>()
+const emit = defineEmits<{ collectMemory: [entry: EquipmentHistoryEntry] }>()
 const { t, te, locale } = useI18n()
 const tn = (key: string) => t(`wow-companion.equipment.${key}`)
 const entries = computed(() => [...props.history.entries].reverse().map(entry => ({
@@ -68,6 +69,9 @@ function statLabel(key: string) {
           <h3 :class="['break-words font-semibold']">
             {{ item.name ?? t('wow-companion.equipment.unnamed', { id: item.itemID }) }}
           </h3>
+          <Button :disabled="collecting" :class="['mt-2']" @click="emit('collectMemory', entry)">
+            {{ t('wow-companion.memory.actions.collect') }}
+          </Button>
           <p :class="['mt-1 break-words text-sm text-neutral-500 dark:text-neutral-400']">
             {{ item.type ?? tn('unavailable') }} · {{ item.subtype ?? tn('unavailable') }}
             · {{ tn('item-level') }} {{ item.itemLevel ?? tn('unavailable') }}

@@ -30,7 +30,7 @@ class QuestTests(unittest.TestCase):
         load = self.lua.eval(b'function(source,name,ns) assert(loadstring(source))(name,ns) end')
         for name in ('Protocol.lua', 'Transfer.lua', 'Quests.lua'):
             load((ROOT / name).read_bytes(), ROOT.name.encode(), self.ns)
-        self.lua.execute(b'''Owner={session="1700000000-12500-123456",guid=Model.guid}; Captures={}
+        self.lua.execute(b'''Model.level=15; Owner={session="1700000000-12500-123456",guid=Model.guid}; Captures={}
 NS.Quests.Initialize(Owner,function(record)
  if record then Captures[#Captures+1]=record end
  return NS.Transfer.SetQuests(record)
@@ -75,6 +75,7 @@ end,NS.Transfer.QuestsBusy)''')
         self.assertEqual(record['completion']['ids'], [4, 9])
         self.assertEqual(record['completion']['scope'], 'unknown')
         self.assertEqual(record['completion']['turnIns'], [])
+        self.assertEqual(record['advice'], {'v': 1, 'playerLevel': 15, 'candidates': []})
         self.assertEqual(self.drain(), record)
 
     def test_removed_or_ready_quests_do_not_fabricate_turn_ins(self):
@@ -98,6 +99,45 @@ end,NS.Transfer.QuestsBusy)''')
         self.assertFalse(record['completion']['complete'])
         self.assertEqual(record['completion']['source'], 'session-events')
         self.assertEqual(record['completion']['ids'], [])
+        self.assertEqual(len(record['advice']['candidates']), 32)
+        self.assertTrue(all(row['kind'] == 'turned-in' for row in record['advice']['candidates']))
+
+    def test_game_selects_ready_and_level_risk_without_fabricating_turn_ins(self):
+        self.lua.execute(b'C_QuestLog.ReadyForTurnIn=function() return true end')
+        record = self.capture()
+        self.assertEqual(record['advice']['candidates'], [{'kind': 'ready', 'questID': 42, 'eventAt': None}])
+        self.drain()
+        self.lua.execute(b'C_QuestLog.ReadyForTurnIn=function() return false end; Rows[2].level=20')
+        self.ns[b'Quests'][b'OnEvent'](b'QUEST_LOG_UPDATE')
+        self.g.AdvanceTime(.51)
+        self.assertEqual(self.record()['advice']['candidates'], [{'kind': 'level-risk', 'questID': 42, 'eventAt': None}])
+        self.drain()
+        self.lua.execute(b'C_QuestLog.IsFailed=function() return true end')
+        self.ns[b'Quests'][b'OnEvent'](b'QUEST_LOG_UPDATE')
+        self.g.AdvanceTime(.51)
+        self.assertEqual(self.record()['advice']['candidates'], [])
+
+    def test_only_real_level_up_event_selects_recent_leveling_task(self):
+        self.capture(); self.drain()
+        self.lua.execute(b'Model.level=16')
+        self.ns[b'Quests'][b'OnEvent'](b'QUEST_LOG_UPDATE')
+        self.g.AdvanceTime(.51)
+        self.assertEqual(self.record()['advice']['candidates'], [])
+        self.drain()
+        self.ns[b'Quests'][b'OnEvent'](b'PLAYER_LEVEL_UP', 16)
+        self.g.AdvanceTime(.51)
+        candidate = self.record()['advice']['candidates'][0]
+        self.assertEqual((candidate['kind'], candidate['questID']), ('leveling', 42))
+        self.assertIsInstance(candidate['eventAt'], int)
+        self.drain()
+        self.g.AdvanceTime(121)
+        self.ns[b'Quests'][b'Tick']()
+        self.g.AdvanceTime(.51)
+        self.assertEqual(self.record()['advice']['candidates'], [])
+
+    def test_unknown_player_level_does_not_create_advice(self):
+        self.lua.execute(b'Model.level=Secret; C_QuestLog.ReadyForTurnIn=function() return true end')
+        self.assertEqual(self.capture()['advice'], {'v': 1, 'playerLevel': None, 'candidates': []})
 
     def test_missing_or_restricted_apis_remain_unknown(self):
         self.lua.execute(b'C_QuestLog=nil')
@@ -133,6 +173,8 @@ for i=1,60 do Rows[i]={isHeader=false,questID=i,title=string.rep("Title",32),lev
         self.assertTrue(record['log']['truncated'])
         self.assertLess(len(record['log']['entries']), 50)
         self.assertLessEqual(len(json.dumps(record, ensure_ascii=False, separators=(',', ':')).encode()), 32768)
+        known = {row['questID'] for row in record['log']['entries']}
+        self.assertTrue(all(row['kind'] == 'turned-in' or row['questID'] in known for row in record['advice']['candidates']))
         self.assertEqual(self.drain(), record)
 
     def test_events_coalesce_and_dont_replace_an_incomplete_first_pass(self):

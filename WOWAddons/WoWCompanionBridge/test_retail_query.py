@@ -247,7 +247,7 @@ class RetailHttpTests(unittest.TestCase):
         self.assertEqual(health["instanceId"], INSTANCE)
         self.assertEqual(health["mode"], "query-only")
         self.assertEqual(health["capabilities"], ["retail-db2"])
-        self.assertEqual(health["version"], "2.19.0")
+        self.assertEqual(health["version"], "2.25.0")
         self.assertNotIn(TOKEN, body.decode())
         self.assertIsNone(self.server.state)
 

@@ -2,18 +2,23 @@ import type { Server } from 'node:http'
 
 import process from 'node:process'
 
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import { copyFile, cp, mkdir, mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { createServer } from 'node:http'
 import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { companionBridgeFiles } from '../../../shared/wow-delivery'
 import { CompanionBridgeRuntime } from './wow-companion-runtime'
 
 const python = process.env.AIRI_WOW_RUNTIME_TEST_PYTHON
+const embeddedPython = process.env.AIRI_WOW_RUNTIME_TEST_EMBEDDED
+const bridgeSource = process.env.AIRI_WOW_RUNTIME_TEST_BRIDGE
 const integration = it.runIf(process.platform === 'win32' && Boolean(python))
-const health = { ok: true, service: 'wow-companion-bridge', protocol: 'WCP1', version: '2.11.0', instanceId: 'test-instance' }
+const embeddedIntegration = it.runIf(process.platform === 'win32' && Boolean(embeddedPython))
+const bundledBridgeIntegration = it.runIf(process.platform === 'win32' && Boolean(embeddedPython) && Boolean(bridgeSource))
+const health = { ok: true, service: 'wow-companion-bridge', protocol: 'WCP1', version: '2.19.0', instanceId: 'test-instance' }
 const script = `import argparse,json,os,pathlib,sys,threading,time
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 p=argparse.ArgumentParser()
@@ -34,7 +39,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(json.dumps({'ok':True,'service':'wow-companion-bridge','protocol':'WCF1' if a.game=='forever' else 'WCP1','game':a.game,'version':'2.11.0','instanceId':'test'}).encode())
+        self.wfile.write(json.dumps({'ok':True,'service':'wow-companion-bridge','protocol':'WCF1' if a.game=='forever' else 'WCP1','game':a.game,'version':'2.19.0','instanceId':'test'}).encode())
         if self.path=='/crash':
             self.wfile.flush()
             os._exit(2)
@@ -158,6 +163,11 @@ print(json.dumps({'ok':False,'code':'cancelled'}),flush=True)
     { ...health, version: '2.6.0' },
     { ...health, version: '2.9.0' },
     { ...health, version: '2.10.0' },
+    { ...health, version: '2.11.0' },
+    { ...health, version: '2.15.0' },
+    { ...health, version: '2.16.0' },
+    { ...health, version: '2.17.0' },
+    { ...health, version: '2.18.0' },
     { ...health, version: '3.0.0' },
     { ...health, protocol: 'OTHER' },
   ])('rejects incompatible listeners without replacing them: $version $service $protocol', async (value) => {
@@ -179,7 +189,7 @@ print(json.dumps({'ok':False,'code':'cancelled'}),flush=True)
   it('reuses an external Forever bridge without stopping it', async () => {
     await runtime.dispose()
     runtime = new CompanionBridgeRuntime({ appPath, resourcesPath, userDataPath, platform: 'win32', game: 'forever' }, baseUrl)
-    const forever = { ...health, protocol: 'WCF1', game: 'forever', version: '2.11.0' }
+    const forever = { ...health, protocol: 'WCF1', game: 'forever', version: '2.19.0' }
     await serve(forever)
     await runtime.ensureReady()
     expect(runtime.read().status).toBe('external')
@@ -189,9 +199,9 @@ print(json.dumps({'ok':False,'code':'cancelled'}),flush=True)
 
   it.each([
     { selected: 'forever' as const, value: health },
-    { selected: 'retail' as const, value: { ...health, protocol: 'WCF1', game: 'forever', version: '2.11.0' } },
-    { selected: 'retail' as const, value: { ...health, game: 'forever', version: '2.11.0' } },
-    { selected: 'forever' as const, value: { ...health, protocol: 'WCF1', version: '2.11.0' } },
+    { selected: 'retail' as const, value: { ...health, protocol: 'WCF1', game: 'forever', version: '2.19.0' } },
+    { selected: 'retail' as const, value: { ...health, game: 'forever', version: '2.19.0' } },
+    { selected: 'forever' as const, value: { ...health, protocol: 'WCF1', version: '2.19.0' } },
   ])('rejects a listener from another game for $selected', async ({ selected, value }) => {
     await runtime.dispose()
     runtime = new CompanionBridgeRuntime({ appPath, resourcesPath, userDataPath, platform: 'win32', game: selected }, baseUrl)
@@ -209,6 +219,79 @@ print(json.dumps({'ok':False,'code':'cancelled'}),flush=True)
     await expect(runtime.ensureReady()).rejects.toThrow('bridge-python-missing')
     expect(runtime.read().status).toBe('error')
   })
+
+  it('rejects an incomplete bundled interpreter instead of trying PATH', async () => {
+    await writeFile(join(source, 'server.py'), script)
+    await mkdir(join(resourcesPath, 'wow-companion-python'), { recursive: true })
+    await expect(runtime.ensureReady()).rejects.toThrow('bridge-python-missing')
+    expect(runtime.read().status).toBe('error')
+  })
+
+  it('rejects a missing packaged interpreter instead of using an installed Python', async () => {
+    await runtime.dispose()
+    const bridge = join(resourcesPath, 'wow-companion-bridge')
+    await mkdir(bridge, { recursive: true })
+    await writeFile(join(bridge, 'server.py'), script)
+    runtime = new CompanionBridgeRuntime({ appPath: join(resourcesPath, 'app.asar'), resourcesPath, userDataPath, platform: 'win32' }, baseUrl)
+    await expect(runtime.ensureReady()).rejects.toThrow('bridge-python-missing')
+    expect(runtime.read().status).toBe('error')
+  })
+
+  embeddedIntegration('starts a bundled interpreter with an empty PATH and no source checkout', async () => {
+    if (!embeddedPython)
+      throw new Error('Set AIRI_WOW_RUNTIME_TEST_EMBEDDED to the prepared embedded python.exe')
+    const bundled = join(resourcesPath, 'wow-companion-python')
+    await cp(dirname(embeddedPython), bundled, { recursive: true })
+    const bridge = join(resourcesPath, 'wow-companion-bridge')
+    await mkdir(bridge, { recursive: true })
+    await writeFile(join(bridge, 'server.py'), script)
+    await writeFile(join(bridge, 'macro_import.py'), `import json,sys
+request=json.loads(sys.stdin.readline())
+assert request['body']=='/say 中文测试'
+print(json.dumps({'ok':True,'code':'saved','macroName':'中文宏'},ensure_ascii=False),flush=True)
+`)
+    await runtime.dispose()
+    runtime = new CompanionBridgeRuntime({ appPath: join(resourcesPath, 'app.asar'), resourcesPath, userDataPath, platform: 'win32' }, baseUrl)
+    vi.stubEnv('PATH', '')
+    const environment = await runtime.inspectEnvironment()
+    expect(environment.pythonPath).toBe(join(bundled, 'python.exe'))
+    expect(environment.python.status).toBe('passed')
+    await runtime.ensureReady()
+    expect(runtime.read().status).toBe('running')
+    expect(await (await fetch(`${baseUrl}/health`)).json()).toMatchObject({ ok: true, game: 'retail' })
+    const window = { handle: '123', processId: 456, processStartedAt: '789', path: 'test.exe', title: 'test', visible: true, minimized: false }
+    expect(await runtime.runMacroImport({ game: 'retail', body: '/say 中文测试' }, window)).toEqual({ ok: true, code: 'saved', macroName: '中文宏' })
+    await runtime.stop()
+    await expect(fetch(`${baseUrl}/health`)).rejects.toThrow()
+  }, 20_000)
+
+  bundledBridgeIntegration('runs the real packaged bridge with a paused profile and no machine Python or source tree', async () => {
+    if (!embeddedPython || !bridgeSource)
+      throw new Error('Set the prepared embedded interpreter and bridge source test paths')
+    const bundled = join(resourcesPath, 'wow-companion-python')
+    const bridge = join(resourcesPath, 'wow-companion-bridge')
+    await cp(dirname(embeddedPython), bundled, { recursive: true })
+    await mkdir(bridge, { recursive: true })
+    for (const file of companionBridgeFiles)
+      await copyFile(join(bridgeSource, file), join(bridge, file))
+    const profile = join(userDataPath, 'wow-companion-bridge')
+    await mkdir(profile, { recursive: true })
+    await writeFile(join(profile, 'bridge-config.json'), '{"paused":true}')
+    await runtime.dispose()
+    runtime = new CompanionBridgeRuntime({ appPath: join(resourcesPath, 'app.asar'), resourcesPath, userDataPath, platform: 'win32' }, baseUrl)
+    vi.stubEnv('PATH', '')
+    expect((await runtime.inspectEnvironment()).resources.status).toBe('passed')
+    await runtime.ensureReady()
+    expect(runtime.read().status).toBe('running')
+    const health = await (await fetch(`${baseUrl}/health`)).json()
+    expect(health).toMatchObject({ ok: true, service: 'wow-companion-bridge', protocol: 'WCP1', game: 'retail' })
+    const status = await (await fetch(`${baseUrl}/api/status`)).json()
+    expect(status.config.paused).toBe(true)
+    expect(status.snapshot).toBe(null)
+    await expect(stat(join(bridge, '__pycache__'))).rejects.toMatchObject({ code: 'ENOENT' })
+    await runtime.stop()
+    await expect(fetch(`${baseUrl}/health`)).rejects.toThrow()
+  }, 20_000)
 
   it('cancels a start requested just before stop and allows a later start', async () => {
     await serve(health)

@@ -1,0 +1,91 @@
+title: 正式服本地资料
+description: 查询已导出的正式服 DB2，无需调用模型、启动游戏或联网。
+database:
+  title: 数据库文件
+  choose: 选择数据库
+  replace: 选择其他数据库
+  clear: 取消选择数据库
+  inspect: 检查数据与版本
+  unconfigured: 尚未选择本地数据库。
+  selected: 已选择数据库，可检查或查询其数据版本。
+  local-path: 已选本地文件
+  note: 选择文件会保存本地配置。普通进入此页面不会启动资料查询。
+  readonly: 查询只读，不会修改游戏安装文件或导出的数据库。
+query:
+  title: 查询资料
+  kind: 资料类型
+  text: 名称或编号
+  placeholder: 输入部分名称或数字编号
+  search: 查询数据库
+  empty: 没有匹配的记录。
+  results: 上次查询结果
+  no-search: 选择资料类型并提交查询。
+  open: 查看详情
+  previous: 上一页
+  next: 下一页
+  page: '第 {from}～{to} 条'
+  partial: 还有更多记录，可继续查看下一页。
+  id: '记录 ID：{id}'
+detail:
+  title: 记录详情
+  missing: 已选数据库中没有这条记录。
+  fields: 已记录字段
+  links: 关联记录
+  related: '查看关联记录：{title}'
+  no-fields: 暂无更多字段。
+kinds:
+  item: 物品
+  map: 底层地图
+  uimap: 世界地图区域
+  area: 地区
+  spell: 技能
+  encounter: 副本首领
+source:
+  original-received: 原始来源查询时间
+  cache-hit: 此次读取查询缓存
+  cache-served: '缓存读取时间：{time}'
+  cache-expires: '缓存失效时间：{time}'
+  title: 数据来源与范围
+  name: 正式服本地 DB2
+  game: 魔兽世界正式服
+  build: 客户端版本
+  locale: 数据语言
+  exported: 导出时间
+  received: 查询收到时间
+  hotfixes: 服务器热修
+  hotfixes-applied: 此快照已叠加热修
+  hotfixes-not-applied: 此快照未叠加热修
+  tables: 来源数据表
+  rows: '已解码 {count} 行'
+  encrypted: 加密分段可能包含尚未解码的记录。
+  decoded: 已解码
+  decoded_with_encrypted_sections: 已解码，含加密分段
+  unknown: 未知
+  local-only: 这些是本地客户端记录，不能代表服务器当前行为或完整掉落资料。
+  no-web-link: 此本地记录暂无已核实的公开来源网页。
+stats:
+  title: 数据覆盖范围
+  count: '{count} 条记录'
+busy: 正在读取本地数据库…
+notices:
+  client-db2-only: 这是客户端 DB2 资料，不包含服务器独有信息。
+  hotfixes-not-applied: 尚未叠加服务器热修，数值可能与当前游戏不同。
+  encrypted-sections: 部分来源表包含加密分段，已解码行数不代表全部记录。
+  missing-fields: 此次导出缺少部分预期字段。
+  raw-spell-template: 技能文本为客户端模板，占位符未解析为当前角色数值。
+  map-id-not-uimap-id: 底层地图 ID 与世界地图区域 ID 属于不同类型。
+  content-tuning-not-exploration-level: 内容缩放参数不能当作旧世地图探索等级。
+  result-truncated: 当前返回的资料不完整。
+errors:
+  configuration-invalid: 已保存的数据库配置无效，请重新选择导出库。
+  configuration-save-failed: 无法保存数据库选择，请检查本地访问权限后重试。
+  database-unconfigured: 请先选择本地数据库。
+  database-missing: 已选数据库文件不存在，请选择可用的导出文件。
+  database-unreadable: 无法读取已选数据库，请检查访问权限或选择其他文件。
+  database-invalid: 此文件不是受支持的正式服 DB2 导出库。
+  database-changed: 查询期间数据库发生变化，请检查已选导出后重试。
+  query-invalid: 请检查资料类型、查询内容或记录编号。
+  query-timeout: 本地查询超时，请缩小查询范围后重试。
+  query-failed: 本地查询失败，请检查已选数据库后重试。
+  bridge-unavailable: 本地数据库服务暂不可用。
+  generic: 操作失败，请检查已选数据库后重试。

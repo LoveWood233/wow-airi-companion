@@ -445,6 +445,9 @@ class EquipmentCompareTest(unittest.TestCase):
             result=self.ns[b"EquipmentCompare"][b"Evaluate"](self.table(comparison))
             assessment={"verdict":result[b"verdict"].decode(),"reason":result[b"reason"].decode()}
             self.assertEqual(assessment,{"verdict":verdict,"reason":reason},name)
+            comparison["assessment"]=assessment
+            differences=self.ns[b"EquipmentCompare"][b"Deltas"](self.table(comparison))
+            comparison["deltas"]=[{"key":entry[b"key"].decode(),"before":entry[b"before"],"after":entry[b"after"]} for entry in differences.values()]
             examples.append({"name":name,"comparison":comparison,"assessment":assessment})
         case('same-level-actual-stat-upgrade',lambda c:None,'upgrade','stats_upgrade')
         case('empty-slot',lambda c:c.update(current={"itemID":0,"name":"空槽","itemLevel":-1,"equipLoc":"","type":"","subtype":"","stats":[],"complex":False,"complete":True}),'upgrade','empty_slot')
@@ -488,7 +491,7 @@ class EquipmentCompareTest(unittest.TestCase):
         g.NS=ns
         g.SetupOld(5,100,b"Old chest",100)
         load=runtime.eval(b'function(source,name,ns) assert(loadstring(source))(name,ns) end')
-        for filename in ('Protocol.lua','Money.lua','Equipment.lua','Transfer.lua','EquipmentCompare.lua','ConfirmEquip.lua','Inventory.lua','Quests.lua','Talents.lua','Telemetry.lua',ROOT.name+'.lua'):
+        for filename in ('Protocol.lua','Money.lua','Equipment.lua','Transfer.lua','EquipmentCompare.lua','ConfirmEquip.lua','Inventory.lua', 'ItemStorage.lua','Quests.lua','Talents.lua','Telemetry.lua',ROOT.name+'.lua'):
             load((ROOT/filename).read_bytes(),ROOT.name.encode(),ns)
         g.Fire(b'ADDON_LOADED',ROOT.name.encode());g.Fire(b'PLAYER_ENTERING_WORLD');g.AdvanceTime(2)
         self.assertEqual([g.Tickers[i][b'delay'] for i in range(1,len(g.Tickers)+1)],[1,0.25])
@@ -526,6 +529,8 @@ class EquipmentCompareTest(unittest.TestCase):
         self.lua.eval(b'function(source,ns) assert(loadstring(source))("test",ns) end')((ROOT/'Transfer.lua').read_bytes(),self.ns)
         body['current']['complete']=False
         body['candidate']['complete']=False
+        body['assessment']={'verdict':'review','reason':'incomplete'}
+        body['deltas']=[]
         body['candidate']['stats']=[{'key':f'{"X"*60}{i:02}','value':1e12} for i in range(32)]
         # Choose an exact largest valid body without truncating any source facts.
         body['current']['stats']=[]

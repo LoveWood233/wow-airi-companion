@@ -1,0 +1,643 @@
+{
+  "outcome": "ok",
+  "id": 202,
+  "fetch_id": "profession:202",
+  "name": "工程学",
+  "kind": "primary",
+  "gathering": false,
+  "url": "https://wuxianwow.com/profession/202#route",
+  "from_skill": 150,
+  "routes": {
+    "free": {
+      "label": "免图样",
+      "crafts": 180,
+      "skill_ups": 150,
+      "steps": [
+        {
+          "skill": "150–175",
+          "crafts": 25,
+          "recipe_id": 6858,
+          "name": "实心炸药",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 7912,
+              "name": "坚固的石头",
+              "count": 2
+            }
+          ],
+          "product_used_later": "实心炸药 后面共用掉 55 个",
+          "alternatives": [
+            "侏儒微调器",
+            "实心炸弹"
+          ]
+        },
+        {
+          "skill": "175–200",
+          "crafts": 25,
+          "recipe_id": 6863,
+          "name": "不牢固的扳机",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 3860,
+              "name": "秘银锭",
+              "count": 1
+            },
+            {
+              "item_id": 4338,
+              "name": "魔纹布",
+              "count": 1
+            },
+            {
+              "item_id": 10505,
+              "name": "实心炸药",
+              "count": 1
+            }
+          ],
+          "product_used_later": "不牢固的扳机 后面共用掉 25 个",
+          "alternatives": [
+            "机械修理包"
+          ]
+        },
+        {
+          "skill": "200–210",
+          "crafts": 10,
+          "recipe_id": 6866,
+          "name": "高速秘银弹头",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 3860,
+              "name": "秘银锭",
+              "count": 1
+            },
+            {
+              "item_id": 10505,
+              "name": "实心炸药",
+              "count": 1
+            }
+          ],
+          "prep": [
+            {
+              "at_skill": 200,
+              "recipe_id": 6858,
+              "name": "实心炸药",
+              "crafts": 30,
+              "for_item": "实心炸药",
+              "reagents_per_craft": "坚固的石头×2"
+            }
+          ],
+          "alternatives": [
+            "秘银外壳",
+            "秘银破片炸弹"
+          ]
+        },
+        {
+          "skill": "210–215",
+          "crafts": 5,
+          "recipe_id": 6868,
+          "name": "秘银外壳",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 3860,
+              "name": "秘银锭",
+              "count": 3
+            }
+          ],
+          "product_used_later": "秘银外壳 后面共用掉 5 个",
+          "alternatives": [
+            "秘银破片炸弹",
+            "地精爆炸盒"
+          ]
+        },
+        {
+          "skill": "215–220",
+          "crafts": 5,
+          "recipe_id": 6946,
+          "name": "地精爆炸盒",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 10561,
+              "name": "秘银外壳",
+              "count": 1
+            },
+            {
+              "item_id": 10505,
+              "name": "实心炸药",
+              "count": 2
+            },
+            {
+              "item_id": 10558,
+              "name": "黄金能量核心",
+              "count": 1
+            },
+            {
+              "item_id": 3860,
+              "name": "秘银锭",
+              "count": 2
+            }
+          ],
+          "alternatives": [
+            "地精无线电",
+            "侏儒业余无线电"
+          ]
+        },
+        {
+          "skill": "220–225",
+          "crafts": 5,
+          "recipe_id": 6878,
+          "name": "秘银螺旋弹",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 3860,
+              "name": "秘银锭",
+              "count": 2
+            },
+            {
+              "item_id": 10505,
+              "name": "实心炸药",
+              "count": 2
+            }
+          ],
+          "alternatives": [
+            "地精爆炸盒",
+            "地精无线电"
+          ]
+        },
+        {
+          "skill": "225–250",
+          "crafts": 25,
+          "recipe_id": 11228,
+          "name": "致密炸药粉",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 12365,
+              "name": "厚重的石头",
+              "count": 2
+            }
+          ],
+          "alternatives": [
+            "致密炸药",
+            "玫瑰色护目镜"
+          ]
+        },
+        {
+          "skill": "250–260",
+          "crafts": 10,
+          "recipe_id": 52084,
+          "name": "匠械盒",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 10561,
+              "name": "秘银外壳",
+              "count": 1
+            },
+            {
+              "item_id": 10558,
+              "name": "黄金能量核心",
+              "count": 2
+            }
+          ],
+          "alternatives": [
+            "侏儒死亡射线",
+            "地精火箭头盔"
+          ]
+        },
+        {
+          "skill": "260–265",
+          "crafts": 5,
+          "recipe_id": 6951,
+          "name": "地精火箭头盔",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 10543,
+              "name": "地精施工头盔",
+              "count": 1
+            },
+            {
+              "item_id": 9061,
+              "name": "地精火箭燃油",
+              "count": 4
+            },
+            {
+              "item_id": 3860,
+              "name": "秘银锭",
+              "count": 4
+            },
+            {
+              "item_id": 10560,
+              "name": "不牢固的扳机",
+              "count": 1
+            }
+          ],
+          "alternatives": [
+            "筛盐器",
+            "绿色透镜"
+          ]
+        },
+        {
+          "skill": "265–270",
+          "crafts": 5,
+          "recipe_id": 11031,
+          "name": "筛盐器",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 10561,
+              "name": "秘银外壳",
+              "count": 1
+            },
+            {
+              "item_id": 12359,
+              "name": "瑟银锭",
+              "count": 6
+            },
+            {
+              "item_id": 10558,
+              "name": "黄金能量核心",
+              "count": 1
+            },
+            {
+              "item_id": 10560,
+              "name": "不牢固的扳机",
+              "count": 4
+            }
+          ],
+          "alternatives": [
+            "安全传送器 - 加基森",
+            "空间撕裂器 - 永望镇"
+          ]
+        },
+        {
+          "skill": "270–285",
+          "crafts": 15,
+          "recipe_id": 12617,
+          "name": "安全传送器 - 加基森",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 3860,
+              "name": "秘银锭",
+              "count": 12
+            },
+            {
+              "item_id": 18631,
+              "name": "真银变压器",
+              "count": 2
+            },
+            {
+              "item_id": 7075,
+              "name": "大地之核",
+              "count": 4
+            },
+            {
+              "item_id": 7079,
+              "name": "纯水之球",
+              "count": 2
+            },
+            {
+              "item_id": 7909,
+              "name": "海蓝宝石",
+              "count": 4
+            },
+            {
+              "item_id": 9060,
+              "name": "秘银杆",
+              "count": 1
+            }
+          ],
+          "alternatives": [
+            "空间撕裂器 - 永望镇"
+          ]
+        },
+        {
+          "skill": "285–290",
+          "crafts": 5,
+          "recipe_id": 12617,
+          "name": "安全传送器 - 加基森",
+          "certainty": "uncertain (yellow)",
+          "reagents_per_craft": [
+            {
+              "item_id": 3860,
+              "name": "秘银锭",
+              "count": 12
+            },
+            {
+              "item_id": 18631,
+              "name": "真银变压器",
+              "count": 2
+            },
+            {
+              "item_id": 7075,
+              "name": "大地之核",
+              "count": 4
+            },
+            {
+              "item_id": 7079,
+              "name": "纯水之球",
+              "count": 2
+            },
+            {
+              "item_id": 7909,
+              "name": "海蓝宝石",
+              "count": 4
+            },
+            {
+              "item_id": 9060,
+              "name": "秘银杆",
+              "count": 1
+            }
+          ],
+          "alternatives": [
+            "空间撕裂器 - 永望镇"
+          ]
+        },
+        {
+          "skill": "290–300",
+          "crafts": 10,
+          "recipe_id": 51703,
+          "name": "黑曜石火药",
+          "certainty": "sure",
+          "reagents_per_craft": [
+            {
+              "item_id": 22202,
+              "name": "小块黑曜石碎片",
+              "count": 2
+            }
+          ],
+          "alternatives": [
+            "奥术大炸弹"
+          ]
+        }
+      ],
+      "recipes": 12,
+      "pattern_recipes": 0,
+      "intermediates": 3,
+      "whole_route": {
+        "crafts": 350,
+        "skill_ups": 299,
+        "prep_crafts": 51,
+        "steps": 23,
+        "recipes": 22,
+        "pattern_recipes": 0,
+        "materials": 24,
+        "material_units": 1100,
+        "intermediates": 7,
+        "gap_points": 0,
+        "uncertain_points": 5
+      },
+      "remaining": {
+        "from_skill": 150,
+        "crafts": 180,
+        "steps": 13,
+        "reagents": [
+          {
+            "item_id": 7912,
+            "name": "坚固的石头",
+            "count": 110
+          },
+          {
+            "item_id": 3860,
+            "name": "秘银锭",
+            "count": 330
+          },
+          {
+            "item_id": 4338,
+            "name": "魔纹布",
+            "count": 25
+          },
+          {
+            "item_id": 10505,
+            "name": "实心炸药",
+            "count": 55
+          },
+          {
+            "item_id": 10561,
+            "name": "秘银外壳",
+            "count": 20
+          },
+          {
+            "item_id": 10558,
+            "name": "黄金能量核心",
+            "count": 30
+          },
+          {
+            "item_id": 12365,
+            "name": "厚重的石头",
+            "count": 50
+          },
+          {
+            "item_id": 10543,
+            "name": "地精施工头盔",
+            "count": 5
+          },
+          {
+            "item_id": 9061,
+            "name": "地精火箭燃油",
+            "count": 20
+          },
+          {
+            "item_id": 10560,
+            "name": "不牢固的扳机",
+            "count": 25
+          },
+          {
+            "item_id": 12359,
+            "name": "瑟银锭",
+            "count": 30
+          },
+          {
+            "item_id": 18631,
+            "name": "真银变压器",
+            "count": 40
+          },
+          {
+            "item_id": 7075,
+            "name": "大地之核",
+            "count": 80
+          },
+          {
+            "item_id": 7079,
+            "name": "纯水之球",
+            "count": 40
+          },
+          {
+            "item_id": 7909,
+            "name": "海蓝宝石",
+            "count": 80
+          },
+          {
+            "item_id": 9060,
+            "name": "秘银杆",
+            "count": 20
+          },
+          {
+            "item_id": 22202,
+            "name": "小块黑曜石碎片",
+            "count": 20
+          }
+        ],
+        "note": "这些路段每次材料 × 次数的合计（含路线里自己做的中间产物、中途备料），不扣已有的库存"
+      },
+      "training": [
+        {
+          "at_skill": 150,
+          "learn": "高级工程学",
+          "required_level": 20,
+          "level_assumed": true,
+          "new_max_skill": 225
+        },
+        {
+          "at_skill": 225,
+          "learn": "专家级工程学",
+          "required_level": 35,
+          "level_assumed": true,
+          "new_max_skill": 300
+        }
+      ],
+      "gaps": [],
+      "uncertain": [
+        "285–290 黄色"
+      ],
+      "materials": {
+        "by_stage": [
+          {
+            "stage": "高级",
+            "skill": "150–225",
+            "items": [
+              {
+                "item_id": 7912,
+                "name": "坚固的石头",
+                "count": 110
+              },
+              {
+                "item_id": 3860,
+                "name": "秘银锭",
+                "count": 70
+              },
+              {
+                "item_id": 4338,
+                "name": "魔纹布",
+                "count": 25
+              }
+            ]
+          },
+          {
+            "stage": "专家",
+            "skill": "225–300",
+            "items": [
+              {
+                "item_id": 12365,
+                "name": "厚重的石头",
+                "count": 50
+              },
+              {
+                "item_id": 10561,
+                "name": "秘银外壳",
+                "count": 15
+              },
+              {
+                "item_id": 10543,
+                "name": "地精施工头盔",
+                "count": 5
+              },
+              {
+                "item_id": 9061,
+                "name": "地精火箭燃油",
+                "count": 20
+              },
+              {
+                "item_id": 3860,
+                "name": "秘银锭",
+                "count": 260
+              },
+              {
+                "item_id": 12359,
+                "name": "瑟银锭",
+                "count": 30
+              },
+              {
+                "item_id": 18631,
+                "name": "真银变压器",
+                "count": 40
+              },
+              {
+                "item_id": 7075,
+                "name": "大地之核",
+                "count": 80
+              },
+              {
+                "item_id": 7079,
+                "name": "纯水之球",
+                "count": 40
+              },
+              {
+                "item_id": 7909,
+                "name": "海蓝宝石",
+                "count": 80
+              },
+              {
+                "item_id": 9060,
+                "name": "秘银杆",
+                "count": 20
+              },
+              {
+                "item_id": 22202,
+                "name": "小块黑曜石碎片",
+                "count": 20
+              }
+            ]
+          }
+        ],
+        "intermediates": [
+          {
+            "item_id": 10505,
+            "name": "实心炸药",
+            "made": 55,
+            "made_as_prep": 30,
+            "used": 55,
+            "made_by": "实心炸药（配方 6858）：每次 坚固的石头×2"
+          },
+          {
+            "item_id": 10560,
+            "name": "不牢固的扳机",
+            "made": 25,
+            "used": 25,
+            "made_by": "不牢固的扳机（配方 6863）：每次 秘银锭×1、魔纹布×1、实心炸药×1"
+          },
+          {
+            "item_id": 10561,
+            "name": "秘银外壳",
+            "made": 5,
+            "used": 5,
+            "made_by": "秘银外壳（配方 6868）：每次 秘银锭×3"
+          }
+        ],
+        "note": "从技能 150 起：by_stage 是各阶段第一次用到的数量，150 所在阶段的数量里可能有已经用掉的部分"
+      }
+    }
+  },
+  "urls": {
+    "recipe": "https://wuxianwow.com/recipe/{recipe_id}",
+    "item": "https://wuxianwow.com/item/{item_id}"
+  },
+  "method": {
+    "goal": "从技能 1 到 300 用料最省的冲级路线",
+    "counting": "只按橙色算次数：橙色配方每做一次必定加 1 点。没有橙色配方的段才用黄色或绿色（certainty = uncertain），次数按最少（一次 1 点）计，实际会更多；客户端里没有黄色、绿色的加点几率",
+    "learn_point": "配方从变黄前 25 点起算作能学：客户端没有填写学习需求（SkillLineAbility.MinSkillLineRank），实际以训练师为准",
+    "choice": "每个技能点在当时最好的颜色（橙 > 黄 > 绿）里选用料最省的配方，换配方有一点代价，让一段尽量用同一个配方；用料按客户端里物品的基础价值折算比较，只用来挑配方，不代表实际价格（客户端里没有拍卖行价格，所以结果不给价格）",
+    "reuse": "按顺序模拟制作：前面做出的材料先给后面的配方用；不够的另做（备料，做的时候不加点）或准备。只为后面配方另做的材料，若它的配方在前面还是橙色，就挪到前面去做、顺带加点，整条路线更省才保留",
+    "excluded": "有冷却的配方（月布、转化等，冷却 1 分钟以上）与材料是未公开物品的配方不用",
+    "routes": "best：所有配方都可选，要图样（图样 / 配方 / 公式 / 结构图）才能学的配方给出 pattern；free：只用客户端里没有图样物品的配方，覆盖不到的段列在 gaps",
+    "training": "技能到各级上限（75 / 150 / 225）要回训练师学习下一级；等级取自分级训练，客户端缺的按原版默认值（level_assumed）"
+  },
+  "matched_by": "exact",
+  "text": "工程学 冲级路线（从技能 150 起）\n免图样（从技能 150 起）：还要约 180 次\n150–175 实心炸药 ×25；175–200 不牢固的扳机 ×25；200–210 高速秘银弹头 ×10；210–215 秘银外壳 ×5；215–220 地精爆炸盒 ×5；220–225 秘银螺旋弹 ×5；225–250 致密炸药粉 ×25；250–260 匠械盒 ×10；260–265 地精火箭头盔 ×5；265–270 筛盐器 ×5；270–285 安全传送器 - 加基森 ×15；285–290 安全传送器 - 加基森 ×5（黄色，次数不确定）；290–300 黑曜石火药 ×10\n这些路段的材料（含自己做的中间产物）：坚固的石头×110、秘银锭×330、魔纹布×25、实心炸药×55、秘银外壳×20、黄金能量核心×30、厚重的石头×50、地精施工头盔×5、地精火箭燃油×20、不牢固的扳机×25、瑟银锭×30、真银变压器×40、大地之核×80、纯水之球×40、海蓝宝石×80、秘银杆×20、小块黑曜石碎片×20"
+}

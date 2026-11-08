@@ -3,7 +3,7 @@
 local _, ns = ...
 local Protocol = {}
 ns.Protocol = Protocol
-local keys = { "v", "session", "seq", "tick", "guid", "name", "realm", "level", "class", "faction", "race", "spec", "map", "instanceType", "instanceID", "px", "py", "zone", "combat", "dead", "online", "account", "moneyEpoch", "copper", "earned", "spent" }
+local keys = { "v", "session", "loginId", "combatEnds", "seq", "tick", "guid", "name", "realm", "level", "class", "faction", "race", "spec", "map", "instanceType", "instanceID", "px", "py", "zone", "combat", "dead", "online", "account", "moneyEpoch", "copper", "earned", "spent" }
 local limits = { session = 40, guid = 48, name = 48, realm = 48, class = 20, zone = 96 }
 
 local function Public(value)
@@ -11,6 +11,15 @@ local function Public(value)
     return value
 end
 Protocol.Public = Public
+
+-- Login identity and event count travel together, or remain unavailable.
+function Protocol.LoginProgress(loginId, combatEnds)
+    loginId, combatEnds = Public(loginId), Public(combatEnds)
+    if type(loginId) ~= "string" or #loginId < 1 or #loginId > 40 or not string.match(loginId, "^[A-Za-z0-9_-]+$")
+        or type(combatEnds) ~= "number" or combatEnds ~= combatEnds or combatEnds < 0
+        or combatEnds > 2147483647 or combatEnds ~= math.floor(combatEnds) then return end
+    return loginId, combatEnds
+end
 
 local instanceTypes = { none = true, party = true, raid = true, pvp = true, arena = true, scenario = true, unknown = true }
 
@@ -73,6 +82,7 @@ end
 function Protocol.JSON(snapshot)
     local items = {}
     local includeScene = Public(snapshot.instanceType) ~= nil
+    local includeLogin = Public(snapshot.loginId) ~= nil and Public(snapshot.combatEnds) ~= nil
     for _, key in ipairs(keys) do
         local value = Public(snapshot[key])
         local kind, encoded = type(value)
@@ -80,7 +90,8 @@ function Protocol.JSON(snapshot)
         elseif kind == "boolean" then encoded = value and "true" or "false"
         elseif kind == "number" and value == value and value ~= math.huge and value ~= -math.huge then encoded = string.format("%.0f", value)
         else encoded = "null" end
-        if includeScene or (key ~= "instanceType" and key ~= "instanceID") then
+        if (includeScene or (key ~= "instanceType" and key ~= "instanceID"))
+            and (includeLogin or (key ~= "loginId" and key ~= "combatEnds")) then
             items[#items + 1] = Escape(key) .. ":" .. encoded
         end
     end
@@ -115,6 +126,19 @@ function Protocol.Frame(payload)
     return header .. payload .. string.rep(string.char(0), 504 - #payload)
 end
 
+-- A separate small frame keeps life counters out of the character snapshot budget.
+function Protocol.EncodeLife(snapshot)
+    local login, count = Protocol.LoginProgress(snapshot.loginId, snapshot.combatEnds)
+    local session, guid, tick = Public(snapshot.session), Public(snapshot.guid), Public(snapshot.tick)
+    if Public(snapshot.online) ~= true or not login
+        or type(session) ~= "string" or #session < 1 or #session > 40 or not string.match(session, "^[A-Za-z0-9_-]+$")
+        or type(guid) ~= "string" or #guid < 1 or #guid > 48 or not string.match(guid, "^[A-Za-z0-9_-]+$")
+        or type(tick) ~= "number" or tick ~= tick or tick < 0 or tick > 2147483647 or tick ~= math.floor(tick) then return end
+    local payload = '{"v":1,"kind":"life","s":' .. Escape(session) .. ',"g":' .. Escape(guid)
+        .. ',"l":' .. Escape(login) .. ',"c":' .. string.format("%.0f", count) .. ',"t":' .. string.format("%.0f", tick) .. '}'
+    return Protocol.Frame(payload), payload
+end
+
 function Protocol.Encode(snapshot)
     local clean = {}
     for _, key in ipairs(keys) do
@@ -124,6 +148,8 @@ function Protocol.Encode(snapshot)
         if key == "race" then value = Protocol.Race(value) end
         clean[key] = value
     end
+    -- New screen snapshots use the life frame. The bridge still reads older inline producers.
+    clean.loginId, clean.combatEnds = nil, nil
     clean.instanceType, clean.instanceID = Protocol.InstanceType(clean.instanceType), Protocol.InstanceID(clean.instanceID)
     if clean.online ~= true then clean.instanceType = "unknown" end
     if clean.instanceType == "none" or clean.instanceType == "unknown" then clean.instanceID = nil end

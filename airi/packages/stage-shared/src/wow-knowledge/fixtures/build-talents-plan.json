@@ -1,0 +1,799 @@
+{
+  "outcome": "ok",
+  "class": "战士",
+  "class_id": 1,
+  "matched_by": "id",
+  "url": "https://wuxianwow.com/talents/1?t=3&lv=15",
+  "rules": {
+    "level": 15,
+    "points": 11,
+    "max_points": 51,
+    "first_point_level": 5,
+    "full_points_level": 55,
+    "row_step": 5,
+    "text": "5 级起每级 1 点，55 级共 51 点；每系每投 5 点解锁下一行；前置天赋要点满（any：其中一个点满即可）"
+  },
+  "trees": [
+    {
+      "id": 161,
+      "name": "武器",
+      "points": 3,
+      "talents": [
+        {
+          "id": 105958,
+          "name": "强化英勇打击",
+          "pos": 0,
+          "tier": 0,
+          "col": 0,
+          "gate": 0,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 3,
+          "prereq": []
+        },
+        {
+          "id": 105957,
+          "name": "偏斜",
+          "pos": 1,
+          "tier": 0,
+          "col": 1,
+          "gate": 0,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105956,
+          "name": "强化撕裂",
+          "pos": 2,
+          "tier": 0,
+          "col": 2,
+          "gate": 0,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105955,
+          "name": "强化冲锋",
+          "pos": 3,
+          "tier": 1,
+          "col": 0,
+          "gate": 5,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105954,
+          "name": "强化战术掌握",
+          "pos": 4,
+          "tier": 1,
+          "col": 1,
+          "gate": 5,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105952,
+          "name": "强化压制",
+          "pos": 5,
+          "tier": 1,
+          "col": 3,
+          "gate": 5,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105951,
+          "name": "愤怒掌控",
+          "pos": 6,
+          "tier": 2,
+          "col": 1,
+          "gate": 10,
+          "max_rank": 1,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": [
+            {
+              "talent": 105954,
+              "name": "强化战术掌握",
+              "rank": 5,
+              "any": true
+            }
+          ]
+        },
+        {
+          "id": 105950,
+          "name": "重伤",
+          "pos": 7,
+          "tier": 2,
+          "col": 2,
+          "gate": 10,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": [
+            {
+              "talent": 105956,
+              "name": "强化撕裂",
+              "rank": 3,
+              "any": true
+            }
+          ]
+        },
+        {
+          "id": 105949,
+          "name": "穿刺打击",
+          "pos": 8,
+          "tier": 3,
+          "col": 0,
+          "gate": 15,
+          "max_rank": 1,
+          "ability": true,
+          "new_in_160": true,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105948,
+          "name": "双手武器专精",
+          "pos": 9,
+          "tier": 3,
+          "col": 1,
+          "gate": 15,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105947,
+          "name": "穿刺",
+          "pos": 10,
+          "tier": 3,
+          "col": 2,
+          "gate": 15,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": [
+            {
+              "talent": 105950,
+              "name": "重伤",
+              "rank": 3,
+              "any": true
+            }
+          ]
+        },
+        {
+          "id": 110524,
+          "name": "血之气息",
+          "pos": 11,
+          "tier": 4,
+          "col": 0,
+          "gate": 20,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": true,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105945,
+          "name": "横扫攻击",
+          "pos": 12,
+          "tier": 4,
+          "col": 1,
+          "gate": 20,
+          "max_rank": 1,
+          "ability": true,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105944,
+          "name": "武器大师",
+          "pos": 13,
+          "tier": 4,
+          "col": 2,
+          "gate": 20,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 110858,
+          "name": "强化猛击",
+          "pos": 14,
+          "tier": 5,
+          "col": 0,
+          "gate": 25,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": true,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105942,
+          "name": "强化断筋",
+          "pos": 15,
+          "tier": 5,
+          "col": 2,
+          "gate": 25,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105941,
+          "name": "致死打击",
+          "pos": 16,
+          "tier": 6,
+          "col": 1,
+          "gate": 30,
+          "max_rank": 1,
+          "ability": true,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": [
+            {
+              "talent": 105945,
+              "name": "横扫攻击",
+              "rank": 1,
+              "any": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 164,
+      "name": "狂怒",
+      "points": 0,
+      "talents": [
+        {
+          "id": 105938,
+          "name": "震耳嗓音",
+          "pos": 0,
+          "tier": 0,
+          "col": 1,
+          "gate": 0,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105939,
+          "name": "残忍",
+          "pos": 1,
+          "tier": 0,
+          "col": 2,
+          "gate": 0,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 110857,
+          "name": "余怒未消",
+          "pos": 2,
+          "tier": 1,
+          "col": 1,
+          "gate": 5,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": true,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105937,
+          "name": "怒不可遏",
+          "pos": 3,
+          "tier": 1,
+          "col": 2,
+          "gate": 5,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105953,
+          "name": "狂怒精准",
+          "pos": 4,
+          "tier": 2,
+          "col": 0,
+          "gate": 10,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": true,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105935,
+          "name": "刺耳怒吼",
+          "pos": 5,
+          "tier": 2,
+          "col": 1,
+          "gate": 10,
+          "max_rank": 1,
+          "ability": true,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105934,
+          "name": "血之狂热",
+          "pos": 6,
+          "tier": 2,
+          "col": 2,
+          "gate": 10,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105933,
+          "name": "双武器专精",
+          "pos": 7,
+          "tier": 3,
+          "col": 0,
+          "gate": 15,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105977,
+          "name": "怒击",
+          "pos": 8,
+          "tier": 3,
+          "col": 1,
+          "gate": 15,
+          "max_rank": 1,
+          "ability": false,
+          "new_in_160": true,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105931,
+          "name": "狂怒",
+          "pos": 9,
+          "tier": 3,
+          "col": 2,
+          "gate": 15,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105932,
+          "name": "强化斩杀",
+          "pos": 10,
+          "tier": 3,
+          "col": 3,
+          "gate": 15,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105978,
+          "name": "强化狂暴之怒",
+          "pos": 11,
+          "tier": 4,
+          "col": 0,
+          "gate": 20,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105927,
+          "name": "死亡之愿",
+          "pos": 12,
+          "tier": 4,
+          "col": 1,
+          "gate": 20,
+          "max_rank": 1,
+          "ability": true,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105926,
+          "name": "强化拦截",
+          "pos": 13,
+          "tier": 4,
+          "col": 3,
+          "gate": 20,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105928,
+          "name": "乱舞",
+          "pos": 14,
+          "tier": 5,
+          "col": 1,
+          "gate": 25,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": [
+            {
+              "talent": 105927,
+              "name": "死亡之愿",
+              "rank": 1,
+              "any": true
+            }
+          ]
+        },
+        {
+          "id": 113569,
+          "name": "饮血者",
+          "pos": 15,
+          "tier": 5,
+          "col": 2,
+          "gate": 25,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": true,
+          "rank": 0,
+          "prereq": [
+            {
+              "talent": 105931,
+              "name": "狂怒",
+              "rank": 5,
+              "any": true
+            }
+          ]
+        },
+        {
+          "id": 105930,
+          "name": "嗜血",
+          "pos": 16,
+          "tier": 6,
+          "col": 1,
+          "gate": 30,
+          "max_rank": 1,
+          "ability": true,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        }
+      ]
+    },
+    {
+      "id": 163,
+      "name": "防护",
+      "points": 0,
+      "talents": [
+        {
+          "id": 105974,
+          "name": "强化血性狂暴",
+          "pos": 0,
+          "tier": 0,
+          "col": 0,
+          "gate": 0,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105976,
+          "name": "盾牌专精",
+          "pos": 1,
+          "tier": 0,
+          "col": 1,
+          "gate": 0,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 113570,
+          "name": "钢铁意志",
+          "pos": 2,
+          "tier": 0,
+          "col": 2,
+          "gate": 0,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105975,
+          "name": "预知",
+          "pos": 3,
+          "tier": 1,
+          "col": 0,
+          "gate": 5,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105969,
+          "name": "强化复仇",
+          "pos": 4,
+          "tier": 1,
+          "col": 2,
+          "gate": 5,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105972,
+          "name": "强化雷霆一击",
+          "pos": 5,
+          "tier": 1,
+          "col": 3,
+          "gate": 5,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": true,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105970,
+          "name": "破釜沉舟",
+          "pos": 6,
+          "tier": 2,
+          "col": 0,
+          "gate": 10,
+          "max_rank": 1,
+          "ability": true,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105971,
+          "name": "防御大师",
+          "pos": 7,
+          "tier": 2,
+          "col": 1,
+          "gate": 10,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": true,
+          "rank": 0,
+          "prereq": [
+            {
+              "talent": 105976,
+              "name": "盾牌专精",
+              "rank": 5,
+              "any": true
+            }
+          ]
+        },
+        {
+          "id": 105967,
+          "name": "强化缴械",
+          "pos": 8,
+          "tier": 2,
+          "col": 2,
+          "gate": 10,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 110856,
+          "name": "挑衅",
+          "pos": 9,
+          "tier": 2,
+          "col": 3,
+          "gate": 10,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105968,
+          "name": "强化破甲攻击",
+          "pos": 10,
+          "tier": 3,
+          "col": 0,
+          "gate": 15,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105966,
+          "name": "先锋",
+          "pos": 11,
+          "tier": 3,
+          "col": 1,
+          "gate": 15,
+          "max_rank": 1,
+          "ability": false,
+          "new_in_160": true,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105963,
+          "name": "强化盾击",
+          "pos": 12,
+          "tier": 3,
+          "col": 2,
+          "gate": 15,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105964,
+          "name": "强化盾墙",
+          "pos": 13,
+          "tier": 4,
+          "col": 0,
+          "gate": 20,
+          "max_rank": 2,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105965,
+          "name": "震荡猛击",
+          "pos": 14,
+          "tier": 4,
+          "col": 1,
+          "gate": 20,
+          "max_rank": 1,
+          "ability": true,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105961,
+          "name": "怒火聚焦",
+          "pos": 15,
+          "tier": 4,
+          "col": 2,
+          "gate": 20,
+          "max_rank": 3,
+          "ability": false,
+          "new_in_160": true,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105962,
+          "name": "坚城",
+          "pos": 16,
+          "tier": 5,
+          "col": 2,
+          "gate": 25,
+          "max_rank": 5,
+          "ability": false,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": []
+        },
+        {
+          "id": 105959,
+          "name": "盾牌猛击",
+          "pos": 17,
+          "tier": 6,
+          "col": 1,
+          "gate": 30,
+          "max_rank": 1,
+          "ability": true,
+          "new_in_160": false,
+          "rank": 0,
+          "prereq": [
+            {
+              "talent": 105965,
+              "name": "震荡猛击",
+              "rank": 1,
+              "any": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "note": "《无限》1.60 的天赋树来自客户端的 Trait 系统：每个职业一棵（SkillLineXTraitTree 指定），三系并排、每系 7 行，名称与图标沿用经典旧世的同名天赋树；格子、等级上限、前置（TraitEdge）与每行门槛（TraitCond：同一系上面几行投入的点数）都按客户端，每级说明的数值取 TraitDefinitionEffectPoints 指向的曲线。天赋点取 TraitCurrencySource：5 级第 1 点，每级 1 点，55 级加满 51 点。客户端把 3 个被替换的旧天赋挪到了画面外，这里不列。客户端里还有 11 个天赋没汉化，照原样显示。",
+  "build": {
+    "input": "https://wuxianwow.com/talents/1?t=3--",
+    "normalized": "3",
+    "level": 15,
+    "points": [
+      {
+        "tree": "武器",
+        "points": 3
+      },
+      {
+        "tree": "狂怒",
+        "points": 0
+      },
+      {
+        "tree": "防护",
+        "points": 0
+      }
+    ],
+    "total": 3,
+    "cap": 11,
+    "remaining": 8,
+    "required_level": 7,
+    "dropped": [],
+    "chosen": [
+      "武器·强化英勇打击 3/3"
+    ]
+  }
+}

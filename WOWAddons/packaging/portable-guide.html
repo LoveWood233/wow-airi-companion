@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>魔兽陪伴精灵 2.27.1 · 跨电脑安装说明</title>
+<style>
+:root{color-scheme:light;--ink:#192c31;--muted:#586c70;--line:#dbe3e2;--accent:#12685b;--wash:#eff7f3}*{box-sizing:border-box}body{margin:0;background:#f4f6f3;color:var(--ink);font:16px/1.75 "Microsoft YaHei","PingFang SC",system-ui,sans-serif}main{max-width:940px;margin:0 auto;padding:32px 24px 64px}header{padding:32px;border-radius:20px;background:#173c38;color:#f9fcf4}header p{color:#d2e2d9}h1{font-size:30px;line-height:1.35;margin:8px 0 14px}h2{font-size:22px;line-height:1.4;margin:0 0 16px}h3{font-size:17px;margin:20px 0 8px}p{margin:10px 0}section{margin-top:20px;padding:26px 30px;border:1px solid var(--line);border-radius:16px;background:#fff}.tag{font-size:13px;letter-spacing:.08em}.muted,small{color:var(--muted)}header .muted{color:#d2e2d9}.notice{padding:12px 16px;background:var(--wash);border-left:4px solid var(--accent);border-radius:6px}code{font:14px/1.65 Consolas,monospace;background:#edf1ed;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}header code{background:#2b514a;color:#fff}ul,ol{padding-left:24px}li+li{margin-top:7px}a{color:var(--accent);text-underline-offset:3px}nav{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:20px}nav a{color:#dcf0e3}button{border:1px solid #b4c9be;background:#f6fbf7;border-radius:8px;padding:8px 15px;color:#143c35;font:inherit;cursor:pointer}.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--line)}th{background:#f0f5ef}footer{text-align:center;padding-top:26px;color:var(--muted);font-size:13px}@media(max-width:600px){main{padding:16px 12px 32px}header,section{padding:20px 18px}h1{font-size:25px}h2{font-size:20px}th,td{padding:9px}}@media print{body{background:#fff;font-size:11pt}main{max-width:none;padding:0}header{padding:16px 0;background:#fff;color:#000}header p,header .muted{color:#333}nav,button{display:none}section{border-radius:0;padding:20px 0;border:0;border-top:1px solid #aaa;break-inside:auto}h2,h3{break-after:avoid}table{font-size:9.5pt}tr{break-inside:avoid}a{color:#000;text-decoration:none}footer{font-size:9pt}}
+</style>
+</head>
+<body><main>
+<header><div class="tag">WINDOWS x64 · 2.27.1 · 2026-11-08</div><h1>把陪伴精灵带到另一台电脑</h1><p>按向导完成安装，再配置你自己的模型服务和游戏目录。发行包自带桌面运行环境与桥接 Python，无需安装 Node.js、pnpm 或 Python。</p><p class="muted">适用于 Windows 10 / 11 的 x64 电脑。云端聊天、识图和语音服务需要联网及可用的服务凭据。</p><nav aria-label="使用说明目录"><a href="#dsh-pet-2-27">动画桌宠</a><a href="#datahub-2-26">安装与用量统计</a><a href="#companion-slim-2-25">2.25精简</a><a href="#item-archive">物品仓库</a><a href="#startup-fix">启动修复历史</a><a href="#start">首次启动</a><a href="#services">配置服务</a><a href="#wow">连接游戏</a><a href="#features">使用功能</a><a href="#memory-limits">记忆容量与提醒</a><a href="#memory-chatter">记忆与闲聊</a><a href="#models">角色形象</a><a href="#data">资料与迁移</a><a href="#help">常见问题</a><a href="#checks">交付验证</a></nav></header>
+<section id="dsh-pet-2-27"><h2>2.27.0 · 使用 DSH Pet 动画桌宠</h2>
+<p>主桌面、工作区和设置预览统一使用 dsh-pet 的透明 WebM 动画。默认内置蓝发小女仆，共114段动画，素材约57.8 MB。动画会显示待机小动作、点击回应、拖拽悬空、睡眠、醒来与转向，并结合对话中的思考、说话和情绪切换。</p>
+<ol><li>双击 <code>WoWCompanion-2.27.1-windows-x64-setup.exe</code>，按向导选择安装目录。安装完成后，从桌面或开始菜单打开“魔兽陪伴精灵”。</li><li>右键点击宠物，可打开聊天、切换随机动作、让宠物睡觉或醒来，以及翻转朝向。左键点按可触发回应，按住拖动可移动窗口。</li><li>打开<strong>设置 → 桌宠形象</strong>，选择内置宠物或导入动画包。形象、当前动作和50%～200%尺寸会同步到已打开的显示窗口。</li><li>继续使用原有聊天、语音字幕、记忆和魔兽世界连接。旧模型资料保存在个人档案中。新形象通过动画包管理，原模型文件需要另行准备为透明 WebM 动画素材。</li></ol>
+<h3>导入自己的动画包</h3>
+<p>选择包含规范 <code>pack.json</code> 与所列 <code>.webm</code> 文件的目录。清单提供名称、资源列表和待机、点击、随机动作等动画池；睡眠可配置同套的开始、循环与醒来三段。先在设置中查看导入包的预览，再切换使用。</p>
+<p>每包最多256个媒体文件，每个文件不超过32 MiB，总量不超过512 MiB。软件校验清单与路径，将允许的动画复制到个人资料目录的 <code>dsh-pet-packs</code>，供重启后继续读取。导入完成后，可在设置中选择该宠物、点播动作和调节尺寸。</p>
+<p>动画素材与播放机制来自 dsh-pet，MIT 许可证，版权归属 PC2005-cloud。完整许可随内置动画包提供。旧版本的使用记录保存在下方，当前形象操作以本节为准。</p>
+</section>
+<section id="datahub-2-26"><h2>2.26.0 · 安装与 Token 用量统计</h2>
+<p>桌面程序为 <strong>2.26.0</strong>；配套正式服插件与桥接仍为 <strong>2.25.0</strong>，无限服插件仍为 <strong>1.21.0</strong>。本轮新增可选统计和独立服务器数据中台，保留下面的 2.25.0 精简功能。</p>
+<h3>首次运行与日常设置</h3>
+<ol><li>首次启动或升级后，先阅读统计告知。开关默认开启，<strong>点击“继续”后才开始收集</strong>。可关闭开关或选择“关闭统计”；选择“稍后”或按 Escape 不会开启。</li><li>打开<strong>设置 → 安装与用量统计</strong>，填入管理员提供的 HTTPS 服务根地址，例如 <code>https://stats.example.com</code>。不填写管理员密钥、模型 API Key 或游戏账号。</li><li>地址留空时不会联网发送。启用且地址有效后，在登记或恢复连接时发送检查点，运行期间固定每 <strong>300 秒（5分钟）</strong>上报累计计数；本页可查看本地用量、覆盖情况、最后成功时间和错误。</li><li>在同一设置页关闭“收集与上报”后保存即可停止；之前已发送的汇总仍保留在服务器。离线期间已启用的统计保留在本地，恢复联网后补报。</li></ol>
+<h3>统计哪些内容</h3>
+<p>发送随机安装标识、版本、平台和累计用量计数。不发送聊天、角色资料、截图、音频、服务商名、模型名或 API Key。客户端自动生成独立的安装认证凭据；管理员密钥只用于服务器管理，绝不能发给客户端。</p>
+<p><strong>安装数不等于人数。</strong>清空或重建个人资料会产生新安装标识。用量记录数是 SDK 生成记录数，不是 HTTP 请求数。只累计聊天、视觉、闲聊及任务等大模型实际返回的 Token；缺失用量记为未知，各字段显示覆盖记录数。当前不统计 TTS／ASR 的时长或字符费用，不估算 Token，也不是服务商账单。</p>
+<p>主进程将累计计数、安装身份和递增序号保存在当前个人资料目录，最近的观察 ID 用于去重；服务器只接纳新检查点的增量，重复重试不会增加用量。不要把同一份个人资料复制给不同用户，否则会共用安装身份。</p>
+<h3>给软件发布者与服务器管理员</h3>
+<p>另行提供 <code>WoWCompanionDataHub-1.0.0-docker-source.zip</code>。服务器安装 Docker Engine、Compose 和 Python 3，解压后进入包含 <code>compose.yaml</code> 的目录，依次执行 <code>python3 setup.py</code>、<code>docker compose config</code>、<code>docker compose up -d --build</code>。本地页面为 <code>http://127.0.0.1:8080</code>，管理员密钥由初始化脚本保存在 <code>secrets/admin-key.txt</code>，请在服务器本机查看。</p>
+<p>对外提供服务前，按服务器包 README 配置自己的域名、HTTPS 反向代理，以及 <code>.env</code> 的 <code>DATAHUB_ALLOWED_HOSTS</code>、<code>DATAHUB_PUBLIC_ORIGIN</code> 和 Secure Cookie。应用端口仅绑定宿主回环地址。客户端只填写公开根地址；发布者也可在源码资源 <code>apps/stage-tamagotchi/resources/wow-statistics.json</code> 中配置 <code>endpoint</code> 后重新构建，仍须由每位用户完成告知。</p>
+<p class="notice" id="datahub-validation">已通过：服务器 Python 23 项、客户端与真实本机 HTTP／SQLite 服务集成 10 项、客户端协议与浏览器回归 50 项。部署包提供 Docker 配置，但本机没有 Docker，未执行容器启动验证。最终构建、归档哈希与新电脑验收结果以本次交付记录为准。</p>
+</section>
+<section id="companion-slim-2-25"><h2>2.25.0 · 插件负责判断，精灵负责陪伴</h2>
+<p>正式服插件、桥接和桌面升级为 <strong>2.25.0</strong>，无限服插件为 <strong>1.21.0</strong>。本轮精简重复判断、固定通知和设置入口，保留模型配置、历史档案、SQLite、关系记忆与截图对话。传输码仍为 64×64 像素。</p>
+<div class="table-wrap"><table><thead><tr><th>模块</th><th>插件负责</th><th>精灵负责</th></tr></thead><tbody>
+<tr><td>装备</td><td>读取装备，给出是否提升、原因及属性差值；点击游戏内按钮后复核并换装</td><td>校验角色和时效，祝贺、说明属性取舍，引导游戏内确认。移除桌面重复判定和第二次“好／不用”确认</td></tr>
+<tr><td>任务</td><td>产生可交付、实际交付、等级风险、真实升级后的任务候选</td><td>按时效和回执安排提醒，保留自然语言表达；不再用轮询推断升级或重新计算任务等级差</td></tr>
+<tr><td>固定通知</td><td>提供升级、生死、增益和日历等可信事实</td><td>使用12语言模板，共用一个待发位置和一个播放所有者，不请求聊天模型。无语音模型或语音失败时显示8秒文字；静音及零音量时不主动发出</td></tr>
+<tr><td>档案</td><td>金币累计、装备、背包、银行、任务和天赋的游戏观测</td><td>保存已收到的档案与SQLite，提供跨角色查询及聊天上下文。现实升级耗时与插件在线累计仍明确区分，没有互相覆盖</td></tr>
+<tr><td>陪伴</td><td>提供角色身份、地点和真实脱战次数</td><td>保留记忆、关系、自然聊天、地图逸闻、截图风景、语音与形象。固定通知改为模板，语气不再由聊天模型逐次生成；自然对话仍沿用当前人设</td></tr>
+</tbody></table></div>
+<h3>设置页面怎样变化</h3><p>正式服和无限服页面默认显示连接、角色概览及陪伴偏好。“角色档案”“连接诊断”“事件与演示”默认折叠，打开时再加载详情组件。背包与银行仓库位于“角色档案”内，原资料和功能没有删除。</p>
+<p><strong>设置 → 魔兽工具</strong>集中提供插件管理、启动器、任务、专业、配装、资料库、数据包、安装更新和备份入口。原页面地址继续可用，打开工具入口本身不会启动这些工具的查询。数据包更新监测在首次实际使用该工具后才启动，随后持续到退出程序。</p>
+<h3>更新与使用</h3><ol>
+<li>从托盘正常退出旧版精灵，再双击原 <code>Start-WoWCompanion.cmd</code>，或完整解压新版便携包后启动。保留原个人资料目录，不需要重新填写模型配置。</li>
+<li>同步更新配套插件和桥接。新版装备比较为 <code>cmp v2</code>，旧比较资料仍可作为历史查看，但不能生成新的换装提示。旧插件不会被桌面重新推断为有新版能力。</li>
+<li>完整退出并重新进入游戏。拿到适合当前专精的新装备后，精灵说明提升或取舍；需要换装时，在<strong>游戏内</strong>点击确认。桌面气泡播报结束3秒后隐藏，不再提供第二个确认按钮。</li>
+<li>查看旧装备、金币、升级及银行资料时，打开对应游戏页面的“角色档案”；需要安装插件或查资料时，打开“魔兽工具”。银行仍需在游戏内打开后才能读取。</li>
+</ol><p class="notice">本次没有替你关闭正在运行的精灵或游戏，也没有发送真实聊天、语音或截图请求。升级耗时口径、金币统计口径和物品来源未确认标记均保留。</p>
+<p id="slim-validation">验证通过：正式服 Lua 246 项、无限服 Lua 253 项、桥接 317 项；装备 Node 94 项、任务 Node 60 项、档案与数据库 Node 66 项、工具按需初始化 Node 5 项；设置与工具等浏览器 151 项、任务浏览器 16 项、固定通知与记忆闲聊浏览器 26 项；启动器 14 项。桌面类型检查、语言包构建和桌面完整构建通过。全仓 lint 退出 0，0 错误、670 条既有警告。全仓类型检查仍被独立场景包缺少 vue-tsc 阻断，退出 127，不计为通过。自动化使用合成游戏数据和服务边界，未调用真实模型或代替客户端验收。</p>
+</section>
+<section id="item-archive"><h2>2.24.0 · 背包与银行物品 SQLite 仓库</h2>
+<p>插件读取背包及已打开银行中的装备、专业材料、宝石、配方、专业工具装备和制作成品候选，经原有 64×64 像素传输码送到陪伴精灵，写入本机 SQLite 数据库。所有可读物品的原始记录均保存，可在“全部物品”中查看。制作成品候选始终标记“来源未确认”：记录不能证明它来自实际制作、掉落还是购买。</p>
+<h3>更新后怎样查看</h3>
+<ol><li>先从系统托盘正常退出旧版精灵，再运行本机原 <code>Start-WoWCompanion.cmd</code>，或完整解压本次 2.25.0 便携包后启动。</li><li>安装本次配套正式服插件 2.25.0，并保留更新前的备份与 SavedVariables。打开游戏插件列表启用插件，完整重新登录角色一次。无限服使用独立插件 1.21.0，按实际客户端目录手动复制；客户端接口仍需实机核对。</li><li>保持游戏画面中的数据码可见。登录后先采集背包；打开银行后，等待当前可读银行页面完成扫描。部分银行类型还需实际切换页面。</li><li>在“设置 → 魔兽世界正式服／无限服 → 角色档案 → 背包与银行物品仓库”点击“查看物品”，按角色、位置和分类筛选。输入名称或物品 ID 后点击“查询／刷新”，用上一页、下一页浏览。</li><li>展开“属性与词条详情”查看已传输的属性和提示文字。这里查询的是本地 SQLite，不向游戏发送搜索、移动物品或换装指令。</li></ol>
+<h3>数据范围与完整性</h3>
+<ul><li>数据库按游戏版本、账号、角色、容器页面及格位区分。账号共享银行按账号保存，不为每个角色重复计算。</li><li>专业分类使用客户端读取到的分类编号 3、5、7、9、19，对应宝石、材料、配方及专业工具装备等；另把消耗品 0、背包容器 1、物品强化 8 列为“制作成品候选”。“专业物品”同时包含两组，也可单独筛选候选。药水、食物、背包和附魔也可能来自掉落或购买，所以显示“来源未确认”，不推断实际制作。武器与护甲仍按装备查看，其实际制作来源也不作推断。旧记录或无法读取分类编号的物品标为“尚未分类”。</li><li>银行必须在游戏内实际打开才可扫描。未打开或尚未扫描时显示“未扫描”，不会把未知内容当成空银行。历史银行记录会保留原扫描时间。</li><li>未知格位或不完整页面保留上次已知物品，并标记“当前未确认”。只有完整可信的页面快照才能确认空格并清理对应旧行；不会因关闭银行或断线清空已有记录。</li><li>传输码仍为 64×64 像素。跨语言模拟中，一个 34 格混合容器使用 83 个片段，轮播约 55.75 秒。首次扫描多页银行可需要数分钟，遮挡、缓存加载与重传会延长等待。</li><li>仓库采用紧凑摘要：装备提示最多 4 行、每行 128 字节；非穿戴物品最多 2 行、每行 96 字节；属性最多 12 项。发生裁剪时明确标记“摘要已裁剪、部分词条未传输”，不承诺随后自动获得完整词条。穿戴快照与新获取装备的独立详情链路继续使用各自规则。</li></ul>
+<h3>本地保存与备份</h3>
+<p>数据库默认位于 <code>%USERPROFILE%\.airi-wow-companion\wow-companion-items.sqlite</code>。自行设置了 <code>APP_USER_DATA_PATH</code> 时，数据库位于该资料目录。数据库保存物品实例链接、名称、数量、分类、属性摘要及观测时间。</p>
+<p>通过软件数据页导出和恢复物品的逻辑记录，恢复时重新写入 SQLite，避免复制运行中的数据库及 WAL 文件。“删除所有数据”也会清空物品数据库；陪伴连接仍开启时，游戏资料可再次采集并写入。需要保持空库时，先关闭对应游戏连接。</p>
+<p class="muted">本版桌面、桥接及正式服插件为 2.25.0，无限服插件为 1.21.0。最终测试、构建与包校验结果见本次交付记录。自动化使用模拟游戏资料和服务边界，未代替真实客户端或付费模型验收。</p>
+</section>
+<section id="startup-fix"><h2>2.23.2 · 修复启动后没有窗口</h2><p>修复发行依赖未编译而导致的主进程启动错误。主程序及其错误窗口正常显示，本机启动入口仍使用原个人资料目录。</p><ol><li>退出旧版程序，将本次便携包完整解压到新目录，保留原个人资料。</li><li>在本机继续双击原 <code>WOWAddons/Start-WoWCompanion.cmd</code>，启动入口已指向当前 2.24.0。其他电脑双击解压目录中的同名启动脚本。</li><li>若仍出现错误，请保留可见的错误窗口。本机原启动入口每次生成独立的 <code>WOWAddons/logs/launcher-*.log</code>，最新文件名见 <code>WOWAddons/logs/latest-launcher-log.txt</code>；程序错误日志为同目录的 <code>companion-*-error.log</code>。</li></ol><p>历史 2.23.2 的启动器 14 项隔离测试通过；该版当时配套桥接、正式服插件为 2.23.0，无限服插件为 1.19.0。本次 2.24.0 保留该启动修复，当前版本与结果见本次交付记录。</p></section>
+<section id="start"><h2>1. 完整解压，再启动</h2><ol><li>将便携 ZIP 复制到新电脑。右键选择“全部解压”，放到当前用户可写的本地文件夹。</li><li>打开解压后的文件夹。确认 <code>wow-companion.exe</code> 和 <code>resources</code> 位于同一层。</li><li>双击 <code>Start-WoWCompanion.cmd</code>，也可直接运行 <code>wow-companion.exe</code>。</li><li>进入设置。按“首次使用向导”完成角色形象、模型服务和游戏连接配置。</li></ol><p class="notice">保留完整文件夹。不能只复制 EXE，也不能直接在压缩包预览中运行。推荐使用普通本地目录，避免让云盘同步正在使用的程序或资料。</p><h3>包内文件</h3><div class="scroll"><table><thead><tr><th>位置</th><th>用途</th></tr></thead><tbody><tr><td><code>wow-companion.exe</code></td><td>桌面主程序。</td></tr><tr><td><code>Start-WoWCompanion.cmd</code></td><td>便携版启动入口。</td></tr><tr><td><code>resources/</code> 与同级运行库</td><td>界面、预设形象、桥接及内置 Python。保持原目录结构。</td></tr><tr><td><code>AddOns/</code></td><td>正式服、无限服的陪伴插件，以及宏导入和资料接口插件。</td></tr><tr><td><code>data/retail-portals/</code></td><td>正式服传送门离线资料。双击其中的 <code>index.html</code> 查看范围、坐标和来源。</td></tr><tr><td><code>使用说明.html</code></td><td>本说明。可在浏览器打印或保存为 PDF。</td></tr></tbody></table></div></section>
+<section id="services"><h2>2. 配置你自己的模型服务</h2><p>发行包不带开发电脑的 API Key、服务商配置、聊天记录或角色资料。新电脑首次启动时需要自行填写配置。</p><ol><li>在“设置”的服务商页面，添加你使用的服务，并填写对应地址与凭据。</li><li>在聊天设置选择服务商和模型。发送一句问候，确认可以收到回复。</li><li>需要播报时，在语音设置选择服务、模型和音色，先执行试听。</li><li>需要语音输入时，再配置听觉、语音识别服务和麦克风。</li><li>需要截图识别时，在视觉设置选择支持图片的模型。纯文本聊天模型还需开启视觉“用于聊天”。</li></ol><div class="scroll"><table><thead><tr><th>想使用的功能</th><th>需要配置</th></tr></thead><tbody><tr><td>文字聊天</td><td>聊天服务与模型。</td></tr><tr><td>朗读、装备祝贺、普通闲聊</td><td>播报需要语音服务、模型和音色。普通闲聊还需聊天服务；未配置语音时可仅显示文字。</td></tr><tr><td>“看看这个”、自动截图闲聊</td><td>视觉服务与模型、聊天服务。语音播报另需语音服务。</td></tr><tr><td>说话输入</td><td>听觉或语音识别服务、可用麦克风。</td></tr></tbody></table></div><p class="notice">内置的是软件运行环境和角色外观资源，不是离线大模型。使用云端模型会按该服务的规则消耗额度。</p></section>
+<section id="wow"><h2>3. 安装插件，连接游戏</h2><h3>选择对应游戏版本</h3><ol><li>在设置中打开正式服或无限服的使用向导，选择该客户端目录。选择包含客户端程序的版本目录，不是整个硬盘。</li><li>使用向导的“安装／更新配套插件”，或按下表手动复制插件文件夹。</li><li>完整退出并重新启动游戏。在角色选择界面的插件列表中启用配套插件，再进入角色。</li><li>回到对应版本的陪伴设置，开启“陪伴连接”。程序会自动管理桥接，无需另开桥接窗口。</li><li>保持游戏内的数据传输码可见，确认连接页显示当前真实角色。演示数据不能用于验收。</li></ol><div class="scroll"><table><thead><tr><th>版本或用途</th><th>从包内复制</th><th>复制到</th></tr></thead><tbody><tr><td>正式服陪伴</td><td><code>AddOns/WoWMapCompanion</code></td><td><code>正式服版本目录/Interface/AddOns/</code>，常见为 <code>_retail_/Interface/AddOns/</code>。</td></tr><tr><td>无限服陪伴</td><td><code>AddOns/WoWForeverCompanion</code></td><td>无限服客户端实际使用的 <code>Interface/AddOns/</code>。不要放入正式服目录。</td></tr><tr><td>宏导入</td><td><code>AddOns/WoWMacroImport</code></td><td>需要使用它的游戏客户端 <code>Interface/AddOns/</code>。</td></tr><tr><td>资料接口插件</td><td><code>AddOns/WoWIntelAPI</code></td><td>按该插件随附说明选择客户端。它不替代对应版本的陪伴插件。</td></tr></tbody></table></div><h3>在新电脑重新校准传输码</h3><ol><li>正式服输入 <code>/wowc compact</code>，无限服输入 <code>/wowf compact</code>。让数据码使用紧凑显示。</li><li>打开对应版本的连接与校准设置。按页面说明使用自动校准，或填写编码区的桌面物理坐标和每格大小。</li><li>若手动校准，使用 <code>/wowc status</code> 或 <code>/wowf status</code> 查看插件位置，并核对窗口边框、屏幕缩放和显示器位置。</li><li>保存校准后，核对角色名、等级、地图等信息。更换显示器、游戏窗口位置或显示缩放后，再检查校准。</li></ol><p>紧凑数据码默认占用 64×64 像素，每格 1 像素。不要用窗口或其他游戏界面遮住它。无限服的接口和客户端显示仍需在实际客户端中核对。</p><p>“插件中心”右上角设置可分别保存游戏版本目录。通过 CurseForge 下载其他插件还需单独配置其开发者 API Key；陪伴插件的手动安装不依赖该 Key。</p></section>
+<section id="features"><h2>4. 这样使用陪伴功能</h2><ul><li><strong>日常聊天：</strong>在角色旁展开聊天，输入问题。精灵使用最新登录的游戏角色名称呼你。</li><li><strong>查看装备：</strong>登录及获取新装备时同步穿戴资料。可问“我现在穿的腿甲是什么”。记录属于对应角色和游戏版本。</li><li><strong>换装提醒：</strong>符合提升规则的新装备会触发询问。选择“好”后，仍需在游戏内点击确认换装。</li><li><strong>定时闲聊：</strong>在“设置 → 闲聊设置”分别控制普通闲聊、截图闲聊与地图逸闻。普通闲聊采用时间与真实脱战次数双条件。截图闲聊默认关闭，开启后会消耗模型额度。</li><li><strong>按需看画面：</strong>先在游戏打开装备提示或需要查看的界面，再说“看看这个”“看看我的装备”。系统截取游戏窗口，并将画面用于本轮对话。</li><li><strong>截图传递：</strong>可接收图片的聊天模型获得原图，纯文本模型按视觉设置使用描述。已有图片附件时优先看附件，不再额外截取游戏。</li><li><strong>语音字幕：</strong>播报时显示气泡。播放结束后，气泡按现有规则延迟 3 秒隐藏。静音和战斗免打扰按设置生效。</li></ul><p>截图功能读取魔兽世界窗口，不是持续观看桌面。新的相机角度或界面需要再次发起查看请求。仅文本聊天不要求开启截图功能。</p></section>
+<section id="memory-limits"><h2>2.23.1 · 长期记忆容量与温柔提醒</h2>
+<p>桌面程序升级至 <strong>2.23.1</strong>。配套桥接与正式服插件仍为 <strong>2.23.0</strong>，无限服插件仍为 <strong>1.19.0</strong>。</p>
+<h3>下次开机后怎样使用</h3>
+<ol><li>先从系统托盘正常退出旧版，再双击原来的 <code>Start-WoWCompanion.cmd</code>。保留原个人资料目录，不用重新填写模型凭据。</li><li>打开“设置 → 记忆与关系”，查看当前精灵的长期记忆已用条数和上限。</li><li>需要扩容时，填写新的整数上限并点击“保存容量”。需要整理时，逐条选择“忘记”，或取消非偏好条目的长期收藏。</li><li>如果配套插件早于 2.23.0，请更新正式服插件与桥接，并完整重启游戏、登录角色一次。已使用本轮配套版本时，无需再次替换插件。</li></ol>
+<h3>容量怎样计算</h3>
+<p>每位精灵默认可保存 <strong>1000 条</strong>长期记忆，上限可设置为 <strong>100～100000 的整数</strong>。长期偏好和已收藏条目共用容量，去重后每条只计算一次。普通经历仍使用独立的 100 条保留规则。</p>
+<p>容量满时，已有长期记忆继续保留，只暂停保存新的长期偏好与收藏。普通游戏记录和聊天仍可继续。调低上限不会自动删除现有记忆；手动整理或扩容后，即可继续保存长期内容。关系分数不会因整理记忆下降。</p>
+<h3>两种提示各代表什么</h3>
+<p><strong>本轮没能全部想起：</strong>只有当你明确提问，匹配到的相关长期记忆超出本轮记忆选取预算时，才触发委屈、无助语气的提示：</p>
+<blockquote>“唔……我的记忆一次能容纳关于你的东西很有限，但我会尽可能地记住关于你的一切。这次没能想起的记忆，还好好保存在本地。”</blockquote>
+<p>当前记忆上下文最多带入 6 条，其中偏好最多 2 条、当前目标最多 1 条；每条文字最多 280 字，装备使用名称、装等和最多 6 项属性等摘要。这是软件的记忆预算，<strong>不是检测模型真实 token 窗口溢出</strong>，也不表示记忆已经被删除。其他角色、已隐藏和已过期内容不会冒充本次遗漏的相关长期记忆。</p>
+<p><strong>长期容量已满：</strong>使用伤感、不舍的固定文案说明需要整理，并明确保留选择权：</p>
+<blockquote>“有些舍不得呢……我得忘记一些关于你的记忆，才能记下新的故事、继续陪伴你。我还没有删除任何记忆，你可以选择整理，也可以扩容，让这些回忆留下来。”</blockquote>
+<p>两种提示按<strong>每位精灵、每种类型、本机日期每天各最多一次</strong>记录在主进程。重启不会重播当天已消费的提醒。不会因为刷新页面或桥接轮询频繁重复提示。</p>
+<h3>什么时候说、怎样说</h3>
+<p>收到真实用户提问后，提示等待当前对话与语音空闲；已知角色处于战斗时，等待脱战稳定 10 秒。配置了可用语音服务且未静音时，使用语音与现有字幕气泡；没有语音配置或处于静音时，只显示文字气泡。</p>
+<p>提示使用固定的多语言文案，不调用聊天模型，也不消耗普通闲聊的分钟间隔或脱战次数。语音合成本身仍按所选服务计费。委屈与伤感通过文案表达，实际 TTS 情绪表现取决于服务和音色。</p>
+<p class="notice note">本次新功能的最终构建、自动化检查和发行包校验结果见本次交付记录。自动化边界使用模拟，真实游戏、模型服务和音频输出仍需按本文步骤验收。</p>
+</section>
+<section id="memory-chatter"><h2>记忆与关系，以及有话题才开口的闲聊</h2>
+<p>打开“设置 → 闲聊设置”。普通闲聊默认每 5 分钟检查，并要求自上次互动起完成 5 次真实脱战；可改为 2～30 整分钟与 5～30 次。分钟按现实时间计算，战斗也计时；角色须连续脱战 10 秒、在线且空闲后才检查。没有相关新话题就不请求模型，不消耗累计次数。</p>
+<p>话题使用当前目标、收藏装备、重返地图的旧经历或近期明确经历，同一话题不反复询问。配置语音则语音加字幕气泡，未配置语音则仅文字气泡。截图闲聊在同一设置页独立开关与设置 1～60 分钟，普通闲聊不截图。</p>
+<p>在“设置 → 记忆与关系”或闲聊页的“查看和管理记忆”进入管理页（<code>/settings/wow-memories</code>）。每位精灵最多保存 100 条普通记忆；偏好与收藏长期保留。游戏事实区分版本、账号与角色。正式服与无限服各自合计保留最近 10 条装备获取记录；记录标明所属角色，长期装备收藏另存。</p>
+<p>可以编辑自己的文字、收藏、停止主动提起或忘记记录。当前临时目标绑定游戏登录，重新登录后失效；停止主动提起的内容不会继续被闲聊召回。日记由本地记录整理，不额外请求模型。</p>
+<div class="scroll"><table><thead><tr><th>关系阶段</th><th>累计羁绊值</th></tr></thead><tbody><tr><td>初识</td><td>0～49</td></tr><tr><td>熟悉</td><td>50～149</td></tr><tr><td>信赖</td><td>150～299</td></tr><tr><td>默契</td><td>300 及以上</td></tr></tbody></table></div>
+<p>亲历升级 +10、首次共同到访地图 +5，每日最多 30 点，重复事件不重复奖励。离线不扣分，聊天或模型调用次数不加分。关系改变熟悉程度，不解锁自动操作。生成闲聊使用聊天模型，播报使用 TTS，截图闲聊另用视觉模型，各自消耗所选服务额度。</p>
+<h3>更新后第一次连接</h3><ol><li>托盘退出旧程序，完整解压本次新程序并继续使用原资料目录。</li><li>通过对应版本向导“安装／更新配套插件”，或复制 <code>AddOns/WoWMapCompanion</code>（2.23.0）／<code>AddOns/WoWForeverCompanion</code>（1.19.0）到正确客户端；保留 SavedVariables。</li><li>完整重新登录游戏角色一次，建立可靠的本次登录标识。首次更新仅输入 /reload 可能没有该标识。</li><li>开启对应版本陪伴连接，让桌面自动使用随包桥接 2.23.0，核对真实角色与校准后正常游玩。</li></ol>
+<p>同次登录的 /reload 和桥接重连保留进度，真正重新登录游戏会重新累计脱战次数。登录与计数使用独立 life 小帧，不挤占主快照容量；只和相同会话、角色的新鲜快照合并，5 秒过期。旧插件缺少计数或有效快照暂未传来时不会伪造次数。</p>
+<p class="muted">历史 2.23.0 验证：闲聊浏览器集成 13 项、桌面工作区类型检查与针对性 ESLint 通过。测试使用模拟模型和音频设备，不是付费服务、真实游戏或新电脑的实机验收。生产包验证结果见随包最终记录。</p></section>
+<section id="models"><h2>5. 角色形象与声音</h2><p>包内已有 Hiyori（Pro / Free）Live2D 预设与 AvatarSample_A / B 的 VRM 预设。新资料目录的默认角色使用 Hiyori Pro。更换外观可在角色模型页选择预设，或导入你自己的模型。</p><p>本机以前导入的希尔瓦娜斯形象、参考音频、自定义音色及提示词属于个人资料，不会自动出现在另一台电脑的全新配置中。角色模型可通过软件的导入导出功能迁移，也可在新电脑重新导入完整模型文件。服务凭据、参考音频和音色配置需在新电脑分别检查。</p><p>Live2D ZIP 需包含有效的模型描述文件、模型数据与贴图，只有图片的压缩包不能作为完整 Live2D 模型导入。VRM 预设和自有模型也需选择对应的模型格式。</p><p class="muted">预设模型保留随附说明与许可证。自定义模型和音频按各自许可使用；外观资源的许可不替代模型服务的使用条件。</p></section>
+<section id="data"><h2>6. 资料保存、更新与迁移</h2><p>默认个人资料目录是 <code>%USERPROFILE%\.airi-wow-companion</code>，例如 <code>C:\Users\你的用户名\.airi-wow-companion</code>。它与程序解压目录分开。程序文件夹可以移动，个人资料默认跟随当前 Windows 用户保存。</p><h3>以后更新软件</h3><ol><li>从系统托盘选择退出。确认旧程序已关闭。</li><li>将新版本完整解压到另一个文件夹。保留旧程序，直至新版本完成检查。</li><li>启动新版本。使用同一个 Windows 用户和同一资料目录时，程序继续读取已有配置。</li><li>检查服务、角色形象和游戏连接。按新版本说明更新对应客户端的插件。</li></ol><h3>将个人配置迁移到另一台自己的电脑</h3><ol><li>从两台电脑的系统托盘正常退出程序，再复制资料。</li><li>在旧电脑备份完整的 <code>.airi-wow-companion</code> 文件夹。</li><li>在新电脑找到相同的用户资料路径。如果已有资料，先另行备份。</li><li>将备份放入新电脑的 <code>%USERPROFILE%\.airi-wow-companion</code>，再启动软件。</li><li>重新检查模型服务凭据、参考音频、本地模型路径、游戏目录和传输码校准。路径不同或不可用的文件需重新选择。</li></ol><p class="notice">个人资料备份包含密钥、聊天和账号记录。只在自己的电脑间迁移，不要把它放入公开分发的程序包。本次交付包不包含这些资料。</p><p>若启动时自行设置了 <code>APP_USER_DATA_PATH</code>，以该路径为准。更新前先核对实际使用的资料目录。</p></section>
+<section id="help"><h2>7. 常见问题</h2><div class="scroll"><table><thead><tr><th>现象</th><th>先检查</th></tr></thead><tbody><tr><td>双击后无法启动</td><td>是否已完整解压，是否保留 resources 与同级 DLL，是否运行 x64 Windows，当前文件夹是否可写。不要只移动 EXE。</td></tr><tr><td>提示找不到 Python</td><td>2.24.0 Windows 发行包内置 Python。重新完整解压发行包，再运行“交付版本自检”。开发模式另需 PATH 中的 Python 3.10 或更新版本。</td></tr><tr><td>聊天提示服务商或模型不存在</td><td>新电脑不带旧电脑的密钥。检查当前陪伴角色的服务商、API 地址和模型选择，保存后重试。</td></tr><tr><td>有文字，但聊天无声</td><td>检查语音服务、模型与音色，并先使用语音试听。检查软件静音、音量和 Windows 输出设备。</td></tr><tr><td>游戏连接仍在等待</td><td>确认对应陪伴插件已启用、角色已登录、数据码可见。打开对应版本校准页，检查新电脑上的显示位置。</td></tr><tr><td>打开了多个魔兽窗口</td><td>选择正确游戏版本。截图或桥接无法区分窗口时，先保留目标客户端，再重试连接。</td></tr><tr><td>“看看这个”没有成功识图</td><td>开启游戏截图辅助，配置当前角色的视觉模型，让游戏窗口可见。若聊天模型不支持图片，再开启视觉“用于聊天”。</td></tr><tr><td>另一台电脑没有我的形象</td><td>自定义形象保存在个人资料中。选择包内预设，或导入完整的模型资源。</td></tr></tbody></table></div></section>
+<section id="checks"><h2>8. 交付验证</h2><p>2.24.0 的物品采集、SQLite、界面、构建与发行校验结果见本次交付记录。下列数字为已完成的 2.23.0 历史回归，不代替本次验收。</p><p id="portable-validation">历史 2.23.0 验证：闲聊真实浏览器集成 13 项、桥接 life／像素／旧登录兼容 31 项、正式服完整 Lua 234 项、无限服完整 Lua 241 项、发行资源 6 项及启动器隔离模拟 13 项通过。桌面工作区类型检查与针对性 ESLint 通过。模型、IPC 与音频边界使用模拟，未读取个人配置或调用付费服务。最终生产构建、压缩包完整性与 SHA256 以本次随包验证记录为准。无限服仅完成接口资料核对与 Lua 模拟，尚未进行真实客户端验收。</p><p class="muted">软件在本机隔离环境中的检查不能代替新电脑上的实际游戏、模型服务、麦克风和音频输出验收。</p><button type="button" onclick="window.print()">打印 / 保存 PDF</button></section>
+<footer>魔兽陪伴精灵 · Windows x64 安装发行包 · 2.27.0<br>本说明可离线阅读，不加载外部字体、脚本或图片。</footer>
+</main></body></html>

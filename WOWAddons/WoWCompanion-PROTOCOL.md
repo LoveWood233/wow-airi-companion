@@ -1,5 +1,97 @@
 # WoW Companion: WCP1 / WCF1 frames, snapshot version 3
 
+## Life progress transport (2.23.0)
+
+Retail 2.23.0 and Forever 1.19.0 send a separate small frame. New character snapshots omit the inline login pair.
+The existing WCP1/WCF1 grid, 512-byte frame and 504-byte payload limit stay unchanged.
+
+```json
+{"v":1,"kind":"life","s":"transport-session","g":"Player-1-A","l":"game-login","c":5,"t":120}
+```
+
+The exact fields are `v`, `kind`, `s`, `g`, `l`, `c`, and `t`.
+Version is integer 1. Session and login IDs contain 1–40 ASCII letters, digits, underscores or hyphens.
+GUID uses the same alphabet with a 48-byte maximum. Count and tick are integers from zero through 2147483647.
+
+`l` identifies the real game login. `/reload` restores it from SavedVariables for the same GUID.
+`c` counts observed combat-entry/combat-exit transitions. Bridge polling never manufactures counts from sampled combat flags.
+Unknown login event flags leave the capability unknown. First installation during a running login requires one actual relog.
+
+One of the existing macro data opportunities carries life progress every two seconds.
+Snapshot phases remain at 250-millisecond alternation, with the existing one-second business heartbeat.
+Macro status uses the other macro opportunities. Calendar and buff slots keep their existing schedule.
+Fresh comparisons retain priority over ordinary equipment and background streams in their available data slots.
+A saturated comparison stream still receives at least 15 slots in the synthetic twelve-second scheduling test.
+
+The bridge requires a fresh, online, non-demo base snapshot with matching transport session and GUID.
+It merges accepted life data into the public snapshot as `loginId` and `combatEnds`.
+Life never changes base freshness, `lastSeen`, connection status or the event cursor.
+Life expires after five seconds. Duplicate or older ticks never extend freshness.
+Accepted ticks increase strictly. Counts never decrease within the same login.
+Life tick must lie between base tick minus five and base tick plus one.
+An unexpected login change inside one transport identity revokes the pair rather than mixing sessions.
+
+Offline, paused, stale, capture-error and demo observations expose no life pair.
+Revocation retains sequence watermarks, so a repeated frame cannot restore expired progress.
+A changed account, transport session or GUID starts a separate life identity.
+Older supported v3 producers can still carry the atomic inline pair.
+After a session adopts life frames, expiry never falls back to an old inline pair.
+
+Tests render actual addon Lua into 4096 black/white textures, build a 64×64 BGRA capture, and decode it through Python.
+Both games pass eighteen synthetic Chinese identity/economy combinations with life progress available in every case.
+Character payloads exactly match their no-pair baseline. Existing label-budget limits remain, without further reductions for life data.
+These are simulated client API and transport tests. They are not live Retail or Infinite client verification.
+
+## Full carried and bank item storage (2.24.0, container v2)
+
+Retail 2.24.0 and Infinite 1.20.0 publish container v2 through the separate `kind=store` stream introduced in 2.20.0.
+Main snapshots remain v3. The fragment format and 64×64 screen grid remain unchanged.
+Each fragment uses `{v:1,kind:"store",s,g,id,p,n,d}` with 240 raw bytes per Base64 chunk.
+One container has at most 200 slots, 2 MiB of JSON and 8739 fragments.
+The receiver retains two pending revisions with a ten-hour absolute deadline. Duplicates do not extend that deadline.
+
+A container body has these exact fields:
+
+`v`, `id`, `session`, `guid`, `observedAt`, `scope`, `container`, `capacity`, `complete`, `cached`, `slots`.
+
+`scope` is `bags`, `bank` or `account-bank`. `container` is the public container ID, not a guessed bank tab number.
+`slots` lists every slot in order, with `slot`, `state`, `quantity`, and `item`.
+`state` is `occupied`, `empty` or `unknown`. Empty and unknown entries require zero quantity and a null item.
+Occupied entries require positive quantity and bounded instance-item fields.
+Container v1 retains the original sixteen item fields. Container v2 adds nullable `classID` and `subclassID`, each 0 through 255.
+The IDs come from the public instant-item API. Missing IDs remain null; localized names do not determine classification.
+An empty `equipLoc` identifies a publicly reported non-equipment location. Other missing labels remain null.
+Storage accepts materials without relaxing validation for worn equipment.
+`complete` describes slot enumeration. Individual detail flags still identify missing attributes, tooltips or cropped text.
+`cached=true` retains a dated bank capture from SavedVariables, not a new live bank observation.
+
+Only publicly viewable bank types and purchased tabs are scanned. Closed or unavailable banks never publish an empty replacement.
+Changed containers create revisions. In-flight revisions finish before their coalesced successor, with fair container rotation.
+Frames are encoded lazily and replay in background capacity. Existing heartbeat and fresh equipment-comparison priorities remain intact.
+
+The frequent status response adds `itemStorageRevision` and `itemStorageError` without including full item bodies.
+`GET /api/item-storage?after=N` returns `{instanceId,cursor,record,hasMore}`, with at most one changed container.
+Electron main persists verified pages in `userData/wow-companion-items.sqlite`, using the built-in `node:sqlite` module.
+Container and slot identities include game, account, scope, container, and character GUID.
+Account-bank containers use an empty owner GUID, so different observing characters do not duplicate the same account bank.
+Container updates and their bridge cursor commit together. Failed writes roll back both and allow the same page to be retried.
+Only a complete enumeration clears known empty slots or removes slots beyond a smaller capacity.
+Partial empty or unknown slots preserve previous items with their original timestamps and an uncertainty flag.
+Cached bank records remain dated observations. They do not replace newer live captures.
+
+Class IDs 2 and 4 with an equipment location identify equipment.
+Classes 3, 5, 7, 9, and 19 identify profession-related records.
+Classes 0, 1, and 8 identify product candidates, not proven crafting results.
+The profession query includes both profession records and these candidates; a separate candidate filter is also available.
+Every query row reports `craftingOrigin:"unknown"`. Item names and class IDs cannot establish how a particular instance was obtained.
+V1 records and missing class evidence keep the unknown category. Other readable items remain stored outside these filters.
+
+Queries bind all SQL values and return at most 100 rows. The renderer cannot choose a database path or submit SQL.
+Backups serialize validated logical container and slot rows in a database transaction, never SQLite binary bytes as UTF-8.
+Restore replaces the logical rows atomically and resets bridge cursors. Unknown schemas and damaged databases are not overwritten.
+The existing `inv` stream remains the separate aggregated carried-material count contract.
+See [item-storage ownership and persistence](../airi/docs/ai/adr/wow-item-storage.md) for archive fields and evaluation limits.
+
 The addon publishes a bounded snapshot through a visible black-and-white grid. The desktop bridge reads the grid without accessing game process memory.
 
 ## Scene observations (2.14.0)
@@ -226,10 +318,11 @@ Atomic replacement protects completed saves. Invalid files remain untouched, and
 
 This feature makes no model requests and adds no speech trigger. Reminder preferences and notification cooldowns retain their existing behavior.
 
-## Equipment comparison observations (desktop and bridge 2.9.0)
+## Equipment comparison observations (2.25.0, comparison v2)
 
-Retail addon 2.8.0 and Forever addon 1.5.0 add a separate comparison stream. Snapshot v3, equipment observations, and frame size remain unchanged.
-Update the addon, bridge, and desktop together. 魔兽陪伴精灵 requires bridge 2.9 or later for this feature.
+Retail addon 2.25.0 and Infinite addon 1.21.0 publish comparison body v2. Snapshot v3, equipment acquisitions and the 64×64 frame remain unchanged.
+Update the addon, bridge and desktop together. Live v1 comparisons do not provide the required producer conclusion.
+Saved comparison v1 remains a supported manual-review archive input. The desktop does not recreate a decision for it.
 
 A `cmp` fragment uses the existing 512-byte frame and 504-byte payload limit:
 
@@ -245,12 +338,14 @@ The comparison body has these required fields:
 
 | Field | Meaning |
 | --- | --- |
-| `v`, `id`, `session`, `guid` | Version 1 and the matching equipment acquisition identity. |
+| `v`, `id`, `session`, `guid` | Body version 2 and the matching equipment acquisition identity. |
 | `class`, `spec`, `primary` | Observed class and specialization. Primary stat is 1 for strength, 2 for agility, 4 for intellect, or 0 for unknown. |
 | `observedAt` | Original game observation time in Unix seconds. Zero means unknown. |
 | `slot` | Target equipment slot, or 0 when no target is available. |
 | `usable`, `specMatch` | Observed usability and specialization match. An unavailable specialization match is `null`. |
 | `current`, `candidate` | Equipment attributes at comparison time. `current=null` accompanies an unavailable target slot. |
+| `assessment` | Addon-owned `verdict` (`upgrade`, `not_upgrade`, `review`) and the matching reason code. |
+| `deltas` | At most 64 unique `{key,before,after}` entries bound to the observed item stats. The addon selects active-primary facts. |
 
 Each item contains `itemID`, `name`, `itemLevel`, `equipLoc`, `type`, `subtype`, `stats`, `complex`, and `complete`.
 Item labels use at most 128 UTF-8 bytes. Stats retain at most 32 unique keys and finite values.
@@ -258,27 +353,30 @@ An empty slot uses `itemID=0`, `itemLevel=-1`, and an empty stats array.
 Unknown or restricted item values cannot prove an upgrade. Oversized comparisons are rejected without truncating the evidence.
 
 The API exposes `equipmentComparisons` and `equipmentComparisonError`. It retains the ten latest live comparison records.
-魔兽陪伴精灵 independently evaluates the received evidence. It stores ten comparison observations per game in separate user-data files:
+The addon evaluates item quality. The bridge and desktop validate the envelope and differences without recalculating upgrade rules.
+The desktop stores ten comparison observations per game in separate user-data files:
 `wow-companion-equipment-comparisons-v1.json` and `wow-companion-forever-equipment-comparisons-v1.json`.
 Acquisition ID, character GUID, session, and account correlate a saved comparison with an equipment history entry.
 These records describe equipment at observation time. They are not a continuously updated snapshot of all equipped slots.
 
 ### Decision rules
 
-Only a clear upgrade can produce a desktop equipment question or enter the game confirmation queue.
+An upgrade or an explicit primary-stat tradeoff can enter the game confirmation queue.
+The desktop displays the supplied recommendation without a second confirmation choice.
 The candidate must be usable, match the active specialization, and have complete comparison data.
 A comparable item keeps the equipment type and slot layout. Recognized quantitative stats for the active specialization cannot decrease, and at least one must increase.
 Only the active primary stat participates. Other specialization primary stats do not contribute.
 Item level cannot decrease. A higher item level alone does not prove an upgrade. Equal item levels can still qualify through better stats.
-An available empty slot can qualify. Unknown data, stat tradeoffs, complex effects, sets, sockets, and enchantments require manual review.
+An available empty slot can qualify. Unknown data, complex effects, sets, sockets and enchantments require manual review.
+A higher item level and active primary stat with only secondary-stat losses can offer a review that explains the tradeoff.
 Items that do not suit the specialization, or have only stat losses, do not trigger an upgrade question.
 The implementation does not translate a stat difference into a claimed damage or healing percentage.
 
 The desktop also requires a matching, live, unexpired game offer. Character, session, class, specialization, slot, and both item identities must agree.
 A missing comparison never falls back to item level alone. Spec changes, stale capture, and changed offers cancel the question.
 The game repeats its comparison and slot checks when the player clicks the confirmation.
-Desktop Yes remains a request to return to the game confirmation. It does not send a game command or simulated input.
-Voice availability controls speech output. Text and ten-second Yes/No choices remain available without speech.
+Only the game confirmation button can start dressing. The desktop sends no dressing command or simulated input.
+A spoken desktop notice remains visible for three seconds after playback. Without speech, its notice text remains for three seconds.
 
 API definitions: [Retail item APIs](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua), [Retail specialization APIs](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpecializationInfoDocumentation.lua), and the corresponding [Forever item](https://github.com/Gethe/wow-ui-source/blob/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua) and [specialization](https://github.com/Gethe/wow-ui-source/blob/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpecializationInfoDocumentation.lua) definitions.
 
@@ -574,6 +672,12 @@ Buff and calendar frames alternate in the same reserved quarter of data slots. E
 `/api/status` 增加必填可空 `quests,questsReceivedAt,questsError`。乱序、重复、冲突和旧修订独立处理，不挤占装备／库存拼装。新修订在途时隐藏旧任务快照；不同角色／会话、离线、过期、暂停、演示和读取错误不能提供当前任务。游戏端在初次传输完成后约 60 秒重采安静日志，任务与背包公平分享后台时隙，不阻塞新装备／比较帧。
 
 正式服此链路仅提供客户端实际只读任务观测，不关联无限图鉴任务资料，也不采集任务坐标或自动操作游戏。
+
+2.25.0 增加可选 `advice:{v:1,playerLevel,candidates}` 能力，qlog 快照及分片版本保持不变。`playerLevel` 为采集时的公开角色等级，未知时为 null 且候选为空。
+插件独自选择 `ready`、`turned-in`、`level-risk`、`leveling` 候选，每项为 `{kind,questID,eventAt}`，最多 83 条且三字段组合不能重复。状态候选 eventAt 为 null；事件候选使用现实时间戳。
+非交付候选必须引用当前保留日志条目；交付候选必须引用同 ID、同时间的真实 turnIns 记录。裁剪日志时同步重建候选，不能留下悬空引用。
+等级风险沿用高于角色至少 5 级的规则；升级后任务候选只由真实 `PLAYER_LEVEL_UP` 触发，在角色当前等级 -5～+2 范围内选择一个未失败、未就绪的已知任务，最多保留 120 秒。交付候选最多保留 180 秒。
+桌面只校验角色、会话、观测等级、时效和候选关联，保留启动基线、回执与全局三分钟播报冷却，不再重新计算任务等级差或轮询推断升级。没有 advice 的旧资料继续支持显示、档案和用户主动查询，不触发主动任务提醒。
 
 ## 已提交天赋观测（桥接 2.19.0）
 

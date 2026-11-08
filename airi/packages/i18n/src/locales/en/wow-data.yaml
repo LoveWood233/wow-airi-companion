@@ -1,0 +1,116 @@
+title: Data and cache
+description: Detect Retail client updates, create verified local snapshots, and manage disposable query cache.
+current:
+  title: Current data selection
+  client-build: Detected Retail client build
+  previous-build: Previously detected build
+  checked: 'Last detection: {time}'
+  changed: The installed client build changed. The selected database remains unchanged until you switch it.
+  active: Selected snapshot
+  none: No database is selected.
+  external: The selected database is outside managed snapshots. Its version is not verified by this page.
+  open-query: Open Retail local database
+  unknown: Unknown
+  no-auto-update: Detection reads local build metadata. It does not export data, download tools, or switch databases.
+paths:
+  title: Local folders and offline requirements
+  game: Retail game installation
+  tools: CASC tool project
+  choose-game: Choose game folder
+  choose-tools: Choose CASC tools folder
+  unselected: Not selected
+  check: Check local requirements
+  offline: Prepare tools, field definitions, and build dependencies locally. This page does not download them.
+  checks:
+    python: Python
+    dotnet: .NET SDK
+    exporter: Local DB2 exporter
+    definitions: Local field definitions
+    offline-guard: Local-only read protection
+  statuses:
+    unknown: Not checked
+    ready: Ready
+    missing: Missing
+    invalid: Invalid
+job:
+  title: Manual snapshot export
+  description: Export the configured local client, build SQLite, and verify the snapshot before it becomes selectable.
+  start: Export and verify snapshot
+  cancel: Cancel export
+  cancelling: Waiting for the export process to stop…
+  idle: No export is running.
+  phases:
+    checking: Checking local requirements
+    exporting: Reading local DB2 tables
+    building-sqlite: Building the query database
+    verifying: Verifying the exported snapshot
+    ready: Snapshot verification passed
+    failed: Snapshot export failed
+    cancelled: Snapshot export cancelled
+  progress: '{completed} / {total} tables reported'
+  progress-unknown: '{completed} tables reported. Total count is unknown.'
+  no-count: This stage has no reported numerical progress.
+  progress-note: Progress comes from the local export process. No completion time or percentage is estimated.
+  updated: 'Last job update: {time}'
+  ready: The new snapshot passed verification. Select it below to change the database used for queries.
+  ready-selected: The verified snapshot is selected for queries.
+  failure-keeps-active: Failure or cancellation keeps the previously selected database available.
+snapshots:
+  title: Managed snapshots and rollback
+  description: Keep up to two managed snapshots, with the selected managed snapshot retained first. External databases stay outside this history.
+  empty: No managed snapshot is available yet.
+  selected: Currently selected
+  verified: Verified local snapshot
+  created: 'Created: {time}'
+  exported: 'Source export time: {time}'
+  activate: Select this snapshot
+  rollback: Roll back to this snapshot
+  source: 'Source: {name}'
+  locale: 'Data language: {locale}'
+  no-hotfixes: Server hotfixes are not automatically applied.
+  encrypted: Encrypted sections can leave source records unavailable.
+  switch-note: Export completion does not select a database. Switching and rollback require your explicit action.
+cache:
+  title: Query cache
+  entries: Cached results
+  used: Cache space used
+  maximum: Capacity limit
+  static-ttl: Static reference cache
+  price-ttl: Auction price cache
+  hours: '{count} hours'
+  minutes: '{count} minutes'
+  mib: '{size} MiB'
+  inspect: Refresh cache status
+  clear: Clear query cache
+  unavailable: Cache measurements are unavailable.
+  policy: Results stay isolated by game, client build, language, and data snapshot. Expired prices are not live quotes.
+  clear-note: This removes disposable query cache only. Databases, managed snapshots, and chat records remain available.
+feedback:
+  cache-cleared: Query cache cleared.
+  snapshot-selected: The selected snapshot is now the query source.
+errors:
+  configuration-invalid: The saved folder configuration is invalid. Select the folders again.
+  configuration-save-failed: The local folder configuration could not be saved.
+  game-root-invalid: Choose a valid Retail game installation.
+  tools-root-invalid: Choose the CASC tool project that contains the local exporter.
+  build-info-invalid: Retail build metadata is missing or invalid.
+  build-ambiguous: More than one client build matches. Check the selected game folder.
+  python-missing: Python is unavailable. Prepare it locally, then check again.
+  dotnet-missing: The .NET SDK is unavailable. Prepare it locally, then check again.
+  exporter-missing: The local DB2 exporter is missing.
+  definitions-missing: Local field definitions are missing.
+  offline-guard-missing: The tool does not establish local-only reads. Check the offline protection first.
+  offline-build-required: Offline build dependencies are unavailable. Prepare the tool build locally before export.
+  busy: Another export operation is active.
+  export-failed: Local DB2 extraction failed. The selected database remains unchanged.
+  sqlite-failed: The query database could not be built. The selected database remains unchanged.
+  verification-failed: Snapshot verification failed. The snapshot cannot be selected.
+  source-changed: The game source changed during export. Check its build and retry.
+  snapshot-invalid: The managed snapshot is missing, changed, or unverified.
+  activation-failed: The snapshot could not be selected. Check the current database before retrying.
+  cancelled: The export was cancelled.
+  filesystem-failed: The local files cannot be accessed.
+  unsupported-platform: Snapshot export requires Windows.
+  bridge-unavailable: The local data service is unavailable. Retry the status check.
+  cache-unavailable: Query cache could not be accessed. Existing databases and chat records are unaffected.
+  generic: The operation failed. Check the local settings and retry.

@@ -1,0 +1,50 @@
+{
+  "outcome": "ok",
+  "id": "recipe:8796",
+  "title": "熔炼瑟银",
+  "text": "熔炼瑟银（采矿 · 熔炼锭）\n效果：使矿工可以将一块瑟银矿石熔炼成一块瑟银锭。需要有熔炉才能进行。\n材料：瑟银矿石×1\n制作地点：需要在熔炉旁边\n产出：瑟银锭×1",
+  "url": "https://wuxianwow.com/recipe/8796",
+  "metadata": {
+    "id": "recipe:8796",
+    "kind": "recipe",
+    "recipe_id": 8796,
+    "spell_id": 16153,
+    "game_link": "|cffffd000|Henchant:16153|h[采矿: 熔炼瑟银]|h|r",
+    "product_game_link": "|cffffffff|Hitem:12359:::::::::::::|h[瑟银锭]|h|r",
+    "game_link_note": "客户端聊天超链接转义串；聊天框会过滤「|」，要贴进游戏需用宏：/run ChatFrame1EditBox:Insert(\"…\")，宏里把 | 写成 \\124",
+    "profession": "采矿",
+    "category": "采矿 › 熔炼锭",
+    "new_in_160": false,
+    "effect": "使矿工可以将一块瑟银矿石熔炼成一块瑟银锭。需要有熔炉才能进行。",
+    "reagents": [
+      {
+        "item_id": 10620,
+        "name": "瑟银矿石",
+        "count": 1,
+        "hidden": false
+      }
+    ],
+    "products": [
+      {
+        "item_id": 12359,
+        "name": "瑟银锭",
+        "count": 1,
+        "hidden": false,
+        "quality": 1,
+        "ilvl": 50,
+        "req_level": 0
+      }
+    ],
+    "product_hidden": false,
+    "equipment": null,
+    "taught_by": [],
+    "taught_by_note": "来自 ItemEffect 学习法术；来源只列客户端能证明的声望奖励，商人 / 掉落 / 任务奖励不在 客户端数据内",
+    "skill_up_range": [
+      250,
+      250
+    ],
+    "min_rank": 1,
+    "tools": [],
+    "craft_at": "熔炉"
+  }
+}

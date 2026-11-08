@@ -1,15 +1,21 @@
 import type { ChatToolCallWidgetRegistry } from './tool-call-renderer'
 import type { ToolResultCoverage } from './tool-call-widget-reading'
 
+import { isWowReferenceCall, readWowBuildAnswer, readWowBuildToolRequest, readWowQuestAnswer, readWowReferenceAnswer, readWowRetailAnswer, WOW_BUILD_ASSISTANT_TOOL_NAME, WOW_QUEST_ASSISTANT_TOOL_NAME, WOW_RETAIL_QUERY_TOOL_NAME } from '@proj-airi/stage-shared/wow-knowledge'
 import { array, looseObject, number, optional, parseJson, pipe, record, safeParse, string, unknown } from 'valibot'
 
 import ToolCallHomeAssistantWidget from './tool-call-home-assistant-widget.vue'
 import ToolCallJudgmentWidget from './tool-call-judgment-widget.vue'
 import ToolCallRecipeWidget from './tool-call-recipe-widget.vue'
 import ToolCallWebSearchWidget from './tool-call-web-search-widget.vue'
+import ToolCallWowBuildWidget from './tool-call-wow-build-widget.vue'
+import ToolCallWowQuestWidget from './tool-call-wow-quest-widget.vue'
+import ToolCallWowReferenceWidget from './tool-call-wow-reference-widget.vue'
+import ToolCallWowRetailWidget from './tool-call-wow-retail-widget.vue'
 
 import { HOME_ASSISTANT_TOOL_NAMES } from '../../../../tools/home-assistant'
 import { JUDGE_RECIPE_TOOL_NAME, parseJson as parseRecordedJson, readJudgment } from '../../../../tools/judge-recipe'
+import { MCP_CALL_TOOL_NAME } from '../../../../tools/mcp'
 import { readRecipeUse, USE_RECIPE_TOOL_NAME } from '../../../../tools/use-recipe'
 import { parseWebSearchResults, WEB_SEARCH_TOOL_NAME } from '../../../../tools/web-search'
 import { defineToolCallWidget } from './tool-call-renderer'
@@ -34,6 +40,41 @@ const JUDGMENT_OMITTED: ToolResultCoverage = { next: true }
 
 /** Widgets for the tools that stage-ui owns. An app adds widgets for its own tools through `toolCallWidgets`. */
 export const builtinToolCallWidgets: ChatToolCallWidgetRegistry = {
+  [WOW_BUILD_ASSISTANT_TOOL_NAME]: defineToolCallWidget(ToolCallWowBuildWidget, (result, args) => {
+    const report = readWowBuildAnswer(result, args)
+    if (!report)
+      return undefined
+    const request = readWowBuildToolRequest(JSON.parse(args) as unknown)
+    return request ? { props: { report, request }, failed: ['error', 'unsupported', 'unavailable'].includes(report.outcome) } : undefined
+  }, {
+    autoOpen: true,
+    title: () => ({ key: 'wow-build-reference.title' }),
+  }),
+  [WOW_QUEST_ASSISTANT_TOOL_NAME]: defineToolCallWidget(ToolCallWowQuestWidget, (result, args) => {
+    const report = readWowQuestAnswer(result, args)
+    return report ? { props: { report }, failed: report.outcome === 'error' || report.outcome === 'unavailable' } : undefined
+  }, {
+    autoOpen: true,
+    title: () => ({ key: 'wow-quest-reference.title' }),
+  }),
+  [WOW_RETAIL_QUERY_TOOL_NAME]: defineToolCallWidget(ToolCallWowRetailWidget, (result, args) => {
+    const report = readWowRetailAnswer(result, args)
+    return { props: { report }, failed: report.status === 'error' || report.status === 'invalid' }
+  }, {
+    autoOpen: true,
+    title: (result, args) => ({ key: `wow-retail.titles.${readWowRetailAnswer(result, args).status}` }),
+  }),
+  [MCP_CALL_TOOL_NAME]: defineToolCallWidget(ToolCallWowReferenceWidget, (result, args) => {
+    const report = readWowReferenceAnswer(result, args)
+    return report ? { props: { report }, failed: report.status === 'error' || report.status === 'invalid' } : undefined
+  }, {
+    matches: isWowReferenceCall,
+    autoOpen: true,
+    title: (result, args) => {
+      const report = readWowReferenceAnswer(result, args)
+      return report ? { key: `wow-reference.titles.${report.status}` } : undefined
+    },
+  }),
   [WEB_SEARCH_TOOL_NAME]: defineToolCallWidget(ToolCallWebSearchWidget, (result) => {
     if (typeof result !== 'string')
       return undefined

@@ -17,6 +17,7 @@ import type {
 } from '@proj-airi/stage-shared/godot-stage'
 import type { ServerChannelQrPayload } from '@proj-airi/stage-shared/server-channel-qr'
 import type { IOTraceRecordingState, SerializedIOSpan } from '@proj-airi/stage-shared/types/io-trace'
+import type { WowDataCacheEvidence, WowReferenceEvidence } from '@proj-airi/stage-shared/wow-knowledge'
 import type {
   ThreeHitTestReadTracePayload,
   ThreeSceneRenderInfoTracePayload,
@@ -544,6 +545,7 @@ export interface ElectronMcpToolDescriptor {
 export interface ElectronMcpCallToolPayload {
   name: string
   arguments?: Record<string, unknown>
+  cachePolicy?: 'bypass'
 }
 
 export interface ElectronMcpCallToolResult {
@@ -551,6 +553,8 @@ export interface ElectronMcpCallToolResult {
   structuredContent?: Record<string, unknown>
   toolResult?: unknown
   isError?: boolean
+  cache?: WowDataCacheEvidence
+  wowReference?: WowReferenceEvidence
 }
 
 export interface ElectronMcpConfigText {

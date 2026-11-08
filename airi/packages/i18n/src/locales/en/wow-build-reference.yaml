@@ -1,0 +1,58 @@
+title: Talent and equipment references
+operations:
+  talents: Talent explanation
+  compare-talents: Talent plan comparison
+  spell: Related ability
+  compare-item: Equipment comparison
+games:
+  forever: WoW Forever
+  retail: WoW Retail
+states:
+  empty: No matching record was found in this source.
+  unavailable: Required evidence is unavailable. Open the assistant to check the source.
+  unsupported: This plan format is not supported. Use a supported link or an explicit node list.
+  error: The reference request failed. Open the assistant for details.
+limits: Missing evidence remains unknown. Base descriptions do not include every character modifier. This explanation does not establish DPS or an optimal build.
+unknown: Unknown
+current-rank: Observed active rank
+purchased-rank: Observed invested points
+planned-rank: Planned investment
+rank-delta: Investment difference
+planned-description: Base description for the planned investment
+current-description: Base description for the observed rank
+mapping:
+  same-build: Reference and observation builds match.
+  unverified: The reference mapping to current talents is unverified.
+  observation-only: Actual observation only. Missing reference facts remain unknown.
+plans:
+  source-validated: The reference source parsed this plan.
+  source-adjusted: The reference source adjusted this plan. Review the changes below.
+  partial: Only the listed nodes are compared. Missing nodes do not mean zero.
+partial-nodes: This card shows part of the nodes. Open the assistant for the full explanation.
+open-node: Explain this node
+open-source: Open in 无限图鉴
+open-assistant: Open talent and equipment assistant
+spell-unresolved: A resolved ability description is unavailable. Raw templates are not scaled effects.
+slots:
+  compatible: Equipment slot matches. Character usability remains unverified.
+  incompatible: Equipment slot does not match.
+  unknown: Equipment slot match is unknown.
+item-basis: Compares a recorded equipped instance with base item reference data. The difference is not a performance gain.
+stat: Attribute
+observed: Equipped capture
+catalog: Base reference
+delta: Difference
+stats-unresolved: The source has no comparable numerical attributes. Missing values are not zero.
+weapon-review: Weapon pairs and two-hand changes need separate review. Other slots are not added or removed here.
+source: Source
+sources:
+  talent-observation: Committed talent observation
+  equipment-observation: Last equipped-item capture
+build: Client build
+received-at: Original reference query
+observed-at: Game observation
+exported-at: Database export
+cache:
+  hit: Cache served
+  miss: Fresh query served
+  expires: Cache expires

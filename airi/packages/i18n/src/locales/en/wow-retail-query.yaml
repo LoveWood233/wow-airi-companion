@@ -1,0 +1,91 @@
+title: Retail local database
+description: Search the exported Retail DB2 database without a model, game process, or internet request.
+database:
+  title: Database file
+  choose: Choose database
+  replace: Choose another database
+  clear: Unselect database
+  inspect: Check data and version
+  unconfigured: No local database is selected.
+  selected: Database selected. Check it or run a query to read its metadata.
+  local-path: Selected local file
+  note: Selecting a file saves the local selection. Ordinary page entry does not start a database query.
+  readonly: Queries are read-only. The game installation and exported database are not modified.
+query:
+  title: Search records
+  kind: Record type
+  text: Name or ID
+  placeholder: Enter part of a name or a numeric ID
+  search: Search database
+  empty: No matching records were found.
+  results: Last search results
+  no-search: Choose a record type and submit a search.
+  open: Open details
+  previous: Previous page
+  next: Next page
+  page: 'Records {from}–{to}'
+  partial: More records are available. Use the next page to continue.
+  id: 'Record ID: {id}'
+detail:
+  title: Record details
+  missing: The selected record is not present in this database.
+  fields: Recorded fields
+  links: Related records
+  related: 'Open related record: {title}'
+  no-fields: No additional fields are available.
+kinds:
+  item: Items
+  map: Underlying maps
+  uimap: World map regions
+  area: Areas
+  spell: Spells
+  encounter: Dungeon encounters
+source:
+  original-received: Original source query time
+  cache-hit: Read from query cache
+  cache-served: 'Cache read: {time}'
+  cache-expires: 'Cache expires: {time}'
+  title: Data source and scope
+  name: Retail local DB2
+  game: World of Warcraft Retail
+  build: Client build
+  locale: Data language
+  exported: Export time
+  received: Query receipt time
+  hotfixes: Server hotfixes
+  hotfixes-applied: Applied to this snapshot
+  hotfixes-not-applied: Not applied to this snapshot
+  tables: Source tables
+  rows: '{count} decoded rows'
+  encrypted: Encrypted sections can hide additional records.
+  decoded: Decoded
+  decoded_with_encrypted_sections: Decoded with encrypted sections
+  unknown: Unknown
+  local-only: These are local client records. They do not establish current server behavior or complete drop tables.
+  no-web-link: This local record has no verified public source page.
+stats:
+  title: Database coverage
+  count: '{count} records'
+busy: Reading local database…
+notices:
+  client-db2-only: These are client DB2 records. Server-only information is outside this database.
+  hotfixes-not-applied: Server hotfixes are not applied. Values can differ from the current game.
+  encrypted-sections: Some source tables have encrypted sections. Decoded rows do not represent every record.
+  missing-fields: Some expected fields are unavailable in this export.
+  raw-spell-template: Spell text is a client template. Placeholders are not resolved character values.
+  map-id-not-uimap-id: Underlying map IDs and world map region IDs are different namespaces.
+  content-tuning-not-exploration-level: Content tuning is not an original-world exploration level.
+  result-truncated: The returned result is partial.
+errors:
+  configuration-invalid: The saved database selection is invalid. Choose an export again.
+  configuration-save-failed: The database selection could not be saved. Check local access and retry.
+  database-unconfigured: Choose a local database first.
+  database-missing: The selected database file is missing. Select an available export.
+  database-unreadable: The selected database cannot be read. Check access or choose another file.
+  database-invalid: This file is not a supported Retail DB2 export.
+  database-changed: The database changed during this query. Check the selected export and retry.
+  query-invalid: Check the record type, query, or record ID.
+  query-timeout: The local query timed out. Try a more specific query.
+  query-failed: The local query failed. Check the selected database and retry.
+  bridge-unavailable: The local database service is unavailable.
+  generic: The operation failed. Check the selected database and retry.

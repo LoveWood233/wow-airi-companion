@@ -7,6 +7,7 @@ import { useI18n } from 'vue-i18n'
 import { RouterView, useRoute } from 'vue-router'
 
 import WindowTitleBar from '../components/Window/TitleBar.vue'
+import WowGuideOverlay from '../components/wow-guide-overlay.vue'
 
 import { fullscreenPanelKey } from '../components/fullscreen/panel'
 import { useRestoreScroll } from '../composables/use-restore-scroll'
@@ -64,7 +65,7 @@ const routeHeaderMetadata = computed(() => {
 </script>
 
 <template>
-  <div h-full w-full bg="$bg-color" flex="~ col">
+  <div :class="['h-full w-full bg-$bg-color', 'flex flex-col']">
     <WindowTitleBar v-if="!inFullscreenPanel" :title="routeHeaderMetadata?.title ?? ''" icon="i-solar:settings-bold" />
     <div
       :style="{
@@ -74,21 +75,22 @@ const routeHeaderMetadata = computed(() => {
         paddingLeft: 'env(safe-area-inset-left, 0px)',
       }"
 
-      min-h-0 flex-1
+      :class="['min-h-0 flex-1']"
     >
-      <div ref="scrollContainer" relative h-full w-full overflow-y-auto scrollbar-none>
-        <div flex="~ col" mx-auto h-full max-w-screen-xl>
+      <div ref="scrollContainer" :class="['relative h-full w-full overflow-y-auto scrollbar-none']">
+        <div :class="['mx-auto h-full max-w-screen-xl', 'flex flex-col']">
           <PageHeader
             :title="routeHeaderMetadata?.title ?? ''"
             :subtitle="routeHeaderMetadata?.subtitle ?? ''"
             :disable-back-button="isStageTamagotchi() && route.path === '/settings'"
-            px-4
+            :class="['px-4']"
           />
-          <div min-h-0 flex-1 px-4>
+          <div data-wow-guide-content :class="['min-h-0 flex-1 px-4']">
             <RouterView />
           </div>
         </div>
       </div>
     </div>
   </div>
+  <WowGuideOverlay />
 </template>

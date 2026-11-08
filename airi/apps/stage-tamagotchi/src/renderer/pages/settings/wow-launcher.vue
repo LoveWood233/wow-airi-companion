@@ -13,7 +13,7 @@ meta:
   subtitleKey: settings.title
   descriptionKey: wow-companion.launcher.description
   icon: i-solar:play-circle-bold-duotone
-  settingsEntry: true
+  settingsTool: true
   order: 10
   stageTransition:
     name: slide

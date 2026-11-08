@@ -1,0 +1,167 @@
+title: 专业与备料
+description: 查询配方、规划专业技能，并计算还需要准备的材料。
+game: 《魔兽世界：无限》国服
+game-note: 此备料工具使用无限服资料。正式服的配方与库存独立处理。
+modes:
+  recipe: 配方备料
+  leveling: 专业冲级
+recipe:
+  title: 将配方加入备料计划
+  search: 配方名称
+  search-description: 查询资料后，选择具体配方。
+  search-placeholder: 输入配方或制作物品的名称
+  find: 查询配方
+  empty: 没有匹配的配方，请尝试其他名称。
+  results: 匹配的配方
+  add: 加入计划
+  added: 已加入计划
+  count: 制作次数
+  count-description: 这里填写制作次数，不是成品数量。
+  quantity: 计划数量
+  unit: 数量含义
+  crafts: 制作次数
+  products: 成品数量
+  products-unavailable: 只有产出明确且仅有一种成品的配方，才能按成品数量计算。
+  remove: 移除配方
+  selected: 已选配方
+  none: 加入配方后即可计算材料。
+  output: '每次产出：{quantity}'
+  output-unknown: 每次产出数量未知。
+  skill: '所需专业技能：{skill}'
+  choose: 选择具体配方
+leveling:
+  title: 规划技能区间
+  profession: 专业
+  profession-description: 选择数据库中的专业。
+  from: 当前技能
+  to: 目标技能
+  range-description: 填写 1～300 之间的技能区间。
+  route: 配方范围
+  best: 全部配方，包含需要图样的配方
+  free: 只用不需要图样的配方
+  load: 生成冲级计划
+  steps: 建议制作步骤
+  span: '技能 {from}～{to}'
+  crafts: '制作 {count} 次'
+  prep: 中间材料
+  training: 训练节点
+  training-at: '技能 {skill} 时学习：{name}'
+  training-level: '需要角色等级：{level}'
+  training-assumed: 等级要求按原版规则假设
+  training-note: 这里显示资料中的学习要求。达到技能数值，不代表当前角色已满足全部学习条件。
+  estimate: 技能增长为估算，黄色和绿色配方可能需要额外制作。
+  no-route: 暂无覆盖此技能区间的可用路线。
+inventory:
+  title: 已有材料
+  character: '{name} · {realm}'
+  observed: '背包采集时间：{time}'
+  ready: 已取得当前角色的完整背包快照。
+  unknown: 暂无当前有效的完整背包快照，背包数量保持未知。
+  partial: 背包快照不完整，其中的数量不能代表全部库存。
+  stale: 背包快照属于先前会话，或已不再有效。
+  bank-unknown: 银行库存未知，可在下方填写额外材料。
+  manual-note: 手动补充数量会加到已采集的背包数量上，请勿重复填写同一份背包材料。
+  manual: 额外数量
+  manual-description: 未包含在已采集背包中的材料，例如你已自行核对的银行材料。
+  clear: 清空额外数量
+  related-material: 相关材料
+  related-description: 这里包含冲级路线中自行制作的中间材料。
+  choose-material: 选择一种材料
+  new-extra: 额外库存总数
+  new-extra-description: 此操作更新该物品的手填总数，背包采集数量独立保留。
+  save-extra: 保存额外库存
+  saved-extra: 已保存额外库存
+  remove-extra: 移除额外库存
+plan:
+  title: 合并材料清单
+  empty: 请先选择配方或生成冲级计划。
+  required: 总需求
+  bags: 背包计入
+  known-bags: 已知背包计入
+  extra: 手动补充
+  missing: 仍需准备
+  missing-upper-bound: 最多需准备
+  unknown: 未知
+  missing-unknown: 背包库存未知，无法确认实际缺料数量。
+  no-missing: 已记录的材料足以覆盖此计划。
+  copy: 复制清单
+  copied: 已复制材料清单。
+  copy-failed: 剪贴板不可用，请选中材料清单后复制。
+  item-id: '物品 ID：{id}'
+  source: 配方来源
+  products: '计划完成后的产物结余：{products}'
+  invalid-number: 请填写支持范围内的非负整数。
+budget:
+  title: 可选采购估价
+  description: 查询缺料的拍卖行采集价格，此操作不会下单。
+  estimate: 估算采购费用
+  total: '已知价格小计：{price}'
+  incomplete: 此估价存在资料缺失或快照限制，不能作为已确认的完整采购费用。
+  missing-prices: 部分材料没有可用价格，小计不代表完整费用。
+  historical: 价格来自采集的挂单，不是实时成交价，也不保证能按此价格购得。
+  collected: '价格采集时间：{time}'
+  scope: '市场范围：{scope}'
+  unknown-scope: 数据源未说明服务器或阵营范围。
+  scope-unverified: 此估价使用所列市场快照，不保证适用于你当前角色的服务器或阵营。
+  unit: '单件估价：{price}'
+  no-price: 暂无可用采集价格
+  stale: 价格快照已过时，决定购买前请重新查询。
+  money: '{gold}金 {silver}银 {copper}铜'
+source:
+  original-received: '原始来源查询时间：{time}'
+  cache-hit: 此次读取查询缓存
+  cache-served: '缓存读取时间：{time}'
+  cache-expires: '缓存失效时间：{time}'
+  title: 数据来源
+  build: '数据版本：{build}'
+  unknown-build: 未知
+  received: '查询收到时间：{time}'
+  updated: '来源更新时间：{time}'
+  method: 计算前提
+  open: 查看来源网页
+  uncertainty: 不完整或估算的记录不能证明当前角色可以制作整个计划。
+busy: 正在读取数据库资料…
+retry: 重试
+notices:
+  invalid-quantity: 某项数量超出了支持的整数范围。
+  quantity-overflow: 此计划超出了支持的计算范围。
+  invalid-selection: 部分配方选择无法计算。
+  ambiguous-product: 按成品数量计算前，需要明确一种产物。
+  unknown-yield: 配方没有明确的固定产出数量。
+  incomplete-reagents: 部分材料缺少明确的物品编号或数量。
+  incomplete-recipe: 配方资料不完整。
+  hidden-product: 产物名称未公开，请在游戏中确认是否可用。
+  conflicting-source-link: 配方编号与来源链接不一致。
+  estimated-skillups: 技能增长为估算，实际制作次数可能不同。
+  route-materials-unresolved: 现有资料无法解析部分中间材料。
+  incomplete-route: 现有路线没有覆盖完整的目标技能区间。
+  missing-route-recipes: 部分路线配方缺少可用的详情资料。
+  inventory-incomplete: 背包资料不完整，缺料数量仅为上限。
+  price-date-unknown: 来源保留了采集时间标签，但无法确认其时间戳。
+  price-date-future: 价格采集时间位于未来。
+  price-stale: 价格快照超出了估价使用的有效时间范围。
+  price-incomplete: 部分材料暂无可用价格，小计并不完整。
+  conflicting-prices: 数据源对同一物品返回了冲突价格。
+  conflicting-price-snapshots: 不同市场快照的价格不能合成同一份估价。
+  price-overflow: 价格估算超出了支持的范围，材料清单仍然保留。
+  variant-price-unverified: 挂单可能对应尚未核实的物品变体，已排除此报价。
+  incomplete: 来源记录不完整。
+  estimated: 部分数量为估算值。
+  truncated: 返回的清单不完整。
+  inventory-unknown: 当前背包数量未知。
+  bank-unknown: 银行数量未知。
+  price-missing: 部分材料暂无价格。
+errors:
+  unavailable: 无限图鉴暂不可用，请检查 MCP 连接后重试。
+  invalid: 返回的资料无法用于备料计算。
+  no-results: 没有匹配的资料。
+  invalid-range: 请填写 1～300 之间、当前技能低于目标技能的区间。
+  invalid-quantity: 请填写正整数制作次数。
+  unsupported-game: 此备料工具目前支持《魔兽世界：无限》国服。
+  request-failed: 查询失败，请检查连接后重试。
+  invalid-input: 请检查填写的内容后重试。
+  generic: 操作失败，请检查填写的内容和连接后重试。
+  source-unavailable: 无限图鉴暂不可用，请检查 MCP 连接后重试。
+  recipe-unavailable: 此配方缺少支持当前计算的完整材料资料。
+  inventory-unknown: 当前背包数量未知，仍可查看材料总需求。
+  price-unavailable: 采集价格暂不可用，材料计划仍然保留。

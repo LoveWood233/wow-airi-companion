@@ -50,6 +50,15 @@ function bridge(events: CompanionEvent[] = [], overrides: Partial<BridgeStatus> 
     equipmentComparisonError: null,
     equipmentLoadout: null,
     equipmentLoadoutError: null,
+    inventory: null,
+    inventoryReceivedAt: null,
+    inventoryError: null,
+    quests: null,
+    questsReceivedAt: null,
+    questsError: null,
+    talents: null,
+    talentsReceivedAt: null,
+    talentsError: null,
     config: { x: 8, y: 8, cellSize: 2, pollMs: 500, paused: false },
     error: null,
     ...overrides,
@@ -137,6 +146,46 @@ describe('woW companion notification policy', () => {
     policy.accept(bridge([], { snapshot: { ...snapshot, px: 1234, py: 5678 } }), defaultSettings, now)
     expect(policy.accept(bridge([], { snapshot: { ...snapshot, seq: 2, tick: 2, px: 1250, py: 5700 } }), defaultSettings, now + 1000)).toBeUndefined()
     expect(policy.accept(bridge([event(1)], { snapshot: { ...snapshot, seq: 3, tick: 3, px: 1250, py: 5700 } }), defaultSettings, now + 2000)?.type).toBe('level_up')
+  })
+})
+
+describe('death interaction lifecycle', () => {
+  const settings = { ...defaultSettings, cooldownSeconds: 0, death: true, revive: true, quietInCombat: true }
+
+  it('responds once per death and permits a new response after resurrection', () => {
+    const policy = new CompanionPolicy()
+    policy.accept(bridge(), settings, now)
+    const dead = { ...snapshot, dead: true, combat: true }
+    expect(policy.accept(bridge([event(1, 'death', { snapshot: dead })], { snapshot: dead }), settings, now)?.type).toBe('death')
+    expect(policy.accept(bridge([event(2, 'death', { snapshot: dead })], { snapshot: dead }), settings, now + 1000)).toBeUndefined()
+    expect(policy.accept(bridge([event(3, 'revive')]), settings, now + 2000)?.type).toBe('revive')
+    expect(policy.accept(bridge([event(4, 'death', { snapshot: dead })], { snapshot: dead }), settings, now + 3000)?.type).toBe('death')
+  })
+
+  it('does not replay death when the owner connects to an already dead character', () => {
+    const policy = new CompanionPolicy()
+    const dead = { ...snapshot, dead: true }
+    policy.accept(bridge([], { snapshot: dead }), settings, now)
+    expect(policy.accept(bridge([event(1, 'death', { snapshot: dead })], { snapshot: dead }), settings, now + 1000)).toBeUndefined()
+  })
+
+  it('honors death switches and mute', () => {
+    const dead = { ...snapshot, dead: true }
+    for (const disabled of [{ ...settings, death: false }, { ...settings, muted: true }]) {
+      const policy = new CompanionPolicy()
+      policy.accept(bridge(), disabled, now)
+      expect(policy.accept(bridge([event(1, 'death', { snapshot: dead })], { snapshot: dead }), disabled, now)).toBeUndefined()
+    }
+  })
+
+  it('discards a pending death when the character revives during cooldown', () => {
+    const policy = new CompanionPolicy()
+    const cooldown = { ...settings, cooldownSeconds: 10 }
+    const dead = { ...snapshot, dead: true }
+    policy.accept(bridge(), cooldown, now)
+    policy.accept(bridge([event(1)]), cooldown, now)
+    expect(policy.accept(bridge([event(2, 'death', { snapshot: dead })], { snapshot: dead }), cooldown, now + 1000)).toBeUndefined()
+    expect(policy.accept(bridge([event(3, 'revive')]), cooldown, now + 10_000)?.type).toBe('revive')
   })
 })
 

@@ -3,6 +3,7 @@ import type { ChatRequestContextInput } from '@proj-airi/stage-ui/stores/chat/re
 import type { WowScreenCaptureResult } from '../../shared/wow-screen-assist'
 import type { ScreenAssistSettings } from './wow-screen-assist-controller'
 
+import { ChatRequestContexts } from '@proj-airi/stage-ui/stores/chat/request-context'
 import { describe, expect, it, vi } from 'vitest'
 
 import { WowScreenAssistController } from './wow-screen-assist-controller'
@@ -26,6 +27,28 @@ function setup() {
 }
 
 describe('on-demand Warcraft screen assistance', () => {
+  it.each(['看看这个。。。', '看看我的。。', '帮我看看我的装备怎么样'])('attaches the current game frame to the same request for %s', async (text) => {
+    const { controller, capture, read } = setup()
+    const contexts = new ChatRequestContexts()
+    contexts.register('wow:screen-assist', input => controller.assist(input, settings))
+    const original: Parameters<ChatRequestContexts['apply']>[0] = {
+      turns: [{ id: 'new-turn-0', type: 'user', content: [{ type: 'text', text }] }],
+    }
+    const result = await contexts.apply(original, request(text))
+    const turn = result.conversation.turns[0]
+    expect(capture).toHaveBeenCalledOnce()
+    expect(read).toHaveBeenCalledOnce()
+    expect(turn.id).toBe('new-turn-0')
+    if (turn.type !== 'user')
+      throw new Error('Expected the current user turn')
+    expect(turn.content).toContainEqual({ type: 'image', url: 'data:image/png;base64,cGl4ZWxz' })
+    expect(JSON.stringify(turn.content)).toContain('A path turns left')
+    expect(result.imageDescriptions).toEqual([{ turnId: 'new-turn-0', url: 'data:image/png;base64,cGl4ZWxz', description: 'A path turns left around a cliff. The lower area is hidden.' }])
+    expect(original).toEqual({ turns: [{ id: 'new-turn-0', type: 'user', content: [{ type: 'text', text }] }] })
+    contexts.clear()
+    expect((await contexts.apply(original, request(text))).conversation).toBe(original)
+  })
+
   it('captures only after a visual request and passes a fresh frame to the selected vision model', async () => {
     const { controller, capture, read, report } = setup()
     const result = await controller.assist(request(), settings)
@@ -36,8 +59,10 @@ describe('on-demand Warcraft screen assistance', () => {
       selection: settings.selection,
       workloadId: 'screen:understand',
     }))
-    expect(result).toContain('A path turns left')
-    expect(result).not.toContain('base64')
+    expect(result).toEqual({
+      text: expect.stringContaining('A path turns left'),
+      images: [{ url: 'data:image/png;base64,cGl4ZWxz', description: 'A path turns left around a cliff. The lower area is hidden.' }],
+    })
     expect(report.mock.calls.map(call => call[0])).toEqual(['capturing', 'analyzing', 'ready'])
   })
 
@@ -102,7 +127,7 @@ describe('on-demand Warcraft screen assistance', () => {
     pending.resolve(image())
     await Promise.resolve()
     expect(read).not.toHaveBeenCalled()
-    expect(await controller.assist(request(), settings)).toContain('A path turns left')
+    expect(await controller.assist(request(), settings)).toMatchObject({ text: expect.stringContaining('A path turns left') })
   })
 
   it('discards inference after the user disables the feature and starts no second concurrent capture', async () => {

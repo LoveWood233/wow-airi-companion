@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 AIRI = ROOT.parent / "airi"
-DESTINATION = ROOT / "WoWCompanion-2.18.0-source.zip"
+DESTINATION = ROOT / "WoWCompanion-2.20.0-source.zip"
 BASELINE = "747d4f68aa42180671de3071fb78d5e6129433bd"
 
 
@@ -25,7 +25,7 @@ def main() -> None:
         "wow-companion-implementation.html", "魔兽陪伴精灵-使用说明.html", "WoWCompanion-PROTOCOL.md",
         "魔兽陪伴精灵-功能现状与扩展规划.md",
         "Start-WoWCompanion.cmd", "Start-WoWCompanion.ps1",
-        "Install-WoWCompanion.ps1", "Install-WoWMacroImport.ps1", "build-delivery.py", "WoWMacroImport-1.0.0.zip",
+        "Install-WoWCompanion.ps1", "Install-WoWMacroImport.ps1", "build-delivery.py", "WoWMapCompanion-2.14.0.zip", "WoWForeverCompanion-1.11.0.zip", "WoWMacroImport-1.0.0.zip",
         "research/airi-personas/sylvanas-tone.json",
     ):
         entries[f"WOWAddons/{name}"] = ROOT / name
@@ -36,6 +36,9 @@ def main() -> None:
             fixture_json = path.suffix == ".json" and path.parent.name == "fixtures" and path.name.startswith("lua-")
             if path.suffix in (".lua", ".toc", ".md", ".py", ".ps1", ".html", ".bin") or fixture_json:
                 entries[f"WOWAddons/{path.relative_to(ROOT).as_posix()}"] = path
+    for path in (ROOT / "data" / "retail-portals").glob("*"):
+        if path.is_file() and path.suffix in (".py", ".json", ".sqlite3", ".csv", ".html", ".md", ".txt"):
+            entries[f"WOWAddons/{path.relative_to(ROOT).as_posix()}"] = path
     modified_entries = {
         "README.md",
         "apps/stage-tamagotchi/src/renderer/local-routes.ts",
@@ -81,13 +84,13 @@ def main() -> None:
             name.startswith("packages/stage-shared/src/wow-knowledge/") and Path(name).suffix in (".ts", ".json", ".md")
         ) or (
             name.startswith(("apps/stage-tamagotchi/", "packages/stage-ui/", "packages/stage-layouts/", "packages/i18n/", "docs/ai/adr/"))
-            and Path(name).name.startswith(("wow-companion", "wow-macro", "wow-addons", "wow-launcher", "wow-screen", "wow-knowledge", "speech-caption-bubble"))
+            and Path(name).name.startswith(("wow-companion", "wow-macro", "wow-addons", "wow-launcher", "wow-screen", "wow-knowledge", "wow-chatter", "wow-scenery", "speech-caption-bubble"))
         ):
             entries[f"airi/{name}"] = AIRI / name
     entries["airi/LICENSE"] = AIRI / "LICENSE"
     manifest = {
         "name": "魔兽陪伴精灵",
-        "version": "2.18.0",
+        "version": "2.20.0",
         "integratedProjectCommit": "61da31e",
         "airiBaseline": BASELINE,
         "airiPackageVersion": "0.12.0-beta.5",

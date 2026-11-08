@@ -1,0 +1,42 @@
+title: 任务与练级资料
+games:
+  forever: 魔兽世界：无限
+  retail: 魔兽世界正式服
+states:
+  empty: 已观察资料中未找到匹配任务。
+  unavailable: 当前缺少任务证据，请打开助手检查来源。
+  error: 任务查询失败，请打开助手查看详情。
+limits: 缺失前置与坐标均为未知，列出任务不代表确认可接或安全。
+level: 任务等级
+temporary: 临时
+temporary-note: 部分接交对象或位置采用第三方临时数据。
+open-source: 在无限图鉴查看
+open-assistant: 打开任务助手
+partial-list: 此卡仅展示部分结果，可打开助手检索或查看详情。
+partial-source: 来源覆盖不完整，未收录的任务与细节仍为未知。
+source: 来源
+quest-log: 角色任务遥测
+build: 客户端构建
+received-at: 原始资料查询时间
+observed-at: 任务观察时间
+cache:
+  hit: 缓存提供时间
+  miss: 本次查询提供时间
+  expires: 缓存过期时间
+progress:
+  unknown: 角色进度未知
+  active: 当前任务日志中
+  ready-to-turn-in: 已就绪，可交付
+  objectives-complete: 已观察目标完成，交付尚未确认
+  failed: 任务日志标记失败
+  completed-flag: 客户端完成标记，适用范围未知
+  turned-in: 已观察到本会话交付
+risks:
+  minimum-level: 需求等级高于查询角色等级。
+  higher-level: 任务等级高于查询角色等级。
+  elite: 精英任务
+  dungeon: 地下城任务
+  raid: 团队任务
+  pvp: PvP 任务
+  timed: 限时任务
+  faction-mismatch: 记录阵营与查询阵营不一致。

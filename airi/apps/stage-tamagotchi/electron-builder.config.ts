@@ -3,8 +3,12 @@
 import type { Configuration } from 'electron-builder'
 
 import { execSync } from 'node:child_process'
+import { resolve } from 'node:path'
 
 import { isMacOS } from 'std-env'
+
+import { companionReleaseVersion, generateReleaseManifest, writeUpdateManifest } from './scripts/companion-release/files'
+import { companionBridgeFiles } from './src/shared/wow-delivery'
 
 function hasXcode26OrAbove() {
   if (!isMacOS)
@@ -41,7 +45,7 @@ else {
 }
 
 export default {
-  appId: 'ai.moeru.airi',
+  appId: 'ai.wow.companion',
   productName: '魔兽陪伴精灵',
   directories: {
     output: 'dist',
@@ -74,6 +78,7 @@ export default {
   files: [
     'out/**',
     'resources/**',
+    '!resources/wow-companion-python{,/**}',
     'package.json',
     // NOTICE: Exclude npm `electron` package from app payload.
     // Electron runtime is already provided by the outer app bundle; bundling a nested
@@ -91,6 +96,7 @@ export default {
     // Node-only image backend and has no packaged main-process consumer.
     '!**/node_modules/sharp{,/**}',
     '!**/node_modules/@img/sharp-*{,/**}',
+    '!**/node_modules/onnxruntime-node{,/**}',
     // uiohook-napi loads the selected prebuild. Its bundled libuiohook C source is
     // only used to build that binary and does not participate in runtime loading.
     '!**/node_modules/uiohook-napi/libuiohook{,/**}',
@@ -105,6 +111,9 @@ export default {
     '!uno.config.{js,ts,mjs,cjs}',
     '!{.eslintcache,eslint.config.ts,.yaml,dev-app-update.yml,CHANGELOG.md,README.md}',
     '!{.env,.env.*,.npmrc,pnpm-lock.yaml}',
+    '!**/{.env,.env.*,.npmrc,.pnpmrc,.yarnrc,.yarnrc.yml}',
+    '!**/{bridge-config*.json,app-config.json,*.log,*.pfx,*.p12,id_rsa,id_ed25519}',
+    '!**/{Local Storage,IndexedDB,Session Storage}{,/**}',
     '!{tsconfig.json}',
   ],
   asar: true,
@@ -113,19 +122,40 @@ export default {
     '**/node_modules/@auv-js/cli-*/bin/**',
   ],
   extraResources: [
+    { from: 'resources/wow-companion-release.json', to: 'wow-companion-release.json' },
+    { from: 'resources/wow-local-update.ps1', to: 'wow-local-update.ps1' },
+    { from: 'resources/wow-companion-python', to: 'wow-companion-python' },
+    { from: '../../../WOWAddons/WoWMapCompanion', to: 'wow-companion-addons/WoWMapCompanion', filter: ['*.lua', '*.toc'] },
+    { from: '../../../WOWAddons/WoWForeverCompanion', to: 'wow-companion-addons/WoWForeverCompanion', filter: ['*.lua', '*.toc'] },
     {
       from: '../../../WOWAddons/WoWCompanionBridge',
       to: 'wow-companion-bridge',
       // Keep local calibration, logs, and process identifiers out of the release.
-      filter: ['server.py', 'capture.py', 'geometry.py', 'protocol.py', 'state.py', 'macro_import.py', 'macro_native.py', 'index.html'],
-    },
-    {
-      from: '../../engines/stage-tamagotchi-godot/out/${os}',
-      to: 'godot-stage',
-      filter: ['**/*'],
+      filter: [...companionBridgeFiles],
     },
   ],
+  extraFiles: [
+    { from: '../../../WOWAddons/packaging/portable-guide.html', to: '使用说明.html' },
+    { from: '../../../WOWAddons/packaging/Start-WoWCompanion.cmd', to: 'Start-WoWCompanion.cmd' },
+    { from: '../../../WOWAddons/packaging/portable-readme.txt', to: '先读我.txt' },
+    { from: '../../LICENSE', to: 'LICENSE-APPLICATION.txt' },
+    ...['WoWMapCompanion', 'WoWForeverCompanion', 'WoWMacroImport', 'WoWIntelAPI'].map(name => ({
+      from: `../../../WOWAddons/${name}`,
+      to: `AddOns/${name}`,
+      filter: ['*.lua', '*.toc', 'README.md'],
+    })),
+    { from: '../../../WOWAddons/data/retail-portals', to: 'data/retail-portals', filter: ['*.html', '*.json', '*.sqlite3', '*.csv', '*.md', '*.txt'] },
+  ],
+  beforePack: async (context) => {
+    if (context.electronPlatformName === 'win32')
+      await generateReleaseManifest(context.packager.projectDir, resolve(context.packager.projectDir, '..', '..', '..', 'WOWAddons'))
+  },
+  afterSign: async (context) => {
+    if (context.electronPlatformName === 'win32')
+      await writeUpdateManifest(context.appOutDir)
+  },
   extraMetadata: {
+    version: companionReleaseVersion,
     name: 'ai.moeru.airi',
     main: 'out/main/index.js',
     homepage: 'https://airi.moeru.ai/docs/',
@@ -134,23 +164,20 @@ export default {
   },
   win: {
     executableName: 'wow-companion',
-    // NOTICE: Keep `channel: 'latest-${arch}'` for architecture-aware updater metadata.
-    // electron-builder expands `${arch}` at publish-time (for example: `latest-x64`, `latest-arm64`),
-    // and electron-updater later consumes that expanded channel to resolve platform-specific *.yml files.
-    // This prevents cross-arch lookups such as arm64 clients reading x64 metadata.
-    publish: {
-      provider: 'github',
-      owner: 'moeru-ai',
-      repo: 'airi',
-      channel: 'latest-${arch}',
-    },
+    icon: 'resources/wow-companion.ico',
+    target: [{ target: 'nsis', arch: ['x64'] }, { target: 'zip', arch: ['x64'] }],
+    artifactName: `WoWCompanion-${companionReleaseVersion}-windows-\${arch}-portable.\${ext}`,
+    publish: null,
   },
   nsis: {
-    artifactName: '${productName}-${version}-windows-${arch}-setup.${ext}',
+    artifactName: `WoWCompanion-${companionReleaseVersion}-windows-\${arch}-setup.\${ext}`,
     shortcutName: '${productName}',
     uninstallDisplayName: '${productName}',
     createDesktopShortcut: 'always',
-    deleteAppDataOnUninstall: true,
+    deleteAppDataOnUninstall: false,
+    perMachine: false,
+    // The companion uses local side-by-side updates, so it does not ship electron-updater's elevation helper.
+    packElevateHelper: false,
     oneClick: false,
     allowToChangeInstallationDirectory: true,
     runAfterFinish: true,

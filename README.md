@@ -1,50 +1,48 @@
 # 魔兽陪伴精灵
 
-魔兽世界正式服与无限服的游戏插件、屏幕桥接和桌面陪伴项目。文档更新：2026-11-04。
+本仓库是项目的唯一开发目录：`I:\GameTools\wow-airi-companion`。目录统一于2026-11-08完成。
 
-<a id="local-development-2-25"></a>
-
-## 本机开发版 2.25.0
-
-| 组件 | 本机开发版 |
+| 目录 | 内容 |
 | --- | --- |
-| 桌面程序、正式服插件、桥接 | 2.25.0 |
-| 无限服插件 | 1.21.0 |
+| `airi/` | 桌面二开源码、工作区依赖、构建脚本与本机发行目录 |
+| `WOWAddons/` | 正式服与无限服插件、屏幕桥接、数据中台、数据资料、启动与交付脚本 |
+| `assets/` | 仓库已有的角色与参考资源 |
+| `backups/`、`logs/` | 本机迁移恢复资料与验证记录，Git忽略 |
 
-本机开发目录为 `I:\GameTools\WOWAddons` 与同级 `I:\GameTools\airi`。
-本机开发目录与本仓库分开维护，仓库能力以已提交源码为准。
-以下是本机开发版摘要。更新 README 不会同步源码或发布发行包，不能据此认定当前 Git 分支已有全部新版功能。
+桌面当前为2.27.1，正式服插件与桥接为2.25.0，无限服插件为1.21.0。桌面采用dsh-pet透明WebM动画。
 
-- 装备与任务规则由插件提供结论，桌面负责表达和播报。
-- 换装只在游戏内确认，桌面不再显示第二组“好／不用”。
-- 升级、生死、日历和增益等固定通知使用模板，不调用聊天模型。
-- 角色档案、诊断和事件默认折叠，附加功能集中到“设置 → 魔兽工具”。
-- 保留自然聊天、关系记忆、地图逸闻、截图对话和背包银行 SQLite 档案。
-- 银行仍需在游戏内打开才能读取；制作成品候选标记来源未确认。
+## 启动
 
-## 便携版使用
+双击仓库根目录的 [Start-WoWCompanion.cmd](Start-WoWCompanion.cmd)。启动入口使用本仓库 `airi/apps/stage-tamagotchi` 中的程序。
 
-1. 完整解压已取得的 Windows x64 便携包。
-2. 双击包内 `Start-WoWCompanion.cmd`，保留同级资源文件。
-3. 配置需要的聊天、语音及视觉服务，启用对应游戏版本的陪伴连接。
-4. 同步更新配套插件，完整重启游戏，登录角色并检查传输码采集区域。
+个人资料继续位于 `%USERPROFILE%\.airi-wow-companion`。`APP_USER_DATA_PATH` 可指定独立资料目录。
+原 `I:\GameTools\WOWAddons` 的启动脚本转发到本仓库。后续开发、构建和交付均在本仓库执行。
 
-本机 2.25.0 便携包已包含桌面运行环境与 Python。源码构建所需工具另见下方快照记录。
-个人资料默认位于 `%USERPROFILE%\.airi-wow-companion`，`APP_USER_DATA_PATH` 可指定其他位置。
+## 开发与协作
 
-本机程序包按独立系列保留最近 5 个版本，源码目录、个人配置、数据库和备份不参与清理。
-截至 2026-11-04，桌面保留 2.25.0、2.24.0、2.23.2、2.23.1、2.23.0。该清单描述本机交付目录。
+先阅读 [AGENTS.md](AGENTS.md) 和 [交接文档](HANDOVER.md)，再进入 `airi/` 并阅读该目录的开发规范。
 
-## 仓库内资料
+```powershell
+Set-Location I:\GameTools\wow-airi-companion\airi
+$env:pnpm_config_verify_deps_before_run='warn'
+pnpm -F @proj-airi/i18n build
+pnpm -F @proj-airi/stage-tamagotchi typecheck
+pnpm -F @proj-airi/stage-tamagotchi build
+```
 
-- [当前仓库插件与通信说明](WOWAddons/wow-addon-airi-communication.md)
-- [当前仓库软件使用说明](WOWAddons/魔兽陪伴精灵-使用说明.html)
-- [正式服插件](WOWAddons/WoWMapCompanion/README.md)／[无限服插件](WOWAddons/WoWForeverCompanion/README.md)
+现有工作区保留了迁移后的本机依赖。新电脑必须按交接文档安装依赖，不能复制本机的绝对目录链接。
+迁移与兼容合并后的文件已纳入统一仓库。协作者拉取远端 `main` 后，运行 `git rev-parse HEAD`，以实际提交号确认共同开发基线。
+
+## 使用与实现资料
+
 - [桌面源码说明](airi/README.md)
-- [MIT 许可证](airi/LICENSE)
+- [当前功能、安装与实现说明](WOWAddons/wow-companion-implementation.html)
+- [插件与桥接说明](WOWAddons/README.md)
+- [数据中台部署](WOWAddons/WoWCompanionDataHub/README.md)
+- [MIT许可证](airi/LICENSE)
 
-以上链接随仓库源码快照维护，内容版本以文件本身为准。本机最新说明位于开发目录的 `WOWAddons/README.md` 与 `wow-companion-implementation.html`。
-内部源码目录、包名及存储标识保持稳定，现有配置无需因产品显示名称变化而迁移。
+旧官方AIRI仓库的Git元数据、原目标源码及兼容合并恢复资料保存在本机 `backups/migration-20261108-001/`。
+以下保留早期同步记录，路径与版本按对应历史时点阅读。
 
 <details>
 <summary>仓库既有源码快照与开发历史（保留原同步记录）</summary>
@@ -63,7 +61,7 @@
 
 [游戏插件与 AIRI 通信说明](WOWAddons/wow-addon-airi-communication.md)介绍 Lua 采集、WCP1/WCF1 屏幕传输、Python 本机 HTTP、Eventa IPC、离线存档和宏导入回执，并提供源码入口与排查步骤。
 
-本次同步正式服插件 **2.19.0**、无限服插件 **1.17.0**、桥接 **2.19.0** 的源码与测试。宏导入插件 **1.0.0** 的源码已在仓库中。
+本次同步正式服插件 **2.20.0**、无限服插件 **1.18.0**、桥接 **2.20.0** 的源码与测试。宏导入插件 **1.0.0** 的源码已在仓库中。
 新增源码包含离线历史、库存、任务和天赋传输。插件保存能力、桥接接收能力与 AIRI 界面消费能力分别说明，不能由插件版本推断桌面功能已经全部接通。
 当前仓库 AIRI 的通用角色服务尚未导入 SavedVariables 中的 `snapshotJSON`。其他本地向导、备份及安装更新功能也不因本次插件同步自动发布。
 

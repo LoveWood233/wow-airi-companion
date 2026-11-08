@@ -34,6 +34,15 @@ function state(game: GameVersion = 'retail', changes: Partial<EquipmentOffer> = 
       equipmentComparisonError: null,
       equipmentLoadout: null,
       equipmentLoadoutError: null,
+      inventory: null,
+      inventoryReceivedAt: null,
+      inventoryError: null,
+      quests: null,
+      questsReceivedAt: null,
+      questsError: null,
+      talents: null,
+      talentsReceivedAt: null,
+      talentsError: null,
       config: { x: 8, y: 8, cellSize: 1, pollMs: 500, paused: false },
       snapshot: {
         v: 3,
@@ -108,7 +117,6 @@ function harness() {
     sessionId: () => sessionId,
     message: vi.fn((offer: EquipmentOffer) => `Change to ${offer.n}?`),
     review: vi.fn(comparison => `Acquired ${comparison.candidate.name}. Compare it manually before changing equipment.`),
-    accepted: () => 'Confirm the change in the game.',
     speak: vi.fn(() => {
       const done = Promise.withResolvers<void>()
       const silence = Promise.withResolvers<void>()
@@ -129,7 +137,144 @@ function harness() {
   }
 }
 
+function reviewState(): CompanionState {
+  const profile = state()
+  const bridge = profile.bridge!
+  bridge.equipmentOffer = null
+  const comparison = bridge.equipmentComparisons[0]
+  comparison.observedAt = now / 1000
+  comparison.specMatch = null
+  comparison.assessment = { verdict: 'review', reason: 'unknown_spec' }
+  comparison.slot = 12
+  Object.assign(comparison.current!, { itemID: 232349, name: 'Old ring', itemLevel: 10, equipLoc: 'INVTYPE_FINGER', complex: true, stats: [{ key: 'ITEM_MOD_CRIT_RATING_SHORT', value: 5 }, { key: 'ITEM_MOD_STAMINA_SHORT', value: 2 }, { key: 'ITEM_MOD_VERSATILITY', value: 2 }] })
+  Object.assign(comparison.candidate, { itemID: 143902, name: 'New ring', itemLevel: 19, equipLoc: 'INVTYPE_FINGER', complex: true, stats: [{ key: 'ITEM_MOD_HASTE_RATING_SHORT', value: 11 }, { key: 'ITEM_MOD_STAMINA_SHORT', value: 5 }, { key: 'ITEM_MOD_VERSATILITY', value: 6 }] })
+  bridge.equipment = [{ v: 1, id: comparison.id, session: comparison.session, guid: comparison.guid, itemID: comparison.candidate.itemID, itemGUID: 'Item-1', link: 'item:143902', name: comparison.candidate.name, type: 'Armor', subtype: 'Miscellaneous', equipLoc: 'INVTYPE_FINGER', quality: 3, itemLevel: 19, requiredLevel: 11, stats: comparison.candidate.stats, tooltip: ['Unique-Equipped'], quantity: 1, observedAt: comparison.observedAt, source: 'bag_added', infoComplete: true, statsComplete: true, tooltipComplete: true, truncated: false }]
+  return profile
+}
+
 describe('equipmentPromptController', () => {
+  // ROOT CAUSE:
+  // A captured ring with unknown spec fit had no game offer. The desktop silently discarded its review result.
+  it('shows a review notice for an acquired higher-level ring without offering an unproven equipment change', () => {
+    const h = harness()
+    h.muted(true)
+    h.controller.observe('retail', reviewState())
+
+    expect(h.view()?.phase).toBe('review')
+    expect(h.view()?.text).toContain('New ring')
+    expect(h.host.message).not.toHaveBeenCalled()
+    expect(h.view()?.phase).toBe('review')
+  })
+
+  it('speaks a review once and never changes it into an equipment choice', async () => {
+    const h = harness()
+    const profile = reviewState()
+    h.controller.observe('retail', profile)
+    expect(h.host.speak).toHaveBeenCalledTimes(1)
+    expect(h.view()?.phase).toBe('speaking')
+    h.calls[0].done.resolve()
+    await vi.advanceTimersByTimeAsync(0)
+    expect(h.view()?.phase).toBe('review')
+    h.controller.unavailable('retail')
+    h.controller.observe('retail', profile)
+    expect(h.view()).toBeNull()
+    expect(h.host.speak).toHaveBeenCalledTimes(1)
+  })
+
+  it('does not let a newer review suppress an earlier game offer that arrives later', () => {
+    const h = harness()
+    h.muted(true)
+    const profile = reviewState()
+    profile.bridge!.equipmentComparisons[0].id = 2
+    profile.bridge!.equipment![0].id = 2
+    h.controller.observe('retail', profile)
+    expect(h.view()?.phase).toBe('review')
+
+    h.controller.observe('retail', state())
+    expect(h.view()?.phase).toBe('notice')
+    expect(h.host.message).toHaveBeenCalledTimes(1)
+  })
+
+  it('gives a delayed game offer priority while its newer review remains in live history', async () => {
+    const h = harness()
+    const profile = reviewState()
+    profile.bridge!.equipmentComparisons[0].id = 2
+    profile.bridge!.equipment![0].id = 2
+    h.controller.observe('retail', profile)
+    const offered = state()
+    profile.bridge!.equipmentOffer = offered.bridge!.equipmentOffer
+    profile.bridge!.equipmentComparisons.unshift(offered.bridge!.equipmentComparisons[0])
+    h.controller.observe('retail', profile)
+
+    await vi.advanceTimersByTimeAsync(0)
+    expect(h.calls[0].stop).toHaveBeenCalledTimes(1)
+    expect(h.host.message).not.toHaveBeenCalled()
+    h.calls[0].silence.resolve()
+    await vi.advanceTimersByTimeAsync(0)
+    expect(h.host.message).toHaveBeenCalledTimes(1)
+    expect(h.host.speak).toHaveBeenCalledTimes(2)
+  })
+
+  it.each(['missing-acquisition', 'wrong-acquisition', 'old-session', 'wrong-player', 'wrong-spec', 'unusable', 'lower-level', 'expired', 'future', 'stale', 'paused', 'comparison-error'] as const)('does not announce an invalid or irrelevant review: %s', (condition) => {
+    const h = harness()
+    const profile = reviewState()
+    const bridge = profile.bridge!
+    const comparison = bridge.equipmentComparisons[0]
+    if (condition === 'missing-acquisition')
+      bridge.equipment = []
+    if (condition === 'wrong-acquisition')
+      bridge.equipment![0].itemID++
+    if (condition === 'old-session')
+      comparison.session = 'earlier-login'
+    if (condition === 'wrong-player')
+      vi.mocked(h.host.currentPlayer).mockReturnValue(false)
+    if (condition === 'wrong-spec')
+      comparison.assessment = { verdict: 'not_upgrade', reason: 'wrong_spec' }
+    if (condition === 'unusable')
+      comparison.assessment = { verdict: 'not_upgrade', reason: 'unusable' }
+    if (condition === 'lower-level')
+      comparison.candidate.itemLevel = 9
+    if (condition === 'expired')
+      comparison.observedAt -= 181
+    if (condition === 'future')
+      comparison.observedAt += 6
+    if (condition === 'stale')
+      bridge.status = 'stale'
+    if (condition === 'paused')
+      bridge.config.paused = true
+    if (condition === 'comparison-error')
+      bridge.equipmentComparisonError = 'Invalid comparison'
+    h.controller.observe('retail', profile)
+    expect(h.view()).toBeNull()
+    expect(h.host.speak).not.toHaveBeenCalled()
+  })
+
+  it('waits through combat and existing chat before speaking a review', () => {
+    const h = harness()
+    const profile = reviewState()
+    profile.bridge!.snapshot!.combat = true
+    h.controller.observe('retail', profile)
+    expect(h.view()).toBeNull()
+    profile.bridge!.snapshot!.combat = false
+    h.busy(true)
+    h.controller.observe('retail', profile)
+    expect(h.controller.hasPending).toBe(true)
+    expect(h.host.speak).not.toHaveBeenCalled()
+    h.busy(false)
+    h.controller.observe('retail', profile)
+    expect(h.host.speak).toHaveBeenCalledTimes(1)
+  })
+
+  it('cancels a review when its character stops being current', async () => {
+    const h = harness()
+    h.controller.observe('retail', reviewState())
+    vi.mocked(h.host.currentPlayer).mockReturnValue(false)
+    h.controller.unavailable('forever')
+    expect(h.view()).toBeNull()
+    await vi.advanceTimersByTimeAsync(0)
+    expect(h.calls[0].stop).toHaveBeenCalledTimes(1)
+    h.calls[0].silence.resolve()
+  })
   it('rejects an older player and cancels its prompt before another profile can update', () => {
     const h = harness()
     h.muted(true)
@@ -140,7 +285,7 @@ describe('equipmentPromptController', () => {
 
     vi.mocked(h.host.currentPlayer).mockReturnValue(true)
     h.controller.observe('retail', state())
-    expect(h.view()?.phase).toBe('choosing')
+    expect(h.view()?.phase).toBe('notice')
 
     vi.mocked(h.host.currentPlayer).mockReturnValue(false)
     h.controller.unavailable('forever')
@@ -155,11 +300,11 @@ describe('equipmentPromptController', () => {
     if (condition === 'missing')
       profile.bridge!.equipmentComparisons = []
     if (condition === 'wrong-spec')
-      comparison.specMatch = false
+      comparison.assessment = { verdict: 'not_upgrade', reason: 'wrong_spec' }
     if (condition === 'tradeoff')
-      comparison.candidate.stats[0].value = 1
+      comparison.assessment = { verdict: 'review', reason: 'stat_tradeoff' }
     if (condition === 'complex')
-      comparison.candidate.complex = true
+      comparison.assessment = { verdict: 'review', reason: 'complex_item' }
     if (condition === 'old-item')
       comparison.current!.itemID++
     if (condition === 'slot')
@@ -184,7 +329,7 @@ describe('equipmentPromptController', () => {
     expect(h.view()).toBeNull()
     profile.bridge!.equipmentComparisons.push(comparison)
     h.controller.observe('retail', profile)
-    expect(h.view()?.phase).toBe('choosing')
+    expect(h.view()?.phase).toBe('notice')
     profile.bridge!.snapshot!.spec = 63
     h.controller.observe('retail', profile)
     expect(h.view()).toBeNull()
@@ -195,10 +340,11 @@ describe('equipmentPromptController', () => {
     h.muted(true)
     const profile = state()
     const comparison = profile.bridge!.equipmentComparisons[0]
+    comparison.assessment = { verdict: 'review', reason: 'primary_upgrade_tradeoff' }
     comparison.current!.stats.push({ key: 'ITEM_MOD_MASTERY_RATING_SHORT', value: 37 })
     comparison.candidate.stats.push({ key: 'ITEM_MOD_MASTERY_RATING_SHORT', value: 30 })
     h.controller.observe('retail', profile)
-    expect(h.view()?.phase).toBe('choosing')
+    expect(h.view()?.phase).toBe('notice')
     expect(h.host.message).toHaveBeenCalledWith(profile.bridge!.equipmentOffer, comparison)
   })
   beforeEach(() => {
@@ -207,7 +353,7 @@ describe('equipmentPromptController', () => {
   })
   afterEach(() => vi.useRealTimers())
 
-  it('waits for owned speech completion before starting the ten-second choice window', async () => {
+  it('waits for owned speech completion before starting the three-second subtitle interval', async () => {
     const h = harness()
     h.controller.observe('retail', state())
     expect(h.view()?.phase).toBe('speaking')
@@ -216,50 +362,23 @@ describe('equipmentPromptController', () => {
     expect(h.view()?.phase).toBe('speaking')
     h.calls[0].done.resolve()
     await vi.advanceTimersByTimeAsync(0)
-    expect(h.view()?.phase).toBe('choosing')
-    expect(h.view()?.deadline).toBe(now + 12_000)
-    await vi.advanceTimersByTimeAsync(9999)
-    expect(h.view()?.phase).toBe('choosing')
+    expect(h.view()?.phase).toBe('notice')
+    expect(h.view()?.deadline).toBe(now + 5000)
+    await vi.advanceTimersByTimeAsync(2999)
+    expect(h.view()?.phase).toBe('notice')
     await vi.advanceTimersByTimeAsync(1)
     expect(h.view()).toBeNull()
   })
 
-  it('accepts only the current choice and displays the game confirmation instruction', async () => {
+  it('shows no desktop choice and does not replay the notice after its subtitle expires', async () => {
     const h = harness()
     h.muted(true)
     h.controller.observe('retail', state())
-    const id = h.view()!.id
-    h.controller.choose('old-id', 'accept')
-    expect(h.view()?.phase).toBe('choosing')
-    h.controller.choose(id, 'accept')
-    expect(h.view()?.phase).toBe('accepted')
-    expect(h.view()?.text).toBe('Confirm the change in the game.')
-    expect(h.view()?.deadline).toBeNull()
+    expect(h.view()?.phase).toBe('notice')
+    expect(h.view()?.deadline).toBe(now + 3000)
     expect(h.host.speak).not.toHaveBeenCalled()
-    await vi.advanceTimersByTimeAsync(10_000)
+    await vi.advanceTimersByTimeAsync(3000)
     expect(h.view()).toBeNull()
-  })
-
-  it('ignores a choice during speech and after its deadline', async () => {
-    const h = harness()
-    h.controller.observe('retail', state())
-    const id = h.view()!.id
-    h.controller.choose(id, 'accept')
-    expect(h.view()?.phase).toBe('speaking')
-    h.calls[0].done.resolve()
-    await vi.advanceTimersByTimeAsync(10_000)
-    h.controller.choose(id, 'accept')
-    expect(h.view()).toBeNull()
-  })
-
-  it.each(['accept', 'decline', 'timeout'] as const)('does not replay a suggestion after %s', async (choice) => {
-    const h = harness()
-    h.muted(true)
-    h.controller.observe('retail', state())
-    const id = h.view()!.id
-    if (choice !== 'timeout')
-      h.controller.choose(id, choice)
-    await vi.advanceTimersByTimeAsync(10_000)
     h.controller.observe('retail', state('retail', { q: 4 }))
     expect(h.view()).toBeNull()
   })
@@ -272,7 +391,7 @@ describe('equipmentPromptController', () => {
     else
       profile.settings.muted = true
     h.controller.observe('retail', profile)
-    expect(h.view()?.phase).toBe('choosing')
+    expect(h.view()?.phase).toBe('notice')
     expect(h.view()?.text).toContain('New robe')
     expect(h.host.speak).not.toHaveBeenCalled()
   })
@@ -283,16 +402,16 @@ describe('equipmentPromptController', () => {
       throw new Error('No speech provider')
     })
     h.controller.observe('retail', state())
-    expect(h.view()?.phase).toBe('choosing')
-    expect(h.view()?.deadline).toBe(now + 10_000)
+    expect(h.view()?.phase).toBe('notice')
+    expect(h.view()?.deadline).toBe(now + 3000)
   })
 
   it('shows a text suggestion without a configured chat session', () => {
     const h = harness()
     h.session(undefined)
     h.controller.observe('retail', state())
-    expect(h.view()?.phase).toBe('choosing')
-    expect(h.view()?.deadline).toBe(now + 10_000)
+    expect(h.view()?.phase).toBe('notice')
+    expect(h.view()?.deadline).toBe(now + 3000)
     expect(h.host.speak).not.toHaveBeenCalled()
   })
 
@@ -306,13 +425,18 @@ describe('equipmentPromptController', () => {
     await vi.advanceTimersByTimeAsync(1000)
     h.calls[0].silence.resolve()
     await vi.advanceTimersByTimeAsync(0)
-    expect(h.view()?.phase).toBe('choosing')
-    expect(h.view()?.deadline).toBe(now + 11_000)
+    expect(h.view()?.phase).toBe('notice')
+    expect(h.view()?.deadline).toBe(now + 4000)
   })
 
   it('bounds synthesis wait to two minutes and cancels only its owned audio', async () => {
     const h = harness()
-    h.controller.observe('retail', state('retail', { until: now / 1000 + 180 }))
+    const profile = state('retail', { until: now / 1000 + 180 })
+    h.controller.observe('retail', profile)
+    const heartbeat = setInterval(() => {
+      profile.bridge!.lastSeen = new Date(Date.now()).toISOString()
+      h.controller.observe('retail', profile)
+    }, 1000)
     await vi.advanceTimersByTimeAsync(119_999)
     expect(h.calls[0].stop).not.toHaveBeenCalled()
     await vi.advanceTimersByTimeAsync(1)
@@ -320,11 +444,12 @@ describe('equipmentPromptController', () => {
     expect(h.view()?.phase).toBe('speaking')
     h.calls[0].silence.resolve()
     await vi.advanceTimersByTimeAsync(0)
-    expect(h.view()?.phase).toBe('choosing')
-    await vi.advanceTimersByTimeAsync(5000)
+    expect(h.view()?.phase).toBe('notice')
+    await vi.advanceTimersByTimeAsync(2000)
     h.calls[0].done.resolve()
     await vi.advanceTimersByTimeAsync(0)
-    expect(h.view()?.deadline).toBe(now + 130_000)
+    expect(h.view()?.deadline).toBe(now + 123_000)
+    clearInterval(heartbeat)
   })
 
   it('closes an audio cancellation that never confirms silence', async () => {
@@ -348,13 +473,25 @@ describe('equipmentPromptController', () => {
   it('waits through a long existing chat and starts only after it becomes idle', async () => {
     const h = harness()
     h.busy(true)
-    h.controller.observe('retail', state())
+    const profile = state()
+    h.controller.observe('retail', profile)
     await vi.advanceTimersByTimeAsync(8000)
     expect(h.host.speak).not.toHaveBeenCalled()
     h.busy(false)
+    profile.bridge!.lastSeen = new Date(Date.now()).toISOString()
+    h.controller.observe('retail', profile)
     await vi.advanceTimersByTimeAsync(100)
     expect(h.host.speak).toHaveBeenCalledTimes(1)
     expect(h.view()?.phase).toBe('speaking')
+  })
+
+  it('cancels a live-labelled offer when its heartbeat stops during speech', async () => {
+    const h = harness()
+    h.controller.observe('retail', state())
+    await vi.advanceTimersByTimeAsync(5100)
+    expect(h.view()).toBeNull()
+    expect(h.calls[0].stop).toHaveBeenCalledTimes(1)
+    h.calls[0].silence.resolve()
   })
 
   it('drops expired waiting offers without speaking after the chat ends', async () => {
@@ -506,7 +643,7 @@ describe('equipmentPromptController', () => {
     expect(h.view()?.phase).toBe('speaking')
     h.calls[0].silence.resolve()
     await vi.advanceTimersByTimeAsync(0)
-    expect(h.view()?.phase).toBe('choosing')
+    expect(h.view()?.phase).toBe('notice')
   })
 
   it('keeps game profiles separate while presenting one suggestion at a time', async () => {
@@ -516,8 +653,7 @@ describe('equipmentPromptController', () => {
     const firstId = h.view()!.id
     h.controller.observe('forever', state('forever'))
     expect(h.view()?.id).toBe(firstId)
-    h.controller.choose(firstId, 'decline')
-    await vi.advanceTimersByTimeAsync(100)
+    await vi.advanceTimersByTimeAsync(3100)
     expect(h.view()?.id).not.toBe(firstId)
     expect(h.view()?.id).toContain('forever')
   })

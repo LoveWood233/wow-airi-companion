@@ -4,6 +4,7 @@ import type { AccountNameRequest } from '../wow-companion-gold'
 import { defineInvokeEventa } from '@moeru/eventa'
 
 export const wowCompanionGet = defineInvokeEventa<CompanionState, { game: GameVersion }>('eventa:invoke:wow-companion:get')
+export const wowCompanionReconnect = defineInvokeEventa<CompanionState, { game: GameVersion }>('eventa:invoke:wow-companion:reconnect')
 export const wowCompanionSetSettings = defineInvokeEventa<CompanionState, { game: GameVersion, settings: CompanionSettings }>('eventa:invoke:wow-companion:settings')
 export const wowCompanionSetCapture = defineInvokeEventa<CompanionState, { game: GameVersion, capture: CaptureSettings }>('eventa:invoke:wow-companion:capture')
 export const wowCompanionDemo = defineInvokeEventa<CompanionState, { game: GameVersion, request: DemoRequest }>('eventa:invoke:wow-companion:demo')

@@ -1,0 +1,88 @@
+title: 魔兽资料
+plan-recipe: 计算备料
+game: 魔兽世界：无限 · 国服
+query: 查询
+build: 数据构建
+unknown-build: 本次结果未提供
+build-created-at: 数据快照生成时间
+updated-at: 数据更新时间
+collected-at: 价格采集时间
+received-at: 查询接收时间
+cache:
+  status: 返回方式
+  hit: 命中缓存
+  miss: 来源查询后缓存
+  source-received-at: 原始来源查询时间
+  served-at: 本次返回时间
+  expires-at: 缓存到期时间
+  note: 此结果复用了已保存的查询，读取缓存不会更新来源数据或其采集时间。
+realm: 服务器与市场
+temporary: 临时
+incomplete: 资料不完整
+more: 展开所列详情
+less: 收起详情
+expand-entry: '展开或收起「{title}」的详情'
+partial: '当前显示 {count} 条，共 {total} 条；其余记录请查看来源页面。'
+partial-unknown: '当前显示 {count} 条，其他记录可查看来源页面。'
+search-help: 搜索结果是摘要，请打开具体条目核对详情和条件。
+source-note: 玩家自制数据库；缺失字段保持未知，适用条件以来源说明为准。
+titles:
+  loading: 正在查询魔兽资料
+  success: 魔兽资料
+  empty: 未找到匹配的魔兽资料
+  error: 魔兽资料查询失败
+  invalid: 魔兽资料结果暂不可用
+modes:
+  search: 搜索结果
+  detail: 条目详情
+  list: 资料列表
+kinds:
+  item: 物品
+  recipe: 配方
+  quest: 任务
+  npc: NPC
+  instance: 副本
+  map: 地图
+states:
+  loading: 正在等待数据库返回资料。
+  empty: 本次没有返回匹配记录，请尝试其他名称或已知条目编号。
+  error: 查询失败，请检查 MCP 连接后重试。未补入其他版本或推测资料。
+  invalid: 本次结果无法整理为资料卡，可切换原始数据视图核对返回内容。
+notices:
+  temporary: 部分字段来自第三方临时资料，需同时核对来源与适用条件。
+  incomplete: 本次资料不完整或已截取部分内容，请核对来源页面的覆盖范围。
+  truncated: 资料卡只展示本次结果的部分内容，其余字段可查看来源页面或原始数据。
+  approximate: 部分位置或条件属于近似值，使用前请核对来源说明。
+  auction: 价格是采集到的挂单，不是实时成交价；请核对采集时间、服务器和市场。
+  snapshot: 资料对应数据快照；首次出现的版本不代表当前仍然可用。
+  other: 来源还包含其他适用范围或资料限制。
+fields:
+  level: 等级
+  min-level: 需求等级
+  item-level: 物品等级
+  quality: 品质
+  profession: 专业
+  category: 分类
+  zone: 区域
+  faction: 阵营
+  players: 人数
+  boss-count: 首领战数量
+  source-type: 记录来源
+  temporary-source: 临时来源
+  uses-count: 材料用途条数
+  craft-at: 制作地点
+  other: 其他资料
+sections:
+  materials: 材料
+  products: 产出
+  objectives: 目标
+  rewards: 奖励
+  quest-chain: 任务链
+  locations: 地点
+  bosses: 首领
+  sources: 来源
+  uses: 用途
+  givers: 接取与交付
+  temporary-drops: 临时掉落资料
+  details: 详情
+  other: 其他详情

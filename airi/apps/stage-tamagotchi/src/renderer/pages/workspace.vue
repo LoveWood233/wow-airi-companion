@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { errorMessageFrom } from '@moeru/std'
 import { useElectronEventaInvoke } from '@proj-airi/electron-vueuse'
-import { createLive2D } from '@proj-airi/stage-ui-live2d'
-import { ModelSettingsPreviewStage } from '@proj-airi/stage-ui/components/scenarios/settings/model-settings'
 import { useWindowSize } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
-import { computed, onMounted, onUnmounted, watch } from 'vue'
+import { computed, onMounted, watch } from 'vue'
 
+import DshPetStage from '../components/dsh-pet-stage.vue'
 import FullscreenBackdrop from '../components/fullscreen/fullscreen-backdrop.vue'
 import FullscreenOverlay from '../components/fullscreen/fullscreen-overlay.vue'
 
 import { defaultFullscreenSurface, electronFullscreenExit, electronWorkspaceWindowGetOpenRequest } from '../../shared/eventa'
 import { useFullscreenHost } from '../composables/use-fullscreen-host'
 import { provideFullscreenLayout } from '../composables/use-fullscreen-layout'
+import { useDshPetStore } from '../stores/dsh-pet'
 import { useFullscreenStore } from '../stores/fullscreen'
 
 // The page of the fullscreen mode in a window of its own. It shows the same backdrop, overlay, and layout as the main
@@ -22,11 +22,9 @@ const fullscreen = useFullscreenStore()
 const { phase } = storeToRefs(fullscreen)
 const layout = provideFullscreenLayout()
 const { width: windowWidth, height: windowHeight } = useWindowSize()
-/** The scene of each renderer fills the stage frame. */
-const SCENE_CLASS = ['h-full', 'w-full']
-const live2d = createLive2D()
-
-onUnmounted(() => live2d.dispose())
+const pet = useDshPetStore()
+const { pack, scale } = storeToRefs(pet)
+onMounted(() => void pet.initialize())
 
 const stageFrameStyle = computed(() => {
   const stage = layout.stageSizeIn({ width: windowWidth.value, height: windowHeight.value })
@@ -74,14 +72,11 @@ onMounted(async () => {
       <FullscreenBackdrop />
     </div>
     <div :style="stageFrameStyle" :class="['absolute left-0 top-0 z-2', 'overflow-hidden', 'rounded-2xl']">
-      <!-- The stage of the main window is the one host of voice. This view only renders the model, so it never speaks or listens. -->
-      <ModelSettingsPreviewStage
-        :live2d-context="live2d"
-        :live2d-scene-class="SCENE_CLASS"
-        :vrm-scene-class="SCENE_CLASS"
-        :spine-scene-class="SCENE_CLASS"
-        :tachie-scene-class="SCENE_CLASS"
-        :mmd-scene-class="SCENE_CLASS"
+      <!-- The main character window owns voice. This fullscreen view only renders the selected pet. -->
+      <DshPetStage
+        :pack="pack"
+        :scale="scale"
+        :class="['h-full w-full']"
       />
     </div>
     <div :class="['pointer-events-none absolute inset-0 z-3']">

@@ -1,0 +1,66 @@
+{
+  "outcome": "ok",
+  "total": 10,
+  "page": 1,
+  "page_size": 2,
+  "limit": 2,
+  "offset": 0,
+  "has_more": true,
+  "matched": {
+    "side_rule": "部落的任务，加上没有阵营记录、不在联盟地盘（区域里有阵营记录的任务八成是联盟的）的"
+  },
+  "view": "confirmed",
+  "totals": {
+    "confirmed": 10,
+    "all": 10
+  },
+  "view_note": "view：confirmed 是服务器确认的任务（服务器的任务缓存里有记录，游戏里确实存在），按等级排；all 是客户端 QuestV2 的全部任务 ID（多数只有编号或客户端线索），按 ID 排（有关键词时按相关度）；auto（默认）按关键词、任务线、起始物品系列或线索类型查时用 all，其余用 confirmed，与网站 /quests 相同；sort 可另指定。totals 是两个视图在同样筛选下的数量",
+  "quests_total": 6737,
+  "confirmed_total": 2875,
+  "new_in_160_total": 1767,
+  "quests_meta_hint": "传 meta: true 取客户端表统计、任务线列表与加密段说明",
+  "results": [
+    {
+      "id": "quest:98427",
+      "quest_id": 98427,
+      "title": "停止作业",
+      "display_name": "停止作业",
+      "url": "https://wuxianwow.com/quest/98427",
+      "level": 12,
+      "zone": "莫高雷",
+      "side": "部落",
+      "type": "精英",
+      "min_level": 5,
+      "zone_group": "卡利姆多",
+      "confirmed": true,
+      "reward_brief": "1150 经验 · 雷霆崖声望 +150 · 松动的伐木机刀片、伐木机钥匙",
+      "chain": {
+        "position": 2,
+        "length": 2,
+        "temporary": false
+      },
+      "new_in_160": true,
+      "era": "1.60"
+    },
+    {
+      "id": "quest:99052",
+      "quest_id": 99052,
+      "title": "来自深海的威胁",
+      "display_name": "来自深海的威胁",
+      "url": "https://wuxianwow.com/quest/99052",
+      "level": 12,
+      "zone": "杜隆塔尔",
+      "side": "部落",
+      "type": "精英",
+      "min_level": 10,
+      "zone_group": "卡利姆多",
+      "confirmed": true,
+      "reward_brief": "910 经验 · 奥格瑞玛声望 +100 · 暗矛巨魔声望 +50 · 任选 崭新的兽人匕首 / 阿戈尔的改制腰带",
+      "new_in_160": true,
+      "era": "1.60"
+    }
+  ],
+  "rows_note": "列表行省略空字段（null 与空列表）；完整记录用 fetch 或给 id",
+  "filter_note": "等级、区域与阵营用服务器的记录，没有时用 QuestieDB 的（临时）；接任务的人（temporary_givers 与 giver 筛选）来自 QuestieDB 或 RestedXP 练级指南（临时）",
+  "note": "任务标题、目标与描述由服务器下发（source 为 cache 的取自本机任务缓存），客户端数据里没有；name_hint 只是线索，不是标题。数据来源与采集记录的全文：meta: true，或按 id 查单个任务"
+}

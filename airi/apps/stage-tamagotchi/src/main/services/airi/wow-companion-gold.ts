@@ -58,6 +58,9 @@ type Ledger = InferOutput<typeof ledgerSchema>
  * Corrupt files remain untouched. Failed writes stay visible and are retried.
  */
 export class CompanionGoldLedger {
+  /** Backup import uses the same saved-data boundary as normal ledger loading. */
+  static validateBackup(value: unknown) { return parse(ledgerSchema, value) }
+
   private ledger: Ledger = { version: 1, accounts: [] }
   private storageError: string | null = null
   private blocked = false

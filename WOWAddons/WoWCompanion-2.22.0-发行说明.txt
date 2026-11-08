@@ -1,0 +1,42 @@
+﻿魔兽陪伴精灵 2.22.0 Windows x64 免安装包
+发布日期：2026-11-02
+文件：WoWCompanion-2.22.0-windows-x64-portable.zip
+字节：743575921（约 709.1 MiB）
+SHA256：0b7774d9a5210d19c837fcfb0ed5bba42c1058a816539c2f4dbb63bde71a7cd3
+
+使用：完整解压后双击 Start-WoWCompanion.cmd 或 wow-companion.exe。不要在压缩包内运行。
+阅读包内“使用说明.html”。无需目标电脑 Node.js、pnpm 或 Python。
+新电脑需自行配置模型服务及游戏目录，并校准传输码区域。私人API密钥、形象配置、聊天和游戏记录未迁入本包。
+默认形象与 Electron 43.4.1、Python 3.14.10、当前插件/桥接、离线传送门资料、许可证均已包含。
+
+验证：
+- 桥接/发行资源自动化 51 项通过，包含真实内置 Python 隔离启动，两游戏桥接健康且正常退出。
+- 最终包复制到不同临时路径且清空 PATH 后，Python、SQLite、SSL、ctypes 和完整桥接模块导入通过，中文 UTF-8 正常，无字节码缓存。
+- 发行资源 87 项、完整负载 337 项 SHA256 匹配，ZIP 396 个条目 CRC 通过。
+- ASAR 已检查，无嵌套 .env、包管理配置或个人资料文件。三个 Windows 原生绑定在打包 Electron 下加载通过。
+- 桌面类型检查与生产构建通过。全仓 lint 为 0 错误、670 条既有警告。
+- 语言目录检查64项通过、20项既有缺项，部分模块其他语种回退英文。全仓类型检查仍受独立场景包缺少vue-tsc阻断，不计为通过。
+- 使用本机已有同版本Electron运行时离线构建；不含代码签名。未替用户启动GUI、读取本机个人配置、发模型请求或操作游戏。
+
+当前桥接 2.20.0；正式服插件 2.20.0；无限服插件 1.18.0。
+没有另一台干净Windows实体机的完整GUI/音频/游戏实测，此部分需按使用说明完成首次验收。
+详细命令和日志：logs/portable-2.22.0/
+
+主要验证命令与结果（工作目录 I:\GameTools\airi）：
+1. pnpm -F @proj-airi/stage-tamagotchi exec vitest run --project node scripts/companion-release/files.test.ts src/main/services/airi/wow-delivery.test.ts src/main/services/airi/wow-companion-runtime.test.ts src/main/services/airi/wow-retail-database-runtime.test.ts
+   结果：实际匹配3个文件，51项通过，无跳过。已设置系统Python、嵌入式Python及桥接测试路径。
+2. pnpm -F @proj-airi/i18n build
+   结果：退出0。
+3. pnpm -F @proj-airi/stage-tamagotchi typecheck（在语言包构建后执行）
+   结果：退出0。
+4. pnpm -F @proj-airi/stage-tamagotchi build
+   结果：退出0。
+5. pnpm lint
+   结果：最终退出0，0错误、670条既有警告。
+6. pnpm typecheck
+   结果：退出127，独立场景包缺少vue-tsc，未计为通过。
+7. pnpm -F @proj-airi/i18n test:run
+   结果：64通过、20个既有语言目录缺项，未计为全通过。
+8. pnpm -F @proj-airi/stage-tamagotchi exec electron-builder --win zip --x64 --publish never --config.directories.output=dist-portable-2.22.0 --config.electronDist=I:/GameTools/WOWAddons/.cache/electron-sdk-43.4.1
+   结果：退出0。Windows x64 ZIP已生成，没有发布至远程服务。
+构建命令使用 pnpm_config_verify_deps_before_run=warn，避免本机已有依赖布局差异再次触发整仓安装；未改锁文件或依赖版本。

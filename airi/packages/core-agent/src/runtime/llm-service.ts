@@ -1,7 +1,7 @@
 import type { Usage } from '@xsai/shared-chat'
 
 import type { AssistantTurn, GenerationRound } from '../messages/types'
-import type { StreamEvent, StreamFromOptions, StreamOptions } from '../types/llm'
+import type { LlmUsage, StreamEvent, StreamFromOptions, StreamOptions } from '../types/llm'
 
 import { APICallError } from '@xsai/shared'
 
@@ -110,6 +110,31 @@ async function streamOnce({
   return new Promise<void>((resolve, reject) => {
     let settled = false
     let stepsSettled = false
+    let sdkStarted = false
+    let requestUsageObserved = false
+    let unavailableTimer: ReturnType<typeof setTimeout> | undefined
+    const observeRequestUsage = (usage?: Usage) => {
+      if (requestUsageObserved || !options?.onRequestUsage)
+        return
+      requestUsageObserved = true
+      clearTimeout(unavailableTimer)
+      const normalized: LlmUsage = !usage
+        || (usage.inputTokens == null && usage.outputTokens == null && usage.totalTokens == null)
+        ? { source: 'unavailable' }
+        : { inputTokens: usage.inputTokens, outputTokens: usage.outputTokens, totalTokens: usage.totalTokens, source: 'reported' }
+      // A telemetry observer must neither delay the response nor replace its error.
+      try {
+        void Promise.resolve(options.onRequestUsage(normalized)).catch(() => {})
+      }
+      catch {}
+    }
+    const observeFailedRequest = () => {
+      if (!sdkStarted || !options?.onRequestUsage || requestUsageObserved || unavailableTimer != null)
+        return
+      // Give an already-settling totalUsage promise a chance to supply actual usage.
+      // A broken SDK promise must not leave a cancelled generation unrecorded or stall it.
+      unavailableTimer = setTimeout(observeRequestUsage, 0)
+    }
     const resolveOnce = () => {
       if (settled)
         return
@@ -120,6 +145,7 @@ async function streamOnce({
       if (settled || stepsSettled)
         return
       settled = true
+      observeFailedRequest()
       reject(error)
     }
     // A request switch retries the request, and a caller abort is a cancellation that the caller already knows about.
@@ -142,9 +168,15 @@ async function streamOnce({
     }
 
     try {
+      sdkStarted = true
       const streamResult = request.protocol === 'responses'
         ? streamResponses({ config: request.config, webSearch: supportedTools && options?.providerTools !== false && request.webSearch, conversation, scope, options, tools, initialStep, onEvent })
         : streamChatCompletions({ config: request.config, conversation, scope, options, tools, initialStep, onEvent, supportsContentArray: contentArraySupported })
+
+      // xsAI 0.5.1 totals accumulate raw provider usage chunks, independently of
+      // step.usage (which can inherit the previous round's object). Do not sum steps
+      // or the outer onUsage as well: both would count the same tokens again.
+      void streamResult.totalUsage.then(observeRequestUsage, () => observeRequestUsage())
 
       // NOTICE:
       // `steps` settles after all tool rounds, while provider finish events can arrive earlier.

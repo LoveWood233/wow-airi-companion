@@ -1,0 +1,116 @@
+title: 数据与缓存
+description: 检测正式服构建变化，生成并验证本地快照，管理可清除的查询缓存。
+current:
+  title: 当前数据选择
+  client-build: 检测到的正式服构建
+  previous-build: 上次检测到的构建
+  checked: '上次检测：{time}'
+  changed: 发现客户端构建变化。当前数据库保持不变，需要你手动选择切换。
+  active: 已选快照
+  none: 尚未选择数据库。
+  external: 当前选择的是受管快照之外的数据库，此页面尚未核实其版本。
+  open-query: 打开正式服本地资料
+  unknown: 未知
+  no-auto-update: 检测仅读取本地构建信息，不会导出数据、下载工具或切换数据库。
+paths:
+  title: 本地目录与离线依赖
+  game: 正式服游戏安装目录
+  tools: CASC 工具项目目录
+  choose-game: 选择游戏目录
+  choose-tools: 选择 CASC 工具目录
+  unselected: 尚未选择
+  check: 检查本地依赖
+  offline: 请在本地准备工具、字段定义与构建依赖，此页面不会下载这些内容。
+  checks:
+    python: Python
+    dotnet: .NET SDK
+    exporter: 本地 DB2 导出器
+    definitions: 本地字段定义
+    offline-guard: 仅读本地文件保护
+  statuses:
+    unknown: 尚未检查
+    ready: 已就绪
+    missing: 缺失
+    invalid: 无效
+job:
+  title: 手动导出快照
+  description: 从已配置的本地客户端导出 DB2，构建 SQLite 并验证，通过后才能选择使用。
+  start: 导出并验证快照
+  cancel: 取消导出
+  cancelling: 正在等待导出进程停止…
+  idle: 当前没有正在执行的导出。
+  phases:
+    checking: 正在检查本地依赖
+    exporting: 正在读取本地 DB2 表
+    building-sqlite: 正在构建查询数据库
+    verifying: 正在验证导出快照
+    ready: 快照验证通过
+    failed: 快照导出失败
+    cancelled: 快照导出已取消
+  progress: '导出器已报告 {completed} / {total} 张表'
+  progress-unknown: '导出器已报告 {completed} 张表，总数未知。'
+  no-count: 此阶段暂无可量化的进度报告。
+  progress-note: 进度来自本地导出进程，不估算完成时间或百分比。
+  updated: '任务状态更新时间：{time}'
+  ready: 新快照已通过验证，请在下方手动选择，才会更改查询所用的数据库。
+  ready-selected: 此次验证通过的快照已用于资料查询。
+  failure-keeps-active: 导出失败或取消时，先前选择的数据库仍然保留。
+snapshots:
+  title: 受管快照与回滚
+  description: 保留最多两个受管快照，当前使用的受管快照优先保留。原有外部数据库不属于这里的受管历史。
+  empty: 暂无可用的受管快照。
+  selected: 当前使用
+  verified: 已验证的本地快照
+  created: '生成时间：{time}'
+  exported: '来源导出时间：{time}'
+  activate: 切换到此快照
+  rollback: 回滚到此快照
+  source: '来源：{name}'
+  locale: '数据语言：{locale}'
+  no-hotfixes: 不会自动叠加服务器热修。
+  encrypted: 加密分段中的部分来源记录可能仍不可用。
+  switch-note: 导出完成不等于切换数据库，切换与回滚都需要你手动操作。
+cache:
+  title: 查询缓存
+  entries: 已缓存结果
+  used: 缓存已用空间
+  maximum: 容量上限
+  static-ttl: 静态资料缓存
+  price-ttl: 拍卖行价格缓存
+  hours: '{count} 小时'
+  minutes: '{count} 分钟'
+  mib: '{size} MiB'
+  inspect: 刷新缓存状态
+  clear: 清空查询缓存
+  unavailable: 暂时无法取得缓存用量。
+  policy: 按游戏、客户端构建、语言与数据快照隔离缓存，过期价格不会当作实时报价。
+  clear-note: 只清除可重新查询的缓存，不会删除数据库、受管快照或聊天记录。
+feedback:
+  cache-cleared: 查询缓存已清空。
+  snapshot-selected: 所选快照已成为当前查询数据源。
+errors:
+  configuration-invalid: 已保存的目录配置无效，请重新选择。
+  configuration-save-failed: 无法保存本地目录配置。
+  game-root-invalid: 请选择有效的正式服游戏安装目录。
+  tools-root-invalid: 请选择包含本地导出器的 CASC 工具项目目录。
+  build-info-invalid: 正式服构建信息缺失或无效。
+  build-ambiguous: 检测到多个匹配的构建，请检查已选游戏目录。
+  python-missing: Python 暂不可用，请在本地准备后重新检查。
+  dotnet-missing: .NET SDK 暂不可用，请在本地准备后重新检查。
+  exporter-missing: 缺少本地 DB2 导出器。
+  definitions-missing: 缺少本地字段定义。
+  offline-guard-missing: 工具尚未确认仅读本地文件，请先核对离线保护。
+  offline-build-required: 离线构建依赖尚未就绪，请先在本地完成工具构建准备。
+  busy: 已有导出操作正在执行。
+  export-failed: 本地 DB2 提取失败，当前选择的数据库保持不变。
+  sqlite-failed: 查询数据库构建失败，当前选择的数据库保持不变。
+  verification-failed: 快照验证失败，不能选择此快照。
+  source-changed: 导出期间游戏数据源发生变化，请检查构建后重试。
+  snapshot-invalid: 受管快照不存在、已被改动或尚未通过验证。
+  activation-failed: 无法切换快照，请检查当前数据库后重试。
+  cancelled: 导出已取消。
+  filesystem-failed: 无法访问本地文件。
+  unsupported-platform: 快照导出需要 Windows。
+  bridge-unavailable: 本地数据服务暂不可用，请重试状态检查。
+  cache-unavailable: 无法访问查询缓存，原有数据库与聊天记录不受影响。
+  generic: 操作失败，请检查本地设置后重试。

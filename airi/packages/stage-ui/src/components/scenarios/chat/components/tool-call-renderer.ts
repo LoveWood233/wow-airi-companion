@@ -1,5 +1,7 @@
 import type { Component } from 'vue'
 
+import { markRaw } from 'vue'
+
 /**
  * Props passed to a tool-call renderer component.
  *
@@ -62,6 +64,10 @@ export interface ChatToolCallTitle {
  */
 export interface ChatToolCallWidget {
   component: Component
+  /** A proxy widget accepts only the underlying calls that it understands. Other calls retain their generic renderer. */
+  matches?: (args: string) => boolean
+  /** A completed deterministic answer opens once when first observed. The owner can collapse it afterwards. */
+  autoOpen?: boolean
   read: (result: unknown, args: string) => ChatToolCallWidgetReading | undefined
   title?: (result: unknown, args: string) => ChatToolCallTitle | undefined
 }
@@ -81,9 +87,9 @@ type PropsOf<TComponent> = TComponent extends abstract new (...args: never[]) =>
 export function defineToolCallWidget<TComponent extends Component>(
   component: TComponent,
   read: (result: unknown, args: string) => { props: PropsOf<TComponent>, rest?: unknown, failed?: boolean, autoOpen?: boolean } | undefined,
-  options?: Pick<ChatToolCallWidget, 'title'>,
+  options?: Pick<ChatToolCallWidget, 'title' | 'matches' | 'autoOpen'>,
 ): ChatToolCallWidget {
-  return { component, read, ...options }
+  return { component: markRaw(component), read, ...options }
 }
 
 /**

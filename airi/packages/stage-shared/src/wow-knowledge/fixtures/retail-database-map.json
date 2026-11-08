@@ -1,0 +1,80 @@
+{
+  "operation": "fetch",
+  "outcome": "ok",
+  "source": {
+    "name": "正式服本地 DB2",
+    "game": "retail",
+    "product": "wow",
+    "localOnly": true,
+    "build": "12.1.5.70575",
+    "locale": "zhCN",
+    "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+    "hotfixesApplied": false,
+    "datasetId": "3a9114ba7cd89e708e54bde1793e3fd34a97e70b582ad9ee1663849284870203",
+    "tables": [
+      {
+        "name": "Map",
+        "status": "decoded",
+        "rows": 1187,
+        "encrypted": false
+      }
+    ]
+  },
+  "entries": [
+    {
+      "id": "map:0",
+      "kind": "map",
+      "numericId": 0,
+      "title": "东部王国",
+      "fields": [
+        {
+          "key": "ID",
+          "value": "0"
+        },
+        {
+          "key": "MapName_lang",
+          "value": "东部王国"
+        },
+        {
+          "key": "Directory",
+          "value": "Azeroth"
+        },
+        {
+          "key": "MapType",
+          "value": "1"
+        },
+        {
+          "key": "InstanceType",
+          "value": "0"
+        },
+        {
+          "key": "ExpansionID",
+          "value": "0"
+        },
+        {
+          "key": "ParentMapID",
+          "value": "-1"
+        },
+        {
+          "key": "AreaTableID",
+          "value": "0"
+        }
+      ],
+      "links": [],
+      "notices": [
+        "client-db2-only",
+        "hotfixes-not-applied",
+        "map-id-not-uimap-id"
+      ]
+    }
+  ],
+  "offset": 0,
+  "limit": 1,
+  "hasMore": false,
+  "notices": [
+    "client-db2-only",
+    "hotfixes-not-applied",
+    "map-id-not-uimap-id"
+  ],
+  "receivedAt": "2026-11-01T05:07:34.258882+00:00"
+}

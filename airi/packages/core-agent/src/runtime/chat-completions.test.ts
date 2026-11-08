@@ -6,6 +6,33 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { streamFrom } from './llm-service'
 
+it.each([false, true])('totals actual SDK usage without inherited step usage (second round reported: %s)', async (secondRoundReported) => {
+  let requestCount = 0
+  const fetch: typeof globalThis.fetch = async () => {
+    requestCount += 1
+    const chunk = requestCount === 1
+      ? { choices: [{ index: 0, delta: { tool_calls: [{ index: 0, id: 'lookup-1', type: 'function', function: { name: 'lookup', arguments: '{}' } }] }, finish_reason: 'tool_calls' }] }
+      : { choices: [{ index: 0, delta: { content: 'Done.' }, finish_reason: 'stop' }] }
+    const usage = requestCount === 1 || secondRoundReported
+      ? `data: ${JSON.stringify({ choices: [], usage: { prompt_tokens: 10, completion_tokens: 3, total_tokens: 13 } })}\n\n`
+      : ''
+    return new Response(`data: ${JSON.stringify(chunk)}\n\n${usage}data: [DONE]\n\n`, { headers: { 'Content-Type': 'text/event-stream' } })
+  }
+  const onRequestUsage = vi.fn()
+  await streamFrom({
+    model: 'test',
+    chatProvider: { generation: model => ({ protocol: 'chat-completions', config: { model, baseURL: 'https://example.test/v1/', fetch } }) },
+    conversation: { turns: [] },
+    options: {
+      tools: [{ type: 'function', function: { name: 'lookup', parameters: { type: 'object', properties: {} } }, execute: () => 'found' }],
+      onRequestUsage,
+    },
+  })
+  const multiplier = secondRoundReported ? 2 : 1
+  expect(requestCount).toBe(2)
+  expect(onRequestUsage).toHaveBeenCalledExactlyOnceWith({ source: 'reported', inputTokens: 10 * multiplier, outputTokens: 3 * multiplier, totalTokens: 13 * multiplier })
+})
+
 // https://github.com/moeru-ai/airi/pull/2477
 it('records real Chat SDK rounds and keeps failed tool results on their invocation', async () => {
   const requests: { messages: unknown[] }[] = []

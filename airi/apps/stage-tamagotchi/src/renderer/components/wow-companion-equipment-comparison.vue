@@ -15,6 +15,9 @@ const staleSpec = computed(() => props.comparison && (!props.current || props.co
 const stats = computed(() => {
   if (!props.comparison)
     return undefined
+  if (props.comparison.v === 2)
+    return props.comparison.deltas.map(delta => ({ key: delta.key, previous: delta.before, next: delta.after }))
+  // Archive v1 retains observed columns without an addon decision or transmitted differences.
   const values = new Map<string, { key: string, previous: number | null, next: number | null }>()
   if (props.comparison.current) {
     for (const stat of props.comparison.current.stats)

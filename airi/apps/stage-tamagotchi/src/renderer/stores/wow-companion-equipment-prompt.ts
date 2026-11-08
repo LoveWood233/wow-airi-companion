@@ -9,20 +9,8 @@ import { hasFreshCompanionObservation } from '../utils/wow-companion-observation
 export interface EquipmentPrompt {
   id: string
   text: string
-  phase: 'speaking' | 'choosing' | 'accepted' | 'review'
+  phase: 'speaking' | 'notice' | 'review'
   deadline: number | null
-}
-
-/** The desktop page and caption bubble share the same localized choice labels. */
-export function equipmentPromptActions(prompt: EquipmentPrompt | null, translate: (key: string) => string) {
-  if (prompt?.phase !== 'choosing')
-    return undefined
-  return {
-    id: prompt.id,
-    acceptLabel: translate('wow-companion.equipment-prompt.accept'),
-    declineLabel: translate('wow-companion.equipment-prompt.decline'),
-    hint: `${translate('wow-companion.equipment-prompt.timeout')} ${translate('wow-companion.equipment-prompt.description')}`,
-  }
 }
 
 /** The voice host owns audio. Stop resolves after this specific turn becomes silent. */
@@ -42,7 +30,6 @@ export interface EquipmentPromptHost {
   muted: () => boolean
   message: (offer: EquipmentOffer, comparison: EquipmentComparison) => string
   review: (comparison: EquipmentComparison) => string
-  accepted: () => string
   speak: (sessionId: string, text: string) => EquipmentPromptPlayback
 }
 
@@ -62,7 +49,6 @@ interface ActivePrompt extends Candidate {
   playback?: EquipmentPromptPlayback
   speechDeadline: number
   stopping: boolean
-  acceptedUntil?: number
 }
 
 /**
@@ -96,21 +82,6 @@ export class EquipmentPromptController {
     this.tick()
   }
 
-  /** A choice addresses only the currently visible suggestion. Acceptance never equips an item. */
-  choose(id: string, choice: 'accept' | 'decline') {
-    this.tick()
-    const current = this.current
-    if (!current || current.key !== id || current.view.phase !== 'choosing')
-      return
-    if (choice === 'decline') {
-      this.dismiss()
-      return
-    }
-    current.acceptedUntil = Date.now() + 10_000
-    current.view = { id, text: this.host.accepted(), phase: 'accepted', deadline: null }
-    this.host.publish(current.view)
-  }
-
   /** Stop releases observations and owned audio. Remembered IDs survive a later restart of the same host. */
   stop() {
     this.states.clear()
@@ -125,14 +96,14 @@ export class EquipmentPromptController {
     const bridge = state?.bridge
     const snapshot = bridge?.snapshot
     const offer = bridge?.equipmentOffer
-    if (!state || state.game !== game || !state.settings.enabled || state.error || !bridge || bridge.error
+    if (!state || state.game !== game || !hasFreshCompanionObservation(state, now) || !state.settings.enabled || state.error || !bridge || bridge.error
       || bridge.equipmentOfferError || bridge.equipmentComparisonError || bridge.status !== 'live' || bridge.source !== 'screen'
       || !snapshot?.online || !this.host.currentPlayer(game, snapshot) || snapshot.combat || snapshot.dead || !offer || offer.st !== 'ready'
       || offer.s !== snapshot.session || offer.g !== snapshot.guid || offer.until * 1000 <= now) {
       return
     }
     const comparison = bridge.equipmentComparisons.find(value => value.id === offer.id && value.session === offer.s && value.guid === offer.g)
-    if (!comparison || comparison.class !== snapshot.class || comparison.spec !== snapshot.spec
+    if (!comparison || comparison.v !== 2 || comparison.class !== snapshot.class || comparison.spec !== snapshot.spec
       || comparison.slot !== offer.slot || comparison.candidate.itemID !== offer.item || comparison.candidate.itemLevel !== offer.il
       || comparison.current?.itemID !== offer.old || comparison.current.itemLevel !== offer.ol) {
       return
@@ -159,7 +130,7 @@ export class EquipmentPromptController {
 
     // A review is informational. It requires a recent acquisition, never a saved comparison or a manual bag rescan.
     for (const comparison of [...bridge.equipmentComparisons].sort((a, b) => b.id - a.id)) {
-      if (comparison.session !== snapshot.session || comparison.guid !== snapshot.guid
+      if (comparison.v !== 2 || comparison.session !== snapshot.session || comparison.guid !== snapshot.guid
         || comparison.class !== snapshot.class || comparison.spec !== snapshot.spec
         || comparison.observedAt * 1000 > now + 5000 || now - comparison.observedAt * 1000 > 180_000
         || !comparison.current || comparison.candidate.itemLevel <= comparison.current.itemLevel
@@ -202,8 +173,7 @@ export class EquipmentPromptController {
       else if (current.stopping && now >= current.speechDeadline + 5000) {
         this.dismiss()
       }
-      else if ((current.view.deadline !== null && now >= current.view.deadline)
-        || (current.acceptedUntil !== undefined && now >= current.acceptedUntil)) {
+      else if (current.view.deadline !== null && now >= current.view.deadline) {
         this.dismiss()
       }
     }
@@ -255,20 +225,20 @@ export class EquipmentPromptController {
     this.current = current
     this.host.publish(current.view)
     if (!sessionId || candidate.muted || this.host.muted()) {
-      this.chooseAfterSpeech(current)
+      this.finishNotice(current)
       return
     }
     try {
       current.playback = this.host.speak(sessionId, current.view.text)
-      void current.playback.done.then(() => this.chooseAfterSpeech(current), () => this.finishSilently(current))
+      void current.playback.done.then(() => this.finishNotice(current), () => this.finishSilently(current))
     }
     catch {
       // Optional speech cannot block the visible suggestion or its manual confirmation inside the game.
-      this.chooseAfterSpeech(current)
+      this.finishNotice(current)
     }
   }
 
-  private chooseAfterSpeech(current: ActivePrompt) {
+  private finishNotice(current: ActivePrompt) {
     if (this.current !== current || current.stopping || current.view.phase !== 'speaking')
       return
     const candidate = this.candidates(current.game, Date.now()).find(candidate => candidate.key === current.key)
@@ -278,7 +248,7 @@ export class EquipmentPromptController {
       return
     }
     current.playback = undefined
-    current.view = { ...current.view, phase: current.offer ? 'choosing' : 'review', deadline: Date.now() + 10_000 }
+    current.view = { ...current.view, phase: current.offer ? 'notice' : 'review', deadline: Date.now() + 3000 }
     this.host.publish(current.view)
   }
 
@@ -288,15 +258,15 @@ export class EquipmentPromptController {
     current.stopping = true
     if (!current.playback) {
       current.stopping = false
-      this.chooseAfterSpeech(current)
+      this.finishNotice(current)
       return
     }
-    // A failed synthesis or deadline first stops owned audio. Buttons appear only after the silence receipt.
+    // A failed synthesis or deadline first stops owned audio before the subtitle grace period.
     this.stoppingAudio++
     const playback = current.playback
     void Promise.resolve().then(() => playback.stop()).then(() => {
       current.stopping = false
-      this.chooseAfterSpeech(current)
+      this.finishNotice(current)
     }, () => {
       if (this.current === current)
         this.dismiss()

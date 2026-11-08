@@ -3,10 +3,10 @@ import cropImg from '@lemonneko/crop-empty-pixels'
 import { Application } from '@pixi/app'
 import { extensions } from '@pixi/extensions'
 import { Ticker, TickerPlugin } from '@pixi/ticker'
-import { Live2DFactory, Live2DModel, MotionPreloadStrategy } from 'pixi-live2d-display/cubism4'
+import { Live2DFactory, Live2DModel } from 'pixi-live2d-display/cubism4'
 
 /**
- * Renders one static Live2D preview and releases its model, textures, and canvas.
+ * Render a Live2D zip/file to an offscreen canvas and return a padded preview data URL.
  */
 export async function loadLive2DModelPreview(file: File) {
   Live2DModel.registerTicker(Ticker)
@@ -28,28 +28,39 @@ export async function loadLive2DModelPreview(file: File) {
   offscreenCanvas.style.opacity = '0'
   document.body.appendChild(offscreenCanvas)
 
-  let app: Application | undefined
-  let modelInstance: Live2DModel | undefined
+  const app = new Application({
+    view: offscreenCanvas,
+    width: offscreenCanvas.width,
+    height: offscreenCanvas.height,
+    // Ensure the drawing buffer persists so toDataURL() can read pixels
+    preserveDrawingBuffer: true,
+    backgroundAlpha: 0,
+    autoDensity: false,
+    resolution: 1,
+    autoStart: false,
+  })
+  app.stage.scale.set(previewResolution)
+  app.ticker.stop()
+
+  const modelInstance = new Live2DModel()
+  const objUrl = URL.createObjectURL(file)
+  const res = await fetch(objUrl)
+  const blob = await res.blob()
+
+  const cleanup = () => {
+    // A loaded model is on the global `Ticker.shared`, and its textures stay in
+    // the global texture cache, where they keep this app's WebGL context alive.
+    // The model has no internal model when the load failed before it registered.
+    if (modelInstance.internalModel)
+      modelInstance.destroy({ texture: true, baseTexture: true })
+    app.destroy()
+    if (offscreenCanvas.isConnected)
+      document.body.removeChild(offscreenCanvas)
+    URL.revokeObjectURL(objUrl)
+  }
 
   try {
-    app = new Application({
-      view: offscreenCanvas,
-      width: offscreenCanvas.width,
-      height: offscreenCanvas.height,
-      // Keep the drawing buffer available for toDataURL().
-      preserveDrawingBuffer: true,
-      backgroundAlpha: 0,
-      autoDensity: false,
-      resolution: 1,
-      autoStart: false,
-    })
-    app.stage.scale.set(previewResolution)
-    app.ticker.stop()
-
-    // A static render must not start an asynchronous Idle motion before disposal.
-    const modelOptions = { autoInteract: false, autoUpdate: false, motionPreload: MotionPreloadStrategy.NONE }
-    modelInstance = new Live2DModel(modelOptions)
-    await Live2DFactory.setupLive2DModel(modelInstance, [new File([file], file.name)], modelOptions)
+    await Live2DFactory.setupLive2DModel(modelInstance, [new File([blob], file.name)], { autoInteract: false })
     app.stage.addChild(modelInstance)
 
     modelInstance.x = 275
@@ -73,15 +84,12 @@ export async function loadLive2DModelPreview(file: File) {
     paddingCanvasCtx.drawImage(croppedCanvas, (paddingCanvas.width - croppedCanvas.width) / 2, (paddingCanvas.height - croppedCanvas.height) / 2, croppedCanvas.width, croppedCanvas.height)
     const paddingDataUrl = paddingCanvas.toDataURL()
 
+    cleanup()
+
     return paddingDataUrl
   }
   catch (error) {
     console.error(error)
-  }
-  finally {
-    if (modelInstance?.internalModel)
-      modelInstance.destroy({ texture: true, baseTexture: true })
-    app?.destroy()
-    offscreenCanvas.remove()
+    cleanup()
   }
 }

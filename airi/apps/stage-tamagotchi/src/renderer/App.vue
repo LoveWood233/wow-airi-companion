@@ -7,6 +7,7 @@ import { themeColorFromValue, useThemeColor } from '@proj-airi/stage-layouts/com
 import { artistrySyncConfig } from '@proj-airi/stage-shared'
 import { ToasterRoot } from '@proj-airi/stage-ui/components'
 import { updateModelAssetStatus, useInferencePreload } from '@proj-airi/stage-ui/composables'
+import { subscribeModelUsage } from '@proj-airi/stage-ui/libs/model-usage'
 import { usePiniaSynced } from '@proj-airi/stage-ui/libs/pinia'
 import { isSherpawModelBundled, setSherpawModelAssetHost } from '@proj-airi/stage-ui/libs/providers/providers/sherpaw/model-assets'
 import { useCharacterOrchestratorStore } from '@proj-airi/stage-ui/stores/character'
@@ -34,11 +35,10 @@ import { RouterView, useRoute, useRouter } from 'vue-router'
 import { toast, Toaster } from 'vue-sonner'
 
 import ResizeHandler from './components/ResizeHandler.vue'
+import WowStatisticsDisclosure from './components/wow-statistics-disclosure.vue'
 
 import {
   electronGetServerChannelConfig,
-  electronGodotStageGetStatus,
-  electronGodotStageStatusChanged,
   electronSettingsNavigate,
   i18nGetLocale,
   i18nSetLocale,
@@ -62,8 +62,8 @@ import {
   electronPluginUnload,
 } from '../shared/eventa/plugin/host'
 import { electronPluginToolsChanged } from '../shared/eventa/plugin/tools'
+import { wowStatisticsRecord } from '../shared/eventa/wow-statistics'
 import { initializeIOTraceRecordingBridge } from './bridges/io-trace-recording'
-import { initializeStageThreeRuntimeTraceBridge } from './bridges/stage-three-runtime-trace'
 import { useLanguage } from './composables/use-language'
 import { useFullscreenStore } from './stores/fullscreen'
 import { useServerChannelSettingsStore } from './stores/settings/server-channel'
@@ -80,6 +80,7 @@ import { resolveInitialRendererRoutePath, resolveRendererWindowContext } from '.
 
 const { isDark: dark } = useTheme()
 const settingsStore = useSettings()
+void useSettingsStageModel().setRuntimeEnabled(false)
 const { language, themeColorsHue, themeColorsHueDynamic } = storeToRefs(settingsStore)
 const router = useRouter()
 const route = useRoute()
@@ -91,6 +92,9 @@ watchEffect(() => {
   document.documentElement.lang = locale.value === 'zh-Hans' ? 'zh-CN' : locale.value === 'zh-Hant' ? 'zh-TW' : locale.value
 })
 const context = useElectronEventaContext()
+const recordModelUsage = useElectronEventaInvoke(wowStatisticsRecord)
+// Every generation reports from its owning renderer. Main-process disclosure gates persistence and transmission.
+const stopModelUsage = subscribeModelUsage(observation => recordModelUsage(observation).catch(() => {}))
 const listModelAssets = useElectronEventaInvoke(electronModelAssetsList)
 const ensureModelAsset = useElectronEventaInvoke(electronModelAssetEnsure)
 const cancelModelAsset = useElectronEventaInvoke(electronModelAssetCancel)
@@ -176,7 +180,6 @@ function createFullStageRuntime() {
   useConsciousnessStore()
   useHearingStore()
   useSpeechStore()
-  useSettingsStageModel()
   useVisionStore()
 
   const { activeProvider, artistryGlobals, activeModel, defaultPromptPrefix, providerOptions } = storeToRefs(artistryStore)
@@ -192,23 +195,10 @@ function createFullStageRuntime() {
   const unloadPlugin = useElectronEventaInvoke(electronPluginUnload)
   const inspectPluginHost = useElectronEventaInvoke(electronPluginInspect)
   const reportPluginCapability = useElectronEventaInvoke(electronPluginUpdateCapability)
-  const getGodotStageStatus = useElectronEventaInvoke(electronGodotStageGetStatus)
   const syncArtistryConfig = useElectronEventaInvoke(artistrySyncConfig)
-  const usesGodotStage = !!windowContext.fullscreenHost || initialRoutePath.startsWith('/settings')
   const isWidgetsWindow = initialRoutePath === '/widgets'
 
-  function syncGodotStageRenderer(state: { state: 'stopped' | 'starting' | 'running' | 'stopping' | 'error' }) {
-    if (state.state === 'running') {
-      settingsStore.setStageModelRenderer('godot')
-      return
-    }
-
-    if ((state.state === 'stopped' || state.state === 'error') && settingsStore.stageModelRenderer === 'godot')
-      settingsStore.restoreBuiltInStageModelRenderer()
-  }
-
   usePerfTracerBridgeStore()
-  initializeStageThreeRuntimeTraceBridge()
   void stageWindowLifecycleStore.initializeWindowLifecycleBridge()
 
   contextBridgeStore.setSparkNotifyHostRole(isWidgetsWindow ? 'client' : 'main')
@@ -264,14 +254,6 @@ function createFullStageRuntime() {
     void syncArtistryConfig(config)
   }, { deep: true, immediate: true })
 
-  context.value.on(electronGodotStageStatusChanged, (event) => {
-    if (!event.body) {
-      return
-    }
-
-    syncGodotStageRenderer(event.body)
-  })
-
   context.value.on(electronPluginToolsChanged, () => {
     void refreshPluginRuntimeTools()
   })
@@ -282,17 +264,7 @@ function createFullStageRuntime() {
       await cardStore.initialize()
 
       await displayModelsStore.loadDisplayModelsFromIndexedDB()
-      await settingsStore.initializeStageModel()
       await settingsAudioDeviceStore.initialize()
-
-      if (usesGodotStage) {
-        try {
-          syncGodotStageRenderer(await getGodotStageStatus())
-        }
-        catch (error) {
-          console.warn('[App] Failed to fetch Godot stage status:', error)
-        }
-      }
 
       const serverChannelConfig = await getServerChannelConfig()
       serverChannelSettingsStore.tlsConfig = serverChannelConfig.tlsConfig ?? null
@@ -394,6 +366,7 @@ watch(themeColorsHueDynamic, () => {
 }, { immediate: true })
 
 onUnmounted(() => {
+  stopModelUsage()
   wowScreenAssist?.stop()
   wowCompanion.stop()
   stopIOTraceRecordingBridge?.()
@@ -411,6 +384,7 @@ onUnmounted(() => {
   </ToasterRoot>
   <ResizeHandler v-if="!isSpotlightWindow && !isFloatingChatWindow && !mainWindowFullscreen" />
   <RouterView />
+  <WowStatisticsDisclosure v-if="isMainWindow" />
 </template>
 
 <style>

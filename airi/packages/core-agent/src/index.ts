@@ -71,6 +71,8 @@ export type {
 
 export type {
   BuiltinToolsResolver,
+  LlmUsage,
+  LlmUsageSource,
   StreamEvent,
   StreamFromOptions,
   StreamOptions,

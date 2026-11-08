@@ -15,10 +15,12 @@ from datetime import datetime, timezone
 from protocol import (COMPARISON_MAX_BYTES, EQUIPMENT_MAX_BYTES, LOADOUT_MAX_BYTES, GAME_PROTOCOLS, FrameError, load_json,
                       validate_equipment_fragment, validate_equipment_record, validate_equipment_swap,
                       validate_equipment_offer, validate_comparison_fragment, validate_equipment_comparison,
-                      validate_loadout_fragment, validate_equipment_loadout, validate_macro, validate_calendar, validate_group_buff,
+                      validate_loadout_fragment, validate_equipment_loadout, validate_macro, validate_calendar, validate_group_buff, validate_life,
                       INVENTORY_MAX_BYTES, validate_inventory_fragment, validate_inventory,
                       QUEST_MAX_BYTES, validate_quest_fragment, validate_quests,
                       TALENT_MAX_BYTES, validate_talent_fragment, validate_talents)
+
+from item_storage import ItemStorageAssembler
 
 DEFAULT_CONFIG = {"x": 8, "y": 8, "cellSize": 1, "pollMs": 100, "paused": False}
 EQUIPMENT_TTL_SECONDS = 180
@@ -36,6 +38,7 @@ QUEST_PENDING_BYTES = QUEST_MAX_BYTES * QUEST_PENDING_LIMIT
 TALENT_TTL_SECONDS = 1200
 TALENT_PENDING_LIMIT = 2
 TALENT_PENDING_BYTES = TALENT_MAX_BYTES * TALENT_PENDING_LIMIT
+LIFE_TTL_SECONDS = 5
 
 
 def known_zone(snapshot: dict) -> tuple[int, str] | None:
@@ -73,6 +76,7 @@ class CompanionState:
         self.game = game
         self.protocol = GAME_PROTOCOLS[game]
         self.lock = threading.RLock()
+        self.item_storage = ItemStorageAssembler(clock, wall_clock)
         self.clock = clock
         self.wall_clock = wall_clock
         self.instance_id = str(uuid.uuid4())
@@ -83,6 +87,14 @@ class CompanionState:
         self.fresh_at: float | None = None
         self.last_seen: str | None = None
         self.last_tick = None
+        # Life frames enrich a live snapshot; they never renew its heartbeat.
+        # Keep watermarks through capture gaps so a frozen auxiliary frame cannot revive progress.
+        self.life_identity = None
+        self.life_login = None
+        self.life_tick = None
+        self.life_count = None
+        self.life_at = None
+        self.life_managed = False
         self.error = f"等待插件的 {self.protocol} 遥测网格"
         self.demo = False
         self.reset_baseline = True
@@ -154,6 +166,7 @@ class CompanionState:
         with self.lock:
             self.connection = copy.deepcopy(diagnostic)
             if diagnostic["phase"] != "connected":
+                self.life_at = None
                 self.fresh_at = None
                 self.reset_baseline = True
 
@@ -181,6 +194,7 @@ class CompanionState:
             if self.calendar is None:
                 self.calendar_key, self.calendar_parts, self.calendar_started = None, {}, None
             self.fresh_at = None
+            self.life_at = None
             self.last_tick = None
             self.reset_baseline = True
             self.connection = {"phase": "locating", "reason": None, "attempts": 0, "consecutive": 0,
@@ -234,6 +248,7 @@ class CompanionState:
         return list(results.values())
 
     def _clear_equipment(self) -> None:
+        self.item_storage.reset()
         self.transfer_results.clear()
         self.transfer_latest.clear()
         self.calendar_started = None
@@ -822,15 +837,80 @@ class CompanionState:
             return "waiting"
         return "stale" if self.clock() - self.fresh_at > 5 else "live"
 
+    def _sync_life_identity(self, snapshot: dict) -> None:
+        if self.demo:
+            return
+        identity = (snapshot["account"], snapshot["session"], snapshot["guid"])
+        if identity != self.life_identity:
+            self.life_identity = identity
+            self.life_login, self.life_tick, self.life_count = None, None, None
+            self.life_at, self.life_managed = None, False
+        if not snapshot["online"]:
+            self.life_at = None
+        # An older auxiliary observation cannot lower an inline counter already observed.
+        if self.life_managed and "loginId" in snapshot:
+            if snapshot["loginId"] != self.life_login:
+                self.life_at = None
+            elif self.life_count is not None:
+                self.life_count = max(self.life_count, snapshot["combatEnds"])
+
+    def _ingest_life(self, snapshot: dict) -> None:
+        value = validate_life(snapshot)
+        if self.demo or self._status() != "live" or self.reset_baseline or self.error:
+            return
+        base = self.snapshot
+        if not base or not base["online"] or (value["s"], value["g"]) != (base["session"], base["guid"]):
+            return
+        # Alternate state/data slots can put the life tick one step ahead of the latest state.
+        if not base["tick"] - 5 <= value["t"] <= base["tick"] + 1:
+            return
+        self._sync_life_identity(base)
+        expected_login = self.life_login or base.get("loginId") or value["l"]
+        self.life_managed = True
+        self.life_login = expected_login
+        if value["l"] != expected_login or base.get("loginId", expected_login) != expected_login:
+            self.life_at = None
+            return
+        if self.life_tick is not None and value["t"] <= self.life_tick:
+            return
+        minimum_count = self.life_count if self.life_count is not None else 0
+        if base.get("loginId") == expected_login:
+            minimum_count = max(minimum_count, base["combatEnds"])
+        if value["c"] < minimum_count:
+            return
+        self.life_tick, self.life_count, self.life_at = value["t"], value["c"], self.clock()
+
+    def _merge_life(self, snapshot: dict | None, status: str) -> None:
+        if snapshot is None:
+            return
+        if status != "live" or self.demo or self.error or self.reset_baseline or not snapshot["online"]:
+            self.life_at = None
+            snapshot.pop("loginId", None)
+            snapshot.pop("combatEnds", None)
+            return
+        if not self.life_managed:
+            return  # Older v3 addons may provide the pair directly in the state frame.
+        snapshot.pop("loginId", None)
+        snapshot.pop("combatEnds", None)
+        if self.life_at is None:
+            return
+        if self.clock() - self.life_at > LIFE_TTL_SECONDS:
+            self.life_at = None
+            return
+        snapshot["loginId"], snapshot["combatEnds"] = self.life_login, self.life_count
+
     def view(self, after: int | None = None) -> dict:
         with self.lock:
             self._expire_equipment()
             age = round(max(0, self.clock() - self.fresh_at), 2) if self.fresh_at is not None else None
             status = self._status()
             current_snapshot = copy.deepcopy(self.snapshot)
+            self._merge_life(current_snapshot, status)
             # Keep event observations historical. An expired or paused current
             # view must not present the last recorded position as live.
             if current_snapshot is not None and status not in ("live", "demo"):
+                current_snapshot.pop("loginId", None)
+                current_snapshot.pop("combatEnds", None)
                 current_snapshot["px"], current_snapshot["py"] = None, None
                 if "instanceType" in current_snapshot:
                     current_snapshot["instanceType"] = "unknown"
@@ -840,7 +920,9 @@ class CompanionState:
             current_quests = self._current_quests(status)
             current_talents = self._current_talents(status)
             return {"instanceId": self.instance_id, "status": status, "source": "demo" if self.demo else "screen", "snapshot": current_snapshot,
-                    "lastSeen": self.last_seen, "ageSeconds": age, "eventCursor": self.event_id,
+                    "lastSeen": self.last_seen, "ageSeconds": age, "itemStorageRevision": self.item_storage.sequence,
+                    "itemStorageError": self.item_storage.error,
+                    "eventCursor": self.event_id,
                     "events": copy.deepcopy([e for e in self.events if after is None or e["id"] > after]),
                     "config": dict(self.config), "error": self.error if status != "live" else None,
                     "connection": copy.deepcopy(self.connection), "transfers": self._transfers(),
@@ -880,6 +962,13 @@ class CompanionState:
 
     def ingest(self, snapshot: dict) -> None:
         with self.lock:
+            if snapshot.get("kind") == "life":
+                self._ingest_life(snapshot)
+                return
+            if snapshot.get("kind") == "store":
+                if not self.demo and self._status() == "live" and not self.reset_baseline and not self.error:
+                    self.item_storage.ingest(snapshot, self.snapshot)
+                return
             if snapshot.get("kind") == "buff":
                 value = validate_group_buff(snapshot)
                 if self.demo or self._status() != "live" or self.reset_baseline or self.error:
@@ -965,6 +1054,9 @@ class CompanionState:
                 self.loadout_pending.clear()
                 return
             self.snapshot = copy.deepcopy(snapshot)
+            self._sync_life_identity(snapshot)
+            if was_stale:
+                self.life_at = None
             if self.reset_baseline or identity_changed or was_stale:
                 self._clear_equipment()
                 self.reset_baseline = False
@@ -1002,6 +1094,7 @@ class CompanionState:
 
     def capture_error(self, message: str) -> None:
         with self.lock:
+            self.life_at = None
             self.error = message
             if self._status() == "stale":
                 self.reset_baseline = True
@@ -1045,6 +1138,7 @@ class CompanionState:
             changed = result != self.config
             self.config = result
             if changed:
+                self.life_at = None
                 self.capture_revision += 1
                 self._clear_equipment()
                 self.reset_baseline = True
@@ -1062,6 +1156,7 @@ class CompanionState:
             raise ValueError("演示动作要求 enabled=true")
         with self.lock:
             if enabled != self.demo:
+                self.life_at = None
                 self.capture_revision += 1
                 self._clear_equipment()
                 self.demo = enabled

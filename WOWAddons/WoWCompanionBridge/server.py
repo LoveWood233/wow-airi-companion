@@ -15,12 +15,12 @@ from pathlib import Path
 from typing import BinaryIO
 from urllib.parse import parse_qs, urlsplit
 
-from protocol import GAME_PROTOCOLS, EquipmentComparisonError, EquipmentOfferError, EquipmentSwapError, EquipmentLoadoutError, InventoryError, QuestError, TalentError, FrameError
+from protocol import ItemStorageError, GAME_PROTOCOLS, EquipmentComparisonError, EquipmentOfferError, EquipmentSwapError, EquipmentLoadoutError, InventoryError, QuestError, TalentError, FrameError
 from retail_query import RetailDatabase
 from state import CompanionState, validate_config
 
 ROOT = Path(__file__).resolve().parent
-VERSION = "2.19.0"
+VERSION = "2.25.0"
 
 
 def allowed_origin(origin: str | None) -> bool:
@@ -144,6 +144,19 @@ class Handler(BaseHTTPRequestHandler):
                              "instanceId": self.server.state.instance_id})
         elif path == "/api/status":
             self._json(200, self.server.state.view())
+        elif path == "/api/item-storage":
+            try:
+                query = parse_qs(parsed.query)
+                after = int(query.get("after", ["0"])[0])
+                if set(query) - {"after"} or not 0 <= after <= 2147483647:
+                    raise ValueError()
+            except ValueError:
+                self._json(400, {"error": "Invalid item storage cursor"})
+                return
+            with self.server.state.lock:
+                value = self.server.state.item_storage.read(after)
+                instance_id = self.server.state.instance_id
+            self._json(200, {"instanceId": instance_id, **value})
         elif path == "/api/events":
             try:
                 after = int(parse_qs(parsed.query).get("after", ["0"])[0])
@@ -291,6 +304,10 @@ def capture_loop(state: CompanionState, stop: threading.Event, config_path: Path
                             reader.blocked(exc.code)
                             state.report_connection(reader.diagnostic)
                             state.capture_error("连接状态：" + exc.code)
+                except ItemStorageError as exc:
+                    with state.lock:
+                        if state.config == config and state.capture_revision == revision and not state.demo:
+                            state.item_storage.error = str(exc)
                 except InventoryError as exc:
                     with state.lock:
                         if state.config == config and state.capture_revision == revision and not state.demo:

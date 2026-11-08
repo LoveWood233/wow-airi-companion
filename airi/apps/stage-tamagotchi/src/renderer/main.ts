@@ -4,21 +4,24 @@ import type { RouteRecordRaw } from 'vue-router'
 import Tres from '@tresjs/core'
 
 import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
+import { defineInvokeHandler } from '@moeru/eventa'
 import { PiniaColada } from '@pinia/colada'
+import { getElectronEventaContext } from '@proj-airi/electron-vueuse'
 import { pushToTalkTriggerKey } from '@proj-airi/stage-ui/composables/push-to-talk-trigger'
 import { trackButtonPlugin } from '@proj-airi/stage-ui/directives/track-button'
 import { piniaPluginTracing, setupSynced } from '@proj-airi/stage-ui/libs/pinia'
 import { MotionPlugin } from '@vueuse/motion'
 import { createPinia } from 'pinia'
 import { setupLayouts } from 'virtual:generated-layouts'
-import { createApp } from 'vue'
+import { createApp, nextTick } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 import App from './App.vue'
 
+import { wowLocalUpdateRendererReady } from '../shared/eventa/wow-local-update'
 import { nestFullscreenSurfaces } from './components/fullscreen/surfaces'
-import { installLocalAccountRoutes } from './local-routes'
+import { installDesktopPetRoutes, installLocalAccountRoutes } from './local-routes'
 import { i18n } from './modules/i18n'
 import { resolveRendererWindowContext } from './window-context'
 
@@ -63,6 +66,7 @@ const router = createRouter({
   routes: windowRoutes(routes as RouteRecordRaw[]),
 })
 installLocalAccountRoutes(router)
+installDesktopPetRoutes(router)
 
 if (import.meta.hot) {
   handleHotUpdate(router, (updatedRoutes) => {
@@ -72,7 +76,7 @@ if (import.meta.hot) {
   })
 }
 
-createApp(App)
+const application = createApp(App)
   .use(synced.vue)
   .use(MotionPlugin)
   // TODO: Fix autoAnimatePlugin type error
@@ -85,4 +89,17 @@ createApp(App)
   .use(trackButtonPlugin)
   // The stage window registers a global hold shortcut. Every window shares this app, so the settings window offers the mode too.
   .provide(pushToTalkTriggerKey, true)
-  .mount('#app')
+let rendererHealthy = true
+const previousErrorHandler = application.config.errorHandler
+application.config.errorHandler = (error, instance, info) => {
+  rendererHealthy = false
+  if (previousErrorHandler)
+    previousErrorHandler(error, instance, info)
+  else
+    console.error(error, info)
+}
+application.mount('#app')
+void router.isReady().then(async () => {
+  await nextTick()
+  defineInvokeHandler(getElectronEventaContext(), wowLocalUpdateRendererReady, () => rendererHealthy)
+})

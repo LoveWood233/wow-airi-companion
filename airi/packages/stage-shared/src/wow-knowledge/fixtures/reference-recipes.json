@@ -1,0 +1,21 @@
+{
+  "outcome": "ok",
+  "total": 2594,
+  "page": 1,
+  "page_size": 1,
+  "limit": 1,
+  "offset": 0,
+  "has_more": true,
+  "results": [
+    {
+      "id": "recipe:1353",
+      "title": "手工皮靴",
+      "url": "https://wuxianwow.com/recipe/1353",
+      "profession": "制皮",
+      "category": "皮甲靴子",
+      "new_in_160": false,
+      "effect": "普通脚 · 装等 8 · 需求 3 级",
+      "reagents": "轻皮×2、粗线×1"
+    }
+  ]
+}

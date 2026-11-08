@@ -40,6 +40,8 @@ export const useSettingsStageModel = defineStore('settings-stage-model', () => {
   // active, or this one can be disposed, so keep the Pinia that owns this store.
   const pinia = getActivePinia()
   let disposed = false
+  // Desktop video pets own their renderer. Other hosts retain the model runtime until they disable it explicitly.
+  const runtimeEnabled = shallowRef(true)
   onScopeDispose(() => {
     disposed = true
   })
@@ -114,6 +116,13 @@ export const useSettingsStageModel = defineStore('settings-stage-model', () => {
 
   async function updateStageModel() {
     const requestId = ++stageModelUpdateSequence
+    if (!runtimeEnabled.value) {
+      replaceStageModelUrl(undefined)
+      stageModelSelectedDisplayModel.value = undefined
+      stageModelBuiltInRenderer.value = 'disabled'
+      stageModelRenderer.value = 'disabled'
+      return
+    }
     const selectedModelId = stageModelSelectedState.value
     stageModelUnavailable.value = false
 
@@ -179,7 +188,13 @@ export const useSettingsStageModel = defineStore('settings-stage-model', () => {
   }
 
   function setStageModelRenderer(renderer: StageModelRenderer) {
-    stageModelRenderer.value = renderer
+    stageModelRenderer.value = runtimeEnabled.value ? renderer : 'disabled'
+  }
+
+  /** Stops model loading and revokes its runtime URL when another host owns character rendering. Durable selections remain available. */
+  async function setRuntimeEnabled(enabled: boolean) {
+    runtimeEnabled.value = enabled
+    await updateStageModel()
   }
 
   function restoreBuiltInStageModelRenderer() {
@@ -214,6 +229,8 @@ export const useSettingsStageModel = defineStore('settings-stage-model', () => {
 
   return {
     stageModelRenderer,
+    runtimeEnabled,
+    setRuntimeEnabled,
     stageModelSelected,
     stageModelSelectedUrl,
     stageModelSelectedDisplayModel,

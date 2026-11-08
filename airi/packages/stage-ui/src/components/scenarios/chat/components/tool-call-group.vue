@@ -59,7 +59,8 @@ const calls = computed(() => {
     // shows when no candidate leads to an icon.
     const iconMask = tablerIconMask(icons)
     const result = props.resultOf(item.sliceIndex)
-    const widget = props.widgets[item.toolCall.toolName]
+    const candidate = props.widgets[item.toolCall.toolName]
+    const widget = candidate?.matches?.(item.toolCall.args) === false ? undefined : candidate
     const reading = widget?.read(result?.result, item.toolCall.args)
     const title = widget?.title?.(result?.result, item.toolCall.args)
     const state = reading?.failed ? 'error' as const : resolveToolCallBlockState(result)
@@ -78,6 +79,7 @@ const calls = computed(() => {
       state,
       result: result?.result,
       widget: widget && reading ? { component: widget.component, ...reading } : undefined,
+      autoOpen: Boolean((reading?.autoOpen ?? widget?.autoOpen) && reading && result),
       cardCall,
       card: cardCall ? toolCards.viewOf(cardCall) : undefined,
     }
@@ -153,17 +155,24 @@ const mounted = ref(false)
 onMounted(() => {
   mounted.value = true
 })
-const openedWidgets = new Set<string>()
-watch([calls, mounted], ([values, ready]) => {
+// Completed reference answers stay visible with their reply. Each call opens only once, so manual collapsing remains effective.
+const automaticallyOpened = new Set<string>()
+watch([calls, mounted], ([current, ready]) => {
   if (!ready)
     return
-  const actionable = values.filter(call => call.widget?.autoOpen && !openedWidgets.has(call.key))
-  if (!actionable.length)
-    return
-  for (const call of actionable)
-    openedWidgets.add(call.key)
-  open.value = true
-  openCalls.value = new Set([...openCalls.value, ...actionable.map(call => call.key)])
+  const next = new Set(openCalls.value)
+  let changed = false
+  for (const call of current) {
+    if (!call.autoOpen || call.state === 'executing' || automaticallyOpened.has(call.key))
+      continue
+    automaticallyOpened.add(call.key)
+    next.add(call.key)
+    changed = true
+  }
+  if (changed) {
+    openCalls.value = next
+    open.value = true
+  }
 }, { immediate: true })
 // Rows that exist when the group opens unfold with it. Only a call that arrives while the group is open slides in on its own.
 let rowsAtOpen = new Set<string>()

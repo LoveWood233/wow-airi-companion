@@ -6,6 +6,7 @@ import type { ExecutableTool } from './tools'
 import { createPinia, setActivePinia } from 'pinia'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { subscribeModelUsage } from '../../../libs/model-usage'
 import { isToolRelatedError, useLLM } from './llm'
 import { useLlmToolsStore } from './tools'
 
@@ -141,6 +142,26 @@ describe('isToolRelatedError', () => {
 
     expect(onStreamEvent).toHaveBeenCalledTimes(1)
     expect(onStreamEvent).toHaveBeenCalledWith({ type: 'finish' })
+  })
+
+  it('publishes SDK usage once and retains both caller usage callbacks', async () => {
+    const listener = vi.fn()
+    const unsubscribe = subscribeModelUsage(listener)
+    const onUsage = vi.fn()
+    const onRequestUsage = vi.fn()
+    streamTextMock.mockReturnValueOnce({
+      ...createMockStreamResult(),
+      totalUsage: Promise.resolve({ inputTokens: 11, outputTokens: 4, totalTokens: 15 }),
+    })
+    try {
+      await useLLM().stream('model-a', provider, { turns: [] }, { onUsage, onRequestUsage })
+      expect(listener).toHaveBeenCalledExactlyOnceWith({ id: expect.any(String), source: 'reported', inputTokens: 11, outputTokens: 4, totalTokens: 15 })
+      expect(onUsage).toHaveBeenCalledOnce()
+      expect(onRequestUsage).toHaveBeenCalledOnce()
+    }
+    finally {
+      unsubscribe()
+    }
   })
 
   it('does not replay a turn after a tool starts and a later request rejects content arrays', async () => {

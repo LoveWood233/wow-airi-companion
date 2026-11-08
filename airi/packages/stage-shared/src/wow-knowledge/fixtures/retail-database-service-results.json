@@ -1,0 +1,774 @@
+[
+  {
+    "request": {
+      "operation": "stats"
+    },
+    "result": {
+      "operation": "stats",
+      "outcome": "ok",
+      "source": {
+        "name": "正式服本地 DB2",
+        "game": "retail",
+        "product": "wow",
+        "localOnly": true,
+        "build": "12.1.5.70575",
+        "locale": "zhCN",
+        "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+        "hotfixesApplied": false,
+        "datasetId": "e1e411ca4e707be88df351356b5ab303626f825a98ec378508763cfa3ca9ded0",
+        "tables": [
+          {
+            "name": "Item",
+            "status": "decoded_with_encrypted_sections",
+            "rows": 213784,
+            "encrypted": true
+          },
+          {
+            "name": "ItemSparse",
+            "status": "decoded_with_encrypted_sections",
+            "rows": 175625,
+            "encrypted": true
+          },
+          {
+            "name": "Map",
+            "status": "decoded",
+            "rows": 1187,
+            "encrypted": false
+          },
+          {
+            "name": "UiMap",
+            "status": "decoded",
+            "rows": 1967,
+            "encrypted": false
+          },
+          {
+            "name": "AreaTable",
+            "status": "decoded_with_encrypted_sections",
+            "rows": 10024,
+            "encrypted": true
+          },
+          {
+            "name": "SpellName",
+            "status": "decoded_with_encrypted_sections",
+            "rows": 416090,
+            "encrypted": true
+          },
+          {
+            "name": "Spell",
+            "status": "decoded_with_encrypted_sections",
+            "rows": 416090,
+            "encrypted": true
+          },
+          {
+            "name": "DungeonEncounter",
+            "status": "decoded",
+            "rows": 1358,
+            "encrypted": false
+          }
+        ]
+      },
+      "entries": [],
+      "offset": 0,
+      "limit": 0,
+      "hasMore": false,
+      "notices": [
+        "client-db2-only",
+        "encrypted-sections",
+        "hotfixes-not-applied"
+      ],
+      "receivedAt": "2026-11-01T05:10:17.283+00:00",
+      "stats": {
+        "counts": {
+          "item": 213784,
+          "map": 1187,
+          "uimap": 1967,
+          "area": 10024,
+          "spell": 416090,
+          "encounter": 1358
+        }
+      }
+    }
+  },
+  {
+    "request": {
+      "operation": "search",
+      "kind": "item",
+      "query": "瑟银",
+      "limit": 2
+    },
+    "result": {
+      "operation": "search",
+      "outcome": "ok",
+      "source": {
+        "name": "正式服本地 DB2",
+        "game": "retail",
+        "product": "wow",
+        "localOnly": true,
+        "build": "12.1.5.70575",
+        "locale": "zhCN",
+        "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+        "hotfixesApplied": false,
+        "datasetId": "e1e411ca4e707be88df351356b5ab303626f825a98ec378508763cfa3ca9ded0",
+        "tables": [
+          {
+            "name": "Item",
+            "status": "decoded_with_encrypted_sections",
+            "rows": 213784,
+            "encrypted": true
+          },
+          {
+            "name": "ItemSparse",
+            "status": "decoded_with_encrypted_sections",
+            "rows": 175625,
+            "encrypted": true
+          }
+        ]
+      },
+      "entries": [
+        {
+          "id": "item:5759",
+          "kind": "item",
+          "numericId": 5759,
+          "title": "瑟银宝箱",
+          "fields": [
+            {
+              "key": "ItemLevel",
+              "value": "23"
+            },
+            {
+              "key": "RequiredLevel",
+              "value": "1"
+            },
+            {
+              "key": "OverallQualityID",
+              "value": "2"
+            },
+            {
+              "key": "ClassID",
+              "value": "15"
+            },
+            {
+              "key": "SubclassID",
+              "value": "0"
+            },
+            {
+              "key": "InventoryType",
+              "value": "0"
+            },
+            {
+              "key": "SellPrice",
+              "value": "375"
+            },
+            {
+              "key": "BuyPrice",
+              "value": "1500"
+            },
+            {
+              "key": "Description_lang",
+              "value": ""
+            }
+          ],
+          "links": [],
+          "notices": []
+        },
+        {
+          "id": "item:10551",
+          "kind": "item",
+          "numericId": 10551,
+          "title": "瑟银匕首",
+          "fields": [
+            {
+              "key": "ItemLevel",
+              "value": "1"
+            },
+            {
+              "key": "RequiredLevel",
+              "value": "0"
+            },
+            {
+              "key": "OverallQualityID",
+              "value": "1"
+            },
+            {
+              "key": "ClassID",
+              "value": "12"
+            },
+            {
+              "key": "SubclassID",
+              "value": "0"
+            },
+            {
+              "key": "InventoryType",
+              "value": "0"
+            },
+            {
+              "key": "SellPrice",
+              "value": "0"
+            },
+            {
+              "key": "BuyPrice",
+              "value": "0"
+            },
+            {
+              "key": "Description_lang",
+              "value": ""
+            }
+          ],
+          "links": [],
+          "notices": []
+        }
+      ],
+      "offset": 0,
+      "limit": 2,
+      "hasMore": true,
+      "notices": [
+        "client-db2-only",
+        "encrypted-sections",
+        "hotfixes-not-applied"
+      ],
+      "receivedAt": "2026-11-01T05:10:17.293+00:00"
+    }
+  },
+  {
+    "request": {
+      "operation": "search",
+      "kind": "map",
+      "query": "艾泽拉斯",
+      "limit": 2
+    },
+    "result": {
+      "operation": "search",
+      "outcome": "ok",
+      "source": {
+        "name": "正式服本地 DB2",
+        "game": "retail",
+        "product": "wow",
+        "localOnly": true,
+        "build": "12.1.5.70575",
+        "locale": "zhCN",
+        "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+        "hotfixesApplied": false,
+        "datasetId": "e1e411ca4e707be88df351356b5ab303626f825a98ec378508763cfa3ca9ded0",
+        "tables": [
+          {
+            "name": "Map",
+            "status": "decoded",
+            "rows": 1187,
+            "encrypted": false
+          }
+        ]
+      },
+      "entries": [
+        {
+          "id": "map:1469",
+          "kind": "map",
+          "numericId": 1469,
+          "title": "艾泽拉斯之心",
+          "fields": [
+            {
+              "key": "Directory",
+              "value": "MaelstromShaman"
+            },
+            {
+              "key": "MapType",
+              "value": "1"
+            },
+            {
+              "key": "InstanceType",
+              "value": "0"
+            },
+            {
+              "key": "ExpansionID",
+              "value": "3"
+            },
+            {
+              "key": "ParentMapID",
+              "value": "-1"
+            },
+            {
+              "key": "AreaTableID",
+              "value": "0"
+            }
+          ],
+          "links": [],
+          "notices": []
+        },
+        {
+          "id": "map:1733",
+          "kind": "map",
+          "numericId": 1733,
+          "title": "艾泽拉斯的警示场景战役",
+          "fields": [
+            {
+              "key": "Directory",
+              "value": "AzerothsWarningScenario"
+            },
+            {
+              "key": "MapType",
+              "value": "1"
+            },
+            {
+              "key": "InstanceType",
+              "value": "5"
+            },
+            {
+              "key": "ExpansionID",
+              "value": "6"
+            },
+            {
+              "key": "ParentMapID",
+              "value": "-1"
+            },
+            {
+              "key": "AreaTableID",
+              "value": "0"
+            }
+          ],
+          "links": [],
+          "notices": []
+        }
+      ],
+      "offset": 0,
+      "limit": 2,
+      "hasMore": true,
+      "notices": [
+        "client-db2-only",
+        "hotfixes-not-applied",
+        "map-id-not-uimap-id"
+      ],
+      "receivedAt": "2026-11-01T05:10:17.493+00:00"
+    }
+  },
+  {
+    "request": {
+      "operation": "search",
+      "kind": "uimap",
+      "query": "艾尔文",
+      "limit": 2
+    },
+    "result": {
+      "operation": "search",
+      "outcome": "ok",
+      "source": {
+        "name": "正式服本地 DB2",
+        "game": "retail",
+        "product": "wow",
+        "localOnly": true,
+        "build": "12.1.5.70575",
+        "locale": "zhCN",
+        "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+        "hotfixesApplied": false,
+        "datasetId": "e1e411ca4e707be88df351356b5ab303626f825a98ec378508763cfa3ca9ded0",
+        "tables": [
+          {
+            "name": "UiMap",
+            "status": "decoded",
+            "rows": 1967,
+            "encrypted": false
+          }
+        ]
+      },
+      "entries": [
+        {
+          "id": "uimap:37",
+          "kind": "uimap",
+          "numericId": 37,
+          "title": "艾尔文森林",
+          "fields": [
+            {
+              "key": "ParentUiMapID",
+              "value": "13"
+            },
+            {
+              "key": "System",
+              "value": "0"
+            },
+            {
+              "key": "Type",
+              "value": "3"
+            },
+            {
+              "key": "ContentTuningID",
+              "value": "73"
+            }
+          ],
+          "links": [
+            {
+              "kind": "uimap",
+              "id": "uimap:13"
+            }
+          ],
+          "notices": []
+        },
+        {
+          "id": "uimap:1256",
+          "kind": "uimap",
+          "numericId": 1256,
+          "title": "艾尔文森林",
+          "fields": [
+            {
+              "key": "ParentUiMapID",
+              "value": "1208"
+            },
+            {
+              "key": "System",
+              "value": "2"
+            },
+            {
+              "key": "Type",
+              "value": "3"
+            },
+            {
+              "key": "ContentTuningID",
+              "value": "0"
+            }
+          ],
+          "links": [
+            {
+              "kind": "uimap",
+              "id": "uimap:1208"
+            }
+          ],
+          "notices": []
+        }
+      ],
+      "offset": 0,
+      "limit": 2,
+      "hasMore": false,
+      "notices": [
+        "client-db2-only",
+        "content-tuning-not-exploration-level",
+        "hotfixes-not-applied"
+      ],
+      "receivedAt": "2026-11-01T05:10:17.499+00:00"
+    }
+  },
+  {
+    "request": {
+      "operation": "search",
+      "kind": "area",
+      "query": "塔伦米尔",
+      "limit": 2
+    },
+    "result": {
+      "operation": "search",
+      "outcome": "ok",
+      "source": {
+        "name": "正式服本地 DB2",
+        "game": "retail",
+        "product": "wow",
+        "localOnly": true,
+        "build": "12.1.5.70575",
+        "locale": "zhCN",
+        "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+        "hotfixesApplied": false,
+        "datasetId": "e1e411ca4e707be88df351356b5ab303626f825a98ec378508763cfa3ca9ded0",
+        "tables": [
+          {
+            "name": "AreaTable",
+            "status": "decoded_with_encrypted_sections",
+            "rows": 10024,
+            "encrypted": true
+          }
+        ]
+      },
+      "entries": [
+        {
+          "id": "area:272",
+          "kind": "area",
+          "numericId": 272,
+          "title": "塔伦米尔",
+          "fields": [
+            {
+              "key": "ContinentID",
+              "value": "0"
+            },
+            {
+              "key": "ParentAreaID",
+              "value": "267"
+            },
+            {
+              "key": "ContentTuningID",
+              "value": "11"
+            },
+            {
+              "key": "FactionGroupMask",
+              "value": "0"
+            }
+          ],
+          "links": [
+            {
+              "kind": "map",
+              "id": "map:0"
+            },
+            {
+              "kind": "area",
+              "id": "area:267"
+            }
+          ],
+          "notices": []
+        },
+        {
+          "id": "area:2368",
+          "kind": "area",
+          "numericId": 2368,
+          "title": "塔伦米尔",
+          "fields": [
+            {
+              "key": "ContinentID",
+              "value": "560"
+            },
+            {
+              "key": "ParentAreaID",
+              "value": "2367"
+            },
+            {
+              "key": "ContentTuningID",
+              "value": "223"
+            },
+            {
+              "key": "FactionGroupMask",
+              "value": "0"
+            }
+          ],
+          "links": [
+            {
+              "kind": "map",
+              "id": "map:560"
+            },
+            {
+              "kind": "area",
+              "id": "area:2367"
+            }
+          ],
+          "notices": []
+        }
+      ],
+      "offset": 0,
+      "limit": 2,
+      "hasMore": true,
+      "notices": [
+        "client-db2-only",
+        "content-tuning-not-exploration-level",
+        "encrypted-sections",
+        "hotfixes-not-applied"
+      ],
+      "receivedAt": "2026-11-01T05:10:17.506+00:00"
+    }
+  },
+  {
+    "request": {
+      "operation": "search",
+      "kind": "spell",
+      "query": "火球",
+      "limit": 2
+    },
+    "result": {
+      "operation": "search",
+      "outcome": "ok",
+      "source": {
+        "name": "正式服本地 DB2",
+        "game": "retail",
+        "product": "wow",
+        "localOnly": true,
+        "build": "12.1.5.70575",
+        "locale": "zhCN",
+        "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+        "hotfixesApplied": false,
+        "datasetId": "e1e411ca4e707be88df351356b5ab303626f825a98ec378508763cfa3ca9ded0",
+        "tables": [
+          {
+            "name": "SpellName",
+            "status": "decoded_with_encrypted_sections",
+            "rows": 416090,
+            "encrypted": true
+          },
+          {
+            "name": "Spell",
+            "status": "decoded_with_encrypted_sections",
+            "rows": 416090,
+            "encrypted": true
+          }
+        ]
+      },
+      "entries": [
+        {
+          "id": "spell:114183",
+          "kind": "spell",
+          "numericId": 114183,
+          "title": "火球",
+          "fields": [
+            {
+              "key": "NameSubtext_lang",
+              "value": ""
+            },
+            {
+              "key": "Description_lang",
+              "value": "造成$s1点火焰伤害。"
+            },
+            {
+              "key": "AuraDescription_lang",
+              "value": ""
+            }
+          ],
+          "links": [],
+          "notices": [
+            "raw-spell-template"
+          ]
+        },
+        {
+          "id": "spell:119528",
+          "kind": "spell",
+          "numericId": 119528,
+          "title": "火球",
+          "fields": [
+            {
+              "key": "NameSubtext_lang",
+              "value": ""
+            },
+            {
+              "key": "Description_lang",
+              "value": "随机对一个敌人造成$s1点火焰伤害。"
+            },
+            {
+              "key": "AuraDescription_lang",
+              "value": "随机对一个敌人造成$s1点火焰伤害。"
+            }
+          ],
+          "links": [],
+          "notices": [
+            "raw-spell-template"
+          ]
+        }
+      ],
+      "offset": 0,
+      "limit": 2,
+      "hasMore": true,
+      "notices": [
+        "client-db2-only",
+        "encrypted-sections",
+        "hotfixes-not-applied"
+      ],
+      "receivedAt": "2026-11-01T05:10:17.514+00:00"
+    }
+  },
+  {
+    "request": {
+      "operation": "search",
+      "kind": "encounter",
+      "query": "死亡",
+      "limit": 2
+    },
+    "result": {
+      "operation": "search",
+      "outcome": "ok",
+      "source": {
+        "name": "正式服本地 DB2",
+        "game": "retail",
+        "product": "wow",
+        "localOnly": true,
+        "build": "12.1.5.70575",
+        "locale": "zhCN",
+        "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+        "hotfixesApplied": false,
+        "datasetId": "e1e411ca4e707be88df351356b5ab303626f825a98ec378508763cfa3ca9ded0",
+        "tables": [
+          {
+            "name": "DungeonEncounter",
+            "status": "decoded",
+            "rows": 1358,
+            "encrypted": false
+          },
+          {
+            "name": "Map",
+            "status": "decoded",
+            "rows": 1187,
+            "encrypted": false
+          }
+        ]
+      },
+      "entries": [
+        {
+          "id": "encounter:1096",
+          "kind": "encounter",
+          "numericId": 1096,
+          "title": "死亡使者萨鲁法尔",
+          "fields": [
+            {
+              "key": "MapID",
+              "value": "631"
+            },
+            {
+              "key": "DifficultyID",
+              "value": "0"
+            },
+            {
+              "key": "OrderIndex",
+              "value": "3000"
+            },
+            {
+              "key": "Faction",
+              "value": "-1"
+            },
+            {
+              "key": "MapName_lang",
+              "value": "冰冠堡垒"
+            }
+          ],
+          "links": [
+            {
+              "kind": "map",
+              "id": "map:631",
+              "title": "冰冠堡垒"
+            }
+          ],
+          "notices": []
+        },
+        {
+          "id": "encounter:1291",
+          "kind": "encounter",
+          "numericId": 1291,
+          "title": "死亡之翼的背脊",
+          "fields": [
+            {
+              "key": "MapID",
+              "value": "967"
+            },
+            {
+              "key": "DifficultyID",
+              "value": "0"
+            },
+            {
+              "key": "OrderIndex",
+              "value": "0"
+            },
+            {
+              "key": "Faction",
+              "value": "-1"
+            },
+            {
+              "key": "MapName_lang",
+              "value": "巨龙之魂"
+            }
+          ],
+          "links": [
+            {
+              "kind": "map",
+              "id": "map:967",
+              "title": "巨龙之魂"
+            }
+          ],
+          "notices": []
+        }
+      ],
+      "offset": 0,
+      "limit": 2,
+      "hasMore": true,
+      "notices": [
+        "client-db2-only",
+        "hotfixes-not-applied"
+      ],
+      "receivedAt": "2026-11-01T05:10:17.574+00:00"
+    }
+  }
+]

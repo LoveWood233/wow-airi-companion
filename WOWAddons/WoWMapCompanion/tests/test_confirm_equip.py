@@ -465,8 +465,8 @@ Native=false; NS.ConfirmEquip.OnEvent("PLAYER_EQUIPMENT_CHANGED")''')
                 length = struct.unpack("<H", frame[4:6])[0]
                 data = json.loads(frame[8:8 + length]); kinds.append(data["kind"])
                 if data["kind"] == "eq": parts.append(data["p"])
-        self.assertEqual(kinds, ["cmp", "cmp", "cmp", "swap", "eq", "eq", "eq", "swap"])
-        self.assertEqual(parts[:3], [1, 2, 3])
+        self.assertEqual(kinds, ["cmp", "cmp", "cmp", "swap", "cmp", "eq", "eq", "swap"])
+        self.assertEqual(parts, [1, 2])
         self.tick(601); self.ns[b"Transfer"][b"Advance"]()
         self.assertEqual(self.ns[b"Transfer"][b"Current"](b"state"), b"state")
 
@@ -524,7 +524,7 @@ Native=false; NS.ConfirmEquip.OnEvent("PLAYER_EQUIPMENT_CHANGED")''')
     def test_main_wires_acquisition_accept_and_pixel_result(self):
         self.setUp()
         load = self.lua.eval(b"function(source,name,ns) assert(loadstring(source))(name,ns) end")
-        for filename in ("Money.lua", "Inventory.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", ROOT.name + ".lua"):
+        for filename in ("Money.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", ROOT.name + ".lua"):
             load((ROOT / filename).read_bytes(), ROOT.name.encode(), self.ns)
         self.g.Fire(b"ADDON_LOADED", ROOT.name.encode()); self.g.Fire(b"PLAYER_ENTERING_WORLD")
         self.g.AdvanceTime(2)
@@ -733,7 +733,7 @@ Native=false; NS.ConfirmEquip.OnEvent("PLAYER_EQUIPMENT_CHANGED")''')
 
     def test_main_replaces_ready_pixels_when_game_popup_is_closed(self):
         load = self.lua.eval(b"function(source,name,ns) assert(loadstring(source))(name,ns) end")
-        for filename in ("Money.lua", "Inventory.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", ROOT.name + ".lua"):
+        for filename in ("Money.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", ROOT.name + ".lua"):
             load((ROOT / filename).read_bytes(), ROOT.name.encode(), self.ns)
         self.g.Fire(b"ADDON_LOADED", ROOT.name.encode()); self.g.Fire(b"PLAYER_ENTERING_WORLD")
         self.g.AdvanceTime(2)

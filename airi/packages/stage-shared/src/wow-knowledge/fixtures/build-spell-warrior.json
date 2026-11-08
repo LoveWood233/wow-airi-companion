@@ -1,0 +1,46 @@
+{
+  "outcome": "ok",
+  "class": "战士",
+  "class_id": 1,
+  "spell": {
+    "id": 12282,
+    "fetch_id": "spell:12282",
+    "name": "强化英勇打击",
+    "url": "https://wuxianwow.com/spellbook/1?line=26&q=%E5%BC%BA%E5%8C%96%E8%8B%B1%E5%8B%87%E6%89%93%E5%87%BB",
+    "line": "武器",
+    "line_id": 26,
+    "level": null,
+    "kind": "被动",
+    "school": "物理",
+    "description": "使你的英勇打击消耗的怒气减少1点。",
+    "rank_count": 3,
+    "classic_talent": {
+      "talent_id": 124,
+      "url": "https://wuxianwow.com/talents/1"
+    },
+    "ranks": [
+      {
+        "rank": 1,
+        "spell_id": 12282,
+        "level": null,
+        "description": "使你的英勇打击消耗的怒气减少1点。"
+      },
+      {
+        "rank": 2,
+        "spell_id": 12663,
+        "level": null,
+        "description": "",
+        "hidden": true
+      },
+      {
+        "rank": 3,
+        "spell_id": 12664,
+        "level": null,
+        "description": "",
+        "hidden": true
+      }
+    ],
+    "origin": "无限天赋"
+  },
+  "note": "职业技能来自 SkillLine（CategoryID 7 职业技能线）× SkillRaceClassInfo（线所属职业）× SkillLineAbility；同名法术按 SpellLevels 等级折叠为等级链，等级缺失的以“未填”显示。约 254 条指向加密段的法术只有 ID（未公开法术）；447 条曾是经典天赋；1.60 新增法术 ID ≥ 1.2M。说明文字取 1 级基础值，消耗 / 施法 / 冷却 / 距离来自 SpellPower / SpellCastTimes / SpellCooldowns / SpellRange。"
+}

@@ -9,6 +9,7 @@ import { listModels } from '@xsai/model'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
+import { reportModelUsage } from '../../../libs/model-usage'
 import { resolveLlmTools } from './tool-resolver'
 
 export type { StreamEvent, StreamOptions } from '@proj-airi/core-agent'
@@ -58,6 +59,10 @@ export const useLLM = defineStore('llm', () => {
           if (event.type === 'tool-call')
             toolExecutionStarted = true
           await streamOptions.onStreamEvent?.(event)
+        },
+        onRequestUsage: (usage) => {
+          reportModelUsage(usage)
+          return streamOptions.onRequestUsage?.(usage)
         },
         toolsCompatibility: toolsCompatibility.value,
         contentArrayCompatibility: contentArrayCompatibility.value,

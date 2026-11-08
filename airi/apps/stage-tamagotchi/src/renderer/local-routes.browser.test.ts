@@ -5,9 +5,23 @@ import { createMemoryHistory, createRouter, RouterView } from 'vue-router'
 
 import AccountPage from './pages/settings/account/index.vue'
 
-import { installLocalAccountRoutes } from './local-routes'
+import { installDesktopPetRoutes, installLocalAccountRoutes } from './local-routes'
 
 describe('local companion settings routes', () => {
+  it.each(['/devtools/live2d-motion', '/devtools/live2d-ambient-light', '/devtools/performance-visualizer', '/settings/models/live2d'])('opens the pet library before mounting %s', async (path) => {
+    const router = createRouter({
+      history: createMemoryHistory(),
+      routes: [
+        { path: '/settings/models', component: defineComponent(() => () => h('p', 'Pet library')) },
+        { path, component: defineComponent(() => () => h('p', 'Former renderer')), meta: { settingsEntry: true } },
+      ],
+    })
+    installDesktopPetRoutes(router)
+    await router.push(path)
+    await router.isReady()
+    expect(router.currentRoute.value.path).toBe('/settings/models')
+    expect(router.getRoutes().find(route => route.path === path)?.meta.settingsEntry).toBe(false)
+  })
   it.each([
     '/settings/account',
     '/settings/flux',

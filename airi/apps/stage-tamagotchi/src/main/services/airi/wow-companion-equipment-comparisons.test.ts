@@ -23,6 +23,15 @@ function observation(): BridgeStatus {
     equipmentComparisonError: null,
     equipmentLoadout: null,
     equipmentLoadoutError: null,
+    inventory: null,
+    inventoryReceivedAt: null,
+    inventoryError: null,
+    quests: null,
+    questsReceivedAt: null,
+    questsError: null,
+    talents: null,
+    talentsReceivedAt: null,
+    talentsError: null,
     config: { x: 8, y: 8, cellSize: 1, pollMs: 500, paused: false },
     snapshot: { v: 3, session: 'login', seq: 1, tick: 1, guid: 'Player-1', name: 'Mage', realm: 'Realm', level: 80, class: 'MAGE', faction: 'Alliance', race: 'Human', spec: 64, map: 84, zone: 'City', combat: false, dead: false, online: true, account: 'account', moneyEpoch: 'epoch', copper: 1, earned: 0, spent: 0 },
   }
@@ -71,6 +80,27 @@ describe('persistent equipment comparisons', () => {
     const result = history.read()
     result.entries[0].comparison.candidate.name = 'Mutated'
     expect(history.read().entries[0].comparison.candidate.name).toBe('New robe')
+  })
+
+  it('retains archived v1 observations and their deduplication identity while appending v2 records', async () => {
+    const first = new CompanionEquipmentComparisons(file)
+    await first.observe(observation())
+    const saved = JSON.parse(await readFile(file, 'utf8'))
+    const record = saved.entries[0].comparison
+    record.v = 1
+    delete record.assessment
+    delete record.deltas
+    await writeFile(file, JSON.stringify(saved))
+    expect(CompanionEquipmentComparisons.validateBackup(saved).entries[0].comparison.v).toBe(1)
+    const restarted = new CompanionEquipmentComparisons(file)
+    await restarted.load()
+    await restarted.observe(observation())
+    expect(restarted.read().entries).toHaveLength(1)
+    expect(restarted.read().entries[0].comparison).toEqual(record)
+    const next = observation()
+    next.equipmentComparisons[0].id = 2
+    await restarted.observe(next)
+    expect(restarted.read().entries.map(entry => entry.comparison.v)).toEqual([1, 2])
   })
 
   it('ignores demo, stale, offline, mismatched and failed observations', async () => {

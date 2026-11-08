@@ -1,0 +1,79 @@
+{
+  "outcome": "ok",
+  "id": "item:25",
+  "title": "破损的短剑",
+  "url": "https://wuxianwow.com/item/25",
+  "preview_url": "https://wuxianwow.com/transmog?o=AQKAEBkA",
+  "kind": "item",
+  "game_link": "|cffffffff|Hitem:25:::::::::::::|h[破损的短剑]|h|r",
+  "game_link_note": "客户端聊天超链接转义串；聊天框会过滤「|」，要贴进游戏需用宏：/run ChatFrame1EditBox:Insert(\"…\")，宏里把 | 写成 \\124",
+  "item_id": 25,
+  "quality": 1,
+  "ilvl": 2,
+  "slot": "主手",
+  "req_level": 1,
+  "sell": 7,
+  "sell_text": "7铜",
+  "hidden": false,
+  "equipment": {
+    "slot": "主手",
+    "weapon_type": "单手剑",
+    "ilvl": 2,
+    "req_level": 1,
+    "damage": {
+      "dps": 1,
+      "max": 3,
+      "min": 1,
+      "speed": 1.9
+    }
+  },
+  "source_type": "隐藏直到收集",
+  "source_note": "来源类型来自 ItemModifiedAppearance；首领掉落数据（冒险指南）在 客户端中为空",
+  "made_by": [],
+  "used_by": [],
+  "used_by_count": 0,
+  "transmog": {
+    "sources": [
+      {
+        "source_id": 183539,
+        "item_id": 25,
+        "item_name": "破损的短剑",
+        "item_url": "https://wuxianwow.com/item/25",
+        "appearance_id": 63223,
+        "source_type": "商人",
+        "item_source_type": "隐藏直到收集",
+        "note": "1H Starting Sword 01",
+        "note_label": "客户端内部注释（英文）",
+        "vendors": [
+          {
+            "vendor_id": 254935,
+            "creature_id": 252000,
+            "zone": "奥特兰克山脉",
+            "subzone": "达拉然",
+            "faction": "不限",
+            "map_id": 0,
+            "map_name": "东部王国",
+            "world_xyz": [
+              215,
+              336.8,
+              109.8
+            ],
+            "zone_map": {
+              "ui_map": 1416,
+              "name": "奥特兰克山脉",
+              "x": 0.1595,
+              "y": 0.6884,
+              "coords": "16.0, 68.8",
+              "url": "https://wuxianwow.com/atlas/1416"
+            }
+          }
+        ],
+        "unlocated_vendor_rows": 0
+      }
+    ],
+    "note": "商人来源来自 CollectableSourceInfo / CollectableSourceVendor / CollectableSourceVendorSparse：只有商人的生物 ID、坐标与阵营，客户端没有商人名字，来源表里也没有价格字段；note 是客户端内部的英文注释（设计用的来源分类），不是游戏内文本"
+  },
+  "temporary_dropped_by": null,
+  "text": "破损的短剑 · 主手 · 装等 2\n属性：1–3 伤害 · 速度 1.9 · DPS 1\n\n售价：7铜\n由 0 条配方制作，被 0 条配方使用。\n外观来源：商人 奥特兰克山脉 · 达拉然（16.0, 68.8） 商人 #252000；内部注释 1H Starting Sword 01",
+  "matched_by": "id"
+}

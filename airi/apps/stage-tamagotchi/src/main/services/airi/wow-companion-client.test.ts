@@ -22,6 +22,15 @@ function status(cursor: number): BridgeStatus {
     equipmentComparisonError: null,
     equipmentLoadout: null,
     equipmentLoadoutError: null,
+    inventory: null,
+    inventoryReceivedAt: null,
+    inventoryError: null,
+    quests: null,
+    questsReceivedAt: null,
+    questsError: null,
+    talents: null,
+    talentsReceivedAt: null,
+    talentsError: null,
     config: { x: 8, y: 8, cellSize: 2, pollMs: 500, paused: false },
     error: null,
   }
@@ -82,6 +91,56 @@ describe('woW bridge HTTP request ordering', () => {
     await write
     expect(readsDuringWrite).toBe(2)
     expect(client.read().bridge?.eventCursor).toBe(2)
+  })
+
+  it('reads independent container pages without replacing the character status', async () => {
+    const ready = client.refresh()
+    await expect.poll(() => requests.length).toBe(1)
+    respond(requests[0].response, 5)
+    await ready
+    const pending = client.readItemStorage(0)
+    await expect.poll(() => requests.length).toBe(2)
+    const page = { instanceId: 'decoder-1', cursor: 1, record: {
+      v: 2,
+      id: 1,
+      session: 'session-1',
+      guid: 'Player-1',
+      observedAt: 1793764800,
+      scope: 'bags',
+      container: 1,
+      capacity: 0,
+      complete: true,
+      cached: false,
+      slots: [],
+    }, hasMore: false }
+    requests[1].response.writeHead(200, { 'Content-Type': 'application/json' })
+    requests[1].response.end(JSON.stringify(page))
+    await expect(pending).resolves.toEqual(page)
+    expect(client.read().bridge?.eventCursor).toBe(5)
+  })
+
+  it('rejects a late container response after the connection generation changes', async () => {
+    const ready = client.refresh()
+    await expect.poll(() => requests.length).toBe(1)
+    respond(requests[0].response, 0)
+    await ready
+    const pending = client.readItemStorage(0)
+    const rejected = expect(pending).rejects.toThrow()
+    await expect.poll(() => requests.length).toBe(2)
+    client.invalidate()
+    requests[1].response.writeHead(200, { 'Content-Type': 'application/json' })
+    requests[1].response.end(JSON.stringify({ instanceId: 'decoder-1', cursor: 1, record: null, hasMore: false }))
+    await rejected
+    expect(client.read().bridge).toBeNull()
+  })
+
+  it('rejects an oversized declared container response before parsing the body', async () => {
+    const pending = client.readItemStorage(0)
+    const rejected = expect(pending).rejects.toThrow('size limit')
+    await expect.poll(() => requests.length).toBe(1)
+    requests[0].response.writeHead(200, { 'Content-Type': 'application/json', 'Content-Length': String(3 * 1024 * 1024) })
+    requests[0].response.end('{}')
+    await rejected
   })
 
   it('retains the newest command when write responses arrive in reverse order', async () => {
@@ -180,5 +239,57 @@ describe('woW bridge HTTP request ordering', () => {
       other.closeAllConnections()
       await new Promise<void>((resolve, reject) => other.close(error => error ? reject(error) : resolve()))
     }
+  })
+
+  it('preserves scene metadata from the decoder HTTP response', async () => {
+    const read = client.refresh()
+    await expect.poll(() => requests.length).toBe(1)
+    requests[0].response.writeHead(200, { 'Content-Type': 'application/json' })
+    requests[0].response.end(JSON.stringify({
+      ...status(1),
+      status: 'live',
+      snapshot: {
+        v: 3,
+        session: 'instance-test',
+        seq: 1,
+        tick: 1,
+        guid: 'Player-test',
+        name: 'Traveler',
+        realm: 'Realm',
+        level: 30,
+        class: 'MAGE',
+        faction: 'Alliance',
+        race: 'Human',
+        spec: 64,
+        map: 1461,
+        zone: 'Battleground',
+        instanceType: 'pvp',
+        instanceID: 529,
+        combat: false,
+        dead: false,
+        online: true,
+        account: 'account-test',
+        moneyEpoch: 'epoch-test',
+        copper: 0,
+        earned: 0,
+        spent: 0,
+      },
+    }))
+    await read
+    expect(client.read().error).toBeNull()
+    expect(client.read().bridge?.snapshot?.instanceType).toBe('pvp')
+    expect(client.read().bridge?.snapshot?.instanceID).toBe(529)
+  })
+
+  it('sends an explicit reconnect and preserves receiver diagnostics from the reply', async () => {
+    const request = client.update('/api/reconnect', {})
+    await expect.poll(() => requests.length).toBe(1)
+    expect(requests[0].method).toBe('POST')
+    expect(requests[0].response.req.url).toBe('/api/reconnect')
+    requests[0].response.writeHead(200, { 'Content-Type': 'application/json' })
+    requests[0].response.end(JSON.stringify({ ...status(5), connection: { phase: 'validating', reason: null, attempts: 1, consecutive: 2, lastFrameAt: null, calibratedAt: null, retrySeconds: 0, calibration: null }, transfers: [{ kind: 'gear', phase: 'receiving', received: 2, total: 20, elapsedSeconds: 3, timeoutSeconds: 1200 }] }))
+    await request
+    expect(client.read().bridge?.connection?.consecutive).toBe(2)
+    expect(client.read().bridge?.transfers?.[0].received).toBe(2)
   })
 })

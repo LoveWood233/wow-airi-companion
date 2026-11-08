@@ -1,0 +1,223 @@
+title: Talents and equipment
+description: Explain observed talents and equipment with version-specific references. This page does not simulate damage or change the character.
+games:
+  forever: Chinese WoW Forever
+  retail: World of Warcraft Retail
+current:
+  title: Observed character build
+  character: '{name} · {realm} · Level {level}'
+  unknown: No current character observation is available.
+  talents: Current talent observations
+  talents-unknown: Current talent choices are unavailable. Missing nodes do not establish unspent points.
+  equipment: Latest equipped-item snapshot
+  equipment-unknown: No character-matched current equipment capture is available.
+  observed: 'Game observation: {time}'
+  specialization: 'Specialization ID: {id}'
+  unknown-value: Unknown
+  empty-slot: Observed empty slot
+  unknown-slot: Slot contents unknown
+  item: 'Item {id}'
+  item-level: 'Item level: {level}'
+  required-level: 'Required level: {level}'
+  incomplete: Some item details are unavailable. Missing attributes are not zero.
+  details: Observed attributes and tooltip
+  historical: These are game observations at the stated time. Tooltip set descriptions do not prove that a set bonus is active.
+  selected-scope: Only selected nodes and explicitly observed zero-rank nodes are covered. Other missing nodes remain unknown.
+  talent-coverage: '{count} selected nodes; {zeros} explicitly observed zero-rank nodes.'
+  partial: The capture is incomplete or truncated. Missing records remain unknown.
+  config: 'Talent configuration: {name}'
+  class-id: 'Observed class ID: {id}'
+  node: 'Node {id}'
+  entry: 'Entry {id}'
+  purchased: 'Purchased points: {rank}'
+  active-rank: 'Active rank: {rank}'
+  max-rank: 'Maximum rank: {rank}'
+  selected: Selected
+  not-selected: Not marked selected
+  zeros: Explicitly observed zero-rank nodes
+  build: 'Client build: {build}'
+  active: Stable committed talent observations
+  staged: Uncommitted talent edits were detected. The active allocation is not confirmed; draft nodes are not read.
+  inaccessible: The client talent API is not currently accessible.
+  status-unknown: The committed talent allocation could not be confirmed.
+query:
+  game: Game data version
+  title: Explain a reference
+  talents: Talent references
+  plan: Compare a pasted talent plan
+  gear: Compare an item with an equipped slot
+  submit: Query references
+  results: Last explanation
+  no-query: Submit an explicit query to load an explanation.
+  empty: No matching reference was returned.
+  unavailable: The required source or current character facts are unavailable.
+  text: Name or ID
+  paste: Talent plan text
+  slot: Equipped slot to compare
+  item: Candidate item ID
+  search: Search talents
+  compare-plan: Compare talent plan
+  compare-gear: Compare equipment
+  description: Editing a draft does not send a request. Explanations use the game version and character evidence stated in the result.
+  class-id: Class ID
+  level: Level used for talent references
+  node: Talent node ID (optional)
+  spell: Spell ID
+  spells: Spell reference
+  use-player: Use observed character conditions
+  open-source: Read this reference on 无限图鉴
+  plan-help: 'Paste a supported talent website link or allocation string, or a JSON array such as {example}. Positions and spell IDs are not node IDs. Retail game import codes are unsupported.'
+  no-simulation: Numerical differences explain available facts. They do not establish higher DPS, an optimal build, or active set bonuses.
+  stale: Character observations changed after this explanation. Its stated sources and capture times still describe the earlier result; query again to compare the latest observations.
+  unsupported: This input format or cross-version plan is unsupported. Do not interpret it as a decoded talent allocation.
+nodes:
+  title: Talent nodes
+  name-unknown: 'Talent node {id}'
+  group: 'Tree or group: {name}'
+  current: Observed active rank
+  purchased: Observed purchased points
+  planned: Planned purchased points
+  delta: Purchased-point difference
+  maximum: Maximum rank
+  mapping: 'Reference mapping: {status}'
+  same-build: Same client build
+  unverified: Unverified across builds
+  observation-only: Observation only
+  prerequisites: Known prerequisite nodes
+  any: One of the source alternatives
+  gate: 'Source point threshold: {count}'
+  rank: 'Rank {rank}'
+  spell: 'Read spell {id}'
+  node: 'Read node {id}'
+  active-spells: Observed active spell IDs
+  no-prerequisites: No verified prerequisite facts were returned. This does not prove the node is available.
+  conditions: Observed client conditions
+  condition: 'Condition {id}'
+  met: Met in this observation
+  unmet: Not met in this observation
+  condition-level: 'Level condition: {level}'
+  condition-spent: 'Required spent points: {count}'
+  available: 'Available: {value}'
+  visible: 'Visible: {value}'
+  edges: 'Edge requirements met: {value}'
+  yes: Yes
+  no: No
+plan:
+  title: Plan normalization and comparison
+  source-validated: The source normalized this plan. This does not establish that the character can apply it.
+  source-adjusted: The source adjusted this plan. Review the adjustments before using the comparison.
+  partial: The plan comparison is partial. Missing current ranks and prerequisites remain unknown.
+  normalized: Normalized plan returned by the source
+  total: 'Planned points: {count}'
+  cap: 'Source point cap: {count}'
+  remaining: 'Source points remaining: {count}'
+gear:
+  title: Equipped slot and catalog item comparison
+  baseline: Observed equipped item
+  candidate: Catalog candidate
+  compatibility: 'Slot compatibility: {status}'
+  compatible: Slot matches
+  incompatible: Slot does not match
+  unknown: Unverified
+  basis: 'Comparison basis: {status}'
+  base-reference: Base catalog reference; bonus instance not established
+  unresolved: Unresolved reference
+  differences: Available numerical differences
+  attribute: Attribute
+  current: Observed item
+  proposed: Catalog item
+  delta: Base reference difference
+  effects: Source effect descriptions
+  raw-fields: Raw source fields
+  instance: Complete observed item link
+  catalog-stats: Available catalog attributes
+  no-differences: No complete comparable numerical attributes are available.
+spell:
+  title: Spell reference
+  id: 'Spell {id}'
+  origin: 'Source origin: {origin}'
+  raw-fields: Raw source fields
+source:
+  title: Source evidence
+  build: 'Data build: {build}'
+  observed: 'Game observation: {time}'
+  received: 'Source query: {time}'
+  cache-hit: Read from query cache
+  cache-read: 'Cache read: {time}'
+  cache-expires: 'Cache expires: {time}'
+  locale: 'Data locale: {locale}'
+  exported: 'DB2 exported: {time}'
+  hotfixes: Hotfixes were not applied to this DB2 snapshot.
+  encrypted: Some source sections are encrypted; decoded rows do not represent complete coverage.
+fields:
+  line: Skill line
+  kind: Spell category
+  school: Spell school
+  level: Source spell level
+  rank_count: Source rank count
+  weapon-min: Base weapon minimum damage
+  weapon-max: Base weapon maximum damage
+  weapon-speed: Base weapon speed
+  weapon-dps: Base weapon damage per second
+notices:
+  committed-talents-unavailable: Stable committed talents for this class are unavailable.
+  build-mapping-unverified: Source and client builds do not establish an exact node mapping. Current rank remains unknown.
+  current-rank-unknown: The current rank is unknown. A missing selected node is not rank zero.
+  node-reference-unavailable: This node has no verified reference record.
+  plan-rank-exceeds-node: The requested rank exceeds the known node maximum. Its rank difference is not calculated.
+  base-item-not-instance: The catalog describes a base item, not a verified bonus instance matching the observed item link.
+  no-performance-score: No damage simulation, stat weights, or best-in-slot ranking is calculated.
+  other-slots-not-summed: Only the explicitly selected slot is compared; other equipped slots are not summed or removed.
+  equipment-observation-unavailable: A matching equipped-item snapshot is unavailable.
+  baseline-slot-unknown: The selected equipped slot is unknown. It is not treated as empty.
+  slot-compatibility-unknown: Slot matching is unverified; class, race, level, and specialization eligibility are not established.
+  slot-incompatible: The source item slot does not match the selected equipped slot.
+  weapon-pair-requires-review: Main-hand and off-hand interactions require separate review.
+  two-hand-requires-review: A two-hand item may affect the off-hand slot. This comparison does not remove it automatically.
+  baseline-stats-partial: Observed item attributes are incomplete or truncated. Missing values remain unknown.
+  candidate-stats-partial: Catalog attributes are partial. Missing values do not establish zero.
+  retail-observations-only: Retail talent results use actual client observations only, without Forever talent mechanics.
+  missing-nodes-not-zero: Only explicit zero-rank observations establish rank zero. Other absent nodes remain unknown.
+  prerequisites-partial: Prerequisites are not fully verified.
+  local-db2-only: These Retail references come only from the selected local DB2 snapshot.
+  raw-spell-template: Raw spell templates do not establish the final effect at the character's level.
+  level-scaling-unresolved: Level scaling and the character's final spell values are unresolved.
+  raw-item-fields: Raw DB2 fields are shown without interpreting scaling distributions as flat attributes.
+  item-scaling-unresolved: Local item scaling and bonus-instance attributes are unresolved.
+  base-spell-values: Spell descriptions describe source base values, not verified final character effects.
+  source-level-capped: The Forever source accepts levels through 60; the source query was capped at 60.
+  description-unavailable: The source spell description is unavailable.
+  proc-rate-unverified: Effect text does not establish proc rate, uptime, or active set bonuses.
+  effects-unavailable: Verified catalog effect descriptions are unavailable.
+  purchased-node-inactive: Points were purchased for this node, but this observation does not show an active spell from it.
+  result-truncated: The explanation reached its node limit. Omitted nodes remain unknown.
+  source-adjusted-node: The source adjusted a node without providing a detailed reason.
+errors:
+  invalid-query: Check the game, class, level, node or spell ID, and equipped slot.
+  invalid-plan: The plan format is invalid. Use a supported talent link or explicit nodeId/rank JSON array.
+  source-unavailable: The reference source is unavailable. Check the MCP connection and retry.
+  source-invalid: The source returned an unsupported or mismatched record.
+  telemetry-unavailable: Character observations are unavailable or changed during the query. Check the game connection and retry.
+  unsupported-plan: This plan format is unsupported for the selected game. Game import codes are not decoded.
+  database-unavailable: The local Retail database is unavailable. Select and verify it in the read-only database settings.
+  generic: The explanation could not be loaded. Check the inputs and data connection.
+slots:
+  1: Head
+  2: Neck
+  3: Shoulders
+  4: Shirt
+  5: Chest
+  6: Waist
+  7: Legs
+  8: Feet
+  9: Wrists
+  10: Hands
+  11: Finger 1
+  12: Finger 2
+  13: Trinket 1
+  14: Trinket 2
+  15: Back
+  16: Main hand
+  17: Off hand
+  18: Ranged / relic
+  19: Tabard

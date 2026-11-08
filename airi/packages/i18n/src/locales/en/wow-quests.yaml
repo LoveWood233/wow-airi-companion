@@ -1,0 +1,170 @@
+title: Quests and leveling
+description: Read the current quest log and search references without moving or playing the character.
+games:
+  forever: Chinese WoW Forever
+  retail: World of Warcraft Retail
+current:
+  title: Observed character quest log
+  character: '{name} · {realm} · Level {level}'
+  ready: A current quest-log snapshot is available.
+  partial: The current quest-log snapshot is partial. Missing records remain unknown.
+  unknown: No current quest-log snapshot is available. This does not establish an empty log.
+  stale: The last quest snapshot is no longer current. Refresh the game connection before using its progress.
+  observed: 'Quest observations: {time}'
+  received: 'Bridge receipt: {time}'
+  coverage: '{count} observed log records; source total: {total}'
+  no-quests: The complete observed log contains no quests.
+  detail: View quest details
+  objectives: Observed objectives
+  objectives-partial: Some objective data is unavailable. Coverage does not establish objective completion.
+  objective-count: '{fulfilled} / {required}'
+  finished: Objective marked complete
+  unfinished: Objective not marked complete
+  unknown-value: Unknown
+  no-objectives: No objective details were observed.
+  flags: Client completion flags
+  flags-description: These IDs are client completion flags with unknown character/account scope. They do not prove turn-in.
+  flags-coverage: '{count} observed flags; source total: {total}'
+  flags-partial: The flag list is partial. An absent ID cannot prove that a quest is incomplete.
+  no-flags: No completion flags were observed.
+  turnins: Observed turn-ins in this session
+  turnin: 'Quest {id} · {time}'
+  no-turnins: No turn-in event was observed in this session.
+query:
+  title: Search quest references
+  game: Game data version
+  level: Level used for this query
+  faction: Faction used for this query
+  zone: Region name
+  category: Quest-log category
+  category-note: Retail searches use the observed log category, not a world map region or a complete quest catalog.
+  text: Quest name or ID
+  use-player: Use current character conditions
+  search: Search quests
+  description: Search uses the displayed conditions. Editing them does not change the character or send a request.
+  results: Last search results
+  no-query: Submit a search to load references.
+  empty: No matching quest records were returned. Unknown prerequisites remain unknown.
+  unavailable: The requested source or current character log is unavailable.
+  previous: Previous page
+  next: Next page
+  page: 'Showing {count} records from offset {offset}'
+  open: Read details
+  quest-id: 'Quest {id}'
+  level-label: 'Quest level: {level}'
+  min-level: 'Minimum level: {level}'
+  region-label: 'Region: {zone}'
+  category-label: 'Log category: {category}'
+  faction-label: 'Faction: {faction}'
+  type-label: 'Type: {type}'
+  temporary: Temporary
+  unknown-name: 'Quest {id} (name unavailable)'
+factions:
+  Alliance: Alliance
+  Horde: Horde
+  Neutral: Neutral
+  Unknown: Unknown / no faction filter
+progress:
+  unknown: Player progress unknown
+  active: Observed in the quest log
+  ready-to-turn-in: Ready to turn in; not yet proof of turn-in
+  objectives-complete: All observed objectives marked complete
+  failed: Client marked this quest failed
+  completed-flag: Client completion flag; turn-in unknown
+  turned-in: Turn-in observed in this session
+detail:
+  title: Quest details
+  empty: Select a quest to read its details.
+  prerequisites: Objectives and requirements
+  conditions: Known conditions
+  unverified: Unknown prerequisites, phase, reputation, profession, and access conditions cannot be treated as satisfied.
+  starts: Starts with
+  ends: Ends with
+  actors-unknown: The source does not identify a verified quest giver or turn-in actor.
+  locations: Source locations
+  coordinates: '{x}, {y}'
+  map: 'World map region ID: {id}'
+  map-unknown: Map unknown
+  coordinates-unknown: Coordinates unavailable
+  coordinate-note: Coordinates describe source markers. They do not prove the NPC is visible or that a route is passable.
+  previous: Previous quests
+  next: Next quest
+  chain: Quest chain
+  chain-open: 'Read related quest: {title}'
+  reward: Reward summary
+  no-chain: No verified chain references were returned.
+  objective-id: 'Objective ID: {id}'
+  item-id: 'Item ID: {id}'
+  count: 'Quantity: {count}'
+source:
+  title: Source evidence
+  build: 'Data build: {build}'
+  observed: 'Game observation: {time}'
+  received: 'Source query: {time}'
+  unknown-build: Unknown
+  cache-hit: Read from query cache
+  cache-read: 'Cache read: {time}'
+  cache-expires: 'Cache expires: {time}'
+actors:
+  npc: NPC
+  object: World object
+  item: Item
+  unknown: Actor type unknown
+locations:
+  start: Quest giver marker
+  end: Turn-in marker
+  both: Quest giver and turn-in marker
+  objective: Objective marker
+  unknown: Marker purpose unknown
+conditions:
+  prerequisites_all: All of these prerequisite quests
+  prerequisites_one_of: Any one of these prerequisite quests
+  exclusive_with: Mutually exclusive quests
+  taken_under: Source acceptance restriction
+  races: Race restrictions
+  classes: Class restrictions
+  skill: Profession or skill requirement
+  reputation_min: Minimum reputation
+  reputation_max: Maximum reputation
+  carry_items: Items to carry
+  repeatable: Repeatable
+  unknown: Other source condition
+reminders:
+  title: Automatic quest reminders
+  enabled: Enable automatic quest reminders
+  description: Off by default. When enabled, quest reminders share a global three-minute cooldown.
+  constraints: Reminders require a current living character outside combat. Quiet hours, speech mute, current activity, and proactive model budget still apply.
+  error: The quest reminder could not be completed. Check the data and speech connection.
+risks:
+  minimum-level: 'Below the known minimum level ({minimumLevel}). Query level: {playerLevel}.'
+  higher-level: 'Quest level {questLevel} exceeds query level {playerLevel}.'
+  elite: Elite quest
+  dungeon: Dungeon quest
+  raid: Raid quest
+  pvp: PvP quest
+  timed: Timed quest
+  faction-mismatch: Known faction does not match the query
+notices:
+  local-quest-log-only: Retail results cover the observed quest log only. No complete offline quest guide was queried.
+  progress-snapshot-only: Player progress comes from the observed game snapshot, not the reference database.
+  quest-log-header-not-map: A quest-log category is not a world map region.
+  quest-log-partial: The observed log is partial. Missing quests remain unknown.
+  prerequisites-unverified: Prerequisites and access conditions are not fully verified.
+  coordinates-unavailable: Verified coordinates are unavailable.
+  level-window-three: Search considers quest levels within three levels of the query level. Retail log records with unknown levels are retained.
+  faction-filter-unavailable: Faction filtering is unavailable or the faction is unknown.
+  availability-unverified: These records do not prove that the character can accept the quest.
+  source-partial: The source record is partial.
+  faction-unverified: Quest faction requirements are unverified.
+  level-unavailable: Quest level is unavailable.
+  detail-not-loaded: This is a list summary. Read the detail record before relying on its requirements.
+  result-truncated: The result was truncated.
+  temporary-data: Some information comes from temporary third-party data.
+  title-unavailable: The source does not provide a quest title.
+errors:
+  invalid-query: Check the level, faction, filters, and quest ID.
+  source-unavailable: The reference source is unavailable. Check the MCP connection and retry.
+  source-invalid: The source returned an unsupported or invalid quest record.
+  telemetry-unavailable: Current quest observations are unavailable or changed during the query. Check the game connection and retry.
+  telemetry-game-mismatch: The available quest observations belong to another game.
+  generic: The query failed. Check the selected game, data connection, and filters.

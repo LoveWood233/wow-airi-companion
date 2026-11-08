@@ -1,0 +1,74 @@
+{
+  "outcome": "ok",
+  "id": "item:19019",
+  "title": "雷霆之怒，逐风者的祝福之剑",
+  "url": "https://wuxianwow.com/item/19019",
+  "preview_url": "https://wuxianwow.com/transmog?o=AQKAEMuUAQA",
+  "kind": "item",
+  "game_link": "|cffff8000|Hitem:19019:::::::::::::|h[雷霆之怒，逐风者的祝福之剑]|h|r",
+  "game_link_note": "客户端聊天超链接转义串；聊天框会过滤「|」，要贴进游戏需用宏：/run ChatFrame1EditBox:Insert(\"…\")，宏里把 | 写成 \\124",
+  "item_id": 19019,
+  "quality": 5,
+  "ilvl": 80,
+  "slot": "单手",
+  "req_level": 60,
+  "sell": 255355,
+  "sell_text": "25金 53银 55铜",
+  "use": "以闪电的力量攻击敌人，对其造成300点自然伤害，然后攻击附近的下一个敌人。闪电每次跳跃都使目标的自然抗性降低25点。可攻击5个目标。你的目标也会因此被飓风吞噬，使其攻击速度降低20%，持续12秒。",
+  "use_kind": "击中时可能",
+  "hidden": false,
+  "equipment": {
+    "slot": "单手",
+    "weapon_type": "单手剑",
+    "ilvl": 80,
+    "req_level": 60,
+    "damage": {
+      "dps": 61.8,
+      "max": 153,
+      "min": 82,
+      "speed": 1.9
+    },
+    "stats": [
+      {
+        "stat": "敏捷",
+        "value": 5
+      },
+      {
+        "stat": "耐力",
+        "value": 8
+      },
+      {
+        "stat": "火焰抗性",
+        "value": 8
+      },
+      {
+        "stat": "自然抗性",
+        "value": 9
+      }
+    ]
+  },
+  "unique": "唯一",
+  "source_type": "任务",
+  "source_note": "来源类型来自 ItemModifiedAppearance；首领掉落数据（冒险指南）在 客户端中为空",
+  "temporary_sources": {
+    "sources": {
+      "quest_rewards": "Polestar forever-db（WoW Forever 的任务数据库，GPL-3.0）"
+    },
+    "note": "临时数据，不是官方数据：任务奖励来自 Polestar forever-db，只列游戏服务器没有记录的任务；掉落来自 Spyglass，掉率只有记满 10 次击杀的才有；《无限》里可能不同，官方数据出现后替换",
+    "quest_rewards": [
+      {
+        "quest_id": 7787,
+        "name": "觉醒吧，雷霆之怒！",
+        "url": "https://wuxianwow.com/quest/7787",
+        "level": 60,
+        "reward": "固定"
+      }
+    ]
+  },
+  "made_by": [],
+  "used_by": [],
+  "used_by_count": 0,
+  "temporary_dropped_by": null,
+  "text": "雷霆之怒，逐风者的祝福之剑 · 单手 · 装等 80\n属性：82–153 伤害 · 速度 1.9 · DPS 61.8；+5 敏捷，+8 耐力，+8 火焰抗性，+9 自然抗性\n以闪电的力量攻击敌人，对其造成300点自然伤害，然后攻击附近的下一个敌人。闪电每次跳跃都使目标的自然抗性降低25点。可攻击5个目标。你的目标也会因此被飓风吞噬，使其攻击速度降低20%，持续12秒。\n售价：25金 53银 55铜\n来源：任务「觉醒吧，雷霆之怒！」（固定）（临时）\n由 0 条配方制作，被 0 条配方使用。",
+  "matched_by": "id"
+}

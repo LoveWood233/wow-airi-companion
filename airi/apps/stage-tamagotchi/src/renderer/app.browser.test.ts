@@ -3,6 +3,7 @@ import type { KokoroAdapter } from '@proj-airi/stage-ui/libs/inference/adapters/
 import type { BrowserWindow, IpcMain, IpcMainEvent, IpcRendererEvent, WebContents } from 'electron'
 
 import type { PluginCapabilityPayload } from '../shared/eventa/plugin/capabilities'
+import type { StatisticsUsageObservation } from '../shared/wow-statistics'
 
 import messages from '@proj-airi/i18n/locales'
 import localforage from 'localforage'
@@ -14,6 +15,7 @@ import { electron } from '@proj-airi/electron-eventa'
 import { getElectronEventaContext, resetElectronEventaContextForTesting } from '@proj-airi/electron-vueuse'
 import { parseEvent, stringifyEvent } from '@proj-airi/server-sdk'
 import { artistrySyncConfig } from '@proj-airi/stage-shared'
+import { reportModelUsage } from '@proj-airi/stage-ui/libs/model-usage'
 import { setupSynced, usePiniaSynced } from '@proj-airi/stage-ui/libs/pinia'
 import { configureAnalyticsAdapter } from '@proj-airi/stage-ui/libs/product-signals'
 import { useAuthStore } from '@proj-airi/stage-ui/stores/auth'
@@ -24,6 +26,7 @@ import { useModsServerChannelStore } from '@proj-airi/stage-ui/stores/mods/api/c
 import { useSpeechStore } from '@proj-airi/stage-ui/stores/modules/speech'
 import { useVisionStore } from '@proj-airi/stage-ui/stores/modules/vision'
 import { useProviderConfigStore } from '@proj-airi/stage-ui/stores/providers/config'
+import { useSettingsStageModel } from '@proj-airi/stage-ui/stores/settings/stage-model'
 import { createPinia, disposePinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, onTestFinished, vi } from 'vitest'
 import { render } from 'vitest-browser-vue'
@@ -44,6 +47,7 @@ import {
 } from '../shared/eventa'
 import { electronPluginUpdateCapability, pluginProtocolListProviders, pluginProtocolListProvidersEventName } from '../shared/eventa/plugin/capabilities'
 import { electronPluginListXsaiTools } from '../shared/eventa/plugin/tools'
+import { wowStatisticsGet, wowStatisticsRecord } from '../shared/eventa/wow-statistics'
 import { resolveRendererWindowContext } from './window-context'
 
 const inference = vi.hoisted(() => ({
@@ -162,7 +166,7 @@ async function renderStage(routePath: string, search: string) {
   const originalUrl = location.href
   const url = new URL(originalUrl)
   const windowQuery = new URLSearchParams(search)
-  for (const key of ['synced-leader', 'stage-runtime']) {
+  for (const key of ['synced-leader', 'stage-runtime', 'fullscreen-host']) {
     const value = windowQuery.get(key)
     if (value === null)
       url.searchParams.delete(key)
@@ -182,6 +186,20 @@ async function renderStage(routePath: string, search: string) {
   })
   defineInvokeHandler(bridge.main, i18nGetLocale, () => 'en')
   defineInvokeHandler(bridge.main, i18nSetLocale, () => {})
+  const getStatistics = vi.fn(() => ({
+    enabled: false,
+    disclosed: true,
+    endpoint: '',
+    intervalSeconds: 300 as const,
+    installationId: null,
+    counters: { requests: 0, requestsWithUsage: 0, requestsWithoutUsage: 0, inputTokens: 0, outputTokens: 0, totalTokens: 0, inputReportedRequests: 0, outputReportedRequests: 0, totalReportedRequests: 0 },
+    lastReportedAt: null,
+    lastError: null,
+    configured: false,
+  }))
+  const recordStatistics = vi.fn<(input: StatisticsUsageObservation) => void>()
+  defineInvokeHandler(bridge.main, wowStatisticsGet, getStatistics)
+  defineInvokeHandler(bridge.main, wowStatisticsRecord, recordStatistics)
   defineInvokeHandler(bridge.main, electron.app.isWindows, () => false)
   defineInvokeHandler(bridge.main, artistrySyncConfig, () => {})
   const getWindowLifecycleState = vi.fn(() => ({
@@ -338,6 +356,8 @@ async function renderStage(routePath: string, search: string) {
   return {
     errors,
     getWindowLifecycleState,
+    getStatistics,
+    recordStatistics,
     initializeCharacter,
     initializeAccount,
     leader,
@@ -407,7 +427,7 @@ describe('renderer startup', () => {
   // Removing the obsolete call lets these startup steps finish through the current IPC contracts.
   // https://github.com/moeru-ai/airi/pull/2530
   it('completes main window startup without the obsolete mouse handler (PR #2530)', async () => {
-    const stage = await renderStage('/', '?synced-leader=true')
+    const stage = await renderStage('/', '?synced-leader=true&fullscreen-host=main-window')
 
     await expect.poll(() => ({ errors: stage.errors, reports: stage.reports }), { timeout: 5000 }).toEqual({
       errors: [],
@@ -419,6 +439,8 @@ describe('renderer startup', () => {
     })
     expect(stage.runtime.isLeader()).toBe(true)
     expect(stage.initializeCharacter).toHaveBeenCalledTimes(1)
+    expect(useSettingsStageModel(stage.pinia).runtimeEnabled).toBe(false)
+    await expect.poll(() => stage.getStatistics.mock.calls).toHaveLength(1)
     await expect(stage.listProviders()).resolves.toContainEqual({ name: 'Kokoro TTS' })
     await expect.poll(() => inference.loadModel.mock.calls, { timeout: 5000 }).toHaveLength(1)
     expect(inference.loadModel).toHaveBeenCalledWith('q8', 'wasm', { signal: expect.any(AbortSignal) })
@@ -439,9 +461,20 @@ describe('renderer startup', () => {
     expect(stage.runtime.getLeaderId()).toBe(stage.leader?.runtime.participantId)
     expect(stage.errors).toEqual([])
     expect(stage.getWindowLifecycleState).not.toHaveBeenCalled()
+    expect(stage.getStatistics).not.toHaveBeenCalled()
+    expect(useSettingsStageModel(stage.pinia).runtimeEnabled).toBe(false)
     expect(stage.initializeCharacter).not.toHaveBeenCalled()
     expect(stage.reports).toEqual([])
     expect(inference.loadModel).not.toHaveBeenCalled()
+  }, 15000)
+
+  it('forwards content-free model usage from its owning chat renderer', async () => {
+    const stage = await renderStage('/chat', '?stage-runtime=minimal&synced-leader=false')
+    reportModelUsage({ source: 'reported', inputTokens: 40, outputTokens: 8, totalTokens: 48 })
+    await expect.poll(() => stage.recordStatistics.mock.calls).toHaveLength(1)
+    expect(stage.recordStatistics.mock.calls[0]?.[0]).toEqual({ id: expect.any(String), source: 'reported', inputTokens: 40, outputTokens: 8, totalTokens: 48 })
+    expect(stage.getStatistics).not.toHaveBeenCalled()
+    expect(stage.errors).toEqual([])
   }, 15000)
 
   it('starts widgets as a full follower without the character orchestrator', async () => {

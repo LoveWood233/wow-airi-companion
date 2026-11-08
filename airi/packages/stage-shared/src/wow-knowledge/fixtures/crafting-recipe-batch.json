@@ -1,0 +1,59 @@
+{
+  "outcome": "ok",
+  "id": "recipe:6866",
+  "title": "高速秘银弹头",
+  "text": "高速秘银弹头（工程学 · 弹药）\n效果：优秀弹药 · 装等 42 · 需求 37 级\n材料：秘银锭×1、实心炸药×1\n工具：铁匠锤\n制作地点：需要在铁砧旁边\n产出：高速秘银弹头×200",
+  "url": "https://wuxianwow.com/recipe/6866",
+  "metadata": {
+    "id": "recipe:6866",
+    "kind": "recipe",
+    "recipe_id": 6866,
+    "spell_id": 12596,
+    "game_link": "|cffffd000|Henchant:12596|h[工程学: 高速秘银弹头]|h|r",
+    "product_game_link": "|cff1eff00|Hitem:10512:::::::::::::|h[高速秘银弹头]|h|r",
+    "game_link_note": "客户端聊天超链接转义串；聊天框会过滤「|」，要贴进游戏需用宏：/run ChatFrame1EditBox:Insert(\"…\")，宏里把 | 写成 \\124",
+    "profession": "工程学",
+    "category": "工程学 › 弹药",
+    "new_in_160": false,
+    "effect": "优秀弹药 · 装等 42 · 需求 37 级",
+    "reagents": [
+      {
+        "item_id": 3860,
+        "name": "秘银锭",
+        "count": 1,
+        "hidden": false
+      },
+      {
+        "item_id": 10505,
+        "name": "实心炸药",
+        "count": 1,
+        "hidden": false
+      }
+    ],
+    "products": [
+      {
+        "item_id": 10512,
+        "name": "高速秘银弹头",
+        "count": 200,
+        "hidden": false,
+        "quality": 2,
+        "ilvl": 42,
+        "slot": "弹药",
+        "req_level": 37
+      }
+    ],
+    "product_hidden": false,
+    "equipment": null,
+    "taught_by": [],
+    "taught_by_note": "来自 ItemEffect 学习法术；来源只列客户端能证明的声望奖励，商人 / 掉落 / 任务奖励不在 客户端数据内",
+    "skill_up_range": [
+      210,
+      250
+    ],
+    "min_rank": 1,
+    "tools": [
+      "铁匠锤"
+    ],
+    "craft_at": "铁砧"
+  }
+}

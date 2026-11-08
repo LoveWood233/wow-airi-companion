@@ -1,0 +1,170 @@
+title: 任务与练级
+description: 读取当前任务日志并查询资料，不会移动角色或代替你操作游戏。
+games:
+  forever: 《魔兽世界：无限》国服
+  retail: 魔兽世界正式服
+current:
+  title: 已观察的角色任务日志
+  character: '{name} · {realm} · {level} 级'
+  ready: 已取得当前有效的任务日志快照。
+  partial: 当前任务日志快照不完整，未包含的记录保持未知。
+  unknown: 暂无当前有效的任务快照，不能据此认定任务日志为空。
+  stale: 上次任务快照已不再有效，请恢复游戏连接后再使用其中的进度。
+  observed: '任务采集时间：{time}'
+  received: '桥接收到时间：{time}'
+  coverage: '已观察 {count} 条日志记录，来源总数：{total}'
+  no-quests: 已完整读取的当前日志中没有任务。
+  detail: 查看任务详情
+  objectives: 已观察的任务目标
+  objectives-partial: 部分目标资料不可用，列表覆盖完整不代表目标已经完成。
+  objective-count: '{fulfilled} / {required}'
+  finished: 此目标已被标记为完成
+  unfinished: 此目标尚未被标记为完成
+  unknown-value: 未知
+  no-objectives: 暂无已观察到的目标详情。
+  flags: 客户端完成标记
+  flags-description: 这些编号是客户端完成标记，角色或账号适用范围未知，不能当作已交付证据。
+  flags-coverage: '已观察 {count} 个标记，来源总数：{total}'
+  flags-partial: 完成标记列表不完整，缺少某个编号不能证明任务未完成。
+  no-flags: 暂无已观察到的完成标记。
+  turnins: 本会话已观察到的交付
+  turnin: '任务 {id} · {time}'
+  no-turnins: 本会话尚未观察到交付事件。
+query:
+  game: 游戏资料版本
+  title: 查询任务资料
+  level: 本次查询使用的等级
+  faction: 本次查询使用的阵营
+  zone: 地区名称
+  category: 任务日志分类
+  category-note: 正式服筛选的是已观察日志中的分类，不是世界地图地区或完整任务目录。
+  text: 任务名称或编号
+  use-player: 使用当前角色条件
+  search: 查询任务
+  description: 按页面所列条件查询，修改条件不会改变角色或自动发送请求。
+  results: 上次查询结果
+  no-query: 提交查询后读取资料。
+  empty: 没有匹配的任务记录，未知前置条件仍然保持未知。
+  unavailable: 请求的资料源或当前角色任务日志暂不可用。
+  previous: 上一页
+  next: 下一页
+  page: '从第 {offset} 条起显示 {count} 条记录'
+  open: 读取详情
+  quest-id: '任务 {id}'
+  level-label: '任务等级：{level}'
+  min-level: '最低等级：{level}'
+  region-label: '地区：{zone}'
+  category-label: '日志分类：{category}'
+  faction-label: '阵营：{faction}'
+  type-label: '类型：{type}'
+  temporary: 临时
+  unknown-name: '任务 {id}（名称未知）'
+factions:
+  Alliance: 联盟
+  Horde: 部落
+  Neutral: 中立
+  Unknown: 未知／不限定阵营
+progress:
+  unknown: 玩家进度未知
+  active: 已观察到任务在日志中
+  ready-to-turn-in: 客户端标记可交，尚不代表已交付
+  objectives-complete: 已观察的全部目标均标记完成
+  failed: 客户端标记此任务失败
+  completed-flag: 客户端有完成标记，是否交付未知
+  turned-in: 本会话已观察到交付
+detail:
+  title: 任务详情
+  empty: 选择任务后读取详情。
+  prerequisites: 任务目标与需求
+  conditions: 已知条件
+  unverified: 未知的前置、相位、声望、专业与进入条件，不能当作已经满足。
+  starts: 接取来源
+  ends: 交付来源
+  actors-unknown: 来源尚未提供已核实的接取或交付对象。
+  locations: 来源位置标记
+  coordinates: '{x}, {y}'
+  map: '世界地图区域 ID：{id}'
+  map-unknown: 地图未知
+  coordinates-unknown: 坐标不可用
+  coordinate-note: 坐标表示来源中的标记，不能证明 NPC 当前可见，也不保证路线可以通行。
+  previous: 前置任务
+  next: 后续任务
+  chain: 任务链
+  chain-open: '读取关联任务：{title}'
+  reward: 奖励摘要
+  no-chain: 来源没有返回已核实的任务链引用。
+  objective-id: '目标编号：{id}'
+  item-id: '物品编号：{id}'
+  count: '数量：{count}'
+source:
+  title: 来源证据
+  build: '数据版本：{build}'
+  observed: '游戏采集时间：{time}'
+  received: '来源查询时间：{time}'
+  unknown-build: 未知
+  cache-hit: 此次读取查询缓存
+  cache-read: '缓存读取时间：{time}'
+  cache-expires: '缓存失效时间：{time}'
+actors:
+  npc: NPC
+  object: 场景物体
+  item: 物品
+  unknown: 接交对象类型未知
+locations:
+  start: 接任务标记
+  end: 交任务标记
+  both: 接任务与交任务标记
+  objective: 任务目标标记
+  unknown: 标记用途未知
+conditions:
+  prerequisites_all: 需要全部满足的前置任务
+  prerequisites_one_of: 满足任意一个即可的前置任务
+  exclusive_with: 互斥任务
+  taken_under: 来源中的接取限制
+  races: 种族限制
+  classes: 职业限制
+  skill: 专业或技能要求
+  reputation_min: 最低声望要求
+  reputation_max: 最高声望限制
+  carry_items: 需要携带的物品
+  repeatable: 是否可重复
+  unknown: 其他来源条件
+reminders:
+  title: 自动任务提醒
+  enabled: 开启自动任务提醒
+  description: 默认关闭，手动开启后，任务提醒共用全局 3 分钟冷却。
+  constraints: 仅对当前存活且非战斗的角色提醒，继续遵守安静时段、静音、当前活动与主动模型调用预算。
+  error: 任务提醒未能完成，请检查数据与语音连接。
+risks:
+  minimum-level: '低于已知最低等级 {minimumLevel}，查询等级为 {playerLevel}。'
+  higher-level: '任务等级 {questLevel} 高于查询等级 {playerLevel}。'
+  elite: 精英任务
+  dungeon: 地下城任务
+  raid: 团队任务
+  pvp: PvP 任务
+  timed: 限时任务
+  faction-mismatch: 已知阵营与查询条件不匹配
+notices:
+  local-quest-log-only: 正式服结果仅覆盖已观察的任务日志，未查询完整离线任务攻略。
+  progress-snapshot-only: 玩家进度来自实际游戏快照，不来自资料数据库。
+  quest-log-header-not-map: 任务日志分类不等于世界地图地区。
+  quest-log-partial: 已观察的任务日志不完整，缺少的任务保持未知。
+  prerequisites-unverified: 前置与进入条件尚未完整核实。
+  coordinates-unavailable: 暂无已核实的坐标。
+  level-window-three: 查询考虑输入等级上下 3 级范围内的任务；正式服日志中等级未知的记录会保留。
+  faction-filter-unavailable: 无法按阵营筛选，或当前阵营未知。
+  availability-unverified: 这些记录不能证明当前角色可以接取任务。
+  source-partial: 来源记录不完整。
+  faction-unverified: 任务阵营条件尚未核实。
+  level-unavailable: 任务等级不可用。
+  detail-not-loaded: 当前内容为列表摘要，依赖需求条件前请先读取详情。
+  result-truncated: 返回的资料已被截断。
+  temporary-data: 部分内容来自第三方临时资料。
+  title-unavailable: 来源尚未提供任务标题。
+errors:
+  invalid-query: 请检查等级、阵营、筛选条件与任务编号。
+  source-unavailable: 资料源暂不可用，请检查 MCP 连接后重试。
+  source-invalid: 来源返回了不支持或无效的任务记录。
+  telemetry-unavailable: 当前任务观察不可用，或查询期间状态已变化，请检查游戏连接后重试。
+  telemetry-game-mismatch: 当前可用的任务观察属于另一个游戏版本。
+  generic: 查询失败，请检查所选版本、数据连接与筛选条件。

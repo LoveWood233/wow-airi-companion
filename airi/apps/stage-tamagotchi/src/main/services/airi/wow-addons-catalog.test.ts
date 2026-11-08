@@ -27,7 +27,7 @@ const file = {
 const mod = {
   id: 55,
   gameId: 1,
-  classId: 1,
+  classId: 447,
   name: 'Example',
   summary: 'An example addon',
   logo: { thumbnailUrl: 'https://media.forgecdn.net/logo.png' },
@@ -47,8 +47,8 @@ describe('curseForgeCatalog', () => {
   beforeEach(() => {
     responses = new Map<string, unknown>([
       ['/v1/categories', { data: [
-        { id: 20, gameId: 1, name: 'Combat', slug: 'combat', classId: 1, parentCategoryId: 1 },
-        { id: 21, gameId: 1, name: 'Raid', slug: 'raid', classId: 1, parentCategoryId: 20 },
+        { id: 20, gameId: 1, name: 'Combat', slug: 'combat', classId: 447, parentCategoryId: 447 },
+        { id: 21, gameId: 1, name: 'Raid', slug: 'raid', classId: 447, parentCategoryId: 20 },
         { id: 30, gameId: 1, name: 'Other class', slug: 'other', classId: 448, parentCategoryId: null },
       ] }],
       ['/v1/games/1/version-types', { data: [
@@ -80,33 +80,16 @@ describe('curseForgeCatalog', () => {
     vi.restoreAllMocks()
   })
 
-  // ROOT CAUSE:
-  // The WoW catalog used class 447. Live CurseForge taxonomy identifies WoW addons as class 1.
-  it('loads the live WoW addon class instead of requesting a nonexistent category class', async () => {
-    const original = fetchMock.getMockImplementation()!
-    fetchMock.mockImplementation(async (input, options) => {
-      const url = new URL(String(input))
-      if (url.pathname === '/v1/categories' && url.searchParams.get('classId') !== '1')
-        return new Response(null, { status: 404 })
-      return original(input, options)
-    })
-    responses.set('/v1/categories', { data: [{ id: 1009, gameId: 1, name: 'Bags & Inventory', slug: 'bags-inventory', classId: 1, parentCategoryId: 1 }] })
-    responses.set('/v1/mods/55', { data: { ...mod, classId: 1 } })
-    const catalog = new CurseForgeCatalog('test-only-key')
-    expect((await catalog.getMetadata()).categories.map(category => category.id)).toEqual([1009])
-    expect((await catalog.getMod(55)).name).toBe('Example')
-  })
-
   it('discovers category hierarchy and version IDs without fixed flavor IDs', async () => {
     const catalog = new CurseForgeCatalog('test-only-key')
     const metadata = await catalog.getMetadata()
 
-    expect(metadata.categories.map(category => [category.id, category.parentCategoryId])).toEqual([[20, 1], [21, 20]])
+    expect(metadata.categories.map(category => [category.id, category.parentCategoryId])).toEqual([[20, 447], [21, 20]])
     expect(metadata.versionTypes.map(type => [type.id, type.group])).toEqual([[901, 'retail'], [902, 'classic'], [903, 'forever'], [904, null]])
     expect(fetchMock).toHaveBeenCalledTimes(2)
     const categoriesUrl = new URL(String(fetchMock.mock.calls[0][0]))
     expect(categoriesUrl.searchParams.get('gameId')).toBe('1')
-    expect(categoriesUrl.searchParams.get('classId')).toBe('1')
+    expect(categoriesUrl.searchParams.get('classId')).toBe('447')
     metadata.versionTypes[0].group = 'forever'
     expect((await catalog.getMetadata()).versionTypes[0].group).toBe('retail')
     expect(fetchMock).toHaveBeenCalledTimes(2)
@@ -122,7 +105,7 @@ describe('curseForgeCatalog', () => {
 
       expect(url.origin).toBe('https://api.curseforge.com')
       expect(url.pathname).toBe('/v1/mods/search')
-      expect(Object.fromEntries(url.searchParams)).toEqual({ gameId: '1', classId: '1', gameVersionTypeId: '901', categoryId: '21', searchFilter: 'Example', index: '20', pageSize: '20', sortField: field, sortOrder: 'desc' })
+      expect(Object.fromEntries(url.searchParams)).toEqual({ gameId: '1', classId: '447', gameVersionTypeId: '901', categoryId: '21', searchFilter: 'Example', index: '20', pageSize: '20', sortField: field, sortOrder: 'desc' })
       expect(options?.headers).toEqual({ 'Accept': 'application/json', 'x-api-key': 'test-only-key' })
       expect(options?.redirect).toBe('error')
       expect(result.addons[0]).toEqual({ id: 55, name: 'Example', summary: 'An example addon', logoUrl: mod.logo.thumbnailUrl, websiteUrl: mod.links.websiteUrl, downloadCount: 100, dateModified: mod.dateModified, authors: ['Author'], categories: [20], allowDistribution: true })
@@ -162,13 +145,6 @@ describe('curseForgeCatalog', () => {
     responses.set('/v1/mods/55/files/80', { data: { ...file, id: 81 } })
 
     await expect(new CurseForgeCatalog('test-only-key').getFile(55, 80)).rejects.toThrow('curseforge-invalid-response')
-  })
-
-  it('reads only authoritative latest files matching the exact client branch for recommendations', async () => {
-    responses.set('/v1/mods/55', { data: { ...mod, latestFiles: [file, { ...file, id: 81, sortableGameVersions: [{ gameVersionTypeId: 903 }] }, { ...file, id: 82, isAvailable: false }, { ...file, id: 83, modId: 99 }] } })
-    const result = await new CurseForgeCatalog('test-only-key').getLatestCompatibleFiles(55, 901)
-    expect(result.map(file => file.id)).toEqual([80])
-    expect(fetchMock.mock.calls.map(call => new URL(String(call[0])).pathname)).toEqual(['/v1/categories', '/v1/games/1/version-types', '/v1/mods/55'])
   })
 
   it.each([

@@ -1,0 +1,192 @@
+{
+  "outcome": "ok",
+  "id": "quest:11",
+  "title": "悬赏河爪豺狼人",
+  "url": "https://wuxianwow.com/quest/11",
+  "level": 10,
+  "min_level": 6,
+  "zone": "艾尔文森林",
+  "side": null,
+  "temporary_side": "联盟",
+  "source": "cache",
+  "reward_brief": "840 经验 · 暴风城声望 +100 · 任选 民兵圆盾 / 顽童短裤",
+  "requirements": [
+    {
+      "type": "item",
+      "objective_id": 380027,
+      "item_id": 782,
+      "url": null,
+      "name": "彩色豺狼人臂章",
+      "count": 8,
+      "description": null,
+      "optional": false,
+      "text": "彩色豺狼人臂章 ×8"
+    }
+  ],
+  "reward": {
+    "xp": 840,
+    "xp_level_share": "10 级升级需要 7600 经验，这个任务给 11%（任务等级下的满额；角色比任务等级高时游戏会减少）",
+    "money_copper": null,
+    "money": null,
+    "items": [],
+    "choose_one": [
+      {
+        "item_id": 2249,
+        "name": "民兵圆盾",
+        "count": 1,
+        "quality": 1,
+        "slot": "副手盾",
+        "type": "盾牌",
+        "required_level": null,
+        "url": "https://wuxianwow.com/item/2249"
+      },
+      {
+        "item_id": 2238,
+        "name": "顽童短裤",
+        "count": 1,
+        "quality": 1,
+        "slot": "腿部",
+        "type": "布甲",
+        "required_level": null,
+        "url": "https://wuxianwow.com/item/2238"
+      }
+    ],
+    "reputation": [
+      {
+        "faction_id": 72,
+        "faction": "暴风城",
+        "amount": 100
+      }
+    ],
+    "currencies": [],
+    "spell": null
+  },
+  "previous_quests": [
+    {
+      "quest_id": 239,
+      "name": "西泉要塞",
+      "url": "https://wuxianwow.com/quest/239"
+    }
+  ],
+  "next_quest": null,
+  "quest_chain": [
+    {
+      "quest_id": 239,
+      "name": "西泉要塞",
+      "url": "https://wuxianwow.com/quest/239",
+      "current": false,
+      "temporary_link": false
+    },
+    {
+      "quest_id": 11,
+      "name": "悬赏河爪豺狼人",
+      "url": "https://wuxianwow.com/quest/11",
+      "current": true,
+      "temporary_link": false
+    }
+  ],
+  "map_marks": [
+    {
+      "map": {
+        "ui_map": 1429,
+        "name": "艾尔文森林",
+        "url": "https://wuxianwow.com/atlas/1429",
+        "art": "https://wuxianwow.com/data/maps/1429.webp"
+      },
+      "marks": [
+        {
+          "kind": "both",
+          "label": "接任务 · 交任务",
+          "objective": null,
+          "areas": null,
+          "place": "林边空地",
+          "x": 0.2423,
+          "y": 0.7445,
+          "coords": "24.2, 74.5",
+          "source": "QuestieDB（临时）",
+          "who": "瑞尼尔副队长",
+          "text": "接任务 · 交任务 瑞尼尔副队长（临时）：林边空地（24.2, 74.5）"
+        },
+        {
+          "kind": "obj",
+          "label": "彩色豺狼人臂章 × 8",
+          "objective": 1,
+          "areas": 2,
+          "place": "林边空地",
+          "x": 0.2678,
+          "y": 0.8873,
+          "coords": "26.8, 88.7",
+          "source": "QuestieDB（临时）",
+          "who": null,
+          "places": [
+            "林边空地",
+            "石碑湖"
+          ],
+          "by": [
+            {
+              "kind": "npc",
+              "id": 478,
+              "name": "河爪豺狼人前锋"
+            },
+            {
+              "kind": "npc",
+              "id": 97,
+              "name": "矮小的河爪豺狼人"
+            }
+          ],
+          "via": "掉落自 河爪豺狼人前锋、矮小的河爪豺狼人",
+          "text": "目标 1 彩色豺狼人臂章 × 8（临时）：林边空地（26.8, 88.7） · 2 处区域（另在石碑湖） · 掉落自 河爪豺狼人前锋、矮小的河爪豺狼人"
+        }
+      ]
+    }
+  ],
+  "temporary": {
+    "source": "QuestieDB",
+    "repo": "https://github.com/Questie/QuestieDB",
+    "commit": "f86bce5bf6a10bfa5342678c3544598013a40783",
+    "license": "GPL-3.0（仓库 2026-10-21 起有 LICENSE.md：Questie 团队同意按 GPLv3 复制，其余没写明的内容默认保留所有权利）；站长 2026-10-25 定：按 GPLv3 使用并署名 QuestieDB（Questie 团队）",
+    "name": null,
+    "level": null,
+    "min_level": null,
+    "zone": null,
+    "category": null,
+    "objectives_text": [],
+    "starts": [
+      {
+        "kind": "npc",
+        "id": 963,
+        "name": "瑞尼尔副队长",
+        "title": null
+      }
+    ],
+    "ends": [
+      {
+        "kind": "npc",
+        "id": 963,
+        "name": "瑞尼尔副队长",
+        "title": null
+      }
+    ],
+    "objectives": [],
+    "objective_levels": [],
+    "side": "联盟",
+    "previous_quests": [],
+    "next_quest": null,
+    "conditions": {
+      "prerequisites_all": [],
+      "prerequisites_one_of": [],
+      "exclusive_with": [],
+      "taken_under": null,
+      "races": [],
+      "classes": [],
+      "skill": null,
+      "reputation_min": null,
+      "reputation_max": null,
+      "carry_items": [],
+      "repeatable": false
+    },
+    "reward": null,
+    "note": "临时数据：官方数据（客户端数据表、服务器下发的任务缓存）没有这些字段，暂用 QuestieDB（Questie 插件的数据库，经典旧世数据，坐标已换算到无限的地图）；官方数据出现后由它替换。接 / 交任务的 NPC、接任务条件（conditions）与目标怪物的等级（objective_levels）官方数据里没有，全部来自这里；任务目标与奖励只在服务器没有这个任务的记录时给出，阵营只在服务器记录不限种族时给出，前后任务只在服务器没给时给出"
+  },
+  "guide_text": "【悬赏河爪豺狼人】10 级（6 级可接） · 艾尔文森林 · 联盟\n接：瑞尼尔副队长（林边空地 24.2, 74.5）\n做：彩色豺狼人臂章 ×8，掉落自 河爪豺狼人前锋、矮小的河爪豺狼人（林边空地 26.8, 88.7；石碑湖 68.1, 42.1）\n交：回到瑞尼尔副队长\n奖励：840 经验 · 暴风城声望 +100 · 任选 民兵圆盾 / 顽童短裤\n前置：西泉要塞\nhttps://wuxianwow.com/quest/11（含 QuestieDB 临时数据）"
+}

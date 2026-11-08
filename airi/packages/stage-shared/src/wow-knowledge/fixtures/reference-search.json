@@ -1,0 +1,25 @@
+{
+  "outcome": "ok",
+  "results": [
+    {
+      "id": "item:12359",
+      "title": "瑟银锭",
+      "url": "https://wuxianwow.com/item/12359",
+      "kind": "item",
+      "snippet": ""
+    },
+    {
+      "id": "item:220925",
+      "title": "遭劫货物：瑟银锭",
+      "url": "https://wuxianwow.com/item/220925",
+      "kind": "item",
+      "snippet": "添加16块瑟银锭以凑齐货物。"
+    }
+  ],
+  "total": 6,
+  "page": 1,
+  "page_size": 2,
+  "limit": 2,
+  "offset": 0,
+  "has_more": true
+}

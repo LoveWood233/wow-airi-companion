@@ -1,5 +1,26 @@
 # Stage UI
 
+## Warcraft reference cards
+
+The shared chat registry shows deterministic wuxianwow reference cards for supported recorded MCP results.
+Cards retain source links, game scope, evidence dates, and temporary or incomplete data notices.
+The MCP proxy adds optional source-build evidence only through an advertised read-only stats tool.
+See [the reference answer design](../../docs/ai/adr/wow-structured-reference-answers.md) for supported calls and validation boundaries.
+On desktop, recipe cards offer a link to the profession material planner. The link preserves the recipe's typed identity.
+Native Retail queries have a separate card and namespace. They retain local DB2 provenance and link to validated local entity details.
+Reference cards label cache hits and retain original source timestamps. Serving time and expiry remain separate.
+`WowMcpCacheRuntime` applies the shared cache policy through the desktop owner. Acceptance calls bypass caching and metadata probes.
+Quest assistant cards show validated source results and distinguish task readiness from turn-in evidence.
+`WowQuestSource` performs explicit bounded reference reads. It keeps Retail task-log searches separate from the Forever catalog.
+`WowBuildSource` reads talent, ability, and equipment references without generating model requests or modifying game state.
+Its cards preserve source times, committed-rank evidence, and base-item comparison limits.
+
+## Saved storage keys
+
+`database/storage` exports `localStorageKeys()` for maintenance of saved local records.
+It converts IndexedDB driver keys to canonical `local:` keys. It excludes other mounts, including send queues.
+Callers must keep their own domain whitelist. The function does not filter records by domain.
+
 Shared core for stage
 
 ## Experimental features

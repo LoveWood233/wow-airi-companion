@@ -1,5 +1,5 @@
 import type { VisionInferenceInput } from '@proj-airi/stage-ui/composables/vision/use-vision-inference'
-import type { ChatRequestContextInput } from '@proj-airi/stage-ui/stores/chat/request-context'
+import type { ChatRequestContextInput, ChatRequestObservation } from '@proj-airi/stage-ui/stores/chat/request-context'
 
 import type { WowScreenCaptureErrorCode, WowScreenCaptureRequest, WowScreenCaptureResult, WowScreenGame } from '../../shared/wow-screen-assist'
 
@@ -25,7 +25,7 @@ function waitForRead<T>(promise: Promise<T>, signal: AbortSignal): Promise<T> {
 }
 
 /**
- * Owns one capture and visual read at a time. Raw pixels stay in the current call and never enter chat storage.
+ * Owns one capture and visual read at a time. The current request receives the image and its existing analysis without changing chat storage.
  * Cancellation releases the caller and discards late IPC or provider results.
  */
 export class WowScreenAssistController {
@@ -43,7 +43,7 @@ export class WowScreenAssistController {
     this.platform.report('idle')
   }
 
-  async assist(input: ChatRequestContextInput, settings: ScreenAssistSettings): Promise<string | undefined> {
+  async assist(input: ChatRequestContextInput, settings: ScreenAssistSettings): Promise<string | ChatRequestObservation | undefined> {
     input.signal.throwIfAborted()
     if (!settings.enabled)
       return undefined
@@ -90,7 +90,10 @@ export class WowScreenAssistController {
         return this.failure('no-description')
       }
       this.platform.report('ready')
-      return createScreenAssistContext({ question: input.text, intent, observations, capturedAt: image.capturedAt, gameVersion: image.game })
+      return {
+        text: createScreenAssistContext({ question: input.text, intent, observations, capturedAt: image.capturedAt, gameVersion: image.game }),
+        images: [{ url: image.dataUrl, description: observations }],
+      }
     }
     catch {
       // A stopped feature leaves the ordinary reply usable, but never implies that a frame was seen.

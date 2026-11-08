@@ -9,7 +9,6 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
 import { wowAddonsFiles, wowAddonsGetSettings, wowAddonsInstall, wowAddonsInstalled, wowAddonsMetadata, wowAddonsSearch } from '../../shared/eventa/wow-addons'
-import { resolveAddonVersionType } from '../../shared/wow-addons'
 
 const { t, te, locale } = useI18n()
 const tn = (key: string) => t(`wow-addons.${key}`)
@@ -62,7 +61,7 @@ onScopeDispose(() => {
 })
 
 const client = computed(() => settings.value?.clients[game.value])
-const versionType = computed(() => resolveAddonVersionType(metadata.value, game.value, client.value?.gameVersionTypeId))
+const versionType = computed(() => metadata.value?.versionTypes.find(type => type.id === client.value?.gameVersionTypeId && type.group === game.value))
 const configured = computed(() => Boolean(client.value?.directory && versionType.value))
 const selectedFile = computed(() => files.value.find(file => file.id === fileId.value))
 const selectedInstalled = computed(() => installed.value.find(addon => addon.modId === selected.value?.id))

@@ -31,6 +31,10 @@ local function Number(value, minimum, maximum)
     return value
 end
 
+local function ItemAPI(name)
+    return C_Item and C_Item[name] or _G[name]
+end
+
 local function Text(value, limit)
     value = Public(value)
     if type(value) ~= "string" then return nil end
@@ -153,23 +157,24 @@ local function Tooltip(entry, record)
 end
 
 local function Collect(entry, basic)
-    local name, _, quality, _, requiredLevel, itemType, subtype, _, equipLoc = Call(C_Item.GetItemInfo, entry.link)
+    local name, _, quality, _, requiredLevel, itemType, subtype, _, equipLoc = Call(ItemAPI("GetItemInfo"), entry.link)
     local safeName, nameCut = Text(name)
     local safeType, typeCut = Text(itemType)
     local safeSubtype, subtypeCut = Text(subtype)
     local safeEquipLoc, equipCut = Text(equipLoc)
+    if Public(equipLoc) == "" then safeEquipLoc = "" end
     local record = { v = 1, id = entry.id, session = owner.session, guid = owner.guid,
         itemID = basic.id, itemGUID = entry.itemGUID, link = entry.link, name = safeName,
         type = safeType or basic.type, subtype = safeSubtype or basic.subtype,
         equipLoc = safeEquipLoc or basic.equipLoc, quality = Number(quality, 0, 8),
-        itemLevel = Number(Call(C_Item.GetDetailedItemLevelInfo, entry.link), 0, 100000),
+        itemLevel = Number(Call(ItemAPI("GetDetailedItemLevelInfo"), entry.link), 0, 100000),
         requiredLevel = Number(requiredLevel, 0, 255), stats = {}, tooltip = {},
         quantity = entry.quantity, observedAt = entry.observedAt, source = "bag_added",
         infoComplete = false, statsComplete = false, tooltipComplete = false,
         truncated = not not (nameCut or typeCut or subtypeCut or equipCut or basic.truncated) }
     record.infoComplete = record.name ~= nil and record.type ~= nil and record.subtype ~= nil
         and record.equipLoc ~= nil and record.quality ~= nil and record.itemLevel ~= nil and record.requiredLevel ~= nil and not record.truncated
-    local stats = Readable(Call(C_Item.GetItemStats, entry.link))
+    local stats = Readable(Call(ItemAPI("GetItemStats"), entry.link))
     if stats then
         record.statsComplete = true
         for key, value in pairs(stats) do
@@ -182,6 +187,48 @@ local function Collect(entry, basic)
         table.sort(record.stats, function(a, b) return a.key < b.key end)
     end
     record.tooltipComplete = Tooltip(entry, record)
+    return record
+end
+
+-- All carried and bank item classes use the same instance-link, attribute, and tooltip reader.
+function Equipment.DescribeContainerItem(bag, slot, info, observedAt)
+    local link = Link(Public(info.hyperlink) or Call(C_Container and C_Container.GetContainerItemLink or GetContainerItemLink, bag, slot))
+    if not link then return nil end
+    local identifier = tonumber(string.match(link, "item:(%d+)"))
+    if not Number(identifier, 1, 2147483647) then return nil end
+    local location = Location(bag, slot, false)
+    local itemGUID = location and Call(C_Item and C_Item.GetItemGUID, location)
+    if type(itemGUID) ~= "string" or itemGUID == "" or #itemGUID > 128 then itemGUID = nil end
+    local entry = { link = link, bag = bag, slot = slot, itemGUID = itemGUID,
+        id = 1, observedAt = observedAt, quantity = Number(info.stackCount, 1, 1000000) or 1 }
+    local _, itemType, subtype, equipLoc, _, classID, subclassID = Call(ItemAPI("GetItemInfoInstant"), link)
+    local basicType, typeCut = Text(itemType)
+    local basicSubtype, subtypeCut = Text(subtype)
+    local basicEquipLoc, equipCut = Text(equipLoc)
+    if Public(equipLoc) == "" then basicEquipLoc = "" end
+    local record = Collect(entry, { id = identifier, type = basicType, subtype = basicSubtype, equipLoc = basicEquipLoc,
+        truncated = not not (typeCut or subtypeCut or equipCut) })
+    classID, subclassID = Number(classID, 0, 255), Number(subclassID, 0, 255)
+    record.classID = classID and classID == math.floor(classID) and classID or nil
+    record.subclassID = subclassID and subclassID == math.floor(subclassID) and subclassID or nil
+    if not record.classID or not record.subclassID then record.infoComplete = false end
+    -- Container archives use a bounded summary. Acquisition and worn-gear records retain their original full reader.
+    local equipped = record.equipLoc and record.equipLoc ~= ""
+    local lines, bytes = equipped and 4 or 2, equipped and 128 or 96
+    while #record.tooltip > lines do
+        table.remove(record.tooltip)
+        record.truncated, record.tooltipComplete = true, false
+    end
+    for index, text in ipairs(record.tooltip) do
+        if #text > bytes then
+            record.tooltip[index] = ns.Protocol.UTF8Prefix(text, bytes)
+            record.truncated, record.tooltipComplete = true, false
+        end
+    end
+    while #record.stats > 12 do
+        table.remove(record.stats)
+        record.truncated, record.statsComplete = true, false
+    end
     return record
 end
 

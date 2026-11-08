@@ -1,0 +1,82 @@
+{
+  "operation": "fetch",
+  "outcome": "ok",
+  "source": {
+    "name": "正式服本地 DB2",
+    "game": "retail",
+    "product": "wow",
+    "localOnly": true,
+    "build": "12.1.5.70575",
+    "locale": "zhCN",
+    "exportedAt": "2026-10-30T15:32:33.5754384+00:00",
+    "hotfixesApplied": false,
+    "datasetId": "3a9114ba7cd89e708e54bde1793e3fd34a97e70b582ad9ee1663849284870203",
+    "tables": [
+      {
+        "name": "DungeonEncounter",
+        "status": "decoded",
+        "rows": 1358,
+        "encrypted": false
+      },
+      {
+        "name": "Map",
+        "status": "decoded",
+        "rows": 1187,
+        "encrypted": false
+      }
+    ]
+  },
+  "entries": [
+    {
+      "id": "encounter:227",
+      "kind": "encounter",
+      "numericId": 227,
+      "title": "审讯官格斯塔恩",
+      "fields": [
+        {
+          "key": "ID",
+          "value": "227"
+        },
+        {
+          "key": "Name_lang",
+          "value": "审讯官格斯塔恩"
+        },
+        {
+          "key": "MapID",
+          "value": "230"
+        },
+        {
+          "key": "DifficultyID",
+          "value": "1"
+        },
+        {
+          "key": "OrderIndex",
+          "value": "0"
+        },
+        {
+          "key": "MapName_lang",
+          "value": "黑石深渊"
+        }
+      ],
+      "links": [
+        {
+          "kind": "map",
+          "id": "map:230",
+          "title": "黑石深渊"
+        }
+      ],
+      "notices": [
+        "client-db2-only",
+        "hotfixes-not-applied"
+      ]
+    }
+  ],
+  "offset": 0,
+  "limit": 1,
+  "hasMore": false,
+  "notices": [
+    "client-db2-only",
+    "hotfixes-not-applied"
+  ],
+  "receivedAt": "2026-11-01T05:07:34.258882+00:00"
+}
