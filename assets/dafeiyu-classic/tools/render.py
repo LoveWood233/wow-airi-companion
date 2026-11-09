@@ -21,7 +21,7 @@ CLASSES=['warrior','hunter','mage','rogue','paladin','warlock','priest','druid']
 FPS=60
 KEEP=['待机呼吸休闲','碎碎念-对屏碎碎念','工作状态-雀跃庆祝']
 NEW=['害怕','害羞','难过（眼睛饱含泪水）','想去玩（期待星星眼）','大哭','开心蹦跳']
-RENDER_POLICY='v031_continuous_visibility_no_midpoint_cut_jump_v1'
+RENDER_POLICY='v032_warrior_fixed_equipment_jump_v1'
 RUN_EXIT_POLICY='retain_last_gait_pose_until_smooth_recovery_v1'
 JUMP_ARM_POLICY='warrior_manual_correspondence_continuous_arm_rotation_v1'
 TRANSFORM_ACTIONS={'变鸽子','蓝鲸现世','萌化小幽灵'}
@@ -31,6 +31,11 @@ smooth=importlib.util.module_from_spec(spec); spec.loader.exec_module(smooth)
 smooth.WIDTH=smooth.HEIGHT=320
 jumpspec=importlib.util.spec_from_file_location('jump_motion',TOOLS/'jump-motion.py')
 jump_motion=importlib.util.module_from_spec(jumpspec);jumpspec.loader.exec_module(jump_motion)
+identityspec=importlib.util.spec_from_file_location('identity_motion',TOOLS/'identity-motion.py')
+identity_motion=importlib.util.module_from_spec(identityspec);identityspec.loader.exec_module(identity_motion)
+
+def fixed_identity_action(task):
+    return task['class']=='warrior' and task['name']=='开心蹦跳'
 
 def digest(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -68,6 +73,7 @@ def neutral(cls):
 def source_list(task):
     cls=task['class']; name=task['name']
     base=SOURCE/'sheets'/cls
+    if fixed_identity_action(task):return [SOURCE/'expressions'/'warrior'/'happy-face.png']
     if name in KEEP:return [SOURCE/'base-keyframes'/cls/f'frame-{i:02d}.png' for i in range(16)]
     if name=='开心蹦跳':return [base/'happy-jump.png']
     if name.startswith('睡觉-'):return [base/'locomotion-sleep.png']
@@ -96,6 +102,7 @@ def effective_crops(task):
 
 def poses_for(task):
     cls,name=task['class'],task['name']; z=neutral(cls)
+    if fixed_identity_action(task):return [z],'identity_happy_jump'
     sources=source_list(task)
     if name in KEEP:
         return [cv2.cvtColor(cv2.imread(str(p),-1),cv2.COLOR_BGRA2RGBA)[20:340,160:480].copy() for p in sources],'base_'+name
@@ -132,6 +139,7 @@ def poses_for(task):
     return [z,a,b],task.get('motion','gesture')
 
 def schedule(kind,name):
+    if kind=='identity_happy_jump':return [(0,0),(8,0)],8
     if name in KEEP:
         timelines=json.loads((SOURCE/'base-timelines.json').read_text(encoding='utf-8'))
         base=next(v for v in timelines.values() if v['file']==name+'.webm')
@@ -216,13 +224,14 @@ def encode(task):
         sources_current=sources_current and r.get('extraction_crops',{})==json.loads(json.dumps(effective_crops(task)))
         if name in TRANSFORM_ACTIONS:sources_current=sources_current and r.get('transition_policy')==TRANSFORM_POLICY
         if name in ('原地左转奔跑','侧身急躁跑'):sources_current=sources_current and r.get('run_exit_policy')==RUN_EXIT_POLICY
-        if name=='开心蹦跳' and cls=='warrior':sources_current=sources_current and r.get('jump_arm_policy')==JUMP_ARM_POLICY
+        if fixed_identity_action(task):sources_current=sources_current and r.get('equipment_identity_policy')==identity_motion.POLICY
         if r.get('sha256')==digest(target) and sources_current:
             return {'class':cls,'name':name,'status':'already_validated'}
     if shutil.disk_usage(OUT).free<900*1024**2: raise RuntimeError('Less than 900MiB free; stopping before disk exhaustion')
     frames,kind=poses_for(task); timeline,duration=schedule(kind,name)
     assert all(timeline[i][0]<timeline[i+1][0] for i in range(len(timeline)-1)),(name,timeline)
-    tween=jump_motion.Tween(frames,cls) if kind=='happy_jump' and cls=='warrior' else smooth.Tween(frames)
+    rig=identity_motion.build_warrior(SOURCE) if kind=='identity_happy_jump' else None
+    tween=None if rig is not None else smooth.Tween(frames)
     times=[x[0] for x in timeline]; count=duration*FPS
     jump_amplitude=0.0
     if kind=='happy_jump':
@@ -245,14 +254,16 @@ def encode(task):
             ratio=(t-ta)/(tb-ta)
             if k==0: a=b=timeline[0][1]; ratio=0
             if k==count-1: a=b=timeline[-1][1]; ratio=0
-            key=(a,b,round(ratio,6)) if a!=b else (a,a,0)
+            key=('fixed_identity',k) if rig is not None else ((a,b,round(ratio,6)) if a!=b else (a,a,0))
             lift=0.0
             if kind=='happy_jump':
                 for takeoff in (1.3,4.3):
                     if takeoff<t<takeoff+1.4:lift=jump_amplitude*math.sin(math.pi*(t-takeoff)/1.4)**2
                 key=(*key,round(lift,6))
             if key not in cache:
-                if name in TRANSFORM_ACTIONS and {a,b}=={1,2}:
+                if rig is not None:
+                    canvas=rig.frame(t)
+                elif name in TRANSFORM_ACTIONS and {a,b}=={1,2}:
                     # Different species have incompatible facial/body topology.
                     # Preserve each drawing and dissolve through the magic pose
                     # instead of spatially stretching a face into another form.
@@ -261,7 +272,8 @@ def encode(task):
                     cell=smooth.to_rgba(tween.premul[a]*(1-weight)+tween.premul[b]*weight)
                 else:
                     cell=tween.frame(a,b,ratio)
-                canvas=np.zeros((360,640,4),np.uint8); canvas[20:340,160:480]=cell
+                if rig is None:
+                    canvas=np.zeros((360,640,4),np.uint8); canvas[20:340,160:480]=cell
                 if lift:
                     matrix=np.array([[1,0,0],[0,1,-lift]],np.float32)
                     canvas=smooth.to_rgba(cv2.warpAffine(smooth.premultiply(canvas),matrix,(640,360),flags=cv2.INTER_LINEAR,borderMode=cv2.BORDER_CONSTANT))
@@ -313,7 +325,12 @@ def encode(task):
     r['continuity_diagnostic']={'adjacent_matte_mean_delta_max_255':max(adjacent_deltas),'adjacent_matte_mean_delta_p99_255':float(np.percentile(adjacent_deltas,99)),'algorithm_has_midpoint_hard_cut':False,'metric_is_not_joint_or_visual_correctness_proof':True}
     if kind=='happy_jump':r['jump_trajectory']={'amplitude_pixels':jump_amplitude,'takeoffs_seconds':[1.3,4.3],'airtime_seconds':1.4,'position_and_velocity_continuous':True,'turning':False}
     if kind=='dense_run_left':r['run_exit_policy']=RUN_EXIT_POLICY
-    if kind=='happy_jump' and cls=='warrior':r['jump_arm_policy']=JUMP_ARM_POLICY
+    if rig is not None:
+        r['method']='single_equipment_texture_continuous_coordinate_map_with_face_only_expression'
+        r['equipment_identity_policy']=identity_motion.POLICY
+        r['jump_trajectory']={'amplitude_pixels':31.0,'takeoffs_seconds':[1.25,4.25],'airtime_seconds':1.1,'position_and_velocity_continuous':True,'turning':False}
+        r['fixed_source_equipment']=True
+        r['face_only_expression']=rig.face_diagnostic
     if name in TRANSFORM_ACTIONS:r['transition_policy']=TRANSFORM_POLICY
     report_path.write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return {k:r[k] for k in ['class','name','status','bytes','elapsed_seconds']}
@@ -329,10 +346,12 @@ def input_images(task):
 def render_provenance(task):
     def records(paths,root):
         return [{'path':p.relative_to(root).as_posix(),'sha256':digest(p)} for p in paths]
+    metadata=[SOURCE/name for name in ('atlas-plan.json','extraction-crops.json','base-timelines.json')]
+    if fixed_identity_action(task):metadata.append(SOURCE/'expressions'/'warrior'/'happy-face.json')
     return {
         'source_sheets':records(input_images(task),SOURCE),
-        'source_metadata':records([SOURCE/name for name in ('atlas-plan.json','extraction-crops.json','base-timelines.json')],SOURCE),
-        'renderer_inputs':records([TOOLS/name for name in ('render.py','continuous-motion.py','jump-motion.py','jump-arm-guides.json','requirements.txt')],ASSET),
+        'source_metadata':records(metadata,SOURCE),
+        'renderer_inputs':records([TOOLS/name for name in ('render.py','continuous-motion.py','jump-motion.py','jump-arm-guides.json','identity-motion.py','requirements.txt')],ASSET),
         'python_dependencies':{'numpy':np.__version__,'opencv':cv2.__version__},
     }
 

@@ -140,6 +140,27 @@ class PackageTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Symlink'):
             self.verified()
 
+    def test_old_release_plan_or_manifest_cannot_be_relabelled_by_packaging(self):
+        plan_path = self.source / 'action-plan.json'
+        plan = json.loads(plan_path.read_text())
+        plan['releaseVersion'] = '0.3.1'
+        plan_path.write_text(json.dumps(plan))
+        with self.assertRaisesRegex(ValueError, 'Action plan release version'):
+            package.validate_manifests(self.asset)
+        plan['releaseVersion'] = package.VERSION
+        plan_path.write_text(json.dumps(plan))
+        manifest_path = self.asset / 'manifests/warrior/pack.json'
+        manifest = json.loads(manifest_path.read_text())
+        manifest['id'] = 'dafeiyu-classic-warrior-full-v031'
+        manifest_path.write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValueError, 'Manifest identity differs'):
+            package.validate_manifests(self.asset)
+        manifest['id'] = f'dafeiyu-classic-warrior-full-v{package.VERSION.replace(".", "")}'
+        manifest['name'] = manifest['name'].replace(package.VERSION, '0.3.1')
+        manifest_path.write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValueError, 'Manifest display name differs'):
+            package.validate_manifests(self.asset)
+
 
 if __name__ == '__main__':
     unittest.main()

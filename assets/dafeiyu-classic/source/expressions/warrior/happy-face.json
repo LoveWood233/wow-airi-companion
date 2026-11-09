@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "purpose": "Joyful face only; equipment and source alpha remain unchanged.",
+  "reference": "base-keyframes/warrior/frame-00.png",
+  "generated": "expressions/warrior/happy-face.png",
+  "reference_size": [
+    640,
+    360
+  ],
+  "generated_size": [
+    1672,
+    941
+  ],
+  "generated_to_reference_affine": [
+    [
+      0.382088409569378,
+      0.0005733066950053135,
+      0.40688737
+    ],
+    [
+      -0.0005736114832535885,
+      0.3818853870350691,
+      0.7564856
+    ]
+  ],
+  "registration": {
+    "method": "SIFT on unchanged head surroundings and RANSAC partial affine",
+    "matches": 47,
+    "inliers": 39,
+    "fit_after_resize_to_reference": [
+      [
+        0.99820597,
+        0.00149856,
+        0.40688737
+      ],
+      [
+        -0.00149856,
+        0.99820597,
+        0.7564856
+      ]
+    ]
+  },
+  "mask_polygon": [
+    [
+      283,
+      159
+    ],
+    [
+      292,
+      150
+    ],
+    [
+      299,
+      142
+    ],
+    [
+      304,
+      142
+    ],
+    [
+      307,
+      153
+    ],
+    [
+      314,
+      164
+    ],
+    [
+      321,
+      170
+    ],
+    [
+      330,
+      172
+    ],
+    [
+      335,
+      171
+    ],
+    [
+      331,
+      162
+    ],
+    [
+      337,
+      150
+    ],
+    [
+      342,
+      141
+    ],
+    [
+      348,
+      147
+    ],
+    [
+      357,
+      153
+    ],
+    [
+      366,
+      157
+    ],
+    [
+      368,
+      168
+    ],
+    [
+      364,
+      180
+    ],
+    [
+      354,
+      187
+    ],
+    [
+      340,
+      191
+    ],
+    [
+      324,
+      194
+    ],
+    [
+      308,
+      191
+    ],
+    [
+      295,
+      186
+    ],
+    [
+      287,
+      177
+    ]
+  ],
+  "inward_feather_pixels": 1.5,
+  "preserve_reference_alpha": true,
+  "equipment_region_y_min": 200
+}

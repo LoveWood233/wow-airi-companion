@@ -19,7 +19,7 @@ import tempfile
 import zipfile
 
 CLASSES = ('warrior', 'hunter', 'mage', 'rogue', 'paladin', 'warlock', 'priest', 'druid')
-VERSION = '0.3.1'
+VERSION = '0.3.2'
 DEFAULT_ROOT = Path(__file__).resolve().parent.parent
 FILE_LIMIT = 32 * 1024**2
 PACK_LIMIT = 512 * 1024**2
@@ -115,6 +115,7 @@ def sha_file(path, *, signature=None, max_bytes=None):
 def validate_manifests(asset_root):
     """Check plan agreement; historical interface preservation is checked separately."""
     plan = read_json(safe_child(asset_root, 'source/action-plan.json'))
+    require(plan.get('releaseVersion') == VERSION, 'Action plan release version differs from package version')
     actions = plan['actions']
     require(len(actions) == 120 and len({a['name'] for a in actions}) == 120, 'Action plan must have 120 unique actions')
     require(sum(a['origin'] == 'original' for a in actions) == 114 and sum(a['origin'] == 'new' for a in actions) == 6,
@@ -126,6 +127,7 @@ def validate_manifests(asset_root):
         safe_child(asset_root, filename)
         expected.add(filename)
     require(len(plan['classes']) == 8 and {c['id'] for c in plan['classes']} == set(CLASSES), 'Action plan must name the eight supported classes')
+    characters = {c['id']: c for c in plan['classes']}
     manifest_root = root_directory(safe_child(asset_root, 'manifests'))
     reject_symlinks(manifest_root)
     actual = {p.relative_to(manifest_root).as_posix() for p in manifest_root.rglob('*') if p.is_file()}
@@ -144,6 +146,11 @@ def validate_manifests(asset_root):
         require(isinstance(manifest.get('id'), str) and manifest['id'] and manifest['id'] not in ids, 'Manifest IDs must be unique')
         ids.add(manifest['id'])
         require(isinstance(manifest.get('name'), str) and manifest['name'], f'Missing pack name: {class_id}')
+        character = characters[class_id]
+        require(manifest['id'] == f'dafeiyu-classic-{class_id}-full-v{VERSION.replace(".", "")}',
+                f'Manifest identity differs from release: {class_id}')
+        require(manifest['name'] == f'大肥鱼·{character["label"]}·{character["set"]}（120动作 60fps v{VERSION}）',
+                f'Manifest display name differs from release: {class_id}')
         categories = manifest['animations']['categories']
         emotions = [c for c in categories if c['id'] == '情绪']
         require(len(emotions) == 1 and len(emotions[0]['actions']) == 6 and set(emotions[0]['actions']) == new_names,
