@@ -1,0 +1,7 @@
+{
+  "generator": "built-in image_gen",
+  "source": "image_gen-output:01a1bbe6-c650-7c72-bfdf-5261721dc6c0/exec-58aea0e4-a309-47ee-aca9-77ae38fe076a.png",
+  "reference": "historical-character-design:08-druid-stormrage.png",
+  "prompt": "prompts/emotions-template.txt adapted to green brown purple Stormrage armor, antlers, emerald gems",
+  "qa": "16 cells, five paired emotions and six true turn views, transparent, outfit preserved; spin cells have effects, left/right orientation visible"
+}

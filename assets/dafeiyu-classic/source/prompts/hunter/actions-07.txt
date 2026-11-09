@@ -1,0 +1,19 @@
+Use case: identity-preserve. Production animation sprite sheet for AIRI. Reference is the APPROVED HUNTER DaFeiYu mascot. Preserve exactly her blue hair, blue eyes, white maid headband, long wavy hair, blue whale tail, face and compact chibi proportions, and purple-scale Dragonstalker armor with golden dragon-shaped shoulders, gold head ornaments, brown bow/quiver stowed on back. Every cell wears the SAME costume; weapons stowed so hands can interact. Crisp anime cel-shaded linework, identical fixed camera scale. Exactly 4x4 evenly spaced sprites on a square canvas, truly transparent alpha, no floor. All props must be drawn and recognizable. Highest available resolution. Required poses follow:
+Use case: stylized-concept. Create a production transparent raster sprite sheet, not a poster. EXACTLY 4 columns x 4 rows, 16 equal square cells, row-major. One full-body chibi blue-haired whale-maid character per cell, same identity and approved CLASS OUTFIT from the reference. Keep full hair, hands, shoes and whale tail inside each cell with generous transparent gutters; no grid lines, no text, no numbers, no white background. Consistent rendering, size, light, camera and ground line. No oversized weapons unless the action requires them. Each adjacent cell pair is two distinct key poses of the SAME named action. Preserve the reference class armor colors, shoulder silhouette, crown/hood ornaments, maid frills and facial style. New props must be drawn in the same polished anime game-sprite style and contact hands/mouth correctly. True transparent alpha. Aim high resolution; actions must remain legible at 640x360 playback.
+
+Cell 1 (row 1, col 1), action 哈欠连天, pose A: 自然站姿半闭眼。动作语义：捂嘴连续打两个哈欠
+Cell 2 (row 1, col 2), same action pose B: 一手捂大张嘴，眼睛半闭。与A必须是不同的动作阶段，保持道具形状/位置关系。眨眼恢复
+Cell 3 (row 1, col 3), action 堆雪人, pose A: 蹲姿，双手推地上雪球；道具：snowball_large, snowball_small, snowman_carrot, snowman。动作语义：把小雪球叠在大雪球上
+Cell 4 (row 1, col 4), same action pose B: 双手抬起较小雪球置于大雪球上；道具：snowball_large, snowball_small, snowman_carrot, snowman。与A必须是不同的动作阶段，保持道具形状/位置关系。装上胡萝卜鼻子并查看成品
+Cell 5 (row 2, col 1), action 大口吃零食, pose A: 左手端托小碗或小物，右手空闲；道具：snack_bag, snack_piece。动作语义：从袋里拿出大块零食塞入口，鼓腮咀嚼
+Cell 6 (row 2, col 2), same action pose B: 左手端物，右手持食物送到张开的嘴前；道具：snack_bag, snack_piece。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 7 (row 2, col 3), action 女仆屈膝礼仪, pose A: 双手轻提衣摆，脚跟并拢。动作语义：屈膝低头行礼
+Cell 8 (row 2, col 4), same action pose B: 提衣摆屈膝低身行礼。与A必须是不同的动作阶段，保持道具形状/位置关系。起身微笑
+Cell 9 (row 3, col 1), action 小提琴演奏, pose A: 小提琴稳夹肩颈，左手按琴弦，右手持弓向外拉，弓贴琴弦。
+Cell 10 (row 3, col 2), same action pose B: 同一琴与手位，右手弓向内推到另一行程端，左手换按指，琴弦接触正确。
+Cell 11 (row 3, col 3), action 工作状态-原地踱步张望, pose A: 身体正面，左腿向侧跨步，尾巴反向平衡。动作语义：停顿向左张望
+Cell 12 (row 3, col 4), same action pose B: 身体正面，右腿收拢，手臂自然保持平衡。与A必须是不同的动作阶段，保持道具形状/位置关系。反向踱步再向右张望
+Cell 13 (row 4, col 1), action 工作状态-垂头叹气冒汗, pose A: 垂头塌肩，眼睛低垂、嘴张开叹气，一滴汗挂在额角。
+Cell 14 (row 4, col 2), same action pose B: 双手垂下、头更低，汗滴沿脸侧滑落，脸部仍可辨。
+Cell 15 (row 4, col 3), action 工作状态-忙碌点按, pose A: 坐或站于桌前，两手不同高度敲键盘；道具：desk, keyboard。动作语义：双手快速轮换点按键盘
+Cell 16 (row 4, col 4), same action pose B: 左右手换位敲键盘，视线朝屏幕；道具：desk, keyboard。与A必须是不同的动作阶段，保持道具形状/位置关系。短暂检查后继续

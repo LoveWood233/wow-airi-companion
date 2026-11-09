@@ -1,0 +1,19 @@
+Use case: identity-preserve. Produce one professional animation KEY-POSE SPRITE ATLAS matching the reference's SAME DaFeiYu chibi blue-haired whale-maid character. Preserve facial identity, long blue hair, white maid headband, blue whale tail, exact costume and body proportions. PRIEST: exactly the reference ivory cream and gold Transcendence robe, burgundy trim, gold circlet, sacred gold ornament and small gold staff fastened on back. Output exactly 4 columns by 4 rows = 16 equally sized cells on a SQUARE high-resolution canvas, TRANSPARENT BACKGROUND. One full-body pose in each cell. All poses fit inside cell with empty margins; stable camera scale and horizontal center, natural baseline 90% down. No grid lines, numbers, labels, text or watermark (except required 福 on red paper or token symbol on chips). Props must be clearly drawn and visibly held/touched, not floating arbitrarily. This sheet contains EIGHT different actions in adjacent A/B pairs, read left-to-right top-to-bottom. Each pair must have visibly different action stages; costume remains identical. Do not replace action with generic waving. For seated/lying poses keep the SAME character scale, not enlarged. Render these exact 16 cells:
+Cell 1 (余额-金袋叮当, pose A): 双手展示钱袋，眼睛注视袋口；道具：money_bag_full, gold_coins。动作语义：提起饱满钱袋轻摇，数几枚金币并微笑
+Cell 2 (余额-金袋叮当, pose B): 一手持袋，另一手捏金币查看；道具：money_bag_full, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态
+Cell 3 (余额-钱袋如常, pose A): 双手展示钱袋，眼睛注视袋口；道具：money_bag_normal, gold_coins。动作语义：平静查看普通钱袋中的金币并收好
+Cell 4 (余额-钱袋如常, pose B): 一手持袋，另一手捏金币查看；道具：money_bag_normal, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态
+Cell 5 (余额-钱袋满溢, pose A): 双手展示钱袋，眼睛注视袋口；道具：money_bag_overflow, gold_coins。动作语义：打开鼓鼓钱袋，金币满溢，开心举起
+Cell 6 (余额-钱袋满溢, pose B): 开心闭眼，双拳抬到胸前；道具：money_bag_overflow, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态
+Cell 7 (侧身急躁跑, pose A): 朝左侧面跑步，左腿前右腿后，手臂反向摆动。动作语义：侧向快速跑步
+Cell 8 (侧身急躁跑, pose B): 朝左侧面跑步，右腿前左腿后，手臂反向摆动。与A必须是不同的动作阶段，保持道具形状/位置关系。急停皱眉
+Cell 9 (偷吃零食被抓住, pose A): 头和视线转左，身体基本正面；道具：snack_bag, snack_piece。动作语义：偷偷拿零食咬一口
+Cell 10 (偷吃零食被抓住, pose B): 左手端物，右手持食物送到张开的嘴前；道具：snack_bag, snack_piece。与A必须是不同的动作阶段，保持道具形状/位置关系。被发现后鼓腮僵住、藏起零食
+Cell 11 (写代码, pose A): 坐或站于桌前，两手不同高度敲键盘；道具：desk, laptop。动作语义：左右手交替打字
+Cell 12 (写代码, pose B): 左右手换位敲键盘，视线朝屏幕；道具：desk, laptop。与A必须是不同的动作阶段，保持道具形状/位置关系。停顿思考后继续输入
+Cell 13 (写福字, pose A): 一手扶纸，另一手执笔笔尖触纸；道具：red_paper, calligraphy_brush, inkpot, fu_character。动作语义：毛笔落纸写福字
+Cell 14 (写福字, pose B): 执笔手抬起，眼睛检查纸面；道具：red_paper, calligraphy_brush, inkpot, fu_character。与A必须是不同的动作阶段，保持道具形状/位置关系。举起写好的福字展示
+Cell 15 (凭空生花, pose A): 一手握拳置前，另一手遮挡，神秘微笑；道具：flower_bud, flower_open。动作语义：手中花苞出现并开放
+Cell 16 (凭空生花, pose B): 双手张开展示，惊喜微笑；道具：flower_bud, flower_open。与A必须是不同的动作阶段，保持道具形状/位置关系。微笑把花向前展示
+Keep hands anatomically coherent, clear facial expression, actual specific props and correct contact points. Crisp anime cel shading and line work matching reference. Cell position critical. Transparent alpha only; no scenery background.
+IMPORTANT: empty background is entirely transparent alpha zero, not gray haze. Every character and props remain in central80% of cell; 8% clear padding.

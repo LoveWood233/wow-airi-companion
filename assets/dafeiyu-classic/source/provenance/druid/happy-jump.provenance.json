@@ -1,0 +1,33 @@
+{
+  "asset": "happy-jump",
+  "class_id": "druid",
+  "generator": "built-in image_gen",
+  "transparent_background": true,
+  "source_file": "image_gen-output:01a1bc64-b2a4-75a1-857f-448ff493e977/exec-a247ab47-5d7c-49da-ab78-259885d5034f.png",
+  "references": [
+    "sheets/druid/emotions.png",
+    "../dafeiyu-classic-motion-v01/work/druid/keyframes/frame-00.png"
+  ],
+  "prompt_file": "prompts/druid/happy-jump.txt",
+  "layout": {
+    "columns": 4,
+    "rows": 4,
+    "order": "row-major",
+    "frames": 16
+  },
+  "inspection": {
+    "front_facing_all_frames": true,
+    "no_spin": true,
+    "continuous_arm_raise_and_lower": true,
+    "no_effects_or_text": true,
+    "limitations": "High-V is restrained by short chibi arms; root animation should supply world-space jump."
+  },
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "sha256": "8afd88bdbe6319aa0ccfd504ce756ef7c14f20af3f3570300efa8626621598f1"
+}

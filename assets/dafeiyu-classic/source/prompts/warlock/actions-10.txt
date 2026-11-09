@@ -1,0 +1,19 @@
+Use case: identity-preserve. Produce one professional animation KEY-POSE SPRITE ATLAS matching the reference's SAME DaFeiYu chibi blue-haired whale-maid character. Preserve facial identity, long blue hair, white maid headband, blue whale tail, exact costume and body proportions. WARLOCK: exactly the reference dark purple Nemesis robe, ivory bone trims and little bone horns at headband, green shoulder gem and hip spellbook. Output exactly 4 columns by 4 rows = 16 equally sized cells on a SQUARE high-resolution canvas, TRANSPARENT BACKGROUND. One full-body pose in each cell. All poses fit inside cell with empty margins; stable camera scale and horizontal center, natural baseline 90% down. No grid lines, numbers, labels, text or watermark (except required 福 on red paper or token symbol on chips). Props must be clearly drawn and visibly held/touched, not floating arbitrarily. This sheet contains EIGHT different actions in adjacent A/B pairs, read left-to-right top-to-bottom. Each pair must have visibly different action stages; costume remains identical. Do not replace action with generic waving. For seated/lying poses keep the SAME character scale, not enlarged. Render these exact 16 cells:
+Cell 1 (整体换装试色, pose A): 角色绕竖直轴转身45度，全身，衣甲/发型/尾巴透视正确，同一脚底锚点；不是平面旋转或镜像；道具：fabric_swatches。动作语义：在身前比对两种布样，再转身查看
+Cell 2 (整体换装试色, pose B): 角色绕竖直轴转身315度，全身，衣甲/发型/尾巴透视正确，同一脚底锚点；不是平面旋转或镜像；道具：fabric_swatches。与A必须是不同的动作阶段，保持道具形状/位置关系。保持本职业主装备轮廓
+Cell 3 (是啊，吃什么, pose A): 一手托下巴，眉眼思索；道具：food_thought_bubble。动作语义：歪头思考并说话
+Cell 4 (是啊，吃什么, pose B): 正面小开口说话；道具：food_thought_bubble。与A必须是不同的动作阶段，保持道具形状/位置关系。头顶出现不同食物选项
+Cell 5 (晨间刷牙, pose A): 牙刷贴口，持刷手向外；道具：toothbrush, cup。动作语义：刷毛贴近嘴部左右短程刷动
+Cell 6 (晨间刷牙, pose B): 牙刷贴口，持刷手向内；道具：toothbrush, cup。与A必须是不同的动作阶段，保持道具形状/位置关系。用水杯漱口
+Cell 7 (期待开饭, pose A): 双眼明确星形高光，身体微前倾，双手握拳期待；道具：empty_bowl, chopsticks。动作语义：双手捧空碗期待看前方
+Cell 8 (期待开饭, pose B): 双手胸前端托，手腕形成物体接触面；道具：empty_bowl, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。握筷轻轻期待跃动
+Cell 9 (涮火锅, pose A): 左手端碗，右手持筷抬起食物；道具：hotpot, chopsticks, meat_slice, dipping_bowl。动作语义：筷子把肉片放入热锅涮，再夹出蘸酱吃
+Cell 10 (涮火锅, pose B): 左手端物，右手持食物送到张开的嘴前；道具：hotpot, chopsticks, meat_slice, dipping_bowl。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 11 (深度思考碎碎念, pose A): 一手托下巴，眉眼思索。动作语义：嘴部小声说话并间歇停顿
+Cell 12 (深度思考碎碎念, pose B): 正面小开口说话。与A必须是不同的动作阶段，保持道具形状/位置关系。眉眼变化、继续思考
+Cell 13 (点击回应-傲娇生气, pose A): 皱眉鼓腮，双臂抱胸。动作语义：鼓腮抱胸
+Cell 14 (点击回应-傲娇生气, pose B): 皱眉，抬起一脚准备跺地。与A必须是不同的动作阶段，保持道具形状/位置关系。小跺脚并扭头
+Cell 15 (点击回应-元气挥手, pose A): 一手抬起接近脸侧。动作语义：高举手掌连续挥动
+Cell 16 (点击回应-元气挥手, pose B): 一手高举，张开手掌。与A必须是不同的动作阶段，保持道具形状/位置关系。开心微笑
+Keep hands anatomically coherent, clear facial expression, actual specific props and correct contact points. Crisp anime cel shading and line work matching reference. Cell position critical. Transparent alpha only; no scenery background.
+IMPORTANT: every character and all props remain inside the central 80% of each cell. At least 8% transparent space below feet or furniture in EVERY cell. No sprite crosses cell boundaries.

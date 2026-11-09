@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-8a62811d-f857-4240-8769-a38f9d7420fa.png",
+  "prompt": "prompts/druid/turnaround.txt",
+  "sha256": "5ea95d1d5a432e746cab3c7045178d0ec99eb390660ec3cd312653aeac5b471c",
+  "visual_qa": "16 distinct viewpoints inspected, genuine full back, same costume, no effects or cell intrusion"
+}

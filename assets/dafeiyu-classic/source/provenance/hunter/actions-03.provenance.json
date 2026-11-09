@@ -1,0 +1,17 @@
+{
+  "class_id": "hunter",
+  "sheet": "actions-03",
+  "source": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-bc0c0956-b954-413b-88e6-f7bd6099bbd3.png",
+  "correction": "Bare wooden table tapping in cells9/10; removed keyboard/laptop",
+  "original_generated": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-58821661-db09-4ffe-a04f-e577244993c0.png",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "prompt": "source/prompts/hunter/actions-03.txt",
+  "sha256": "715b3838ed8b4c825abe2a00f6515fcd43f05bb2fa9f8bafcc3dd4ed3d4312a2",
+  "size": [
+    1254,
+    1254
+  ],
+  "status": "generated_and_visually_inspected",
+  "visual_check": "16 cells. All eight action pairs in requested row-major order. Visible matching props and A/B gesture changes."
+}

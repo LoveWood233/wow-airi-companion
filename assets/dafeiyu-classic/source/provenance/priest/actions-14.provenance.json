@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-75cb3162-aa6f-41f0-8dd7-9eb729814fb7.png",
+  "prompt": "prompts/priest/actions-14.txt",
+  "sha256": "ac06aaf1a178b920790218ceecc658c8d621c08b1b1d9f3b1bc81da2af351ebf",
+  "visual_qa": "16 cells inspected; semantic poses/props and transparent margins checked"
+}

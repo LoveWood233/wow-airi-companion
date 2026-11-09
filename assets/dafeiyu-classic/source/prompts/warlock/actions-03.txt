@@ -1,0 +1,19 @@
+Use case: identity-preserve. Produce one professional animation KEY-POSE SPRITE ATLAS matching the reference's SAME DaFeiYu chibi blue-haired whale-maid character. Preserve facial identity, long blue hair, white maid headband, blue whale tail, exact costume and body proportions. WARLOCK: exactly the reference dark purple Nemesis robe, ivory bone trims and little bone horns at headband, green shoulder gem and hip spellbook. Output exactly 4 columns by 4 rows = 16 equally sized cells on a SQUARE high-resolution canvas, TRANSPARENT BACKGROUND. One full-body pose in each cell. All poses fit inside cell with empty margins; stable camera scale and horizontal center, natural baseline 90% down. No grid lines, numbers, labels, text or watermark (except required 福 on red paper or token symbol on chips). Props must be clearly drawn and visibly held/touched, not floating arbitrarily. This sheet contains EIGHT different actions in adjacent A/B pairs, read left-to-right top-to-bottom. Each pair must have visibly different action stages; costume remains identical. Do not replace action with generic waving. For seated/lying poses keep the SAME character scale, not enlarged. Render these exact 16 cells:
+Cell 1 (动物环绕, pose A): 头和视线转左，身体基本正面；道具：cat, bunny, bird。动作语义：猫兔沿脚边走，鸟在肩侧飞
+Cell 2 (动物环绕, pose B): 头和视线转右，身体基本正面；道具：cat, bunny, bird。与A必须是不同的动作阶段，保持道具形状/位置关系。低身打招呼
+Cell 3 (原地专心玩魔方, pose A): 双手在胸前夹住魔方，右手转上层；道具：rubik_cube。动作语义：两手真实转动不同层
+Cell 4 (原地专心玩魔方, pose B): 双手相反方向转动魔方层；道具：rubik_cube。与A必须是不同的动作阶段，保持道具形状/位置关系。停顿观察再转动
+Cell 5 (原地小憩沉眠, pose A): 身体蜷卧地面，闭眼，头发和尾巴自然摊开。动作语义：伏低蜷睡
+Cell 6 (原地小憩沉眠, pose B): 蜷卧抬头，半睁眼，手支撑地面。与A必须是不同的动作阶段，保持道具形状/位置关系。抬头醒来
+Cell 7 (原地左转奔跑, pose A): 朝左侧面跑步，左腿前右腿后，手臂反向摆动。动作语义：明确朝左侧面左右腿交替跑动
+Cell 8 (原地左转奔跑, pose B): 朝左侧面跑步，右腿前左腿后，手臂反向摆动。与A必须是不同的动作阶段，保持道具形状/位置关系。减速转回
+Cell 9 (原地敲击桌面互动, pose A): 站在一张空无一物的小木桌前，右手掌抬起、左手掌刚拍到桌面；只允许小木桌，严禁电脑、键盘或屏幕。动作语义：拍打光秃秃的桌面
+Cell 10 (原地敲击桌面互动, pose B): 左手掌抬起、右手掌刚拍到同一张裸露小木桌面；只允许小木桌，严禁电脑、键盘或屏幕，手掌确实敲击桌面
+Cell 11 (原地漂浮踏步, pose A): 轻盈悬浮，左脚屈起右脚伸展。动作语义：悬浮中左右踏步
+Cell 12 (原地漂浮踏步, pose B): 轻盈悬浮，右脚屈起左脚伸展。与A必须是不同的动作阶段，保持道具形状/位置关系。下降
+Cell 13 (原地跳跃抓碎头顶物品, pose A): 双臂向头顶伸展抓取；道具：overhead_star_object。动作语义：下蹲跳起并伸手抓到物品
+Cell 14 (原地跳跃抓碎头顶物品, pose B): 双手头顶合握挤压物体；道具：overhead_star_object。与A必须是不同的动作阶段，保持道具形状/位置关系。双手捏碎，碎片散开
+Cell 15 (原地蹲下玩玩具汽车, pose A): 双腿屈膝，躯干降低，蓄力；道具：toy_car。动作语义：用手推小车向前
+Cell 16 (原地蹲下玩玩具汽车, pose B): 跪坐，手向前推动地面小玩具；道具：toy_car。与A必须是不同的动作阶段，保持道具形状/位置关系。收手看车滑动
+Keep hands anatomically coherent, clear facial expression, actual specific props and correct contact points. Crisp anime cel shading and line work matching reference. Cell position critical. Transparent alpha only; no scenery background.
+IMPORTANT: every character and all props remain inside the central 80% of each cell. At least 8% transparent space below feet or furniture in EVERY cell. No sprite crosses cell boundaries.

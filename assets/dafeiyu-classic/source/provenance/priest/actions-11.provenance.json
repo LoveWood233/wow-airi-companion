@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-511e9c96-b7da-4e16-a800-d233516d4a1e.png",
+  "prompt": "prompts/priest/actions-11.txt",
+  "sha256": "2e1a2723cc27dc83b793fe14a91af16a4c77830eea62508b9752a8a3e8b7e6a6",
+  "visual_qa": "16 cells inspected; actions and sleeping curl, costume and props checked"
+}

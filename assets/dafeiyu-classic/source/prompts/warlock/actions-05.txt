@@ -1,0 +1,19 @@
+Use case: identity-preserve. Produce one professional animation KEY-POSE SPRITE ATLAS matching the reference's SAME DaFeiYu chibi blue-haired whale-maid character. Preserve facial identity, long blue hair, white maid headband, blue whale tail, exact costume and body proportions. WARLOCK: exactly the reference dark purple Nemesis robe, ivory bone trims and little bone horns at headband, green shoulder gem and hip spellbook. Output exactly 4 columns by 4 rows = 16 equally sized cells on a SQUARE high-resolution canvas, TRANSPARENT BACKGROUND. One full-body pose in each cell. All poses fit inside cell with empty margins; stable camera scale and horizontal center, natural baseline 90% down. No grid lines, numbers, labels, text or watermark (except required 福 on red paper or token symbol on chips). Props must be clearly drawn and visibly held/touched, not floating arbitrarily. This sheet contains EIGHT different actions in adjacent A/B pairs, read left-to-right top-to-bottom. Each pair must have visibly different action stages; costume remains identical. Do not replace action with generic waving. For seated/lying poses keep the SAME character scale, not enlarged. Render these exact 16 cells:
+Cell 1 (吃早餐, pose A): 左手端托小碗或小物，右手空闲；道具：breakfast_toast, milk_cup。动作语义：咬吐司再举牛奶杯喝一口，早餐组合明确
+Cell 2 (吃早餐, pose B): 左手端物，右手持食物送到张开的嘴前；道具：breakfast_toast, milk_cup。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 3 (吃晚餐, pose A): 左手端托小碗或小物，右手空闲；道具：dinner_plate, fork。动作语义：叉起晚餐盘中的菜肴送入口
+Cell 4 (吃晚餐, pose B): 左手端物，右手持食物送到张开的嘴前；道具：dinner_plate, fork。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 5 (吃汤圆, pose A): 左手端托小碗或小物，右手空闲；道具：tangyuan_bowl, spoon。动作语义：勺子捞起白色圆汤圆，吹凉后吃
+Cell 6 (吃汤圆, pose B): 左手端物，右手持食物送到张开的嘴前；道具：tangyuan_bowl, spoon。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 7 (吃白饭, pose A): 左手端碗，右手持筷抬起食物；道具：rice_bowl, chopsticks。动作语义：从白米饭碗夹饭送入口，咀嚼
+Cell 8 (吃白饭, pose B): 左手端物，右手持食物送到张开的嘴前；道具：rice_bowl, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 9 (吃粽子, pose A): 双手向两侧掰开食品，道具具有左右接触点；道具：zongzi_wrapped, zongzi_open。动作语义：剥开竹叶露出糯米粽子后咬下
+Cell 10 (吃粽子, pose B): 左手端物，右手持食物送到张开的嘴前；道具：zongzi_wrapped, zongzi_open。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 11 (吃糖葫芦, pose A): 双手胸前端托，手腕形成物体接触面；道具：tanghulu_full, tanghulu_bitten。动作语义：举起红色糖葫芦串咬下一颗，串上数量减少
+Cell 12 (吃糖葫芦, pose B): 左手端物，右手持食物送到张开的嘴前；道具：tanghulu_full, tanghulu_bitten。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 13 (吃腊八粥, pose A): 左手端托小碗或小物，右手空闲；道具：laba_porridge_bowl, spoon。动作语义：从五谷腊八粥碗舀起粥吃，显示豆谷颗粒
+Cell 14 (吃腊八粥, pose B): 左手端物，右手持食物送到张开的嘴前；道具：laba_porridge_bowl, spoon。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 15 (吃西瓜, pose A): 双手胸前端托，手腕形成物体接触面；道具：watermelon_slice, watermelon_bitten。动作语义：双手托西瓜片，沿红瓤咬出明确缺口
+Cell 16 (吃西瓜, pose B): 左手端物，右手持食物送到张开的嘴前；道具：watermelon_slice, watermelon_bitten。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Keep hands anatomically coherent, clear facial expression, actual specific props and correct contact points. Crisp anime cel shading and line work matching reference. Cell position critical. Transparent alpha only; no scenery background.
+IMPORTANT: every character and all props remain inside the central 80% of each cell. At least 8% transparent space below feet or furniture in EVERY cell. No sprite crosses cell boundaries.

@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-8e54a469-5c19-4138-b889-f523b0b463b5.png",
+  "prompt": "prompts/warrior/locomotion-sleep.txt",
+  "sha256": "24451c6925ee031ba857b0404c21414dda8f76b5fd048ee28b5b5169f8d293e5",
+  "visual_qa": "8 sleep intermediate poses and two 4-pose running cycles inspected; passing and airborne phases visible"
+}

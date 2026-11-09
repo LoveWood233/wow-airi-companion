@@ -1,0 +1,19 @@
+Use case: identity-preserve. Produce one professional animation KEY-POSE SPRITE ATLAS matching the reference's SAME DaFeiYu chibi blue-haired whale-maid character. Preserve facial identity, long blue hair, white maid headband, blue whale tail, exact costume and body proportions. WARLOCK: exactly the reference dark purple Nemesis robe, ivory bone trims and little bone horns at headband, green shoulder gem and hip spellbook. Output exactly 4 columns by 4 rows = 16 equally sized cells on a SQUARE high-resolution canvas, TRANSPARENT BACKGROUND. One full-body pose in each cell. All poses fit inside cell with empty margins; stable camera scale and horizontal center, natural baseline 90% down. No grid lines, numbers, labels, text or watermark (except required 福 on red paper or token symbol on chips). Props must be clearly drawn and visibly held/touched, not floating arbitrarily. This sheet contains EIGHT different actions in adjacent A/B pairs, read left-to-right top-to-bottom. Each pair must have visibly different action stages; costume remains identical. Do not replace action with generic waving. For seated/lying poses keep the SAME character scale, not enlarged. Render these exact 16 cells:
+Cell 1 (点击回应-害羞惊讶, pose A): 肩膀耸起，身体后缩，睁大眼，手护胸。动作语义：红脸双手靠胸
+Cell 2 (点击回应-害羞惊讶, pose B): 红脸，双手遮半脸，眼睛仍可辨。与A必须是不同的动作阶段，保持道具形状/位置关系。遮脸偷看
+Cell 3 (点击回应-开心跃动, pose A): 双腿屈膝，躯干降低，蓄力。动作语义：开心举拳
+Cell 4 (点击回应-开心跃动, pose B): 真实离地，双脚收起，头发和尾巴向下滞后。与A必须是不同的动作阶段，保持道具形状/位置关系。屈膝起跳并落地
+Cell 5 (点击回应-挠痒咯咯笑, pose A): 闭眼大笑，歪头，手护腹部。动作语义：左右躲痒笑出声
+Cell 6 (点击回应-挠痒咯咯笑, pose B): 笑得后仰，双手靠身侧。与A必须是不同的动作阶段，保持道具形状/位置关系。护腹笑到后仰
+Cell 7 (照镜子, pose A): 一手持镜朝脸，另一手整理刘海；道具：hand_mirror。动作语义：照镜并整理刘海
+Cell 8 (照镜子, pose B): 脸侧向镜子，整理另一侧头发；道具：hand_mirror。与A必须是不同的动作阶段，保持道具形状/位置关系。换侧检查
+Cell 9 (玩水枪, pose A): 双手持水枪水平瞄准，单眼微眯；道具：water_gun。动作语义：扣扳机喷出连续水柱
+Cell 10 (玩水枪, pose B): 保持瞄准，手臂轻回弹，表情兴奋；道具：water_gun。与A必须是不同的动作阶段，保持道具形状/位置关系。手臂回弹再喷一次
+Cell 11 (玩游戏气急败坏, pose A): 双手握手柄，眼睛专注看前方；道具：game_controller。动作语义：双手按键
+Cell 12 (玩游戏气急败坏, pose B): 握紧手柄上抬，气鼓鼓皱眉；道具：game_controller。与A必须是不同的动作阶段，保持道具形状/位置关系。失败后气得举起手柄跺脚
+Cell 13 (用鲸鱼尾巴拍打地面, pose A): 鲸尾抬离地面并向后卷曲。动作语义：尾巴抬起再落地
+Cell 14 (用鲸鱼尾巴拍打地面, pose B): 鲸尾下摆拍地，身体轻前倾。与A必须是不同的动作阶段，保持道具形状/位置关系。连续拍两次
+Cell 15 (睡觉-开始, pose A): 坐下收腿，双手膝前。动作语义：坐下收腿
+Cell 16 (睡觉-开始, pose B): 身体蜷卧地面，闭眼，头发和尾巴自然摊开。与A必须是不同的动作阶段，保持道具形状/位置关系。降低头身蜷卧
+Keep hands anatomically coherent, clear facial expression, actual specific props and correct contact points. Crisp anime cel shading and line work matching reference. Cell position critical. Transparent alpha only; no scenery background.
+IMPORTANT: every character and all props remain inside the central 80% of each cell. At least 8% transparent space below feet or furniture in EVERY cell. No sprite crosses cell boundaries.

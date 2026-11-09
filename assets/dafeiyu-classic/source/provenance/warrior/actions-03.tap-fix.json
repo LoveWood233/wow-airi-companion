@@ -1,0 +1,10 @@
+{
+  "generator": "built-in image_gen",
+  "source": "image_gen-output:01a1bbe6-c650-7c72-bfdf-5261721dc6c0/exec-45760c24-db88-45e7-bd7a-d5b3e92c5efe.png",
+  "target_cells": [
+    8,
+    9
+  ],
+  "fix": "bare wooden table palm tap, no laptop/keyboard",
+  "other_cells": "requested unchanged"
+}

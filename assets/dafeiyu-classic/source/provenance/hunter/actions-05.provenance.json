@@ -1,0 +1,15 @@
+{
+  "class_id": "hunter",
+  "sheet": "actions-05",
+  "source": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-f671c994-7335-4382-a63b-941c12a90179.png",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "prompt": "source/prompts/hunter/actions-05.txt",
+  "sha256": "6bd5662ddaf91f8af98951fe047da3d2b20a15479f4f4c23f484147ef9f11f42",
+  "size": [
+    1254,
+    1254
+  ],
+  "status": "generated_and_visually_inspected",
+  "visual_check": "16 cells. All eight action pairs in requested row-major order. Visible matching props and A/B gesture changes."
+}

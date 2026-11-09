@@ -1,0 +1,18 @@
+Use case: stylized-concept. Create a production transparent raster sprite sheet, not a poster. EXACTLY 4 columns x 4 rows, 16 equal square cells, row-major. One full-body chibi blue-haired whale-maid character per cell, same identity and approved CLASS OUTFIT from the reference. Keep full hair, hands, shoes and whale tail inside each cell with generous transparent gutters; no grid lines, no text, no numbers, no white background. Consistent rendering, size, light, camera and ground line. No oversized weapons unless the action requires them. Each adjacent cell pair is two distinct key poses of the SAME named action. Preserve the reference class armor colors, shoulder silhouette, crown/hood ornaments, maid frills and facial style. New props must be drawn in the same polished anime game-sprite style and contact hands/mouth correctly. True transparent alpha. Aim high resolution; actions must remain legible at 640x360 playback.
+
+Cell 1 (row 1, col 1), action 整体换装试色, pose A: 保持该职业原装备，拿一块暖色布样比在胸前，低头审视搭配。
+Cell 2 (row 1, col 2), same action pose B: 同一装备与姿态，换一块冷色布样比在肩前，身体轻侧转查看搭配。
+Cell 3 (row 1, col 3), action 是啊，吃什么, pose A: 一手托下巴，眉眼思索；道具：food_thought_bubble。动作语义：歪头思考并说话
+Cell 4 (row 1, col 4), same action pose B: 正面小开口说话；道具：food_thought_bubble。与A必须是不同的动作阶段，保持道具形状/位置关系。头顶出现不同食物选项
+Cell 5 (row 2, col 1), action 晨间刷牙, pose A: 牙刷贴口，持刷手向外；道具：toothbrush, cup。动作语义：刷毛贴近嘴部左右短程刷动
+Cell 6 (row 2, col 2), same action pose B: 牙刷贴口，持刷手向内；道具：toothbrush, cup。与A必须是不同的动作阶段，保持道具形状/位置关系。用水杯漱口
+Cell 7 (row 2, col 3), action 期待开饭, pose A: 双眼明确星形高光，身体微前倾，双手握拳期待；道具：empty_bowl, chopsticks。动作语义：双手捧空碗期待看前方
+Cell 8 (row 2, col 4), same action pose B: 双手胸前端托，手腕形成物体接触面；道具：empty_bowl, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。握筷轻轻期待跃动
+Cell 9 (row 3, col 1), action 涮火锅, pose A: 左手端碗，右手持筷抬起食物；道具：hotpot, chopsticks, meat_slice, dipping_bowl。动作语义：筷子把肉片放入热锅涮，再夹出蘸酱吃
+Cell 10 (row 3, col 2), same action pose B: 左手端物，右手持食物送到张开的嘴前；道具：hotpot, chopsticks, meat_slice, dipping_bowl。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 11 (row 3, col 3), action 深度思考碎碎念, pose A: 一手托下巴，眉眼思索。动作语义：嘴部小声说话并间歇停顿
+Cell 12 (row 3, col 4), same action pose B: 正面小开口说话。与A必须是不同的动作阶段，保持道具形状/位置关系。眉眼变化、继续思考
+Cell 13 (row 4, col 1), action 点击回应-傲娇生气, pose A: 皱眉鼓腮，双臂抱胸。动作语义：鼓腮抱胸
+Cell 14 (row 4, col 2), same action pose B: 皱眉，抬起一脚准备跺地。与A必须是不同的动作阶段，保持道具形状/位置关系。小跺脚并扭头
+Cell 15 (row 4, col 3), action 点击回应-元气挥手, pose A: 一手抬起接近脸侧。动作语义：高举手掌连续挥动
+Cell 16 (row 4, col 4), same action pose B: 一手高举，张开手掌。与A必须是不同的动作阶段，保持道具形状/位置关系。开心微笑

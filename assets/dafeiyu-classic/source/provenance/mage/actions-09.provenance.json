@@ -1,0 +1,15 @@
+{
+  "class_id": "mage",
+  "sheet": "actions-09",
+  "source": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-d5346077-92b3-4ffd-8500-7df3820d2cfb.png",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "prompt": "source/prompts/mage/actions-09.txt",
+  "sha256": "647dd16a13155ca5b72475ffa55c4a5054cdad55a2a0234e7e99af759c23d0e0",
+  "size": [
+    1254,
+    1254
+  ],
+  "status": "generated_and_visually_inspected",
+  "visual_check": "16 cells. All eight action pairs in requested row-major order. Visible matching props and A/B gesture changes."
+}

@@ -1,0 +1,4911 @@
+{
+  "mode": "native",
+  "releaseVersion": "0.3.1",
+  "sourceIntegrity": {
+    "owningCommit": "e3ddb35f8bf692c4fe3f8284caae9f4e4d526790",
+    "verifiedFiles": 6,
+    "status": "passed"
+  },
+  "requestedClasses": 8,
+  "passed": 8,
+  "expectedMediaCount": 960,
+  "fullEightClassValidation": true,
+  "releaseHashesRequired": true,
+  "actualNativeImporterExecuted": true,
+  "alphaMetadataInspected": false,
+  "alphaPixelsDecoded": false,
+  "visualActionFidelityVerified": false,
+  "electronUiRuntimeVerified": false,
+  "profileRemoved": true,
+  "results": [
+    {
+      "class": "warrior",
+      "status": "passed",
+      "profileRemoved": true,
+      "copied": [
+        {
+          "file": "三球抛接.webm",
+          "bytes": 2342455,
+          "sha256": "0cb4b74015c89ae296fb50be3b1894fc66dd4c9dd2d019e8236fc5b20815b04a"
+        },
+        {
+          "file": "下五子棋.webm",
+          "bytes": 2393199,
+          "sha256": "61459300a9dad177c128c5862788b234a95b3adcde650a338431138200657b74"
+        },
+        {
+          "file": "东张西望.webm",
+          "bytes": 2934744,
+          "sha256": "af2f3af6d7007f82d14dfea3704eb67a2c4094d4f84eb6a6206b58a325f895c4"
+        },
+        {
+          "file": "中秋赏月吃月饼.webm",
+          "bytes": 3536590,
+          "sha256": "83261f7a1ddf96f4bf014ad082e1b1a414aa85659bab4a833e9dc194f0158981"
+        },
+        {
+          "file": "优雅女仆舞.webm",
+          "bytes": 3766560,
+          "sha256": "b6491c18d6846ee090632d0116600130dc534a7df9c71eee3a32def6f900a997"
+        },
+        {
+          "file": "余额-分文不剩.webm",
+          "bytes": 2951598,
+          "sha256": "6b5d5c17ac9ebca4ce16db7b648295030f0211b545b0bb1e39ce91032133693d"
+        },
+        {
+          "file": "余额-数金皱眉.webm",
+          "bytes": 3394106,
+          "sha256": "8f3eabb3cc6a8363b742bd9f71e9479c76e4100f6de574e2da223d35be8c1a2c"
+        },
+        {
+          "file": "余额-袋空如洗.webm",
+          "bytes": 3573344,
+          "sha256": "586b9b5443dfbc5dc7d7a742ea7ab8b1f2b8ce27c21e5ed25d406ab76c70d8ba"
+        },
+        {
+          "file": "余额-金袋叮当.webm",
+          "bytes": 2169181,
+          "sha256": "11009e55635db4eccefb4779530799958064211d636153597e566bc7a9843689"
+        },
+        {
+          "file": "余额-钱袋如常.webm",
+          "bytes": 1976805,
+          "sha256": "da469fe23443eeb8937f8b76a5e740afd0e47a6f43818f15c495896b9f66e6a2"
+        },
+        {
+          "file": "余额-钱袋满溢.webm",
+          "bytes": 3578986,
+          "sha256": "41724a0669c1a0ccbfdd3711e71ee12009ed58d7264172ca933db3f3fa89cb68"
+        },
+        {
+          "file": "侧身急躁跑.webm",
+          "bytes": 4838200,
+          "sha256": "45d2eed92e0204f0758b01e734bb32b104fa99015080d37ffd2d068b2e0ea002"
+        },
+        {
+          "file": "偷吃零食被抓住.webm",
+          "bytes": 2200174,
+          "sha256": "bee49f24a861473a14c40581e6934afed1355f0f5f2603d3e8e84e1c7debacb3"
+        },
+        {
+          "file": "写代码.webm",
+          "bytes": 2099915,
+          "sha256": "c44b0e4266bff24d14883ccc3fb1a4a0092957858ca2833196dee6654af1c27f"
+        },
+        {
+          "file": "写福字.webm",
+          "bytes": 3136383,
+          "sha256": "c6288d8765bc0eb313519ca44286a04ac55aeb2d4c2498a239f8ada2234ddb51"
+        },
+        {
+          "file": "凭空生花.webm",
+          "bytes": 2737813,
+          "sha256": "21a788152fbf8e529d422c4b4a4a5f06d6dcd20adf2e79980858ebb1d708eab3"
+        },
+        {
+          "file": "动物环绕.webm",
+          "bytes": 3768506,
+          "sha256": "98a5ed31b1006876d70f2a148e702cca42a8413cb6bb18768d38945fb1524bb6"
+        },
+        {
+          "file": "原地专心玩魔方.webm",
+          "bytes": 2072841,
+          "sha256": "4d39f87b3c7667a4cc02f3c7e13d9086263628ce1053b8f2dab9c6e300024f7a"
+        },
+        {
+          "file": "原地小憩沉眠.webm",
+          "bytes": 2947268,
+          "sha256": "949f6855ec8baad8c58d089ff22eafee25638d24b9aac39f348a3280575c3df3"
+        },
+        {
+          "file": "原地左转奔跑.webm",
+          "bytes": 3701031,
+          "sha256": "0c7533b23464cbb252520f1906efa89c43ddfc37ec3fa34ddb6b76636fd06b3b"
+        },
+        {
+          "file": "原地敲击桌面互动.webm",
+          "bytes": 2253494,
+          "sha256": "3b6368f3565a1d9fa4012b03d5250c75af60495817207e14cfafc370813baadf"
+        },
+        {
+          "file": "原地漂浮踏步.webm",
+          "bytes": 3885695,
+          "sha256": "a1ad2d8b0f63986b45cedeebf31ff9cb8c6554971e7ed268168555297f665d07"
+        },
+        {
+          "file": "原地跳跃抓碎头顶物品.webm",
+          "bytes": 3874201,
+          "sha256": "24585136d6caffc0d6153844b44e0f6c0d31cf00fd0608d4f3b0a0d7903be340"
+        },
+        {
+          "file": "原地蹲下玩玩具汽车.webm",
+          "bytes": 3297119,
+          "sha256": "7b528c1e49beaa6f6d5de41598f8a6dc828e8583030ca792d857ec62473028a6"
+        },
+        {
+          "file": "原地重力下蹲压缩.webm",
+          "bytes": 3183451,
+          "sha256": "7fa6055d5d54d54e78a3c223dda92044a51b11ab6fcb55bad4d707e615ab259f"
+        },
+        {
+          "file": "变鸽子.webm",
+          "bytes": 2338082,
+          "sha256": "5ec5f6d1d47509546f66e134c68ea8d9c82107b98cbbf97e7b55f115ef64886f"
+        },
+        {
+          "file": "可爱宅舞.webm",
+          "bytes": 2983317,
+          "sha256": "4945b78bc924ef6d24f7a11ac797d7374566bbaf99ea9e02c7f2748ad0974147"
+        },
+        {
+          "file": "吃Token.webm",
+          "bytes": 2841345,
+          "sha256": "6493dbfbaa16fa7333dc32690aa7a945a73d0be74bb0b8274635d95d12517d82"
+        },
+        {
+          "file": "吃冰淇淋融化.webm",
+          "bytes": 2796637,
+          "sha256": "7e62ec07b7d2e45ece7a756f65dbb0d415ce1811940801229f6d4e930b98f472"
+        },
+        {
+          "file": "吃午餐.webm",
+          "bytes": 2626563,
+          "sha256": "3079f1a5ac213fe7691d6367b657379a6ed5aeb968188c1ae00fd5bc97d7e5ba"
+        },
+        {
+          "file": "吃大闸蟹.webm",
+          "bytes": 2861220,
+          "sha256": "8dd04f37e448fa498e9c57caaa334454c3b970643fe3c43521978f168091b7ab"
+        },
+        {
+          "file": "吃年糕.webm",
+          "bytes": 2387655,
+          "sha256": "f234ae55d6e0d327b232a73aa61115d2094b108e728ba369dce47bb2641a8fbf"
+        },
+        {
+          "file": "吃早餐.webm",
+          "bytes": 1567903,
+          "sha256": "a37f0899fdfa9dea3471e335de77fcfac96d49650b3789ba2c0f5edd73931739"
+        },
+        {
+          "file": "吃晚餐.webm",
+          "bytes": 1428424,
+          "sha256": "f1341a83813eac2938ed82d011ad3430984b4d2d0eef4b1b7dd9519172426f17"
+        },
+        {
+          "file": "吃汤圆.webm",
+          "bytes": 1448826,
+          "sha256": "69119b0a833f4878f00f825354d942ab0e2850c2a04bea79fa78e76ec41090ca"
+        },
+        {
+          "file": "吃白饭.webm",
+          "bytes": 1492510,
+          "sha256": "edc6401aeecea81d9df5e64a816ac88a2aa075eb4e222f8b713ae0b14f022470"
+        },
+        {
+          "file": "吃粽子.webm",
+          "bytes": 1470577,
+          "sha256": "36eec86d85e912cc804d5dba7aa6cd56f233e8d4b982a4c43e59da2f5631e5be"
+        },
+        {
+          "file": "吃糖葫芦.webm",
+          "bytes": 1417205,
+          "sha256": "d2bc10d362a7d51f84cbff502b1e704c14b68880d64c28ea39029574181016b8"
+        },
+        {
+          "file": "吃腊八粥.webm",
+          "bytes": 1467454,
+          "sha256": "23a8e44932fa696f367f1b4cdbb67cbe947996f18ef55f8144a15074e55e7ca5"
+        },
+        {
+          "file": "吃西瓜.webm",
+          "bytes": 1461012,
+          "sha256": "09ee0708f1beaadee71935af8ba06202d81bb62eca949f4f9c9bd9bcea09c185"
+        },
+        {
+          "file": "吃重阳糕.webm",
+          "bytes": 2570566,
+          "sha256": "801f08ba9941859f7e858e92ad301f47142778b9f2cae0028d8a4a6666a44749"
+        },
+        {
+          "file": "吃长寿面.webm",
+          "bytes": 2458607,
+          "sha256": "616edc0feb790dd5e83310373437d76e1dd974fafeced50c1400d1802f5758ba"
+        },
+        {
+          "file": "吃青团.webm",
+          "bytes": 2533110,
+          "sha256": "1eb619d72a4e3812155f590dc45b2f15d021c8465d718fc72347dd8bbe5b3784"
+        },
+        {
+          "file": "吃饭·碗饭.webm",
+          "bytes": 2418231,
+          "sha256": "3ecfef34703d710769f6c0c080f7319e4d2e64384728d92825028246a4322d91"
+        },
+        {
+          "file": "吃饭团.webm",
+          "bytes": 2409897,
+          "sha256": "38a901cead641b1117c098b0f0a42e2e63458a34b626f7b62a2fb1f8c4e7c7de"
+        },
+        {
+          "file": "吃饺子.webm",
+          "bytes": 2354972,
+          "sha256": "dab6231d4b11872ae7defca825a3e860f29efc3e1d245adfc5c24630acc3004d"
+        },
+        {
+          "file": "吹气球.webm",
+          "bytes": 2616240,
+          "sha256": "f41d20306386dac3746c6f391cc87afeaa423831a1487a34c278abcb904147ef"
+        },
+        {
+          "file": "吹笛子.webm",
+          "bytes": 2254152,
+          "sha256": "d4bd994a8930439d2d04201e90c112ea5e8ff2acf563093b73860a0aa39243e6"
+        },
+        {
+          "file": "哈欠连天.webm",
+          "bytes": 1684241,
+          "sha256": "77332220703c3732d41dbbefe18173b967fe89a0a90215b6cab47469b9cf9c09"
+        },
+        {
+          "file": "堆雪人.webm",
+          "bytes": 3584999,
+          "sha256": "3d3e3311c569509842d8958e48bd794d32b603b9efad896201d856fc5c8c9202"
+        },
+        {
+          "file": "大口吃零食.webm",
+          "bytes": 1765363,
+          "sha256": "164fcadc3bc9b2aeb586abb892a7e4e43d848f82cff064bd51897d5309bee7d4"
+        },
+        {
+          "file": "女仆屈膝礼仪.webm",
+          "bytes": 2891665,
+          "sha256": "4b0fc989d8fa6928c1b6511b9e80bf385da2c171e180e4989fd6a8dfb34a422f"
+        },
+        {
+          "file": "小幅度原地360度旋转展示.webm",
+          "bytes": 3824891,
+          "sha256": "d7c24d041dc7292e073c6696815d9dd30a7e4c2349b895fa5a1745008ca18e7f"
+        },
+        {
+          "file": "小提琴演奏.webm",
+          "bytes": 2234577,
+          "sha256": "a64c8fdfe8e74cfed250127b70b47b1f9e2803b0067d29ee8a48b14ca14cb969"
+        },
+        {
+          "file": "工作状态-原地踱步张望.webm",
+          "bytes": 3248462,
+          "sha256": "c78ca18d4a5d8504cfb325a8145cbc9e2883cf048a667c795d5cd9b3a69a7aaf"
+        },
+        {
+          "file": "工作状态-垂头叹气冒汗.webm",
+          "bytes": 2301160,
+          "sha256": "e27850c8d85559b62d6772b939d3c9d21ec7dc04ebfa7beb7d0026f2848760b6"
+        },
+        {
+          "file": "工作状态-忙碌点按.webm",
+          "bytes": 1922595,
+          "sha256": "6c8a5ff6e3102aa920497b873bbcb3a897843cda51d10ee05714315ac97254ba"
+        },
+        {
+          "file": "工作状态-思考冒泡.webm",
+          "bytes": 3716383,
+          "sha256": "fbc35928a6bf9bef080787acdbb851a4041a925b382671412da72b68a0f82f57"
+        },
+        {
+          "file": "工作状态-清点归档.webm",
+          "bytes": 2857532,
+          "sha256": "3f81cce7186c6245ec9ca2d442cda3f7c4469e5326860d2f6dd11478299da0e1"
+        },
+        {
+          "file": "工作状态-雀跃庆祝.webm",
+          "bytes": 1709580,
+          "sha256": "b4cf29c0f14bb05bb1af3e655565f0fc3b939fa5161990a7212e35cc6d3cf98a"
+        },
+        {
+          "file": "开心小跑.webm",
+          "bytes": 3531871,
+          "sha256": "1eceb1f97dad7b841b57a2dd33cbe48edb31dbb9509b48c6cf7dc003dc3af647"
+        },
+        {
+          "file": "待机呼吸休闲.webm",
+          "bytes": 406450,
+          "sha256": "2656ebece10aba4c4f22cd62e35b2887fe6d335c160a2ce71fad8ed4b2c34699"
+        },
+        {
+          "file": "悠闲哼歌.webm",
+          "bytes": 2921040,
+          "sha256": "9974ff1c1369d39917cfafdb55a4bd95a6dc848314a2e8d8d295bddb5514495d"
+        },
+        {
+          "file": "扑克魔术.webm",
+          "bytes": 3867538,
+          "sha256": "649f8ce9a455356e306b6f3e72138d09b340c203e40a843e4edb2471d8dfc7c1"
+        },
+        {
+          "file": "打瞌睡被惊醒.webm",
+          "bytes": 3711665,
+          "sha256": "e3bc6b0a8b73ca8ae5903dac70bb44d135078735645f14ad4aa86882f784c091"
+        },
+        {
+          "file": "抽陀螺.webm",
+          "bytes": 3607043,
+          "sha256": "8db4c412643868592c4fa04e2992a9f3332a5a19b550cfc85d6e39ccd4c83c21"
+        },
+        {
+          "file": "拆礼物.webm",
+          "bytes": 3049120,
+          "sha256": "1069c8997283b9d9129f2c52e23f1767ddf2f5605e8a53c0780aece2f177afa5"
+        },
+        {
+          "file": "插茱萸赏菊.webm",
+          "bytes": 3692746,
+          "sha256": "9a6c672e141c78265176ada59768394bc8da8632a67a35daba23c3268f05aaa3"
+        },
+        {
+          "file": "摇扇纳凉.webm",
+          "bytes": 3084347,
+          "sha256": "c87efba054463e25dc6a80f137b07379dbe1244921071537da2ac95771c90a90"
+        },
+        {
+          "file": "撸猫.webm",
+          "bytes": 2458714,
+          "sha256": "7b614e947f3395e239a2c4f703d04531a904edc3938b3c3164b69a78af65d9e9"
+        },
+        {
+          "file": "收红包.webm",
+          "bytes": 2107327,
+          "sha256": "065fdf00fa45674a50c63dfc7e1ff0261b4b88002a7d7ec248e010a3a955269a"
+        },
+        {
+          "file": "放孔明灯.webm",
+          "bytes": 3518054,
+          "sha256": "c9050a341ba95b9c116d0da79e0961e12b6fe38cff72844142bfc44e6548aece"
+        },
+        {
+          "file": "放河灯.webm",
+          "bytes": 3182136,
+          "sha256": "92287686313ad974cfc4b5f4db2fe6a93caf851e33bfa8ba585b96b67f4b09c5"
+        },
+        {
+          "file": "放烟花.webm",
+          "bytes": 4683550,
+          "sha256": "2024605214603e030e8ffebbf870aa9b04b057b209300478da082bb7fa2fc623"
+        },
+        {
+          "file": "放风筝.webm",
+          "bytes": 4377626,
+          "sha256": "f86e539c0c0171f841c075b80e4a292b1aad6e8ed6b20b04c2e42dae3a5b2abd"
+        },
+        {
+          "file": "整体换装试色.webm",
+          "bytes": 2665001,
+          "sha256": "e73c317794833c2452fcdc22d9da59439c7125c808781e58fd43ed73eadebc5f"
+        },
+        {
+          "file": "是啊，吃什么.webm",
+          "bytes": 3405115,
+          "sha256": "f97fa9650978517635fec83facb10dcd0b994331a7ee9b6dd37ea5b76bf39a87"
+        },
+        {
+          "file": "晨间刷牙.webm",
+          "bytes": 2866325,
+          "sha256": "5bcde3aaa3211a69dcc41b3da0bf1cb5d4c10168889aa28a71a621287daf8d30"
+        },
+        {
+          "file": "期待开饭.webm",
+          "bytes": 3625931,
+          "sha256": "c5b851283991d21facf20fbfff6aa4ed18f30ebb73c56044bbda9d6352b8d9e2"
+        },
+        {
+          "file": "涮火锅.webm",
+          "bytes": 3650257,
+          "sha256": "ecdaf82e68ef243169ee10ce8aa1d58f13e1095611e2738d7a43d28ea918b45c"
+        },
+        {
+          "file": "深度思考碎碎念.webm",
+          "bytes": 3669055,
+          "sha256": "732f8ff58be98d5ec16a364fdcc1398cde3c85dd4955bdfd7ae2e7886a11e118"
+        },
+        {
+          "file": "点击回应-傲娇生气.webm",
+          "bytes": 3083049,
+          "sha256": "74f159cf6b6d8e85001c825017c1b2b558e52b6c5e8b13da69ae4d901791261d"
+        },
+        {
+          "file": "点击回应-元气挥手.webm",
+          "bytes": 2845329,
+          "sha256": "0a39f80a8b818e38aaa49df8e23a2630dfdd64aa27e908837bc6180b0003fe1e"
+        },
+        {
+          "file": "点击回应-害羞惊讶.webm",
+          "bytes": 2425202,
+          "sha256": "a5e24ff28c1e247ade174196d533cb939b69c858003ab5b5449ff1b1560e1bbd"
+        },
+        {
+          "file": "点击回应-开心跃动.webm",
+          "bytes": 4089841,
+          "sha256": "e6d0499c6b597b022107be19b470406d2cf3932814f90d31975bbcbeff5c547d"
+        },
+        {
+          "file": "点击回应-挠痒咯咯笑.webm",
+          "bytes": 3528233,
+          "sha256": "12d8edffa36b99edbeccdb13f777d8293f3cf08f4da5044c2d31924fc7a3c64f"
+        },
+        {
+          "file": "照镜子.webm",
+          "bytes": 2714251,
+          "sha256": "ded6bb8887e30ef30d522e00e75c03a4033f34a9ce86c233bba114de94f514fd"
+        },
+        {
+          "file": "玩水枪.webm",
+          "bytes": 3192076,
+          "sha256": "7c05c00a6c3876075dff6cee82d81c541c0d01a1c6f43e92495a7814039097de"
+        },
+        {
+          "file": "玩游戏气急败坏.webm",
+          "bytes": 3533234,
+          "sha256": "63a63772495028ae16c41648f4f3dbdd478a6ee969f0ef44228fd864d316a833"
+        },
+        {
+          "file": "用鲸鱼尾巴拍打地面.webm",
+          "bytes": 3496958,
+          "sha256": "69433f3d0e47b2862f931512e7241ce3ae5921790603936f21e2b10be6c1a75e"
+        },
+        {
+          "file": "睡觉-开始.webm",
+          "bytes": 1311412,
+          "sha256": "47b0033ae155296fdf44d1c20c8d3b95c26e1d50d8d77fd3271d5a410c4d7e8f"
+        },
+        {
+          "file": "睡觉-循环.webm",
+          "bytes": 369704,
+          "sha256": "be70981b6e373b540f497f41d0141ae2efb41960e0b143cdb52daadda0654387"
+        },
+        {
+          "file": "睡觉-起来.webm",
+          "bytes": 1493523,
+          "sha256": "69b9a8460f5005b47cb336b7585b2633d2b1594f2ed4044d7d0d06f078e8fb1f"
+        },
+        {
+          "file": "碎碎念-发呆碎碎念.webm",
+          "bytes": 2183270,
+          "sha256": "7d0a14fb72c07e8b972686ddc0a1bab38034c3adfee539f930b33ff80d51d042"
+        },
+        {
+          "file": "碎碎念-对屏碎碎念.webm",
+          "bytes": 967771,
+          "sha256": "578a2be7feb0d7f8b047e1b836b86e7abe13845d3eae9c6c705e9106527bdbb7"
+        },
+        {
+          "file": "碎碎念-擦桌碎碎念.webm",
+          "bytes": 2805752,
+          "sha256": "1523a1b93800547a53a367fc9552ff1b142dce18cef86c50d1652e3526383c86"
+        },
+        {
+          "file": "穿针乞巧.webm",
+          "bytes": 1806051,
+          "sha256": "4f86e247d296bbd21d6bcf1b1d89a241c36cf43d1fecf1c4c6aed63b7e0c1d4f"
+        },
+        {
+          "file": "舞狮头.webm",
+          "bytes": 3913775,
+          "sha256": "421a0ab6394fcc3d339553035c9bd83cc57fc634ee1410f02c87a0356a8fd49f"
+        },
+        {
+          "file": "荡秋千.webm",
+          "bytes": 3746997,
+          "sha256": "1451c00728e6fd7fed94dda81012dcaddb9d0dd2c4f6b53a591a61dc0a15a385"
+        },
+        {
+          "file": "萌化小幽灵.webm",
+          "bytes": 2483637,
+          "sha256": "adeba073a80105674f5e30a7c7ca89f636ddfeef4d74dfc31d94b5b7f840884a"
+        },
+        {
+          "file": "蓝鲸现世.webm",
+          "bytes": 2618558,
+          "sha256": "60e2fa54bb5ee4cc57b50c199cadd27c2e35df1cd0fef5a629ea0a5e0ca446d2"
+        },
+        {
+          "file": "蝴蝶蜜蜂环绕头顶开花.webm",
+          "bytes": 3942606,
+          "sha256": "727cd6f20d9500b9323f852bf8b1b9c2b8ffe5a0bf32ba6e09152b52dc00407e"
+        },
+        {
+          "file": "螃蟹走路.webm",
+          "bytes": 4403099,
+          "sha256": "a4675c1dfa70cc6f13bc61e8f878377793a725616a32108b0c71d461b0711184"
+        },
+        {
+          "file": "被吓一跳.webm",
+          "bytes": 3924142,
+          "sha256": "82fefc3aa669200fecb67663e821cc4b1a5f36db7d1974082e430b221321a077"
+        },
+        {
+          "file": "被落叶淹没.webm",
+          "bytes": 4434890,
+          "sha256": "ba6f6a24ecdeed9db919029fc41d9b94c71ecf453f4fc30ec57782cbd86f9147"
+        },
+        {
+          "file": "被鼠标拖拽悬空反馈.webm",
+          "bytes": 3653122,
+          "sha256": "b475ddbe70ddb4ff43f290696b08506029d5425b0b7ca970cca73dc23e8d23fd"
+        },
+        {
+          "file": "装点圣诞树.webm",
+          "bytes": 3388732,
+          "sha256": "56bada826c79e3d74df77b9e75863428925309f1a734030f79f4945283568289"
+        },
+        {
+          "file": "讨糖南瓜灯.webm",
+          "bytes": 3593178,
+          "sha256": "af6766dc64e20710042186d3331d9d03e79c80717f14ca889b688b9b94512a17"
+        },
+        {
+          "file": "超大伸懒腰.webm",
+          "bytes": 3512682,
+          "sha256": "253cef2cbeecab290abb6b620caa7c78c50f97a2ee657c27351a3bb29a7e6cb1"
+        },
+        {
+          "file": "踢毽子.webm",
+          "bytes": 3089330,
+          "sha256": "457491e6af99c08b8b2c0bfb7f232ade30e29960457f2468bae25aaacc9d7b3e"
+        },
+        {
+          "file": "轻快摇摆舞.webm",
+          "bytes": 3517341,
+          "sha256": "f591cb1cb02f5b307fe5c6ecd129ecc525fe76c21f1b01eb188eb5931b44735f"
+        },
+        {
+          "file": "轻快记录.webm",
+          "bytes": 2633400,
+          "sha256": "8f101ebae87645ca4d05a458bf5e2983dd7fb002dc9fdef03b882ffd4868d2ad"
+        },
+        {
+          "file": "骑木马.webm",
+          "bytes": 3540394,
+          "sha256": "f9851e0091a2910f5c5a2e0d971f3aae1c57781831f3fee5da92fda507463963"
+        },
+        {
+          "file": "鲸鱼吐泡泡特效.webm",
+          "bytes": 3639042,
+          "sha256": "0f08f8a680b495a8358eaade52d4d261964d1d6d438e293b402994fd701fed5e"
+        },
+        {
+          "file": "害怕.webm",
+          "bytes": 1715606,
+          "sha256": "3cf2400e1fc1a9b21b31835d757024b764dc0aa4d84c2a8274ee836f84e9d8e3"
+        },
+        {
+          "file": "害羞.webm",
+          "bytes": 1726428,
+          "sha256": "8fbe5891c4442020a42800b573812e11d24906854325902d276d871d38433346"
+        },
+        {
+          "file": "难过（眼睛饱含泪水）.webm",
+          "bytes": 1347023,
+          "sha256": "34a5f1c28c040fafe57ab4769abf212b22f04a57e448f724de4a5f96a064ee59"
+        },
+        {
+          "file": "想去玩（期待星星眼）.webm",
+          "bytes": 1812140,
+          "sha256": "5f07d335a74f8cff487eab86397cc69938b3448872319b3d74345ce99e3a1393"
+        },
+        {
+          "file": "大哭.webm",
+          "bytes": 1898740,
+          "sha256": "02db91cc3997505b9d94b5696f73a1ef4843c6f52e83606c18361ad9a0df9cfc"
+        },
+        {
+          "file": "开心蹦跳.webm",
+          "bytes": 2264764,
+          "sha256": "529b7e3fb77b46c575ff751edda852d4651b7af20f0db6348033d487b3e5a912"
+        }
+      ],
+      "originalAndAddedMappingsPreserved": true,
+      "selectionPersistence": true,
+      "unlistedAssetRejected": true,
+      "releaseHashesMatched": true
+    },
+    {
+      "class": "hunter",
+      "status": "passed",
+      "profileRemoved": true,
+      "copied": [
+        {
+          "file": "三球抛接.webm",
+          "bytes": 2511726,
+          "sha256": "8972f05b2ecdaa25204a77c245db6d2acef19b710af3f8062953768028404d46"
+        },
+        {
+          "file": "下五子棋.webm",
+          "bytes": 2154400,
+          "sha256": "6878f9533e2eecd0b34ef3895f85d307a7fb7b9dbc33930720fc68402fc021d1"
+        },
+        {
+          "file": "东张西望.webm",
+          "bytes": 3032132,
+          "sha256": "b60f3e1b58b4e03b1f20480f53fe69ac71747788962047f3e9886ec59ee6a827"
+        },
+        {
+          "file": "中秋赏月吃月饼.webm",
+          "bytes": 2698396,
+          "sha256": "b0c41a55c4bd7dd3cf84f122c8ffc359838dc408796cbb96c983619263b8a7ec"
+        },
+        {
+          "file": "优雅女仆舞.webm",
+          "bytes": 3166091,
+          "sha256": "81d381cc04bf786fe43c6dbed1b8f18f76d6a58fa5d9b0894f1f8824edfedc92"
+        },
+        {
+          "file": "余额-分文不剩.webm",
+          "bytes": 2346669,
+          "sha256": "bd1f418d9df61393e10e0398cf4496268fdffcb195e0250ebc682ae16ef4d540"
+        },
+        {
+          "file": "余额-数金皱眉.webm",
+          "bytes": 2692156,
+          "sha256": "ffaf2bae12b5e02ec302c6c07ae97384332f31d581103047fa5bdeb4d4947fcf"
+        },
+        {
+          "file": "余额-袋空如洗.webm",
+          "bytes": 2633977,
+          "sha256": "8bb4c584f86c2bf5e5e8aeed18e17e59cb63a90cf5e947ce72ec0c3f382aa764"
+        },
+        {
+          "file": "余额-金袋叮当.webm",
+          "bytes": 1662101,
+          "sha256": "7b1a0d6d80723a35695650f1a34c17169cd91eb953730ca04fca9f9b459c45e0"
+        },
+        {
+          "file": "余额-钱袋如常.webm",
+          "bytes": 1461972,
+          "sha256": "71d45a29477b65088577d29ce45e3387254915cf6df66640207a9548caa163f5"
+        },
+        {
+          "file": "余额-钱袋满溢.webm",
+          "bytes": 2278955,
+          "sha256": "28c2ef035fbc387c2c88c2c168605510d17099aeb0b9ab02cbb8e19043e8e424"
+        },
+        {
+          "file": "侧身急躁跑.webm",
+          "bytes": 4611545,
+          "sha256": "527dd399e3cc8967f1316e1d71c5c31e7bb15c228bdb865513fd578a000cf3a9"
+        },
+        {
+          "file": "偷吃零食被抓住.webm",
+          "bytes": 1608279,
+          "sha256": "1f77fda336c67af61cae2604c7a7d23cedd2daf4e908528269db8575484d6ec2"
+        },
+        {
+          "file": "写代码.webm",
+          "bytes": 1893415,
+          "sha256": "95ab28e21eed4e3b290c3e107d479849e2fbe80fb983831be2350136c24a5f16"
+        },
+        {
+          "file": "写福字.webm",
+          "bytes": 2743705,
+          "sha256": "b0f97120e3d7cbf0bf021dba18ce2f6c9d8f3a3d7f1b33e8906ef12505436af3"
+        },
+        {
+          "file": "凭空生花.webm",
+          "bytes": 2193728,
+          "sha256": "e73f2eebfd01db1b280a995c7d195df598798494af08b36d4c7d54e1082e4738"
+        },
+        {
+          "file": "动物环绕.webm",
+          "bytes": 4620287,
+          "sha256": "442e5042fe8c1aba77a8e5db4a09fabd3121751b80190e66256b650aab1bf99c"
+        },
+        {
+          "file": "原地专心玩魔方.webm",
+          "bytes": 1333085,
+          "sha256": "759ae2ed787b08d0ee80445da686dbb13257233bb5e4216b34edf598345128d6"
+        },
+        {
+          "file": "原地小憩沉眠.webm",
+          "bytes": 3056086,
+          "sha256": "daf339174364624593a9d8ecddb3723f43c1287ca63384243f8ba71316468c00"
+        },
+        {
+          "file": "原地左转奔跑.webm",
+          "bytes": 3558678,
+          "sha256": "97e500bbe8b736dae65b38df9af1ccb7b9766c5b6426139c15df574281f03467"
+        },
+        {
+          "file": "原地敲击桌面互动.webm",
+          "bytes": 1669374,
+          "sha256": "4c3c771aba3e01173542cd325c747e89c14dd545975959b33149d254fb85c091"
+        },
+        {
+          "file": "原地漂浮踏步.webm",
+          "bytes": 3305424,
+          "sha256": "5f441d466f97f7e4c05f893e57e251382d0fbb38636a32cff3d189c4efd9265d"
+        },
+        {
+          "file": "原地跳跃抓碎头顶物品.webm",
+          "bytes": 3415347,
+          "sha256": "584204bbd7c4704b01e25e7e885773fe2c8c777d45ef4a8d5d85cc22134cb417"
+        },
+        {
+          "file": "原地蹲下玩玩具汽车.webm",
+          "bytes": 3584534,
+          "sha256": "660c107613fbb190e658391ecf1393542a68882689edfac8d37c62ec57ff3cd9"
+        },
+        {
+          "file": "原地重力下蹲压缩.webm",
+          "bytes": 3139815,
+          "sha256": "76c2f5cad7299bade398c70bfe79daf143a8bb8a57c5ab67f11802f097b999d4"
+        },
+        {
+          "file": "变鸽子.webm",
+          "bytes": 2576196,
+          "sha256": "bb72514a30ed8fae05c0f328b09ce4eaa1e080fa8c907d7d41ebdb83e975ded6"
+        },
+        {
+          "file": "可爱宅舞.webm",
+          "bytes": 3215149,
+          "sha256": "95615f5a5af84548425944b46727b50a173d1a39bbded3fe6750cfce580d316f"
+        },
+        {
+          "file": "吃Token.webm",
+          "bytes": 2375979,
+          "sha256": "f41d4074572f1b3f56b6490b254d6bbab7044abf3685451c8e89bbfb01f7bbb7"
+        },
+        {
+          "file": "吃冰淇淋融化.webm",
+          "bytes": 2330556,
+          "sha256": "195c1190b0f9d49dbadbab3ff6811213fdea05d6f4b905c319e3fb22897230d4"
+        },
+        {
+          "file": "吃午餐.webm",
+          "bytes": 2239472,
+          "sha256": "5a4310a3566c7911bb2883512a1c7041171673bb541d6564c61c00be5ab68daa"
+        },
+        {
+          "file": "吃大闸蟹.webm",
+          "bytes": 2297593,
+          "sha256": "fdeb508c37887240ab4920186c5c66184e9a38588d144268fb1656b8d6b7e645"
+        },
+        {
+          "file": "吃年糕.webm",
+          "bytes": 1985814,
+          "sha256": "46fe8bc7dd12f0569b0a157c281d4919d9e92d92adc755a0c717547a563b755e"
+        },
+        {
+          "file": "吃早餐.webm",
+          "bytes": 1194002,
+          "sha256": "7962d78bebb6f15100764afced806b25d2acff1601a5b720c7d116c08840f704"
+        },
+        {
+          "file": "吃晚餐.webm",
+          "bytes": 1145774,
+          "sha256": "eae62d655328039be1f1b91a1e26f5b89fd03710bbcf45b436453e3b27947e09"
+        },
+        {
+          "file": "吃汤圆.webm",
+          "bytes": 1200329,
+          "sha256": "49b229dac23b62172f075dc61aa5a59a32fd19a4b0212e0bc3a203d8c14438a4"
+        },
+        {
+          "file": "吃白饭.webm",
+          "bytes": 1164535,
+          "sha256": "ccd10993e80446751d4ef99f371d1dbfc7dc6885956d9898639106ab069cd918"
+        },
+        {
+          "file": "吃粽子.webm",
+          "bytes": 1307424,
+          "sha256": "1bf9f2bcddcde387b7f5b9bf40c3a25d4e5c106512ba947722fded1c9526c802"
+        },
+        {
+          "file": "吃糖葫芦.webm",
+          "bytes": 1160932,
+          "sha256": "b4584365f7fe33963f1e1b724b7e2a71dbae24d4c1b4e07909c62cdc987d2cf1"
+        },
+        {
+          "file": "吃腊八粥.webm",
+          "bytes": 1169542,
+          "sha256": "aa05ec890bd2ef21a2f82ae0d59f8bb749488fd6445f993a98f4aa04e8bc528f"
+        },
+        {
+          "file": "吃西瓜.webm",
+          "bytes": 1104215,
+          "sha256": "8a7e5481275e73daf7608b51c95fdaec01e1d354ec8b03045b09d254da10ee4b"
+        },
+        {
+          "file": "吃重阳糕.webm",
+          "bytes": 1172921,
+          "sha256": "b48308510ea4858f5776a1c19c09503fc9b5c2083f2d87df3c0c0cf1ef2e301b"
+        },
+        {
+          "file": "吃长寿面.webm",
+          "bytes": 1282468,
+          "sha256": "2711abd9088bbca5fb6dee801de4b5a33b286034bdd62cc8788648f438a55dbd"
+        },
+        {
+          "file": "吃青团.webm",
+          "bytes": 1207870,
+          "sha256": "a4a99fd0cb80fa2bfff27444e70a534602aa7a65e902f8d5a7825ebf97715664"
+        },
+        {
+          "file": "吃饭·碗饭.webm",
+          "bytes": 1196494,
+          "sha256": "85e5424e111e7df0f53b023471d283ac50731b735e66d05788d403ec0ef5734f"
+        },
+        {
+          "file": "吃饭团.webm",
+          "bytes": 1218343,
+          "sha256": "a49aec605bf67b073615c55b8f44baf558613feadf0ec42543ae8eb72b662f36"
+        },
+        {
+          "file": "吃饺子.webm",
+          "bytes": 1142800,
+          "sha256": "c12465f1d2c730f23116356096bfc35f282771ec9d9f47f44aceff5345219f38"
+        },
+        {
+          "file": "吹气球.webm",
+          "bytes": 1294438,
+          "sha256": "6976266dd259e580ac855831d143835ae5a39299cd69cdf762fa90534d615ba2"
+        },
+        {
+          "file": "吹笛子.webm",
+          "bytes": 1046591,
+          "sha256": "f16386e6f912769bedd3f632eb60d5c874132f4e281d388317519ae6861047dd"
+        },
+        {
+          "file": "哈欠连天.webm",
+          "bytes": 1740115,
+          "sha256": "0b1164305ecfc4dc8885424525ec6cf713e9870da1befb3928c0504915fb4e64"
+        },
+        {
+          "file": "堆雪人.webm",
+          "bytes": 4155462,
+          "sha256": "e60de8bcae36fd05d53a3e7a964f1dd0b96ba2d8398f32e6e72213faaeb9c07a"
+        },
+        {
+          "file": "大口吃零食.webm",
+          "bytes": 1761786,
+          "sha256": "4fb4a3235813158c9549a8642d4dcea7f3ecb0e3fdacfdb5e34c4363afcd10e9"
+        },
+        {
+          "file": "女仆屈膝礼仪.webm",
+          "bytes": 2617385,
+          "sha256": "1e804d00222099d9162d9256744dbd7aed911cf81caa0641f2a80ba919b94eca"
+        },
+        {
+          "file": "小幅度原地360度旋转展示.webm",
+          "bytes": 3693003,
+          "sha256": "c692f79839405db24bd4bf39d7f0095345cb02c02f8918c5b6cb91e9ede20bcc"
+        },
+        {
+          "file": "小提琴演奏.webm",
+          "bytes": 1918531,
+          "sha256": "88ad6b9ad1a45643af1bcb3e5b05a5b01d89c3da1267453e492ff3fd6e013fd9"
+        },
+        {
+          "file": "工作状态-原地踱步张望.webm",
+          "bytes": 3111771,
+          "sha256": "28615ede81737ae4f3c9b731123fbb39ee5170a7577bbc18487f4d9ad4be337b"
+        },
+        {
+          "file": "工作状态-垂头叹气冒汗.webm",
+          "bytes": 2275474,
+          "sha256": "574efdc2ee68dd52a2dd9fb41f6f5416762004d555de1e74a9d875d49595c2d9"
+        },
+        {
+          "file": "工作状态-忙碌点按.webm",
+          "bytes": 2130682,
+          "sha256": "fa2dc15ebb7c35b4efcf89a5886c456fa2a86153e6ed0455b269deffae13cbe0"
+        },
+        {
+          "file": "工作状态-思考冒泡.webm",
+          "bytes": 2467389,
+          "sha256": "79a47f3f5284fcab222655d5e0b3641e5496ec61040e2a70cc8aa3155be32099"
+        },
+        {
+          "file": "工作状态-清点归档.webm",
+          "bytes": 2487159,
+          "sha256": "b3efc445a9914da6c551967b4fabd6d361faf20c6e2e534d426347d44def7111"
+        },
+        {
+          "file": "工作状态-雀跃庆祝.webm",
+          "bytes": 1763662,
+          "sha256": "acf7f50085a62966874c4242a0c2ee3d914f4c340e3f4040858e2684beae8cf9"
+        },
+        {
+          "file": "开心小跑.webm",
+          "bytes": 3028438,
+          "sha256": "42502cc4eca0d8474c7ca0c897982259e5cc678adb835c242836cb8cc96f8f28"
+        },
+        {
+          "file": "待机呼吸休闲.webm",
+          "bytes": 409984,
+          "sha256": "2aea351ba3653f275f0cfa49fe7cf0a4e673ac60f9ba0b1d1146df68873d7d06"
+        },
+        {
+          "file": "悠闲哼歌.webm",
+          "bytes": 2707812,
+          "sha256": "e8815db41d24019d84107c92048262cce9953788c5d49a04c41b7dc046dc7590"
+        },
+        {
+          "file": "扑克魔术.webm",
+          "bytes": 2609710,
+          "sha256": "a58629ad82775b3b29205f2a74f9f132af1d6856ee2512f453afbeb1c54887f2"
+        },
+        {
+          "file": "打瞌睡被惊醒.webm",
+          "bytes": 3527280,
+          "sha256": "08cba559de8b4cdbf57f5d2a463349bd4b10ba0df94648811cce5ce60152b64f"
+        },
+        {
+          "file": "抽陀螺.webm",
+          "bytes": 3355617,
+          "sha256": "02179db5f6946cb69f1695b6b49b1dae64227b04ddaf29cf90fc58d19f0c9a7b"
+        },
+        {
+          "file": "拆礼物.webm",
+          "bytes": 2201758,
+          "sha256": "3e436eba1e92f86976307dcc43202bfdb9a471b63c587e2b2c846fd914d577d4"
+        },
+        {
+          "file": "插茱萸赏菊.webm",
+          "bytes": 3177489,
+          "sha256": "4ae5091cab576f742639e71d7c6a3714a21a990340327bbf143b89ccfd2c0e46"
+        },
+        {
+          "file": "摇扇纳凉.webm",
+          "bytes": 2805578,
+          "sha256": "c39d7e556f14139a80f918a1995842e3639f5180697b1a30ed4361d9a1d13328"
+        },
+        {
+          "file": "撸猫.webm",
+          "bytes": 2989248,
+          "sha256": "ff52c0e6335985325f9c9b2e90134613e9d7e35ca470700e7db050f06621aadb"
+        },
+        {
+          "file": "收红包.webm",
+          "bytes": 2306925,
+          "sha256": "e4288c6a66a85f6c37e5903fea5e6973eb7cf6d03ab745fc1b0c4fed1da02789"
+        },
+        {
+          "file": "放孔明灯.webm",
+          "bytes": 5382279,
+          "sha256": "e3135300652c7b825e2f1c8fd01af55734abfb0695ad58bb03e928ed0995a4c3"
+        },
+        {
+          "file": "放河灯.webm",
+          "bytes": 3369893,
+          "sha256": "9817891989fbf2e8d6483fab258d96f7d6b10a4a612101b4f8ad9051c11d5da9"
+        },
+        {
+          "file": "放烟花.webm",
+          "bytes": 5917138,
+          "sha256": "de89c60944c8079c9a1cb87c8d57cdd2aed8bb96617c2316116d507317137d9b"
+        },
+        {
+          "file": "放风筝.webm",
+          "bytes": 4523300,
+          "sha256": "9dc4ea6fcbe44eb49d594cd5ac0f3fed341c1cd50fda084906d1791704721584"
+        },
+        {
+          "file": "整体换装试色.webm",
+          "bytes": 2526375,
+          "sha256": "c8132dfb8af3d6fa8f943b79cd29474d3cf1f2ac47f3fccbd1ce608bbc5ef3b5"
+        },
+        {
+          "file": "是啊，吃什么.webm",
+          "bytes": 2806193,
+          "sha256": "fa0f36fb579a358f0e260181164b69f50357d1f87be37859b0c1461d14e8d410"
+        },
+        {
+          "file": "晨间刷牙.webm",
+          "bytes": 1729153,
+          "sha256": "ce52ecd57e052e5f17cb8847d1a3e3668c67baac7bf50969993643c525f00e02"
+        },
+        {
+          "file": "期待开饭.webm",
+          "bytes": 2558667,
+          "sha256": "b9d9108425f22c9ffb7fe7340f0f26094573a306d69ffba69d7da5870ce2e836"
+        },
+        {
+          "file": "涮火锅.webm",
+          "bytes": 2337777,
+          "sha256": "a7328acf385f885189767ecfa0dd472ede485443fbb8fb5780cb629f693a3b66"
+        },
+        {
+          "file": "深度思考碎碎念.webm",
+          "bytes": 2345623,
+          "sha256": "bd5477a533abae7c595985ea6f546f5692b05cfaed4b51b5f94865a17f84d9fc"
+        },
+        {
+          "file": "点击回应-傲娇生气.webm",
+          "bytes": 2933177,
+          "sha256": "dffaab14f9af0866ba978af09ef8f301a5b7b494f7a8b6336c81d6983b830b67"
+        },
+        {
+          "file": "点击回应-元气挥手.webm",
+          "bytes": 2650160,
+          "sha256": "ce8be020d5fa3801b5666a8237adb76c19cc471b8c3293084b993f145621da63"
+        },
+        {
+          "file": "点击回应-害羞惊讶.webm",
+          "bytes": 3063229,
+          "sha256": "3a61244ef5e156f63c9b1ca3df5730a04bc68e01254eac7c0ff2598ad70b962f"
+        },
+        {
+          "file": "点击回应-开心跃动.webm",
+          "bytes": 4858800,
+          "sha256": "f3418f223a7c3ea99c406c11c71a70ddf54afa3148187f75af2b1619072a0a90"
+        },
+        {
+          "file": "点击回应-挠痒咯咯笑.webm",
+          "bytes": 4303447,
+          "sha256": "5cc8315c4bac5f9cdf77fe1c8045d2e57d5a3bc9a7e26f5604b511b1bd4ff462"
+        },
+        {
+          "file": "照镜子.webm",
+          "bytes": 3528210,
+          "sha256": "7ebf6e496b74503fe5ce3ee9b17df020114dfda49287021bb610b6aa45407f71"
+        },
+        {
+          "file": "玩水枪.webm",
+          "bytes": 3718275,
+          "sha256": "cbcd125e2957a345002d90708a71d36b3be3e222bb170085d5e8f0f343d23b53"
+        },
+        {
+          "file": "玩游戏气急败坏.webm",
+          "bytes": 4237684,
+          "sha256": "15eab54b6a981fad91f86c3f4cd117d6db86e01cff03542696966bd14875cb3a"
+        },
+        {
+          "file": "用鲸鱼尾巴拍打地面.webm",
+          "bytes": 3425036,
+          "sha256": "d7fa5ba406bcf6d3cd215031ed1bae10e4b083ccd1f7ab8a9566cace828afbfd"
+        },
+        {
+          "file": "睡觉-开始.webm",
+          "bytes": 1277912,
+          "sha256": "720bef82fab2e82f00bb87fe6448bd38645e24141f4e1e32e11173fe679a93a0"
+        },
+        {
+          "file": "睡觉-循环.webm",
+          "bytes": 301344,
+          "sha256": "f2f739e0b4fc5ec760e7f40f7fa7a0fce7b4f5cd37a67f78b6213b9c433b1a41"
+        },
+        {
+          "file": "睡觉-起来.webm",
+          "bytes": 1566783,
+          "sha256": "e189390b502b79f76e88ec7c67aa70bfe3af0e4ca9cc3a3524edec8dc581fba2"
+        },
+        {
+          "file": "碎碎念-发呆碎碎念.webm",
+          "bytes": 1923376,
+          "sha256": "8ccafa57143a438db69925cc3a9264131485917714829f6c45bc6e483079857e"
+        },
+        {
+          "file": "碎碎念-对屏碎碎念.webm",
+          "bytes": 934919,
+          "sha256": "8a636b70258d12d38a9424a6bac4458a3e292ff36a1d24672ad61b4f6216bbbe"
+        },
+        {
+          "file": "碎碎念-擦桌碎碎念.webm",
+          "bytes": 2922148,
+          "sha256": "8fc32b037cf716ff8d9fe2eb636bf4f3a7a745590c93db79633a27086feac510"
+        },
+        {
+          "file": "穿针乞巧.webm",
+          "bytes": 1572870,
+          "sha256": "25c702f240682a3bac4beaf6759b71f6f00a36d55fb50bd5304823b47b6023e0"
+        },
+        {
+          "file": "舞狮头.webm",
+          "bytes": 4964414,
+          "sha256": "c96042fb9fe6172623d0dc04ae60ffbfc81c2a9897ec2d2b5184cf923afb9dbc"
+        },
+        {
+          "file": "荡秋千.webm",
+          "bytes": 4441114,
+          "sha256": "c0ff06ef089827988cbc2c152b6f5f1b080c7fe6f012d3cffbdb18a2e0e1347e"
+        },
+        {
+          "file": "萌化小幽灵.webm",
+          "bytes": 1908435,
+          "sha256": "ee0bf3cbdd4ce176be30e711bf5fbe6d184a603c622e41efdc69ee0fa152b69c"
+        },
+        {
+          "file": "蓝鲸现世.webm",
+          "bytes": 3090397,
+          "sha256": "4857bdef8f10babfbf2217ece5c96a747d9fb2055db06b8874536877f6b026d3"
+        },
+        {
+          "file": "蝴蝶蜜蜂环绕头顶开花.webm",
+          "bytes": 5017935,
+          "sha256": "a5a8ac370ce25f74061050e2d32061389814bd6cf5459330c7f87512b6e82462"
+        },
+        {
+          "file": "螃蟹走路.webm",
+          "bytes": 3887522,
+          "sha256": "ce4f751490626d5d83d7c4eb2d4588564fe1b12949de9a2bde2fac4e498e0e56"
+        },
+        {
+          "file": "被吓一跳.webm",
+          "bytes": 3417022,
+          "sha256": "73a13c9a5359292f803ec85a8e92509c8ec83bc76c616bfd8a4c5b6a74162e65"
+        },
+        {
+          "file": "被落叶淹没.webm",
+          "bytes": 5230065,
+          "sha256": "a30d1e2e0a8b12f3f7c34b0085b2e0feacc9fc2b68baeca3881d8792a813a368"
+        },
+        {
+          "file": "被鼠标拖拽悬空反馈.webm",
+          "bytes": 4547573,
+          "sha256": "e821978b0afad9415032f5f4ce7d092566b104f03767884321d71505f98aefff"
+        },
+        {
+          "file": "装点圣诞树.webm",
+          "bytes": 3994404,
+          "sha256": "e403880956b1f5feb8142be5be92a92525e43717e1f72e5fcae41191e26e74a3"
+        },
+        {
+          "file": "讨糖南瓜灯.webm",
+          "bytes": 4146008,
+          "sha256": "cc0aa21b2f04f8cc396277c1d6b0a5224c0a7fc79bfeb04837e917e5f457c471"
+        },
+        {
+          "file": "超大伸懒腰.webm",
+          "bytes": 3507709,
+          "sha256": "d60892dde2acd28a54de5224f0129a4342eadd93f01eca29db447aa4ac152723"
+        },
+        {
+          "file": "踢毽子.webm",
+          "bytes": 2632862,
+          "sha256": "bd0f650eb85d8d564c008a9c1e872f434db49209c6a4f51f3d93e5598e1a698b"
+        },
+        {
+          "file": "轻快摇摆舞.webm",
+          "bytes": 3292921,
+          "sha256": "1b60b1e3932c4d3f04ab57824f5a7dd3bcf8ff6f0e0e0967b51b5de7c416da36"
+        },
+        {
+          "file": "轻快记录.webm",
+          "bytes": 2033086,
+          "sha256": "9aa386a4890a957fcdfa05d950daffca4b2d9d73601dcd50ef5b5a4e227c40fa"
+        },
+        {
+          "file": "骑木马.webm",
+          "bytes": 4009749,
+          "sha256": "424bafe3cef3639074fc370ddb126df8e16f01556727558b93adde081acf98c4"
+        },
+        {
+          "file": "鲸鱼吐泡泡特效.webm",
+          "bytes": 2241741,
+          "sha256": "e168a3031659b6f1306a9ce1a45e69ee01131f0773b6cfa24a65c999b331d951"
+        },
+        {
+          "file": "害怕.webm",
+          "bytes": 1842514,
+          "sha256": "e7dbbc602d51764dbff8c240f67ac28f9d62b9fe2a6def61e282c1639800fbf2"
+        },
+        {
+          "file": "害羞.webm",
+          "bytes": 1520954,
+          "sha256": "2b56aaf2e0c7c895e719d36734b9170721fe6e5b8d077dc7a30ef72e2f8d6071"
+        },
+        {
+          "file": "难过（眼睛饱含泪水）.webm",
+          "bytes": 1280259,
+          "sha256": "d609faca2faa0efa674278eaac27a28fb3312936e625e62a5d625539b8ce902b"
+        },
+        {
+          "file": "想去玩（期待星星眼）.webm",
+          "bytes": 1795451,
+          "sha256": "6c603371032a759fc2ff8c65c5ada4d5784bac9dc1b4e4c3902b10b84355a446"
+        },
+        {
+          "file": "大哭.webm",
+          "bytes": 1535017,
+          "sha256": "e2a46fc93f56c2aeaed3cf8c25b2d1399bf886e475bf324820e9d00a805ca1c4"
+        },
+        {
+          "file": "开心蹦跳.webm",
+          "bytes": 2522904,
+          "sha256": "77c76795dc51146ad6a283421ba007df71c08e1949fb1ec777af452b7b366eb7"
+        }
+      ],
+      "originalAndAddedMappingsPreserved": true,
+      "selectionPersistence": true,
+      "unlistedAssetRejected": true,
+      "releaseHashesMatched": true
+    },
+    {
+      "class": "mage",
+      "status": "passed",
+      "profileRemoved": true,
+      "copied": [
+        {
+          "file": "三球抛接.webm",
+          "bytes": 1670296,
+          "sha256": "fb196cbe8ee912df0cafab6d7862b905219e0c98ffc9bd1f5173442d5ae6119b"
+        },
+        {
+          "file": "下五子棋.webm",
+          "bytes": 2006090,
+          "sha256": "be56174c28ea487365c071b71354816c77ca8a40d35a33d0e57ddc3a4f3da833"
+        },
+        {
+          "file": "东张西望.webm",
+          "bytes": 2313173,
+          "sha256": "90a42b3e7a1f70ebfcbabe7ed5469cae9a2697afb6fd33da7148cce8c04bd674"
+        },
+        {
+          "file": "中秋赏月吃月饼.webm",
+          "bytes": 2849197,
+          "sha256": "f31c2100bbd7082eb2bdd0b1a7f182272b7c76613cc97d5e16c70d7afebaaee3"
+        },
+        {
+          "file": "优雅女仆舞.webm",
+          "bytes": 4208331,
+          "sha256": "3a84af14b558a0fa1dfeb7a66b9308113a62a31a9fdc8e1f2efd05c6490a0deb"
+        },
+        {
+          "file": "余额-分文不剩.webm",
+          "bytes": 2398771,
+          "sha256": "79071899fb47a6605fcd22b28a3ccd4e5c64d59c63abe44849caab2bbc3c38e9"
+        },
+        {
+          "file": "余额-数金皱眉.webm",
+          "bytes": 2622266,
+          "sha256": "00c39c37ea7958dc91f2841a178749d12068082eae23b1e0609df69f73170197"
+        },
+        {
+          "file": "余额-袋空如洗.webm",
+          "bytes": 2511355,
+          "sha256": "a90bb27039e1980cd516ba34327d791546ba3896ad9079c8169af7408fd01b23"
+        },
+        {
+          "file": "余额-金袋叮当.webm",
+          "bytes": 1834699,
+          "sha256": "b0d153a6f1f81ec55553cb831fff53b1ee4070966d231e703ec34b43bd62ba92"
+        },
+        {
+          "file": "余额-钱袋如常.webm",
+          "bytes": 1674477,
+          "sha256": "8ed95208fff564f68a2fa14a2f4c50c8fa2e41a778250ef4c4017bfeaafe66d2"
+        },
+        {
+          "file": "余额-钱袋满溢.webm",
+          "bytes": 2793457,
+          "sha256": "8e771669504b47f81019064657ac8f5fe3c1d5cef3d7a344660c841c7971bc30"
+        },
+        {
+          "file": "侧身急躁跑.webm",
+          "bytes": 4723939,
+          "sha256": "03c463dd3ad00e9b6c7b9f3c3e4753cd7321ee340a430b0a1cf07ad17d56c3c4"
+        },
+        {
+          "file": "偷吃零食被抓住.webm",
+          "bytes": 2365588,
+          "sha256": "ff87cbae24222852fe4cd560d05e9e6073f0cf2da0171673e4d71a8a839d72d9"
+        },
+        {
+          "file": "写代码.webm",
+          "bytes": 2310868,
+          "sha256": "16f2ed3d01c745b84b76718261cdb5d32e2efd845310840692cfb77d8497c875"
+        },
+        {
+          "file": "写福字.webm",
+          "bytes": 2942803,
+          "sha256": "e33cc89e020edbe2ad8ddeaa91b3cde3e3d4cb24e84cad8289f62289e65cad54"
+        },
+        {
+          "file": "凭空生花.webm",
+          "bytes": 2557708,
+          "sha256": "66917b04725d731ce2c4ee6d1c56d94dfe04a0a5f905b34525e8e98694689413"
+        },
+        {
+          "file": "动物环绕.webm",
+          "bytes": 4851121,
+          "sha256": "29a6e3ddda8e3714a84f542e9a97d77132ab3f58a3979ea8000e941aa5279e13"
+        },
+        {
+          "file": "原地专心玩魔方.webm",
+          "bytes": 2153538,
+          "sha256": "788971be13df4a880cd46c2fab2601c8d06ebc640461244d66e3b62f8038685f"
+        },
+        {
+          "file": "原地小憩沉眠.webm",
+          "bytes": 3593675,
+          "sha256": "9abee70ac73dd6dab262332d48fb2e253cbc00a989d2934133d99c2de94adcf8"
+        },
+        {
+          "file": "原地左转奔跑.webm",
+          "bytes": 3607643,
+          "sha256": "955385ca2d5ccaeaab263d6cd66bc190246f4116b5b11a0dd53da704ac325e19"
+        },
+        {
+          "file": "原地敲击桌面互动.webm",
+          "bytes": 2498090,
+          "sha256": "a97cc8aefa746ca6dc4289d861a21b38d28513b01b94a14685591d284cda58c0"
+        },
+        {
+          "file": "原地漂浮踏步.webm",
+          "bytes": 4455702,
+          "sha256": "b1a242568580e1222a80987370e2e7f2cb1251ffd7414ece95ea39b68d676cd7"
+        },
+        {
+          "file": "原地跳跃抓碎头顶物品.webm",
+          "bytes": 3674529,
+          "sha256": "e63d141162635309aeb359018751f42fca6193886fe37f88162753f378f60574"
+        },
+        {
+          "file": "原地蹲下玩玩具汽车.webm",
+          "bytes": 4273961,
+          "sha256": "b37470f4885e130c7529463fd79fdeefb1d93f90a7a8baeac73eee34e6fef436"
+        },
+        {
+          "file": "原地重力下蹲压缩.webm",
+          "bytes": 2757656,
+          "sha256": "dcd09fb10ffcc5b39197fb9638150137874b2bdfb910e3d484ae2b80adf63378"
+        },
+        {
+          "file": "变鸽子.webm",
+          "bytes": 2286900,
+          "sha256": "bf14e3ca8dccdd6d54999d0e3e63f8c09a61fafa63b3f9df8c4f660b578c9f93"
+        },
+        {
+          "file": "可爱宅舞.webm",
+          "bytes": 3240301,
+          "sha256": "d128a22c68be7c87e0021d0342394ac2c65d08223f5dfb42dde70f034d7e9a6a"
+        },
+        {
+          "file": "吃Token.webm",
+          "bytes": 2109872,
+          "sha256": "5e8b9a56ccb8b6959305ff28bef07d2ab74072e44201f5e7a2b102ece936e88a"
+        },
+        {
+          "file": "吃冰淇淋融化.webm",
+          "bytes": 2554696,
+          "sha256": "c70e99ac50e4c2b8a4148d3324ee28ad943eeb4c7a5521a1024bc7267ae0f0a2"
+        },
+        {
+          "file": "吃午餐.webm",
+          "bytes": 1934774,
+          "sha256": "6328c3a171b5814863d8459c45b59c44a15373e7d4bcb617f08456efe5d825e7"
+        },
+        {
+          "file": "吃大闸蟹.webm",
+          "bytes": 2399484,
+          "sha256": "48b6850ca9cf3ac7f2b92e9251daa1721788d7d82a0857d692231abc5ebe6f82"
+        },
+        {
+          "file": "吃年糕.webm",
+          "bytes": 1900489,
+          "sha256": "740ff51a63c16b3860652ddb127f27830770c2f92ee75157c7a5e021488faec0"
+        },
+        {
+          "file": "吃早餐.webm",
+          "bytes": 1428707,
+          "sha256": "098ee66e86412c5f723f26a25f94eeab64ee9ca03d4370017f0398b4ef6b8356"
+        },
+        {
+          "file": "吃晚餐.webm",
+          "bytes": 1338315,
+          "sha256": "396530dd64fc1796c16d84ce74a955364fc5071cac9fb9ad4461068358f19828"
+        },
+        {
+          "file": "吃汤圆.webm",
+          "bytes": 1381744,
+          "sha256": "d7be3f0feeaf12041477424553178402931779704be13958b9dfcda9a8a2a467"
+        },
+        {
+          "file": "吃白饭.webm",
+          "bytes": 1290516,
+          "sha256": "d9cf1c631621ca59e4eef653493e6f51d53e9718aa840aedb20b1c4892d63b4f"
+        },
+        {
+          "file": "吃粽子.webm",
+          "bytes": 1389167,
+          "sha256": "e0ad85ec1150f6ac9b04c6578057293142f5be64fe2c800ca7c7555c288e325b"
+        },
+        {
+          "file": "吃糖葫芦.webm",
+          "bytes": 1330921,
+          "sha256": "228d984fa755956843e200d625df67937688b3fcd48ffc9be7647ae9a3eccd57"
+        },
+        {
+          "file": "吃腊八粥.webm",
+          "bytes": 1369872,
+          "sha256": "f782382d58236a4ba6c22220c4e0707c20b212578816824269437ef4644b82ef"
+        },
+        {
+          "file": "吃西瓜.webm",
+          "bytes": 1314809,
+          "sha256": "3f7c8cf3c8c9de464d3d3c3c4ac1a1a4f283c327145e81a95c260ff16eda45de"
+        },
+        {
+          "file": "吃重阳糕.webm",
+          "bytes": 1607137,
+          "sha256": "91f4c865eb16405bfc95c53739da63670c6daa60e6b714897a40213d05683d6c"
+        },
+        {
+          "file": "吃长寿面.webm",
+          "bytes": 1636416,
+          "sha256": "63a4ba52eef21ac40dcc3c79eb0a9f7d50e1ff8fa7118fd0cb0d39d6b27aab8f"
+        },
+        {
+          "file": "吃青团.webm",
+          "bytes": 1571692,
+          "sha256": "e50aacbb64e613230493caa5ed4e72e1afa6a978f9ccf40fc67719d77db02f5c"
+        },
+        {
+          "file": "吃饭·碗饭.webm",
+          "bytes": 1477241,
+          "sha256": "bac794e207d6c82618e460d80056855be05c40caeb5e5526d0aac8488560cbc3"
+        },
+        {
+          "file": "吃饭团.webm",
+          "bytes": 1537353,
+          "sha256": "7773f3f13820da9a5ec627f35dfc9acc0f26f28cdb1d5be125721b1326123462"
+        },
+        {
+          "file": "吃饺子.webm",
+          "bytes": 1499049,
+          "sha256": "7ea92a08ef48aa5ec3635c3acd01fe05414ee6770e36512f75522c0a12157561"
+        },
+        {
+          "file": "吹气球.webm",
+          "bytes": 1571977,
+          "sha256": "e9368e2ba770f5ffddaaa1c54562279e743ee203b4866d3fb81010a9aa5c9e90"
+        },
+        {
+          "file": "吹笛子.webm",
+          "bytes": 1404573,
+          "sha256": "edf2037f999f6c5f809d9010b29dcd7fbcfd2a7a6526cf8e5146c3848064f416"
+        },
+        {
+          "file": "哈欠连天.webm",
+          "bytes": 1654531,
+          "sha256": "5807182e386ec17bb8a62ada72d028bdd31d14cd9920d4e70f1249ae5dc04504"
+        },
+        {
+          "file": "堆雪人.webm",
+          "bytes": 3864651,
+          "sha256": "b9bf2e0a89d5ac82cd6a9f5205d6d43e42d86a7e8b21c243189d271f5bd04715"
+        },
+        {
+          "file": "大口吃零食.webm",
+          "bytes": 1786995,
+          "sha256": "e7be418a3c321867faa11487a0e0a3bf1bcaf9202e99ac86874d07a1fa7f1684"
+        },
+        {
+          "file": "女仆屈膝礼仪.webm",
+          "bytes": 2277070,
+          "sha256": "18e0ec7c32dc3f5f4f8b24550321e06df8fc9f049f78db01ee525afa70c8c403"
+        },
+        {
+          "file": "小幅度原地360度旋转展示.webm",
+          "bytes": 3588521,
+          "sha256": "64fb7fb4a32f48f9277bfb48b76d7168e3ac4a79b8b39433140749f3bdceca65"
+        },
+        {
+          "file": "小提琴演奏.webm",
+          "bytes": 2300885,
+          "sha256": "5ea57d8c4966b995626535f5248b0ac6ffee0d3f3356256295503f08613f0b18"
+        },
+        {
+          "file": "工作状态-原地踱步张望.webm",
+          "bytes": 3068224,
+          "sha256": "a94108f3c32232b42844dd0945cde94ff12dec3313f47928365a151517c6f520"
+        },
+        {
+          "file": "工作状态-垂头叹气冒汗.webm",
+          "bytes": 2547880,
+          "sha256": "3bbeccd95799afc05d2e5316141b396b69c358ac7e9f4029bd60cbb68bf44989"
+        },
+        {
+          "file": "工作状态-忙碌点按.webm",
+          "bytes": 1971817,
+          "sha256": "6d2ba697faa19d55bde4333e384edbd14777482d1a00c55f29adb4d4bb2b97ab"
+        },
+        {
+          "file": "工作状态-思考冒泡.webm",
+          "bytes": 2542643,
+          "sha256": "894e85d90efc44227e92b92cd25423a21bf2ef29b92f6283228f743dda121b38"
+        },
+        {
+          "file": "工作状态-清点归档.webm",
+          "bytes": 2167729,
+          "sha256": "844ff97e7ea8b48ba225a7ef4b40a164241e79baaac336fbc9c40ddc49083ca5"
+        },
+        {
+          "file": "工作状态-雀跃庆祝.webm",
+          "bytes": 1825400,
+          "sha256": "926cf2f300c553abccc2491dfaebd3b8ee271497f59ea18ceea086348fc14eb6"
+        },
+        {
+          "file": "开心小跑.webm",
+          "bytes": 3410472,
+          "sha256": "f9d7627fb4bac578920fdbd881242f953b9a4e6aff5cb44cf8ffc7fd7c6ebd06"
+        },
+        {
+          "file": "待机呼吸休闲.webm",
+          "bytes": 414890,
+          "sha256": "ab1f6b709974e9316fa7ed298c5d3e82522074a2ac959b45b48292b110b0adbd"
+        },
+        {
+          "file": "悠闲哼歌.webm",
+          "bytes": 2215184,
+          "sha256": "098aba1ec7aefc6b943e1251ef607a1ac291ec305bcdce01e3ef8dafd3cfa047"
+        },
+        {
+          "file": "扑克魔术.webm",
+          "bytes": 2490728,
+          "sha256": "4b016263d82620922f6e813102647e56309e5ee5b902ccb607e60cee92300c38"
+        },
+        {
+          "file": "打瞌睡被惊醒.webm",
+          "bytes": 3291251,
+          "sha256": "37177e7a39594d9b1d17f430933ffa41e27380ede36f6634f7e981d01f9ab8c3"
+        },
+        {
+          "file": "抽陀螺.webm",
+          "bytes": 3561117,
+          "sha256": "6e0391cd9323b67a9f4a98033975c1500082b678c75b2a096c8478753749f67e"
+        },
+        {
+          "file": "拆礼物.webm",
+          "bytes": 2045718,
+          "sha256": "69999d6b94599c76542c1bdab45878520954fd305d9245b932dda3f5be7a6ea9"
+        },
+        {
+          "file": "插茱萸赏菊.webm",
+          "bytes": 2648636,
+          "sha256": "614451ca74fdaf57fb9ec0701a9ac00ce0f069fae55b250877ecd201dcbeacee"
+        },
+        {
+          "file": "摇扇纳凉.webm",
+          "bytes": 2647198,
+          "sha256": "856e326b34b2a52d5a3a0787e2c1a008f6d6f4fc996984d210f671d7b9aeef9a"
+        },
+        {
+          "file": "撸猫.webm",
+          "bytes": 2583574,
+          "sha256": "9ba253c032de2febb41ead738bd7f6121b8a58fa486c0eb2c4f3070063ebbe63"
+        },
+        {
+          "file": "收红包.webm",
+          "bytes": 2314259,
+          "sha256": "6c45b20819272005fcc2a2fc96e8f703af8f92e86b567773fc13787d0f0ac7cd"
+        },
+        {
+          "file": "放孔明灯.webm",
+          "bytes": 3979366,
+          "sha256": "8a6c8021b07562dee1336dabd32692e45ab76384068998c467e05b87af6c82cf"
+        },
+        {
+          "file": "放河灯.webm",
+          "bytes": 3473121,
+          "sha256": "ed000d72c904ffd9d4041e588e124d6ff997aabc6b46a44a62e929509e4e2ea6"
+        },
+        {
+          "file": "放烟花.webm",
+          "bytes": 4048649,
+          "sha256": "f7731174feb464e116595425bdd4bc8a817d380a7a6738d40da6b4765c38ae22"
+        },
+        {
+          "file": "放风筝.webm",
+          "bytes": 4388653,
+          "sha256": "81ce166d65fe45813f3988d1d7835cddb159c96e65705cf81bcc9e3899ff8c30"
+        },
+        {
+          "file": "整体换装试色.webm",
+          "bytes": 2832416,
+          "sha256": "0ff890bf0ef2df1f5ac3e91e671fb842bf4a4215fb0ef4797cda4d64545d7205"
+        },
+        {
+          "file": "是啊，吃什么.webm",
+          "bytes": 4732120,
+          "sha256": "ed58baad96edc3d7214a86c9411c37ea8e4310883afa062c6e4f7a2c7721caf9"
+        },
+        {
+          "file": "晨间刷牙.webm",
+          "bytes": 2968139,
+          "sha256": "feffd22da5f59ac62d457fc7a1d0570bc3f19f212ff20719c5062bc01ae87c8c"
+        },
+        {
+          "file": "期待开饭.webm",
+          "bytes": 3147274,
+          "sha256": "576e2c120c835dfe2757ec6bb9937a325777b544c2e30fd2388279d097b9b2fe"
+        },
+        {
+          "file": "涮火锅.webm",
+          "bytes": 3308174,
+          "sha256": "731a56d0ba47f851231697c91e52faf26ed13c90217fa392779e26dfd3c29e45"
+        },
+        {
+          "file": "深度思考碎碎念.webm",
+          "bytes": 3736974,
+          "sha256": "686c4af72eeeadd87893c887494ca92f38e1ad9271605908f3cd4018bce41ca4"
+        },
+        {
+          "file": "点击回应-傲娇生气.webm",
+          "bytes": 3290527,
+          "sha256": "6c3ec9ce806993878929b485212b51d6e57a197f2c284031b030da9f28001bb5"
+        },
+        {
+          "file": "点击回应-元气挥手.webm",
+          "bytes": 2955035,
+          "sha256": "f7d2e9f17faef518b4ce4e1c05889432c78922f356a1e4282c370e5943cce9c5"
+        },
+        {
+          "file": "点击回应-害羞惊讶.webm",
+          "bytes": 2713740,
+          "sha256": "f9a3ba440fcbae0db8b95a6e294bdd7851f88163ef9d5abbe8d7e4dcc383e502"
+        },
+        {
+          "file": "点击回应-开心跃动.webm",
+          "bytes": 3817442,
+          "sha256": "9a107eb5d634a3d0f4b535cd85fc21b6686060fb47f87ead85b5a6b7c286b4c1"
+        },
+        {
+          "file": "点击回应-挠痒咯咯笑.webm",
+          "bytes": 3492652,
+          "sha256": "ddd8c3158fc710ac8291d51d6e99b281c0f9c7fb0a092e55354d57df50dc2109"
+        },
+        {
+          "file": "照镜子.webm",
+          "bytes": 3111047,
+          "sha256": "76b0355e96440d324cffcf7f17d53b8953d2e20f71064c226612a38cd12ff006"
+        },
+        {
+          "file": "玩水枪.webm",
+          "bytes": 3269076,
+          "sha256": "3146caf0822ed3dcf801be5b93bb11f615c8b015a75cae66b6a134bfe5f85b13"
+        },
+        {
+          "file": "玩游戏气急败坏.webm",
+          "bytes": 3800780,
+          "sha256": "d673b868ab9fc210afe4bfb44080446d4bdd839dfb9a08322e4bfbad8ac19e0a"
+        },
+        {
+          "file": "用鲸鱼尾巴拍打地面.webm",
+          "bytes": 3183881,
+          "sha256": "51e6da2d0feff55ea5080b89d166b1f82ce03aa61307fd82e15cbe59c4e995f1"
+        },
+        {
+          "file": "睡觉-开始.webm",
+          "bytes": 1367368,
+          "sha256": "6c6cf92d73d0fd2099944b1c35f2bb8dbff77ada0bad03e884cb27a2bc359be7"
+        },
+        {
+          "file": "睡觉-循环.webm",
+          "bytes": 249607,
+          "sha256": "cbb9a84ee770ba621594bc1fd6bcb0d4ab0884819eb73c8a432f8fae38809fe6"
+        },
+        {
+          "file": "睡觉-起来.webm",
+          "bytes": 1716419,
+          "sha256": "15cdbe82aa87668289e94764566664c9df1e0399c269e0226ab815e02b87512f"
+        },
+        {
+          "file": "碎碎念-发呆碎碎念.webm",
+          "bytes": 1994086,
+          "sha256": "341bfa867435db6ac6a051eee77a90c1db5c843a063bebb495bab8fdc9ef755c"
+        },
+        {
+          "file": "碎碎念-对屏碎碎念.webm",
+          "bytes": 956081,
+          "sha256": "f6f9aa25da82fa02d84dbc4f5da1ff7f28362f40d2429bb3b4bed25247093923"
+        },
+        {
+          "file": "碎碎念-擦桌碎碎念.webm",
+          "bytes": 3609000,
+          "sha256": "d318468f09a4175c0b027405a1e0427bc11c6208e58f80e32876a668fcf832af"
+        },
+        {
+          "file": "穿针乞巧.webm",
+          "bytes": 2018112,
+          "sha256": "9be97f18e4e771af334ca44b418be6b325d5ba016fa677d05f8b6c5d09ffaf0f"
+        },
+        {
+          "file": "舞狮头.webm",
+          "bytes": 4977317,
+          "sha256": "f1ac64dc1a84a743d413846ad7eec9cce478f42782a0e8863cf6fa4c6e9cf3c2"
+        },
+        {
+          "file": "荡秋千.webm",
+          "bytes": 4351036,
+          "sha256": "2d9071da5335becd177cb655fb9f1cb72501d17f8027f8f19db19c1120e47047"
+        },
+        {
+          "file": "萌化小幽灵.webm",
+          "bytes": 2414478,
+          "sha256": "2e64a297a4f6d367f56091c287894ba56d1149314a747dad28b49d4ed690f5a7"
+        },
+        {
+          "file": "蓝鲸现世.webm",
+          "bytes": 2759936,
+          "sha256": "1af757b856c2352d93e8690a20abd4377f3920bc0907da902ba91914550c62d3"
+        },
+        {
+          "file": "蝴蝶蜜蜂环绕头顶开花.webm",
+          "bytes": 4431694,
+          "sha256": "9ea84fe4325534110a1c5dedacd981f79afbd7981433621491ace42b9cd7de3a"
+        },
+        {
+          "file": "螃蟹走路.webm",
+          "bytes": 3355792,
+          "sha256": "18684c398732086dbb1bd79ef32d4d395318cb93df4c2c08a09a5ecdaaac8365"
+        },
+        {
+          "file": "被吓一跳.webm",
+          "bytes": 4204450,
+          "sha256": "c32f731a56942ee348e2eec10439e648dd7d472b072760f76fccf7c99f45888f"
+        },
+        {
+          "file": "被落叶淹没.webm",
+          "bytes": 4789116,
+          "sha256": "b2c8207e78372aaec01be1915ed8105da9f6451d6da982028a9ed358071dcf40"
+        },
+        {
+          "file": "被鼠标拖拽悬空反馈.webm",
+          "bytes": 4039007,
+          "sha256": "8bd8ee5983f1f6d2682db351ad1c6791e689ca95da477f5f74c7dab2d6d12a26"
+        },
+        {
+          "file": "装点圣诞树.webm",
+          "bytes": 3253119,
+          "sha256": "e5d62c9c8190bbaed674034c1b79e93f756922bfa29684f5e0d7b53f51c84ed1"
+        },
+        {
+          "file": "讨糖南瓜灯.webm",
+          "bytes": 3309705,
+          "sha256": "5d6309076c16bf18ed64bb1fe7452f22a700d7f04b219377173dacbdf4460ae5"
+        },
+        {
+          "file": "超大伸懒腰.webm",
+          "bytes": 4080173,
+          "sha256": "d6eae947b8331ce802e6d8d05977a547322e456b22cdc930eb320009257494bd"
+        },
+        {
+          "file": "踢毽子.webm",
+          "bytes": 3527804,
+          "sha256": "46c85cf08b9b5342531c98a1a30a099792d14c498b2be49090b2c8f75e4031ef"
+        },
+        {
+          "file": "轻快摇摆舞.webm",
+          "bytes": 3782478,
+          "sha256": "b2628c031696b5d90969bf6fc43f9d9ed2c41ecb4397e906353433ba0e428c08"
+        },
+        {
+          "file": "轻快记录.webm",
+          "bytes": 3018958,
+          "sha256": "097cf71dbd0098f2effdd3e33208a6115910a2502e3fc9b7f49853bfb881422e"
+        },
+        {
+          "file": "骑木马.webm",
+          "bytes": 4147159,
+          "sha256": "11fb53b0028ec7b096b4d710dc2b5c36afd6e49c2c16c93cafe3b6af8dc5258e"
+        },
+        {
+          "file": "鲸鱼吐泡泡特效.webm",
+          "bytes": 3487661,
+          "sha256": "5a8c2983fa3ed85026066336ce4c34e87899bf0df78f6358fb11e13d5e488086"
+        },
+        {
+          "file": "害怕.webm",
+          "bytes": 1691754,
+          "sha256": "f7cb95a24797d6a2dba78fed869370fe3fdf1cdb78771eb72f2e7287fee3b86a"
+        },
+        {
+          "file": "害羞.webm",
+          "bytes": 1494312,
+          "sha256": "fb83536fecfedafc0fae7d1f2ddcb20ed6606b3cb332b406a9cac4ca5cccf6bd"
+        },
+        {
+          "file": "难过（眼睛饱含泪水）.webm",
+          "bytes": 1397786,
+          "sha256": "177fce0a57393f1fb855845db92d97b230d9f13a4f9ddacf470f376b64625daa"
+        },
+        {
+          "file": "想去玩（期待星星眼）.webm",
+          "bytes": 2063838,
+          "sha256": "e9d6522eb47f6dee8311c56f8ae39ca998f36df086ecea93a13414bd2a71a2db"
+        },
+        {
+          "file": "大哭.webm",
+          "bytes": 1783719,
+          "sha256": "3a408dec378e90267f37fe9dc350ccc33cf57977979dbb8da34747abd03174ea"
+        },
+        {
+          "file": "开心蹦跳.webm",
+          "bytes": 2657690,
+          "sha256": "d8b82da2e2b9e818a5f77a64789b9067e53cfd07b28082f01adfaf17dbc8661c"
+        }
+      ],
+      "originalAndAddedMappingsPreserved": true,
+      "selectionPersistence": true,
+      "unlistedAssetRejected": true,
+      "releaseHashesMatched": true
+    },
+    {
+      "class": "rogue",
+      "status": "passed",
+      "profileRemoved": true,
+      "copied": [
+        {
+          "file": "三球抛接.webm",
+          "bytes": 2176692,
+          "sha256": "c6c6accf7fc71c1ffc1e78aff410d6a5f6b3693f9d6ad0a9ed10aae7ef5ee6a1"
+        },
+        {
+          "file": "下五子棋.webm",
+          "bytes": 1874606,
+          "sha256": "191d2ef2263230234526cb3313522e2f63a8eb2efd76d2625323222f5876af42"
+        },
+        {
+          "file": "东张西望.webm",
+          "bytes": 1799243,
+          "sha256": "a1d6d7c2272476630dbc8e16e52aa4928dc99defb7f6cf210d47394b99eceb0e"
+        },
+        {
+          "file": "中秋赏月吃月饼.webm",
+          "bytes": 2166385,
+          "sha256": "fe2e7f73560ee754b7004d925c2768af7c749358793f6687b46e45d11bc7600d"
+        },
+        {
+          "file": "优雅女仆舞.webm",
+          "bytes": 3177944,
+          "sha256": "a71a8aa482ad623715ce1c909f34b8e1a655e8010cb5c415509a6d9c4b309aa9"
+        },
+        {
+          "file": "余额-分文不剩.webm",
+          "bytes": 1911718,
+          "sha256": "f4487d99068b0fc62de7360477d023fab792581813e0c6f3a2e74a25e37e0d41"
+        },
+        {
+          "file": "余额-数金皱眉.webm",
+          "bytes": 2283180,
+          "sha256": "72361ca79329a503ede747729ae4df6fc374bf47c5e58c6830733c7c7089fa2e"
+        },
+        {
+          "file": "余额-袋空如洗.webm",
+          "bytes": 2269873,
+          "sha256": "a519faebfa04bc04bfd8a26505e8ea105c3cf950be15585ad6c9930230547ab3"
+        },
+        {
+          "file": "余额-金袋叮当.webm",
+          "bytes": 1579404,
+          "sha256": "4126e2c998e018faf5689072c6a65c354c3dc80ea61120e1d093af7d4389489e"
+        },
+        {
+          "file": "余额-钱袋如常.webm",
+          "bytes": 1439372,
+          "sha256": "77467fb4c7d79a5ca897ea645799ea9821eff3d623f916dc1e7a64edbd516b16"
+        },
+        {
+          "file": "余额-钱袋满溢.webm",
+          "bytes": 2393513,
+          "sha256": "7d2624ae4033b098f9969a5fd92a026bac654e2077538d681cee4eded217dbd8"
+        },
+        {
+          "file": "侧身急躁跑.webm",
+          "bytes": 4082939,
+          "sha256": "bc74949e271665231edb29b70523e21677df23ebcef9b54768bd350322407c8f"
+        },
+        {
+          "file": "偷吃零食被抓住.webm",
+          "bytes": 2057669,
+          "sha256": "bbc38b5883d09196ff8323d3ca9e7cfdc68ab25fb614dc904e973be0e74951c8"
+        },
+        {
+          "file": "写代码.webm",
+          "bytes": 1785133,
+          "sha256": "b1bd514c274c79c7145a6dde32969a5c91b1bb8ccf38d181c86eb95e69cd02cd"
+        },
+        {
+          "file": "写福字.webm",
+          "bytes": 2927479,
+          "sha256": "bc9b5942ad581de44af3c8d6aff898dfca2ffa22c49858b1da1e139e03257f67"
+        },
+        {
+          "file": "凭空生花.webm",
+          "bytes": 2027117,
+          "sha256": "234abe5f65e6abec6de6ba16067a61073eba15a93c8347e5142ea766f628888e"
+        },
+        {
+          "file": "动物环绕.webm",
+          "bytes": 3855530,
+          "sha256": "d1f41778b00777921452b85e50b3ebe100c7173a9a134bde10243e163bf8bb4c"
+        },
+        {
+          "file": "原地专心玩魔方.webm",
+          "bytes": 1595430,
+          "sha256": "dec2384272bfaeae2b2318df75844320172bdd02976a9908091717ced3f6c174"
+        },
+        {
+          "file": "原地小憩沉眠.webm",
+          "bytes": 2725663,
+          "sha256": "391e0c24bed94f59966dd5e302cbfca6520eeec5d4da1df961e28b61f6b0f294"
+        },
+        {
+          "file": "原地左转奔跑.webm",
+          "bytes": 3157870,
+          "sha256": "04c9956cda2e7282034b3577f5a928956642b9a4d3b01f87ac17240feb96e099"
+        },
+        {
+          "file": "原地敲击桌面互动.webm",
+          "bytes": 1628736,
+          "sha256": "478336e1abc99be09bdf7ee59127597120b22d47ec553533c09b7a59e10ccbf4"
+        },
+        {
+          "file": "原地漂浮踏步.webm",
+          "bytes": 2701007,
+          "sha256": "14afefd3dfe0d3b28a7dba4c03eaa52ab19be633ca2e8e14fb2da57db94dac04"
+        },
+        {
+          "file": "原地跳跃抓碎头顶物品.webm",
+          "bytes": 2757586,
+          "sha256": "ed7fef1cd5cef23470a6b30aa1605b6c08ce9d80c21dd290f88451076cc60903"
+        },
+        {
+          "file": "原地蹲下玩玩具汽车.webm",
+          "bytes": 3124741,
+          "sha256": "e20975330c4352ecce70483abd57dbc0f829693441c73d23839f28d2d6b67255"
+        },
+        {
+          "file": "原地重力下蹲压缩.webm",
+          "bytes": 2473642,
+          "sha256": "7654b28eae2512ce5f22f1e5c3764ebcda66f233f49f4192487364774081c7a7"
+        },
+        {
+          "file": "变鸽子.webm",
+          "bytes": 1858292,
+          "sha256": "88fd580566cb9c486d9de80579230747e9e166159282a56c073e637aebc6cbbe"
+        },
+        {
+          "file": "可爱宅舞.webm",
+          "bytes": 2527938,
+          "sha256": "368be62aceb60c241da189d297f8a404b3b8f577714f3ef7d48eea4e1069195e"
+        },
+        {
+          "file": "吃Token.webm",
+          "bytes": 1516834,
+          "sha256": "fec919871ec8528faf22ba1edeb57a5cf22f0ce849c6098853465a8ca5f4f2ec"
+        },
+        {
+          "file": "吃冰淇淋融化.webm",
+          "bytes": 2268200,
+          "sha256": "34931556729b76e15e9d809e1a099f6eb8ea08af0be1161c174c5c15ae11d0ef"
+        },
+        {
+          "file": "吃午餐.webm",
+          "bytes": 1669898,
+          "sha256": "35598e7444ed2cc5aff487de7977ec9a771934586cf53025b66fb9c0f2e31cf7"
+        },
+        {
+          "file": "吃大闸蟹.webm",
+          "bytes": 1775843,
+          "sha256": "6c015aba6c6e85ea03b3152ba3e0befd577c6fc55d9c5500303b9f02fdad453a"
+        },
+        {
+          "file": "吃年糕.webm",
+          "bytes": 1556087,
+          "sha256": "bb9d0e2dd2e6d4143068109c823cfb622105f554fedf0934f95711c0e5d41f5c"
+        },
+        {
+          "file": "吃早餐.webm",
+          "bytes": 1175187,
+          "sha256": "2234a06b9eff299df74a13e96362229493d5b8241a8396848fff71aab8474cba"
+        },
+        {
+          "file": "吃晚餐.webm",
+          "bytes": 1124170,
+          "sha256": "ea243fa7f73de169be074f9ce3f82a6620dbf09d4820cecd6e9ecef33ee16f52"
+        },
+        {
+          "file": "吃汤圆.webm",
+          "bytes": 1134349,
+          "sha256": "d8a6bd2b1287e645c42909aa6acf28de3f00438b673aa45be9d80543f45226c6"
+        },
+        {
+          "file": "吃白饭.webm",
+          "bytes": 1137064,
+          "sha256": "2b4d9f752464b8b3bb0ef4bc8716f3ebf010937b372303ce9f0c1fb6758aa2d4"
+        },
+        {
+          "file": "吃粽子.webm",
+          "bytes": 1190459,
+          "sha256": "1cfb5838454894326769566351609bacd192a837d1aac15a441ffc57541762ee"
+        },
+        {
+          "file": "吃糖葫芦.webm",
+          "bytes": 1084680,
+          "sha256": "f90202757cb605bc9b9fcf8677d8c24bce5db9efb31e6fac78324ebd98d483cb"
+        },
+        {
+          "file": "吃腊八粥.webm",
+          "bytes": 1099948,
+          "sha256": "311631b87ed7e4cec085e6b70ca126b56d4d5a299e4fa7992cfcc304e5f9b8a8"
+        },
+        {
+          "file": "吃西瓜.webm",
+          "bytes": 1084024,
+          "sha256": "8c113d40279e1539f495218e866759b7677adbe1ada308e4a29f9101e2632390"
+        },
+        {
+          "file": "吃重阳糕.webm",
+          "bytes": 1198191,
+          "sha256": "7cf5419bc4383332ee0c44ade2e3089ba2d35a5a4f081ec55350275b0f5987fe"
+        },
+        {
+          "file": "吃长寿面.webm",
+          "bytes": 1159209,
+          "sha256": "5d4a051971a88f43cf0af8180995d133abe2823cc0809bf90b3bec67dcd226ea"
+        },
+        {
+          "file": "吃青团.webm",
+          "bytes": 1081440,
+          "sha256": "33079393a796b00ca21755488ca5245eec7662999b5bb1b6d32ff997163ac140"
+        },
+        {
+          "file": "吃饭·碗饭.webm",
+          "bytes": 1092551,
+          "sha256": "172015a64a27a9112b87c37fab5fd3371cdff4b63ae4dcdff1c2b3d76e2b11c9"
+        },
+        {
+          "file": "吃饭团.webm",
+          "bytes": 1070486,
+          "sha256": "cf31c5dcb76b8999ed8f629faca25135c66cdf4b06d73e78b0ffef28d14cf7a3"
+        },
+        {
+          "file": "吃饺子.webm",
+          "bytes": 1044385,
+          "sha256": "10e5b9ccb4d9eb8c89c71c65b409f2f77e30765e41158cfb8cc82072810bea8b"
+        },
+        {
+          "file": "吹气球.webm",
+          "bytes": 1268369,
+          "sha256": "5eaaabdf9955dd6dd4789c9c10f92c92a8ff18990131ee6463beb74272d3c1ae"
+        },
+        {
+          "file": "吹笛子.webm",
+          "bytes": 1000677,
+          "sha256": "dd8ca82bab9aee15771c8ea5c0c9ae0352f872db05875ff7328445ab474fce88"
+        },
+        {
+          "file": "哈欠连天.webm",
+          "bytes": 1534618,
+          "sha256": "7b8afe0146e8fcd4e3cfad368925df144c482c94195b09e96e02b83fe86c0bb4"
+        },
+        {
+          "file": "堆雪人.webm",
+          "bytes": 3476259,
+          "sha256": "c4502be79e28b114bf48499b56072aa1b4ca19fb618cf804066fb7a261adbf16"
+        },
+        {
+          "file": "大口吃零食.webm",
+          "bytes": 1251339,
+          "sha256": "5cc60cb1d70fdc7e60ebf96cdcdf8d8b7821e96f02f6f191d01a40c2e7b0b486"
+        },
+        {
+          "file": "女仆屈膝礼仪.webm",
+          "bytes": 2082936,
+          "sha256": "a0917283bf2d305c707c86fab98557da8b6cd6c24b69ec206e2baa0b028e8e72"
+        },
+        {
+          "file": "小幅度原地360度旋转展示.webm",
+          "bytes": 3391880,
+          "sha256": "6e7b7245f0025346c977407c6dbf039385077c9ede2be0c99b58f914f346d006"
+        },
+        {
+          "file": "小提琴演奏.webm",
+          "bytes": 1530987,
+          "sha256": "e1b70c2edbe03afb9d9514f566bbe7347c02fe30e02e3f8060d405a28d2dbbe3"
+        },
+        {
+          "file": "工作状态-原地踱步张望.webm",
+          "bytes": 2270752,
+          "sha256": "553309489c5834557d932462058488f0c02909639391c312bf11c02fc757308d"
+        },
+        {
+          "file": "工作状态-垂头叹气冒汗.webm",
+          "bytes": 1786316,
+          "sha256": "2096fabd86723ef80fe14b779e94fbcab9922ea45aa5fb88c0a97c6f2cfb4d0a"
+        },
+        {
+          "file": "工作状态-忙碌点按.webm",
+          "bytes": 1301730,
+          "sha256": "983f7c4627ed83a184a392a037c192aeafa88ab818868a6f26a96745ec590348"
+        },
+        {
+          "file": "工作状态-思考冒泡.webm",
+          "bytes": 2140517,
+          "sha256": "d122357d78125eed4bec236222b77e859b618e7d445116b950725ec0499b91aa"
+        },
+        {
+          "file": "工作状态-清点归档.webm",
+          "bytes": 1895654,
+          "sha256": "347e8b3262b9faa67d1ae9c94bf1c02a3cb1016f020ca5d58896f6c7f8042592"
+        },
+        {
+          "file": "工作状态-雀跃庆祝.webm",
+          "bytes": 1571973,
+          "sha256": "cdb34abe2f80aaa524ee440e9a56fdafc892d334b2ebbd7f5a7c7fde5483ed39"
+        },
+        {
+          "file": "开心小跑.webm",
+          "bytes": 2756583,
+          "sha256": "5ca435a3a79cbc1bd429d924d9cb25c72bcaf4de3724decdde822f4714d2272e"
+        },
+        {
+          "file": "待机呼吸休闲.webm",
+          "bytes": 367969,
+          "sha256": "b007e259f2b9672a413d34168687b8d840f72ac6285c89e1c8023fe5849724f1"
+        },
+        {
+          "file": "悠闲哼歌.webm",
+          "bytes": 1714490,
+          "sha256": "5775a7e81a63be0a59e9562167542384561cfb6ad0c4d1d66fa68a6ae4a620c9"
+        },
+        {
+          "file": "扑克魔术.webm",
+          "bytes": 2333628,
+          "sha256": "6e54eb2a8e92f800a9def917e5d33cd724481b85f99d24d7da0e043e2d09bcd9"
+        },
+        {
+          "file": "打瞌睡被惊醒.webm",
+          "bytes": 3005702,
+          "sha256": "7166ed492ca5a262e0121dc7c3e7ec4df4689027fa8bffa32785a2c3fedaf93a"
+        },
+        {
+          "file": "抽陀螺.webm",
+          "bytes": 2892913,
+          "sha256": "fc31345a987e7f9022a885048f7d3fc4e7fd60621043b19191a5c96b2f0b454e"
+        },
+        {
+          "file": "拆礼物.webm",
+          "bytes": 1690249,
+          "sha256": "a6d13b00f59dd31a0635a4ccf21c7306b4d31602fa352a268ff6a90a238ad79c"
+        },
+        {
+          "file": "插茱萸赏菊.webm",
+          "bytes": 3292125,
+          "sha256": "a36611cf31b4760e68c1966292d4b02292d82323226dc926d48ed323d27cf031"
+        },
+        {
+          "file": "摇扇纳凉.webm",
+          "bytes": 2797038,
+          "sha256": "8816258c3bd597532486e7c32f4d4afc8c1b5e527bbad319be2b3dcadea9aafd"
+        },
+        {
+          "file": "撸猫.webm",
+          "bytes": 2093871,
+          "sha256": "310493e1b00c70cbf82b6eceefe78d7e63e05fee27153ca897779ab06be2b753"
+        },
+        {
+          "file": "收红包.webm",
+          "bytes": 1905542,
+          "sha256": "4448d199572f662f4a75f5a0e6680c90367bf0c72846b31c0c92af50836d897f"
+        },
+        {
+          "file": "放孔明灯.webm",
+          "bytes": 3475050,
+          "sha256": "7cc9958afe5e5f71c589b49975d11c0b4d3feaf9e7b857bf084eb5be21032f17"
+        },
+        {
+          "file": "放河灯.webm",
+          "bytes": 2719868,
+          "sha256": "facb541409ef0d4e76cb792111a9ca75cbd03643e8b62023400459b5be155e64"
+        },
+        {
+          "file": "放烟花.webm",
+          "bytes": 3775268,
+          "sha256": "0cb01a6ee55907191e88580dace98b4b442351f494b51a55bb7ba93a511f5cbe"
+        },
+        {
+          "file": "放风筝.webm",
+          "bytes": 3610900,
+          "sha256": "19f9ccae5231a15c0d5306727ea3265648945a25d23ae44dd4aeaa7cc1323398"
+        },
+        {
+          "file": "整体换装试色.webm",
+          "bytes": 1996915,
+          "sha256": "8234973da294c3a26d6d82c7450066adfefd07f3755eeb9cda52406205fbc277"
+        },
+        {
+          "file": "是啊，吃什么.webm",
+          "bytes": 3001260,
+          "sha256": "97797f7b9280fade39459f03f4368588feb0838187f215403e30d5a0761a2b06"
+        },
+        {
+          "file": "晨间刷牙.webm",
+          "bytes": 1873571,
+          "sha256": "95bd82e3def545afd13cc10c80c6933388f3e873db37e8cc2b50268a123f5137"
+        },
+        {
+          "file": "期待开饭.webm",
+          "bytes": 2426656,
+          "sha256": "5b8114d8a835a8da2ca19fe0481053c929892c6c7b52897a82b83ebd7802fdc7"
+        },
+        {
+          "file": "涮火锅.webm",
+          "bytes": 2084091,
+          "sha256": "4f0603cab17fa1310b82d50a2482dcc7e41b0f8d8306ef1b0cee561ac343375f"
+        },
+        {
+          "file": "深度思考碎碎念.webm",
+          "bytes": 2486167,
+          "sha256": "d32e00d8e9f3f96b467a91b77680ea06b906cfd6dab642f20fa8108618f36d20"
+        },
+        {
+          "file": "点击回应-傲娇生气.webm",
+          "bytes": 2255479,
+          "sha256": "2e46cecd168987d4da2b0dafd53f496390f37a827dbcd1ee46ca4bbad5b95976"
+        },
+        {
+          "file": "点击回应-元气挥手.webm",
+          "bytes": 1985296,
+          "sha256": "689177f1b0b821fa8b734ae193a6b0617dfa32abf56a2065f5094efc69f9291d"
+        },
+        {
+          "file": "点击回应-害羞惊讶.webm",
+          "bytes": 1925629,
+          "sha256": "28e779311458d47a9cc3c773d6be61a263d8aa938c4fe7ab6d06a97f2593763d"
+        },
+        {
+          "file": "点击回应-开心跃动.webm",
+          "bytes": 3942863,
+          "sha256": "4fd27744e41e35ce873591faee5cdb7b3431c07016cedcd778112e1ef0a6f8bf"
+        },
+        {
+          "file": "点击回应-挠痒咯咯笑.webm",
+          "bytes": 2615685,
+          "sha256": "1176e4e1379ad4e96098ef3e29813db175f058e51ad723ca257815d91970fce0"
+        },
+        {
+          "file": "照镜子.webm",
+          "bytes": 2446061,
+          "sha256": "1fcc471b6b47dbb9e4c4880ef79106ddb1d8ebf1a65ceeb04c2282586b126455"
+        },
+        {
+          "file": "玩水枪.webm",
+          "bytes": 2887068,
+          "sha256": "e7344db307bc7b0cebbcc261bb5d71a7b50da6bf1bd3b87c58d032edb05c9c52"
+        },
+        {
+          "file": "玩游戏气急败坏.webm",
+          "bytes": 2719851,
+          "sha256": "bdb91a27725df199ca248ad807c4e346f405a6604a4c8ffe304cdf55ccc2ced2"
+        },
+        {
+          "file": "用鲸鱼尾巴拍打地面.webm",
+          "bytes": 2723285,
+          "sha256": "3bf969fce233941f52da2de9bce72747e4ec1846983d26b39baca79c7fc6a463"
+        },
+        {
+          "file": "睡觉-开始.webm",
+          "bytes": 1201377,
+          "sha256": "673e71901bba0fc73c029bd66dc05cd9fdce991831031dbd4f7c3e932b3a613e"
+        },
+        {
+          "file": "睡觉-循环.webm",
+          "bytes": 268067,
+          "sha256": "70746b78dd7b14467ba58a0fd687acab3e324840b7e11ec20d26ecc7aa592f15"
+        },
+        {
+          "file": "睡觉-起来.webm",
+          "bytes": 1445859,
+          "sha256": "fb56c869f3917382696325d32ef457169ebf2fabf6835ed73c1462ce43683dd0"
+        },
+        {
+          "file": "碎碎念-发呆碎碎念.webm",
+          "bytes": 1541586,
+          "sha256": "85cc04298d8f9d9d6a43efb4cf8c1ecd8fd7774b2bfe7681dd8fb24d8a97d1ed"
+        },
+        {
+          "file": "碎碎念-对屏碎碎念.webm",
+          "bytes": 865703,
+          "sha256": "1d7ac80ce39772df5af22e37e093df8b310b9a8d00fef5bef1072c6c0f242e0a"
+        },
+        {
+          "file": "碎碎念-擦桌碎碎念.webm",
+          "bytes": 1921944,
+          "sha256": "223a8cb4846fdc86c3cd7951ba84fcfe1ad8ba375ca0e670fa0d72be0bf9d765"
+        },
+        {
+          "file": "穿针乞巧.webm",
+          "bytes": 1698451,
+          "sha256": "6f08069c1fbdc72b4fec3bcd320719716c7a365043486d0dcd30fe30c3d2ee71"
+        },
+        {
+          "file": "舞狮头.webm",
+          "bytes": 3462967,
+          "sha256": "8148b64474fffdcded20fcdfff2fc0b3e6baf532ce2e5b5eaa8fee4d113bf2c5"
+        },
+        {
+          "file": "荡秋千.webm",
+          "bytes": 3129404,
+          "sha256": "5d0dd661a39fe2c961517c0ba6e4392e1503ed14a10454c8cf22154600f61188"
+        },
+        {
+          "file": "萌化小幽灵.webm",
+          "bytes": 2290941,
+          "sha256": "947d50954da71bc325f13a4162dd64464fba2b8d8313639076825e8469b2a50c"
+        },
+        {
+          "file": "蓝鲸现世.webm",
+          "bytes": 2491893,
+          "sha256": "959e331596d9602f305b20d3ea93c09a453027dac0e34f03f3bc157cb147e9e2"
+        },
+        {
+          "file": "蝴蝶蜜蜂环绕头顶开花.webm",
+          "bytes": 2868748,
+          "sha256": "dcc9d3d879db189a74fab47f1ab5afdc66c562f4fb21e12ce22a1d3816d6470e"
+        },
+        {
+          "file": "螃蟹走路.webm",
+          "bytes": 2792321,
+          "sha256": "3bbba502952253827c20352a7b25e868ffa15e4abe43e2aab48f24e90fa8aaff"
+        },
+        {
+          "file": "被吓一跳.webm",
+          "bytes": 3137264,
+          "sha256": "4cf94ee64b1b4f06d31fce7aebdf9bf4a6a6241404a8f4012bf0bfef93344629"
+        },
+        {
+          "file": "被落叶淹没.webm",
+          "bytes": 3950081,
+          "sha256": "0da65064ba1d578f6de1828684f48163e922581bc2dbf87c03f634ccbd34b453"
+        },
+        {
+          "file": "被鼠标拖拽悬空反馈.webm",
+          "bytes": 3095840,
+          "sha256": "51a3723370fb73b53beddc04beb3e0f976930f6c321e0a2a30c118c24579c63f"
+        },
+        {
+          "file": "装点圣诞树.webm",
+          "bytes": 2813824,
+          "sha256": "ff794e84da755d5dde2a1850e6087fc3113360602d09c7b56b24af01205ad12f"
+        },
+        {
+          "file": "讨糖南瓜灯.webm",
+          "bytes": 3147424,
+          "sha256": "7b8da5576f013dc7048b88cc10773607fad699481373352beb4db46981397d1f"
+        },
+        {
+          "file": "超大伸懒腰.webm",
+          "bytes": 2796346,
+          "sha256": "b748add1171bfbbfb8f66731cc4622ab6a8edeeb93bcf9f45851fd05cb30594b"
+        },
+        {
+          "file": "踢毽子.webm",
+          "bytes": 2220321,
+          "sha256": "a0818157f1bc27670360a8a258cb81640bebaae5a75b6ed93081a70b908ca21c"
+        },
+        {
+          "file": "轻快摇摆舞.webm",
+          "bytes": 2764649,
+          "sha256": "9717ef7c519eaf857cf6682e0972da93f220b927b216a59e68c4069f37952f8b"
+        },
+        {
+          "file": "轻快记录.webm",
+          "bytes": 1894518,
+          "sha256": "5b408bb9bcb755fa3a2e31b16a32ddf25c23c952d196fe4d45b8c1ad34dd464f"
+        },
+        {
+          "file": "骑木马.webm",
+          "bytes": 2984660,
+          "sha256": "7f24c1849fd4568aec74ce30a08265ad0326fc13b13ce018c9583d6dde2618c3"
+        },
+        {
+          "file": "鲸鱼吐泡泡特效.webm",
+          "bytes": 2644765,
+          "sha256": "7122531bec22661b81ca9f93e756a82c8477698e1c9e4f227be7aa640fc53bb0"
+        },
+        {
+          "file": "害怕.webm",
+          "bytes": 1718407,
+          "sha256": "526c0b3255eb4673a3d64283c6b38a0f515f8bee5a13c864c0ef0ba25885c13e"
+        },
+        {
+          "file": "害羞.webm",
+          "bytes": 1549124,
+          "sha256": "411f9896cbff6094216c2be4fcc10ec98581001eb436c47b0eb39f5900ef6ad7"
+        },
+        {
+          "file": "难过（眼睛饱含泪水）.webm",
+          "bytes": 1228177,
+          "sha256": "123e4d918ccba0fd403db067e1943d6ad125889daf03600bf45da1c32d66391b"
+        },
+        {
+          "file": "想去玩（期待星星眼）.webm",
+          "bytes": 1795113,
+          "sha256": "559ecb5c301fb7dea39eda5685144ce9b96cdd6862288a82ecd86dbf153ad4bc"
+        },
+        {
+          "file": "大哭.webm",
+          "bytes": 1549974,
+          "sha256": "f1eb224b3396c7adae1bde9524f4ad271087a83ed80b080fc514667ed2dea449"
+        },
+        {
+          "file": "开心蹦跳.webm",
+          "bytes": 2459288,
+          "sha256": "8fce5a524e6879c3286705b0355e7f6fe636a8ff7f85231341e533616a4b3091"
+        }
+      ],
+      "originalAndAddedMappingsPreserved": true,
+      "selectionPersistence": true,
+      "unlistedAssetRejected": true,
+      "releaseHashesMatched": true
+    },
+    {
+      "class": "paladin",
+      "status": "passed",
+      "profileRemoved": true,
+      "copied": [
+        {
+          "file": "三球抛接.webm",
+          "bytes": 2138427,
+          "sha256": "7ff5e16b4bd43bb3723d65a34368106fc2c915f938ee61c46d346a63871ef24a"
+        },
+        {
+          "file": "下五子棋.webm",
+          "bytes": 2256945,
+          "sha256": "924c15e818861e23d6943dc43453d7263327f91736725e5c6b464d7dc04ae50e"
+        },
+        {
+          "file": "东张西望.webm",
+          "bytes": 2538419,
+          "sha256": "727ee3a790c186929c39b19df2b0af2d3d18dbe84220d1dd60f584865114f21d"
+        },
+        {
+          "file": "中秋赏月吃月饼.webm",
+          "bytes": 2993107,
+          "sha256": "995ee9c18d2faefe6b69482ba5bb5f135e66a161889dafb64cc84774e3666811"
+        },
+        {
+          "file": "优雅女仆舞.webm",
+          "bytes": 3967008,
+          "sha256": "e09af84d21ab9bbfb5ae27e055842708cf91a30e2e7f901dc637876bf586ae73"
+        },
+        {
+          "file": "余额-分文不剩.webm",
+          "bytes": 2787779,
+          "sha256": "aa913e90c338d56d248f18d00669eb11631bbbc03c81ab564bb8f816f80467cd"
+        },
+        {
+          "file": "余额-数金皱眉.webm",
+          "bytes": 3392262,
+          "sha256": "f7b43fcdc93e1c8f0ddbd97e401dcd0f5cdcbe160582dfda017c2c5a58f30ad7"
+        },
+        {
+          "file": "余额-袋空如洗.webm",
+          "bytes": 2620984,
+          "sha256": "c2b2a279c447d4c8b099a4e28cee84f862d119000faae50436bea4a3d88a1de7"
+        },
+        {
+          "file": "余额-金袋叮当.webm",
+          "bytes": 2021554,
+          "sha256": "d970c4153889e9290d17bf1e7c86e8fac918b4a1e19204b632925c2492e6f8a6"
+        },
+        {
+          "file": "余额-钱袋如常.webm",
+          "bytes": 1890652,
+          "sha256": "2bd1077eb076a3ba5452a633a755279a42b64908035558df0fc7da99eb490595"
+        },
+        {
+          "file": "余额-钱袋满溢.webm",
+          "bytes": 2984048,
+          "sha256": "ec4b9d608489a910ee02124cacbfb977325a7d18ccb808cc516fa18ca96b093f"
+        },
+        {
+          "file": "侧身急躁跑.webm",
+          "bytes": 4433876,
+          "sha256": "ba3940f7bdf55a526f0058f4584055e5fc16d8965cb9297d4e4a0e32279022bb"
+        },
+        {
+          "file": "偷吃零食被抓住.webm",
+          "bytes": 2113116,
+          "sha256": "6f35503b3146f397d6cb06c9b8fab46a4fa6a1ebd8ebfe8dd5648fed0396f212"
+        },
+        {
+          "file": "写代码.webm",
+          "bytes": 2120116,
+          "sha256": "03e5cf2684581043d1e7e8d2ae5664f8f7e4a71d5f9e037cac8ee6ea7cff84be"
+        },
+        {
+          "file": "写福字.webm",
+          "bytes": 2393608,
+          "sha256": "d08b76b4ddcdae07e05004171d6c812605cd9fb43e0c6db4a0ae0c4d1a188fc3"
+        },
+        {
+          "file": "凭空生花.webm",
+          "bytes": 2248008,
+          "sha256": "a59d5c88742aea210bccf883f6811cc2719e9844496e343bb1cb81371a16772a"
+        },
+        {
+          "file": "动物环绕.webm",
+          "bytes": 3752049,
+          "sha256": "f8a96d1e6f7d7019411ad85645975310901a094710fe6fd1e8b327e69f338773"
+        },
+        {
+          "file": "原地专心玩魔方.webm",
+          "bytes": 1449572,
+          "sha256": "d5d9273e1204cf3576ceb8a9d4a53d72b6fded30d62b899b260acf7ec7b2c075"
+        },
+        {
+          "file": "原地小憩沉眠.webm",
+          "bytes": 2921299,
+          "sha256": "99cab6574fba97dbd50d92bf6a1e3947ae628170d45e5e77dac35010c7342cfc"
+        },
+        {
+          "file": "原地左转奔跑.webm",
+          "bytes": 3451536,
+          "sha256": "adb4b4a5cfcedb30a78a9f4900fc7701f703b669d488635b07561b75a1e78747"
+        },
+        {
+          "file": "原地敲击桌面互动.webm",
+          "bytes": 1597308,
+          "sha256": "39e50796da493f43c17266300fcc7607271038fecfd2fdeca9553a42b0b1ae29"
+        },
+        {
+          "file": "原地漂浮踏步.webm",
+          "bytes": 3082034,
+          "sha256": "f7b9cc449917e430ce5fa6b76521f2d3a56ad909789b4366fb623e5b5aff9a03"
+        },
+        {
+          "file": "原地跳跃抓碎头顶物品.webm",
+          "bytes": 2793978,
+          "sha256": "9ccaa8e0b673fa40489c1c76aebe5bb290c3b2553b8b88b88d231fde0b59b036"
+        },
+        {
+          "file": "原地蹲下玩玩具汽车.webm",
+          "bytes": 2988743,
+          "sha256": "64304e622639f3b6684a5389b908d04fb4fddbc84a3d982e7bbfab17cb6ab906"
+        },
+        {
+          "file": "原地重力下蹲压缩.webm",
+          "bytes": 2580561,
+          "sha256": "626a19e8777bb9710878fd82b7e99d5fb8183f3d0c62ed32d8d5ccb557839a78"
+        },
+        {
+          "file": "变鸽子.webm",
+          "bytes": 2078115,
+          "sha256": "e03fc3064e7d212150299ad2ae2edd6bd2fea1e796f615070d0321a4b9cbf986"
+        },
+        {
+          "file": "可爱宅舞.webm",
+          "bytes": 2924468,
+          "sha256": "bff7667cb1f7e60d45cd4e14707c863cac7446ed407a972f8a5b100ca85e79cd"
+        },
+        {
+          "file": "吃Token.webm",
+          "bytes": 2156599,
+          "sha256": "1ad92d42c09cd6a68b82ebcec1a0639bed6b246cb9442c0b85968cb3be4eafe8"
+        },
+        {
+          "file": "吃冰淇淋融化.webm",
+          "bytes": 2561653,
+          "sha256": "012eed436de8dd7832c2bb04a2484b7a1102dca40f384b9ed0871efc83a46275"
+        },
+        {
+          "file": "吃午餐.webm",
+          "bytes": 1876270,
+          "sha256": "af9015bf094a8d0facef2fa28e7a65257ab9872ff87a7fafaf7c6bee536b3397"
+        },
+        {
+          "file": "吃大闸蟹.webm",
+          "bytes": 2182783,
+          "sha256": "10530981c6741c74b9c47526e6029270829bc0ff57ba0468e6d05bf59914af6c"
+        },
+        {
+          "file": "吃年糕.webm",
+          "bytes": 2108981,
+          "sha256": "403ccf52b98c17031f21eccd10a1e1b59b516772c68e6c7abc6a9d0360fd9e61"
+        },
+        {
+          "file": "吃早餐.webm",
+          "bytes": 1236275,
+          "sha256": "2f333149de724ed910bf8d1ed41d4f5c57572127564db31b43026f64c243a041"
+        },
+        {
+          "file": "吃晚餐.webm",
+          "bytes": 1228642,
+          "sha256": "167bb8e23636ee4dc132c09a7b5805413d57da36950b327a2dc3909181193926"
+        },
+        {
+          "file": "吃汤圆.webm",
+          "bytes": 1169144,
+          "sha256": "50cbc0e1210e88a1a2e178fb89e8803b4964e1143e05c8cf5d8cd517176e1d57"
+        },
+        {
+          "file": "吃白饭.webm",
+          "bytes": 1171819,
+          "sha256": "e853f71d5a2e07866ea2c9f74b0cededb56eea7d7543190afa0f24ae7c44a233"
+        },
+        {
+          "file": "吃粽子.webm",
+          "bytes": 1301742,
+          "sha256": "914a338a0e4a359238395a660de6fb7e4d9e823c8f157e255c482306d39c6dde"
+        },
+        {
+          "file": "吃糖葫芦.webm",
+          "bytes": 1256927,
+          "sha256": "6215433ce771019b164a3522a686594c8711baec300b465fe9a1c3577a5d7a1b"
+        },
+        {
+          "file": "吃腊八粥.webm",
+          "bytes": 1205246,
+          "sha256": "9cc4a0af46414801d96ebdb68725e19e079d40512cefecb1910b2a137f661974"
+        },
+        {
+          "file": "吃西瓜.webm",
+          "bytes": 1145041,
+          "sha256": "049fadf028f2669729d2e28048bb9eaae0c0cd5b59909bfd55e9f63adb3af382"
+        },
+        {
+          "file": "吃重阳糕.webm",
+          "bytes": 1146229,
+          "sha256": "74a577d249f225a76b1933ee3535690b28b596c42a2485f48eb791815a343207"
+        },
+        {
+          "file": "吃长寿面.webm",
+          "bytes": 1156233,
+          "sha256": "09fae70d1fe0a884f27b6f5abc2aa58152bacc858c534fc9d8792b1c1b26c696"
+        },
+        {
+          "file": "吃青团.webm",
+          "bytes": 1094259,
+          "sha256": "942d7a3e2375cb54e787b176535282ea5b01cda60fef10c2f4d552a489fdd919"
+        },
+        {
+          "file": "吃饭·碗饭.webm",
+          "bytes": 1085691,
+          "sha256": "608e84f836936eb383efaa06f91c1853d58198dcf95fe2e9837b826164b125c8"
+        },
+        {
+          "file": "吃饭团.webm",
+          "bytes": 1128466,
+          "sha256": "cd72ccc426dd592bc75da331815f61e561ebda745fb5b63255fc2b0044206660"
+        },
+        {
+          "file": "吃饺子.webm",
+          "bytes": 1057107,
+          "sha256": "8fcbfe992fe573a7463895bf168d311ef8290d06758b0ad1756534a299e21015"
+        },
+        {
+          "file": "吹气球.webm",
+          "bytes": 1244090,
+          "sha256": "e682f51193d6e58b435e7d6d9733e9ba7fc3a383e3ae6e9166f3fd8f81ebc6b3"
+        },
+        {
+          "file": "吹笛子.webm",
+          "bytes": 1131191,
+          "sha256": "206624bec38f16dc4b6f864efa92fe52630e5ffc4a75cbea6659df107fe16542"
+        },
+        {
+          "file": "哈欠连天.webm",
+          "bytes": 1526542,
+          "sha256": "639ff94981b4f184f79985311d759b5fe81637b462273fa21ed02209f196461b"
+        },
+        {
+          "file": "堆雪人.webm",
+          "bytes": 3169047,
+          "sha256": "74affbfeced617a7d422f614e3445378466b47e8b4a5af1041ed7e3098294a2d"
+        },
+        {
+          "file": "大口吃零食.webm",
+          "bytes": 1463437,
+          "sha256": "452f08afbfb976a03584c71783b0c7106f0194e3a932f62a38fd3511a405aea1"
+        },
+        {
+          "file": "女仆屈膝礼仪.webm",
+          "bytes": 2164214,
+          "sha256": "e8766c0e364b2b1aabdb3d4cc595432930e523875205028cb9d2395b636b24fd"
+        },
+        {
+          "file": "小幅度原地360度旋转展示.webm",
+          "bytes": 3995832,
+          "sha256": "d9f783f5b44634f03317fbc136b09f7b09c823e9647f4d9bbebf2c2ed6f92acf"
+        },
+        {
+          "file": "小提琴演奏.webm",
+          "bytes": 1630433,
+          "sha256": "53c79dbb00ccf878110ded2d6b62243f72065620dce9f166e5c6c6da1fe7315f"
+        },
+        {
+          "file": "工作状态-原地踱步张望.webm",
+          "bytes": 2688557,
+          "sha256": "66c030fa3e571aeb23f968607fd7a6aae8fd0b9025a03d0544dc516cc8ea3095"
+        },
+        {
+          "file": "工作状态-垂头叹气冒汗.webm",
+          "bytes": 2316723,
+          "sha256": "91a0d6c4e859b9d34ca052a982df3d63e39dccd36f6829fb9b0c430153c34dc9"
+        },
+        {
+          "file": "工作状态-忙碌点按.webm",
+          "bytes": 1766456,
+          "sha256": "64a781a45efdc37a3226894d6e7e817d0995f0e4f06ca7bca456716b856c3818"
+        },
+        {
+          "file": "工作状态-思考冒泡.webm",
+          "bytes": 2609784,
+          "sha256": "abe447e733673e626f2687f0f0cecb5e67d8778b4e67c6397cc84e35869b120a"
+        },
+        {
+          "file": "工作状态-清点归档.webm",
+          "bytes": 2327776,
+          "sha256": "db74a1c68339e39ddb688fb33a44bd5d8d196a98f0319b3706ceb1af5c126d77"
+        },
+        {
+          "file": "工作状态-雀跃庆祝.webm",
+          "bytes": 1635065,
+          "sha256": "5bdccd97cfb29864a0a6f0d926620ad18b97e36ff9b627dd5de127c985d2aaf6"
+        },
+        {
+          "file": "开心小跑.webm",
+          "bytes": 3368275,
+          "sha256": "516c8082d08428ac0825a1e3d282546a8796f1b43a086cdf8d0e1bd2f1b8468a"
+        },
+        {
+          "file": "待机呼吸休闲.webm",
+          "bytes": 369491,
+          "sha256": "e9b23c6521c418f583607c780c4d86d8b897db9e7f0cb2fde0bcba237b2e196b"
+        },
+        {
+          "file": "悠闲哼歌.webm",
+          "bytes": 1741090,
+          "sha256": "1d7145dd82177309de37008d8c5ee45d1685e4d229c79f5e334aee5aa7d3c051"
+        },
+        {
+          "file": "扑克魔术.webm",
+          "bytes": 2177569,
+          "sha256": "1a1ad2061132cc26cfe5267055588ceb61ca17045d21a7a49ebe5b767a62fa54"
+        },
+        {
+          "file": "打瞌睡被惊醒.webm",
+          "bytes": 2758282,
+          "sha256": "f5b2c4affada283bb658d1a433ddaa25a0a254551143eb91998ad47486cecb0a"
+        },
+        {
+          "file": "抽陀螺.webm",
+          "bytes": 2998060,
+          "sha256": "43bd9274352acdb0ca77801583d7099f7640898eb1c1aec2092af415107b8aa4"
+        },
+        {
+          "file": "拆礼物.webm",
+          "bytes": 2085611,
+          "sha256": "bf99673b44dad783d23194c48d05ef732e3a9e33cd0812e19a58351d2a36cd9b"
+        },
+        {
+          "file": "插茱萸赏菊.webm",
+          "bytes": 2891767,
+          "sha256": "24a98202104cedbc0ea28a690a0a3f6ff191aafe279ffc9a6ba25cc01f1a505b"
+        },
+        {
+          "file": "摇扇纳凉.webm",
+          "bytes": 3273553,
+          "sha256": "ba0eda543d5c1d9ff02878556fe7451bf56c7812a36341ac5cc51e4ede5c1bd5"
+        },
+        {
+          "file": "撸猫.webm",
+          "bytes": 2948076,
+          "sha256": "d3d155c5d41b8ae0fdb8992a67cfc432ded432f2f479581d659a7b40524144ba"
+        },
+        {
+          "file": "收红包.webm",
+          "bytes": 1738134,
+          "sha256": "d5e5318b5d7430ca8148f7584e17ca0842d3395a26d99edc6cfabafb3e80b12b"
+        },
+        {
+          "file": "放孔明灯.webm",
+          "bytes": 4415241,
+          "sha256": "edec261eb90bd190245a4853d7d7e4945b633c352c05dbc7134bdabfe0d221a6"
+        },
+        {
+          "file": "放河灯.webm",
+          "bytes": 3501513,
+          "sha256": "25f90e655db462844e8ce321bee1948808420cfdb2dada3b584d9996335591a9"
+        },
+        {
+          "file": "放烟花.webm",
+          "bytes": 3848717,
+          "sha256": "4508e8207fc65b0d4e93756a8342d57e522ba135402b826812546782c91b05cc"
+        },
+        {
+          "file": "放风筝.webm",
+          "bytes": 4207466,
+          "sha256": "8347dc265f3fa1fd63280a6db18b08a1bfcb94759b4c5c99de3ecf21d564f649"
+        },
+        {
+          "file": "整体换装试色.webm",
+          "bytes": 2768667,
+          "sha256": "c4d5d6fce0d595b6a9edf76f471d23f67b36cec7f23e5a749ed9d59aaf9113b1"
+        },
+        {
+          "file": "是啊，吃什么.webm",
+          "bytes": 3530525,
+          "sha256": "541f69368a6e745368db64ee4da8f23e71c7026c18551acb8a4dee2b59151eb9"
+        },
+        {
+          "file": "晨间刷牙.webm",
+          "bytes": 2506615,
+          "sha256": "4fdaaeeb788d0cb52728cf7dc3e2b088227dd62353be9ab7e586558e824fedd6"
+        },
+        {
+          "file": "期待开饭.webm",
+          "bytes": 2170820,
+          "sha256": "43a33a13730cef89f0ef61a9417d2fb7ada3a24a678d620319fb0faa071d9b16"
+        },
+        {
+          "file": "涮火锅.webm",
+          "bytes": 3088275,
+          "sha256": "d5b0da84cf44bfd5e0e27a203bcf44912c020233ab5ab8068d1baf4e491bb6cf"
+        },
+        {
+          "file": "深度思考碎碎念.webm",
+          "bytes": 2707833,
+          "sha256": "a765b274c96503090ff51b1d3cf38000e5ae805ea65a98250aea1a4f1689dd1b"
+        },
+        {
+          "file": "点击回应-傲娇生气.webm",
+          "bytes": 2722210,
+          "sha256": "7c4ea8a25807d738bf08ccd2aad6bd5762385f6e5768f9c01c35e574e5e538a8"
+        },
+        {
+          "file": "点击回应-元气挥手.webm",
+          "bytes": 2165306,
+          "sha256": "3a9c7fe3eab6cecb4753d3b078c26d88ddb47936548c1bc2b0e938af19b71c41"
+        },
+        {
+          "file": "点击回应-害羞惊讶.webm",
+          "bytes": 1840722,
+          "sha256": "36a5398ef6e6be33b21a6d6f416f1ebf25905e1e3980920f6a9e66bc3f170714"
+        },
+        {
+          "file": "点击回应-开心跃动.webm",
+          "bytes": 4140790,
+          "sha256": "25022a4b616e1c841632ea409b83d806606c417fa72ce4ee8007b76cbc6557b5"
+        },
+        {
+          "file": "点击回应-挠痒咯咯笑.webm",
+          "bytes": 3605277,
+          "sha256": "23dbc78e34ad1f5a6591dcf32f96f1cd74c5a9dc50444e0cae36679beea1fb17"
+        },
+        {
+          "file": "照镜子.webm",
+          "bytes": 2683319,
+          "sha256": "7de3aecc3cf796eecefe6c8b1964b9ff1ea03e1e9cfdefebe1f20ba47b4a7f95"
+        },
+        {
+          "file": "玩水枪.webm",
+          "bytes": 2363127,
+          "sha256": "e310e59b7017c191573ff3f309c652aed357f750422ef895bbad9d336439fe7a"
+        },
+        {
+          "file": "玩游戏气急败坏.webm",
+          "bytes": 3239506,
+          "sha256": "42312769761f2f5f01c4cacfe3466c23bfcf6475f0e90b4ac0e2fbbb160c1c63"
+        },
+        {
+          "file": "用鲸鱼尾巴拍打地面.webm",
+          "bytes": 2666324,
+          "sha256": "bf380287458b4ccadedea26bc497cffa3e9f821967da157705af7ce87e423dbe"
+        },
+        {
+          "file": "睡觉-开始.webm",
+          "bytes": 1287296,
+          "sha256": "2bc0575b2da02cb80360bd757744d3659e21d41b3201a03ef3a72e019ef34d62"
+        },
+        {
+          "file": "睡觉-循环.webm",
+          "bytes": 300951,
+          "sha256": "fcc50f2758fd3ff775fbceeac964a9c11e51f0ec6d6520fbeb4bb1a7bb9c13b4"
+        },
+        {
+          "file": "睡觉-起来.webm",
+          "bytes": 1687946,
+          "sha256": "d4cba5d54d62877aa2662cfe3c18bb91d1d11eb21c9984360ead5075e48d3c8f"
+        },
+        {
+          "file": "碎碎念-发呆碎碎念.webm",
+          "bytes": 1799376,
+          "sha256": "611c7ac4969a39dfba9ef232fbb954840568f67323b7fb9b91931d50003b8b82"
+        },
+        {
+          "file": "碎碎念-对屏碎碎念.webm",
+          "bytes": 848299,
+          "sha256": "a3fbf4c5eaf74193611f54d0353fb8f4254b31106b5cd62895af69ce3bc08ec2"
+        },
+        {
+          "file": "碎碎念-擦桌碎碎念.webm",
+          "bytes": 2033165,
+          "sha256": "c837ee0a82ad99ed162a9a1dc954296efb2a5258402c787dadcb1f222572b077"
+        },
+        {
+          "file": "穿针乞巧.webm",
+          "bytes": 1797464,
+          "sha256": "ec63461d0712880a754e02fd8f2f181e0b6b5870aa0c11694e5aa95dbfe4d23a"
+        },
+        {
+          "file": "舞狮头.webm",
+          "bytes": 3334658,
+          "sha256": "db21c980aab7552f1f52af393f41413c6369b324dc9583fee56ee7c36a4a22ae"
+        },
+        {
+          "file": "荡秋千.webm",
+          "bytes": 3190393,
+          "sha256": "0c13e3ffa8cc34ffe8760906af01256fdd87fb4c7d385e7ea7067f2d56e3dbf2"
+        },
+        {
+          "file": "萌化小幽灵.webm",
+          "bytes": 2338549,
+          "sha256": "4984991feb072e6518c89cd9d2047653e9b74ffb469aba0e61be4d385b2d23c0"
+        },
+        {
+          "file": "蓝鲸现世.webm",
+          "bytes": 2848773,
+          "sha256": "40bd8693248976195ce88b936e4fb1ca578ab9d6f5235e7c8c257fde553b6f99"
+        },
+        {
+          "file": "蝴蝶蜜蜂环绕头顶开花.webm",
+          "bytes": 4375169,
+          "sha256": "30c706db3280d5769356416f8b05ce4df156bae58dac95e2a9f42e1b52bf2cf4"
+        },
+        {
+          "file": "螃蟹走路.webm",
+          "bytes": 2666261,
+          "sha256": "5c3b47e2298096d1a3c9dac6d733df62fa6c1404c0d91c3c47b6050fc59d2fff"
+        },
+        {
+          "file": "被吓一跳.webm",
+          "bytes": 3127904,
+          "sha256": "883084df1fd48d80e303aead76dd9e87c244c18938ce987db7030180023d71d5"
+        },
+        {
+          "file": "被落叶淹没.webm",
+          "bytes": 4231759,
+          "sha256": "2cf2eca9da03aaee1c878386b7088bdf3e8aa79fe5206057b1aa3dde2ccbd89b"
+        },
+        {
+          "file": "被鼠标拖拽悬空反馈.webm",
+          "bytes": 2850996,
+          "sha256": "344776a9b1e607c1b3c4f5dd086a49583f10e03121d7622a70f6f5bd32bd1c3e"
+        },
+        {
+          "file": "装点圣诞树.webm",
+          "bytes": 3569628,
+          "sha256": "d5168826e615b078d8ff8faa9bd627a511c9b5ff3fadb52c30a760f062342b8c"
+        },
+        {
+          "file": "讨糖南瓜灯.webm",
+          "bytes": 3103243,
+          "sha256": "7b2d0ecc95c718b672e855b6b12904e3dec3a9e5726c7bd6a6468dd1acbd5261"
+        },
+        {
+          "file": "超大伸懒腰.webm",
+          "bytes": 3077553,
+          "sha256": "273a120f219e9e0cae0829870f2a61dd4d5eac4c7ec06f1903163dab6c13d833"
+        },
+        {
+          "file": "踢毽子.webm",
+          "bytes": 2470878,
+          "sha256": "750842bf638dcf341deb0193a91a084ee01faefcaaa3f6a99bdeb9e6a2bb2619"
+        },
+        {
+          "file": "轻快摇摆舞.webm",
+          "bytes": 3275867,
+          "sha256": "abdb0482deb374b38cfcf4596682a37822e5bcc26930bfcca733164ca3cb0619"
+        },
+        {
+          "file": "轻快记录.webm",
+          "bytes": 2103940,
+          "sha256": "b8ad9730acba8397fe1f8ee2b3f918968adc26b696d067f2520951c703580ddb"
+        },
+        {
+          "file": "骑木马.webm",
+          "bytes": 3735034,
+          "sha256": "b22c4ec77b7a5ba88adb2862123266dc35cc599c4296317bf93f3afdea30837c"
+        },
+        {
+          "file": "鲸鱼吐泡泡特效.webm",
+          "bytes": 3179246,
+          "sha256": "2847383d0a3870d3dc43a8b2b0bc474736ac1db678a185351d3bccb074c029ba"
+        },
+        {
+          "file": "害怕.webm",
+          "bytes": 2209474,
+          "sha256": "0ee912f1867789dfe456fd91e45764e261e014e4a2b767615b03b1445656a721"
+        },
+        {
+          "file": "害羞.webm",
+          "bytes": 1887282,
+          "sha256": "a8e978be45c79c01b505f56a93ba07abacf6218b873868c988755c112c276807"
+        },
+        {
+          "file": "难过（眼睛饱含泪水）.webm",
+          "bytes": 1742396,
+          "sha256": "d00cc95ec36e012ba72d80dd1a6b34465306abd6c08596c8c325bfc15fa15dd7"
+        },
+        {
+          "file": "想去玩（期待星星眼）.webm",
+          "bytes": 2467426,
+          "sha256": "bf4aeeb5e3b1450b78756a053155bc31a7ceb804900a248f7d15238210c6a245"
+        },
+        {
+          "file": "大哭.webm",
+          "bytes": 2506689,
+          "sha256": "c93deecc65c211c3dda5cc6361b8c907696bbace48a0cf3a790304b75cf15576"
+        },
+        {
+          "file": "开心蹦跳.webm",
+          "bytes": 2439650,
+          "sha256": "4a65e6f31cc5ff5378e36c9c0ce660ad0568275bb5ddf12eb5a021d2eb67b5f6"
+        }
+      ],
+      "originalAndAddedMappingsPreserved": true,
+      "selectionPersistence": true,
+      "unlistedAssetRejected": true,
+      "releaseHashesMatched": true
+    },
+    {
+      "class": "warlock",
+      "status": "passed",
+      "profileRemoved": true,
+      "copied": [
+        {
+          "file": "三球抛接.webm",
+          "bytes": 1947392,
+          "sha256": "d542a67c659ac9dc5226a5940bd58aed3201578356d50cd909c247bb0d9befff"
+        },
+        {
+          "file": "下五子棋.webm",
+          "bytes": 2050251,
+          "sha256": "0d63840934d260c1e569aa256ead8fe6c90ca4330e2caaa670233668916c147c"
+        },
+        {
+          "file": "东张西望.webm",
+          "bytes": 2226852,
+          "sha256": "4ae74c79cfc85aa260b1b0877f7dd53b94c3e874e76200cac4a9a770f9108acf"
+        },
+        {
+          "file": "中秋赏月吃月饼.webm",
+          "bytes": 2600384,
+          "sha256": "9205fdb9585c557f967811f1227455776429a407d3a832b0401ee8f74d8caa8a"
+        },
+        {
+          "file": "优雅女仆舞.webm",
+          "bytes": 3387038,
+          "sha256": "540e19c48d20e0775b48d2e6072ea382b33b5314140e2a8acf054ffe30b9b653"
+        },
+        {
+          "file": "余额-分文不剩.webm",
+          "bytes": 1923558,
+          "sha256": "cf186ecdd35a18ac5f19414a319228d40d2f57e05c0a27cd0f14552df482dcbe"
+        },
+        {
+          "file": "余额-数金皱眉.webm",
+          "bytes": 2226500,
+          "sha256": "2d3fe7f557c1634ebcbe4e2c947be2dc4ee45ea7bc5b89c62e85db84d2ec370f"
+        },
+        {
+          "file": "余额-袋空如洗.webm",
+          "bytes": 2921082,
+          "sha256": "cc5cc50fd9157ebe030b2227ec75e5625bd0221fb21c1ca9f76e9a4d65425598"
+        },
+        {
+          "file": "余额-金袋叮当.webm",
+          "bytes": 1803247,
+          "sha256": "cbfcc23e2246f70ba6e306cf4618aa6986c4047d968d90a4b913bf37a8302f22"
+        },
+        {
+          "file": "余额-钱袋如常.webm",
+          "bytes": 1660937,
+          "sha256": "713e33db31177ee654064cad463f1d10ec295c2b4cc7ac34738c448040ae40dd"
+        },
+        {
+          "file": "余额-钱袋满溢.webm",
+          "bytes": 2405955,
+          "sha256": "5d414d964a143f5bc830de938ce38ae9e72547d696d41f9fd21e8e0434d669e1"
+        },
+        {
+          "file": "侧身急躁跑.webm",
+          "bytes": 4606464,
+          "sha256": "2c626460bc490b800f66ce50971fd5ca93ee11404820165aca7936349c6f9987"
+        },
+        {
+          "file": "偷吃零食被抓住.webm",
+          "bytes": 1691989,
+          "sha256": "642d024ae8ed5b0667f80857bc6223841afc77abafa5000fa156a9dceec7fe90"
+        },
+        {
+          "file": "写代码.webm",
+          "bytes": 1572632,
+          "sha256": "5dd90a0a1485a3392d545f7a7690534b07a0e2fbde3faba8d021abc58e0ecb03"
+        },
+        {
+          "file": "写福字.webm",
+          "bytes": 2288653,
+          "sha256": "1ca7779a292630a58f59a889f1aaac5bb686157918094e1f27179add09aaec01"
+        },
+        {
+          "file": "凭空生花.webm",
+          "bytes": 2170547,
+          "sha256": "c5121dff6c1c2ba49c90026be61d4ad6714ff42a37736016cb02c4000d483ecb"
+        },
+        {
+          "file": "动物环绕.webm",
+          "bytes": 4689041,
+          "sha256": "ac9ef19f5ddb1c73de07aaa627c5f508da8add8010c1e8b5acda99a564f72a47"
+        },
+        {
+          "file": "原地专心玩魔方.webm",
+          "bytes": 1701630,
+          "sha256": "a4eefd66feacaf80a4c7f8a5c7e76ebb29e298da852038d431ae1679ebf9acd5"
+        },
+        {
+          "file": "原地小憩沉眠.webm",
+          "bytes": 4413665,
+          "sha256": "304560de9c9e8f642d0722b070bcfef6c2e869a50df91c6f78bb9af9f0603056"
+        },
+        {
+          "file": "原地左转奔跑.webm",
+          "bytes": 3567384,
+          "sha256": "a9d7f0ebd539e0108795de564246bdef13c7b60fda81f9135354c35bfa7e86d2"
+        },
+        {
+          "file": "原地敲击桌面互动.webm",
+          "bytes": 2807918,
+          "sha256": "e390506ff260b97b36a7376d8abdd05d39cbb0cbe2089b60c4534fde94885a3e"
+        },
+        {
+          "file": "原地漂浮踏步.webm",
+          "bytes": 4074490,
+          "sha256": "22a3b426e44f91d9a5f3c2c8c7978ee5e4a5a63d01ad90db22bd056a51202d33"
+        },
+        {
+          "file": "原地跳跃抓碎头顶物品.webm",
+          "bytes": 3139045,
+          "sha256": "365f72a866d604fee7e6f8b79991f71effccf4d1ddd356002c71346732d5539f"
+        },
+        {
+          "file": "原地蹲下玩玩具汽车.webm",
+          "bytes": 3062420,
+          "sha256": "ec474482f991cb94a44f9ead5d8102ca75b5a5a17a7acf2287d0b94b66dc2df1"
+        },
+        {
+          "file": "原地重力下蹲压缩.webm",
+          "bytes": 2802316,
+          "sha256": "5b1ae251f2738da3f4b2981211add1e3ebe5b46bc1ad78311b0c7b062a8889f9"
+        },
+        {
+          "file": "变鸽子.webm",
+          "bytes": 2088201,
+          "sha256": "71b3dba521fd2906b3f6bb54bb44ca2e1e0f354f09dc0a50ecb809727c3bace1"
+        },
+        {
+          "file": "可爱宅舞.webm",
+          "bytes": 3222371,
+          "sha256": "a786334f30cfdbcfc6f2ca8affcec3b7e5ff29d8a790bbd3deb4385d3c80a236"
+        },
+        {
+          "file": "吃Token.webm",
+          "bytes": 2028058,
+          "sha256": "e2e256bf02d6c51dd56c1afbdae1fe5e2e50074bd9683f88efde39bd08aa65dd"
+        },
+        {
+          "file": "吃冰淇淋融化.webm",
+          "bytes": 2579486,
+          "sha256": "c52a945cf176b6094d5d39d2d6835b1720649ac11650ea0374828e0f69a77101"
+        },
+        {
+          "file": "吃午餐.webm",
+          "bytes": 1894962,
+          "sha256": "f4710e0df9fe6cadc415729f36b9bb6cfafc123dd942a24dd77638ddea53d457"
+        },
+        {
+          "file": "吃大闸蟹.webm",
+          "bytes": 2168379,
+          "sha256": "646cc6c6b32c239fbfd7529f9c30e5c4281826165fb639a33d8847b4853101be"
+        },
+        {
+          "file": "吃年糕.webm",
+          "bytes": 1886278,
+          "sha256": "d00d342ef0c9c1cf82fc6b933593dc08e6c236da6eb9e62ea58075debd390d8a"
+        },
+        {
+          "file": "吃早餐.webm",
+          "bytes": 1216955,
+          "sha256": "baabb44d5f229794ddd1f694bd334ca15251f34431e2f133ec74b1b4b7c890da"
+        },
+        {
+          "file": "吃晚餐.webm",
+          "bytes": 1133391,
+          "sha256": "3b57bfc6bdb0f43bc69c4fbeb949ee6834cde57712f176b3b43b55c3bdaaa3e7"
+        },
+        {
+          "file": "吃汤圆.webm",
+          "bytes": 1155671,
+          "sha256": "ff6e8e993562b35a9d16c7aa2d8ec719a7bb4d724d8352bfb224eb4c0f54f7e3"
+        },
+        {
+          "file": "吃白饭.webm",
+          "bytes": 1120072,
+          "sha256": "1ed3a1017ccf001059c7f0450e397d135ff8d3a7b341885f89101d21a82246c7"
+        },
+        {
+          "file": "吃粽子.webm",
+          "bytes": 1248858,
+          "sha256": "4c5b4d9f4db3e349a824c9388ccdfa86e87a36cfb951d8e68076527c4248c784"
+        },
+        {
+          "file": "吃糖葫芦.webm",
+          "bytes": 1154637,
+          "sha256": "a23fe15cbc10d13f6dd147f9e8f45b1553b9b2d16166f92f66e0de723d495c85"
+        },
+        {
+          "file": "吃腊八粥.webm",
+          "bytes": 1140337,
+          "sha256": "796ee8d00f355bbb6b344b970b329698a99999f43785811068781eac74d3f58b"
+        },
+        {
+          "file": "吃西瓜.webm",
+          "bytes": 1111006,
+          "sha256": "f730b0b6354f1656b522387388363d8c599b91096ad640c268370cd26b75b3c7"
+        },
+        {
+          "file": "吃重阳糕.webm",
+          "bytes": 1249596,
+          "sha256": "c920ddc3eeccb27110a8ee02fcf25f19dca42c2cb077b162efeac2dbf43a7822"
+        },
+        {
+          "file": "吃长寿面.webm",
+          "bytes": 1307130,
+          "sha256": "e63f7fad15b7ec2ea10ba5c989ff1e3b6053e2370868a288e710cd99fde24bab"
+        },
+        {
+          "file": "吃青团.webm",
+          "bytes": 1188439,
+          "sha256": "c8408b841b042d634dca51fc2cd610ca109b66a95d0ab9832c2ca8dbb8aae770"
+        },
+        {
+          "file": "吃饭·碗饭.webm",
+          "bytes": 1119161,
+          "sha256": "6757ec70247756a5523ed85bd3227308f74c6c0c3b644f2f283466059da56367"
+        },
+        {
+          "file": "吃饭团.webm",
+          "bytes": 1227011,
+          "sha256": "10915243bb77cc9f357c9cea35a069a24b44379e05297699686da29ddd5cda23"
+        },
+        {
+          "file": "吃饺子.webm",
+          "bytes": 1179782,
+          "sha256": "d8d43e4b83a76808b9caee294f623662764f78df829a13cc7488bfac88d63242"
+        },
+        {
+          "file": "吹气球.webm",
+          "bytes": 1298389,
+          "sha256": "4eb9df62a52f90d49b1f4225e16e7417132594b0135c30a187825969c1718361"
+        },
+        {
+          "file": "吹笛子.webm",
+          "bytes": 1322221,
+          "sha256": "88da9ab9b4aa85ff7632158937e330f80f6cba025a6ac5202645806e2dbab4fb"
+        },
+        {
+          "file": "哈欠连天.webm",
+          "bytes": 1637421,
+          "sha256": "b6845caff524e016183e3e970627e9d01524a84815466184b37b44e3b7260638"
+        },
+        {
+          "file": "堆雪人.webm",
+          "bytes": 3247813,
+          "sha256": "74351677f23e7b9745ad7cc1158b11a66c50cdb5352ad024bf2172df04ed2435"
+        },
+        {
+          "file": "大口吃零食.webm",
+          "bytes": 2033276,
+          "sha256": "953602b721b208b13c0782034e20028b3a8c23a161ea383e57a282a09a396029"
+        },
+        {
+          "file": "女仆屈膝礼仪.webm",
+          "bytes": 2764379,
+          "sha256": "713150461aa25716950850e458ac5ea81ec5122595972b238344ce381ea5ad91"
+        },
+        {
+          "file": "小幅度原地360度旋转展示.webm",
+          "bytes": 3898994,
+          "sha256": "61a31b02fd55116b71eb1d5d01681bd8006a8681772033eaed3598ecb9033d81"
+        },
+        {
+          "file": "小提琴演奏.webm",
+          "bytes": 2147400,
+          "sha256": "d50a94210e4fcc521b21102e2a8969d7a08d784b5020e96ea689986b6b117338"
+        },
+        {
+          "file": "工作状态-原地踱步张望.webm",
+          "bytes": 2836476,
+          "sha256": "10aa54fbb7d9a512d3320ceb031a4b1a0bb6bc6d2a05b10b7a42240e48bc4efd"
+        },
+        {
+          "file": "工作状态-垂头叹气冒汗.webm",
+          "bytes": 1770299,
+          "sha256": "bc561774c5a2115e0a1c870fea771c728b579f676643305bd598d0cb974b84c2"
+        },
+        {
+          "file": "工作状态-忙碌点按.webm",
+          "bytes": 1762850,
+          "sha256": "f9a0e77c767a1b271945a4f4f1e749b3b0b5d0be005b1ab46877ead27382afeb"
+        },
+        {
+          "file": "工作状态-思考冒泡.webm",
+          "bytes": 2585521,
+          "sha256": "e95b5916759df2db880bb4bf083c803d3cc6d6953148fff44c0af2c73903610f"
+        },
+        {
+          "file": "工作状态-清点归档.webm",
+          "bytes": 2465695,
+          "sha256": "8d741fc7be126999265b7030bad80f6d8b3bcbe2bff4d70e80e318a3d89d201c"
+        },
+        {
+          "file": "工作状态-雀跃庆祝.webm",
+          "bytes": 1805835,
+          "sha256": "41b0d7e0927017dfb3b28e1df6c989f7bcd887d949586073f0df3a64df35caa7"
+        },
+        {
+          "file": "开心小跑.webm",
+          "bytes": 3442673,
+          "sha256": "837bc1ae2298a132747666a696c42df051843b18a72ea2dead110cfb39643b24"
+        },
+        {
+          "file": "待机呼吸休闲.webm",
+          "bytes": 426947,
+          "sha256": "9780a2722e3ba3e35a022f378bfec700985b3b84f3dbdb18927a23919ddd1783"
+        },
+        {
+          "file": "悠闲哼歌.webm",
+          "bytes": 2090004,
+          "sha256": "b17bd034f655bfaef9a499211066b173ede2fe5da1e0794f389f8b75922ba046"
+        },
+        {
+          "file": "扑克魔术.webm",
+          "bytes": 2286301,
+          "sha256": "b7991cc33b0a72f668b935db6a09bbc755a180ae202a78c66a1eaeffe3860a3c"
+        },
+        {
+          "file": "打瞌睡被惊醒.webm",
+          "bytes": 2772425,
+          "sha256": "b457135695d64dbcebfcb1f877a9c62ad820fd41e8bab7a871cc3127124c0563"
+        },
+        {
+          "file": "抽陀螺.webm",
+          "bytes": 3565790,
+          "sha256": "85bbc9ca0d52a77770470fcc788413a70b08b1bca44faf11959d9001ee782aa4"
+        },
+        {
+          "file": "拆礼物.webm",
+          "bytes": 2057841,
+          "sha256": "4e6fd1fb4f78b0ebbd5c16df41d70e10d9bc4438a2b2a9a96bbc625226abfe0f"
+        },
+        {
+          "file": "插茱萸赏菊.webm",
+          "bytes": 3206095,
+          "sha256": "ace3497ddd11278d8dde32509c29a89d54effa08e4644af35b4af59c0c20e7b5"
+        },
+        {
+          "file": "摇扇纳凉.webm",
+          "bytes": 2868050,
+          "sha256": "d7968d3607894597fc2323f3904513ab73432d6d13b1a53b906fdaf0e2b00e51"
+        },
+        {
+          "file": "撸猫.webm",
+          "bytes": 3012432,
+          "sha256": "85fa9849a2b7d2ea43f216ca3307a4098857e8791ef49640925d2f3716596ca1"
+        },
+        {
+          "file": "收红包.webm",
+          "bytes": 2096922,
+          "sha256": "4b7319169cf38bc8d269d25ea9a08b766f31e1657b63451389ae5b0578cc794e"
+        },
+        {
+          "file": "放孔明灯.webm",
+          "bytes": 4484915,
+          "sha256": "0baee3847cbfa7b630fde6e0ae75b66dbe43d6610969cebd4232c2b2416ad60b"
+        },
+        {
+          "file": "放河灯.webm",
+          "bytes": 4373291,
+          "sha256": "37a14970139d4b28ccecbe9a299d1f9c606c3238ea473140bc43031a70489983"
+        },
+        {
+          "file": "放烟花.webm",
+          "bytes": 3530283,
+          "sha256": "683354d9a462355f287acdd7c1a4c688e87aaf442c8f2b6281f6cab7eaf3b35c"
+        },
+        {
+          "file": "放风筝.webm",
+          "bytes": 5002426,
+          "sha256": "42e28ddc6006734073160cea3d3d2419fb8cecf4a1d1228f5a33adc1fad1dc6b"
+        },
+        {
+          "file": "整体换装试色.webm",
+          "bytes": 2414239,
+          "sha256": "440809580a6dde091bd26e2a97f7f50520efc7b760a9c05303720c7382408f72"
+        },
+        {
+          "file": "是啊，吃什么.webm",
+          "bytes": 3328445,
+          "sha256": "faf115cba8d4c2d6f7660a9e78f8d563b5f212dc513d0a2d23fc1029e2d91134"
+        },
+        {
+          "file": "晨间刷牙.webm",
+          "bytes": 2231503,
+          "sha256": "e4cda0a9a002eaae814e1ec3aace2cea02c4a0f925f9ac965a3bcd433085871e"
+        },
+        {
+          "file": "期待开饭.webm",
+          "bytes": 3111658,
+          "sha256": "76fe1d1b8200ce6c7d37f8e3e40a1bc4f64aca58ca877985c6da10ab29cf5f49"
+        },
+        {
+          "file": "涮火锅.webm",
+          "bytes": 2309219,
+          "sha256": "364951855329881aae349260103372e0bac87f40ae09cf8e324311d350e1919e"
+        },
+        {
+          "file": "深度思考碎碎念.webm",
+          "bytes": 2920690,
+          "sha256": "169096cb381aeae4681a9b1f0394a01230a553ef60456019e8c8b4f32149c120"
+        },
+        {
+          "file": "点击回应-傲娇生气.webm",
+          "bytes": 3062091,
+          "sha256": "acfa760b72fbe196e2bf319023925cc4320bc1c71cc18c680ac476572fbe1139"
+        },
+        {
+          "file": "点击回应-元气挥手.webm",
+          "bytes": 2614024,
+          "sha256": "8e9c8d774b0280cc4ec028e12cb52b16cefe874b189e700a47cd6ba67d40d925"
+        },
+        {
+          "file": "点击回应-害羞惊讶.webm",
+          "bytes": 2017029,
+          "sha256": "bf884537f50142e26d1432668bb847bdcc1ce607c58dde0e60ab3d20f1ce600e"
+        },
+        {
+          "file": "点击回应-开心跃动.webm",
+          "bytes": 4299272,
+          "sha256": "2085905d1cd5131a73bc3feabf4f181fdc3816e7f793c25c919275ad59142d8c"
+        },
+        {
+          "file": "点击回应-挠痒咯咯笑.webm",
+          "bytes": 3548973,
+          "sha256": "9b859fe34411659633901d64b258af4038a734d47511fbc916cae81c540b06d1"
+        },
+        {
+          "file": "照镜子.webm",
+          "bytes": 2965843,
+          "sha256": "5de00e7030d9bce32e19ab725690f094819dc2630e0f98ba851d87ab0784a20c"
+        },
+        {
+          "file": "玩水枪.webm",
+          "bytes": 2830979,
+          "sha256": "ccfb4db3f8875d4d5e6835c1fe6fc56b656061e545cf4f8805a601167e23c60a"
+        },
+        {
+          "file": "玩游戏气急败坏.webm",
+          "bytes": 3122360,
+          "sha256": "f2d215e6904d80c7ca4e0631763802025bd75d1bee94988cae05ca6b1b9ee212"
+        },
+        {
+          "file": "用鲸鱼尾巴拍打地面.webm",
+          "bytes": 3586934,
+          "sha256": "e52270ae5b42d82fe6aa9ba2c6081d98b058bbf3a27be2d2a229eb5c09a427e9"
+        },
+        {
+          "file": "睡觉-开始.webm",
+          "bytes": 1340327,
+          "sha256": "68c723d1a2b1a558bcc80b9753065e3091965b8db5ef67556938c3b09c6afe67"
+        },
+        {
+          "file": "睡觉-循环.webm",
+          "bytes": 341742,
+          "sha256": "aa26b1d7599d700d3a6a477175c23a376b50cd57bd5d4995475e362dd50e6c53"
+        },
+        {
+          "file": "睡觉-起来.webm",
+          "bytes": 1645643,
+          "sha256": "6523fcdbdedf3d5bd6b1fb0bd7e11b7e2322bbe9d11a2bab38c570049ac120e0"
+        },
+        {
+          "file": "碎碎念-发呆碎碎念.webm",
+          "bytes": 1877895,
+          "sha256": "133be95ca26775c7d4ca4add7fd8aa05105cf17821aaf2bae424d3d4c15faa33"
+        },
+        {
+          "file": "碎碎念-对屏碎碎念.webm",
+          "bytes": 1010800,
+          "sha256": "d50156051f110c0e6c090317975643c974d3a1f4310a66deecd44b52717cbdb2"
+        },
+        {
+          "file": "碎碎念-擦桌碎碎念.webm",
+          "bytes": 2231743,
+          "sha256": "746a658c6881bf1b4db6040b33ca9c46f797d3c193cb7d619a91f008ed9c42cb"
+        },
+        {
+          "file": "穿针乞巧.webm",
+          "bytes": 2060583,
+          "sha256": "29b2b7000cec4b9dff2df37e9d57722c51000f0e9b972ae6aef019e6b3319820"
+        },
+        {
+          "file": "舞狮头.webm",
+          "bytes": 2964290,
+          "sha256": "660e8b9453a5c4fccf3a13c67a94f6abdbd369cac068eb7750ebac4f2d4409dc"
+        },
+        {
+          "file": "荡秋千.webm",
+          "bytes": 3315915,
+          "sha256": "e54877855703617a839f39470c22e83783551f7e3c1b6c19402b3b130968ffe6"
+        },
+        {
+          "file": "萌化小幽灵.webm",
+          "bytes": 2186895,
+          "sha256": "0786c3c39407692400d0e4a67c26500ad39f2c80035c74d902aae84bca2cb5f8"
+        },
+        {
+          "file": "蓝鲸现世.webm",
+          "bytes": 2397868,
+          "sha256": "358e16ac6d462dc7a59e7cfa65c2f82d4a8803f60ce1c191c1b7f5962eabc410"
+        },
+        {
+          "file": "蝴蝶蜜蜂环绕头顶开花.webm",
+          "bytes": 3928218,
+          "sha256": "7757bf527d69fed6dd99c995c0622b17eb5f03be4eab8b377ac8f2447e7d3ef3"
+        },
+        {
+          "file": "螃蟹走路.webm",
+          "bytes": 2709695,
+          "sha256": "2bb744f642f410a208f9d23dcc401853ce706f40f6b899e84066fdb4f3e41536"
+        },
+        {
+          "file": "被吓一跳.webm",
+          "bytes": 3280437,
+          "sha256": "e9972219c34df91854e814bffc593155188f84236f5abcb7d3d41e2c8e13d877"
+        },
+        {
+          "file": "被落叶淹没.webm",
+          "bytes": 3876292,
+          "sha256": "d1ae65d15849fe35a3f2fa85ad139c58387f7cad6274a318c4395f4a74d84387"
+        },
+        {
+          "file": "被鼠标拖拽悬空反馈.webm",
+          "bytes": 2854072,
+          "sha256": "5f4472dee7b5b9435fabd6f8a567f546541872ded4303d1ffa0948cdcd9b07d4"
+        },
+        {
+          "file": "装点圣诞树.webm",
+          "bytes": 3852055,
+          "sha256": "3382dfc33bd0b0ed89032a6831228d77e201d433e8d286898b664d4f2f66396b"
+        },
+        {
+          "file": "讨糖南瓜灯.webm",
+          "bytes": 2732257,
+          "sha256": "eaee2c27fb6104128049f3b02e24509f31bb44eed58031e8bb369552eb009a98"
+        },
+        {
+          "file": "超大伸懒腰.webm",
+          "bytes": 3141138,
+          "sha256": "73d7965196df13add3febabf99d30aceb7a521e0e7e7214c8fe4e6ef9bd4a8bf"
+        },
+        {
+          "file": "踢毽子.webm",
+          "bytes": 2239667,
+          "sha256": "054e74c952443b8a1496a8257ebdd7d0aa82e732761d2c497661b3deff415007"
+        },
+        {
+          "file": "轻快摇摆舞.webm",
+          "bytes": 2478235,
+          "sha256": "520fbefda5e43a35b1a87d19bfd24314db0be49ce7d779ab30162e19e8e3b263"
+        },
+        {
+          "file": "轻快记录.webm",
+          "bytes": 1907231,
+          "sha256": "6b3ce2132a9ab9d25fd0995ec5869a91175c6ea65de0e81da5735ffb1dc2fcd3"
+        },
+        {
+          "file": "骑木马.webm",
+          "bytes": 3304345,
+          "sha256": "e3ae47a8c5c38461fe68aa8b4fc75b7c41a276fa68507de493819b30b7476d37"
+        },
+        {
+          "file": "鲸鱼吐泡泡特效.webm",
+          "bytes": 2530646,
+          "sha256": "cef21629b915620ca5bcddd911a44950c25d5d8f461074390f86f87cefd0a245"
+        },
+        {
+          "file": "害怕.webm",
+          "bytes": 1684666,
+          "sha256": "a63e6a639827e170996027be75196b9386fafa6a5af0bb6bd7ea29383dcc8398"
+        },
+        {
+          "file": "害羞.webm",
+          "bytes": 1478135,
+          "sha256": "9d4908b9bfa93b29439fa93fac0891c47d755eaf9931deeb9c81c1dfa755d146"
+        },
+        {
+          "file": "难过（眼睛饱含泪水）.webm",
+          "bytes": 1331599,
+          "sha256": "f4304375e112860b8992888e6b96150c9e8c8dbc7cb9958bd3e4b5f0b31ed7cf"
+        },
+        {
+          "file": "想去玩（期待星星眼）.webm",
+          "bytes": 2070866,
+          "sha256": "f6b2c72231ef209499f0a79bd94dfe025a31c8c11155b14b8f50fe11019017c5"
+        },
+        {
+          "file": "大哭.webm",
+          "bytes": 1646208,
+          "sha256": "5b6846f9491841aa9f230c55b417b38464470e2a22efe7bbf2809be465b61305"
+        },
+        {
+          "file": "开心蹦跳.webm",
+          "bytes": 2596504,
+          "sha256": "2a29bb60c46fedcc991168da0bedbf3ad97772919a5a630b70d25d59ee6c8a94"
+        }
+      ],
+      "originalAndAddedMappingsPreserved": true,
+      "selectionPersistence": true,
+      "unlistedAssetRejected": true,
+      "releaseHashesMatched": true
+    },
+    {
+      "class": "priest",
+      "status": "passed",
+      "profileRemoved": true,
+      "copied": [
+        {
+          "file": "三球抛接.webm",
+          "bytes": 1647519,
+          "sha256": "9b9da6e49e6b1663104d86e17413bccd76e52aaab7659facf4826c77af312db8"
+        },
+        {
+          "file": "下五子棋.webm",
+          "bytes": 2020108,
+          "sha256": "b960b929cf52e9f3f9c0aa636f75b1cdfeb5c1292472e7918b58f981ca1a333a"
+        },
+        {
+          "file": "东张西望.webm",
+          "bytes": 2411446,
+          "sha256": "a6a93a64e048d8e9795b4eba3f0098bb77ab5655f43afa8227196a6e80466dff"
+        },
+        {
+          "file": "中秋赏月吃月饼.webm",
+          "bytes": 2501157,
+          "sha256": "1274db1b8565cff826eca08057918320bcd8ab71893262b1f383f8edb8f7a17d"
+        },
+        {
+          "file": "优雅女仆舞.webm",
+          "bytes": 3198849,
+          "sha256": "1a0f729d73da3d9509a123bf5735d17dd08e12c23d5fd60492e91dd7907c9c6b"
+        },
+        {
+          "file": "余额-分文不剩.webm",
+          "bytes": 1791174,
+          "sha256": "ff66e98926f9504622dee87c97943886c2a921cea8aaa79419e87f6c308221da"
+        },
+        {
+          "file": "余额-数金皱眉.webm",
+          "bytes": 2112589,
+          "sha256": "aeb88da325a49651639b591aa1538ce9de2b4d7120e4e760217dc118c0d336db"
+        },
+        {
+          "file": "余额-袋空如洗.webm",
+          "bytes": 2351870,
+          "sha256": "a666eb485bde948fe39217147bdc923f5e912cdc10dd30e19649deb9d1ed13a0"
+        },
+        {
+          "file": "余额-金袋叮当.webm",
+          "bytes": 1946234,
+          "sha256": "1b4a2d3e8f207c3f7fb384757c8f636bc3b78f9ea51f0d4b082408c516ef7b28"
+        },
+        {
+          "file": "余额-钱袋如常.webm",
+          "bytes": 1637009,
+          "sha256": "55c0a60898a5d875539c4a863e3346d0ed5f9f05a5eb0f253a424da777148709"
+        },
+        {
+          "file": "余额-钱袋满溢.webm",
+          "bytes": 2351944,
+          "sha256": "e08de298c2dd8801e19d5e1a848741da270c16f6261eaf2b46ba31b4ec027b22"
+        },
+        {
+          "file": "侧身急躁跑.webm",
+          "bytes": 4533360,
+          "sha256": "5b381767ac280a94de00ee5ce7de41e3f994ff83a2f33752dc3a2ceb417c0225"
+        },
+        {
+          "file": "偷吃零食被抓住.webm",
+          "bytes": 1888498,
+          "sha256": "120e19e00db2d818f5a015474788c0e0a4235c3b750a0ca1283993b14e0d876f"
+        },
+        {
+          "file": "写代码.webm",
+          "bytes": 1883172,
+          "sha256": "0cdaf3b20298db92357571c3147aaac63651682c9b67665c43c1ab6047008c76"
+        },
+        {
+          "file": "写福字.webm",
+          "bytes": 2049670,
+          "sha256": "8a8cd04d57f9aff605f8d90fac709cea81819405aa6338de2e99d5888026d792"
+        },
+        {
+          "file": "凭空生花.webm",
+          "bytes": 1846547,
+          "sha256": "a382073f5bbbe5ce4042495b5de374d365b18dadd960c2df9edbe8d0b0d97c6d"
+        },
+        {
+          "file": "动物环绕.webm",
+          "bytes": 3922519,
+          "sha256": "3da963a29e7397603ed98167e28b30faa81de40bcdd3db7198b7163e456d79ae"
+        },
+        {
+          "file": "原地专心玩魔方.webm",
+          "bytes": 1627688,
+          "sha256": "8ebc6134db7946c4377f639ac41fa11a67608eb2346c25cbcb0fac4491c8f64e"
+        },
+        {
+          "file": "原地小憩沉眠.webm",
+          "bytes": 2759399,
+          "sha256": "1b2a7ec14fb61d35b35c4e015de39c3f68616edee69812905420f7e79b9a7aa2"
+        },
+        {
+          "file": "原地左转奔跑.webm",
+          "bytes": 3434998,
+          "sha256": "f5d7af0ce7900e550ba1b53f3bfcaea69e9795d9c18794aafa7c98a07c891933"
+        },
+        {
+          "file": "原地敲击桌面互动.webm",
+          "bytes": 2053924,
+          "sha256": "6acb3b4cd2bfc60c30f1ff992a6fc834a0e252506c15a5dae68d8420395f2093"
+        },
+        {
+          "file": "原地漂浮踏步.webm",
+          "bytes": 3163264,
+          "sha256": "cc09bf8d82390ac6954630ca2925aad131d0f1d7cd57efdc040d9a73a70d4c82"
+        },
+        {
+          "file": "原地跳跃抓碎头顶物品.webm",
+          "bytes": 2873714,
+          "sha256": "a89d2280d41dd08577da5b1008c2e26d4d64e9f6eb8dc4421dbed85d708cd612"
+        },
+        {
+          "file": "原地蹲下玩玩具汽车.webm",
+          "bytes": 3380325,
+          "sha256": "ad2e814871a9fa7d5d47682627f50e046fe374dc1d927cbe9e154dc83a5f2715"
+        },
+        {
+          "file": "原地重力下蹲压缩.webm",
+          "bytes": 2164280,
+          "sha256": "70f8e4091a5ad931577d411d72c1abbdc85d8c6888d6776ab801a5f24fef5b5a"
+        },
+        {
+          "file": "变鸽子.webm",
+          "bytes": 2157924,
+          "sha256": "f2777a74d13d3b46e18d08a4522c55d1a6e56a9d5db7a84a3850d6def7982748"
+        },
+        {
+          "file": "可爱宅舞.webm",
+          "bytes": 2232838,
+          "sha256": "47c1b8e9936b21ca3c95a5de6d201929da7a6b846cfdacb5208db12a2a8b9339"
+        },
+        {
+          "file": "吃Token.webm",
+          "bytes": 1567100,
+          "sha256": "9cf5fcd26a041bc895404a098336d5df49d44f3c6c428f98aaec4e251b1ed0b6"
+        },
+        {
+          "file": "吃冰淇淋融化.webm",
+          "bytes": 2028874,
+          "sha256": "66b9658d008b160245bb0a25039a2e758f83c324845f1add2d51b7bf5f04c13f"
+        },
+        {
+          "file": "吃午餐.webm",
+          "bytes": 1545029,
+          "sha256": "2202a23b2addba4d35ecf14f80f2b2de7e8848128864231eedcea6b0df5f2b62"
+        },
+        {
+          "file": "吃大闸蟹.webm",
+          "bytes": 1978751,
+          "sha256": "784a653f7623d911083b5142731fd50fcbe585022052192fe6af6f13e2f84063"
+        },
+        {
+          "file": "吃年糕.webm",
+          "bytes": 1563947,
+          "sha256": "3173778057574e6ae970b26fc045407625ed8ebaa30e76fe6e6aa488dd0747bc"
+        },
+        {
+          "file": "吃早餐.webm",
+          "bytes": 1044519,
+          "sha256": "f7490ef9fda19168705ec2e1893204663015fd6d43ece32184cb335dd4b7e034"
+        },
+        {
+          "file": "吃晚餐.webm",
+          "bytes": 1008606,
+          "sha256": "09134df797efaeeca939bbf4618ebd163604ba6fadfb42ed19f71588a68d8665"
+        },
+        {
+          "file": "吃汤圆.webm",
+          "bytes": 1021335,
+          "sha256": "de87885293c42c43a6a64abe0a5e87fe56bf04f6b9df2390538e08822045f9b7"
+        },
+        {
+          "file": "吃白饭.webm",
+          "bytes": 1004927,
+          "sha256": "e416865483a1bda15325208116e5b72526c16380d653e333276e755b494aea35"
+        },
+        {
+          "file": "吃粽子.webm",
+          "bytes": 1069788,
+          "sha256": "a175806ad9a9f932ba250a607196ec7c582c916e450ee38ed7f5f5b2860fd2b5"
+        },
+        {
+          "file": "吃糖葫芦.webm",
+          "bytes": 1076983,
+          "sha256": "a0eba1c8a78f8cd9f5aaf3346e4fbf8ebe761e198d8ac23995a501d1e24fd1ad"
+        },
+        {
+          "file": "吃腊八粥.webm",
+          "bytes": 1021422,
+          "sha256": "3cf2e44700ac8c52a61d18c681bfd79f7bb11dcee2d0f00a38a2fa8345559c2c"
+        },
+        {
+          "file": "吃西瓜.webm",
+          "bytes": 1067836,
+          "sha256": "50a90495e0afe279f8e5f82226026c227e0b415974870071313074f1f82d19f5"
+        },
+        {
+          "file": "吃重阳糕.webm",
+          "bytes": 1106118,
+          "sha256": "285b795af3d33378d4929f768e4ffb85923a2a1875947726090731da48644e8c"
+        },
+        {
+          "file": "吃长寿面.webm",
+          "bytes": 1201242,
+          "sha256": "7536530eb9674354d0f699341787efb67fd3666616887eed080eeea7c7e757f6"
+        },
+        {
+          "file": "吃青团.webm",
+          "bytes": 1093718,
+          "sha256": "1a0d628198cfb48355e94bad60a9d5e7b25d27e69ea52e0316c2dd8fefdd10cf"
+        },
+        {
+          "file": "吃饭·碗饭.webm",
+          "bytes": 1125577,
+          "sha256": "c7ab7df69ab20b6dbc174b6c3aa865a9bd85a17cc2ebcb197c905449d601e081"
+        },
+        {
+          "file": "吃饭团.webm",
+          "bytes": 1109462,
+          "sha256": "0f2d82d36785eb341d4a41ee986b2ad9a94828a14fcd63fae93c0fa273e6f13d"
+        },
+        {
+          "file": "吃饺子.webm",
+          "bytes": 1102055,
+          "sha256": "8057acf4fd43634a6fa41e39ad05847c85be8b756fade8fac3000fab2ee150ad"
+        },
+        {
+          "file": "吹气球.webm",
+          "bytes": 1232273,
+          "sha256": "bc98f4abcfd84a1063838395ab2ba5621e93cda1ca21be98c6c80d66d1b0ea17"
+        },
+        {
+          "file": "吹笛子.webm",
+          "bytes": 1175123,
+          "sha256": "8aa4fc247c7c8cba224d74b514c5cb31be45f459c2720199683e38cc30cd59de"
+        },
+        {
+          "file": "哈欠连天.webm",
+          "bytes": 1726199,
+          "sha256": "92740ca03c9652c7ddff8d68f031db1bab3387015fc7af9d20f81e4aadb69388"
+        },
+        {
+          "file": "堆雪人.webm",
+          "bytes": 2842271,
+          "sha256": "cc3e86be4ec5c373a71fee39c350cfae7745a42ce776087bef0bcda0026a2ce6"
+        },
+        {
+          "file": "大口吃零食.webm",
+          "bytes": 1444948,
+          "sha256": "c8d7d9fd9add10b8e955c2fc61d5a39f84cf57c29cefaaf65907e10d6a573a67"
+        },
+        {
+          "file": "女仆屈膝礼仪.webm",
+          "bytes": 2395865,
+          "sha256": "7b2e07d04955de8e5d52c1cf419f08d5b76cde27fa19e75a4ce71b0f36013d95"
+        },
+        {
+          "file": "小幅度原地360度旋转展示.webm",
+          "bytes": 3632057,
+          "sha256": "fb16c6d4d719afbc561dabb177ef14e438b5a35d1d41dd2f3902b2f213c0e200"
+        },
+        {
+          "file": "小提琴演奏.webm",
+          "bytes": 1775928,
+          "sha256": "49d6bfe1c8ead6f0ca46ea4c601aad902e572d36f4a87bacdac602fb9d82de03"
+        },
+        {
+          "file": "工作状态-原地踱步张望.webm",
+          "bytes": 2504438,
+          "sha256": "ae47a0912ed86023f25c4ee1cd7519c67d315276f6fbee77ab14f5ce580de353"
+        },
+        {
+          "file": "工作状态-垂头叹气冒汗.webm",
+          "bytes": 1637685,
+          "sha256": "36f658b88c2f2b1de9607b36bb390579ed40549366f60d1880d394810bb10541"
+        },
+        {
+          "file": "工作状态-忙碌点按.webm",
+          "bytes": 1513911,
+          "sha256": "a3d4f7d591fde520f6127f4aaac2498c9067a8c361cdbd79a22f6aa7c54ba118"
+        },
+        {
+          "file": "工作状态-思考冒泡.webm",
+          "bytes": 2355388,
+          "sha256": "b10f5158372b517d0833dbad58192a0d69ff8b3733134836f34e628758e8b324"
+        },
+        {
+          "file": "工作状态-清点归档.webm",
+          "bytes": 1877240,
+          "sha256": "a1b776045ecb3e77ce1b54c5fbd783d4d7f6ceb120c17a5dcb456b6ba2a3bc06"
+        },
+        {
+          "file": "工作状态-雀跃庆祝.webm",
+          "bytes": 1672348,
+          "sha256": "69437e18561914a63923609235743b82763726645b9c95722fb4dd44bac1eb8d"
+        },
+        {
+          "file": "开心小跑.webm",
+          "bytes": 2984172,
+          "sha256": "cb581ee569ff4c9b270fa23fa6af975b912799aebea54fe59d022dc2e6e5024f"
+        },
+        {
+          "file": "待机呼吸休闲.webm",
+          "bytes": 389091,
+          "sha256": "c6ef42dc07b2db66d8f233d9b0346ae99559e161842853d0080ec300a3c82bf2"
+        },
+        {
+          "file": "悠闲哼歌.webm",
+          "bytes": 1933473,
+          "sha256": "2eb8290ee8fa81df51bdc73a220e494cc167a97331032d7b97843f51e3285ab5"
+        },
+        {
+          "file": "扑克魔术.webm",
+          "bytes": 2324427,
+          "sha256": "218d66e814c083343df881ce1f628958787e81cf53361f1c9fccbc10862e2a0f"
+        },
+        {
+          "file": "打瞌睡被惊醒.webm",
+          "bytes": 3213629,
+          "sha256": "2e721f90e0d9a4169782d6ebca0339d125fdb0a709eb07b54b025c564d39d128"
+        },
+        {
+          "file": "抽陀螺.webm",
+          "bytes": 3118944,
+          "sha256": "b22772803e9227cd59810cd63f4eba1c255df5171099b0425bffc89340fa8026"
+        },
+        {
+          "file": "拆礼物.webm",
+          "bytes": 2066719,
+          "sha256": "208a6554aacbf3ab0e88e84bd9496c2e39b1f481f1038966b07568506ee3dfcf"
+        },
+        {
+          "file": "插茱萸赏菊.webm",
+          "bytes": 2383404,
+          "sha256": "25c3f1dd7953169eebcbbf43c16b85e14f5febd0488f446eaab2fd47096edc6f"
+        },
+        {
+          "file": "摇扇纳凉.webm",
+          "bytes": 2453445,
+          "sha256": "01cdd438adfc4522612942c02061108f0a617388666990c8d23a50494fd2dc40"
+        },
+        {
+          "file": "撸猫.webm",
+          "bytes": 2519657,
+          "sha256": "9af4a233a7e4d5b540e6ccb4d9fd08d418ce3bc89f65d974db75a9131eb5fdc0"
+        },
+        {
+          "file": "收红包.webm",
+          "bytes": 1718587,
+          "sha256": "90eae8c1d4c439a3234f382d7a1d25ec572830e9e486821f180d569abcde96d6"
+        },
+        {
+          "file": "放孔明灯.webm",
+          "bytes": 3173142,
+          "sha256": "f1c69cd9b3f01c095aae10f35d3416967392a92da8ce167c1e66990a7c519044"
+        },
+        {
+          "file": "放河灯.webm",
+          "bytes": 2841607,
+          "sha256": "0c225a93970c622fff2067d33a8cac36622abd5085f0f0b8f41596596fec73c7"
+        },
+        {
+          "file": "放烟花.webm",
+          "bytes": 4074455,
+          "sha256": "156ae2d1239cedce1d7db358d790b6fd8117daa84c72d027680fb2fc53507219"
+        },
+        {
+          "file": "放风筝.webm",
+          "bytes": 4184702,
+          "sha256": "7789f7a2e2ea9e0e66e07fe161e2dab075a73e797016ab4d53a470d90eefe43a"
+        },
+        {
+          "file": "整体换装试色.webm",
+          "bytes": 2159043,
+          "sha256": "692af7618ae063bdec21c2ff2a0742dce3c44164812a7b5c922fd8e1a874065e"
+        },
+        {
+          "file": "是啊，吃什么.webm",
+          "bytes": 2620903,
+          "sha256": "079a0b27b49f3d8aa4317f3d3be9c2c96a6d00e68fe6b77d94a16acdff242a3c"
+        },
+        {
+          "file": "晨间刷牙.webm",
+          "bytes": 1853876,
+          "sha256": "61876055ae1d147b6d4bd675d6987f1d2aaa48a9e07aa84d964f57bbf8265a19"
+        },
+        {
+          "file": "期待开饭.webm",
+          "bytes": 2384921,
+          "sha256": "15e2cf9b2770c920d29707a79dc5bf0f0cb72515a0508284dfb50b43864acf44"
+        },
+        {
+          "file": "涮火锅.webm",
+          "bytes": 2335217,
+          "sha256": "8a8013052b65d2e875f7152a69f88e42a8dfefa8fb9a19fe50426af548a627c0"
+        },
+        {
+          "file": "深度思考碎碎念.webm",
+          "bytes": 2507867,
+          "sha256": "0eebb40b205e5883692030d83eed5688d9a81dd9ac61205c01b6b918cb8b83d2"
+        },
+        {
+          "file": "点击回应-傲娇生气.webm",
+          "bytes": 2781557,
+          "sha256": "9131cf97d000a1879660f43bd3780e3f3b34e066aa1c6dfe1789af62fa13cc16"
+        },
+        {
+          "file": "点击回应-元气挥手.webm",
+          "bytes": 2470053,
+          "sha256": "3ee6126ff1167639bc2dd852fd483668280121fa11ccf0b8e706f2ecc33fbb58"
+        },
+        {
+          "file": "点击回应-害羞惊讶.webm",
+          "bytes": 2019932,
+          "sha256": "668f5de0d5bbe17df1cf260394085971cfc3ff0dcc13f08260de3650aa1b6502"
+        },
+        {
+          "file": "点击回应-开心跃动.webm",
+          "bytes": 4001099,
+          "sha256": "91d02906ee1d80b722ac0cdded03e38d4a18bb8be8a1908600eedf962dcebbb4"
+        },
+        {
+          "file": "点击回应-挠痒咯咯笑.webm",
+          "bytes": 3635662,
+          "sha256": "7a73fdc8ce63c9f64fa192e431beb52a524a084c8bbfdcde2403632d1f0b2e4a"
+        },
+        {
+          "file": "照镜子.webm",
+          "bytes": 2572125,
+          "sha256": "65317b6b88d7ae19766e8037f5b1a5bc2c655131c07e5008ebe8037a87a4da3c"
+        },
+        {
+          "file": "玩水枪.webm",
+          "bytes": 2556525,
+          "sha256": "22cfc6464a1b95b5a241b6cef09145f32e726bfee7aca8c7609327cf526432ff"
+        },
+        {
+          "file": "玩游戏气急败坏.webm",
+          "bytes": 3241457,
+          "sha256": "720843234e15d685db0621a58aa54b37eb6c35653bcda31e57402ab91c04ea88"
+        },
+        {
+          "file": "用鲸鱼尾巴拍打地面.webm",
+          "bytes": 3049621,
+          "sha256": "ad60248fc20181453e547c395f9b95475b529c90b1d4fdd41f66e589e5e8869c"
+        },
+        {
+          "file": "睡觉-开始.webm",
+          "bytes": 1268924,
+          "sha256": "79ce0ede27953de061041e3ddc86c022e52dfca7e51a59933166280d5f3887b1"
+        },
+        {
+          "file": "睡觉-循环.webm",
+          "bytes": 295787,
+          "sha256": "9f3175c9337623881fa8b3681e29405e44174790aa89989129f95a56e71032ce"
+        },
+        {
+          "file": "睡觉-起来.webm",
+          "bytes": 1474551,
+          "sha256": "36fa0cd898812af869ff5ce395715e25d19ce35ba64533dc46b8f6a94b9f6ff2"
+        },
+        {
+          "file": "碎碎念-发呆碎碎念.webm",
+          "bytes": 1782454,
+          "sha256": "cb758cd67c3ab082ff761a14c4c96e29744bbabe5ff857ae75bd080c77a2d28d"
+        },
+        {
+          "file": "碎碎念-对屏碎碎念.webm",
+          "bytes": 912527,
+          "sha256": "6a470e77a253627d9342e419853f71d782781d0e3e70bc451b4fa0abe8cc0d01"
+        },
+        {
+          "file": "碎碎念-擦桌碎碎念.webm",
+          "bytes": 2430927,
+          "sha256": "f4f79e8e6f2ed7076dd58ae156db62ee196784d3421aea7391846a3b280817af"
+        },
+        {
+          "file": "穿针乞巧.webm",
+          "bytes": 1856106,
+          "sha256": "026c710d074776f0b8a1dbaed5e0c16d953708b901f1d50608f1771931d96f4b"
+        },
+        {
+          "file": "舞狮头.webm",
+          "bytes": 4557821,
+          "sha256": "046b2042e9d1a2c91d74eff1d41edd5663d189b6bd006fd8dc010d4e3daa5ef3"
+        },
+        {
+          "file": "荡秋千.webm",
+          "bytes": 4218591,
+          "sha256": "48dec9886a92223f18358397f567c353e4937138ae6b02e193e1d890b9785f5d"
+        },
+        {
+          "file": "萌化小幽灵.webm",
+          "bytes": 2598457,
+          "sha256": "7aa399eb47d7ffb37e01a15942cb42da959e62271c14c5d528465c5869fd9c7c"
+        },
+        {
+          "file": "蓝鲸现世.webm",
+          "bytes": 2545982,
+          "sha256": "4e24361f89faffe8be0780efa4d74417e92ddb33a481e57d9ef6ae140ce11733"
+        },
+        {
+          "file": "蝴蝶蜜蜂环绕头顶开花.webm",
+          "bytes": 3959451,
+          "sha256": "da9e7e2919dcb48f79b66928def7576deaecb7a9155b74302f47297618faa92c"
+        },
+        {
+          "file": "螃蟹走路.webm",
+          "bytes": 3967121,
+          "sha256": "2ee1c32f375f8b4f05d0c0853a6e03e2037338db4f71cc75aab3d393c46008c3"
+        },
+        {
+          "file": "被吓一跳.webm",
+          "bytes": 3751216,
+          "sha256": "b833cdede7877922d4133fd0d9058af14e89908b355de02dce5e4d9271402663"
+        },
+        {
+          "file": "被落叶淹没.webm",
+          "bytes": 4144552,
+          "sha256": "a4aee2e8db86fa011a85578e2cbc0bf62c505f31d6ab500a5d9b0b529ad76a99"
+        },
+        {
+          "file": "被鼠标拖拽悬空反馈.webm",
+          "bytes": 3857322,
+          "sha256": "945bd751a56fc07a1d0b2ce9c3afbc050e5780db14b2eb00c5b3a598528ef243"
+        },
+        {
+          "file": "装点圣诞树.webm",
+          "bytes": 4183721,
+          "sha256": "3c0da5efa65b50de96dc2594d2316f2fd28a7d48931e321db920ec552c93f4ff"
+        },
+        {
+          "file": "讨糖南瓜灯.webm",
+          "bytes": 3266460,
+          "sha256": "97bbc3c909d87b08659a2c3e8633e2836bcc7e8a634e10ef06e6affb58a7ab4c"
+        },
+        {
+          "file": "超大伸懒腰.webm",
+          "bytes": 3273014,
+          "sha256": "4d41abe76f2b9d83b66269ea08574a93c627e431fe5e9e3ed835a7ddb020a55f"
+        },
+        {
+          "file": "踢毽子.webm",
+          "bytes": 2494736,
+          "sha256": "7270c8c05f914978fe89d2faa9a13f66d6a17ca0f88c3ca84a1603f89a822ab8"
+        },
+        {
+          "file": "轻快摇摆舞.webm",
+          "bytes": 2829960,
+          "sha256": "1591a5c7ff81907349e7d94218ed8ac2f561f30960eb16d4a9c90b09db857d1a"
+        },
+        {
+          "file": "轻快记录.webm",
+          "bytes": 1767911,
+          "sha256": "0ab9ed7d66727953dcb596fb74bbb0c4d88ea2d01395f902fd4c79b15ab7301f"
+        },
+        {
+          "file": "骑木马.webm",
+          "bytes": 3731069,
+          "sha256": "b176fa3e587f9b918c9ac7a9f922c9432578ee1d088c1de7a55f786375728a8c"
+        },
+        {
+          "file": "鲸鱼吐泡泡特效.webm",
+          "bytes": 3222881,
+          "sha256": "f87a5d90f02f50f84655c8442aefb0874f0fc0c60b4a315faf411a826f28685a"
+        },
+        {
+          "file": "害怕.webm",
+          "bytes": 1815416,
+          "sha256": "4f003606f662d710f69c5885889eb50aeeca4d4d52e9da66666e3331c61d2673"
+        },
+        {
+          "file": "害羞.webm",
+          "bytes": 1493973,
+          "sha256": "d8d0f4eea50f1b80c0a2b6b885032ac6d43dd3fd58d216e85c642ef7bbc00016"
+        },
+        {
+          "file": "难过（眼睛饱含泪水）.webm",
+          "bytes": 1367805,
+          "sha256": "7b4c18d9c03c59fc3d6a70b762a37cbe8b004ad0a236f8596cc5ebadd2ccac7e"
+        },
+        {
+          "file": "想去玩（期待星星眼）.webm",
+          "bytes": 1975175,
+          "sha256": "6b2ae3f6f5d511611b1eaa38e718679dc894ff5be0493760e8e06f2b5168aef8"
+        },
+        {
+          "file": "大哭.webm",
+          "bytes": 1662404,
+          "sha256": "773e112764a76f4f7e91677cac735a757c3fb4037edefc31d62c54a2cb3ffa33"
+        },
+        {
+          "file": "开心蹦跳.webm",
+          "bytes": 2085190,
+          "sha256": "30c9ca3ef42d5cb3c8f5a76cc4e55bc122ce8e902fe68536008792b7c396a998"
+        }
+      ],
+      "originalAndAddedMappingsPreserved": true,
+      "selectionPersistence": true,
+      "unlistedAssetRejected": true,
+      "releaseHashesMatched": true
+    },
+    {
+      "class": "druid",
+      "status": "passed",
+      "profileRemoved": true,
+      "copied": [
+        {
+          "file": "三球抛接.webm",
+          "bytes": 2170739,
+          "sha256": "aab75c39597a4dccd94aa79a09405833e1817e8bd19a6a983f661f9a936455b4"
+        },
+        {
+          "file": "下五子棋.webm",
+          "bytes": 2325734,
+          "sha256": "5defe7ac6fb6a5836f652ccce6304bd3caf56d33365d7eacd34c791438e9a5bc"
+        },
+        {
+          "file": "东张西望.webm",
+          "bytes": 3106215,
+          "sha256": "2d00b79fc5d9374676d86adbe8aaa5b4cbf7e01c55c85d50a82ebd52ef8d2faf"
+        },
+        {
+          "file": "中秋赏月吃月饼.webm",
+          "bytes": 3617723,
+          "sha256": "bc9b33e92a7924c0298fc16db7b4ba857098739324f03455a76eecacbe951b15"
+        },
+        {
+          "file": "优雅女仆舞.webm",
+          "bytes": 4135725,
+          "sha256": "3536a23ce79d5bb4ea2ce8da2237bc320694a147180f116446538a1bb83c4457"
+        },
+        {
+          "file": "余额-分文不剩.webm",
+          "bytes": 2925685,
+          "sha256": "99bfc1894f3c4f562fa219a51f31341cde1142de7dd201bf3925be19ff406e06"
+        },
+        {
+          "file": "余额-数金皱眉.webm",
+          "bytes": 2818160,
+          "sha256": "2f79274747a72888d4be417486ba2d56bf98912816fea96b3bb0b8dd0a610e3d"
+        },
+        {
+          "file": "余额-袋空如洗.webm",
+          "bytes": 2748971,
+          "sha256": "bcba080daa67b7931d48b8d49444bd2ede5d42f3e93fde5c5d2cad1a72428d41"
+        },
+        {
+          "file": "余额-金袋叮当.webm",
+          "bytes": 2130158,
+          "sha256": "891338582147832378cd6af506e0a0d5e06285109f4d6ec73dea6cdb2a40908d"
+        },
+        {
+          "file": "余额-钱袋如常.webm",
+          "bytes": 1930058,
+          "sha256": "85d829c379b6248b0a0b9bd8e4d803c857bbf73719c3bf4a3301310280004236"
+        },
+        {
+          "file": "余额-钱袋满溢.webm",
+          "bytes": 2944615,
+          "sha256": "7e0a8be7bcf948a857330a4c7d79553ee4e3a95eb6d587e33e3dc99b7835d0dc"
+        },
+        {
+          "file": "侧身急躁跑.webm",
+          "bytes": 4586040,
+          "sha256": "0e9e2c0f44e333372ec6a6480b9811400a7c79c780ce42eb90405df0237c41e6"
+        },
+        {
+          "file": "偷吃零食被抓住.webm",
+          "bytes": 2169180,
+          "sha256": "639e65544350fd6ef52fc4947daddb9a12f83b5a92c342fb4d83790882c67af3"
+        },
+        {
+          "file": "写代码.webm",
+          "bytes": 2417596,
+          "sha256": "99f873bd9f8395f98c86e8ad4be5f5c2c875a9eec6f5d76600626173eda2490f"
+        },
+        {
+          "file": "写福字.webm",
+          "bytes": 3434869,
+          "sha256": "0414ab238f93ab5d2569f2978045e91ea4ffe5a71fdbc8bba819f55ec913bd76"
+        },
+        {
+          "file": "凭空生花.webm",
+          "bytes": 2672736,
+          "sha256": "4e3a5081cd419d0504280d6314ae29b1aad1ce5f9109f66a44ff13942bfceb34"
+        },
+        {
+          "file": "动物环绕.webm",
+          "bytes": 4181752,
+          "sha256": "6645671a9c03c6bc45781671bea81f5ea37ba57a5b3a9d92757c3cba725ff784"
+        },
+        {
+          "file": "原地专心玩魔方.webm",
+          "bytes": 1542529,
+          "sha256": "67c21fdc36618dc6ffb1c86f98ef96756c7947eb1efe56945a68c5f6681b2701"
+        },
+        {
+          "file": "原地小憩沉眠.webm",
+          "bytes": 3159542,
+          "sha256": "eb308eeacd9a209dd91f9dbbb6392bcb30b3f7a088ec64edfe18550c16671794"
+        },
+        {
+          "file": "原地左转奔跑.webm",
+          "bytes": 3596506,
+          "sha256": "641d4f7b6f960c970c1bc899bfaba8772ea9e6675d654a9e32d887992482db3d"
+        },
+        {
+          "file": "原地敲击桌面互动.webm",
+          "bytes": 1462855,
+          "sha256": "e7fdc157aa98603a1aee02786abe6a211084b9df63f5e126e2195392d9cb7921"
+        },
+        {
+          "file": "原地漂浮踏步.webm",
+          "bytes": 3189491,
+          "sha256": "63ddfc873cab1af5fb7d268a3c693ecb093f1ff1c85e70b221c6e474c8b4cbea"
+        },
+        {
+          "file": "原地跳跃抓碎头顶物品.webm",
+          "bytes": 3908720,
+          "sha256": "3a98aa76cf68649a495a19576bc5e017cba8944c17d405e4f8e93844a715b482"
+        },
+        {
+          "file": "原地蹲下玩玩具汽车.webm",
+          "bytes": 2996903,
+          "sha256": "2fed2cd88e816940ebe01642cf838e7440fa05bf64e5db352c361abbe4650a90"
+        },
+        {
+          "file": "原地重力下蹲压缩.webm",
+          "bytes": 3538649,
+          "sha256": "4dabf0ff5b13839bbd982123dd8817a6813d4adc12750a9f6fa0246b7a6f4f7b"
+        },
+        {
+          "file": "变鸽子.webm",
+          "bytes": 2126586,
+          "sha256": "266b1a83966c5258640b47bbe1bc9f65e43ca2ab3a1c876c964480f522429532"
+        },
+        {
+          "file": "可爱宅舞.webm",
+          "bytes": 3111834,
+          "sha256": "53279f4a55f09609230dc289f1af16fecaa9952220be7cfbab4cf95c92e6f3f7"
+        },
+        {
+          "file": "吃Token.webm",
+          "bytes": 2346803,
+          "sha256": "0fa71f67480ddbaa28dad697343dce52266f87165d703e2bef197f396601c75f"
+        },
+        {
+          "file": "吃冰淇淋融化.webm",
+          "bytes": 2797025,
+          "sha256": "d37bf6448e7446978b45a246e2d7eeb493bd88af272323fb994bd9c636aaadd6"
+        },
+        {
+          "file": "吃午餐.webm",
+          "bytes": 2432868,
+          "sha256": "020da43be54c419f57b8efedc4a2654b5b283b86a972636588671c4c27fe168c"
+        },
+        {
+          "file": "吃大闸蟹.webm",
+          "bytes": 2710516,
+          "sha256": "167baecca76182ed5b3fdfb6210f3ba523f224d854b5763d6639a398594e21a4"
+        },
+        {
+          "file": "吃年糕.webm",
+          "bytes": 2119597,
+          "sha256": "d3f19b1b67aacd59de0a68475d1f7b27509e30aafb88550579034713fc52ab91"
+        },
+        {
+          "file": "吃早餐.webm",
+          "bytes": 2339891,
+          "sha256": "b52260d1ad88eed29e088e9b6cf27f83c3b52db86d3ed518a8ee083800fb7476"
+        },
+        {
+          "file": "吃晚餐.webm",
+          "bytes": 2155480,
+          "sha256": "face41a7e72f97f5101cce6f1607527e5dad4a88ae3e5251555aef1b59b6689d"
+        },
+        {
+          "file": "吃汤圆.webm",
+          "bytes": 2251586,
+          "sha256": "6e60438f4664e100051599b9e601a293a3094be831528da0ba6c3cd7155d9cd8"
+        },
+        {
+          "file": "吃白饭.webm",
+          "bytes": 2117385,
+          "sha256": "b2bb189d7dbfde8d301e3b7d3d0bc3b4e866c4d276b2c9ae7ef5617d30b2f1ae"
+        },
+        {
+          "file": "吃粽子.webm",
+          "bytes": 2358009,
+          "sha256": "54cfab72f49486bc34e316fbd29d7e3d32a3ae0448fdacd3a95c03e20a98b355"
+        },
+        {
+          "file": "吃糖葫芦.webm",
+          "bytes": 2186903,
+          "sha256": "95615e50ce6189ddc57b267e55f9ff1838e7e1819e9e9748b3540c1c87c7c947"
+        },
+        {
+          "file": "吃腊八粥.webm",
+          "bytes": 2201765,
+          "sha256": "34692b1b6f155fb8736a9bb788380e9b6eb5fb38ec125a88b6f33d8c274db831"
+        },
+        {
+          "file": "吃西瓜.webm",
+          "bytes": 2174252,
+          "sha256": "80f64a9d8a91c4b2848768e292069f2a278f16a86c46139779aa4b50ce8459f1"
+        },
+        {
+          "file": "吃重阳糕.webm",
+          "bytes": 2613410,
+          "sha256": "78f4b3c0bf494b32e4318f6a60ab65fad549b2c6ce54bfbab7502f2b8c4c1d6a"
+        },
+        {
+          "file": "吃长寿面.webm",
+          "bytes": 2477591,
+          "sha256": "d188da0bf74d6b6feefca5922454c69d395312743b3203fabbcdf9fbb1f55484"
+        },
+        {
+          "file": "吃青团.webm",
+          "bytes": 2405386,
+          "sha256": "d76a755f0576b8bd50a0190c2c22fca0219b2bf9def7b1a3c31321da0bb94f11"
+        },
+        {
+          "file": "吃饭·碗饭.webm",
+          "bytes": 2383882,
+          "sha256": "84d1c59f29c56f279759937d8358af16ef00ab3cc7cafc245ac6b8f05b614069"
+        },
+        {
+          "file": "吃饭团.webm",
+          "bytes": 2476695,
+          "sha256": "b26d6a3dff5a75f9954a127882f2f93e46bd6f09433adf0a735f77e196547559"
+        },
+        {
+          "file": "吃饺子.webm",
+          "bytes": 2267015,
+          "sha256": "9d2d99e27b02913215a481c4b645fdf7c19d550598b9d78ec453aaf845e80d48"
+        },
+        {
+          "file": "吹气球.webm",
+          "bytes": 2818237,
+          "sha256": "7b51f608cbaa3f35e284d96e0b3e733ef08ef364f8af8fe1b4ce231a86879e6d"
+        },
+        {
+          "file": "吹笛子.webm",
+          "bytes": 2201946,
+          "sha256": "24af80da766775fa3175229e4ae0333234ae927898da45edac0e1398a87b3fa7"
+        },
+        {
+          "file": "哈欠连天.webm",
+          "bytes": 1781680,
+          "sha256": "080967b5a127dcb351d981eeeff13123a46e8967713264a5063ab2c8060602d9"
+        },
+        {
+          "file": "堆雪人.webm",
+          "bytes": 4469129,
+          "sha256": "90f2e90c000b25727fc1f79078a5d4f5004d3346630e42c2773705dd55f73868"
+        },
+        {
+          "file": "大口吃零食.webm",
+          "bytes": 2049063,
+          "sha256": "9db6cb1826cd6719df24ed8e1367f51376caded06427b0eb96196bc9961e7682"
+        },
+        {
+          "file": "女仆屈膝礼仪.webm",
+          "bytes": 2865557,
+          "sha256": "491eddc0ec07104724e7768a15b943ff50b989676d4805a74f68e794fc64e7c7"
+        },
+        {
+          "file": "小幅度原地360度旋转展示.webm",
+          "bytes": 4320610,
+          "sha256": "f62d8799f62d8918ce131488d9c4701ad9651a52a98cf55f02eee7f837826fab"
+        },
+        {
+          "file": "小提琴演奏.webm",
+          "bytes": 2181293,
+          "sha256": "aed59e46bdb3aebbf02ee30819badbef27375285c14bccd2a21f5193c87c30f6"
+        },
+        {
+          "file": "工作状态-原地踱步张望.webm",
+          "bytes": 2758871,
+          "sha256": "70567e9d0ae2ab573805aac7c5240c1cbe656ee4af187ee51eebeb34d3a9f3b2"
+        },
+        {
+          "file": "工作状态-垂头叹气冒汗.webm",
+          "bytes": 2496080,
+          "sha256": "095ac4339065d4b2847d96474783569671e358c781ea07148d7e69d09e5c1480"
+        },
+        {
+          "file": "工作状态-忙碌点按.webm",
+          "bytes": 1648993,
+          "sha256": "c10e622b5651fc8c5519a112b7ef8acfc2f7afe10c041c3b97a1afaaf6390f0c"
+        },
+        {
+          "file": "工作状态-思考冒泡.webm",
+          "bytes": 3090597,
+          "sha256": "1a1e07e3ad408d645ae90bb645d18c585b46687262674b05126c54a298dc992b"
+        },
+        {
+          "file": "工作状态-清点归档.webm",
+          "bytes": 2484593,
+          "sha256": "1d147b0ce25226f88d2f6570e250db5efcd36000d275de2ba3920f20132c6c36"
+        },
+        {
+          "file": "工作状态-雀跃庆祝.webm",
+          "bytes": 1935549,
+          "sha256": "8ce7094986139ad8615759c14465f26469fd146525356dcb6337465ab896b393"
+        },
+        {
+          "file": "开心小跑.webm",
+          "bytes": 3546424,
+          "sha256": "78dd621055d0944227c7406ca7b2b1295758fbe8d662edd58482f4f8d12aec81"
+        },
+        {
+          "file": "待机呼吸休闲.webm",
+          "bytes": 482484,
+          "sha256": "c05b9c3b2b2300495e2054386523fb58d1cab21960836b1a162b018f2d85e937"
+        },
+        {
+          "file": "悠闲哼歌.webm",
+          "bytes": 2244598,
+          "sha256": "dd18678513d9d10c73db2f47ef68287fa399f28fb1d51cd58bfc45599bc94950"
+        },
+        {
+          "file": "扑克魔术.webm",
+          "bytes": 2989270,
+          "sha256": "977caf5dc68eaaa8bb256c24c39e09be417d1a6a2c99d94450dc621271d6a18c"
+        },
+        {
+          "file": "打瞌睡被惊醒.webm",
+          "bytes": 3142169,
+          "sha256": "3847a81aa3b12c99c8ab0da8bdaa9fcb7ae52a1a9ee43dcc5d5260da2d6d0186"
+        },
+        {
+          "file": "抽陀螺.webm",
+          "bytes": 3225669,
+          "sha256": "4cea3213143338c86c4a020378011bdba049ee06e8ad8ae920bbf1dc25c15dc0"
+        },
+        {
+          "file": "拆礼物.webm",
+          "bytes": 2450850,
+          "sha256": "19f20c326c6385fcf505c506211c1325c3b5fb8169e1aa45ff46eee44f8ed5a9"
+        },
+        {
+          "file": "插茱萸赏菊.webm",
+          "bytes": 3587518,
+          "sha256": "09b91e10360c79971303d0972a261ba4a2f22838228b5b91c2c5729f74a42455"
+        },
+        {
+          "file": "摇扇纳凉.webm",
+          "bytes": 2608602,
+          "sha256": "88626e6d11887d7bdddd05f0173a86a3e6e0cca005741a6601f9a56efc397a8a"
+        },
+        {
+          "file": "撸猫.webm",
+          "bytes": 2534909,
+          "sha256": "38742e338b3fc8ba33af5082c69b6d398ec5bd1fe00d754b59e37f70694e4b6e"
+        },
+        {
+          "file": "收红包.webm",
+          "bytes": 2397748,
+          "sha256": "d871a1f2c6ea92560fb137b558a9b1b239b797bbb52fce4a90a3b6c654ae320f"
+        },
+        {
+          "file": "放孔明灯.webm",
+          "bytes": 3926893,
+          "sha256": "f9e66330858f4be40811b4422f2f22b520e2597c242254ead40dffff6bb82cdc"
+        },
+        {
+          "file": "放河灯.webm",
+          "bytes": 3683217,
+          "sha256": "74067898a2111f124e42c324d8e5c270d30821bab582cc5ee97e397bd01cc018"
+        },
+        {
+          "file": "放烟花.webm",
+          "bytes": 4604716,
+          "sha256": "541df8508bd141b93d5cf15f352251fa53b2fb8c972c37e0e27f1e0fca22e331"
+        },
+        {
+          "file": "放风筝.webm",
+          "bytes": 3579785,
+          "sha256": "40cbb83157a8ed8b76c9cb28ab51498f6866760360620b2c326cd035ebd131dd"
+        },
+        {
+          "file": "整体换装试色.webm",
+          "bytes": 3260105,
+          "sha256": "14e1b30ed0b88f4550fa0deb613d61949dea4e829420db778ffb79c3637ac7d2"
+        },
+        {
+          "file": "是啊，吃什么.webm",
+          "bytes": 3675706,
+          "sha256": "ed5867aeb2c07004ae48ad14756baeedfb15c61574c2f53be30c45cd1fb4e24b"
+        },
+        {
+          "file": "晨间刷牙.webm",
+          "bytes": 2766326,
+          "sha256": "36dfe4b589a3427f235235f14a5bdcf2c301a6a50bf5d01e1546374ba5cc3334"
+        },
+        {
+          "file": "期待开饭.webm",
+          "bytes": 3025289,
+          "sha256": "1e7440c9bb3921594e5b623201ebff31ff54a16e3fefd48565c65594c76c2671"
+        },
+        {
+          "file": "涮火锅.webm",
+          "bytes": 2891398,
+          "sha256": "14c98c24e6b66594ce1748660ff4995b34ff602f05fe22c7d2d8296077201b95"
+        },
+        {
+          "file": "深度思考碎碎念.webm",
+          "bytes": 3354199,
+          "sha256": "26ec6e69a3ce56ee5d1c44526a66636a3a6441901093c671f39bebe3dcff5db8"
+        },
+        {
+          "file": "点击回应-傲娇生气.webm",
+          "bytes": 3444537,
+          "sha256": "235f21f25829acc2e61aa3cab7e72e19b8cf75933ef6ca599cff66e75d3c5a10"
+        },
+        {
+          "file": "点击回应-元气挥手.webm",
+          "bytes": 2866206,
+          "sha256": "6e1e7a131809b07580740d3131f8669353e5b7cfb624775cb3c0ac4d5e96b7cf"
+        },
+        {
+          "file": "点击回应-害羞惊讶.webm",
+          "bytes": 2541235,
+          "sha256": "7135c8be0ef053b4909f08021674f39bf94dcee70889b5f8795290fed202415a"
+        },
+        {
+          "file": "点击回应-开心跃动.webm",
+          "bytes": 3869346,
+          "sha256": "dd367fd7fc3257f974fda363e6aaaa044d077bf962c92b3a14e3bb354c28876d"
+        },
+        {
+          "file": "点击回应-挠痒咯咯笑.webm",
+          "bytes": 3989955,
+          "sha256": "9c77deebe0ccd2ff26d82d1538b3da8b63b49a6aca50f62b0f3d05e20781481c"
+        },
+        {
+          "file": "照镜子.webm",
+          "bytes": 2945334,
+          "sha256": "22db320f0a0dd310698b9c279199a4d0eb04fae1e0168b854d6d28c8aa99935d"
+        },
+        {
+          "file": "玩水枪.webm",
+          "bytes": 3050455,
+          "sha256": "c2fe6400d480774b13deea70b8c16e25c4576d38c93d8bf4137c84c0d1a05e3a"
+        },
+        {
+          "file": "玩游戏气急败坏.webm",
+          "bytes": 3467897,
+          "sha256": "1d2da222b554270e9e17b2a47da52d5a2aa1a0f64254741377845937c2877137"
+        },
+        {
+          "file": "用鲸鱼尾巴拍打地面.webm",
+          "bytes": 3504882,
+          "sha256": "5e51fc9b6924a669b013c1310f2361ed754e98b7972a43ab4227810bf43d9c42"
+        },
+        {
+          "file": "睡觉-开始.webm",
+          "bytes": 1469696,
+          "sha256": "412b1aad078c044825d8b2c3c678402c2f4e78ebb98ebef6882311966a15abd1"
+        },
+        {
+          "file": "睡觉-循环.webm",
+          "bytes": 333633,
+          "sha256": "d7d71472639806119d6520951941bf84f0a9c5498b9c0d73b2f50e2d55282c14"
+        },
+        {
+          "file": "睡觉-起来.webm",
+          "bytes": 1788176,
+          "sha256": "48fff1cb550347f356b3e4854a010ab43e0cbd46af14030fe1f48d3f4802e044"
+        },
+        {
+          "file": "碎碎念-发呆碎碎念.webm",
+          "bytes": 1525209,
+          "sha256": "881a1c2e23f4de9c7e8fa33749a73560f3834947d297cf50277b879dd98364e2"
+        },
+        {
+          "file": "碎碎念-对屏碎碎念.webm",
+          "bytes": 1140570,
+          "sha256": "0cd8b4528b62c0c5874a9ba2f70299daf5d75a2984069a700b1d6db54986240a"
+        },
+        {
+          "file": "碎碎念-擦桌碎碎念.webm",
+          "bytes": 2904701,
+          "sha256": "81d9b3714ebc7c7165385b5663cd16bb529e740de22207517ab2c777a2b77511"
+        },
+        {
+          "file": "穿针乞巧.webm",
+          "bytes": 1716938,
+          "sha256": "0b2c155d219b84b79c08672dc62f709dc143d94502a1c26a877b2c9a7ba82bf0"
+        },
+        {
+          "file": "舞狮头.webm",
+          "bytes": 3019151,
+          "sha256": "b2544a98059c72efad9a3d4133622ccd90bd08797cf41648c6fb33f12f7b0fc3"
+        },
+        {
+          "file": "荡秋千.webm",
+          "bytes": 3368780,
+          "sha256": "fc53872ebd562f35feaacb9d510df3f1c4b634a1b34096f43801a799c2434386"
+        },
+        {
+          "file": "萌化小幽灵.webm",
+          "bytes": 2371918,
+          "sha256": "8224c1ddeb9a0297acde6e44de6ee6be13d9dbbb75e15554f4554224004a0dd1"
+        },
+        {
+          "file": "蓝鲸现世.webm",
+          "bytes": 2582381,
+          "sha256": "a721e91170ad2873dafd9ee5ba36157282fb8e48332562de3a2282286f8e628a"
+        },
+        {
+          "file": "蝴蝶蜜蜂环绕头顶开花.webm",
+          "bytes": 4261972,
+          "sha256": "85c4e4e33f6abc14339347e41378ca1a280365251a690374d8045bbfa97f2df7"
+        },
+        {
+          "file": "螃蟹走路.webm",
+          "bytes": 3282258,
+          "sha256": "4e8d26c445e0e2fe12828807f6c6c3b7d0d3d570c57264fb0555a39a7acef624"
+        },
+        {
+          "file": "被吓一跳.webm",
+          "bytes": 4022077,
+          "sha256": "0e2aa2a5005c6c011673dad2706bc784cd48a28dea7f325d4d9f08ae4fa4e7d9"
+        },
+        {
+          "file": "被落叶淹没.webm",
+          "bytes": 5047027,
+          "sha256": "80ee1fadf2ab936bb0bd29cf3f5295781fb60c824b3745e3c2f7c72140a8a166"
+        },
+        {
+          "file": "被鼠标拖拽悬空反馈.webm",
+          "bytes": 4027566,
+          "sha256": "cce350f21d7f3212360d2df584c672410c6fca76898dfbeaf106407da9ebf72a"
+        },
+        {
+          "file": "装点圣诞树.webm",
+          "bytes": 3721749,
+          "sha256": "3f6789cdb3f3390c60fe9db80c1915ea07db08063e8f4ad5ed6fc1c0c26928fb"
+        },
+        {
+          "file": "讨糖南瓜灯.webm",
+          "bytes": 3332406,
+          "sha256": "0fedcf25f8540e60e20e99062998c5ec28a9f35ac0297f9a524326d6c5402fcf"
+        },
+        {
+          "file": "超大伸懒腰.webm",
+          "bytes": 4017289,
+          "sha256": "61d05ee06c9e8b0d205bcef64cb22317d4f9a3be99fad5425dc5fff4306161a4"
+        },
+        {
+          "file": "踢毽子.webm",
+          "bytes": 2599373,
+          "sha256": "345104449abf9e4197e1fbedfcadf6988dbb1f4dfc26ec93a3b816dd05f5fef2"
+        },
+        {
+          "file": "轻快摇摆舞.webm",
+          "bytes": 3884942,
+          "sha256": "df5f0c6cfaa8aaafea0f67d04ab0d0d901bc834b0ce26a09253ee7664ce46d95"
+        },
+        {
+          "file": "轻快记录.webm",
+          "bytes": 2349857,
+          "sha256": "441c2979e33ef1889c52a44d0071a3e2a12f13b0c75d9ff0c693e829e1ee7735"
+        },
+        {
+          "file": "骑木马.webm",
+          "bytes": 4331987,
+          "sha256": "7e71cc689540c98f05efbd74f33d84192502bad620dda09232366107ebc6610f"
+        },
+        {
+          "file": "鲸鱼吐泡泡特效.webm",
+          "bytes": 3167707,
+          "sha256": "87dbc0f4df61c793df4c705246754a64cd39d2dec0ec81747676bc93215d1787"
+        },
+        {
+          "file": "害怕.webm",
+          "bytes": 2487498,
+          "sha256": "63c7a5ca59f06a78f8bf9aa4c907d9292b5d4698614367fd10f00477f2dd8eaa"
+        },
+        {
+          "file": "害羞.webm",
+          "bytes": 1901868,
+          "sha256": "af67eba49da2aabbea8ee6154d87015349043dad5f663ddf1ccb02f9d16a7c24"
+        },
+        {
+          "file": "难过（眼睛饱含泪水）.webm",
+          "bytes": 2028264,
+          "sha256": "cfd7cc2b3192daecab954a1c4ac2518a1ab20a35806733feab6a9fcad5db8055"
+        },
+        {
+          "file": "想去玩（期待星星眼）.webm",
+          "bytes": 2241548,
+          "sha256": "963f04c611c642b4185b080f201dfa2948a72ff1edbb09d5ee36be1d3a27ee18"
+        },
+        {
+          "file": "大哭.webm",
+          "bytes": 2493308,
+          "sha256": "29ea15842a54c72cdd7754de02ea2cffcd37731e28602f3674714eb2d1402908"
+        },
+        {
+          "file": "开心蹦跳.webm",
+          "bytes": 3035278,
+          "sha256": "790838d825297d9087da37d260262f1a6afc362f76abb959d28ff32d8d6ddd38"
+        }
+      ],
+      "originalAndAddedMappingsPreserved": true,
+      "selectionPersistence": true,
+      "unlistedAssetRejected": true,
+      "releaseHashesMatched": true
+    }
+  ],
+  "createdAt": "2026-11-09T02:02:31.418Z"
+}

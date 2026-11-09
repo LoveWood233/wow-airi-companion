@@ -1,0 +1,622 @@
+{
+  "agent": "full_art_b",
+  "scope": "paladin and warlock emotions+01..14; priest emotions+01..07",
+  "status": "source_art_complete",
+  "count": 38,
+  "notes": [
+    "paladin/actions-03 edited via image_gen to remove laptop and use two bare-table palm-tapping poses",
+    "priest/actions-01 initial gray-haze alpha rejected; cleaned via image_gen before encoding",
+    "original action semantics are redrawn in 2 key poses each, not a pixel-exact recreation of upstream video choreography",
+    "animation and AIRI import validation delegated to parent"
+  ],
+  "items": [
+    {
+      "class": "paladin",
+      "sheet": "emotions",
+      "file": "sheets/paladin/emotions.png",
+      "sha256": "a38a686c448ac5e90bc3c3c5b0b22176d262c40ce17000bbc92afc6309138f4f",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-5e368462-c529-41f1-a5c7-de0844a2c0dc.png",
+      "prompt": "prompts/paladin/emotions.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.39926,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-01",
+      "file": "sheets/paladin/actions-01.png",
+      "sha256": "3b5b3b665b7eee4396ba3b5a526d20ccb39732b6fd4ec7e1718113441c1302e2",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-f92f4b97-9243-4b98-93e4-f180db3c49c2.png",
+      "prompt": "prompts/paladin/actions-01.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.36027,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-02",
+      "file": "sheets/paladin/actions-02.png",
+      "sha256": "e7719f43b07c2bb6fcd65d50679bece3dcba46e7c3938488a1ecf0bdf3f6fc57",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-f05f6d33-8242-45b5-961d-6a672a86aa33.png",
+      "prompt": "prompts/paladin/actions-02.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.36724,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-03",
+      "file": "sheets/paladin/actions-03.png",
+      "sha256": "009764ce32c0b685c4e09bc73bbdbbaafcd5f4db0e69f3b414b42ccc2340b4c0",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-674d65a9-d5f7-440c-9923-44fef683cf44.png",
+      "prompt": "prompts/paladin/actions-03.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.54878,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": "prompts/paladin/actions-03-table-fix.txt"
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-04",
+      "file": "sheets/paladin/actions-04.png",
+      "sha256": "356eadc51164ff0c2555a8851cc8d356dde12626292701ea4567ec469433a9cb",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-a30aeedc-0d2e-4a7a-9d11-9e42cf95d397.png",
+      "prompt": "prompts/paladin/actions-04.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.45521,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-05",
+      "file": "sheets/paladin/actions-05.png",
+      "sha256": "f4ad7ad43da74ae86753a16727e76dd2d92b5110226cdb387bfdfb888dac87ff",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-986a7a54-f116-4094-a37c-cdf52b4f15b2.png",
+      "prompt": "prompts/paladin/actions-05.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.49762,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-06",
+      "file": "sheets/paladin/actions-06.png",
+      "sha256": "1ed56212e56e10d11a6e7c7fdc97030183e6e4ec1495db50781344187688b2cb",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-635cfdc9-e6ef-4cb4-ba03-69b9783c6ad2.png",
+      "prompt": "prompts/paladin/actions-06.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.50418,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-07",
+      "file": "sheets/paladin/actions-07.png",
+      "sha256": "13bce5339c56915dd419b0592d802a98fd118773034aefbdef8ad5087d705409",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-fbf6e84d-5dc1-4553-bb47-c2691cca255d.png",
+      "prompt": "prompts/paladin/actions-07.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.46501,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-08",
+      "file": "sheets/paladin/actions-08.png",
+      "sha256": "58d5f150ae432c759d0fd50dc7d1a7e7f01bee7a95c9fe5e35830b9d34dcae9d",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-38eb375a-dd0d-48ca-9531-6dce49983d17.png",
+      "prompt": "prompts/paladin/actions-08.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.44793,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-09",
+      "file": "sheets/paladin/actions-09.png",
+      "sha256": "592e83cc22c09b748fbbe8648cfe263f91f92cd373ce9ba07a8f64ac317dc387",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-dc3d2ff9-7614-4a0c-b1aa-6076316906b5.png",
+      "prompt": "prompts/paladin/actions-09.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.35996,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-10",
+      "file": "sheets/paladin/actions-10.png",
+      "sha256": "51cfa7b6e405c0b197ed4b4d60e7654cd9b6e2af2e16836a952a5ff1e39167be",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-f15d8fc8-19a2-47a0-ad06-d1e494eac393.png",
+      "prompt": "prompts/paladin/actions-10.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.4344,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-11",
+      "file": "sheets/paladin/actions-11.png",
+      "sha256": "95f12531799d997d12be4af9f135350050dd0fe5edc95b08a2d16602e2cb6e8e",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-5056e8a0-8d62-447f-a85e-e5f8a7873910.png",
+      "prompt": "prompts/paladin/actions-11.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.37533,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-12",
+      "file": "sheets/paladin/actions-12.png",
+      "sha256": "c3358e6e680d300cd5baea99dc35a7b785d6e9b58680bdc1ff4fe9fb92d03836",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-18163c1d-d6a8-4b7d-990c-5fa6712543de.png",
+      "prompt": "prompts/paladin/actions-12.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.459,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-13",
+      "file": "sheets/paladin/actions-13.png",
+      "sha256": "953032c9ec84c335e1f3cd4e4d7b4016a0a4e4f5aea634bc977a23e16e6a884d",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-e7a6a7e7-1071-4ce0-af74-5159f98c0ed8.png",
+      "prompt": "prompts/paladin/actions-13.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.42943,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "paladin",
+      "sheet": "actions-14",
+      "file": "sheets/paladin/actions-14.png",
+      "sha256": "1322c21fc9b72db2f5d2bbb2a3aa7ef2a38d1e30dfbcf2e461057c04eee25265",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-54f8bf45-e5fd-48b5-a9c8-a508dc0b5875.png",
+      "prompt": "prompts/paladin/actions-14.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.48616,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "emotions",
+      "file": "sheets/warlock/emotions.png",
+      "sha256": "e333bd105166f18c4e67deddfca8f7059ab95a41f0ad600960ee182112e964dd",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-1a5c8757-b177-48a1-8675-89ff86f56fc5.png",
+      "prompt": "prompts/warlock/emotions.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.46305,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-01",
+      "file": "sheets/warlock/actions-01.png",
+      "sha256": "6ff3a001483026c69c4ea866f788558b4bb84b7da889c5981cf91ef9cee8644f",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-5a638165-ae28-4cad-829b-908a5522855f.png",
+      "prompt": "prompts/warlock/actions-01.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.46314,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-02",
+      "file": "sheets/warlock/actions-02.png",
+      "sha256": "d20f625fde941dd143ef0332cfe71b5b13c81cc8e482ebd9ee574eb7375c6552",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-aff0dac5-c55d-4d60-a4ba-5ab1f74ec9e8.png",
+      "prompt": "prompts/warlock/actions-02.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.40734,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-03",
+      "file": "sheets/warlock/actions-03.png",
+      "sha256": "86635577ea6d295c11284681c9f3b93896b73f5d3a232cedf9c4ad0e7e359a74",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-2210abcd-cb5b-4249-81bb-5450dda7fca5.png",
+      "prompt": "prompts/warlock/actions-03.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.37987,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-04",
+      "file": "sheets/warlock/actions-04.png",
+      "sha256": "c53ed9b23b69eda860b4ff9219df6a6fdb591cf918b054c005db76a48c738bbf",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-e4838bbb-a6d4-4eba-91c9-72dd51cdabd3.png",
+      "prompt": "prompts/warlock/actions-04.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.43488,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-05",
+      "file": "sheets/warlock/actions-05.png",
+      "sha256": "9a55cee30696f147d0ec6b856b8f8e8eba767a23e0bc42f75313a32ed77e08bb",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-ee403f0b-ffc0-4000-8e38-835f314f2691.png",
+      "prompt": "prompts/warlock/actions-05.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.46947,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-06",
+      "file": "sheets/warlock/actions-06.png",
+      "sha256": "d57a33c937547ddeed14d205ce46442bccf3195665bf8271cf632b198b9edd0a",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-2ea22144-41a3-458d-9ca6-fc29bb316366.png",
+      "prompt": "prompts/warlock/actions-06.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.45347,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-07",
+      "file": "sheets/warlock/actions-07.png",
+      "sha256": "8ecda9207294b7e8d356453ee583d7f43a5a2d432dd8f04440d83eb5ac26b54f",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-f997d978-3c07-4b9a-a581-d1625f28f266.png",
+      "prompt": "prompts/warlock/actions-07.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.42323,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-08",
+      "file": "sheets/warlock/actions-08.png",
+      "sha256": "fdd7fb8556121a38eca8782ee95a3ca6ac2164b0821a7efafbfb5e67ebc13ee8",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-1116d227-77d8-4a3b-ac71-cdf78daeb491.png",
+      "prompt": "prompts/warlock/actions-08.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.44869,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-09",
+      "file": "sheets/warlock/actions-09.png",
+      "sha256": "05e11c3170c860b69bc5cd234b829a251316edcd832733c3c4e08dfb5ccbbb21",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-6867ce0f-bdab-4fdb-8a6d-138d82be09d9.png",
+      "prompt": "prompts/warlock/actions-09.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.35164,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-10",
+      "file": "sheets/warlock/actions-10.png",
+      "sha256": "2e3c5113163c04d7e09855ab6d81577f8647eee8deb0608c5a665862e166a101",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-50a6aabb-b0dd-4c5b-b326-9fd8d33da2dc.png",
+      "prompt": "prompts/warlock/actions-10.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.43195,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-11",
+      "file": "sheets/warlock/actions-11.png",
+      "sha256": "4d351af3dc169e4e1120faf4a8ec1610456d64fe4b6a3bb8c7def9ff12ebef6d",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-1d307475-b570-4bc4-b0e5-0079ab3c1314.png",
+      "prompt": "prompts/warlock/actions-11.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.44434,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-12",
+      "file": "sheets/warlock/actions-12.png",
+      "sha256": "a480b26688092557c70d21e6a29c391c3ab0607984c16a9009fdab4e7a115cd3",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-af102171-6bad-4bcb-8a23-33e2e420c94f.png",
+      "prompt": "prompts/warlock/actions-12.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.47681,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-13",
+      "file": "sheets/warlock/actions-13.png",
+      "sha256": "f543d4ea845e49fa3acbe5ab97edb3fbf2199a8a8f2b9267cac6e447851d09d1",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-86f2ce88-0fd2-4847-9c26-ef552fd73bea.png",
+      "prompt": "prompts/warlock/actions-13.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.42916,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "warlock",
+      "sheet": "actions-14",
+      "file": "sheets/warlock/actions-14.png",
+      "sha256": "b4dcba733137119b03c83014f7f796c7585d18edc434beb694a64e38d611a341",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-0e95c179-405e-4360-a279-3adf3a86d929.png",
+      "prompt": "prompts/warlock/actions-14.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.46105,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "priest",
+      "sheet": "emotions",
+      "file": "sheets/priest/emotions.png",
+      "sha256": "ed960c0ee061b6b71a60bb7b74a4990c1bc8eca8441e852616e366ec7ac90431",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-4b1500be-c3fe-4c03-8b3c-22254f7237ae.png",
+      "prompt": "prompts/priest/emotions.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.49754,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "priest",
+      "sheet": "actions-01",
+      "file": "sheets/priest/actions-01.png",
+      "sha256": "8516126c12219379b27ee83bbdfcf20d5a2df52846cbc53944b21c2821afc25c",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-130c3ec5-81ee-4b13-b73c-6754ada02b89.png",
+      "prompt": "prompts/priest/actions-01.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.50554,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "priest",
+      "sheet": "actions-02",
+      "file": "sheets/priest/actions-02.png",
+      "sha256": "f9fe66deaf39c0b8a7fd48e0ef3974018c3bb563a0de3c00ecb583bc3e1789bb",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-2aeff24a-942e-4aef-8a15-4c0848e09149.png",
+      "prompt": "prompts/priest/actions-02.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.47522,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "priest",
+      "sheet": "actions-03",
+      "file": "sheets/priest/actions-03.png",
+      "sha256": "3c4d7a15b7b269af132dc75cf09f5917460295e72383f42812ad5333266ac701",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-a67baf32-dae7-4c64-8df5-b4b8a3d90eb1.png",
+      "prompt": "prompts/priest/actions-03.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.49465,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "priest",
+      "sheet": "actions-04",
+      "file": "sheets/priest/actions-04.png",
+      "sha256": "cafa345b87e00ccf92760afa9ff0968c795f78d191644bbef3521f4020d551a5",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-a85e3803-d1b9-4f81-9503-3f9ad1d6cccf.png",
+      "prompt": "prompts/priest/actions-04.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.4895,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "priest",
+      "sheet": "actions-05",
+      "file": "sheets/priest/actions-05.png",
+      "sha256": "069ccdb7d6363ca4c01f108d595a29058ec202769267e011ac9c960636f14344",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-25b2cf59-f4ff-4ac7-819e-f693bfa68b0e.png",
+      "prompt": "prompts/priest/actions-05.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.53061,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "priest",
+      "sheet": "actions-06",
+      "file": "sheets/priest/actions-06.png",
+      "sha256": "f80c12e94129bbdf04401d5e15f064c95fad4aa030aa5853c86257d1ecb51492",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-183810a7-e3d9-42c8-a1be-11717eeba014.png",
+      "prompt": "prompts/priest/actions-06.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.53704,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    },
+    {
+      "class": "priest",
+      "sheet": "actions-07",
+      "file": "sheets/priest/actions-07.png",
+      "sha256": "c950ba0bd53d7f9e72023ff0dec5e6f43ac8deec5988efa9b834b3dbf853f58b",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-465a1022-0a6c-405e-a220-6406595375f9.png",
+      "prompt": "prompts/priest/actions-07.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.50228,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16-cell identity/pose/prop review completed",
+      "extra_fix_prompt": null
+    }
+  ]
+}

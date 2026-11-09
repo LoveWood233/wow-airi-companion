@@ -1,0 +1,19 @@
+Use case: identity-preserve. Production animation sprite sheet for AIRI. Reference is the APPROVED HUNTER DaFeiYu mascot. Preserve exactly her blue hair, blue eyes, white maid headband, long wavy hair, blue whale tail, face and compact chibi proportions, and purple-scale Dragonstalker armor with golden dragon-shaped shoulders, gold head ornaments, brown bow/quiver stowed on back. Every cell wears the SAME costume; weapons stowed so hands can interact. Crisp anime cel-shaded linework, identical fixed camera scale. Exactly 4x4 evenly spaced sprites on a square canvas, truly transparent alpha, no floor. All props must be drawn and recognizable. Highest available resolution. Required poses follow:
+Use case: stylized-concept. Create a production transparent raster sprite sheet, not a poster. EXACTLY 4 columns x 4 rows, 16 equal square cells, row-major. One full-body chibi blue-haired whale-maid character per cell, same identity and approved CLASS OUTFIT from the reference. Keep full hair, hands, shoes and whale tail inside each cell with generous transparent gutters; no grid lines, no text, no numbers, no white background. Consistent rendering, size, light, camera and ground line. No oversized weapons unless the action requires them. Each adjacent cell pair is two distinct key poses of the SAME named action. Preserve the reference class armor colors, shoulder silhouette, crown/hood ornaments, maid frills and facial style. New props must be drawn in the same polished anime game-sprite style and contact hands/mouth correctly. True transparent alpha. Aim high resolution; actions must remain legible at 640x360 playback.
+
+Cell 1 (row 1, col 1), action 蓝鲸现世, pose A: 角色双手张开施展魔法，蓝色水纹围绕身体，仍是完整原角色。
+Cell 2 (row 1, col 2), same action pose B: 角色变化成圆润可爱蓝鲸，保留蓝色角色标记与表情，大鲸尾明显；不是旁边加鲸鱼贴纸。
+Cell 3 (row 1, col 3), action 蝴蝶蜜蜂环绕头顶开花, pose A: 蝴蝶和小蜜蜂围着头顶紧闭花苞飞，角色抬眼看花苞。
+Cell 4 (row 1, col 4), same action pose B: 同一位置的头顶花苞完全开放，蜂蝶换到另一侧飞行，角色开心微笑。
+Cell 5 (row 2, col 1), action 螃蟹走路, pose A: 身体正面，左腿向侧跨步，尾巴反向平衡。动作语义：正面侧步交替，脚底有抬落
+Cell 6 (row 2, col 2), same action pose B: 身体正面，右腿收拢，手臂自然保持平衡。与A必须是不同的动作阶段，保持道具形状/位置关系。继续侧步
+Cell 7 (row 2, col 3), action 被吓一跳, pose A: 肩膀耸起，身体后缩，睁大眼，手护胸。动作语义：突然睁眼缩肩跳起
+Cell 8 (row 2, col 4), same action pose B: 真实离地，双脚收起，头发和尾巴向下滞后。与A必须是不同的动作阶段，保持道具形状/位置关系。落地双手护胸
+Cell 9 (row 3, col 1), action 被落叶淹没, pose A: 几片金红落叶开始落在头发和肩头，角色惊讶抬手看叶子。
+Cell 10 (row 3, col 2), same action pose B: 角色蹲低，被落叶堆淹没到肩膀，仅头和双手露出，叶堆清晰。
+Cell 11 (row 3, col 3), action 被鼠标拖拽悬空反馈, pose A: 角色被头顶拖起悬空，手脚垂落，睁大眼，身体略向左歪；没有地面接触。
+Cell 12 (row 3, col 4), same action pose B: 同样悬空，身体向右摆，腿和鲸尾向左滞后，双手紧张张开。
+Cell 13 (row 4, col 1), action 装点圣诞树, pose A: 站在小圣诞树旁，一手拿金色星饰、另一手扶树，准备向上伸。
+Cell 14 (row 4, col 2), same action pose B: 一手将同一星饰放在树顶，树上已有彩球，角色仰头露出开心表情。
+Cell 15 (row 4, col 3), action 讨糖南瓜灯, pose A: 双手胸前端托，手腕形成物体接触面；道具：pumpkin_bucket, candies。动作语义：向前伸桶期待讨糖
+Cell 16 (row 4, col 4), same action pose B: 星星眼抬头，伸手向外邀请去玩；道具：pumpkin_bucket, candies。与A必须是不同的动作阶段，保持道具形状/位置关系。糖果落入桶中开心

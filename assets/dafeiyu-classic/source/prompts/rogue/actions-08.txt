@@ -1,0 +1,20 @@
+Use case: stylized-concept. Create a production transparent raster sprite sheet, not a poster. EXACTLY 4 columns x 4 rows, 16 equal square cells, row-major. One full-body chibi blue-haired whale-maid character per cell, same identity and approved CLASS OUTFIT from the reference. Keep full hair, hands, shoes and whale tail inside each cell with generous transparent gutters; no grid lines, no text, no numbers, no white background. Consistent rendering, size, light, camera and ground line. No oversized weapons unless the action requires them. Each adjacent cell pair is two distinct key poses of the SAME named action. Preserve the reference class armor colors, shoulder silhouette, crown/hood ornaments, maid frills and facial style. New props must be drawn in the same polished anime game-sprite style and contact hands/mouth correctly. True transparent alpha. Aim high resolution; actions must remain legible at 640x360 playback.
+
+Cell 1 (row 1, col 1), action 工作状态-思考冒泡, pose A: 一手托下巴，眉眼思索；道具：thought_bubbles。动作语义：手托下巴思考，泡泡逐个冒出
+Cell 2 (row 1, col 2), same action pose B: 头和视线转左，身体基本正面；道具：thought_bubbles。与A必须是不同的动作阶段，保持道具形状/位置关系。想到主意抬头
+Cell 3 (row 1, col 3), action 工作状态-清点归档, pose A: 从左侧拿取纸张或小物；道具：paper_stack_left, paper_stack_right, folder。动作语义：从左逐张清点并整理到右侧
+Cell 4 (row 1, col 4), same action pose B: 向右侧叠放纸张或小物；道具：paper_stack_left, paper_stack_right, folder。与A必须是不同的动作阶段，保持道具形状/位置关系。放入文件夹并记一笔
+Cell 5 (row 2, col 1), action 开心小跑, pose A: 正面小跑，左腿抬起，右手前摆。动作语义：前向小跑，手腿交替
+Cell 6 (row 2, col 2), same action pose B: 正面小跑，右腿抬起，左手前摆。与A必须是不同的动作阶段，保持道具形状/位置关系。减速微笑
+Cell 7 (row 2, col 3), action 悠闲哼歌, pose A: 正面小开口说话。动作语义：嘴型配合哼歌，头部打拍
+Cell 8 (row 2, col 4), same action pose B: 正面大开口说话。与A必须是不同的动作阶段，保持道具形状/位置关系。微闭眼微笑
+Cell 9 (row 3, col 1), action 扑克魔术, pose A: 一手握拳置前，另一手遮挡，神秘微笑；道具：card_deck, card_fan。动作语义：洗牌遮手后展开扇形牌
+Cell 10 (row 3, col 2), same action pose B: 双手张开展示，惊喜微笑；道具：card_deck, card_fan。与A必须是不同的动作阶段，保持道具形状/位置关系。抽牌变换再亮牌
+Cell 11 (row 3, col 3), action 打瞌睡被惊醒, pose A: 站着打盹，头低垂、眼睛闭合，身体往前歪，双手松垂。
+Cell 12 (row 3, col 4), same action pose B: 突然睁大眼惊醒，肩膀耸起、双手护胸、身体后仰，明显惊吓反应。
+Cell 13 (row 4, col 1), action 抽陀螺, pose A: 手持短绳鞭向后蓄力，视线朝地面陀螺；道具：spinning_top, short_whip。动作语义：挥短鞭抽击陀螺侧面
+Cell 14 (row 4, col 2), same action pose B: 手向前下方甩绳，身体随动作前倾；道具：spinning_top, short_whip。与A必须是不同的动作阶段，保持道具形状/位置关系。陀螺持续旋转、角色跟随观察
+Cell 15 (row 4, col 3), action 拆礼物, pose A: 双手托系丝带的关闭礼物盒，低头期待，手指抓住丝带结。
+Cell 16 (row 4, col 4), same action pose B: 盒盖已经被左手揭起，右手托开放盒子，丝带松开，星星眼看盒中。
+
+IDENTITY LOCK: Exact same DaFeiYu ROGUE as attached reference, blue-haired whale-maid and blue whale tail, white maid headband, black and crimson Bloodfang armor and blue belt gem. Use new poses requested here, not source poses. 4x4 evenly spaced square cells on square transparent canvas, same camera scale, full body, all props inside each cell, generous margins. Gesture/prop state changes A/B visibly, preserve outfit and facial identity. No captions or labels. No opaque background.

@@ -1,0 +1,19 @@
+Use case: identity-preserve. Produce one professional animation KEY-POSE SPRITE ATLAS matching the reference's SAME DaFeiYu chibi blue-haired whale-maid character. Preserve facial identity, long blue hair, white maid headband, blue whale tail, exact costume and body proportions. PALADIN: exactly the reference red, black and gold Judgement armor with gold cross patterns, gold circlet with red center gem, gold gauntlets and small holy book at belt. Output exactly 4 columns by 4 rows = 16 equally sized cells on a SQUARE high-resolution canvas, TRANSPARENT BACKGROUND. One full-body pose in each cell. All poses fit inside cell with empty margins; stable camera scale and horizontal center, natural baseline 90% down. No grid lines, numbers, labels, text or watermark (except required 福 on red paper or token symbol on chips). Props must be clearly drawn and visibly held/touched, not floating arbitrarily. This sheet contains EIGHT different actions in adjacent A/B pairs, read left-to-right top-to-bottom. Each pair must have visibly different action stages; costume remains identical. Do not replace action with generic waving. For seated/lying poses keep the SAME character scale, not enlarged. Render these exact 16 cells:
+Cell 1 (工作状态-思考冒泡, pose A): 一手托下巴，眉眼思索；道具：thought_bubbles。动作语义：手托下巴思考，泡泡逐个冒出
+Cell 2 (工作状态-思考冒泡, pose B): 头和视线转左，身体基本正面；道具：thought_bubbles。与A必须是不同的动作阶段，保持道具形状/位置关系。想到主意抬头
+Cell 3 (工作状态-清点归档, pose A): 从左侧拿取纸张或小物；道具：paper_stack_left, paper_stack_right, folder。动作语义：从左逐张清点并整理到右侧
+Cell 4 (工作状态-清点归档, pose B): 向右侧叠放纸张或小物；道具：paper_stack_left, paper_stack_right, folder。与A必须是不同的动作阶段，保持道具形状/位置关系。放入文件夹并记一笔
+Cell 5 (开心小跑, pose A): 正面小跑，左腿抬起，右手前摆。动作语义：前向小跑，手腿交替
+Cell 6 (开心小跑, pose B): 正面小跑，右腿抬起，左手前摆。与A必须是不同的动作阶段，保持道具形状/位置关系。减速微笑
+Cell 7 (悠闲哼歌, pose A): 正面小开口说话。动作语义：嘴型配合哼歌，头部打拍
+Cell 8 (悠闲哼歌, pose B): 正面大开口说话。与A必须是不同的动作阶段，保持道具形状/位置关系。微闭眼微笑
+Cell 9 (扑克魔术, pose A): 一手握拳置前，另一手遮挡，神秘微笑；道具：card_deck, card_fan。动作语义：洗牌遮手后展开扇形牌
+Cell 10 (扑克魔术, pose B): 双手张开展示，惊喜微笑；道具：card_deck, card_fan。与A必须是不同的动作阶段，保持道具形状/位置关系。抽牌变换再亮牌
+Cell 11 (打瞌睡被惊醒, pose A): 由坐姿向前蜷缩，头部下垂。动作语义：头部逐渐打盹
+Cell 12 (打瞌睡被惊醒, pose B): 肩膀耸起，身体后缩，睁大眼，手护胸。与A必须是不同的动作阶段，保持道具形状/位置关系。突然睁眼惊醒
+Cell 13 (抽陀螺, pose A): 手持短绳鞭向后蓄力，视线朝地面陀螺；道具：spinning_top, short_whip。动作语义：挥短鞭抽击陀螺侧面
+Cell 14 (抽陀螺, pose B): 手向前下方甩绳，身体随动作前倾；道具：spinning_top, short_whip。与A必须是不同的动作阶段，保持道具形状/位置关系。陀螺持续旋转、角色跟随观察
+Cell 15 (拆礼物, pose A): 双手托礼物盒，低头期待；道具：gift_box_closed, gift_box_open, ribbon。动作语义：拉开丝带并掀盖
+Cell 16 (拆礼物, pose B): 一手揭开盒盖，另一手托盒；道具：gift_box_closed, gift_box_open, ribbon。与A必须是不同的动作阶段，保持道具形状/位置关系。看见礼物星星眼
+Keep hands anatomically coherent, clear facial expression, actual specific props and correct contact points. Crisp anime cel shading and line work matching reference. Cell position critical. Transparent alpha only; no scenery background.
+IMPORTANT: every character and all props remain inside the central 80% of each cell. At least 8% transparent space below feet or furniture in EVERY cell. No sprite crosses cell boundaries.

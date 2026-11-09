@@ -1,0 +1,148 @@
+{
+  "schema": "dafeiyu-portable-render-smoke-v1",
+  "release_version": "0.3.1",
+  "scope": "Two warrior actions re-encoded; all decoded color and alpha frames compared with the delivered release. Full 960-video regeneration was not run.",
+  "source_root": "source",
+  "output_root": "build/smoke",
+  "command_from_repository_root": "python assets/dafeiyu-classic/tools/render.py --class warrior --action 开心蹦跳 --action 原地左转奔跑 --workers 2 --output assets/dafeiyu-classic/build/smoke",
+  "invoked_from_outside_repository": true,
+  "environment": {
+    "python": "3.13.5",
+    "system": "Darwin",
+    "architecture": "arm64",
+    "numpy": "2.5.4",
+    "opencv_python_headless": "5.0.0.93",
+    "ffmpeg": "ffmpeg version 7.1.1 Copyright (c) 2000-2025 the FFmpeg developers",
+    "ffprobe": "ffprobe version 7.1.1 Copyright (c) 2007-2025 the FFmpeg developers",
+    "workers": 2
+  },
+  "source_preflight": {
+    "classes": 8,
+    "actions_per_class": 120,
+    "tasks": 960,
+    "required_png_files": 272,
+    "all_required_sources_present": true
+  },
+  "results": [
+    {
+      "class": "warrior",
+      "action": "开心蹦跳",
+      "output": "build/smoke/packs/warrior/开心蹦跳.webm",
+      "report": "build/smoke/reports/warrior/开心蹦跳.json",
+      "frames": 480,
+      "fps": 60,
+      "duration_seconds": 8,
+      "size": [
+        640,
+        360
+      ],
+      "alpha_decoded": true,
+      "decoded_canvas_edge_alpha_max": 0,
+      "all_decoded_rgba_framemd5_identical_to_release": true,
+      "timeline_identical_to_release": true,
+      "release_sha256": "529b7e3fb77b46c575ff751edda852d4651b7af20f0db6348033d487b3e5a912",
+      "rebuilt_sha256": "e292b0e8bee3bfd5ed815680fd0027f89caea8c66a307f455b68ffff778104eb",
+      "container_bytes": 2264764,
+      "differing_byte_count": 16,
+      "only_track_uid_and_tag_reference_differ": true,
+      "uid_normalized_sha256": "ad6f95cdbe559dd68196b323b9407e78adf66ae346c8fc2ce29c918e5157bffe",
+      "renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "0fbd21b26e6b7b85ee38f95a56659df1c5defe60c4b4f92a36c21eef1804c324"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        }
+      ]
+    },
+    {
+      "class": "warrior",
+      "action": "原地左转奔跑",
+      "output": "build/smoke/packs/warrior/原地左转奔跑.webm",
+      "report": "build/smoke/reports/warrior/原地左转奔跑.json",
+      "frames": 600,
+      "fps": 60,
+      "duration_seconds": 10,
+      "size": [
+        640,
+        360
+      ],
+      "alpha_decoded": true,
+      "decoded_canvas_edge_alpha_max": 0,
+      "all_decoded_rgba_framemd5_identical_to_release": true,
+      "timeline_identical_to_release": true,
+      "release_sha256": "0c7533b23464cbb252520f1906efa89c43ddfc37ec3fa34ddb6b76636fd06b3b",
+      "rebuilt_sha256": "bdf1b5879582da1e06d86cad4903b817947fc06956f17da63a9a2f9df778e991",
+      "container_bytes": 3701031,
+      "differing_byte_count": 16,
+      "only_track_uid_and_tag_reference_differ": true,
+      "uid_normalized_sha256": "d8588cb1a4cf8181b6ad341785499fdc2a62eb73035b72ebd5e42899f309f52a",
+      "renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "0fbd21b26e6b7b85ee38f95a56659df1c5defe60c4b4f92a36c21eef1804c324"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        }
+      ]
+    }
+  ],
+  "container_hash_explanation": "FFmpeg WebM muxing generates a random 8-byte TrackUID (EBML 0x73C5) and repeats it as TagTrackUID (0x63C5). Only these identifier bytes differ; normalizing the two identifiers makes each rebuilt file byte-identical to the released file. All 1080 decoded RGBA frames are independently identical by framemd5.",
+  "cache_checks": {
+    "unchanged_cache_skipped": true,
+    "actual_source_hash_change_invalidates_cache": true,
+    "shared_sources_unchanged": true,
+    "render_policy_invalidates_cache": true,
+    "jump_arm_policy_invalidates_cache": true,
+    "sha256_invalidates_cache": true,
+    "run_exit_policy_invalidates_cache": true,
+    "extraction_crops_invalidates_cache": true
+  },
+  "manifest_checks": {
+    "all_eight_manifests_match_120_actions": true,
+    "complete_existing_media_fixture_publishes_identical_manifest": true,
+    "partial_smoke_does_not_publish_manifest": true,
+    "failed_class_does_not_publish_manifest": true,
+    "missing_media_rejected": true,
+    "full_render_not_executed": true
+  },
+  "algorithm_checks": {
+    "helper_files_byte_identical_to_original": 3,
+    "base_timelines_semantically_identical": true,
+    "nonbase_schedule_ast_identical": true,
+    "render_frame_loop_ast_identical": true
+  },
+  "cli_checks": {
+    "unknown_action_exit": 2,
+    "zero_workers_exit": 2,
+    "source_output_guard_exit": 2
+  }
+}

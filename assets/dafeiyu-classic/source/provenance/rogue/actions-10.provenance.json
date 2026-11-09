@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-f1dc2f45-b77d-461f-9676-6d5522481c07.png",
+  "prompt": "prompts/rogue/actions-10.txt",
+  "sha256": "b370ab6fe26dad678c7ef31d8e78e4a1a3a1b5fa0bbebdac3697f3fcb52d07de",
+  "visual_qa": "16 cells checked; toys, emotion poses and actual horizontal sleeping curl checked"
+}

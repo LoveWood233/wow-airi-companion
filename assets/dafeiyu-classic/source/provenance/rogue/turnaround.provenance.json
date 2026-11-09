@@ -1,0 +1,15 @@
+{
+  "class_id": "rogue",
+  "sheet": "turnaround",
+  "source": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-7a991159-28b6-45d7-b864-e1a695b6cb39.png",
+  "visual_check": "16 distinct sequential views around vertical body axis. Full back has no face. Outfit and proportions consistent, clear cell gutters.",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "prompt": "source/prompts/rogue/turnaround.txt",
+  "sha256": "ba68b4b6d848e3f7d2ef3c0a7cc534140c0d03c8d4318571dcb49ad6a2adc67a",
+  "size": [
+    1254,
+    1254
+  ],
+  "status": "generated_and_visually_inspected"
+}

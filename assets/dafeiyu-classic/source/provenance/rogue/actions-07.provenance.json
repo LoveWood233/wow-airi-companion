@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-10cdf6f5-1d7a-4a98-bd2c-174c4e5a9482.png",
+  "prompt": "prompts/rogue/actions-07.txt",
+  "sha256": "9f4bc6c7ba2b49c1b1cf2d627b0c16a663e81b0aef30938fa48b04e955ebc1d7",
+  "visual_qa": "16 cells checked, correct foods/instruments/props and action-specific A/B gestures"
+}

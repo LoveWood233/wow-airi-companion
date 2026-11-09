@@ -1,0 +1,20 @@
+Use case: stylized-concept. Create a production transparent raster sprite sheet, not a poster. EXACTLY 4 columns x 4 rows, 16 equal square cells, row-major. One full-body chibi blue-haired whale-maid character per cell, same identity and approved CLASS OUTFIT from the reference. Keep full hair, hands, shoes and whale tail inside each cell with generous transparent gutters; no grid lines, no text, no numbers, no white background. Consistent rendering, size, light, camera and ground line. No oversized weapons unless the action requires them. Each adjacent cell pair is two distinct key poses of the SAME named action. Preserve the reference class armor colors, shoulder silhouette, crown/hood ornaments, maid frills and facial style. New props must be drawn in the same polished anime game-sprite style and contact hands/mouth correctly. True transparent alpha. Aim high resolution; actions must remain legible at 640x360 playback.
+
+Cell 1 (row 1, col 1), action 睡觉-循环, pose A: 角色完全蜷卧睡着，头贴在折起的手旁，长发和鲸尾铺在地上，呼气末端胸背稍低。
+Cell 2 (row 1, col 2), same action pose B: 与A完全相同的蜷卧睡姿、闭眼和发尾位置，仅胸背吸气微微抬起；绝不坐起或站起。
+Cell 3 (row 1, col 3), action 睡觉-起来, pose A: 从蜷卧睡姿撑起上身，双手支地，半睁眼，头发和鲸尾仍在身后地面。
+Cell 4 (row 1, col 4), same action pose B: 已经站起伸展身体，双手放松下来，困倦眨眼，服装和轮廓回到标准站姿。
+Cell 5 (row 2, col 1), action 碎碎念-发呆碎碎念, pose A: 头和视线转左，身体基本正面。动作语义：嘴部轻声开合
+Cell 6 (row 2, col 2), same action pose B: 自然站姿半闭眼。与A必须是不同的动作阶段，保持道具形状/位置关系。短暂停顿眨眼
+Cell 7 (row 2, col 3), action 碎碎念-擦桌碎碎念, pose A: 一手持抹布压住桌面，手臂向左伸；道具：small_desk, cleaning_cloth。动作语义：手压桌面左右擦拭，同时张嘴碎念
+Cell 8 (row 2, col 4), same action pose B: 持抹布手臂向右伸；道具：small_desk, cleaning_cloth。与A必须是不同的动作阶段，保持道具形状/位置关系。停下看一眼桌面
+Cell 9 (row 3, col 1), action 穿针乞巧, pose A: 双手胸前，一手针一手布，穿线准备；道具：needle, thread, embroidery_cloth。动作语义：线穿过针眼并在布上缝一针
+Cell 10 (row 3, col 2), same action pose B: 一手轻拉线，布面保持固定；道具：needle, thread, embroidery_cloth。与A必须是不同的动作阶段，保持道具形状/位置关系。拉线查看成果
+Cell 11 (row 3, col 3), action 舞狮头, pose A: 双手托舞狮头到面前，屈膝；道具：lion_head。动作语义：狮头随双手上下摆动
+Cell 12 (row 3, col 4), same action pose B: 双手举舞狮头到头顶，身体伸展；道具：lion_head。与A必须是不同的动作阶段，保持道具形状/位置关系。屈膝小跳再落地
+Cell 13 (row 4, col 1), action 荡秋千, pose A: 双手抓秋千绳，身体后倾，腿伸前；道具：swing_seat, swing_ropes。动作语义：前后摆动，腿部随相位伸收
+Cell 14 (row 4, col 2), same action pose B: 双手抓绳，身体前倾，腿向下收；道具：swing_seat, swing_ropes。与A必须是不同的动作阶段，保持道具形状/位置关系。逐渐减速
+Cell 15 (row 4, col 3), action 萌化小幽灵, pose A: 角色双手胸前准备魔法，身体周围出现淡蓝半透明光晕。
+Cell 16 (row 4, col 4), same action pose B: 变成可爱蓝白小幽灵，保留蓝发和该职业识别饰物，漂浮尾端收成幽灵尖形。
+
+IDENTITY LOCK: SAME DaFeiYu PRIEST reference, white ivory and gold Transcendence robe with dark burgundy trims, long blue hair, blue whale tail, white maid headband, identical costume and chibi proportions. Generate exactly16 square equal cells in a4x4square atlas with transparent background, NO grid, labels or captions. Full body and each prop inside its own cell, generous transparent gutters, consistent scale. Raster anime cel shaded clean game sprites. A/B show meaningful gesture and prop state changes, correct hand contact. Keep effects inside own cell. For transformation actions, new ghost/whale forms remain recognizably same blue character with costume motifs. Sleep cells1/2 must BOTH be genuinely curled horizontally asleep, closed eyes, same exact posture apart from slight breathing. Wake cell3 pushes up from lying, cell4 stands up.

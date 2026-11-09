@@ -1,0 +1,18 @@
+{
+  "asset": "emotions.png",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "source_generated_file": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-0262f45d-4b8e-434c-8009-63bbb145f9df.png",
+  "prompt": "source/prompts/hunter/emotions.txt",
+  "sha256": "9829fce1cd0e67df7351af0d42a1d3cdcfd4c109a29443ec5d148bc4cfe07c98",
+  "size": [
+    1254,
+    1254
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "visual_check": "16 cells. Five facial emotion pairs and six distinct turn views. Matching class outfit.",
+  "status": "generated_and_visually_inspected"
+}

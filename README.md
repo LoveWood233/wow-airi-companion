@@ -119,6 +119,12 @@ pnpm -F @proj-airi/stage-tamagotchi build
 
 该角色采用手动导入，未替换默认形象。首次导入需要按资产说明设置透明混合模式。源贴图、生成提示词、绑定脚本和验证记录一并保存在资产目录。
 
+## 大肥鱼经典八职业动作资产
+
+[大肥鱼 × 经典八职业 v0.3.1](assets/dafeiyu-classic/README.md)：144 张姿态图集、128 张基础关键帧及可重建工具，每职业生成 120 段 60fps 透明 WebM。新增开心蹦跳，并修复插帧中点硬切与侧跑收尾急变。
+
+[蹦跳动态预览](assets/dafeiyu-classic/preview/happy-jump.mp4) · [生成与导入说明](assets/dafeiyu-classic/README.md#安装与重建)。完整视频在本地重建，局部遮挡重影等限制见资产说明。
+
 ## Live2D Q 版角色
 
 [希尔瓦娜斯 Q 版 Live2D v2](assets/sylvanas-live2d/README.md)：约 2.5 头身，紫色兜帽、银发、灰蓝肤色、红瞳，冷傲中带一点傲娇。
@@ -136,6 +142,7 @@ pnpm -F @proj-airi/stage-tamagotchi build
 | `airi/` | AIRI 上游完整源码快照，包含本次修改和新增的魔兽陪伴功能 |
 | `assets/sylvanas-companion/` | 希尔瓦娜斯 v0.3 导入包、可重建源文件、预览与来源说明 |
 | `assets/sylvanas-live2d/` | 希尔瓦娜斯 Q 版 Live2D 导入包、Cubism 源工程、七层 PSD、提示词与验证记录 |
+| `assets/dafeiyu-classic/` | 大肥鱼八职业源图、120动作配置、60fps生成工具和原生导入验证 |
 | `WOWAddons/Start-WoWCompanion.cmd` | 启动已构建的 AIRI 桌面端，由 AIRI 自动管理桥接 |
 | `WOWAddons/Install-WoWCompanion.ps1` | 将插件安装到正式服 AddOns 目录 |
 | `WOWAddons/魔兽陪伴精灵-使用说明.html` | 启动、模型配置和日常使用说明 |

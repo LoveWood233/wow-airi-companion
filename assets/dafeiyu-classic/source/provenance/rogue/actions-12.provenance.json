@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-3f58f9ca-78fa-4486-8d0f-96278b0511bb.png",
+  "prompt": "prompts/rogue/actions-12.txt",
+  "sha256": "230fad567d1935ac26148fd761b71b02a324d128249a8b81a9483ce5aedfe383",
+  "visual_qa": "16 cells; sleep/wake, embroidery, lion, swing/ghost and whale/drag/festivals inspected"
+}

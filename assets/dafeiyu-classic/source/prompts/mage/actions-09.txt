@@ -1,0 +1,19 @@
+Use case: identity-preserve. Production animation sprite sheet for AIRI. Reference is the APPROVED MAGE DaFeiYu mascot. Preserve exactly her blue hair, blue eyes, white maid headband, long wavy hair, blue whale tail, face and compact chibi proportions, and purple-and-gold Netherwind long robe with blue glowing gems, gold forehead tiara, blue-orb staff stowed on back. Every cell wears the SAME costume; weapons stowed so hands can interact. Crisp anime cel-shaded linework, identical fixed camera scale. Exactly 4x4 evenly spaced sprites on a square canvas, truly transparent alpha, no floor. All props must be drawn and recognizable. Highest available resolution. Required poses follow:
+Use case: stylized-concept. Create a production transparent raster sprite sheet, not a poster. EXACTLY 4 columns x 4 rows, 16 equal square cells, row-major. One full-body chibi blue-haired whale-maid character per cell, same identity and approved CLASS OUTFIT from the reference. Keep full hair, hands, shoes and whale tail inside each cell with generous transparent gutters; no grid lines, no text, no numbers, no white background. Consistent rendering, size, light, camera and ground line. No oversized weapons unless the action requires them. Each adjacent cell pair is two distinct key poses of the SAME named action. Preserve the reference class armor colors, shoulder silhouette, crown/hood ornaments, maid frills and facial style. New props must be drawn in the same polished anime game-sprite style and contact hands/mouth correctly. True transparent alpha. Aim high resolution; actions must remain legible at 640x360 playback.
+
+Cell 1 (row 1, col 1), action 插茱萸赏菊, pose A: 一手捏小枝茱萸插向发侧，另一手扶着小盆菊花；道具：dogwood_branch, chrysanthemum_pot。动作语义：把茱萸插在发侧
+Cell 2 (row 1, col 2), same action pose B: 头和视线转左，身体基本正面；道具：dogwood_branch, chrysanthemum_pot。与A必须是不同的动作阶段，保持道具形状/位置关系。低头欣赏菊花
+Cell 3 (row 1, col 3), action 摇扇纳凉, pose A: 扇子展开，持扇手向外摆；道具：folding_fan。动作语义：手腕扇动，头发轻轻随风
+Cell 4 (row 1, col 4), same action pose B: 扇子靠近脸侧，轻轻扇动；道具：folding_fan。与A必须是不同的动作阶段，保持道具形状/位置关系。舒适微笑
+Cell 5 (row 2, col 1), action 撸猫, pose A: 跪坐，手掌轻放动物头顶；道具：cat。动作语义：手掌从头顶沿猫背抚摸
+Cell 6 (row 2, col 2), same action pose B: 跪坐，手掌沿动物背部抚摸；道具：cat。与A必须是不同的动作阶段，保持道具形状/位置关系。猫抬头蹭手
+Cell 7 (row 2, col 3), action 收红包, pose A: 双手胸前端托，手腕形成物体接触面；道具：red_envelope, gold_coins。动作语义：打开红包口
+Cell 8 (row 2, col 4), same action pose B: 一手拉开红纸红包封口，另一手托红包，袋内金币露出；道具：red_envelope, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。看到金币开心
+Cell 9 (row 3, col 1), action 放孔明灯, pose A: 双手托住尚在胸前的发光孔明灯底部，仰头准备放飞。
+Cell 10 (row 3, col 2), same action pose B: 双手上举张开放开，同一孔明灯已升到头顶上方，与手明确分离。
+Cell 11 (row 3, col 3), action 放河灯, pose A: 蹲下双手捧莲花河灯，灯底刚接触一小片水面。
+Cell 12 (row 3, col 4), same action pose B: 仍蹲着，双手已经松开，莲花河灯向前漂开，周围有柔和水波纹。
+Cell 13 (row 4, col 1), action 放烟花, pose A: 蹲下伸手到地面小烟花筒旁，筒口尚无烟花，角色谨慎看着。
+Cell 14 (row 4, col 2), same action pose B: 角色站直双手胸前、抬头星星眼，身侧同一烟花筒喷出金色火花并在头顶散开。
+Cell 15 (row 4, col 3), action 放风筝, pose A: 抬头看天，一手举风筝线轮，一手牵线；道具：kite, kite_reel, kite_string。动作语义：风筝升空、线始终连接手和风筝
+Cell 16 (row 4, col 4), same action pose B: 身体后仰，双手收线；道具：kite, kite_reel, kite_string。与A必须是不同的动作阶段，保持道具形状/位置关系。拉线控制方向

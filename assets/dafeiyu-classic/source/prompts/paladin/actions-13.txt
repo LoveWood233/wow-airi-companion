@@ -1,0 +1,19 @@
+Use case: identity-preserve. Produce one professional animation KEY-POSE SPRITE ATLAS matching the reference's SAME DaFeiYu chibi blue-haired whale-maid character. Preserve facial identity, long blue hair, white maid headband, blue whale tail, exact costume and body proportions. PALADIN: exactly the reference red, black and gold Judgement armor with gold cross patterns, gold circlet with red center gem, gold gauntlets and small holy book at belt. Output exactly 4 columns by 4 rows = 16 equally sized cells on a SQUARE high-resolution canvas, TRANSPARENT BACKGROUND. One full-body pose in each cell. All poses fit inside cell with empty margins; stable camera scale and horizontal center, natural baseline 90% down. No grid lines, numbers, labels, text or watermark (except required 福 on red paper or token symbol on chips). Props must be clearly drawn and visibly held/touched, not floating arbitrarily. This sheet contains EIGHT different actions in adjacent A/B pairs, read left-to-right top-to-bottom. Each pair must have visibly different action stages; costume remains identical. Do not replace action with generic waving. For seated/lying poses keep the SAME character scale, not enlarged. Render these exact 16 cells:
+Cell 1 (蓝鲸现世, pose A): 一手握拳置前，另一手遮挡，神秘微笑。动作语义：完整可识别蓝鲸形态出现并摆尾
+Cell 2 (蓝鲸现世, pose B): 可识别的蓝鲸形态，保留角色蓝色与表情。与A必须是不同的动作阶段，保持道具形状/位置关系。恢复角色轮廓
+Cell 3 (蝴蝶蜜蜂环绕头顶开花, pose A): 头和视线转左，身体基本正面；道具：butterfly, bee, head_flower_bud, head_flower_open。动作语义：蜂蝶沿头上曲线飞行
+Cell 4 (蝴蝶蜜蜂环绕头顶开花, pose B): 头和视线转右，身体基本正面；道具：butterfly, bee, head_flower_bud, head_flower_open。与A必须是不同的动作阶段，保持道具形状/位置关系。头顶花苞逐瓣绽放
+Cell 5 (螃蟹走路, pose A): 身体正面，左腿向侧跨步，尾巴反向平衡。动作语义：正面侧步交替，脚底有抬落
+Cell 6 (螃蟹走路, pose B): 身体正面，右腿收拢，手臂自然保持平衡。与A必须是不同的动作阶段，保持道具形状/位置关系。继续侧步
+Cell 7 (被吓一跳, pose A): 肩膀耸起，身体后缩，睁大眼，手护胸。动作语义：突然睁眼缩肩跳起
+Cell 8 (被吓一跳, pose B): 真实离地，双脚收起，头发和尾巴向下滞后。与A必须是不同的动作阶段，保持道具形状/位置关系。落地双手护胸
+Cell 9 (被落叶淹没, pose A): 肩膀耸起，身体后缩，睁大眼，手护胸；道具：autumn_leaves。动作语义：落叶持续堆积到肩部，角色逐渐被遮住
+Cell 10 (被落叶淹没, pose B): 双腿屈膝，躯干降低，蓄力；道具：autumn_leaves。与A必须是不同的动作阶段，保持道具形状/位置关系。从叶堆探出头
+Cell 11 (被鼠标拖拽悬空反馈, pose A): 由头顶受力悬空，躯干拉起，四肢下垂，惊讶。动作语义：头顶受力悬空，四肢下垂
+Cell 12 (被鼠标拖拽悬空反馈, pose B): 悬空歪身，腿和鲸尾向反侧摆动。与A必须是不同的动作阶段，保持道具形状/位置关系。身体轻摆，表情受惊
+Cell 13 (装点圣诞树, pose A): 一手端装饰物，另一手准备抬起；道具：christmas_tree, bauble, tree_star。动作语义：把彩球挂上树枝
+Cell 14 (装点圣诞树, pose B): 伸手把装饰物挂到树枝；道具：christmas_tree, bauble, tree_star。与A必须是不同的动作阶段，保持道具形状/位置关系。最后挂星星并欣赏
+Cell 15 (讨糖南瓜灯, pose A): 双手胸前端托，手腕形成物体接触面；道具：pumpkin_bucket, candies。动作语义：向前伸桶期待讨糖
+Cell 16 (讨糖南瓜灯, pose B): 星星眼抬头，伸手向外邀请去玩；道具：pumpkin_bucket, candies。与A必须是不同的动作阶段，保持道具形状/位置关系。糖果落入桶中开心
+Keep hands anatomically coherent, clear facial expression, actual specific props and correct contact points. Crisp anime cel shading and line work matching reference. Cell position critical. Transparent alpha only; no scenery background.
+IMPORTANT: every character and all props remain inside the central 80% of each cell. At least 8% transparent space below feet or furniture in EVERY cell. No sprite crosses cell boundaries.

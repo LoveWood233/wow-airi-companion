@@ -1,0 +1,289 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bc64-46b6-7270-b269-6dc20d433a26/exec-a4badc14-73c9-4d9e-9e6b-f167e2067cc1.png",
+  "prompt": "prompts/mage/happy-jump.txt",
+  "references": [
+    "base-keyframes/mage/frame-00.png",
+    "source/sheets/mage/emotions.png"
+  ],
+  "sha256": "03ee5370d5b8c499ef44f93ddb34648f97c87e1d6788e692665f0c7570bdb051",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "created_at": "2026-11-08T18:27:23.663314+00:00",
+  "visual_qa": "Inspected 16 front-facing happy-jump key poses: both arms are connected throughout, costume/shoulder orb consistent, visible leg compression/extension under dress, eyes closed in happy laugh during ascent/apex, arms lower to neutral. No spin, effect, text, detached limbs. Root must anchor poses and interpolate; chibi arm length constrains high V hands near temples.",
+  "grid_qa": {
+    "shape": [
+      4,
+      4
+    ],
+    "cell_count": 16,
+    "all_nonempty": true,
+    "min_opaque_margin_px": 2,
+    "note": "Use fractional 1254/4 grid boundaries rounded to integers. Sole baselines differ modestly; anchor feet consistently during extraction before applying jump root motion. Frame 15 is visually similar, not pixel-identical, to frame 0; renderer may reuse frame 0 to close loop.",
+    "cells": [
+      {
+        "index": 0,
+        "crop": [
+          0,
+          0,
+          314,
+          314
+        ],
+        "alpha32_bbox": [
+          45,
+          11,
+          280,
+          306
+        ],
+        "min_margin": 8
+      },
+      {
+        "index": 1,
+        "crop": [
+          314,
+          0,
+          627,
+          314
+        ],
+        "alpha32_bbox": [
+          47,
+          21,
+          280,
+          306
+        ],
+        "min_margin": 8
+      },
+      {
+        "index": 2,
+        "crop": [
+          627,
+          0,
+          940,
+          314
+        ],
+        "alpha32_bbox": [
+          44,
+          35,
+          284,
+          306
+        ],
+        "min_margin": 8
+      },
+      {
+        "index": 3,
+        "crop": [
+          940,
+          0,
+          1254,
+          314
+        ],
+        "alpha32_bbox": [
+          45,
+          24,
+          284,
+          306
+        ],
+        "min_margin": 8
+      },
+      {
+        "index": 4,
+        "crop": [
+          0,
+          314,
+          314,
+          627
+        ],
+        "alpha32_bbox": [
+          44,
+          10,
+          284,
+          300
+        ],
+        "min_margin": 10
+      },
+      {
+        "index": 5,
+        "crop": [
+          314,
+          314,
+          627,
+          627
+        ],
+        "alpha32_bbox": [
+          41,
+          5,
+          283,
+          296
+        ],
+        "min_margin": 5
+      },
+      {
+        "index": 6,
+        "crop": [
+          627,
+          314,
+          940,
+          627
+        ],
+        "alpha32_bbox": [
+          42,
+          7,
+          284,
+          291
+        ],
+        "min_margin": 7
+      },
+      {
+        "index": 7,
+        "crop": [
+          940,
+          314,
+          1254,
+          627
+        ],
+        "alpha32_bbox": [
+          45,
+          3,
+          281,
+          286
+        ],
+        "min_margin": 3
+      },
+      {
+        "index": 8,
+        "crop": [
+          0,
+          627,
+          314,
+          940
+        ],
+        "alpha32_bbox": [
+          44,
+          2,
+          278,
+          274
+        ],
+        "min_margin": 2
+      },
+      {
+        "index": 9,
+        "crop": [
+          314,
+          627,
+          627,
+          940
+        ],
+        "alpha32_bbox": [
+          44,
+          2,
+          279,
+          276
+        ],
+        "min_margin": 2
+      },
+      {
+        "index": 10,
+        "crop": [
+          627,
+          627,
+          940,
+          940
+        ],
+        "alpha32_bbox": [
+          42,
+          5,
+          279,
+          287
+        ],
+        "min_margin": 5
+      },
+      {
+        "index": 11,
+        "crop": [
+          940,
+          627,
+          1254,
+          940
+        ],
+        "alpha32_bbox": [
+          42,
+          10,
+          284,
+          291
+        ],
+        "min_margin": 10
+      },
+      {
+        "index": 12,
+        "crop": [
+          0,
+          940,
+          314,
+          1254
+        ],
+        "alpha32_bbox": [
+          47,
+          13,
+          283,
+          301
+        ],
+        "min_margin": 13
+      },
+      {
+        "index": 13,
+        "crop": [
+          314,
+          940,
+          627,
+          1254
+        ],
+        "alpha32_bbox": [
+          47,
+          20,
+          281,
+          303
+        ],
+        "min_margin": 11
+      },
+      {
+        "index": 14,
+        "crop": [
+          627,
+          940,
+          940,
+          1254
+        ],
+        "alpha32_bbox": [
+          46,
+          10,
+          280,
+          303
+        ],
+        "min_margin": 10
+      },
+      {
+        "index": 15,
+        "crop": [
+          940,
+          940,
+          1254,
+          1254
+        ],
+        "alpha32_bbox": [
+          46,
+          11,
+          281,
+          303
+        ],
+        "min_margin": 11
+      }
+    ]
+  }
+}

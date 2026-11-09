@@ -1,0 +1,19 @@
+Use case: identity-preserve. Produce one professional animation KEY-POSE SPRITE ATLAS matching the reference's SAME DaFeiYu chibi blue-haired whale-maid character. Preserve facial identity, long blue hair, white maid headband, blue whale tail, exact costume and body proportions. WARLOCK: exactly the reference dark purple Nemesis robe, ivory bone trims and little bone horns at headband, green shoulder gem and hip spellbook. Output exactly 4 columns by 4 rows = 16 equally sized cells on a SQUARE high-resolution canvas, TRANSPARENT BACKGROUND. One full-body pose in each cell. All poses fit inside cell with empty margins; stable camera scale and horizontal center, natural baseline 90% down. No grid lines, numbers, labels, text or watermark (except required 福 on red paper or token symbol on chips). Props must be clearly drawn and visibly held/touched, not floating arbitrarily. This sheet contains EIGHT different actions in adjacent A/B pairs, read left-to-right top-to-bottom. Each pair must have visibly different action stages; costume remains identical. Do not replace action with generic waving. For seated/lying poses keep the SAME character scale, not enlarged. Render these exact 16 cells:
+Cell 1 (插茱萸赏菊, pose A): 伸手把装饰物挂到树枝；道具：dogwood_branch, chrysanthemum_pot。动作语义：把茱萸插在发侧
+Cell 2 (插茱萸赏菊, pose B): 头和视线转左，身体基本正面；道具：dogwood_branch, chrysanthemum_pot。与A必须是不同的动作阶段，保持道具形状/位置关系。低头欣赏菊花
+Cell 3 (摇扇纳凉, pose A): 扇子展开，持扇手向外摆；道具：folding_fan。动作语义：手腕扇动，头发轻轻随风
+Cell 4 (摇扇纳凉, pose B): 扇子靠近脸侧，轻轻扇动；道具：folding_fan。与A必须是不同的动作阶段，保持道具形状/位置关系。舒适微笑
+Cell 5 (撸猫, pose A): 跪坐，手掌轻放动物头顶；道具：cat。动作语义：手掌从头顶沿猫背抚摸
+Cell 6 (撸猫, pose B): 跪坐，手掌沿动物背部抚摸；道具：cat。与A必须是不同的动作阶段，保持道具形状/位置关系。猫抬头蹭手
+Cell 7 (收红包, pose A): 双手胸前端托，手腕形成物体接触面；道具：red_envelope, gold_coins。动作语义：打开红包口
+Cell 8 (收红包, pose B): 一手揭开盒盖，另一手托盒；道具：red_envelope, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。看到金币开心
+Cell 9 (放孔明灯, pose A): 双手托纸灯笼底部，仰头；道具：sky_lantern。动作语义：灯笼充气亮起
+Cell 10 (放孔明灯, pose B): 双手上伸后松开，仰头追随灯笼；道具：sky_lantern。与A必须是不同的动作阶段，保持道具形状/位置关系。手松开后向上缓缓升空
+Cell 11 (放河灯, pose A): 蹲下，双手把河灯放向地面前方；道具：river_lantern, water_ripples。动作语义：把灯轻放到水面
+Cell 12 (放河灯, pose B): 蹲姿伸手松开，目光跟随河灯漂远；道具：river_lantern, water_ripples。与A必须是不同的动作阶段，保持道具形状/位置关系。松手后河灯随波纹漂远
+Cell 13 (放烟花, pose A): 双腿屈膝，躯干降低，蓄力；道具：firework_fountain。动作语义：后退安全观看
+Cell 14 (放烟花, pose B): 双眼明确星形高光，身体微前倾，双手握拳期待；道具：firework_fountain。与A必须是不同的动作阶段，保持道具形状/位置关系。烟花由底部喷出并在空中散开
+Cell 15 (放风筝, pose A): 抬头看天，一手举风筝线轮，一手牵线；道具：kite, kite_reel, kite_string。动作语义：风筝升空、线始终连接手和风筝
+Cell 16 (放风筝, pose B): 身体后仰，双手收线；道具：kite, kite_reel, kite_string。与A必须是不同的动作阶段，保持道具形状/位置关系。拉线控制方向
+Keep hands anatomically coherent, clear facial expression, actual specific props and correct contact points. Crisp anime cel shading and line work matching reference. Cell position critical. Transparent alpha only; no scenery background.
+IMPORTANT: every character and all props remain inside the central 80% of each cell. At least 8% transparent space below feet or furniture in EVERY cell. No sprite crosses cell boundaries.

@@ -1,0 +1,10 @@
+node_modules/
+.venv*/
+build/
+dist/
+.cache/
+__pycache__/
+*.py[cod]
+*.log
+*.zip
+*.webm
