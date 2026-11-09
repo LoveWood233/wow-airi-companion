@@ -1,0 +1,100 @@
+{
+  "class": "paladin",
+  "sheet": "actions-02",
+  "original_sha256": "e7719f43b07c2bb6fcd65d50679bece3dcba46e7c3938488a1ecf0bdf3f6fc57",
+  "replacement_sha256": "6825a059b028ada0c4881f98a46415f93ece15f96df2e4488345048507a95ca5",
+  "freeze_manifest": "paladin-01-07-freeze-manifest.json",
+  "source_review": {
+    "class": "paladin",
+    "sheet": "actions-02",
+    "path": "source/sheets/paladin/actions-02.png",
+    "sha256": "6825a059b028ada0c4881f98a46415f93ece15f96df2e4488345048507a95ca5",
+    "bytes": 2710277,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "reviewStatus": "accepted_source_pose_review",
+    "reviewedCells": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "reviewNotes": "All 16 poses visually reviewed. Local repair removed right-side hammer fragments in laptop cells 10/11 and calligraphy cell13; hammer is naturally hidden at left waist by desk/paper. Side-running retains correct opposite-hip relationships. Writing 福 remains intentional. All coins, food, laptop and flower actions preserved.",
+    "provenance": "source/sheets/paladin/actions-02.provenance.json",
+    "preview": "source/sheets/paladin/actions-02-alpha-inspect.jpg",
+    "sourceSnapshotAtFreezeSha256": "e7719f43b07c2bb6fcd65d50679bece3dcba46e7c3938488a1ecf0bdf3f6fc57"
+  },
+  "generation": {
+    "tool": "image_gen__imagegen",
+    "date": "2026-11-09",
+    "sheet": "actions-02",
+    "prompt": "Use case: precise-object-edit. Make ONLY the following tiny corrections to Image 1, an otherwise approved transparent 4x4 paladin action atlas. Image 2 is neutral equipment reference; Image 3 shows correct mounting. Preserve every original pixel/shape as much as possible outside the specified wrong hammer pieces. Target 0-based cells 10 and 11 (row 3 columns 3 and 4, laptop poses) and cell 13 (row 4 column 2, held 福 paper): a gold/red HAMMER HEAD wrongly sticks out on the PICTURE RIGHT of the desk/hip. Remove those incorrectly placed hammer heads and their handles from picture-right only, leaving the existing red/gold HOLY BOOK on that hip untouched if any is visible. The hammer belongs to the character's anatomical RIGHT hip = PICTURE LEFT in front view, where it is naturally almost/completely hidden behind desk/paper/body. It is correct for that hammer to be fully occluded; do NOT add any hammer on picture-right, and do NOT add hands. If a fragment is visible it may only peek from picture-left waist ABOVE or BEHIND left desk edge, with short handle at belt. Leave the other thirteen cells entirely unchanged, including all props and all existing correct hammers. Do not alter book, gold armor, hair, face, hands, desk, laptop, calligraphy 福, or geometry. Keep exact 4x4 positions, transparent background, no labels.",
+    "references": [
+      "source/sheets/paladin/actions-02.png",
+      "source/base-keyframes/paladin/frame-00.png",
+      "source/sheets/paladin/actions-08.png"
+    ],
+    "generatedOriginal": "image_gen-output:exec-e0a95275-e80d-49fb-9408-013da05f8af9.png",
+    "output": "source/sheets/paladin/actions-02.png",
+    "reviewStatus": "accepted_source_pose_review",
+    "sha256": "6825a059b028ada0c4881f98a46415f93ece15f96df2e4488345048507a95ca5",
+    "visualQA": {
+      "cellsReviewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "method": "explicit gray alpha composite, all sixteen cells; enlarged hip/hand crop review on major attachments",
+      "notes": "All 16 poses visually reviewed. Local repair removed right-side hammer fragments in laptop cells 10/11 and calligraphy cell13; hammer is naturally hidden at left waist by desk/paper. Side-running retains correct opposite-hip relationships. Writing 福 remains intentional. All coins, food, laptop and flower actions preserved.",
+      "scope": "source poses only, not encoded animation frames or AIRI playback"
+    },
+    "priorProvenance": {
+      "tool": "image_gen__imagegen",
+      "date": "2026-11-09",
+      "sheet": "actions-02",
+      "prompt": "Use case: precise-object-edit. Asset: transparent 4x4 action sprite atlas, identity/equipment repair only.\nImage 1 is the EDIT TARGET with sixteen original action poses. Image 2 is the canonical paladin master identity and equipment reference. Preserve the target's exact 4x4 grid, sixteen cell positions, character scale, pose silhouettes, two original arms/hands, expressions, action props, clothing, gold cross symbols, face, hair and colors. Do not substitute idle poses and do not redraw an action.\n\nRepair only the missing canonical equipment. The paladin has exactly ONE compact gold warhammer with rectangular red-inset head, at the character's anatomical RIGHT hip (PICTURE LEFT in front view), and exactly ONE small red/gold cross holy book at anatomical LEFT hip (PICTURE RIGHT in front view). Keep the book already present; do not duplicate it or replace action props with it. Match the master hammer shape, size and proportions: short handle, broad compact rectangular head, total length roughly one fifth of character height. It hangs diagonally down/out from the same left waist belt attachment, not as a tall staff or giant mallet. When both original hands are busy, the hammer is belt-holstered and leaves both hands free; do not add a third hand to hold it. In side/prone poses, rotate and foreshorten this same attached hammer with the pelvis, allowing physically correct occlusion by body, hair or props. Keep the head and handle connected. Never move the hammer to the other hip between paired action cells.\nAll original action props remain distinct from equipped hammer/book: no converting cards, fans, toys, food or paperwork into extra holy equipment. Exactly two anatomical arms and hands, except legal occlusion.\nKeep genuine transparent background; no labels, borders, checkerboard, extra decoration, duplicate body parts, or new effects. Preserve every original cell's different action.\n\nImage3 is an ACCEPTED HAMMER MOUNTING REFERENCE ONLY: same character with hammer correctly at picture-left hip and book at picture-right hip. Copy only equipment mounting relationship and proportions from Image3, not its actions or layout. The existing book in Image1 MUST STAY AT ITS ORIGINAL LOCATION. The new hammer goes on the OPPOSITE HIP to that already-present book. Never swap the book/hammer. Keep hands free for their original actions.\n\nTarget actions-02: Keep money bags/coins, side-running stages, snack bag/chips, laptop, writing 福 calligraphy on red paper, flower magic. Side run preserves same anatomical right-hip hammer with correct occlusion; gold cross book remains at original other hip. Existing calligraphy 福 is intentional and must remain.",
+      "generatedOriginal": "image_gen-output:exec-37d7d418-a28e-41bc-9aab-fcb20240b9cb.png",
+      "output": "source/sheets/paladin/actions-02.png",
+      "reviewStatus": "pending explicit 16-cell visual QA",
+      "references": [
+        "source/sheets/paladin/actions-02.png",
+        "source/base-keyframes/paladin/frame-00.png",
+        "source/sheets/paladin/actions-08.png"
+      ]
+    },
+    "finalIterationRecord": "source/sheets/paladin/actions-02-local.iteration2.json"
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

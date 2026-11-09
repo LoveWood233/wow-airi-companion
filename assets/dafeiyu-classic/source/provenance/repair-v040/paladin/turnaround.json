@@ -1,0 +1,161 @@
+{
+  "class": "paladin",
+  "sheet": "turnaround",
+  "original_sha256": "0d2179762fb78460f8763487f68637693efede966981ad9c0f82d4d9806ec59a",
+  "replacement_sha256": "e8b4ed837b658fb42a0b466228ebf618c3c2ddc7fbeba084feeab81f5f8ecbc1",
+  "freeze_manifest": "paladin-08-14-freeze-manifest.json",
+  "source_review": {
+    "sheet": "turnaround",
+    "candidate": "source/sheets/paladin/turnaround.png",
+    "sha256": "e8b4ed837b658fb42a0b466228ebf618c3c2ddc7fbeba084feeab81f5f8ecbc1",
+    "review": "source/sheets/paladin/turnaround.json",
+    "cells_reviewed": 16,
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/paladin/turnaround.png",
+      "source/base-keyframes/paladin/frame-00.png",
+      "source/sheets/paladin/actions-08.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Asset: transparent 4x4 action sprite atlas, identity/equipment repair only.\nImage 1 is the EDIT TARGET with sixteen original action poses. Image 2 is the canonical paladin master identity and equipment reference. Preserve the target's exact 4x4 grid, sixteen cell positions, character scale, pose silhouettes, two original arms/hands, expressions, action props, clothing, gold cross symbols, face, hair and colors. Do not substitute idle poses and do not redraw an action.\n\nRepair only the missing canonical equipment. The paladin has exactly ONE compact gold warhammer with rectangular red-inset head, at the character's anatomical RIGHT hip (PICTURE LEFT in front view), and exactly ONE small red/gold cross holy book at anatomical LEFT hip (PICTURE RIGHT in front view). Keep the book already present; do not duplicate it or replace action props with it. Match the master hammer shape, size and proportions: short handle, broad compact rectangular head, total length roughly one fifth of character height. It hangs diagonally down/out from the same left waist belt attachment, not as a tall staff or giant mallet. When both original hands are busy, the hammer is belt-holstered and leaves both hands free; do not add a third hand to hold it. In side/prone poses, rotate and foreshorten this same attached hammer with the pelvis, allowing physically correct occlusion by body, hair or props. Keep the head and handle connected. Never move the hammer to the other hip between paired action cells.\nAll original action props remain distinct from equipped hammer/book: no converting cards, fans, toys, food or paperwork into extra holy equipment. Exactly two anatomical arms and hands, except legal occlusion.\nKeep genuine transparent background; no labels, borders, checkerboard, extra decoration, duplicate body parts, or new effects. Preserve every original cell's different action.\nThis is a 16-angle TURNAROUND, NOT sixteen front poses. Keep every original angle, two open outward palms, head tilt, face, clothing, hair and existing book placement. Never mirror or rearrange the grid. The belt hammer is attached to anatomical RIGHT hip, opposite the existing book. PICTURE LEFT is true only for FRONT views; it changes in rear/profile views.\nCell0 FRONT: full hammer at PICTURE LEFT hip, original book PICTURE RIGHT.\nCells1/2 front-left-quarter: hammer foreshortens on far hip, original near-side book stays visible.\nCells3/4 LEFT PROFILE: hammer mostly hidden on far hip behind torso/hair; only plausible small edge. DO NOT put exposed hammer beside the visible book.\nCell5 REAR-LEFT: a small hammer portion begins emerging at PICTURE RIGHT lower hip through hair.\nCells6/7/8 BACK: one hammer on PICTURE RIGHT lower hip, book on PICTURE LEFT (may partly occlude in hair). No back-left hammer.\nCells9/10 rear-right-quarter: keep hammer on anatomical right/near hip as body rotates, smoothly continuing from rear-right.\nCells11/12 RIGHT PROFILE: hammer on the near hip, foreshortened; book partly hidden on far side. Do not add a second visible book.\nCells13/14 front-right-quarter: hammer turns continuously into the front-view picture-left waist; not teleported to opposite anatomical hip.\nCell15 FRONT: full hammer at PICTURE LEFT hip, original book PICTURE RIGHT, matching cell0.\nSame short compact rectangular red-inset gold hammer in all visible angles; handle and head connected, no shrinking to an unrecognizable dot in front view, no giant club. Both original open hands remain empty and no extra hands.",
+    "generated_file": "image_gen-output:exec-d73a6b95-64d3-443a-9066-b61ad81f7a00.png",
+    "tool": "built-in image_gen",
+    "class": "paladin",
+    "sheet": "turnaround",
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "output": "outputs/all-class-equipment-revision/repaired-sheets/paladin/turnaround.png",
+    "sha256": "e8b4ed837b658fb42a0b466228ebf618c3c2ddc7fbeba084feeab81f5f8ecbc1",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 598296,
+      "opaque_pixels": 570244
+    },
+    "preview": "outputs/all-class-equipment-revision/repaired-sheets/paladin/turnaround.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/paladin/turnaround.png",
+        "sha256": "0d2179762fb78460f8763487f68637693efede966981ad9c0f82d4d9806ec59a"
+      },
+      {
+        "path": "source/base-keyframes/paladin/frame-00.png",
+        "sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7"
+      },
+      {
+        "path": "source/sheets/paladin/actions-08.png",
+        "sha256": "555841301aaa408631be5524e2cecd81f1175bad31974f1c9d885185ac939935"
+      }
+    ],
+    "video_frames_reviewed": 0,
+    "cell_reviews": [
+      {
+        "cell": 0,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Front: full left hammer and right book, empty original palms."
+      },
+      {
+        "cell": 1,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Front-left quarter: far hammer narrows on picture-left, book near side."
+      },
+      {
+        "cell": 2,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Further left turn: only narrow far hammer edge; book unchanged."
+      },
+      {
+        "cell": 3,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Left profile: far hammer mostly occluded, near book visible."
+      },
+      {
+        "cell": 4,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Deep left profile: far hammer hidden behind torso/hair; near book visible."
+      },
+      {
+        "cell": 5,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Rear-left: small far hammer head emerges at picture-right lower hip, book picture-left."
+      },
+      {
+        "cell": 6,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Rear-left quarter: partial hammer picture-right through hair; book left."
+      },
+      {
+        "cell": 7,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Back quarter: hammer picture-right, book left, palms empty."
+      },
+      {
+        "cell": 8,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Back: hammer picture-right and near book-edge picture-left, hair occlusion legal."
+      },
+      {
+        "cell": 9,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Rear-right quarter: hammer near right hip, book far side partly hidden."
+      },
+      {
+        "cell": 10,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Right profile rear: near hammer visible, book far side occluded."
+      },
+      {
+        "cell": 11,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Right profile: near hammer hangs from belt, empty palms; no extra book."
+      },
+      {
+        "cell": 12,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Right profile front: hammer near hip, book far side hidden."
+      },
+      {
+        "cell": 13,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Front-right quarter: hammer rotates toward front picture-left; book peeks far side."
+      },
+      {
+        "cell": 14,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Near front: left hammer and right book restored, palms unchanged."
+      },
+      {
+        "cell": 15,
+        "action": "turnaround angle",
+        "status": "pass_source_pose",
+        "note": "Front endpoint matches cell0 attachment: left hammer/right book."
+      }
+    ],
+    "limitations": [
+      "Only source-pose identity/equipment and anatomical attachment/occlusion reviewed. Generated minor linework differences and final motion artifacts require separate review."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

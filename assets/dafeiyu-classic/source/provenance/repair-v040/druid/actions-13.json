@@ -1,0 +1,629 @@
+{
+  "class": "druid",
+  "sheet": "actions-13",
+  "original_sha256": "b063923eb46fb1512ee07821af80de965d0b1977367c22cb69618966fa7e0b7f",
+  "replacement_sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+  "freeze_manifest": "druid-repack-integration.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-13",
+    "path": "workspace-revision/top-overhang-repack/candidates/druid/actions-13.png",
+    "sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+    "dimensions": [
+      1239,
+      1269
+    ],
+    "modified_cells": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "provenance": "workspace-revision/top-overhang-repack/provenance/druid/actions-13.json",
+    "review_status": "visually_reviewed_full_overhang_recovered",
+    "provenance_sha256": "9e8a188b967624b0436fa5121a1412ce529bebb9bbfcb8e401f84782e115d82e"
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-13",
+    "operation": "recover atlas overhang by exact RGBA extraction and integer translation; no redraw; no resizing",
+    "previous_revision": {
+      "class": "druid",
+      "sheet": "actions-13",
+      "original_sha256": "b063923eb46fb1512ee07821af80de965d0b1977367c22cb69618966fa7e0b7f",
+      "replacement_sha256": "b31788fe58c96fd50af64386e9e504d88fd8d249823fdb20bbff8ed60fe3c7ec",
+      "freeze_manifest": "druid16-rogue07-freeze.json",
+      "source_review": {
+        "class": "druid",
+        "sheet": "actions-13",
+        "path": "source/sheets/druid/actions-13.png",
+        "sha256": "b31788fe58c96fd50af64386e9e504d88fd8d249823fdb20bbff8ed60fe3c7ec",
+        "dimensions": [
+          1239,
+          1269
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "provenance": "workspace-revision/provenance/druid/actions-13.json",
+        "review_status": "candidate_visual_reviewed_with_occlusion_note",
+        "main_defects_review": "Original mouse cursors restored cells10,11 after accidental removal in correction02. Whale remains intentional. Cell13 right-side staff removed; canonical left-back is largely occluded by tree/raised arm, so hidden attachment cannot be visually proved. No duplicate staff seen.",
+        "reviewed_cells_zero_based": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "remaining_limitations": [
+          "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+          "No all-frame media review here; temporal transitions remain for render QA.",
+          "Cell13 left-back staff largely occluded by Christmas tree/raised arm; hidden attachment cannot be proven visually. Intentional whale cell1 excludes humanoid staff; drag cursors10/11 restored."
+        ],
+        "frozen": true
+      },
+      "generation": {
+        "class": "druid",
+        "sheet": "actions-13",
+        "tool": "built-in image_gen.imagegen",
+        "mode": "edit",
+        "transparent_background": true,
+        "source": "source/sheets/druid/actions-13.png",
+        "source_sha256": "b063923eb46fb1512ee07821af80de965d0b1977367c22cb69618966fa7e0b7f",
+        "reference": "source/base-keyframes/druid/frame-00.png",
+        "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+        "original_modified": false,
+        "attempts": [
+          {
+            "output_id": "exec-8d5a0c93-daef-4bb5-a58e-7ffd967c2c50",
+            "path": "workspace-revision/attempts/druid/actions-13-01.png",
+            "sha256": "cc457404e4aea363afffbf37ef9ef410824f8fd2c63f775778ae3e4da4af085d"
+          },
+          {
+            "output_id": "exec-eb0a1b9a-a25a-4860-9057-4b6c1b906dc0",
+            "path": "workspace-revision/attempts/druid/actions-13-02.png",
+            "sha256": "0c3f6bc61d7e74394f265225f8d36518521bdfeaad56607e34cf8a2a2786c1c4"
+          },
+          {
+            "output_id": "exec-d92e48e1-2cb0-4653-b61d-7834d0afde02",
+            "path": "workspace-revision/attempts/druid/actions-13-03.png",
+            "sha256": "b31788fe58c96fd50af64386e9e504d88fd8d249823fdb20bbff8ed60fe3c7ec"
+          }
+        ],
+        "generated_output_id": "exec-d92e48e1-2cb0-4653-b61d-7834d0afde02",
+        "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+        "generated_output": "image_gen-output:exec-d92e48e1-2cb0-4653-b61d-7834d0afde02.png",
+        "saved_output": "source/sheets/druid/actions-13.png",
+        "final_sha256": "b31788fe58c96fd50af64386e9e504d88fd8d249823fdb20bbff8ed60fe3c7ec",
+        "dimensions": [
+          1239,
+          1269
+        ],
+        "mode_rgba": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "review_status": "candidate_visual_reviewed_with_occlusion_note",
+        "prompt": "workspace-revision/prompts/druid/actions-13.txt",
+        "prompt_sha256": "ba088bbf6bf883fa8eaedf2d7b951489e60497c4a2ac166c9693c1c31ac1ec87",
+        "visual_review": {
+          "method": "generatedImage full atlas actually viewed all16 cells",
+          "cells_viewed_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "result": "Original mouse cursors restored cells10,11 after accidental removal in correction02. Whale remains intentional. Cell13 right-side staff removed; canonical left-back is largely occluded by tree/raised arm, so hidden attachment cannot be visually proved. No duplicate staff seen.",
+          "grid_cut_review": "Water effects near cell0/1 borders may require alpha/trim check; all figures and props remain in intended cells.",
+          "full_video_validation": false
+        },
+        "correction_prompts": [
+          "workspace-revision/prompts/druid/actions-13-correction-02.txt",
+          "workspace-revision/prompts/druid/actions-13-correction-03.txt"
+        ]
+      },
+      "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+      "prompts": [
+        {
+          "name": "actions-13-correction-02.txt",
+          "text": "Precise local edit to input1 transparent 4x4 atlas. Change ONLY cell13 (BOTTOM ROW SECOND COLUMN), girl placing star on Christmas tree. Her staff currently appears at the RIGHT of her head, near the right edge of this cell. DELETE that right-side staff curl/gem and restore blue hair. Put the SAME ONE staff at viewer LEFT behind her left shoulder/hair, just right of the Christmas tree and partly naturally hidden by raised forearm/tree. Correct location is local RIGHT-back mount as reference2; all front-facing poses should have curl at viewer LEFT, never right. Keep tree/star/raised arm/pose/expression exactly. No duplicate staff; if partly occluded by tree show remaining staff segment/gem at that left mounting only. Leave all other15 cells and deliberate whale transformation unchanged. Preserve original transparent alpha and 4x4 layout.\n"
+        },
+        {
+          "name": "actions-13-correction-03.txt",
+          "text": "Make ONLY a local restoration in input1 transparent 4x4 atlas: cells10 and11 (THIRD ROW THIRD AND FOURTH COLUMNS) are the mouse-drag suspended poses. Restore the original large WHITE MOUSE ARROW CURSOR with dark outline above/on the ahoge/top hair of EACH of those two sprites, visibly indicating she is grabbed by the cursor. A white desktop arrow, not a magic sparkle. Keep both airborne poses and arm/leg positions. Do not change the staff, clothes, Christmas tree, whale, any other cell, or anything else. In cell13 staff is intentionally occluded behind Christmas tree/back, leave it as-is. Same full16-cell atlas, transparent alpha. Input2 is original unedited atlas to show correct cursor appearance and placement. ONLY restore those two missing cursors.\n"
+        },
+        {
+          "name": "actions-13.txt",
+          "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 蓝鲸现世. Preserve source pose A and B: 角色双手张开施展魔法，蓝色水纹围绕身体，仍是完整原角色。 / 角色变化成圆润可爱蓝鲸，保留蓝色角色标记与表情，大鲸尾明显；不是旁边加鲸鱼贴纸。\nCells [2, 3]: 蝴蝶蜜蜂环绕头顶开花. Preserve source pose A and B: 蝴蝶和小蜜蜂围着头顶紧闭花苞飞，角色抬眼看花苞。 / 同一位置的头顶花苞完全开放，蜂蝶换到另一侧飞行，角色开心微笑。\nCells [4, 5]: 螃蟹走路. Preserve source pose A and B: 身体正面，左腿向侧跨步，尾巴反向平衡。动作语义：正面侧步交替，脚底有抬落 / 身体正面，右腿收拢，手臂自然保持平衡。与A必须是不同的动作阶段，保持道具形状/位置关系。继续侧步\nCells [6, 7]: 被吓一跳. Preserve source pose A and B: 肩膀耸起，身体后缩，睁大眼，手护胸。动作语义：突然睁眼缩肩跳起 / 真实离地，双脚收起，头发和尾巴向下滞后。与A必须是不同的动作阶段，保持道具形状/位置关系。落地双手护胸\nCells [8, 9]: 被落叶淹没. Preserve source pose A and B: 几片金红落叶开始落在头发和肩头，角色惊讶抬手看叶子。 / 角色蹲低，被落叶堆淹没到肩膀，仅头和双手露出，叶堆清晰。\nCells [10, 11]: 被鼠标拖拽悬空反馈. Preserve source pose A and B: 角色被头顶拖起悬空，手脚垂落，睁大眼，身体略向左歪；没有地面接触。 / 同样悬空，身体向右摆，腿和鲸尾向左滞后，双手紧张张开。\nCells [12, 13]: 装点圣诞树. Preserve source pose A and B: 站在小圣诞树旁，一手拿金色星饰、另一手扶树，准备向上伸。 / 一手将同一星饰放在树顶，树上已有彩球，角色仰头露出开心表情。\nCells [14, 15]: 讨糖南瓜灯. Preserve source pose A and B: 双手胸前端托，手腕形成物体接触面；道具：pumpkin_bucket, candies。动作语义：向前伸桶期待讨糖 / 星星眼抬头，伸手向外邀请去玩；道具：pumpkin_bucket, candies。与A必须是不同的动作阶段，保持道具形状/位置关系。糖果落入桶中开心\nIMPORTANT: cell1 is deliberately a blue whale. Preserve whale body and druid motifs; no human legs/full robe/staff on whale. Cell0 is human and must keep staff.\n"
+        }
+      ]
+    },
+    "previous_revision_file_sha256": "2544756dbef43c1e7ec60b60fa23ace34dd026ae1be6e1f18e512009573a36c3",
+    "previous_workspace_generation": {
+      "class": "druid",
+      "sheet": "actions-13",
+      "tool": "built-in image_gen.imagegen",
+      "mode": "edit",
+      "transparent_background": true,
+      "source": "source/sheets/druid/actions-13.png",
+      "source_sha256": "b063923eb46fb1512ee07821af80de965d0b1977367c22cb69618966fa7e0b7f",
+      "reference": "source/base-keyframes/druid/frame-00.png",
+      "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+      "original_modified": false,
+      "attempts": [
+        {
+          "output_id": "exec-8d5a0c93-daef-4bb5-a58e-7ffd967c2c50",
+          "path": "workspace-revision/attempts/druid/actions-13-01.png",
+          "sha256": "cc457404e4aea363afffbf37ef9ef410824f8fd2c63f775778ae3e4da4af085d"
+        },
+        {
+          "output_id": "exec-eb0a1b9a-a25a-4860-9057-4b6c1b906dc0",
+          "path": "workspace-revision/attempts/druid/actions-13-02.png",
+          "sha256": "0c3f6bc61d7e74394f265225f8d36518521bdfeaad56607e34cf8a2a2786c1c4"
+        },
+        {
+          "output_id": "exec-d92e48e1-2cb0-4653-b61d-7834d0afde02",
+          "path": "workspace-revision/attempts/druid/actions-13-03.png",
+          "sha256": "b31788fe58c96fd50af64386e9e504d88fd8d249823fdb20bbff8ed60fe3c7ec"
+        }
+      ],
+      "generated_output_id": "exec-d92e48e1-2cb0-4653-b61d-7834d0afde02",
+      "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+      "generated_output": "image_gen-output:exec-d92e48e1-2cb0-4653-b61d-7834d0afde02.png",
+      "saved_output": "source/sheets/druid/actions-13.png",
+      "final_sha256": "b31788fe58c96fd50af64386e9e504d88fd8d249823fdb20bbff8ed60fe3c7ec",
+      "dimensions": [
+        1239,
+        1269
+      ],
+      "mode_rgba": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "review_status": "candidate_visual_reviewed_with_occlusion_note",
+      "prompt": "workspace-revision/prompts/druid/actions-13.txt",
+      "prompt_sha256": "ba088bbf6bf883fa8eaedf2d7b951489e60497c4a2ac166c9693c1c31ac1ec87",
+      "visual_review": {
+        "method": "generatedImage full atlas actually viewed all16 cells",
+        "cells_viewed_zero_based": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "result": "Original mouse cursors restored cells10,11 after accidental removal in correction02. Whale remains intentional. Cell13 right-side staff removed; canonical left-back is largely occluded by tree/raised arm, so hidden attachment cannot be visually proved. No duplicate staff seen.",
+        "grid_cut_review": "Water effects near cell0/1 borders may require alpha/trim check; all figures and props remain in intended cells.",
+        "full_video_validation": false
+      },
+      "correction_prompts": [
+        "workspace-revision/prompts/druid/actions-13-correction-02.txt",
+        "workspace-revision/prompts/druid/actions-13-correction-03.txt"
+      ]
+    },
+    "source_sha256": "b31788fe58c96fd50af64386e9e504d88fd8d249823fdb20bbff8ed60fe3c7ec",
+    "replacement_sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+    "modified_cells": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "unchanged_cells_exact_RGBA": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      14,
+      15
+    ],
+    "cells": [
+      {
+        "cell": 10,
+        "source_cell_xyxy": [
+          619,
+          634,
+          929,
+          951
+        ],
+        "main_component_alpha_threshold": 8,
+        "main_component_id": 32,
+        "selected_components": [
+          {
+            "id": 32,
+            "bbox_area": [
+              638,
+              612,
+              230,
+              278,
+              43584
+            ]
+          },
+          {
+            "id": 34,
+            "bbox_area": [
+              785,
+              630,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 35,
+            "bbox_area": [
+              787,
+              635,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 39,
+            "bbox_area": [
+              844,
+              666,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 53,
+            "bbox_area": [
+              866,
+              800,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 55,
+            "bbox_area": [
+              823,
+              858,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "source_extract_xyxy": [
+          634,
+          608,
+          872,
+          894
+        ],
+        "destination_local_xy": [
+          36,
+          15
+        ],
+        "scale": 1.0,
+        "pixels_resampled": false,
+        "exact_RGBA_piece_equality": true,
+        "all_selected_alpha_gt8_component_pixels_preserved": true,
+        "neighbor_large_components_in_piece": [],
+        "original_current_crops_removed": [
+          {
+            "bottom_trim_px": 26,
+            "right_trim_px": 0
+          }
+        ],
+        "visual_review": "full intended body and effects visible; no subject clipping or neighboring sprite in after cell"
+      },
+      {
+        "cell": 11,
+        "source_cell_xyxy": [
+          929,
+          634,
+          1239,
+          951
+        ],
+        "main_component_alpha_threshold": 8,
+        "main_component_id": 31,
+        "selected_components": [
+          {
+            "id": 31,
+            "bbox_area": [
+              947,
+              608,
+              260,
+              281,
+              44377
+            ]
+          },
+          {
+            "id": 40,
+            "bbox_area": [
+              1177,
+              674,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 45,
+            "bbox_area": [
+              1191,
+              707,
+              16,
+              16,
+              181
+            ]
+          },
+          {
+            "id": 46,
+            "bbox_area": [
+              1191,
+              723,
+              27,
+              18,
+              306
+            ]
+          },
+          {
+            "id": 47,
+            "bbox_area": [
+              1202,
+              722,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 48,
+            "bbox_area": [
+              1219,
+              732,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 50,
+            "bbox_area": [
+              1003,
+              759,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "source_extract_xyxy": [
+          943,
+          604,
+          1224,
+          893
+        ],
+        "destination_local_xy": [
+          14,
+          14
+        ],
+        "scale": 1.0,
+        "pixels_resampled": false,
+        "exact_RGBA_piece_equality": true,
+        "all_selected_alpha_gt8_component_pixels_preserved": true,
+        "neighbor_large_components_in_piece": [],
+        "original_current_crops_removed": [
+          {
+            "bottom_trim_px": 25,
+            "right_trim_px": 0
+          }
+        ],
+        "visual_review": "full intended body and effects visible; no subject clipping or neighboring sprite in after cell"
+      },
+      {
+        "cell": 12,
+        "source_cell_xyxy": [
+          0,
+          951,
+          309,
+          1269
+        ],
+        "main_component_alpha_threshold": 8,
+        "main_component_id": 68,
+        "selected_components": [
+          {
+            "id": 68,
+            "bbox_area": [
+              6,
+              934,
+              271,
+              286,
+              53881
+            ]
+          },
+          {
+            "id": 77,
+            "bbox_area": [
+              58,
+              1049,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 81,
+            "bbox_area": [
+              31,
+              1178,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 84,
+            "bbox_area": [
+              35,
+              1189,
+              1,
+              3,
+              3
+            ]
+          }
+        ],
+        "source_extract_xyxy": [
+          2,
+          930,
+          281,
+          1224
+        ],
+        "destination_local_xy": [
+          15,
+          12
+        ],
+        "scale": 1.0,
+        "pixels_resampled": false,
+        "exact_RGBA_piece_equality": true,
+        "all_selected_alpha_gt8_component_pixels_preserved": true,
+        "neighbor_large_components_in_piece": [],
+        "original_current_crops_removed": [
+          {
+            "bottom_trim_px": 0,
+            "right_trim_px": 3
+          }
+        ],
+        "visual_review": "full intended body and effects visible; no subject clipping or neighboring sprite in after cell"
+      },
+      {
+        "cell": 13,
+        "source_cell_xyxy": [
+          309,
+          951,
+          619,
+          1269
+        ],
+        "main_component_alpha_threshold": 8,
+        "main_component_id": 67,
+        "selected_components": [
+          {
+            "id": 67,
+            "bbox_area": [
+              307,
+              931,
+              294,
+              288,
+              60778
+            ]
+          },
+          {
+            "id": 70,
+            "bbox_area": [
+              493,
+              943,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 85,
+            "bbox_area": [
+              475,
+              1190,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 86,
+            "bbox_area": [
+              443,
+              1200,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "source_extract_xyxy": [
+          303,
+          927,
+          605,
+          1223
+        ],
+        "destination_local_xy": [
+          4,
+          11
+        ],
+        "scale": 1.0,
+        "pixels_resampled": false,
+        "exact_RGBA_piece_equality": true,
+        "all_selected_alpha_gt8_component_pixels_preserved": true,
+        "neighbor_large_components_in_piece": [],
+        "original_current_crops_removed": [],
+        "visual_review": "full intended body and effects visible; no subject clipping or neighboring sprite in after cell"
+      }
+    ],
+    "visual_review": "All four changed cells viewed before/after: complete antlers/hair/cursor and intended props retained; no neighboring character visible. Original-alpha selected components preserved by exact RGBA integer translation at scale 1."
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-13-correction-02.txt",
+      "text": "Precise local edit to input1 transparent 4x4 atlas. Change ONLY cell13 (BOTTOM ROW SECOND COLUMN), girl placing star on Christmas tree. Her staff currently appears at the RIGHT of her head, near the right edge of this cell. DELETE that right-side staff curl/gem and restore blue hair. Put the SAME ONE staff at viewer LEFT behind her left shoulder/hair, just right of the Christmas tree and partly naturally hidden by raised forearm/tree. Correct location is local RIGHT-back mount as reference2; all front-facing poses should have curl at viewer LEFT, never right. Keep tree/star/raised arm/pose/expression exactly. No duplicate staff; if partly occluded by tree show remaining staff segment/gem at that left mounting only. Leave all other15 cells and deliberate whale transformation unchanged. Preserve original transparent alpha and 4x4 layout.\n"
+    },
+    {
+      "name": "actions-13-correction-03.txt",
+      "text": "Make ONLY a local restoration in input1 transparent 4x4 atlas: cells10 and11 (THIRD ROW THIRD AND FOURTH COLUMNS) are the mouse-drag suspended poses. Restore the original large WHITE MOUSE ARROW CURSOR with dark outline above/on the ahoge/top hair of EACH of those two sprites, visibly indicating she is grabbed by the cursor. A white desktop arrow, not a magic sparkle. Keep both airborne poses and arm/leg positions. Do not change the staff, clothes, Christmas tree, whale, any other cell, or anything else. In cell13 staff is intentionally occluded behind Christmas tree/back, leave it as-is. Same full16-cell atlas, transparent alpha. Input2 is original unedited atlas to show correct cursor appearance and placement. ONLY restore those two missing cursors.\n"
+    },
+    {
+      "name": "actions-13.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 蓝鲸现世. Preserve source pose A and B: 角色双手张开施展魔法，蓝色水纹围绕身体，仍是完整原角色。 / 角色变化成圆润可爱蓝鲸，保留蓝色角色标记与表情，大鲸尾明显；不是旁边加鲸鱼贴纸。\nCells [2, 3]: 蝴蝶蜜蜂环绕头顶开花. Preserve source pose A and B: 蝴蝶和小蜜蜂围着头顶紧闭花苞飞，角色抬眼看花苞。 / 同一位置的头顶花苞完全开放，蜂蝶换到另一侧飞行，角色开心微笑。\nCells [4, 5]: 螃蟹走路. Preserve source pose A and B: 身体正面，左腿向侧跨步，尾巴反向平衡。动作语义：正面侧步交替，脚底有抬落 / 身体正面，右腿收拢，手臂自然保持平衡。与A必须是不同的动作阶段，保持道具形状/位置关系。继续侧步\nCells [6, 7]: 被吓一跳. Preserve source pose A and B: 肩膀耸起，身体后缩，睁大眼，手护胸。动作语义：突然睁眼缩肩跳起 / 真实离地，双脚收起，头发和尾巴向下滞后。与A必须是不同的动作阶段，保持道具形状/位置关系。落地双手护胸\nCells [8, 9]: 被落叶淹没. Preserve source pose A and B: 几片金红落叶开始落在头发和肩头，角色惊讶抬手看叶子。 / 角色蹲低，被落叶堆淹没到肩膀，仅头和双手露出，叶堆清晰。\nCells [10, 11]: 被鼠标拖拽悬空反馈. Preserve source pose A and B: 角色被头顶拖起悬空，手脚垂落，睁大眼，身体略向左歪；没有地面接触。 / 同样悬空，身体向右摆，腿和鲸尾向左滞后，双手紧张张开。\nCells [12, 13]: 装点圣诞树. Preserve source pose A and B: 站在小圣诞树旁，一手拿金色星饰、另一手扶树，准备向上伸。 / 一手将同一星饰放在树顶，树上已有彩球，角色仰头露出开心表情。\nCells [14, 15]: 讨糖南瓜灯. Preserve source pose A and B: 双手胸前端托，手腕形成物体接触面；道具：pumpkin_bucket, candies。动作语义：向前伸桶期待讨糖 / 星星眼抬头，伸手向外邀请去玩；道具：pumpkin_bucket, candies。与A必须是不同的动作阶段，保持道具形状/位置关系。糖果落入桶中开心\nIMPORTANT: cell1 is deliberately a blue whale. Preserve whale body and druid motifs; no human legs/full robe/staff on whale. Cell0 is human and must keep staff.\n"
+    }
+  ]
+}

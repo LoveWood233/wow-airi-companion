@@ -1,0 +1,38 @@
+{
+  "class": "mage",
+  "sheet": "emotions",
+  "original_sha256": "9398a77492f4c025eee48154cdd4c910fc04eea7ac8e84d185ffa25e7c9c887b",
+  "replacement_sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33",
+  "freeze_manifest": "casters-acceptance.json",
+  "source_review": {
+    "class": "mage",
+    "sheet": "emotions",
+    "path": "source/sheets/mage/emotions.png",
+    "sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33",
+    "qa_status": "accepted_source_pose_review",
+    "alpha_review_image": "source/sheets/mage/emotions-alpha-inspect.jpg",
+    "source_defect_repaired": true
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "date": "2026-11-09",
+    "class": "mage",
+    "sheet": "emotions",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1 is EDIT TARGET mage/emotions; Image 2 is same character neutral EQUIPMENT REFERENCE ONLY.\nMake localized corrections in cells8 and9 only (0-based; row3 columns1 and2): restore the persistent bright-blue orb in gold crescent/claw staff head with short shaft behind the screen-left shoulder. These are two crying poses, with mouth open and tear streams and one hand wiping tears. Keep tears, eyes, hands, crying expressions and all action semantics. Preserve all other fourteen cells including turning views.\nLocalized correction only. Preserve every original cell's pose, expression, hand positions, action prop, visual effects, original chibi proportions, blue hair and 4x4 layout/margins. Do not replace action poses with neutral reference. Keep exact costume patterns and colors across poses. Exactly one persistent orb in its mount at the screen-left shoulder. Physically attached behind shoulder, follows torso, not floating beside temple; at front the orb is below ear fin. Existing hands/props may partially cover it. No changes to unaffected cells. Preserve transparent RGBA background, no black/white background, no checkerboard, no labels, no border or watermark.",
+    "generated_original": "image_gen-output:exec-6134b62e-c53d-4cd8-9a08-9967076bb3bb.png",
+    "output_file": "source/sheets/mage/emotions.png",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "output_sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 708812,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/mage/emotions-alpha-inspect.jpg",
+    "iteration_records": []
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

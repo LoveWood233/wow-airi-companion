@@ -1,0 +1,19 @@
+{
+  "scope": "Same hunter click action, original-v032 media versus current fixed-master candidate. Face dissolve residual is not resolved; not full960 visual acceptance.",
+  "sources": [
+    {
+      "version": "0.3.2",
+      "class": "hunter",
+      "action": "点击回应-开心跃动",
+      "sha256": "f3418f223a7c3ea99c406c11c71a70ddf54afa3148187f75af2b1619072a0a90"
+    },
+    {
+      "version": "0.4.0",
+      "class": "hunter",
+      "action": "点击回应-开心跃动",
+      "sha256": "d20a0f16b0d8409d6dd4f33663519fbacea870eae5775831f8b08e9db6028cb0"
+    }
+  ],
+  "preview": "preview/hunter-before-after-v040.mp4",
+  "sha256": "91715e4a2baa1773af95d90f8d087a0da95ff71c1996cf5bc34b39e7963fafde"
+}

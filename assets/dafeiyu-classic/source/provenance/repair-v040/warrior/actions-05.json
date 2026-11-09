@@ -1,0 +1,36 @@
+{
+  "class": "warrior",
+  "sheet": "actions-05",
+  "original_sha256": "1900de750f0b549a38a753dcec0df8a75bf896d3ff5b794ad6d6f31852059794",
+  "replacement_sha256": "ae032517e04a11dc676bd61f14ff575fa6ac52e2c476e39630001f83dc650c35",
+  "freeze_manifest": "warrior-partial-freeze.json",
+  "source_review": {
+    "class": "warrior",
+    "sheet": "actions-05",
+    "path": "source/sheets/warrior/actions-05.png",
+    "sha256": "ae032517e04a11dc676bd61f14ff575fa6ac52e2c476e39630001f83dc650c35",
+    "qa_status": "source_pose_major_equipment_repair_reviewed_pending_motion"
+  },
+  "generation": {
+    "class": "warrior",
+    "sheet": "actions-05",
+    "method": "built_in_image_gen_precise_object_edit",
+    "original_sha256": "1900de750f0b549a38a753dcec0df8a75bf896d3ff5b794ad6d6f31852059794",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "imagegen_output": "image_gen-output:exec-be070cd4-7a84-4df6-889e-8a746a265aac.png",
+    "sha256": "ae032517e04a11dc676bd61f14ff575fa6ac52e2c476e39630001f83dc650c35",
+    "dimensions": [
+      1263,
+      1246
+    ],
+    "review_status": "accepted_source_endpoint",
+    "review_note": "All16 poses reviewed: navy/gold sheathed sword screen-left, single gold-rim shield screen-right. Food/utensil and flute/balloon actions retained. Interpolated frames not yet verified."
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-05.txt",
+      "text": "Edit Image 1 only: restore missing equipment in every pose to match Image 2 reference. Add navy sword with GOLD borders and GOLD tip, belt hilt on the LEFT SIDE OF THE PICTURE, diagonal down toward the bottom-left of each cell. Add round navy shield with gold rim behind shoulder on the RIGHT SIDE OF THE PICTURE. The sword is on the OPPOSITE side to shield. Use the exact equipment design/scale in Image 2. Keep target's sixteen poses, original hands, faces, all activity objects and clothing patterns unchanged. Only add missing sword/shield behind the hands; never add an extra hand. Curtsy must keep plate skirt segments not fabric. All 16 cells remain in existing 4x4 layout and each has transparent margin; true transparent alpha, no background. This is equipment repair, not a redraw or new choreography.\n"
+    }
+  ]
+}

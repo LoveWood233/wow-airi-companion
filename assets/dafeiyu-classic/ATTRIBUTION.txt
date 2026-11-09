@@ -1,4 +1,4 @@
-来源和制作记录 — v0.3.2
+来源和制作记录 — v0.4.0 全量修复候选版
 
 角色底座：PC2005-cloud/dsh-pet
 https://github.com/PC2005-cloud/dsh-pet
@@ -12,36 +12,58 @@ https://github.com/PC2005-cloud/dsh-pet#许可
 https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 装备视觉参考：Blizzard / World of Warcraft Classic 经典60级T2。
-本版是Q版二次设计，不是游戏模型导出，不声称获得Blizzard独立授权。
+本版是Q版二次设计，不是游戏模型或贴图导出，不声称获得Blizzard独立授权。
 https://news.blizzard.com/en-gb/article/23764288/season-of-mastery-blackwing-lair-is-now-live
 
 动作名与接口：LoveWood233/wow-airi-companion
 https://github.com/LoveWood233/wow-airi-companion
 锁定版本：e3ddb35f8bf692c4fe3f8284caae9f4e4d526790。
 原114动作名、分类和事件映射来自该版本builtin/pack.json。
-新增6动作来自本次用户指定，接入原有categories接口；第6个新增动作修订为“开心蹦跳”。
-原版“小幅度原地360度旋转展示”的动作名与映射继续保留。
-资源包v0.3.2统一更新八份manifest版本标识，接口schema仍为version=1。
+新增6动作来自用户指定，接入现有categories接口；第6个新增动作已改为“开心蹦跳”。
+原版“小幅度原地360度旋转展示”名称与映射继续保留。
+八职业各120条，共960条；资源包版本标识为v0.4.0，接口schema仍为version=1。
 
-原有制作方式与已知遗漏
-角色关键姿态和动作道具使用内置image_gen生成；提示词见source/prompts/。
-动作依据语义绘制A/B姿态，睡眠与跑步追加过渡图集，原版360度展示使用16方位图。
-原蹦跳使用4×4正面姿态图集；以OpenCV双向DIS光流处理预乘RGB与alpha并按60fps采样。
-v0.3.1移除补间中点硬切并调整侧跑收尾；但战士蹦跳的基准站姿与图集装备不一致，原验收遗漏了此问题。
-历史重建一致性、媒体完整性及导入记录不能证明角色装备视觉一致。
+历史制作与遗漏
+关键姿态和动作道具由内置image_gen生成，提示词见source/prompts/。
+动作依据语义绘制A/B姿态，睡眠与跑步使用过渡图集，原版360度展示使用16方位图。
+旧制作链使用OpenCV双向DIS光流处理预乘RGB和alpha，按60fps采样。
+v0.3.1移除补间中点硬切并调整侧跑收尾，但验收遗漏了不同源姿态之间的装备变化。
+历史媒体完整性、重建一致性和导入成功不能证明装备或关节视觉一致。
 
-v0.3.2战士蹦跳修复
-实际替换仅限warrior/开心蹦跳.webm；其余959段媒体沿用上一版，未宣称其它职业/动作已经完成装备一致性验收。
-修复使用source/base-keyframes/warrior/frame-00.png作为固定身体与装备纹理，通过连续二维网格运动表现蓄力、起跳和落地。
-不再在该基准站姿与旧战士happy-jump图集之间做光流换形。
-新增source/expressions/warrior/happy-face.png由内置image_gen编辑生成闭眼笑参考；仅配置限定的脸内区域参与合成。
-装备始终采样原基准纹理，不采用表情生成图中的装备；相关提示词、来源和对齐配置随源文件保存。
-动作幅度克制，并非完整三维骨骼绑定；不以本次修复声称全库关节运动正确。
+保留的v0.3.2战士蹦跳专项
+当时实际只替换warrior/开心蹦跳.webm，其余959段沿用上一版。
+该段使用source/base-keyframes/warrior/frame-00.png固定身体与装备纹理，通过连续二维运动表现蓄力、起跳和落地。
+新增source/expressions/warrior/happy-face.png由内置image_gen编辑生成，只在限定脸内区域参与合成。
+装备不采用该表情生成图中的替代画法，不再在母版与旧happy-jump图集间做光流换形。
+具体范围见verification/equipment-identity-v032.json；该单段历史结论不能外推为全库通过。
 
-编码、记录与范围
-FFmpeg编码透明VP9 WebM；预览MP4由实际输出视频合成。
-本版不声称对全部原视频逐帧复刻，也不声称60张每秒的独立绘画。
-144张姿态图集、128张基础关键帧和1张表情参考，共273张PNG；原有PNG保持不变。
-生成方法、来源标识和sha256见source/provenance/与source/source-index.json。
-导出时按source/extraction-crops.json应用已记录的历史分帧边界修正；源PNG未原位修改。
-动作绘图、插帧或网格运动、文件导入验证与桌面实际运行属于不同验证层次，记录见仓库verification/。
+v0.4.0装备图源修订与固定母版运动
+本轮按八职业母版修订部分姿态PNG，重点纠正缺失武器、错误挂点及服装变化，保留原动作道具与图集布局。
+本轮修订78张姿态图集；新图、提示词、来源和SHA256记录在source/provenance/、source/prompts/与source/source-index.json。
+本版不再声称“原有PNG全部不变”。source/extraction-crops.json另行记录提帧边界，不代替图源修订记录。
+八职业的3条KEEP动作、开心蹦跳、点击回应-开心跃动和5条新增情绪，共80条采用固定母版纹理与连续二维运动。
+79条使用class-identity-motion.py，战士开心蹦跳继续使用identity-motion.py原分支。
+通用表情与新增情绪来源登记于source/expressions/class-face-sources.json和class-emotion-face-sources.json，装备与武器保持母版纹理来源。
+这不是完整三维骨骼模型，也不以少量固定母版动作的验证推定其余动作正确。
+
+RIFE4.26离线制作依赖
+作者：hzwer；相关代码MIT许可证随tools/rife_v426/LICENSE保存。
+https://github.com/hzwer/Practical-RIFE
+固定网络归档：
+https://huggingface.co/hzwer/RIFE/resolve/01fdc7e97404120c243c3ea7b427046e5dc7643e/RIFEv4.26_0921.zip
+归档SHA256：1fa9b9cda3d9b8c3e301359e2595960902f97bf926c08598b0e9957a3f3f760e
+权重SHA256：45c7f74156704769dc9f85cfcaf8552e1e926f9399dcfa3a553dee88fac6f53f
+warplayer来源提交：bbfd2ea90910789a860ea3e2b32a240cd577b75e。
+适配包括相对导入，以及为MPS边界支持采用等价钳位网格与零填充；来源记录见tools/rife_v426/UPSTREAM.json。
+Python3.12环境依赖固定在tools/requirements-rife.txt；tools/download-rife.py校验归档和权重后写入，渲染时再次校验。
+其余880条动作默认以RIFE预测对应关系和可见性，对预乘RGBA重采样；不调用图像生成服务绘制中间装备。
+模型权重仅供离线制作，不随角色ZIP发布，AIRI播放已有WebM无须安装模型或Python。
+
+编码、验证与未通过范围
+FFmpeg编码640×360、60fps透明VP9 WebM；MP4仅为带背景观看副本。
+60fps不表示每秒60张独立绘画，也不表示逐帧复刻原始114段视频。
+本轮实际输出仍有舞狮、雪人、落叶、小憩与跑步接缝等残影或关节重叠，部分源姿态装备细纹仍有差异。
+因此v0.4.0是全量修复候选，尚未通过全量视觉验收，不能声称960条最终装备无漂移。
+本轮冻结哈希、媒体/原生导入核验与实际帧审阅记录见verification/v040/；历史报告不代替本版记录。
+源姿态检查、插帧中间帧目检、全帧技术解码、原生导入与桌面实播是不同验证层次。
+相关记录见仓库verification/；应核对报告版本、视频哈希及实际查看帧号后使用结论。

@@ -1,0 +1,7 @@
+{
+  "file": "tools/rife_v426/IFNet_HDv3.py",
+  "render_time_sha256": "d764223b7ccf6df26ce49d249be0376b9323a4bb4b1cce61e9fe6d4e9accdee6",
+  "committed_sha256": "3382908e30ad05d02e0a18aa2143b4ffc5a48833cb9c0332bee72a5bcb323f14",
+  "python_ast_equal": true,
+  "change": "Trailing whitespace only after media freeze; recorded render-time hashes remain unchanged."
+}

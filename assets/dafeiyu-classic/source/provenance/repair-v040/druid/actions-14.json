@@ -1,0 +1,116 @@
+{
+  "class": "druid",
+  "sheet": "actions-14",
+  "original_sha256": "d4f9a4b2980e340be0ffcd202846a686b6f5aa59d2b9d05c12b225b27a886d8d",
+  "replacement_sha256": "464209f0bce7e8fbb78ae54de477934ece93e3bd0f5de29f72b53dd5b8074a6e",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-14",
+    "path": "source/sheets/druid/actions-14.png",
+    "sha256": "464209f0bce7e8fbb78ae54de477934ece93e3bd0f5de29f72b53dd5b8074a6e",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/actions-14.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "Single staff throughout, stretching/kicking/dancing/notebook/rocking horse/bubbles preserved; filler12..15 have matching equipment.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-14",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/actions-14.png",
+    "source_sha256": "d4f9a4b2980e340be0ffcd202846a686b6f5aa59d2b9d05c12b225b27a886d8d",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-5445769d-578c-4069-8a9f-cb3f0cbb7b57",
+        "path": "workspace-revision/attempts/druid/actions-14-01.png",
+        "sha256": "464209f0bce7e8fbb78ae54de477934ece93e3bd0f5de29f72b53dd5b8074a6e"
+      }
+    ],
+    "generated_output_id": "exec-5445769d-578c-4069-8a9f-cb3f0cbb7b57",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-5445769d-578c-4069-8a9f-cb3f0cbb7b57.png",
+    "saved_output": "source/sheets/druid/actions-14.png",
+    "final_sha256": "464209f0bce7e8fbb78ae54de477934ece93e3bd0f5de29f72b53dd5b8074a6e",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/druid/actions-14.txt",
+    "prompt_sha256": "0f10cf4afe3ea4456364001acf8e4dabbedd1792a0c7ff2256c9c08e0f634fa5",
+    "visual_review": {
+      "method": "generatedImage full atlas actually viewed all16 cells",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "Single staff throughout, stretching/kicking/dancing/notebook/rocking horse/bubbles preserved; filler12..15 have matching equipment.",
+      "grid_cut_review": "No apparent neighboring sprite cut.",
+      "full_video_validation": false
+    },
+    "correction_prompts": []
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-14.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 超大伸懒腰. Preserve source pose A and B: 双臂高举伸懒腰，躯干拉长。动作语义：双臂高举伸长身体 / 双臂上举向侧弯腰。与A必须是不同的动作阶段，保持道具形状/位置关系。左右拉伸并轻打哈欠\nCells [2, 3]: 踢毽子. Preserve source pose A and B: 单脚站立，另一腿弯曲准备踢毽子；道具：shuttlecock。动作语义：脚内侧向上踢中毽子 / 抬脚内侧向上踢，双臂平衡；道具：shuttlecock。与A必须是不同的动作阶段，保持道具形状/位置关系。毽子升落，重复接踢\nCells [4, 5]: 轻快摇摆舞. Preserve source pose A and B: 向左移重心，一臂抬起另一臂伸侧。动作语义：左右交替转移重心，手臂随节拍摆动 / 向右移重心，左右手臂交换。与A必须是不同的动作阶段，保持道具形状/位置关系。前向打拍\nCells [6, 7]: 轻快记录. Preserve source pose A and B: 一手扶纸，另一手执笔笔尖触纸；道具：notepad, pen。动作语义：笔尖在纸上快速记录 / 执笔手抬起，眼睛检查纸面；道具：notepad, pen。与A必须是不同的动作阶段，保持道具形状/位置关系。抬笔检查\nCells [8, 9]: 骑木马. Preserve source pose A and B: 跨坐木马，握把，身体后倾；道具：rocking_horse。动作语义：木马与角色同步前后摇 / 跨坐木马，身体前倾；道具：rocking_horse。与A必须是不同的动作阶段，保持道具形状/位置关系。慢慢停下\nCells [10, 11]: 鲸鱼吐泡泡特效. Preserve source pose A and B: 双手在嘴前握住气球口或吹具，鼓腮。动作语义：从嘴前吹出大小不同泡泡 / 双手在嘴前握住气球口或吹具，鼓腮。与A必须是不同的动作阶段，保持道具形状/位置关系。泡泡上升并破裂\nCells12..15 are neutral filler poses. Keep them as four separate complete neutral poses and restore the same staff.\n"
+    }
+  ]
+}

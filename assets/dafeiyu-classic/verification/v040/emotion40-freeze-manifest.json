@@ -1,0 +1,3241 @@
+{
+  "status": "frozen_candidate_not_final_visual_acceptance",
+  "clips": 40,
+  "review": "workspace-review/emotion-fixed-pilot/emotion40-review.json",
+  "review_sha256": "7d645b0ee3d051f29c4acafcd26c38100b56f12a79be8a1b1db03e52dc91f877",
+  "actual_frames_visually_reviewed": 700,
+  "current_source_snapshot": [
+    {
+      "path": "tools/class-identity-motion.py",
+      "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+    },
+    {
+      "path": "tools/test_class_identity_emotions.py",
+      "sha256": "93e622db4ea93b3ed24c5bbcc665cd336d3c410c2b58fb8c7d441325e6554b20"
+    },
+    {
+      "path": "tools/test_class_identity_motion.py",
+      "sha256": "7a1e5440906b69ff978e010fa1618f54328079cd30cb39377c734c8cdde4c290"
+    },
+    {
+      "path": "tools/render.py",
+      "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+    },
+    {
+      "path": "source/class-identity-motion.json",
+      "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+    },
+    {
+      "path": "source/expressions/class-emotion-face-sources.json",
+      "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+    }
+  ],
+  "provenance_note": "Each clip retains its actual render-time input hashes. Current source hashes are a separate snapshot; older pilot/build provenance has not been rewritten.",
+  "replacement_scope": "Only these 40 emotion files and corresponding reports, preserving original class/action names. Parent owns main-output integration.",
+  "actions": [
+    {
+      "class": "warrior",
+      "name": "害怕",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/warrior/害怕.webm",
+      "sha256": "77476b6edca4756931c5502aa08195c736c54cec9f76b4f19928bdd0acb7645f",
+      "bytes": 1552074,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/warrior/害怕.json",
+      "render_report_sha256": "2c41c08962387829746ae77ff61c8d84345fff36fa038b5a99c02ebc22c85b4a",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-warrior-review.json",
+      "review_source_file_sha256": "bde983b19434d85bd6cad5926200f9e2b0300b721ea8014566f715ffac6daea9",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/warrior/frame-00.png",
+          "sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc"
+        },
+        {
+          "path": "sheets/warrior/emotions.png",
+          "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "warrior",
+      "name": "害羞",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/warrior/害羞.webm",
+      "sha256": "d5dcaad6a55a1ed276e701c407e2bfbf71822ae6859a83d159f04fe89a8eef7b",
+      "bytes": 534094,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/warrior/害羞.json",
+      "render_report_sha256": "f772242a7809645c46ca23a3ce3b447271ca91028281efd7366794fb0ecea709",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-warrior-review.json",
+      "review_source_file_sha256": "bde983b19434d85bd6cad5926200f9e2b0300b721ea8014566f715ffac6daea9",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/warrior/frame-00.png",
+          "sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc"
+        },
+        {
+          "path": "sheets/warrior/emotions.png",
+          "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "warrior",
+      "name": "难过（眼睛饱含泪水）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/warrior/难过（眼睛饱含泪水）.webm",
+      "sha256": "0a8a514b76d6afd5dd3fd6d293b4d391890458a9faf68fc4bc0317c60617a72a",
+      "bytes": 489008,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/warrior/难过（眼睛饱含泪水）.json",
+      "render_report_sha256": "b5101f3074c85e69d9920bf6e3a0d23ff0ed8d32023f81044f536db73ff12b83",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-warrior-review.json",
+      "review_source_file_sha256": "bde983b19434d85bd6cad5926200f9e2b0300b721ea8014566f715ffac6daea9",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/warrior/frame-00.png",
+          "sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc"
+        },
+        {
+          "path": "sheets/warrior/emotions.png",
+          "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "warrior",
+      "name": "想去玩（期待星星眼）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/warrior/想去玩（期待星星眼）.webm",
+      "sha256": "82466066c503600cf9489a7d21cb99686096967adcf29fb5e5628a965b58f371",
+      "bytes": 851339,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/warrior/想去玩（期待星星眼）.json",
+      "render_report_sha256": "22f9a263b84d65c1f0049530357e4dbc42d2787d3991ff5d56732dc93be8a173",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-warrior-review.json",
+      "review_source_file_sha256": "bde983b19434d85bd6cad5926200f9e2b0300b721ea8014566f715ffac6daea9",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/warrior/frame-00.png",
+          "sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc"
+        },
+        {
+          "path": "sheets/warrior/emotions.png",
+          "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "warrior",
+      "name": "大哭",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/warrior/大哭.webm",
+      "sha256": "11118d6bac47818fd7a3f451a396071c7ad2786d7aea55c79b69aec788670114",
+      "bytes": 1347376,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/warrior/大哭.json",
+      "render_report_sha256": "89083e775b8b4fa36f4552cc38300a85d23eddda2302bce49539611ec8d462d4",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-four-mouth-v4-review.json",
+      "review_source_file_sha256": "9d7cb560a73b8c52e36a3094a7741af94dd11b11f88fab3ba27646f05b9b2809",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/warrior/frame-00.png",
+          "sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc"
+        },
+        {
+          "path": "sheets/warrior/emotions.png",
+          "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "hunter",
+      "name": "害怕",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/hunter/害怕.webm",
+      "sha256": "4af732087628fb2ecd4d259df207c9203d089653da2fccaf351f164c6d7e0a68",
+      "bytes": 1714298,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/hunter/害怕.json",
+      "render_report_sha256": "4738f177dcab9b47a5c307323ea7a5b608a1a9aa142fd8c446590f620dd6bcd6",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/hunter-pilot-review.json",
+      "review_source_file_sha256": "fd633c2771eef5cff6ad2704d0df5557b034ee98a1ec0eee0e9b401143f8068a",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/hunter/frame-00.png",
+          "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+        },
+        {
+          "path": "sheets/hunter/emotions.png",
+          "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "e999e5774d2883732dd05b37053ed4fd70ba0f99a9eef1c60f8a38e49ee60d67"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "d9c48a0d59a59f224ce73ce005bc3d2bdbe2badd61ab6c96b56222d5267c3eae"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "hunter",
+      "name": "害羞",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/hunter/害羞.webm",
+      "sha256": "db72938321ad03eebf584344270aad376df75f7edf61f26a7b4df89e5a4b2dd9",
+      "bytes": 585906,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/hunter/害羞.json",
+      "render_report_sha256": "c3066beec6b8f845231eecc74870eda591ee7e885b386edb378e1721471bdf6e",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/hunter-pilot-review.json",
+      "review_source_file_sha256": "fd633c2771eef5cff6ad2704d0df5557b034ee98a1ec0eee0e9b401143f8068a",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/hunter/frame-00.png",
+          "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+        },
+        {
+          "path": "sheets/hunter/emotions.png",
+          "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "e999e5774d2883732dd05b37053ed4fd70ba0f99a9eef1c60f8a38e49ee60d67"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "d9c48a0d59a59f224ce73ce005bc3d2bdbe2badd61ab6c96b56222d5267c3eae"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "hunter",
+      "name": "难过（眼睛饱含泪水）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/hunter/难过（眼睛饱含泪水）.webm",
+      "sha256": "c79d2edcd11b9bf0c189aec08023ac7cc2c80ccfaad81c482e7b724bcbfda728",
+      "bytes": 537314,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/hunter/难过（眼睛饱含泪水）.json",
+      "render_report_sha256": "287012246c1f43e6bc93153bffa881cf09d4ab7a03f29e86d54b97ab65d61c68",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/hunter-pilot-review.json",
+      "review_source_file_sha256": "fd633c2771eef5cff6ad2704d0df5557b034ee98a1ec0eee0e9b401143f8068a",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/hunter/frame-00.png",
+          "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+        },
+        {
+          "path": "sheets/hunter/emotions.png",
+          "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "e999e5774d2883732dd05b37053ed4fd70ba0f99a9eef1c60f8a38e49ee60d67"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "d9c48a0d59a59f224ce73ce005bc3d2bdbe2badd61ab6c96b56222d5267c3eae"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "hunter",
+      "name": "想去玩（期待星星眼）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/hunter/想去玩（期待星星眼）.webm",
+      "sha256": "0756e71305904a016ad8c804780e284a87f5ceaa1211925d40a5c2b7de6b2e00",
+      "bytes": 966203,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/hunter/想去玩（期待星星眼）.json",
+      "render_report_sha256": "84e5d04510601721d318078cdb0641fd7f21bd4056da0c937df23a1dcbb22549",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/hunter-pilot-review.json",
+      "review_source_file_sha256": "fd633c2771eef5cff6ad2704d0df5557b034ee98a1ec0eee0e9b401143f8068a",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/hunter/frame-00.png",
+          "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+        },
+        {
+          "path": "sheets/hunter/emotions.png",
+          "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "e999e5774d2883732dd05b37053ed4fd70ba0f99a9eef1c60f8a38e49ee60d67"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "d9c48a0d59a59f224ce73ce005bc3d2bdbe2badd61ab6c96b56222d5267c3eae"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "hunter",
+      "name": "大哭",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/hunter/大哭.webm",
+      "sha256": "b201eb62c39ebe7cf3e59e2c59dfc546adeab8d54df00fe879021a3938aaa014",
+      "bytes": 1521121,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/hunter/大哭.json",
+      "render_report_sha256": "ad212a399404a129cb803b64e24a030efa597c3a85199eab69640c12731a5827",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/hunter-pilot-review.json",
+      "review_source_file_sha256": "fd633c2771eef5cff6ad2704d0df5557b034ee98a1ec0eee0e9b401143f8068a",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/hunter/frame-00.png",
+          "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+        },
+        {
+          "path": "sheets/hunter/emotions.png",
+          "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "e999e5774d2883732dd05b37053ed4fd70ba0f99a9eef1c60f8a38e49ee60d67"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "d9c48a0d59a59f224ce73ce005bc3d2bdbe2badd61ab6c96b56222d5267c3eae"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "mage",
+      "name": "害怕",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/mage/害怕.webm",
+      "sha256": "e1940b54cd6076d82d652dd618e62fca44126373602cc29322005b61d54dd8cd",
+      "bytes": 1851605,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/mage/害怕.json",
+      "render_report_sha256": "c3acfa15e8e7b5dc3b21195cc6d00348c7929c0dba429668b4a8444f8d2f1229",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/mage/害怕.json",
+      "review_source_file_sha256": "2c283a6856d9737a601369a96b37a7fd32f4d433aae92643c81bbd22d3ade891",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/mage/frame-00.png",
+          "sha256": "59bf2ae063309035fc0e59ceb5ca22969b768886ed3eac3bb03dbb556b9b3291"
+        },
+        {
+          "path": "sheets/mage/emotions.png",
+          "sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "mage",
+      "name": "害羞",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/mage/害羞.webm",
+      "sha256": "558f398ae957e8c2d763d35b37efe10b69a370e549befc780420d022c467504f",
+      "bytes": 604551,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/mage/害羞.json",
+      "render_report_sha256": "8be75531cfaec0bbecbdf105674f161062babe4442d8b6b12deed14abc5f6fae",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/mage/害羞.json",
+      "review_source_file_sha256": "c4cbb1b0a7249a0bccdeb0a019bd80addc7f2ee41961de04f7ec75c7485b03bb",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/mage/frame-00.png",
+          "sha256": "59bf2ae063309035fc0e59ceb5ca22969b768886ed3eac3bb03dbb556b9b3291"
+        },
+        {
+          "path": "sheets/mage/emotions.png",
+          "sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "mage",
+      "name": "难过（眼睛饱含泪水）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/mage/难过（眼睛饱含泪水）.webm",
+      "sha256": "c9689ee4831150ffd7a2cfdf4ee9cbd38f6946342ef68f95c58bdcf24c7ab636",
+      "bytes": 546292,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/mage/难过（眼睛饱含泪水）.json",
+      "render_report_sha256": "ff1dd98deef632a3b55f0642f755326994ade9b221fdf7676837db43532d8dcb",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/mage/难过（眼睛饱含泪水）.json",
+      "review_source_file_sha256": "bd52b5fbbe4db1b344aa9d5e784bf5274597a764d02cc29fcec9d4e3fd928e35",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/mage/frame-00.png",
+          "sha256": "59bf2ae063309035fc0e59ceb5ca22969b768886ed3eac3bb03dbb556b9b3291"
+        },
+        {
+          "path": "sheets/mage/emotions.png",
+          "sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "mage",
+      "name": "想去玩（期待星星眼）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/mage/想去玩（期待星星眼）.webm",
+      "sha256": "19408f6a731288ccced43a3336a141b4e74000f605c5f15262ae276660aa29a7",
+      "bytes": 1010061,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/mage/想去玩（期待星星眼）.json",
+      "render_report_sha256": "fd405d0b7e8a5869a6f75727ad511790e1fc43fcfdedf5b1803724cd164e851c",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/mage/想去玩（期待星星眼）.json",
+      "review_source_file_sha256": "f1b66c792958638e86d3d05c33a838af54e2766a801670e5af4fdf0059ed9d60",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/mage/frame-00.png",
+          "sha256": "59bf2ae063309035fc0e59ceb5ca22969b768886ed3eac3bb03dbb556b9b3291"
+        },
+        {
+          "path": "sheets/mage/emotions.png",
+          "sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "mage",
+      "name": "大哭",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/mage/大哭.webm",
+      "sha256": "01a715ec5b4c950bbf73f51fd30d2d679beb7c1bc2f1aa2b4dc91977f0d13556",
+      "bytes": 1615228,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/mage/大哭.json",
+      "render_report_sha256": "c819bf807b1e67296f244d4fa6f5c92531795a8c4aba0a34dac3e1d553509fba",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/mage/大哭.json",
+      "review_source_file_sha256": "32067ae1811bc4ee535f8c5d060c5c25c8ba5bfaa39fa055557033cc87226496",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/mage/frame-00.png",
+          "sha256": "59bf2ae063309035fc0e59ceb5ca22969b768886ed3eac3bb03dbb556b9b3291"
+        },
+        {
+          "path": "sheets/mage/emotions.png",
+          "sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "rogue",
+      "name": "害怕",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/rogue/害怕.webm",
+      "sha256": "e67f4a4ed3419ce15b8a108249597a2bff9b61383aa532ba1f23157a7e1f2190",
+      "bytes": 1537634,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/rogue/害怕.json",
+      "render_report_sha256": "bf1a7aa3a85ea3ab9bc05f8dee94dfd13f2f02a142a027c47908aaa23128d4fe",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-four-mouth-v4-review.json",
+      "review_source_file_sha256": "9d7cb560a73b8c52e36a3094a7741af94dd11b11f88fab3ba27646f05b9b2809",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/rogue/frame-00.png",
+          "sha256": "4920d84307c8d30f29e2e7d909e29548023651a76cb4d952ef0ef7d72c0ca62b"
+        },
+        {
+          "path": "sheets/rogue/emotions.png",
+          "sha256": "64968e469c52c7a3602c8e564f2d069df7e97beb7db5c401e543c419ef3b4648"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "rogue",
+      "name": "害羞",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/rogue/害羞.webm",
+      "sha256": "2eb55e4fe11abcb42218877a06da1b87b634c5c4694291b2d4ee0ed1245ed269",
+      "bytes": 542012,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/rogue/害羞.json",
+      "render_report_sha256": "7b4eb057b7dbbff26fa9c0a375dd30850a27acf6e3f21c7fe323f3cb96c0110f",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-rogue-review.json",
+      "review_source_file_sha256": "c8a58f47ae618f3d431f11e6ab96b8601ff4a281db299dd3f9c57ee50d05e03a",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/rogue/frame-00.png",
+          "sha256": "4920d84307c8d30f29e2e7d909e29548023651a76cb4d952ef0ef7d72c0ca62b"
+        },
+        {
+          "path": "sheets/rogue/emotions.png",
+          "sha256": "64968e469c52c7a3602c8e564f2d069df7e97beb7db5c401e543c419ef3b4648"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "rogue",
+      "name": "难过（眼睛饱含泪水）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/rogue/难过（眼睛饱含泪水）.webm",
+      "sha256": "7c15475ce88c89a812d3c0c605f05f4327a2d339bb940ba11f168002e7feb6dc",
+      "bytes": 480864,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/rogue/难过（眼睛饱含泪水）.json",
+      "render_report_sha256": "58ece1af8c2404abd7a0e0b33edded7b704549395ecdd8e2109abea4580b89a4",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-rogue-review.json",
+      "review_source_file_sha256": "c8a58f47ae618f3d431f11e6ab96b8601ff4a281db299dd3f9c57ee50d05e03a",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/rogue/frame-00.png",
+          "sha256": "4920d84307c8d30f29e2e7d909e29548023651a76cb4d952ef0ef7d72c0ca62b"
+        },
+        {
+          "path": "sheets/rogue/emotions.png",
+          "sha256": "64968e469c52c7a3602c8e564f2d069df7e97beb7db5c401e543c419ef3b4648"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "rogue",
+      "name": "想去玩（期待星星眼）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/rogue/想去玩（期待星星眼）.webm",
+      "sha256": "cb87b36ea8783a7241559c3e5980a6748f2fa0cab265190b8a57a97df1cfebfa",
+      "bytes": 862739,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/rogue/想去玩（期待星星眼）.json",
+      "render_report_sha256": "b618d742ad48857ab88bead73648a7f27b41febd19b1c589256b003f28811720",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-four-mouth-v4-review.json",
+      "review_source_file_sha256": "9d7cb560a73b8c52e36a3094a7741af94dd11b11f88fab3ba27646f05b9b2809",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/rogue/frame-00.png",
+          "sha256": "4920d84307c8d30f29e2e7d909e29548023651a76cb4d952ef0ef7d72c0ca62b"
+        },
+        {
+          "path": "sheets/rogue/emotions.png",
+          "sha256": "64968e469c52c7a3602c8e564f2d069df7e97beb7db5c401e543c419ef3b4648"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "rogue",
+      "name": "大哭",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/rogue/大哭.webm",
+      "sha256": "4e82bae6ae04e57fefba9eef740ef866bdd87f9fbaf568864ce5c0884167b4d1",
+      "bytes": 1317468,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/rogue/大哭.json",
+      "render_report_sha256": "70307c3a60f0fa6601a6d7b6560a5b104f05525b37f212c71307e7182e7b4bc2",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-four-mouth-v4-review.json",
+      "review_source_file_sha256": "9d7cb560a73b8c52e36a3094a7741af94dd11b11f88fab3ba27646f05b9b2809",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/rogue/frame-00.png",
+          "sha256": "4920d84307c8d30f29e2e7d909e29548023651a76cb4d952ef0ef7d72c0ca62b"
+        },
+        {
+          "path": "sheets/rogue/emotions.png",
+          "sha256": "64968e469c52c7a3602c8e564f2d069df7e97beb7db5c401e543c419ef3b4648"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "paladin",
+      "name": "害怕",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/paladin/害怕.webm",
+      "sha256": "eadc47bb7ae2ddd28c369513357077f3d1c562e2e1f9da834b47874f8ffda6ab",
+      "bytes": 1576528,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/paladin/害怕.json",
+      "render_report_sha256": "a65697fe920710efa4643982eebe03382344475eef17d7fc8e022ef665201776",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/paladin/害怕.json",
+      "review_source_file_sha256": "bda13e19e478c6642aefb10c93afebcaecb5d629eb2e9a864bb8804576d3242b",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/paladin/frame-00.png",
+          "sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7"
+        },
+        {
+          "path": "sheets/paladin/emotions.png",
+          "sha256": "a38a686c448ac5e90bc3c3c5b0b22176d262c40ce17000bbc92afc6309138f4f"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "paladin",
+      "name": "害羞",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/paladin/害羞.webm",
+      "sha256": "96c01cef82562aba6ef763c08769f1968aeff2124c2ed5ebcf0fa0d6e45ba5f3",
+      "bytes": 539802,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/paladin/害羞.json",
+      "render_report_sha256": "5ac8775bb1dbe58e75a18dfeba0de4d03d25efc5bb0c9fe41b29f3a53609a4e0",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/paladin/害羞.json",
+      "review_source_file_sha256": "b1313d2c68585b28a7c5b6e30d04abe032ecf60e2b7c330c32b2870dd4e14efb",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/paladin/frame-00.png",
+          "sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7"
+        },
+        {
+          "path": "sheets/paladin/emotions.png",
+          "sha256": "a38a686c448ac5e90bc3c3c5b0b22176d262c40ce17000bbc92afc6309138f4f"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "paladin",
+      "name": "难过（眼睛饱含泪水）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/paladin/难过（眼睛饱含泪水）.webm",
+      "sha256": "302e7861f36fd58f4b8666ade2ab1e869a26eb3052363d06f8eb09335b71cb0d",
+      "bytes": 497475,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/paladin/难过（眼睛饱含泪水）.json",
+      "render_report_sha256": "eeff696117df5abeb3376b77cd2b056196327328c329d700070e0e7825f1947b",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/paladin/难过（眼睛饱含泪水）.json",
+      "review_source_file_sha256": "88fe358fff7be2d2153e13c66ab5522a858f88fc6e80740e00f85a638bfdc2d1",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/paladin/frame-00.png",
+          "sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7"
+        },
+        {
+          "path": "sheets/paladin/emotions.png",
+          "sha256": "a38a686c448ac5e90bc3c3c5b0b22176d262c40ce17000bbc92afc6309138f4f"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "paladin",
+      "name": "想去玩（期待星星眼）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/paladin/想去玩（期待星星眼）.webm",
+      "sha256": "08734bc08facc7f3cd374a5a0bb6928c23841f249b3e02f0d18f8cb1614f6cbb",
+      "bytes": 893076,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/paladin/想去玩（期待星星眼）.json",
+      "render_report_sha256": "e9bf87fd82f5fa568eb92735a7b3a7947b8e08ba92718ee89c970ab715e9856c",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/paladin/想去玩（期待星星眼）.json",
+      "review_source_file_sha256": "b71785bf40cf2613a54964e519dcfce2e7b7c5d8414776573726c3b4ed6363be",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/paladin/frame-00.png",
+          "sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7"
+        },
+        {
+          "path": "sheets/paladin/emotions.png",
+          "sha256": "a38a686c448ac5e90bc3c3c5b0b22176d262c40ce17000bbc92afc6309138f4f"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "paladin",
+      "name": "大哭",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/paladin/大哭.webm",
+      "sha256": "72e9f6705961ac5b7cfe8f35ed8304b0d641808d193fad4b59aaa628c8fa4050",
+      "bytes": 1384159,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/paladin/大哭.json",
+      "render_report_sha256": "4911ff8a1b9bbef12a90a26c65caaf997d3c399d3ad990770232eb96b0edef3e",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/paladin/大哭.json",
+      "review_source_file_sha256": "dc9922d3ba85bb4326d0018964a492b25e64bad8e3b1de5e22f90c917f9462bf",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/paladin/frame-00.png",
+          "sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7"
+        },
+        {
+          "path": "sheets/paladin/emotions.png",
+          "sha256": "a38a686c448ac5e90bc3c3c5b0b22176d262c40ce17000bbc92afc6309138f4f"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "warlock",
+      "name": "害怕",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/warlock/害怕.webm",
+      "sha256": "af4b42473a7b9ff03370242f59b9bbbc7d911d2feb95ae61fdc48ce25292a9c7",
+      "bytes": 1855153,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/warlock/害怕.json",
+      "render_report_sha256": "0d45a1e75136a2e7273dc1f83ed0eb99a2542bef0d81d8931e1d8540839ce52a",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/warlock/害怕.json",
+      "review_source_file_sha256": "0ae01ed47852e212e2197fb69e34b672e8e0f7436fce96bc58ef8f533a1d5fd0",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/warlock/frame-00.png",
+          "sha256": "d7e171cc5055de4b20b3411116ed5cac71ad097326b6bbdca2f4912660434fe2"
+        },
+        {
+          "path": "sheets/warlock/emotions.png",
+          "sha256": "e333bd105166f18c4e67deddfca8f7059ab95a41f0ad600960ee182112e964dd"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "warlock",
+      "name": "害羞",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/warlock/害羞.webm",
+      "sha256": "aa7971011b425186a93ea40a0e95ddd0a268fd6942d581c7d71106ee7c42c922",
+      "bytes": 613509,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/warlock/害羞.json",
+      "render_report_sha256": "86e99550f5682b0a71d9bf2dbadf2216de4263f7daf4e3d8c8d82e158f004bf2",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/warlock/害羞.json",
+      "review_source_file_sha256": "b89402147608eb244d5a6a15c0a57cc623b6853084a74df9feae672b2e94f58a",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/warlock/frame-00.png",
+          "sha256": "d7e171cc5055de4b20b3411116ed5cac71ad097326b6bbdca2f4912660434fe2"
+        },
+        {
+          "path": "sheets/warlock/emotions.png",
+          "sha256": "e333bd105166f18c4e67deddfca8f7059ab95a41f0ad600960ee182112e964dd"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "warlock",
+      "name": "难过（眼睛饱含泪水）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/warlock/难过（眼睛饱含泪水）.webm",
+      "sha256": "ea8478f83e2b9db76aa6947956c393cf8006ef2dd26a195c3c18d12f1f0f34f0",
+      "bytes": 553256,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/warlock/难过（眼睛饱含泪水）.json",
+      "render_report_sha256": "0eb073281189b88260a2ed5a71d45ed378efb37ddfdf75e589be0f33134e85c9",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/warlock/难过（眼睛饱含泪水）.json",
+      "review_source_file_sha256": "716a746fcf76b24561daee0116da8bfcd3cdc46b9167acb9c2706b57ae6db44a",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/warlock/frame-00.png",
+          "sha256": "d7e171cc5055de4b20b3411116ed5cac71ad097326b6bbdca2f4912660434fe2"
+        },
+        {
+          "path": "sheets/warlock/emotions.png",
+          "sha256": "e333bd105166f18c4e67deddfca8f7059ab95a41f0ad600960ee182112e964dd"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "warlock",
+      "name": "想去玩（期待星星眼）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/warlock/想去玩（期待星星眼）.webm",
+      "sha256": "5f735bfc9e702ad055ab8b92ba05a617e0b5c808293e32b1ddcd2a34048fce6c",
+      "bytes": 993732,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/warlock/想去玩（期待星星眼）.json",
+      "render_report_sha256": "a6051c151082e478bd4f5df3ac2532b689b3782203dca392e6402f6ec5c59a07",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/warlock/想去玩（期待星星眼）.json",
+      "review_source_file_sha256": "ea8ee873e6ab4ba21821b7626d4c316a5120775294da3dbc288ce99a3f340404",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/warlock/frame-00.png",
+          "sha256": "d7e171cc5055de4b20b3411116ed5cac71ad097326b6bbdca2f4912660434fe2"
+        },
+        {
+          "path": "sheets/warlock/emotions.png",
+          "sha256": "e333bd105166f18c4e67deddfca8f7059ab95a41f0ad600960ee182112e964dd"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "warlock",
+      "name": "大哭",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/warlock/大哭.webm",
+      "sha256": "fdb56c0b269f425081ae523fba48edeb1f420a9e134bb2d33a9d5c563850532c",
+      "bytes": 1596372,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/warlock/大哭.json",
+      "render_report_sha256": "a6d8eb5a13af8098a263fdd8adc70bc4653c4c88df21a5ba0d19d264e5a8cc0b",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/warlock/大哭.json",
+      "review_source_file_sha256": "56c989d009471bba115ee560d94826831fde7162f55f11a824bd1232ca740621",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/warlock/frame-00.png",
+          "sha256": "d7e171cc5055de4b20b3411116ed5cac71ad097326b6bbdca2f4912660434fe2"
+        },
+        {
+          "path": "sheets/warlock/emotions.png",
+          "sha256": "e333bd105166f18c4e67deddfca8f7059ab95a41f0ad600960ee182112e964dd"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "priest",
+      "name": "害怕",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/priest/害怕.webm",
+      "sha256": "19b9dcd2a15949f7fef9adfa8480176f20f714177bd57f8356966d7c2bb68358",
+      "bytes": 1651193,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/priest/害怕.json",
+      "render_report_sha256": "5db9b30761d24a0409a73f9e3b945d3b391586a4fc9b579c6123df75a1ae5d65",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/priest/害怕.json",
+      "review_source_file_sha256": "d1bbe2af7fd64af183863148612fe5f5888105d21940e86da7138f24decd5639",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/priest/frame-00.png",
+          "sha256": "eebe5cb729f4e3d6dc5ba3d2eec6ef855ec388f9bc82322cd60331a04d75f6a2"
+        },
+        {
+          "path": "sheets/priest/emotions.png",
+          "sha256": "ed960c0ee061b6b71a60bb7b74a4990c1bc8eca8441e852616e366ec7ac90431"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "priest",
+      "name": "害羞",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/priest/害羞.webm",
+      "sha256": "2062c04657d95a6d2ad41391e37f88314c9dc7e2014b2f23aa904b048a3c6179",
+      "bytes": 548525,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/priest/害羞.json",
+      "render_report_sha256": "b307cf47fd56e039719a4511763b2d10e365d4f99ee09aa281f2be9c6d17058c",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/priest/害羞.json",
+      "review_source_file_sha256": "457243ee22619ae3a8c8fb33fc651655b29606f93f5a30a1d29e26b89d114eb6",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/priest/frame-00.png",
+          "sha256": "eebe5cb729f4e3d6dc5ba3d2eec6ef855ec388f9bc82322cd60331a04d75f6a2"
+        },
+        {
+          "path": "sheets/priest/emotions.png",
+          "sha256": "ed960c0ee061b6b71a60bb7b74a4990c1bc8eca8441e852616e366ec7ac90431"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "priest",
+      "name": "难过（眼睛饱含泪水）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/priest/难过（眼睛饱含泪水）.webm",
+      "sha256": "6ae887b66cdc617425234b7f00c6b13bcb7b53e982f2f10c23129843b17abbcf",
+      "bytes": 510514,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/priest/难过（眼睛饱含泪水）.json",
+      "render_report_sha256": "7105b538866a87cc1770e3a4fe30307b93af09d2c50fe26356df98430714e04e",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/priest/难过（眼睛饱含泪水）.json",
+      "review_source_file_sha256": "a7b7ae330b18fcae26c41c6080b40186eea9c730667424a6445c31e47db0a4d8",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/priest/frame-00.png",
+          "sha256": "eebe5cb729f4e3d6dc5ba3d2eec6ef855ec388f9bc82322cd60331a04d75f6a2"
+        },
+        {
+          "path": "sheets/priest/emotions.png",
+          "sha256": "ed960c0ee061b6b71a60bb7b74a4990c1bc8eca8441e852616e366ec7ac90431"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "priest",
+      "name": "想去玩（期待星星眼）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/priest/想去玩（期待星星眼）.webm",
+      "sha256": "d89ef3586af52e4a17d44441db2005fd5161a04c56a737ed10d34d12b3ffee37",
+      "bytes": 916825,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/priest/想去玩（期待星星眼）.json",
+      "render_report_sha256": "d1c198d72cee681effe544ea8108439b132567addf1e0e65ac8f968c669399a8",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/priest/想去玩（期待星星眼）.json",
+      "review_source_file_sha256": "56bbfa662c1210d4c63333ac3def326e98bfc2fe7f151be0f8ee8aa9da624e21",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/priest/frame-00.png",
+          "sha256": "eebe5cb729f4e3d6dc5ba3d2eec6ef855ec388f9bc82322cd60331a04d75f6a2"
+        },
+        {
+          "path": "sheets/priest/emotions.png",
+          "sha256": "ed960c0ee061b6b71a60bb7b74a4990c1bc8eca8441e852616e366ec7ac90431"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "e437109dd37073bb8e60699377fa5ad20a070dc340e1319e32dd5f6e9217141f"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "45796814c225f24a08d5e8bc2a47144d965953b09867be349ace0f24c4a84c41"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "priest",
+      "name": "大哭",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/priest/大哭.webm",
+      "sha256": "b4a257ab5ef6ae917a86167e1f6a408bc2be23d0e5c2bb76a85709705eb6d15c",
+      "bytes": 1465964,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/priest/大哭.json",
+      "render_report_sha256": "c5d531ed8ddac2b1906e7f45315f011094ab183966c5c3bfa57f719d4f618bfa",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/expansion-actual-contacts/priest/大哭.json",
+      "review_source_file_sha256": "32efdaf7fdceb4a0b2b5ab1f5140ed857de6d7595a3084d901dddcb1907efc43",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/priest/frame-00.png",
+          "sha256": "eebe5cb729f4e3d6dc5ba3d2eec6ef855ec388f9bc82322cd60331a04d75f6a2"
+        },
+        {
+          "path": "sheets/priest/emotions.png",
+          "sha256": "ed960c0ee061b6b71a60bb7b74a4990c1bc8eca8441e852616e366ec7ac90431"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "druid",
+      "name": "害怕",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/druid/害怕.webm",
+      "sha256": "b039b70d251a8fcd586fe7f423590ce25d5440b98e6106136625fa0b291715d2",
+      "bytes": 2169487,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/druid/害怕.json",
+      "render_report_sha256": "36c5ff8319bc0b24d5ea12d2ba2ff2d2fa91ffb28a86d8b424e77a653c78168d",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-druid-review.json",
+      "review_source_file_sha256": "4386f09456872cf523b8b1396716092a6ac4fecc020db09a660d4c1ad2fe50f4",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/druid/frame-00.png",
+          "sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a"
+        },
+        {
+          "path": "sheets/druid/emotions.png",
+          "sha256": "c6d153dcf365bf58ecac3bd7888325b1a45604e851450e89477ebbf4d482ea80"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "druid",
+      "name": "害羞",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/druid/害羞.webm",
+      "sha256": "34bb4d829c0d4d2a305b4a0eb851c2b0be615ab798daee2341e799e7b4c714dc",
+      "bytes": 704064,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/druid/害羞.json",
+      "render_report_sha256": "4a18318eebd0d42346e2d83c4b591127dd6b16f84e578cc615464bb73e39e406",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-druid-review.json",
+      "review_source_file_sha256": "4386f09456872cf523b8b1396716092a6ac4fecc020db09a660d4c1ad2fe50f4",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/druid/frame-00.png",
+          "sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a"
+        },
+        {
+          "path": "sheets/druid/emotions.png",
+          "sha256": "c6d153dcf365bf58ecac3bd7888325b1a45604e851450e89477ebbf4d482ea80"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "druid",
+      "name": "难过（眼睛饱含泪水）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/druid/难过（眼睛饱含泪水）.webm",
+      "sha256": "033a12a121f49ca55290806f56e11df3080929a9626cee1cc5c03dfe6144bd89",
+      "bytes": 636774,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/druid/难过（眼睛饱含泪水）.json",
+      "render_report_sha256": "d59249fc43dec017d622bf4dc60f21a362bede96c1088a9c56ef47036572fa44",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-druid-review.json",
+      "review_source_file_sha256": "4386f09456872cf523b8b1396716092a6ac4fecc020db09a660d4c1ad2fe50f4",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/druid/frame-00.png",
+          "sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a"
+        },
+        {
+          "path": "sheets/druid/emotions.png",
+          "sha256": "c6d153dcf365bf58ecac3bd7888325b1a45604e851450e89477ebbf4d482ea80"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "druid",
+      "name": "想去玩（期待星星眼）",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/druid/想去玩（期待星星眼）.webm",
+      "sha256": "964fd59e28da08d5c62376ec58a0c595634d7623913ed6705e8488180f9770ea",
+      "bytes": 1160696,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/druid/想去玩（期待星星眼）.json",
+      "render_report_sha256": "a046e393cd18583c243d7b3891c320f36d012b4951e386872618c90c82dd4caf",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-druid-review.json",
+      "review_source_file_sha256": "4386f09456872cf523b8b1396716092a6ac4fecc020db09a660d4c1ad2fe50f4",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/druid/frame-00.png",
+          "sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a"
+        },
+        {
+          "path": "sheets/druid/emotions.png",
+          "sha256": "c6d153dcf365bf58ecac3bd7888325b1a45604e851450e89477ebbf4d482ea80"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    },
+    {
+      "class": "druid",
+      "name": "大哭",
+      "media": "workspace-review/emotion-fixed-pilot/render/packs/druid/大哭.webm",
+      "sha256": "ba6eaeb79a8923555393cf6f055b7d79ec1d139b494ddd2ce4f8a160c497804c",
+      "bytes": 1827078,
+      "render_report": "workspace-review/emotion-fixed-pilot/render/reports/druid/大哭.json",
+      "render_report_sha256": "be1f65de258a620bccca48de28e1a74039b313534e71de2805e26770521b0522",
+      "review_source_file": "workspace-review/emotion-fixed-pilot/root-druid-review.json",
+      "review_source_file_sha256": "4386f09456872cf523b8b1396716092a6ac4fecc020db09a660d4c1ad2fe50f4",
+      "source_sheets": [
+        {
+          "path": "base-keyframes/druid/frame-00.png",
+          "sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a"
+        },
+        {
+          "path": "sheets/druid/emotions.png",
+          "sha256": "c6d153dcf365bf58ecac3bd7888325b1a45604e851450e89477ebbf4d482ea80"
+        }
+      ],
+      "recorded_build_renderer_inputs": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "20b6f201544eca6c4ad6730d70bae5c8c633b0154808ed9703fbbc61c6ca65b3"
+        }
+      ],
+      "recorded_build_source_metadata": [
+        {
+          "path": "atlas-plan.json",
+          "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+        },
+        {
+          "path": "base-timelines.json",
+          "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+        },
+        {
+          "path": "class-identity-motion.json",
+          "sha256": "f885c624acd81aea8a43e32601c9570db61e120baf67f7bc87f52bb9e0102266"
+        },
+        {
+          "path": "expressions/class-emotion-face-sources.json",
+          "sha256": "24bce2d6745b3bb02ae26323f1ce9d56710950e11266c49c166548e327ee062c"
+        }
+      ],
+      "format": {
+        "size": [
+          640,
+          360
+        ],
+        "fps": 60,
+        "frames": 480,
+        "duration_seconds": 8,
+        "alpha_decoded": true
+      },
+      "visual_acceptance": "candidate_only_sampled_equipment_and_semantics_with_face_transition_residual"
+    }
+  ],
+  "test_results": {
+    "path": "workspace-review/emotion-fixed-pilot/emotion40-test-results.json",
+    "sha256": "6038f48611530c4249d81d02126afa4b5fe9c307ebe49869e933ccefc5defa3f"
+  }
+}

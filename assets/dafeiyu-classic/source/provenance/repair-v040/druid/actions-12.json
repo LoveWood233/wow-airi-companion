@@ -1,0 +1,127 @@
+{
+  "class": "druid",
+  "sheet": "actions-12",
+  "original_sha256": "a2b730ab826c3d0f0d57312a094d61979afa21045050196c20160f3fbbb90efb",
+  "replacement_sha256": "32a676a3a5baeff38498a98f0a586b9ce48afa5e591a349701d409922ea142d7",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-12",
+    "path": "source/sheets/druid/actions-12.png",
+    "sha256": "32a676a3a5baeff38498a98f0a586b9ce48afa5e591a349701d409922ea142d7",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/actions-12.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "Sleep cells0/1 staff moved above back; ghost15 retained without human equipment. Sewing/lion/swing/table poses preserved; no obvious duplicate staff.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-12",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/actions-12.png",
+    "source_sha256": "a2b730ab826c3d0f0d57312a094d61979afa21045050196c20160f3fbbb90efb",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-004fd191-01a5-49ba-968b-273fe3eb840c",
+        "path": "workspace-revision/attempts/druid/actions-12-01.png",
+        "sha256": "be342fca287dfe1636cca4932f8092daea11b8198bf520de476daba1837207f7"
+      },
+      {
+        "output_id": "exec-b277ec0b-b74a-49e3-921b-3ed2b5fa03da",
+        "path": "workspace-revision/attempts/druid/actions-12-02.png",
+        "sha256": "32a676a3a5baeff38498a98f0a586b9ce48afa5e591a349701d409922ea142d7"
+      }
+    ],
+    "generated_output_id": "exec-b277ec0b-b74a-49e3-921b-3ed2b5fa03da",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-b277ec0b-b74a-49e3-921b-3ed2b5fa03da.png",
+    "saved_output": "source/sheets/druid/actions-12.png",
+    "final_sha256": "32a676a3a5baeff38498a98f0a586b9ce48afa5e591a349701d409922ea142d7",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/druid/actions-12.txt",
+    "prompt_sha256": "3ff86ad159aedae317cc475fd120cec8c35a77767b336d742bf978987f134c2b",
+    "visual_review": {
+      "method": "generatedImage full atlas actually viewed all16 cells",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "Sleep cells0/1 staff moved above back; ghost15 retained without human equipment. Sewing/lion/swing/table poses preserved; no obvious duplicate staff.",
+      "grid_cut_review": "No apparent neighboring sprite cut.",
+      "full_video_validation": false
+    },
+    "correction_prompts": [
+      "workspace-revision/prompts/druid/actions-12-correction-02.txt"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-12-correction-02.txt",
+      "text": "Precise local edit to input1 4x4 transparent atlas. Change ONLY cells0 and1 (FIRST ROW FIRST TWO COLUMNS), two lying asleep poses. Each currently has one curled wooden green-gem staff in front of the face at far lower-left. REMOVE that low-left staff and restore hair/background there. Move the SAME ONE staff to the upper BACK above the sleeping torso, behind the head at the RIGHT side of each sleeping sprite: curl and green gem emerge above shoulder/back, shaft hidden behind hair. This is the same back mounting shown by reference2, moved with lying body. No duplicate staff, no front-of-face staff. Keep sleep pose/hands/clothes/antlers exactly. Leave other14 cells including ghost, swing, lion head, sewing and table unchanged. Preserve alpha and 4x4 positions.\n"
+    },
+    {
+      "name": "actions-12.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 睡觉-循环. Preserve source pose A and B: 角色完全蜷卧睡着，头贴在折起的手旁，长发和鲸尾铺在地上，呼气末端胸背稍低。 / 与A完全相同的蜷卧睡姿、闭眼和发尾位置，仅胸背吸气微微抬起；绝不坐起或站起。\nCells [2, 3]: 睡觉-起来. Preserve source pose A and B: 从蜷卧睡姿撑起上身，双手支地，半睁眼，头发和鲸尾仍在身后地面。 / 已经站起伸展身体，双手放松下来，困倦眨眼，服装和轮廓回到标准站姿。\nCells [4, 5]: 碎碎念-发呆碎碎念. Preserve source pose A and B: 头和视线转左，身体基本正面。动作语义：嘴部轻声开合 / 自然站姿半闭眼。与A必须是不同的动作阶段，保持道具形状/位置关系。短暂停顿眨眼\nCells [6, 7]: 碎碎念-擦桌碎碎念. Preserve source pose A and B: 一手持抹布压住桌面，手臂向左伸；道具：small_desk, cleaning_cloth。动作语义：手压桌面左右擦拭，同时张嘴碎念 / 持抹布手臂向右伸；道具：small_desk, cleaning_cloth。与A必须是不同的动作阶段，保持道具形状/位置关系。停下看一眼桌面\nCells [8, 9]: 穿针乞巧. Preserve source pose A and B: 双手胸前，一手针一手布，穿线准备；道具：needle, thread, embroidery_cloth。动作语义：线穿过针眼并在布上缝一针 / 一手轻拉线，布面保持固定；道具：needle, thread, embroidery_cloth。与A必须是不同的动作阶段，保持道具形状/位置关系。拉线查看成果\nCells [10, 11]: 舞狮头. Preserve source pose A and B: 双手托舞狮头到面前，屈膝；道具：lion_head。动作语义：狮头随双手上下摆动 / 双手举舞狮头到头顶，身体伸展；道具：lion_head。与A必须是不同的动作阶段，保持道具形状/位置关系。屈膝小跳再落地\nCells [12, 13]: 荡秋千. Preserve source pose A and B: 双手抓秋千绳，身体后倾，腿伸前；道具：swing_seat, swing_ropes。动作语义：前后摆动，腿部随相位伸收 / 双手抓绳，身体前倾，腿向下收；道具：swing_seat, swing_ropes。与A必须是不同的动作阶段，保持道具形状/位置关系。逐渐减速\nCells [14, 15]: 萌化小幽灵. Preserve source pose A and B: 角色双手胸前准备魔法，身体周围出现淡蓝半透明光晕。 / 变成可爱蓝白小幽灵，保留蓝发和该职业识别饰物，漂浮尾端收成幽灵尖形。\nIMPORTANT: cell15 is deliberately a cute ghost. Preserve ghost body and druid identity motifs, do not force full human legs/robe/staff onto ghost. Cell14 is human and needs the staff.\n"
+    }
+  ]
+}

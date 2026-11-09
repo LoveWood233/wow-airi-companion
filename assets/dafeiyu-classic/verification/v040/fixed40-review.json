@@ -1,0 +1,3606 @@
+{
+  "schema": 1,
+  "scope": "Fixed-master40 actual-media targeted visual review only. Automatic every-frame metrics are maintained separately by root. No full-960 or every-frame visual acceptance claim.",
+  "media_root": "workspace/outputs/dafeiyu-classic-motion-v040-equipment-revision",
+  "planned_clips": 40,
+  "reviewed_clips": 40,
+  "actual_frames_visually_reviewed": 640,
+  "all_40_complete": true,
+  "equipment_and_arm_scope": "No visible equipment replacement or duplicate arms in inspected samples, where explicitly marked.",
+  "global_visual_acceptance": false,
+  "remaining_visual_issue": "Facial opacity crossfade can retain semi-transparent original iris/eye lines. Fixed equipment provenance is not full facial/joint visual certification.",
+  "actions": [
+    {
+      "class": "warrior",
+      "name": "待机呼吸休闲",
+      "media": "candidate/packs/warrior/待机呼吸休闲.webm",
+      "media_sha256": "b47bf8aa2c51ba800500cda15cebd84c3e69855fe284c5b1a79a2e7b5d14d2fc",
+      "report": "candidate/reports/warrior/待机呼吸休闲.json",
+      "report_sha256": "fec5406197d5bdaf673606a7e85e0f4aa1548f73cec5b7b59b8ba52d9a81aea9",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        6,
+        21,
+        51,
+        56,
+        61,
+        66,
+        72,
+        120,
+        156,
+        161,
+        166,
+        171,
+        177,
+        219,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/warrior/待机呼吸休闲.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Sword at picture-left and shield at picture-right remain attached; armor crest and leg trim retain the same design."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            56,
+            66,
+            161,
+            171
+          ],
+          "findings": "The blink uses an opacity crossfade: semi-transparent open irises overlap the closed-eye line in intermediate sampled frames. This is visible facial ghosting, not equipment drift."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "warrior",
+      "name": "碎碎念-对屏碎碎念",
+      "media": "candidate/packs/warrior/碎碎念-对屏碎碎念.webm",
+      "media_sha256": "cfa6121b9f32b7592d92e06d81dc2689d255afad4eb2363f4c7a1c6731cb5071",
+      "report": "candidate/reports/warrior/碎碎念-对屏碎碎念.json",
+      "report_sha256": "f1c9c1ea50adffb34f280906924e25c0c4466e65793aa2f6065b94e0c733b7fc",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        42,
+        48,
+        120,
+        180,
+        207,
+        219,
+        228,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_no_major_anatomy_or_equipment_defect",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/warrior/碎碎念-对屏碎碎念.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Sword at picture-left and shield at picture-right remain attached; armor crest and leg trim retain the same design."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "mouth_opacity_blend_no_major_duplicate_observed",
+          "example_actual_frame_ids": [
+            21,
+            30
+          ],
+          "findings": "Mouth opacity blending is visible during speech opening/closing, but the inspected frames do not show a separate displaced duplicate mouth or a face-mask boundary. Eyes remain in their original locations."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "warrior",
+      "name": "工作状态-雀跃庆祝",
+      "media": "candidate/packs/warrior/工作状态-雀跃庆祝.webm",
+      "media_sha256": "3f54a446d0d405e7a7a517eee47fbc9613d57f5460749256116cde51d6701b15",
+      "report": "candidate/reports/warrior/工作状态-雀跃庆祝.json",
+      "report_sha256": "9ab11b04584f95008fab90ba88190df4a77ee431d5f8aaa9ccb4378b4994ca6c",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        39,
+        46,
+        54,
+        84,
+        90,
+        96,
+        102,
+        108,
+        122,
+        232,
+        344,
+        420,
+        438,
+        456,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/warrior/工作状态-雀跃庆祝.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Sword at picture-left and shield at picture-right remain attached; armor crest and leg trim retain the same design."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            46,
+            90,
+            102,
+            438
+          ],
+          "findings": "Star-eye and closed-smile transitions use opacity blending. Intermediate sampled frames retain faint open irises/previous eye marks; no abrupt face-mask boundary was observed."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "warrior",
+      "name": "开心蹦跳",
+      "media": "candidate/packs/warrior/开心蹦跳.webm",
+      "media_sha256": "062016836efe2d4526358bb85e09c1b5e03603655162540fd59711ad72678af7",
+      "report": "candidate/reports/warrior/开心蹦跳.json",
+      "report_sha256": "90bd49beb5efaa4017f6ee01ef8dae42008e552d6726f3548c00b977f6274bdb",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "warrior_fixed_texture_continuous_jump_v1",
+      "actual_frame_ids": [
+        0,
+        27,
+        30,
+        33,
+        39,
+        54,
+        75,
+        108,
+        156,
+        234,
+        288,
+        336,
+        363,
+        369,
+        375,
+        479
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 480,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/warrior/开心蹦跳.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Sword at picture-left and shield at picture-right remain attached; armor crest and leg trim retain the same design."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            33,
+            369
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; equipment remains unaffected."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        }
+      ]
+    },
+    {
+      "class": "warrior",
+      "name": "点击回应-开心跃动",
+      "media": "candidate/packs/warrior/点击回应-开心跃动.webm",
+      "media_sha256": "126c27cc87eceae2657d29c5f521c51fb4380d1999c36c046ae91214da6aea69",
+      "report": "candidate/reports/warrior/点击回应-开心跃动.json",
+      "report_sha256": "d2760dcfdbc1bcb2414a9dba471894e9638fefadc54c3f7306fdd1e3175cc20b",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        27,
+        31,
+        35,
+        42,
+        51,
+        63,
+        99,
+        150,
+        219,
+        288,
+        357,
+        426,
+        504,
+        531,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/warrior/点击回应-开心跃动.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Sword at picture-left and shield at picture-right remain attached; armor crest and leg trim retain the same design."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            35,
+            531
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; the three-hop choreography keeps one coherent pair of hands."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "hunter",
+      "name": "待机呼吸休闲",
+      "media": "candidate/packs/hunter/待机呼吸休闲.webm",
+      "media_sha256": "bd24f7ed9101707d87abe93fdef5b982f26fd31fb5925ee5832648274f5cb5c2",
+      "report": "candidate/reports/hunter/待机呼吸休闲.json",
+      "report_sha256": "7ae3e74f7a43807d81ab5ce79eb5eb956387aa67d5a8a4809f5ad803ce3669a9",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        6,
+        21,
+        51,
+        56,
+        61,
+        66,
+        72,
+        120,
+        156,
+        161,
+        166,
+        171,
+        177,
+        219,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/hunter/待机呼吸休闲.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left bow and rear picture-right quiver remain present and on the same side; gold shoulder plates and purple armor pattern stay coherent."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            56,
+            66,
+            161,
+            171
+          ],
+          "findings": "The blink uses an opacity crossfade: semi-transparent open irises overlap the closed-eye line in intermediate sampled frames. This is visible facial ghosting, not equipment drift."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "hunter",
+      "name": "碎碎念-对屏碎碎念",
+      "media": "candidate/packs/hunter/碎碎念-对屏碎碎念.webm",
+      "media_sha256": "f1d1a94e656c616d874e6e9e3bcf9bc3dc5eb9ea65c5d0e602a18a971bc36524",
+      "report": "candidate/reports/hunter/碎碎念-对屏碎碎念.json",
+      "report_sha256": "ffd6a642145b5bc43a7c86dd4347d62614931e2dcca026c45e45620601a57841",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        42,
+        48,
+        120,
+        180,
+        207,
+        219,
+        228,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_no_major_anatomy_or_equipment_defect",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/hunter/碎碎念-对屏碎碎念.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left bow and rear picture-right quiver remain present and on the same side; gold shoulder plates and purple armor pattern stay coherent."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "mouth_opacity_blend_no_major_duplicate_observed",
+          "example_actual_frame_ids": [
+            21,
+            30
+          ],
+          "findings": "Mouth opacity blending is visible during speech opening/closing, but the inspected frames do not show a separate displaced duplicate mouth or a face-mask boundary. Eyes remain in their original locations."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "hunter",
+      "name": "工作状态-雀跃庆祝",
+      "media": "candidate/packs/hunter/工作状态-雀跃庆祝.webm",
+      "media_sha256": "3aa3b91151960cb597ba498dadfec47d98bd71ad1399cbdf724e05ecac0830fd",
+      "report": "candidate/reports/hunter/工作状态-雀跃庆祝.json",
+      "report_sha256": "c97b0d8bb1a354e838a0c161fa51c707dade0c844276c4e227638cfd74b6a010",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        39,
+        46,
+        54,
+        84,
+        90,
+        96,
+        102,
+        108,
+        122,
+        232,
+        344,
+        420,
+        438,
+        456,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/hunter/工作状态-雀跃庆祝.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left bow and rear picture-right quiver remain present and on the same side; gold shoulder plates and purple armor pattern stay coherent."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            46,
+            90,
+            102,
+            438
+          ],
+          "findings": "Star-eye and closed-smile transitions use opacity blending. Intermediate sampled frames retain faint open irises/previous eye marks; no abrupt face-mask boundary was observed."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "hunter",
+      "name": "开心蹦跳",
+      "media": "candidate/packs/hunter/开心蹦跳.webm",
+      "media_sha256": "54c67e21261c992d2819723cff4e412051c8c1a0eb72f1b9bf61bd4094563709",
+      "report": "candidate/reports/hunter/开心蹦跳.json",
+      "report_sha256": "fd483b39284decb7683b0c7c0fb2b8ddf1e7be5337bf627179096d26fc11ba33",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        27,
+        30,
+        33,
+        39,
+        54,
+        75,
+        108,
+        156,
+        234,
+        288,
+        336,
+        363,
+        369,
+        375,
+        479
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 480,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/hunter/开心蹦跳.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left bow and rear picture-right quiver remain present and on the same side; gold shoulder plates and purple armor pattern stay coherent."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            33,
+            369
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; equipment remains unaffected."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "hunter",
+      "name": "点击回应-开心跃动",
+      "media": "candidate/packs/hunter/点击回应-开心跃动.webm",
+      "media_sha256": "d20a0f16b0d8409d6dd4f33663519fbacea870eae5775831f8b08e9db6028cb0",
+      "report": "candidate/reports/hunter/点击回应-开心跃动.json",
+      "report_sha256": "48b90c94b2a66871782762eae91c632bd1ef94c801b8c03ea071ccf0d37a2a1a",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        27,
+        31,
+        35,
+        42,
+        51,
+        63,
+        99,
+        150,
+        219,
+        288,
+        357,
+        426,
+        504,
+        531,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/hunter/点击回应-开心跃动.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left bow and rear picture-right quiver remain present and on the same side; gold shoulder plates and purple armor pattern stay coherent."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            35,
+            531
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; the three-hop choreography keeps one coherent pair of hands."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "mage",
+      "name": "待机呼吸休闲",
+      "media": "candidate/packs/mage/待机呼吸休闲.webm",
+      "media_sha256": "8ced505abad34e1a7734861875269e35b439278f60570b57b68c266946a670d8",
+      "report": "candidate/reports/mage/待机呼吸休闲.json",
+      "report_sha256": "605fbf6e2a4738044b9f8fa596c53f94afe0b55a42cc605d49f56e31867b0e81",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        6,
+        21,
+        51,
+        56,
+        61,
+        66,
+        72,
+        120,
+        156,
+        161,
+        166,
+        171,
+        177,
+        219,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/mage/待机呼吸休闲.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Staff, orb, gold shoulder plates, blue robe and belt remain the same shapes; no floating detached equipment observed."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            56,
+            66,
+            161,
+            171
+          ],
+          "findings": "The blink uses an opacity crossfade: semi-transparent open irises overlap the closed-eye line in intermediate sampled frames. This is visible facial ghosting, not equipment drift."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "mage",
+      "name": "碎碎念-对屏碎碎念",
+      "media": "candidate/packs/mage/碎碎念-对屏碎碎念.webm",
+      "media_sha256": "eb374578a206ca9782dc7f32b41fe48cc87bae0b29719a6ab3c91c5b2767353f",
+      "report": "candidate/reports/mage/碎碎念-对屏碎碎念.json",
+      "report_sha256": "cdd784bf402a7c70088002bf9caa1a7dcd2946a489936c603473ac429fbfb1e2",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        42,
+        48,
+        120,
+        180,
+        207,
+        219,
+        228,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_no_major_anatomy_or_equipment_defect",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/mage/碎碎念-对屏碎碎念.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Staff, orb, gold shoulder plates, blue robe and belt remain the same shapes; no floating detached equipment observed."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "mouth_opacity_blend_no_major_duplicate_observed",
+          "example_actual_frame_ids": [
+            21,
+            30
+          ],
+          "findings": "Mouth opacity blending is visible during speech opening/closing, but the inspected frames do not show a separate displaced duplicate mouth or a face-mask boundary. Eyes remain in their original locations."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "mage",
+      "name": "工作状态-雀跃庆祝",
+      "media": "candidate/packs/mage/工作状态-雀跃庆祝.webm",
+      "media_sha256": "4db5c503491ec481013b35c0bd0a8ec4aeabe19ddddc6c3622d2bd7860c72458",
+      "report": "candidate/reports/mage/工作状态-雀跃庆祝.json",
+      "report_sha256": "81a3bc7c63ea546477fbf943a224c9cc2cc165e97e664d1a35272d36b5724057",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        39,
+        46,
+        54,
+        84,
+        90,
+        96,
+        102,
+        108,
+        122,
+        232,
+        344,
+        420,
+        438,
+        456,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/mage/工作状态-雀跃庆祝.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Staff, orb, gold shoulder plates, blue robe and belt remain the same shapes; no floating detached equipment observed."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            46,
+            90,
+            102,
+            438
+          ],
+          "findings": "Star-eye and closed-smile transitions use opacity blending. Intermediate sampled frames retain faint open irises/previous eye marks; no abrupt face-mask boundary was observed."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "mage",
+      "name": "开心蹦跳",
+      "media": "candidate/packs/mage/开心蹦跳.webm",
+      "media_sha256": "4e871d062fd9aa666ef999e8d75eaf7bf5a4d85bdb4eb850b2023676792c23e4",
+      "report": "candidate/reports/mage/开心蹦跳.json",
+      "report_sha256": "b69b599b3242e54b118391102d63fe97f57fdcff0fbb9a901e588de5b2885890",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        27,
+        30,
+        33,
+        39,
+        54,
+        75,
+        108,
+        156,
+        234,
+        288,
+        336,
+        363,
+        369,
+        375,
+        479
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 480,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/mage/开心蹦跳.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Staff, orb, gold shoulder plates, blue robe and belt remain the same shapes; no floating detached equipment observed."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            33,
+            369
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; equipment remains unaffected."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "mage",
+      "name": "点击回应-开心跃动",
+      "media": "candidate/packs/mage/点击回应-开心跃动.webm",
+      "media_sha256": "8e1ae7fecb07089f2532b915720042f957d1a132130add3da924f9b752e5fc32",
+      "report": "candidate/reports/mage/点击回应-开心跃动.json",
+      "report_sha256": "018fd410ad4a133909531c3d8e3cfb884ada732da73698b9f76f1f148eaa007e",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        27,
+        31,
+        35,
+        42,
+        51,
+        63,
+        99,
+        150,
+        219,
+        288,
+        357,
+        426,
+        504,
+        531,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/mage/点击回应-开心跃动.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Staff, orb, gold shoulder plates, blue robe and belt remain the same shapes; no floating detached equipment observed."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            35,
+            531
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; the three-hop choreography keeps one coherent pair of hands."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "rogue",
+      "name": "待机呼吸休闲",
+      "media": "candidate/packs/rogue/待机呼吸休闲.webm",
+      "media_sha256": "f2f36f6d8264e5ae528c8fb839dc0d50fbf60176361ff0d1a33cac81f6e254c4",
+      "report": "candidate/reports/rogue/待机呼吸休闲.json",
+      "report_sha256": "b544fbcbc9125df349062383fa837a3a657ab08eb2a445e82f27b987fa4fa218",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        6,
+        21,
+        51,
+        56,
+        61,
+        66,
+        72,
+        120,
+        156,
+        161,
+        166,
+        171,
+        177,
+        219,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/rogue/待机呼吸休闲.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Both daggers stay attached at their wrist/hip regions; red shoulder blades, black/red chest and belt design remain stable."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            56,
+            66,
+            161,
+            171
+          ],
+          "findings": "The blink uses an opacity crossfade: semi-transparent open irises overlap the closed-eye line in intermediate sampled frames. This is visible facial ghosting, not equipment drift."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "rogue",
+      "name": "碎碎念-对屏碎碎念",
+      "media": "candidate/packs/rogue/碎碎念-对屏碎碎念.webm",
+      "media_sha256": "cce38d557c1fbe3271e0ba8239322fbed8e5b49cc596f70b54b1447d567199b4",
+      "report": "candidate/reports/rogue/碎碎念-对屏碎碎念.json",
+      "report_sha256": "b31d90b3ab0edab61adba8e942132d6aa909f279b490b0a12e859fd8360b261b",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        42,
+        48,
+        120,
+        180,
+        207,
+        219,
+        228,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_no_major_anatomy_or_equipment_defect",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/rogue/碎碎念-对屏碎碎念.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Both daggers stay attached at their wrist/hip regions; red shoulder blades, black/red chest and belt design remain stable."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "mouth_opacity_blend_no_major_duplicate_observed",
+          "example_actual_frame_ids": [
+            21,
+            30
+          ],
+          "findings": "Mouth opacity blending is visible during speech opening/closing, but the inspected frames do not show a separate displaced duplicate mouth or a face-mask boundary. Eyes remain in their original locations."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "rogue",
+      "name": "工作状态-雀跃庆祝",
+      "media": "candidate/packs/rogue/工作状态-雀跃庆祝.webm",
+      "media_sha256": "4bbf808a7c5ff5e9416e07da8e9790b87f07b9321cbddbe88171cd676cb7d578",
+      "report": "candidate/reports/rogue/工作状态-雀跃庆祝.json",
+      "report_sha256": "d311f427ab5186c32db8a0c3f28a09a9e209271dde9cbf25f3975608616d05f8",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        39,
+        46,
+        54,
+        84,
+        90,
+        96,
+        102,
+        108,
+        122,
+        232,
+        344,
+        420,
+        438,
+        456,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/rogue/工作状态-雀跃庆祝.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Both daggers stay attached at their wrist/hip regions; red shoulder blades, black/red chest and belt design remain stable."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            46,
+            90,
+            102,
+            438
+          ],
+          "findings": "Star-eye and closed-smile transitions use opacity blending. Intermediate sampled frames retain faint open irises/previous eye marks; no abrupt face-mask boundary was observed."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "rogue",
+      "name": "开心蹦跳",
+      "media": "candidate/packs/rogue/开心蹦跳.webm",
+      "media_sha256": "70c095084d65478ad42fa56467d09d8ab4e5f16f8b5fc70af381b79e952fe146",
+      "report": "candidate/reports/rogue/开心蹦跳.json",
+      "report_sha256": "a29ae16f94cd510fa9dbad5eb878cabb4972255c1e0536c6033782f29cae9d56",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        27,
+        30,
+        33,
+        39,
+        54,
+        75,
+        108,
+        156,
+        234,
+        288,
+        336,
+        363,
+        369,
+        375,
+        479
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 480,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/rogue/开心蹦跳.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Both daggers stay attached at their wrist/hip regions; red shoulder blades, black/red chest and belt design remain stable."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            33,
+            369
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; equipment remains unaffected."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "rogue",
+      "name": "点击回应-开心跃动",
+      "media": "candidate/packs/rogue/点击回应-开心跃动.webm",
+      "media_sha256": "b9d83dfca4d89d0706169e1f5e2496dfeb2935d5ada1112a9ad46a3eeff03068",
+      "report": "candidate/reports/rogue/点击回应-开心跃动.json",
+      "report_sha256": "1613996b827ea8856e6cc563f67b4710bdb6440a1a8752f3699d31f5eadfcc4f",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        27,
+        31,
+        35,
+        42,
+        51,
+        63,
+        99,
+        150,
+        219,
+        288,
+        357,
+        426,
+        504,
+        531,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/rogue/点击回应-开心跃动.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Both daggers stay attached at their wrist/hip regions; red shoulder blades, black/red chest and belt design remain stable."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            35,
+            531
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; the three-hop choreography keeps one coherent pair of hands."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "paladin",
+      "name": "待机呼吸休闲",
+      "media": "candidate/packs/paladin/待机呼吸休闲.webm",
+      "media_sha256": "6a15dd7e73c83fa378d853c49664d7283e5f8738f8f41c004a6c3aded121a793",
+      "report": "candidate/reports/paladin/待机呼吸休闲.json",
+      "report_sha256": "0767a2e7cbee30b5a5aa0f1a00978bfa0024b82cf31818641b47ddc43eeafdcb",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        6,
+        21,
+        51,
+        56,
+        61,
+        66,
+        72,
+        120,
+        156,
+        161,
+        166,
+        171,
+        177,
+        219,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/paladin/待机呼吸休闲.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left hammer remains joined to the hand; picture-right holy book and gold/red armor remain the same shapes."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            56,
+            66,
+            161,
+            171
+          ],
+          "findings": "The blink uses an opacity crossfade: semi-transparent open irises overlap the closed-eye line in intermediate sampled frames. This is visible facial ghosting, not equipment drift."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "paladin",
+      "name": "碎碎念-对屏碎碎念",
+      "media": "candidate/packs/paladin/碎碎念-对屏碎碎念.webm",
+      "media_sha256": "a09cc5e44b1eeb77e5fc45a2152bb34ecdc550effea1b6765bb877982df37f2e",
+      "report": "candidate/reports/paladin/碎碎念-对屏碎碎念.json",
+      "report_sha256": "bb96a1ae00d8795b6f49f65c4106618a574746b925d8ccbfd9d46139fa970696",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        42,
+        48,
+        120,
+        180,
+        207,
+        219,
+        228,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_no_major_anatomy_or_equipment_defect",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/paladin/碎碎念-对屏碎碎念.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left hammer remains joined to the hand; picture-right holy book and gold/red armor remain the same shapes."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "mouth_opacity_blend_no_major_duplicate_observed",
+          "example_actual_frame_ids": [
+            21,
+            30
+          ],
+          "findings": "Mouth opacity blending is visible during speech opening/closing, but the inspected frames do not show a separate displaced duplicate mouth or a face-mask boundary. Eyes remain in their original locations."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "paladin",
+      "name": "工作状态-雀跃庆祝",
+      "media": "candidate/packs/paladin/工作状态-雀跃庆祝.webm",
+      "media_sha256": "14a6cb992c528e11a6971077af3903a65bc833463a67f5402190129e6a23ea4d",
+      "report": "candidate/reports/paladin/工作状态-雀跃庆祝.json",
+      "report_sha256": "40741d604986474ac6df9c06a3c29f0646c70da3d491dde9e83ea2a2deff9b5b",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        39,
+        46,
+        54,
+        84,
+        90,
+        96,
+        102,
+        108,
+        122,
+        232,
+        344,
+        420,
+        438,
+        456,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/paladin/工作状态-雀跃庆祝.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left hammer remains joined to the hand; picture-right holy book and gold/red armor remain the same shapes."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            46,
+            90,
+            102,
+            438
+          ],
+          "findings": "Star-eye and closed-smile transitions use opacity blending. Intermediate sampled frames retain faint open irises/previous eye marks; no abrupt face-mask boundary was observed."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "paladin",
+      "name": "开心蹦跳",
+      "media": "candidate/packs/paladin/开心蹦跳.webm",
+      "media_sha256": "7daf65eedfc59adf4f08dc0ddf5acffec9072c0de051059fd1f06520e817dd59",
+      "report": "candidate/reports/paladin/开心蹦跳.json",
+      "report_sha256": "c408273b275a30c2cb7d889fced6fa6cd384a6fbebdb2fbd87f5f2ee926d4466",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        27,
+        30,
+        33,
+        39,
+        54,
+        75,
+        108,
+        156,
+        234,
+        288,
+        336,
+        363,
+        369,
+        375,
+        479
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 480,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/paladin/开心蹦跳.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left hammer remains joined to the hand; picture-right holy book and gold/red armor remain the same shapes."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            33,
+            369
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; equipment remains unaffected."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "paladin",
+      "name": "点击回应-开心跃动",
+      "media": "candidate/packs/paladin/点击回应-开心跃动.webm",
+      "media_sha256": "522be163bfae94aace1e7cc0fb276e14597a09f44b7f1b7fe018e19b355a64af",
+      "report": "candidate/reports/paladin/点击回应-开心跃动.json",
+      "report_sha256": "4a60835d01c711766bc5b518499f04c05574a36c0fa618bac3bec21466e779ac",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        27,
+        31,
+        35,
+        42,
+        51,
+        63,
+        99,
+        150,
+        219,
+        288,
+        357,
+        426,
+        504,
+        531,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/paladin/点击回应-开心跃动.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left hammer remains joined to the hand; picture-right holy book and gold/red armor remain the same shapes."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            35,
+            531
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; the three-hop choreography keeps one coherent pair of hands."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "warlock",
+      "name": "待机呼吸休闲",
+      "media": "candidate/packs/warlock/待机呼吸休闲.webm",
+      "media_sha256": "a6b625a1a25cf335c7b041ec1f330ba5e3a3ba4dbd11ba4b1234c70bbab62507",
+      "report": "candidate/reports/warlock/待机呼吸休闲.json",
+      "report_sha256": "597c417ee9886da4c678d02d9118fe7888e839bd552d630135b33a8ff596056f",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        6,
+        21,
+        51,
+        56,
+        61,
+        66,
+        72,
+        120,
+        156,
+        161,
+        166,
+        171,
+        177,
+        219,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/warlock/待机呼吸休闲.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left staff, horned head ornaments and purple/gold armor remain present and stable."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            56,
+            66,
+            161,
+            171
+          ],
+          "findings": "The blink uses an opacity crossfade: semi-transparent open irises overlap the closed-eye line in intermediate sampled frames. This is visible facial ghosting, not equipment drift."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "warlock",
+      "name": "碎碎念-对屏碎碎念",
+      "media": "candidate/packs/warlock/碎碎念-对屏碎碎念.webm",
+      "media_sha256": "de454ad1812a8615f88db96247acc38b48065e928daa2be79a785ff6f01514f5",
+      "report": "candidate/reports/warlock/碎碎念-对屏碎碎念.json",
+      "report_sha256": "6ea253ee2eb124ccf2fa8a56cd3d89b28027a855c272de9f1e91cab3bff0c739",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        42,
+        48,
+        120,
+        180,
+        207,
+        219,
+        228,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_no_major_anatomy_or_equipment_defect",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/warlock/碎碎念-对屏碎碎念.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left staff, horned head ornaments and purple/gold armor remain present and stable."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "mouth_opacity_blend_no_major_duplicate_observed",
+          "example_actual_frame_ids": [
+            21,
+            30
+          ],
+          "findings": "Mouth opacity blending is visible during speech opening/closing, but the inspected frames do not show a separate displaced duplicate mouth or a face-mask boundary. Eyes remain in their original locations."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "warlock",
+      "name": "工作状态-雀跃庆祝",
+      "media": "candidate/packs/warlock/工作状态-雀跃庆祝.webm",
+      "media_sha256": "43276f5406efe353881c961c320de4aa068deb6819527c99f9e0dac4fe65a34d",
+      "report": "candidate/reports/warlock/工作状态-雀跃庆祝.json",
+      "report_sha256": "b9583e56f25b9f2eed868813aac05edeabf2b7fe5d0c85f68988e06315ec601d",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        39,
+        46,
+        54,
+        84,
+        90,
+        96,
+        102,
+        108,
+        122,
+        232,
+        344,
+        420,
+        438,
+        456,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/warlock/工作状态-雀跃庆祝.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left staff, horned head ornaments and purple/gold armor remain present and stable."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            46,
+            90,
+            102,
+            438
+          ],
+          "findings": "Star-eye and closed-smile transitions use opacity blending. Intermediate sampled frames retain faint open irises/previous eye marks; no abrupt face-mask boundary was observed."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "warlock",
+      "name": "开心蹦跳",
+      "media": "candidate/packs/warlock/开心蹦跳.webm",
+      "media_sha256": "ef3392fdba1d30a190a0728a83d6c7fbce7f3002838ad8eb0f068a060fbc337b",
+      "report": "candidate/reports/warlock/开心蹦跳.json",
+      "report_sha256": "16ef1945b39336ca1c7717b95d768cb2b5cd819ac2699ae39f8dd130e6128d06",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        27,
+        30,
+        33,
+        39,
+        54,
+        75,
+        108,
+        156,
+        234,
+        288,
+        336,
+        363,
+        369,
+        375,
+        479
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 480,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/warlock/开心蹦跳.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left staff, horned head ornaments and purple/gold armor remain present and stable."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            33,
+            369
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; equipment remains unaffected."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "warlock",
+      "name": "点击回应-开心跃动",
+      "media": "candidate/packs/warlock/点击回应-开心跃动.webm",
+      "media_sha256": "6594370b42cc9753ea1a7150d856b6d0ea96b93b9ab1c0cc1da4e62d9577f4ca",
+      "report": "candidate/reports/warlock/点击回应-开心跃动.json",
+      "report_sha256": "dcc91519da620e68f49004be08785b3dd2f504369509b55a64648a515cc49bba",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        27,
+        31,
+        35,
+        42,
+        51,
+        63,
+        99,
+        150,
+        219,
+        288,
+        357,
+        426,
+        504,
+        531,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/warlock/点击回应-开心跃动.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left staff, horned head ornaments and purple/gold armor remain present and stable."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            35,
+            531
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; the three-hop choreography keeps one coherent pair of hands."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "priest",
+      "name": "待机呼吸休闲",
+      "media": "candidate/packs/priest/待机呼吸休闲.webm",
+      "media_sha256": "64d45ca0d17230bb8184143da9e687a0805a5b00bfdf7c9e949f02b4178657c2",
+      "report": "candidate/reports/priest/待机呼吸休闲.json",
+      "report_sha256": "68a98cfa0b7661111a21c03834ed25fbf26be2071c231667543d7a2330918e24",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        6,
+        21,
+        51,
+        56,
+        61,
+        66,
+        72,
+        120,
+        156,
+        161,
+        166,
+        171,
+        177,
+        219,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/priest/待机呼吸休闲.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left staff, white/gold shoulder and robe details remain stable and attached."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            56,
+            66,
+            161,
+            171
+          ],
+          "findings": "The blink uses an opacity crossfade: semi-transparent open irises overlap the closed-eye line in intermediate sampled frames. This is visible facial ghosting, not equipment drift."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "priest",
+      "name": "碎碎念-对屏碎碎念",
+      "media": "candidate/packs/priest/碎碎念-对屏碎碎念.webm",
+      "media_sha256": "ecfeb9f04a7ccd6e3807811d2acd0f3c517617459127b66e37b5d92a117cf754",
+      "report": "candidate/reports/priest/碎碎念-对屏碎碎念.json",
+      "report_sha256": "90831016319d1a6fddcf516418da3776312328d94cb62328322d662c629f97cb",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        42,
+        48,
+        120,
+        180,
+        207,
+        219,
+        228,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_no_major_anatomy_or_equipment_defect",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/priest/碎碎念-对屏碎碎念.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left staff, white/gold shoulder and robe details remain stable and attached."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "mouth_opacity_blend_no_major_duplicate_observed",
+          "example_actual_frame_ids": [
+            21,
+            30
+          ],
+          "findings": "Mouth opacity blending is visible during speech opening/closing, but the inspected frames do not show a separate displaced duplicate mouth or a face-mask boundary. Eyes remain in their original locations."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "priest",
+      "name": "工作状态-雀跃庆祝",
+      "media": "candidate/packs/priest/工作状态-雀跃庆祝.webm",
+      "media_sha256": "968826e4c917d1a6e3c67b2bcfd7e83e24990b5edf3d10a1bddd0bba33e186a3",
+      "report": "candidate/reports/priest/工作状态-雀跃庆祝.json",
+      "report_sha256": "9ed697f9c8229549b488788082f32718d7630d3e3d5fb0f016a9a6b2699ad06d",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        39,
+        46,
+        54,
+        84,
+        90,
+        96,
+        102,
+        108,
+        122,
+        232,
+        344,
+        420,
+        438,
+        456,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/priest/工作状态-雀跃庆祝.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left staff, white/gold shoulder and robe details remain stable and attached."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            46,
+            90,
+            102,
+            438
+          ],
+          "findings": "Star-eye and closed-smile transitions use opacity blending. Intermediate sampled frames retain faint open irises/previous eye marks; no abrupt face-mask boundary was observed."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "priest",
+      "name": "开心蹦跳",
+      "media": "candidate/packs/priest/开心蹦跳.webm",
+      "media_sha256": "8e03cf1d2f6b8a0647b1c69430c322de6d356c275319a27641311734c21f5344",
+      "report": "candidate/reports/priest/开心蹦跳.json",
+      "report_sha256": "b132967908bbe5e2c4eda81017a8f50f73ca3f3f76de14f62f8b7a48cf52091e",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v1",
+      "actual_frame_ids": [
+        0,
+        27,
+        30,
+        33,
+        39,
+        54,
+        75,
+        108,
+        156,
+        234,
+        288,
+        336,
+        363,
+        369,
+        375,
+        479
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 480,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/priest/开心蹦跳.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left staff, white/gold shoulder and robe details remain stable and attached."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            33,
+            369
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; equipment remains unaffected."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "297e6a48fa4583eb74962c4c2f3bc243b2079f9a49f393801a51354b29ee0eb6"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34"
+        }
+      ]
+    },
+    {
+      "class": "priest",
+      "name": "点击回应-开心跃动",
+      "media": "candidate/packs/priest/点击回应-开心跃动.webm",
+      "media_sha256": "aec3002cd7657cbf774bcfcf62147468d24038023e1012c3e0419b494713a418",
+      "report": "candidate/reports/priest/点击回应-开心跃动.json",
+      "report_sha256": "c187af16e9c8952c04e836f13f3318af45f34fe51e0693e5c16928364f7a755a",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        27,
+        31,
+        35,
+        42,
+        51,
+        63,
+        99,
+        150,
+        219,
+        288,
+        357,
+        426,
+        504,
+        531,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/priest/点击回应-开心跃动.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Picture-left staff, white/gold shoulder and robe details remain stable and attached."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            35,
+            531
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; the three-hop choreography keeps one coherent pair of hands."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "cf5e19e58a1ad10316206206aa252cbeaa3542bd38e11b0667b6417f3226ccec"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "e999e5774d2883732dd05b37053ed4fd70ba0f99a9eef1c60f8a38e49ee60d67"
+        }
+      ]
+    },
+    {
+      "class": "druid",
+      "name": "待机呼吸休闲",
+      "media": "candidate/packs/druid/待机呼吸休闲.webm",
+      "media_sha256": "866f19eb48c0e658bd8eb7c862a58c31865cc88d2c4db9799186528471afcc56",
+      "report": "candidate/reports/druid/待机呼吸休闲.json",
+      "report_sha256": "be10c8bde44bb1ab1a49c57d58807161e5361f270e894f43058526c4da0aabfb",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        6,
+        21,
+        51,
+        56,
+        61,
+        66,
+        72,
+        120,
+        156,
+        161,
+        166,
+        171,
+        177,
+        219,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/druid/待机呼吸休闲.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Antlers, leaves, picture-left staff, shoulder leaves and green/gold robe pattern remain consistent."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            56,
+            66,
+            161,
+            171
+          ],
+          "findings": "The blink uses an opacity crossfade: semi-transparent open irises overlap the closed-eye line in intermediate sampled frames. This is visible facial ghosting, not equipment drift."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "druid",
+      "name": "碎碎念-对屏碎碎念",
+      "media": "candidate/packs/druid/碎碎念-对屏碎碎念.webm",
+      "media_sha256": "d2e3ff45e47353321f974a9a89fbe4bf62255eb15b95efddf71661a88c8a200d",
+      "report": "candidate/reports/druid/碎碎念-对屏碎碎念.json",
+      "report_sha256": "7fffe670b1434675ec1ef72d455ee75d0a34f6bc1b43d64363ab3063c33b1af9",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        42,
+        48,
+        120,
+        180,
+        207,
+        219,
+        228,
+        239
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 240,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_no_major_anatomy_or_equipment_defect",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/druid/碎碎念-对屏碎碎念.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Antlers, leaves, picture-left staff, shoulder leaves and green/gold robe pattern remain consistent."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "mouth_opacity_blend_no_major_duplicate_observed",
+          "example_actual_frame_ids": [
+            21,
+            30
+          ],
+          "findings": "Mouth opacity blending is visible during speech opening/closing, but the inspected frames do not show a separate displaced duplicate mouth or a face-mask boundary. Eyes remain in their original locations."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "druid",
+      "name": "工作状态-雀跃庆祝",
+      "media": "candidate/packs/druid/工作状态-雀跃庆祝.webm",
+      "media_sha256": "7564fcb07a6f1b93c02a5d78fc74da19e411015dd30da4a2a8ff51868f15772c",
+      "report": "candidate/reports/druid/工作状态-雀跃庆祝.json",
+      "report_sha256": "77b7ad7d67bf325b38596ab24dc56371c6831c81446ac2e8442a0235ef4a5725",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        39,
+        46,
+        54,
+        84,
+        90,
+        96,
+        102,
+        108,
+        122,
+        232,
+        344,
+        420,
+        438,
+        456,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/druid/工作状态-雀跃庆祝.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Antlers, leaves, picture-left staff, shoulder leaves and green/gold robe pattern remain consistent."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            46,
+            90,
+            102,
+            438
+          ],
+          "findings": "Star-eye and closed-smile transitions use opacity blending. Intermediate sampled frames retain faint open irises/previous eye marks; no abrupt face-mask boundary was observed."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "druid",
+      "name": "开心蹦跳",
+      "media": "candidate/packs/druid/开心蹦跳.webm",
+      "media_sha256": "b3a15cf6d87a3231bbcf8c494a84fe38985695e23cab76f49f441f21819d5ca6",
+      "report": "candidate/reports/druid/开心蹦跳.json",
+      "report_sha256": "08656fc067acb85395cf6c74e37c1b007bf988ecc514e92dfb6a2480489bf664",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        27,
+        30,
+        33,
+        39,
+        54,
+        75,
+        108,
+        156,
+        234,
+        288,
+        336,
+        363,
+        369,
+        375,
+        479
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 480,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/druid/开心蹦跳.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Antlers, leaves, picture-left staff, shoulder leaves and green/gold robe pattern remain consistent."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            33,
+            369
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; equipment remains unaffected."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    },
+    {
+      "class": "druid",
+      "name": "点击回应-开心跃动",
+      "media": "candidate/packs/druid/点击回应-开心跃动.webm",
+      "media_sha256": "7d22c9ead1385c4d28028086f4d33ae1dd6209e861ad5422b4d9781da3433c54",
+      "report": "candidate/reports/druid/点击回应-开心跃动.json",
+      "report_sha256": "350deacc148a626c60a33b3e9cb74e17c48fcef9c886a11b1bd01c7d22b23ef9",
+      "fixed_source_equipment": true,
+      "equipment_identity_policy": "class_fixed_master_bounded_continuous_motion_v2_click_joy",
+      "actual_frame_ids": [
+        0,
+        27,
+        31,
+        35,
+        42,
+        51,
+        63,
+        99,
+        150,
+        219,
+        288,
+        357,
+        426,
+        504,
+        531,
+        599
+      ],
+      "actual_frame_count": 16,
+      "encoded_total_frames": 600,
+      "all_frames_visually_reviewed": false,
+      "visual_status": "reviewed_sample_with_face_crossfade_residual",
+      "contact_crop": [
+        160,
+        0,
+        480,
+        360
+      ],
+      "contact": "workspace-review/fixed40-review-contacts/druid/点击回应-开心跃动.jpg",
+      "dimensions": {
+        "equipment": {
+          "status": "no_change_or_detachment_observed_in_sample",
+          "findings": "Antlers, leaves, picture-left staff, shoulder leaves and green/gold robe pattern remain consistent."
+        },
+        "arms_and_geometry": {
+          "status": "no_duplicate_limb_or_obvious_disconnection_observed_in_sample",
+          "findings": "One pair of hands remains coherent through the sampled starts, motion extrema and returns. Motion is deliberately small; this is not full articulated high-arm animation."
+        },
+        "face": {
+          "status": "visible_crossfade_residual",
+          "example_actual_frame_ids": [
+            35,
+            531
+          ],
+          "findings": "The open-to-closed smile and return show faint original irises under the replacement eyelids in sampled intermediate frames; the three-hop choreography keeps one coherent pair of hands."
+        }
+      },
+      "entire_clip_visually_accepted": false,
+      "visual_scope": "16 actual encoded frames selected at start, expression transitions, maximum arm movement / hop apexes, and return. This is not every-frame visual review.",
+      "renderer_inputs_at_render": [
+        {
+          "path": "tools/render.py",
+          "sha256": "5bdaf2258efd8e5065b3428e22c89e088c4a7c65e1555af3b5d42d4b1da535bd"
+        },
+        {
+          "path": "tools/continuous-motion.py",
+          "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+        },
+        {
+          "path": "tools/jump-motion.py",
+          "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+        },
+        {
+          "path": "tools/jump-arm-guides.json",
+          "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+        },
+        {
+          "path": "tools/identity-motion.py",
+          "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+        },
+        {
+          "path": "tools/requirements.txt",
+          "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+        },
+        {
+          "path": "tools/class-identity-motion.py",
+          "sha256": "b630c9fb7e2a6d6e7ea0b0e06b6d959d180317ddbc137ef95702b1d305ca65fc"
+        }
+      ]
+    }
+  ],
+  "final_media_sha_revalidation": {
+    "checked": 40,
+    "mismatches": []
+  }
+}

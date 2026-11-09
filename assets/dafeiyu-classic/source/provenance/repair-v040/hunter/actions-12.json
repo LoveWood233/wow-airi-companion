@@ -1,0 +1,85 @@
+{
+  "class": "hunter",
+  "sheet": "actions-12",
+  "original_sha256": "67f2fca2c038c009632fdc23ea723c51ca5926640e5e7dbf09399ce7ecfad3c2",
+  "replacement_sha256": "cf37db19e725c4f900a82f9d64bf4f2cd3bc95d83641ed46f7526cbf723726a6",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "actions-12",
+    "candidate": "source/sheets/hunter/actions-12.png",
+    "sha256": "cf37db19e725c4f900a82f9d64bf4f2cd3bc95d83641ed46f7526cbf723726a6",
+    "review": "source/sheets/hunter/actions-12.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "image_gen-output:exec-c025a628-ac56-4533-b7eb-9ba8022118d8.png",
+      "workspace/outputs/all-class-equipment-audit/hunter-actions12-duplicate-quiver-guide.png",
+      "source/sheets/hunter/actions-12.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Edit ONLY image1, the full4x4 atlas. Image2 is an enlarged ANNOTATION GUIDE of the first3 cells: RED rectangles mark the exact unwanted duplicate quivers to DELETE; GREEN rectangles mark the correct quivers to KEEP. In full image1 remove the complete brown quiver plus pale arrow feathers located in each red-marked location in first-row columns1,2,3, restoring blue hair behind. Leave the smaller shoulder quivers corresponding to green rectangles completely intact. After edit each of these sprites must have exactly ONE arrow bundle, not two. Keep the current bow: horizontal along hip for sleeping cells0,1; upright picture-left in pushing-up cell2. Do not remove those bows. Also restore the second small gold headband horn on the back/right side of the head in these first3 cells to match the original horned headband from image3; a prior correction accidentally removed it. Keep all other body/hair/face/props unchanged. Other13 cells of image1 must be untouched. Output full4x4 transparent atlas only; do not reproduce annotation boxes, words or crops. This is a tiny local deletion and headband restoration, not new scene generation.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "actions-12",
+    "generated_file": "image_gen-output:exec-871d3eff-75f0-4e87-9ac3-f0f913bf14e3.png",
+    "output": "source/sheets/hunter/actions-12.png",
+    "sha256": "cf37db19e725c4f900a82f9d64bf4f2cd3bc95d83641ed46f7526cbf723726a6",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 797067,
+      "opaque_pixels": 752714
+    },
+    "preview": "source/sheets/hunter/actions-12.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "image_gen-output:exec-c025a628-ac56-4533-b7eb-9ba8022118d8.png",
+        "sha256": "b5545883e3b42ce6d9e1265fdda66774084f1a2bbc8b12c9193523f6636e220b"
+      },
+      {
+        "path": "workspace/outputs/all-class-equipment-audit/hunter-actions12-duplicate-quiver-guide.png",
+        "sha256": "cc7a04d172cbd78450cff892c92825afd98e0960a7458e8ec75a5d3357bed939"
+      },
+      {
+        "path": "source/sheets/hunter/actions-12.png",
+        "sha256": "67f2fca2c038c009632fdc23ea723c51ca5926640e5e7dbf09399ce7ecfad3c2"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "iterations": [
+      {
+        "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. Pairs: 0/1 prone sleep breathing; 2/3 pushing up from prone and getting up/yawning; 4/5 idle muttering; 6/7 wiping tabletop with cloth; 8/9 sewing/embroidering; 10/11 lifting lion dance head from chest to overhead; 12/13 sitting on swing while holding both ropes; 14/15 human magic to cute GHOST transformation. Cell15 zero-based ghost is intentional: preserve ghost form unchanged, no human weapon pasted on ghost. Repair missing bow in HUMAN cells, keep old pose and props. Prone bow lies attached along the body's right hip, never upright through sleeping head. Table can occlude lower bow; swing ropes remain held by original hands. Do not add arrows: use existing quiver and ensure only one bundle per person, no upper extra quiver behind head.",
+        "referenced_image_paths": [
+          "source/sheets/hunter/actions-12.png",
+          "source/base-keyframes/hunter/frame-00.png",
+          "source/sheets/hunter/actions-01.png"
+        ],
+        "generated_file": "image_gen-output:exec-4691f7cd-4c5c-4839-9ea3-26d954144b50.png",
+        "result": "rejected_extra_upper_quiver_and_old_bow_first3"
+      },
+      {
+        "prompt": "Precise local equipment correction: change ONLY first THREE sprites, row1 columns1,2,3 / cells0,1,2 of this 4x4 hunter atlas. Each incorrectly has two separate arrow bundles/quivers and extra weapon curves behind the head. For ALL THREE: REMOVE the UPPER old arrow bundle + its brown pouch + gold curved hook assembly high behind the head/hair. Restore blue hair there. KEEP exactly ONE LOWER arrow bundle immediately behind the gold shoulder armor, at upper-back level. For row1 col1 and col2 prone sleeping sprites, KEEP the lower gold-brown curved weapon bow lying along the side/hip of the body. For row1 col3 pushing-up sprite, KEEP the full gold-brown bow on PICTURE LEFT beside the front shoulder/hip, and REMOVE its extra smaller duplicate gold-brown curved bow lying on the PICTURE RIGHT body/hip. Final: one bow and one quiver per sprite. Preserve all poses, hair, two arms/hands, clothes, every prop and all other13 cells unchanged. Keep true transparency and exact4x4 spacing.",
+        "referenced_image_paths": [
+          "image_gen-output:exec-4691f7cd-4c5c-4839-9ea3-26d954144b50.png"
+        ],
+        "generated_file": "image_gen-output:exec-c025a628-ac56-4533-b7eb-9ba8022118d8.png",
+        "result": "rejected_duplicate_quivers_not_removed_horns_changed"
+      }
+    ],
+    "visual_review_notes": [
+      "Third iteration using actual marked QA guide removed upper duplicate quivers in first3 cells.",
+      "One bow and one quiver now visible per human; headband horns restored.",
+      "Prone/sitting source views, swing contact, cloth/table, sewing, lion head and ghost form preserved.",
+      "First3 cells are historical sleep sources overridden by locomotion-sleep, but repaired anyway."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

@@ -1,0 +1,127 @@
+{
+  "class": "druid",
+  "sheet": "actions-10",
+  "original_sha256": "555abad8559aa2fa9724eabd66a8a534cbc4e423363dcddd9c5ab34ae5eacbcd",
+  "replacement_sha256": "9d0fca0801134cda687398e4c18b674c346da89365983ada513db2cb678c6e07",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-10",
+    "path": "source/sheets/druid/actions-10.png",
+    "sha256": "9d0fca0801134cda687398e4c18b674c346da89365983ada513db2cb678c6e07",
+    "dimensions": [
+      1247,
+      1261
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/actions-10.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "Wave cells14,15 now each have only one upper staff; cloth swatches, brushing, bowls, hotpot, thoughts and waves retained.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-10",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/actions-10.png",
+    "source_sha256": "555abad8559aa2fa9724eabd66a8a534cbc4e423363dcddd9c5ab34ae5eacbcd",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-30b46217-3809-4a22-b563-b5a70735a28c",
+        "path": "workspace-revision/attempts/druid/actions-10-01.png",
+        "sha256": "3ada5e92b1ec2cfdc0ac6a272e06248a509a8177c0264dcdbfa0d5a5ce9617b6"
+      },
+      {
+        "output_id": "exec-3b85a43c-90f1-4cac-88f8-9be874c3f4db",
+        "path": "workspace-revision/attempts/druid/actions-10-02.png",
+        "sha256": "9d0fca0801134cda687398e4c18b674c346da89365983ada513db2cb678c6e07"
+      }
+    ],
+    "generated_output_id": "exec-3b85a43c-90f1-4cac-88f8-9be874c3f4db",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-3b85a43c-90f1-4cac-88f8-9be874c3f4db.png",
+    "saved_output": "source/sheets/druid/actions-10.png",
+    "final_sha256": "9d0fca0801134cda687398e4c18b674c346da89365983ada513db2cb678c6e07",
+    "dimensions": [
+      1247,
+      1261
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/druid/actions-10.txt",
+    "prompt_sha256": "e18edd0089e9ce13b3f312cfbb29a8347d2a1b8e4b514c658987121e20342387",
+    "visual_review": {
+      "method": "generatedImage full atlas actually viewed all16 cells",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "Wave cells14,15 now each have only one upper staff; cloth swatches, brushing, bowls, hotpot, thoughts and waves retained.",
+      "grid_cut_review": "No apparent adjacent-cell clipping.",
+      "full_video_validation": false
+    },
+    "correction_prompts": [
+      "workspace-revision/prompts/druid/actions-10-correction-02.txt"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-10-correction-02.txt",
+      "text": "Precise local correction to input1 transparent 4x4 atlas. Input2 is staff design reference. Preserve every other cell and every pose, hand, prop, face, armor, antler and all 4x4 positions exactly. Keep transparent alpha, no new objects, no alternate poses. Change ONLY cells14 and15 (zero-based, BOTTOM ROW THIRD AND FOURTH columns), the waving girl pair. Each has TWO curled wooden staff heads stacked vertically along viewer LEFT of her head. DELETE the LOWER extra curled head and its green gem completely in EACH of those two cells. Fill deleted region with existing blue hair seamlessly. KEEP the single UPPER staff curl and gem behind her shoulder. Do not edit raised hand, yellow action marks, smile or clothes. Exactly ONE staff head/gem per cell. No other edit.\n"
+    },
+    {
+      "name": "actions-10.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 整体换装试色. Preserve source pose A and B: 保持该职业原装备，拿一块暖色布样比在胸前，低头审视搭配。 / 同一装备与姿态，换一块冷色布样比在肩前，身体轻侧转查看搭配。\nCells [2, 3]: 是啊，吃什么. Preserve source pose A and B: 一手托下巴，眉眼思索；道具：food_thought_bubble。动作语义：歪头思考并说话 / 正面小开口说话；道具：food_thought_bubble。与A必须是不同的动作阶段，保持道具形状/位置关系。头顶出现不同食物选项\nCells [4, 5]: 晨间刷牙. Preserve source pose A and B: 牙刷贴口，持刷手向外；道具：toothbrush, cup。动作语义：刷毛贴近嘴部左右短程刷动 / 牙刷贴口，持刷手向内；道具：toothbrush, cup。与A必须是不同的动作阶段，保持道具形状/位置关系。用水杯漱口\nCells [6, 7]: 期待开饭. Preserve source pose A and B: 双眼明确星形高光，身体微前倾，双手握拳期待；道具：empty_bowl, chopsticks。动作语义：双手捧空碗期待看前方 / 双手胸前端托，手腕形成物体接触面；道具：empty_bowl, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。握筷轻轻期待跃动\nCells [8, 9]: 涮火锅. Preserve source pose A and B: 左手端碗，右手持筷抬起食物；道具：hotpot, chopsticks, meat_slice, dipping_bowl。动作语义：筷子把肉片放入热锅涮，再夹出蘸酱吃 / 左手端物，右手持食物送到张开的嘴前；道具：hotpot, chopsticks, meat_slice, dipping_bowl。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [10, 11]: 深度思考碎碎念. Preserve source pose A and B: 一手托下巴，眉眼思索。动作语义：嘴部小声说话并间歇停顿 / 正面小开口说话。与A必须是不同的动作阶段，保持道具形状/位置关系。眉眼变化、继续思考\nCells [12, 13]: 点击回应-傲娇生气. Preserve source pose A and B: 皱眉鼓腮，双臂抱胸。动作语义：鼓腮抱胸 / 皱眉，抬起一脚准备跺地。与A必须是不同的动作阶段，保持道具形状/位置关系。小跺脚并扭头\nCells [14, 15]: 点击回应-元气挥手. Preserve source pose A and B: 一手抬起接近脸侧。动作语义：高举手掌连续挥动 / 一手高举，张开手掌。与A必须是不同的动作阶段，保持道具形状/位置关系。开心微笑\n"
+    }
+  ]
+}

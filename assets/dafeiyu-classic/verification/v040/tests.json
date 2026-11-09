@@ -1,0 +1,97 @@
+{
+  "scope": "Observed test runs; Python60 complete suite plus5 preview regression tests added afterward. Not visual or Electron acceptance.",
+  "runs": [
+    {
+      "scope": "Python unit suite",
+      "count": 60,
+      "result": "passed",
+      "log_sha256": "ea7a9299dff2bd3d298db96303b984d990d36f95bc0ce51a7e1dd8bb3c058dba",
+      "output": "............................................................\n----------------------------------------------------------------------\nRan 60 tests in 58.321s\n\nOK\n"
+    },
+    {
+      "scope": "Additional preview stale-media tests",
+      "count": 5,
+      "result": "passed",
+      "log_sha256": "58eca5ce8535a77628fb9cdfecc2d75dc7649f463d20db8714856be99a65444e",
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.027s\n\nOK\n"
+    },
+    {
+      "scope": "Node importer and contract tests",
+      "count": 10,
+      "result": "passed",
+      "log_sha256": "fe4c0a3bb290533190ad954dcedde0be53d28293a5e6e1225b8f4b5d3ec95a18",
+      "output": "\n> dafeiyu-classic-assets@0.4.0 test\n> node --import tsx --test tools/validate.test.mjs\n\n✔ all eight committed manifests preserve the pinned 114-action contract and six additions (17.543042ms)\n✔ a changed original action order, mapping, move parameter, or weight fails (9.295125ms)\n✔ the six added actions include happy jumping and reject the superseded spin (0.773083ms)\n✔ strict upstream schema rejects unknown settings and missing referenced files (0.725125ms)\n✔ a manifest cannot silently reuse another class identity (1.433875ms)\n✔ all eight pack identities use v0.4.0 while the native schema remains version 1 (6.498583ms)\n✔ path validation rejects links and directory traversal without reading the target (2.7705ms)\n✔ report output cannot modify input packs through a direct path or parent link (1.738334ms)\n✔ argument parsing keeps generated reports separate and rejects conflicting modes (0.278792ms)\n✔ public error text excludes machine paths (0.2005ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 170.67\n"
+    },
+    {
+      "scope": "Eight class original action contract",
+      "count": 8,
+      "result": "passed",
+      "log_sha256": "374b38066e22c6004bf947a0a2134483dedb5ee713554a3e944254743d33e402",
+      "output": "\n> dafeiyu-classic-assets@0.4.0 check:contract\n> node --import tsx tools/validate.mjs --contract\n\n{\"mode\":\"contract\",\"passed\":8,\"requested\":8,\"report\":\"build/reports/contract.json\"}\n"
+    },
+    {
+      "scope": "RIFE source formatting regression",
+      "count": 4,
+      "result": "passed",
+      "log_sha256": "2144aad53bc4f58ee55ac37ab60a9f77116818ddc297f4a4c4bf260e32292654",
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.375s\n\nOK\n"
+    },
+    {
+      "scope": "Final exact-SHA extraction-crop regression",
+      "count": 5,
+      "result": "passed",
+      "log_sha256": "37ef25a91f6009e6b1e36a7de41cb22cf2a899172e5a24ee68de4a66576e5af5",
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.044s\n\nOK\n"
+    }
+  ],
+  "source_snapshot": [
+    {
+      "path": "tools/build-preview.py",
+      "sha256": "98548db1efe1daf7a71664f137eda03c5c1a7d6b7e1d9848602e82b980035311"
+    },
+    {
+      "path": "tools/test_audit_frames.py",
+      "sha256": "2585720660cccd145262b9f612598651fa215ffda30d63ff8f9572c6a012e3bd"
+    },
+    {
+      "path": "tools/test_build_preview.py",
+      "sha256": "b6b0206bc3749b7cfe1c61e0807a24c5753ae0d4224d7ccfb9001635ee8bf11f"
+    },
+    {
+      "path": "tools/test_class_identity_emotions.py",
+      "sha256": "93e622db4ea93b3ed24c5bbcc665cd336d3c410c2b58fb8c7d441325e6554b20"
+    },
+    {
+      "path": "tools/test_class_identity_motion.py",
+      "sha256": "7a1e5440906b69ff978e010fa1618f54328079cd30cb39377c734c8cdde4c290"
+    },
+    {
+      "path": "tools/test_extraction_crops.py",
+      "sha256": "935bd0ad395f5f382b37ba6ec1e4c90cdff77eff5dcc080c53397dbaa14b9762"
+    },
+    {
+      "path": "tools/test_identity_motion.py",
+      "sha256": "b2f5d9b3b3e8f6a074a4175e235c710e37a6e19dad8a5ca80196d0a8e327348a"
+    },
+    {
+      "path": "tools/test_motion_regression_routes.py",
+      "sha256": "0470034e73fd59f6d670cea9043bad2575faf5d811fb7ad28dcfa2c4ee652226"
+    },
+    {
+      "path": "tools/test_neural_motion.py",
+      "sha256": "3ea29e1402097472c6f77896c72f8d1514acf05851e35ab2635e103e7d300565"
+    },
+    {
+      "path": "tools/test_package.py",
+      "sha256": "f721f90701f190974f7715dfacf3cc40150ab05b6f5b9f9e5f73fc594000f0b8"
+    },
+    {
+      "path": "tools/test_source.py",
+      "sha256": "22a5030dd028625dc545f82fba7a66cb06e460318aff1e9b6c67e85bac659cee"
+    },
+    {
+      "path": "tools/validate.test.mjs",
+      "sha256": "33c941cf8d389d47705bb522c9388aaf1e420e09020d67fbc32f7ba573d3eaa1"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "class": "paladin",
+  "sheet": "actions-08",
+  "original_sha256": "58d5f150ae432c759d0fd50dc7d1a7e7f01bee7a95c9fe5e35830b9d34dcae9d",
+  "replacement_sha256": "555841301aaa408631be5524e2cecd81f1175bad31974f1c9d885185ac939935",
+  "freeze_manifest": "paladin-08-14-freeze-manifest.json",
+  "source_review": {
+    "sheet": "actions-08",
+    "candidate": "source/sheets/paladin/actions-08.png",
+    "sha256": "555841301aaa408631be5524e2cecd81f1175bad31974f1c9d885185ac939935",
+    "review": "source/sheets/paladin/actions-08.json",
+    "cells_reviewed": 16,
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/paladin/actions-08.png",
+      "source/base-keyframes/paladin/frame-00.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Asset: transparent 4x4 action sprite atlas, identity/equipment repair only.\nImage 1 is the EDIT TARGET with sixteen original action poses. Image 2 is the canonical paladin master identity and equipment reference. Preserve the target's exact 4x4 grid, sixteen cell positions, character scale, pose silhouettes, two original arms/hands, expressions, action props, clothing, gold cross symbols, face, hair and colors. Do not substitute idle poses and do not redraw an action.\n\nRepair only the missing canonical equipment. The paladin has exactly ONE compact gold warhammer with rectangular red-inset head, at the character's anatomical RIGHT hip (PICTURE LEFT in front view), and exactly ONE small red/gold cross holy book at anatomical LEFT hip (PICTURE RIGHT in front view). Keep the book already present; do not duplicate it or replace action props with it. Match the master hammer shape, size and proportions: short handle, broad compact rectangular head, total length roughly one fifth of character height. It hangs diagonally down/out from the same left waist belt attachment, not as a tall staff or giant mallet. When both original hands are busy, the hammer is belt-holstered and leaves both hands free; do not add a third hand to hold it. In side/prone poses, rotate and foreshorten this same attached hammer with the pelvis, allowing physically correct occlusion by body, hair or props. Keep the head and handle connected. Never move the hammer to the other hip between paired action cells.\nAll original action props remain distinct from equipped hammer/book: no converting cards, fans, toys, food or paperwork into extra holy equipment. Exactly two anatomical arms and hands, except legal occlusion.\nKeep genuine transparent background; no labels, borders, checkerboard, extra decoration, duplicate body parts, or new effects. Preserve every original cell's different action.\nTarget actions-08 cell order (zero-based, row-major):\n0 thinking arms folded/chin; 1 idea finger; 2 sorting papers beside open large book; 3 writing with quill beside book; 4 and 5 alternate happy running steps; 6 and 7 humming; 8 and 9 playing-card magic (cards are original props, not extra books); 10 sitting sleepy and 11 startled; 12 whipping a spinning top and 13 follow-through; 14 pulling gift ribbon and 15 opening glowing gift.\nRetain all16 exactly. Add left waist belt-holstered hammer in every human cell where visible, including runs and seated poses. Existing right waist book remains. For paper/book and gift-box occlusions, show only physically visible portions of equipment; do not pull the original hands away from their props.",
+    "generated_file": "image_gen-output:exec-bde2fb99-0d6c-4ce2-817d-47ffe6aea964.png",
+    "tool": "built-in image_gen",
+    "class": "paladin",
+    "sheet": "actions-08",
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "output": "outputs/all-class-equipment-revision/repaired-sheets/paladin/actions-08.png",
+    "sha256": "555841301aaa408631be5524e2cecd81f1175bad31974f1c9d885185ac939935",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 715234,
+      "opaque_pixels": 672694
+    },
+    "preview": "outputs/all-class-equipment-revision/repaired-sheets/paladin/actions-08.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/paladin/actions-08.png",
+        "sha256": "58d5f150ae432c759d0fd50dc7d1a7e7f01bee7a95c9fe5e35830b9d34dcae9d"
+      },
+      {
+        "path": "source/base-keyframes/paladin/frame-00.png",
+        "sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7"
+      }
+    ],
+    "video_frames_reviewed": 0,
+    "cell_reviews": [
+      {
+        "cell": 0,
+        "status": "pass_source_pose",
+        "note": "chin/arms folded; left waist hammer and right book remain, two hands"
+      },
+      {
+        "cell": 1,
+        "status": "pass_source_pose",
+        "note": "idea finger; left waist hammer and right book"
+      },
+      {
+        "cell": 2,
+        "status": "pass_source_pose",
+        "note": "sorting papers; hammer partially visible beside stack, book legally occluded by desk prop"
+      },
+      {
+        "cell": 3,
+        "status": "pass_source_pose",
+        "note": "quill writing; partial left hammer, no extra grip; book occluded by desk"
+      },
+      {
+        "cell": 4,
+        "status": "pass_source_pose",
+        "note": "running step A; hammer secured left belt, book right"
+      },
+      {
+        "cell": 5,
+        "status": "pass_source_pose",
+        "note": "running step B; same side attachment"
+      },
+      {
+        "cell": 6,
+        "status": "pass_source_pose",
+        "note": "humming A; left hammer/right book, arms down"
+      },
+      {
+        "cell": 7,
+        "status": "pass_source_pose",
+        "note": "humming B; left hammer/right book, arms down"
+      },
+      {
+        "cell": 8,
+        "status": "pass_source_pose",
+        "note": "single-card magic; card distinct from right belt book, hammer left"
+      },
+      {
+        "cell": 9,
+        "status": "pass_source_pose",
+        "note": "fanned-card magic; two hands, left hammer/right belt book"
+      },
+      {
+        "cell": 10,
+        "status": "pass_source_pose",
+        "note": "sleepy sitting; hammer left, book right"
+      },
+      {
+        "cell": 11,
+        "status": "pass_source_pose",
+        "note": "startled sitting; hammer left, book right, raised fists retained"
+      },
+      {
+        "cell": 12,
+        "status": "pass_source_pose",
+        "note": "whipping top; whip original hand, hammer belt not third hand"
+      },
+      {
+        "cell": 13,
+        "status": "pass_source_pose",
+        "note": "top follow-through; hammer separate from whip stick"
+      },
+      {
+        "cell": 14,
+        "status": "pass_source_pose",
+        "note": "opening ribbon; hands on box, hammer partly visible left, book partly visible right"
+      },
+      {
+        "cell": 15,
+        "status": "pass_source_pose",
+        "note": "opened glowing gift; lid/box original hands, hammer and book partly occluded"
+      }
+    ],
+    "limitations": [
+      "Source-pose equipment restoration only; generated gold trim may retain small redraw differences. Encoded animation needs separate frame review."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

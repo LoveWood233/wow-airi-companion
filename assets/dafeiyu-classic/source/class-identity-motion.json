@@ -1,0 +1,910 @@
+{
+  "schema": "class_fixed_identity_motion_v1",
+  "coordinate_space": "640x360 source pixels",
+  "policy": "Fixed source texture, continuous invertible bounded motion; equipped items follow rigid torso attachment. Not a reconstructed 3D skeleton.",
+  "classes": {
+    "warrior": {
+      "torso": [
+        298,
+        193,
+        349,
+        281
+      ],
+      "shoulders": [
+        [
+          269,
+          194,
+          300,
+          216
+        ],
+        [
+          346,
+          193,
+          379,
+          216
+        ]
+      ],
+      "arms": [
+        [
+          281,
+          216,
+          282,
+          256
+        ],
+        [
+          366,
+          216,
+          367,
+          256
+        ]
+      ],
+      "weapons": [
+        [
+          [
+            370,
+            195
+          ],
+          [
+            401,
+            190
+          ],
+          [
+            415,
+            213
+          ],
+          [
+            410,
+            247
+          ],
+          [
+            388,
+            272
+          ],
+          [
+            370,
+            268
+          ]
+        ],
+        [
+          [
+            277,
+            246
+          ],
+          [
+            292,
+            251
+          ],
+          [
+            281,
+            275
+          ],
+          [
+            260,
+            310
+          ],
+          [
+            249,
+            310
+          ],
+          [
+            251,
+            292
+          ],
+          [
+            269,
+            266
+          ]
+        ]
+      ],
+      "foot_y": 325,
+      "leg_rect": [
+        292,
+        282,
+        359,
+        326
+      ],
+      "face_offset": [
+        0,
+        0
+      ],
+      "master": "base-keyframes/warrior/frame-00.png",
+      "master_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+      "arm_angle_degrees": 10,
+      "annotation_method": "Manual visual landmarks on this class immutable master; screen coordinates, not anatomical left/right.",
+      "weapon_attachments": [
+        "torso",
+        "torso"
+      ]
+    },
+    "hunter": {
+      "torso": [
+        295,
+        187,
+        347,
+        284
+      ],
+      "shoulders": [
+        [
+          266,
+          189,
+          302,
+          211
+        ],
+        [
+          340,
+          188,
+          380,
+          211
+        ]
+      ],
+      "arms": [
+        [
+          282,
+          217,
+          274,
+          253
+        ],
+        [
+          355,
+          216,
+          367,
+          252
+        ]
+      ],
+      "weapons": [
+        [
+          [
+            225,
+            188
+          ],
+          [
+            244,
+            188
+          ],
+          [
+            258,
+            204
+          ],
+          [
+            256,
+            227
+          ],
+          [
+            265,
+            247
+          ],
+          [
+            268,
+            276
+          ],
+          [
+            283,
+            299
+          ],
+          [
+            278,
+            317
+          ],
+          [
+            268,
+            304
+          ],
+          [
+            257,
+            288
+          ],
+          [
+            247,
+            274
+          ],
+          [
+            244,
+            251
+          ],
+          [
+            233,
+            247
+          ],
+          [
+            232,
+            238
+          ],
+          [
+            238,
+            232
+          ],
+          [
+            238,
+            212
+          ],
+          [
+            230,
+            205
+          ],
+          [
+            219,
+            205
+          ]
+        ],
+        [
+          [
+            371,
+            167
+          ],
+          [
+            394,
+            174
+          ],
+          [
+            381,
+            198
+          ],
+          [
+            364,
+            189
+          ]
+        ]
+      ],
+      "foot_y": 316,
+      "leg_rect": [
+        292,
+        285,
+        353,
+        319
+      ],
+      "face_offset": [
+        -4,
+        -8
+      ],
+      "master": "base-keyframes/hunter/frame-00.png",
+      "master_sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4",
+      "arm_angle_degrees": 10,
+      "annotation_method": "Manual visual landmarks on this class immutable master; screen coordinates, not anatomical left/right.",
+      "weapon_attachments": [
+        "torso",
+        "torso"
+      ]
+    },
+    "mage": {
+      "torso": [
+        295,
+        190,
+        348,
+        305
+      ],
+      "shoulders": [
+        [
+          268,
+          192,
+          301,
+          219
+        ],
+        [
+          341,
+          192,
+          378,
+          218
+        ]
+      ],
+      "arms": [
+        [
+          280,
+          221,
+          263,
+          262
+        ],
+        [
+          359,
+          222,
+          374,
+          262
+        ]
+      ],
+      "weapons": [
+        [
+          [
+            211,
+            173
+          ],
+          [
+            223,
+            164
+          ],
+          [
+            241,
+            173
+          ],
+          [
+            247,
+            191
+          ],
+          [
+            237,
+            207
+          ],
+          [
+            263,
+            245
+          ],
+          [
+            257,
+            252
+          ],
+          [
+            228,
+            210
+          ],
+          [
+            217,
+            203
+          ],
+          [
+            210,
+            191
+          ]
+        ]
+      ],
+      "foot_y": 323,
+      "leg_rect": [
+        294,
+        303,
+        351,
+        325
+      ],
+      "face_offset": [
+        -4,
+        -4
+      ],
+      "master": "base-keyframes/mage/frame-00.png",
+      "master_sha256": "59bf2ae063309035fc0e59ceb5ca22969b768886ed3eac3bb03dbb556b9b3291",
+      "arm_angle_degrees": 10,
+      "annotation_method": "Manual visual landmarks on this class immutable master; screen coordinates, not anatomical left/right.",
+      "weapon_attachments": [
+        "torso"
+      ]
+    },
+    "rogue": {
+      "torso": [
+        293,
+        188,
+        355,
+        288
+      ],
+      "shoulders": [
+        [
+          264,
+          192,
+          299,
+          215
+        ],
+        [
+          349,
+          189,
+          382,
+          214
+        ]
+      ],
+      "arms": [
+        [
+          281,
+          217,
+          267,
+          261
+        ],
+        [
+          365,
+          217,
+          380,
+          261
+        ]
+      ],
+      "weapons": [
+        [
+          [
+            273,
+            253
+          ],
+          [
+            286,
+            259
+          ],
+          [
+            260,
+            288
+          ],
+          [
+            252,
+            290
+          ],
+          [
+            259,
+            273
+          ]
+        ],
+        [
+          [
+            366,
+            254
+          ],
+          [
+            377,
+            253
+          ],
+          [
+            394,
+            278
+          ],
+          [
+            395,
+            287
+          ],
+          [
+            386,
+            282
+          ]
+        ]
+      ],
+      "foot_y": 325,
+      "leg_rect": [
+        291,
+        281,
+        360,
+        326
+      ],
+      "face_offset": [
+        -2,
+        -7
+      ],
+      "master": "base-keyframes/rogue/frame-00.png",
+      "master_sha256": "4920d84307c8d30f29e2e7d909e29548023651a76cb4d952ef0ef7d72c0ca62b",
+      "arm_angle_degrees": 3,
+      "annotation_method": "Manual visual landmarks on this class immutable master; screen coordinates, not anatomical left/right.",
+      "weapon_attachments": [
+        "left_arm",
+        "right_arm"
+      ]
+    },
+    "paladin": {
+      "torso": [
+        293,
+        190,
+        353,
+        303
+      ],
+      "shoulders": [
+        [
+          263,
+          188,
+          299,
+          210
+        ],
+        [
+          346,
+          188,
+          383,
+          211
+        ]
+      ],
+      "arms": [
+        [
+          282,
+          216,
+          271,
+          251
+        ],
+        [
+          363,
+          216,
+          373,
+          251
+        ]
+      ],
+      "weapons": [
+        [
+          [
+            261,
+            245
+          ],
+          [
+            278,
+            251
+          ],
+          [
+            255,
+            277
+          ],
+          [
+            250,
+            299
+          ],
+          [
+            221,
+            291
+          ],
+          [
+            228,
+            269
+          ],
+          [
+            244,
+            271
+          ]
+        ],
+        [
+          [
+            361,
+            247
+          ],
+          [
+            387,
+            250
+          ],
+          [
+            388,
+            279
+          ],
+          [
+            363,
+            278
+          ]
+        ]
+      ],
+      "foot_y": 321,
+      "leg_rect": [
+        292,
+        298,
+        356,
+        325
+      ],
+      "face_offset": [
+        -1,
+        -7
+      ],
+      "master": "base-keyframes/paladin/frame-00.png",
+      "master_sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7",
+      "arm_angle_degrees": 3,
+      "annotation_method": "Manual visual landmarks on this class immutable master; screen coordinates, not anatomical left/right.",
+      "weapon_attachments": [
+        "left_arm",
+        "torso"
+      ]
+    },
+    "warlock": {
+      "torso": [
+        295,
+        194,
+        359,
+        317
+      ],
+      "shoulders": [
+        [
+          268,
+          197,
+          301,
+          217
+        ],
+        [
+          348,
+          195,
+          385,
+          217
+        ]
+      ],
+      "arms": [
+        [
+          282,
+          220,
+          270,
+          253
+        ],
+        [
+          369,
+          222,
+          383,
+          253
+        ]
+      ],
+      "weapons": [
+        [
+          [
+            245,
+            184
+          ],
+          [
+            259,
+            175
+          ],
+          [
+            273,
+            185
+          ],
+          [
+            276,
+            201
+          ],
+          [
+            271,
+            209
+          ],
+          [
+            287,
+            235
+          ],
+          [
+            279,
+            239
+          ],
+          [
+            264,
+            211
+          ],
+          [
+            251,
+            210
+          ],
+          [
+            244,
+            196
+          ]
+        ],
+        [
+          [
+            374,
+            246
+          ],
+          [
+            398,
+            250
+          ],
+          [
+            397,
+            275
+          ],
+          [
+            375,
+            273
+          ]
+        ]
+      ],
+      "foot_y": 325,
+      "leg_rect": [
+        298,
+        311,
+        362,
+        328
+      ],
+      "face_offset": [
+        2,
+        -3
+      ],
+      "master": "base-keyframes/warlock/frame-00.png",
+      "master_sha256": "d7e171cc5055de4b20b3411116ed5cac71ad097326b6bbdca2f4912660434fe2",
+      "arm_angle_degrees": 10,
+      "annotation_method": "Manual visual landmarks on this class immutable master; screen coordinates, not anatomical left/right.",
+      "weapon_attachments": [
+        "torso",
+        "torso"
+      ]
+    },
+    "priest": {
+      "torso": [
+        292,
+        189,
+        350,
+        308
+      ],
+      "shoulders": [
+        [
+          263,
+          192,
+          297,
+          213
+        ],
+        [
+          343,
+          191,
+          379,
+          213
+        ]
+      ],
+      "arms": [
+        [
+          276,
+          218,
+          265,
+          256
+        ],
+        [
+          362,
+          218,
+          371,
+          255
+        ]
+      ],
+      "weapons": [
+        [
+          [
+            232,
+            174
+          ],
+          [
+            245,
+            181
+          ],
+          [
+            252,
+            195
+          ],
+          [
+            243,
+            209
+          ],
+          [
+            259,
+            245
+          ],
+          [
+            253,
+            250
+          ],
+          [
+            236,
+            215
+          ],
+          [
+            226,
+            205
+          ],
+          [
+            222,
+            195
+          ],
+          [
+            229,
+            186
+          ]
+        ]
+      ],
+      "foot_y": 322,
+      "leg_rect": [
+        290,
+        305,
+        354,
+        326
+      ],
+      "face_offset": [
+        -3,
+        -4
+      ],
+      "master": "base-keyframes/priest/frame-00.png",
+      "master_sha256": "eebe5cb729f4e3d6dc5ba3d2eec6ef855ec388f9bc82322cd60331a04d75f6a2",
+      "arm_angle_degrees": 10,
+      "annotation_method": "Manual visual landmarks on this class immutable master; screen coordinates, not anatomical left/right.",
+      "weapon_attachments": [
+        "torso"
+      ]
+    },
+    "druid": {
+      "torso": [
+        289,
+        187,
+        349,
+        300
+      ],
+      "shoulders": [
+        [
+          258,
+          190,
+          298,
+          211
+        ],
+        [
+          337,
+          190,
+          378,
+          211
+        ]
+      ],
+      "arms": [
+        [
+          279,
+          216,
+          272,
+          247
+        ],
+        [
+          355,
+          216,
+          367,
+          246
+        ]
+      ],
+      "weapons": [
+        [
+          [
+            218,
+            186
+          ],
+          [
+            225,
+            176
+          ],
+          [
+            236,
+            170
+          ],
+          [
+            247,
+            174
+          ],
+          [
+            256,
+            184
+          ],
+          [
+            261,
+            201
+          ],
+          [
+            266,
+            214
+          ],
+          [
+            276,
+            232
+          ],
+          [
+            269,
+            237
+          ],
+          [
+            260,
+            222
+          ],
+          [
+            253,
+            211
+          ],
+          [
+            247,
+            208
+          ],
+          [
+            241,
+            216
+          ],
+          [
+            229,
+            213
+          ],
+          [
+            225,
+            202
+          ],
+          [
+            220,
+            199
+          ]
+        ]
+      ],
+      "foot_y": 315,
+      "leg_rect": [
+        289,
+        297,
+        352,
+        318
+      ],
+      "face_offset": [
+        -5,
+        -8
+      ],
+      "master": "base-keyframes/druid/frame-00.png",
+      "master_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+      "arm_angle_degrees": 10,
+      "annotation_method": "Manual visual landmarks on this class immutable master; screen coordinates, not anatomical left/right.",
+      "weapon_attachments": [
+        "torso"
+      ]
+    }
+  }
+}

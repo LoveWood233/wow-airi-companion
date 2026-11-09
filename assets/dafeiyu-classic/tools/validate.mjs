@@ -35,8 +35,8 @@ export function expectedManifest(character) {
   animations.categories.push({ id: '情绪', weight: 8, actions: [...newActions] })
   return {
     version: 1,
-    id: `dafeiyu-classic-${character.id}-full-v032`,
-    name: `大肥鱼·${character.label}·${character.set}（120动作 60fps v0.3.2）`,
+    id: `dafeiyu-classic-${character.id}-full-v040`,
+    name: `大肥鱼·${character.label}·${character.set}（120动作 60fps v0.4.0）`,
     files: [...builtin.files, ...newActions.map(name => `${name}.webm`)],
     animations,
     animationWeights: structuredClone(builtin.animationWeights),
@@ -45,7 +45,7 @@ export function expectedManifest(character) {
 
 export function validateManifest(manifest, character) {
   parse(dshPetManifestSchema, manifest)
-  assert.deepEqual(manifest, expectedManifest(character), `Changed v0.3.2 action contract: ${character.id}`)
+  assert.deepEqual(manifest, expectedManifest(character), `Changed v0.4.0 action contract: ${character.id}`)
   return { originalActions: 114, addedActions: 6, totalActions: 120, originalMappingPreserved: true }
 }
 
@@ -67,7 +67,7 @@ export async function verifyUpstream() {
 
 export async function verifyReleaseFixture() {
   const index = await readJson(join(packageRoot, 'source/media-index.json'))
-  assert.equal(index.version, '0.3.2')
+  assert.equal(index.version, '0.4.0')
   assert.equal(index.files.length, 960)
   const recordsByPath = new Map(index.files.map(file => [file.path, file]))
   assert.equal(recordsByPath.size, 960, 'Duplicate media reference paths')
@@ -98,7 +98,7 @@ export async function validateContracts() {
   await verifyReleaseFixture()
   const plan = await readJson(join(packageRoot, 'source/action-plan.json'))
   assert.equal(plan.owningCommit, owningCommit)
-  assert.equal(plan.releaseVersion, '0.3.2')
+  assert.equal(plan.releaseVersion, '0.4.0')
   assert.deepEqual(plan.classes, classes)
   assert.equal(plan.originalActionsPerClass, 114)
   assert.equal(plan.addedActionsPerClass, 6)
@@ -116,7 +116,7 @@ export async function validateContracts() {
     const manifest = await loadManifest(join(packageRoot, 'manifests', character.id), character)
     results.push({ class: character.id, status: 'passed', ...validateManifest(manifest, character) })
   }
-  return { mode: 'contract', releaseVersion: '0.3.2', sourceIntegrity, passed: 8,
+  return { mode: 'contract', releaseVersion: '0.4.0', sourceIntegrity, passed: 8,
     manifestCount: 8, expectedMediaCount: 960, mediaInspected: false, results }
 }
 
@@ -322,7 +322,7 @@ export async function main(argv = process.argv.slice(2)) {
   if (options.help) {
     console.log('Usage: node --import tsx tools/validate.mjs --contract|--media|--native [--packs DIR] [--report FILE] [--release-hashes]')
     console.log('Defaults: build/packs input; build/reports/<mode>.json output. Input packs are read-only.')
-    console.log('--release-hashes requires byte-for-byte agreement with the v0.3.2 release; omit for re-encoded builds.')
+    console.log('--release-hashes requires byte-for-byte agreement with the v0.4.0 release; omit for re-encoded builds.')
     return
   }
   await checkReportDestination(options.report, options.packs)
@@ -342,7 +342,7 @@ export async function main(argv = process.argv.slice(2)) {
       catch (error) { results.push({ class: character.id, status: 'failed', error: publicError(error, [packs]) }) }
     }
     const passed = results.filter(result => result.status === 'passed').length
-    report = { mode: options.mode, releaseVersion: '0.3.2', sourceIntegrity: contract.sourceIntegrity,
+    report = { mode: options.mode, releaseVersion: '0.4.0', sourceIntegrity: contract.sourceIntegrity,
       requestedClasses: 8, passed, expectedMediaCount: 960, fullEightClassValidation: passed === 8,
       releaseHashesRequired: options.releaseHashes,
       actualNativeImporterExecuted: options.mode === 'native',

@@ -1,0 +1,46 @@
+{
+  "scope": "Eight fixed-source happy-jump clips only; not visual approval of960actions",
+  "input_media": [
+    {
+      "class": "warrior",
+      "action": "开心蹦跳",
+      "sha256": "062016836efe2d4526358bb85e09c1b5e03603655162540fd59711ad72678af7"
+    },
+    {
+      "class": "hunter",
+      "action": "开心蹦跳",
+      "sha256": "54c67e21261c992d2819723cff4e412051c8c1a0eb72f1b9bf61bd4094563709"
+    },
+    {
+      "class": "mage",
+      "action": "开心蹦跳",
+      "sha256": "4e871d062fd9aa666ef999e8d75eaf7bf5a4d85bdb4eb850b2023676792c23e4"
+    },
+    {
+      "class": "rogue",
+      "action": "开心蹦跳",
+      "sha256": "70c095084d65478ad42fa56467d09d8ab4e5f16f8b5fc70af381b79e952fe146"
+    },
+    {
+      "class": "paladin",
+      "action": "开心蹦跳",
+      "sha256": "7daf65eedfc59adf4f08dc0ddf5acffec9072c0de051059fd1f06520e817dd59"
+    },
+    {
+      "class": "warlock",
+      "action": "开心蹦跳",
+      "sha256": "ef3392fdba1d30a190a0728a83d6c7fbce7f3002838ad8eb0f068a060fbc337b"
+    },
+    {
+      "class": "priest",
+      "action": "开心蹦跳",
+      "sha256": "8e03cf1d2f6b8a0647b1c69430c322de6d356c275319a27641311734c21f5344"
+    },
+    {
+      "class": "druid",
+      "action": "开心蹦跳",
+      "sha256": "b3a15cf6d87a3231bbcf8c494a84fe38985695e23cab76f49f441f21819d5ca6"
+    }
+  ],
+  "output_sha256": "76392c7f6397733efc521a870b039386fbffb9a2f30f68a3e5c07bea5c73ea59"
+}

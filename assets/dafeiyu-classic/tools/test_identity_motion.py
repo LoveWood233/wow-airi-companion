@@ -154,9 +154,11 @@ class FixedSourceRoutingTests(unittest.TestCase):
                 continue
             with self.subTest(class_id=class_id):
                 task = {'class': class_id, 'name': '开心蹦跳'}
-                self.assertFalse(render.fixed_identity_action(task))
-                self.assertEqual(render.source_list(task),
-                                 [SOURCE / 'sheets' / class_id / 'happy-jump.png'])
+                self.assertTrue(render.fixed_identity_action(task))
+                paths=render.input_images(task)
+                self.assertIn(SOURCE / 'base-keyframes' / class_id / 'frame-00.png', paths)
+                self.assertTrue(all(path.parent==SOURCE / 'base-keyframes' / class_id for path in paths))
+                self.assertNotIn(SOURCE / 'sheets' / class_id / 'happy-jump.png', paths)
 
     def test_expression_and_motion_changes_invalidate_cached_provenance(self):
         task = {'class': 'warrior', 'name': '开心蹦跳'}

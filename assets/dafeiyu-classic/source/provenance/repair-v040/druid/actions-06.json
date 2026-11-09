@@ -1,0 +1,115 @@
+{
+  "class": "druid",
+  "sheet": "actions-06",
+  "original_sha256": "16a649b1f2bbfb421a12ed5fe48e7f6ec86dd253ba2f6b3dbf1a733f15a0c4a3",
+  "replacement_sha256": "1ed2bf6bdee4f9f807296be2913d071acddc5fa7bfcfa43522fe2a6f6f06133e",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-06",
+    "path": "source/sheets/druid/actions-06.png",
+    "sha256": "1ed2bf6bdee4f9f807296be2913d071acddc5fa7bfcfa43522fe2a6f6f06133e",
+    "dimensions": [
+      1247,
+      1261
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/actions-06.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "One staff each; cake/noodles/qingtuan/rice/onigiri/dumpling all distinct, balloon stages and flute/finger positions retained.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-06",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/actions-06.png",
+    "source_sha256": "16a649b1f2bbfb421a12ed5fe48e7f6ec86dd253ba2f6b3dbf1a733f15a0c4a3",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-62c99682-15c9-4760-bf31-936d7bbece05",
+        "path": "workspace-revision/attempts/druid/actions-06-01.png",
+        "sha256": "1ed2bf6bdee4f9f807296be2913d071acddc5fa7bfcfa43522fe2a6f6f06133e"
+      }
+    ],
+    "generated_output_id": "exec-62c99682-15c9-4760-bf31-936d7bbece05",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-62c99682-15c9-4760-bf31-936d7bbece05.png",
+    "saved_output": "source/sheets/druid/actions-06.png",
+    "final_sha256": "1ed2bf6bdee4f9f807296be2913d071acddc5fa7bfcfa43522fe2a6f6f06133e",
+    "dimensions": [
+      1247,
+      1261
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/druid/actions-06.txt",
+    "prompt_sha256": "937d59bb3bb2b303ab90298cb4bf290af5315faa7dc046330c78befc7ff17208",
+    "visual_review": {
+      "method": "generatedImage full atlas actually viewed, all16 cells",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "One staff each; cake/noodles/qingtuan/rice/onigiri/dumpling all distinct, balloon stages and flute/finger positions retained.",
+      "grid_cut_review": "No apparent cross-cell figure overlap at four-way divisions; transparent outer margins vary.",
+      "full_video_validation": false
+    }
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-06.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 吃重阳糕. Preserve source pose A and B: 左手端托小碗或小物，右手空闲；道具：chongyang_cake_plate, cake_piece。动作语义：举起多层重阳糕小块吃，保留层次和装饰 / 左手端物，右手持食物送到张开的嘴前；道具：chongyang_cake_plate, cake_piece。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [2, 3]: 吃长寿面. Preserve source pose A and B: 左手端碗，右手持筷抬起食物；道具：noodle_bowl, long_noodles, chopsticks。动作语义：筷子提起长面条，从嘴到碗保持面条连续 / 双手抬小碗贴近嘴边，微微仰头；道具：noodle_bowl, long_noodles, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [4, 5]: 吃青团. Preserve source pose A and B: 双手胸前端托，手腕形成物体接触面；道具：qingtuan_full, qingtuan_bitten。动作语义：双手拿绿色青团咬开，露出内馅 / 左手端物，右手持食物送到张开的嘴前；道具：qingtuan_full, qingtuan_bitten。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [6, 7]: 吃饭·碗饭. Preserve source pose A and B: 左手端托小碗或小物，右手空闲；道具：rice_bowl, spoon。动作语义：左手捧碗、右手舀饭吃，显示一碗米饭 / 左手端物，右手持食物送到张开的嘴前；道具：rice_bowl, spoon。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [8, 9]: 吃饭团. Preserve source pose A and B: 双手胸前端托，手腕形成物体接触面；道具：onigiri_full, onigiri_bitten。动作语义：举起三角海苔饭团咬下，保留明确缺口 / 左手端物，右手持食物送到张开的嘴前；道具：onigiri_full, onigiri_bitten。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [10, 11]: 吃饺子. Preserve source pose A and B: 左手端碗，右手持筷抬起食物；道具：dumpling_plate, chopsticks。动作语义：夹起月牙褶边饺子咬开，保留形状特征 / 左手端物，右手持食物送到张开的嘴前；道具：dumpling_plate, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [12, 13]: 吹气球. Preserve source pose A and B: 双手在嘴前握住气球口或吹具，鼓腮；道具：balloon_deflated, balloon_half, balloon_full。动作语义：嘴贴气球口吹气，气球逐步变大 / 双手胸前端托，手腕形成物体接触面；道具：balloon_deflated, balloon_half, balloon_full。与A必须是不同的动作阶段，保持道具形状/位置关系。捏住气口并惊喜查看\nCells [14, 15]: 吹笛子. Preserve source pose A and B: 横笛贴嘴，双手手指按住靠近嘴的音孔，鼓腮吹奏。 / 同一横笛位置，抬起外侧两根手指换按孔，眼神专注，嘴仍贴笛孔。\n"
+    }
+  ]
+}

@@ -19,7 +19,7 @@ import tempfile
 import zipfile
 
 CLASSES = ('warrior', 'hunter', 'mage', 'rogue', 'paladin', 'warlock', 'priest', 'druid')
-VERSION = '0.3.2'
+VERSION = '0.4.0'
 DEFAULT_ROOT = Path(__file__).resolve().parent.parent
 FILE_LIMIT = 32 * 1024**2
 PACK_LIMIT = 512 * 1024**2

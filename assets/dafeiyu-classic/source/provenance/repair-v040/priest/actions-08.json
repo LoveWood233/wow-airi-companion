@@ -1,0 +1,61 @@
+{
+  "class": "priest",
+  "sheet": "actions-08",
+  "original_sha256": "b50935451f357a4dffa80a99f444a48c4255cc7e01178cb1db35b9146b2fd44e",
+  "replacement_sha256": "c4052ae4852027d3e0e4e0c92e161e6f24be89293e74d2a9440cc4dc8bdfa0e3",
+  "freeze_manifest": "casters-acceptance.json",
+  "source_review": {
+    "class": "priest",
+    "sheet": "actions-08",
+    "path": "source/sheets/priest/actions-08.png",
+    "sha256": "c4052ae4852027d3e0e4e0c92e161e6f24be89293e74d2a9440cc4dc8bdfa0e3",
+    "qa_status": "accepted_source_pose_review",
+    "alpha_review_image": "source/sheets/priest/actions-08-alpha-inspect.jpg",
+    "source_defect_repaired": true
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "mode": "precise-object-edit",
+    "date": "2026-11-09",
+    "edit_target": "source/sheets/priest/actions-08.png",
+    "equipment_reference": "source/base-keyframes/priest/frame-00.png",
+    "prompt_file": "source/sheets/priest/actions-08.prompt.txt",
+    "output_file": "source/sheets/priest/actions-08.png",
+    "generated_original": "image_gen-output:exec-2d6a3d8c-9d60-41ee-99f7-d77a602519ef.png",
+    "output_sha256": "c4052ae4852027d3e0e4e0c92e161e6f24be89293e74d2a9440cc4dc8bdfa0e3",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "image_mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "status": "candidate_for_parent_review",
+    "source_repo_modified": false,
+    "qa": {
+      "all_16_cells_viewed": true,
+      "gold_staff_visible_or_legitimately_occluded_in_all_16": true,
+      "poses_expressions_props_order_preserved_visually": true,
+      "cells_9_12_staff_partly_occluded_by_existing_card_or_arm": true,
+      "final_animation_frames_reviewed": false,
+      "notes": "全部16格经RGBA原图及灰底实际alpha合成复核：恢复同侧金杖，原16格姿势/表情/道具保留；等待主agent审样再扩大。未承诺细线纹逐像素一致或视频帧稳定。",
+      "alpha_composite_review_image": "source/sheets/priest/actions-08-alpha-inspect.jpg",
+      "alpha_nonzero_pixels": 816153,
+      "alpha_gt_240_pixels": 636012
+    },
+    "alpha_gt_240_pixels": 636012,
+    "qa_status": "accepted_source_pose_review",
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/priest/actions-08-alpha-inspect.jpg",
+    "iteration_records": []
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-08.prompt.txt",
+      "text": "Use case: precise-object-edit, identity-preserve.\nAsset type: transparent 4-by-4 animation sprite atlas for the same chibi blue-haired Dafeiyu priest character.\nImage 1 is the EDIT TARGET: priest/actions-08.png, sixteen existing poses in fixed 4x4 row-major cells.\nImage 2 is the EQUIPMENT REFERENCE ONLY: priest base frame-00.png. It is not a new pose or layout to copy.\n\nRepair the target atlas carefully. Its persistent golden staff has been omitted. Restore that exact gold leaf/spear-shaped staff head with its short shaft behind the character's screen-left shoulder in every pose. Use the reference's size, gold shape, mounting/position relationship, and proportions. In each near-front pose the gold staff head remains on screen LEFT; do not swap it to screen right. It follows the torso tilt, never becomes a handheld action prop, and remains legible except where an existing hand, card fan, or hair legitimately occludes it. Preserve the reference's exact floating gold crown/halo, cream shoulder trim, cream-and-burgundy gold-edged robe, vertical central gold motif, pale blue waist jewel, and dark gold-trim shoes. Keep these persistent outfit details as close as possible in all 16 cells. Do not change the character's equipment into a new outfit.\n\nKeep every original pose, face/expression, hand position, prop, thought bubble, ground effect, body orientation, grid placement and cell size from IMAGE 1. This is a localized persistent-equipment restoration, not a redesigned atlas. Do not copy the neutral reference pose into the action cells. All 16 actions/stages remain distinct:\nRow 1: thinking with hand at chin and thought dots; idea with pointing finger and lightbulb; archive reading a page over ledger/papers; archive writing with feather.\nRow 2: two alternating forward jogging poses; two humming poses with musical notes and open arms.\nRow 3: two card-magic poses (small held deck then fan of cards); sleepy drooping pose with Z marks; startled awake pose with raised hands.\nRow 4: two spinning-top/whip action stages (raised whip then low sweep toward spinning top); opening gift box; excited glowing open gift.\nKeep cards, books, keyboard-free papers, whip/top, and gift box exactly recognizable, separate from the restored staff. Keep existing visual ordering and no extra sprites. No labels, no watermarks, no borders, no background scene.\nPreserve a true transparent RGBA background including between cells. Do not paint black or white background. Output one square 4x4 atlas, full-resolution crisp clean linework, same composition and margins as target, no cropped appendages.\n"
+    }
+  ]
+}

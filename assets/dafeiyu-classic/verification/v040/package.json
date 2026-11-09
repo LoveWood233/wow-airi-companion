@@ -1,0 +1,60 @@
+{
+  "status": "archive_created_and_verified",
+  "version": "0.4.0",
+  "classes": [
+    {
+      "class": "warrior",
+      "files": 120,
+      "bytes": 382886042
+    },
+    {
+      "class": "hunter",
+      "files": 120,
+      "bytes": 358546911
+    },
+    {
+      "class": "mage",
+      "files": 120,
+      "bytes": 379934801
+    },
+    {
+      "class": "rogue",
+      "files": 120,
+      "bytes": 309571352
+    },
+    {
+      "class": "paladin",
+      "files": 120,
+      "bytes": 327793899
+    },
+    {
+      "class": "warlock",
+      "files": 120,
+      "bytes": 337139193
+    },
+    {
+      "class": "priest",
+      "files": 120,
+      "bytes": 320533955
+    },
+    {
+      "class": "druid",
+      "files": 120,
+      "bytes": 393828399
+    }
+  ],
+  "mediaFiles": 960,
+  "mediaBytes": 2810234552,
+  "mediaIndexCoverageVerified": true,
+  "pinnedMediaHashesVerified": true,
+  "validationScope": "Manifest and action-plan agreement, exact file sets, EBML signatures, size limits and SHA256; codec decoding and native importer execution are separate checks.",
+  "archive": {
+    "name": "dafeiyu-classic-motion-v040-CANDIDATE-NOT-ACCEPTED.zip",
+    "sha256": "a4b5fe8adbf62eb8b6ba6a7632002c5794680356f5de60f9e95a930fff59bc69",
+    "bytes": 2810519249,
+    "entries": 970,
+    "crcVerified": true
+  },
+  "visualAcceptance": false,
+  "candidateStatus": "NOT_ACCEPTED_FOR_FINAL_RELEASE"
+}

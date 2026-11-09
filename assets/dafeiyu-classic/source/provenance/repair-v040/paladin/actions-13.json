@@ -1,0 +1,161 @@
+{
+  "class": "paladin",
+  "sheet": "actions-13",
+  "original_sha256": "953032c9ec84c335e1f3cd4e4d7b4016a0a4e4f5aea634bc977a23e16e6a884d",
+  "replacement_sha256": "b66806a62353c3dcbbd786663f981ba7f292f09f468dff9c2965bc5149fab39d",
+  "freeze_manifest": "paladin-08-14-freeze-manifest.json",
+  "source_review": {
+    "sheet": "actions-13",
+    "candidate": "source/sheets/paladin/actions-13.png",
+    "sha256": "b66806a62353c3dcbbd786663f981ba7f292f09f468dff9c2965bc5149fab39d",
+    "review": "source/sheets/paladin/actions-13.json",
+    "cells_reviewed": 16,
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/paladin/actions-13.png",
+      "source/base-keyframes/paladin/frame-00.png",
+      "source/sheets/paladin/actions-08.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Asset: transparent 4x4 action sprite atlas, identity/equipment repair only.\nImage 1 is the EDIT TARGET with sixteen original action poses. Image 2 is the canonical paladin master identity and equipment reference. Preserve the target's exact 4x4 grid, sixteen cell positions, character scale, pose silhouettes, two original arms/hands, expressions, action props, clothing, gold cross symbols, face, hair and colors. Do not substitute idle poses and do not redraw an action.\n\nRepair only the missing canonical equipment. The paladin has exactly ONE compact gold warhammer with rectangular red-inset head, at the character's anatomical RIGHT hip (PICTURE LEFT in front view), and exactly ONE small red/gold cross holy book at anatomical LEFT hip (PICTURE RIGHT in front view). Keep the book already present; do not duplicate it or replace action props with it. Match the master hammer shape, size and proportions: short handle, broad compact rectangular head, total length roughly one fifth of character height. It hangs diagonally down/out from the same left waist belt attachment, not as a tall staff or giant mallet. When both original hands are busy, the hammer is belt-holstered and leaves both hands free; do not add a third hand to hold it. In side/prone poses, rotate and foreshorten this same attached hammer with the pelvis, allowing physically correct occlusion by body, hair or props. Keep the head and handle connected. Never move the hammer to the other hip between paired action cells.\nAll original action props remain distinct from equipped hammer/book: no converting cards, fans, toys, food or paperwork into extra holy equipment. Exactly two anatomical arms and hands, except legal occlusion.\nKeep genuine transparent background; no labels, borders, checkerboard, extra decoration, duplicate body parts, or new effects. Preserve every original cell's different action.\nImage 3 is approved equipment placement/scale reference only. Keep the EXISTING book in Image1 at its original location; only ADD missing hammer on the opposite waist.\nTarget cells0/1 show the HUMAN paladin with a blue whale/water EFFECT BEHIND her, NOT a transformed whale. Keep that human and all whale effects and add its usual left-belt hammer. Cells2/3 butterfly/bees/flowers,4/5 crab walking,6/7 startled/crouched airborne,8/9 buried by falling leaves,10/11 mouse cursor dragging midair,12/13 decorating Christmas tree,14/15 Halloween pumpkin candy bucket. Maintain16 cells and all props. In cell9 leaf pile covers most body: the waist gear should remain correctly occluded by leaves; do NOT place a hammer over the leaves or in the hands merely to make it visible. In cell8 lower gear can be partially hidden. Hovering/dragging retain legs and two original hands; hammer stays at left belt, not floating independently. The trees/buckets are original props, not equipment.",
+    "generated_file": "image_gen-output:exec-07e662c3-ddd9-4d04-9d92-5e50610d36c3.png",
+    "tool": "built-in image_gen",
+    "class": "paladin",
+    "sheet": "actions-13",
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "output": "outputs/all-class-equipment-revision/repaired-sheets/paladin/actions-13.png",
+    "sha256": "b66806a62353c3dcbbd786663f981ba7f292f09f468dff9c2965bc5149fab39d",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 698272,
+      "opaque_pixels": 651604
+    },
+    "preview": "outputs/all-class-equipment-revision/repaired-sheets/paladin/actions-13.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/paladin/actions-13.png",
+        "sha256": "953032c9ec84c335e1f3cd4e4d7b4016a0a4e4f5aea634bc977a23e16e6a884d"
+      },
+      {
+        "path": "source/base-keyframes/paladin/frame-00.png",
+        "sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7"
+      },
+      {
+        "path": "source/sheets/paladin/actions-08.png",
+        "sha256": "555841301aaa408631be5524e2cecd81f1175bad31974f1c9d885185ac939935"
+      }
+    ],
+    "video_frames_reviewed": 0,
+    "cell_reviews": [
+      {
+        "cell": 0,
+        "action": "蓝鲸现世",
+        "status": "pass_source_pose",
+        "note": "Human retained, whale is background effect; left hammer/right book with original fists."
+      },
+      {
+        "cell": 1,
+        "action": "蓝鲸现世",
+        "status": "pass_source_pose",
+        "note": "Human retained in whale effect, open casting palm unchanged, left hammer/right book."
+      },
+      {
+        "cell": 2,
+        "action": "蝴蝶蜜蜂环绕头顶开花",
+        "status": "pass_source_pose",
+        "note": "Original human pose and props retained; one left belt hammer and one right holy book."
+      },
+      {
+        "cell": 3,
+        "action": "蝴蝶蜜蜂环绕头顶开花",
+        "status": "pass_source_pose",
+        "note": "Original human pose and props retained; one left belt hammer and one right holy book."
+      },
+      {
+        "cell": 4,
+        "action": "螃蟹走路",
+        "status": "pass_source_pose",
+        "note": "Original human pose and props retained; one left belt hammer and one right holy book."
+      },
+      {
+        "cell": 5,
+        "action": "螃蟹走路",
+        "status": "pass_source_pose",
+        "note": "Original human pose and props retained; one left belt hammer and one right holy book."
+      },
+      {
+        "cell": 6,
+        "action": "被吓一跳",
+        "status": "pass_source_pose",
+        "note": "Original human pose and props retained; one left belt hammer and one right holy book."
+      },
+      {
+        "cell": 7,
+        "action": "被吓一跳",
+        "status": "pass_source_pose",
+        "note": "Original human pose and props retained; one left belt hammer and one right holy book."
+      },
+      {
+        "cell": 8,
+        "action": "被落叶淹没",
+        "status": "pass_source_pose",
+        "note": "Falling leaves overlap lower hammer/book correctly."
+      },
+      {
+        "cell": 9,
+        "action": "被落叶淹没",
+        "status": "pass_source_pose",
+        "note": "Deep leaf pile fully occludes waist equipment; no floating hammer added above leaves."
+      },
+      {
+        "cell": 10,
+        "action": "被鼠标拖拽悬空反馈",
+        "status": "pass_source_pose",
+        "note": "Mouse drag in air retains two original arms; gear attached to belt."
+      },
+      {
+        "cell": 11,
+        "action": "被鼠标拖拽悬空反馈",
+        "status": "pass_source_pose",
+        "note": "Tilted drag retains pelvis attachment of hammer/book."
+      },
+      {
+        "cell": 12,
+        "action": "装点圣诞树",
+        "status": "pass_source_pose",
+        "note": "Christmas tree partly overlaps left hammer; original decorating hands retained."
+      },
+      {
+        "cell": 13,
+        "action": "装点圣诞树",
+        "status": "pass_source_pose",
+        "note": "Star placement pose retained; one left hammer/right book."
+      },
+      {
+        "cell": 14,
+        "action": "讨糖南瓜灯",
+        "status": "pass_source_pose",
+        "note": "Candy bucket held by two original hands, hammer partly occluded behind bucket."
+      },
+      {
+        "cell": 15,
+        "action": "讨糖南瓜灯",
+        "status": "pass_source_pose",
+        "note": "Candy offering palm/bucket hand retained; left hammer/right book."
+      }
+    ],
+    "limitations": [
+      "Only source-pose identity/equipment and anatomical attachment/occlusion reviewed. Generated minor linework differences and final motion artifacts require separate review."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

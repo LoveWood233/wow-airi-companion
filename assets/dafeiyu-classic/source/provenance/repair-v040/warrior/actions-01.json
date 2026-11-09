@@ -1,0 +1,28 @@
+{
+  "class": "warrior",
+  "sheet": "actions-01",
+  "original_sha256": "55954d7fd52ac3918209233dd0df706416da5013e7d15e7b67996c1a83ed9cbc",
+  "replacement_sha256": "e18846b3e51347199b507d2d30bde3f78aa3158ac054d9213d72bf16ac761912",
+  "freeze_manifest": "warrior-partial-freeze.json",
+  "source_review": {
+    "class": "warrior",
+    "sheet": "actions-01",
+    "path": "source/sheets/warrior/actions-01.png",
+    "sha256": "e18846b3e51347199b507d2d30bde3f78aa3158ac054d9213d72bf16ac761912",
+    "qa_status": "source_pose_major_equipment_repair_reviewed_pending_motion"
+  },
+  "generation": {
+    "revision": "all-class-equipment-repair",
+    "method": "built_in_image_gen_precise_object_edit",
+    "class": "warrior",
+    "sheet": "actions-01",
+    "edit_target_sha256": "55954d7fd52ac3918209233dd0df706416da5013e7d15e7b67996c1a83ed9cbc",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "generated_output": "image_gen-output:exec-79c2a40a-94b3-41ab-88ac-6e40ed41c6fd.png",
+    "sha256": "e18846b3e51347199b507d2d30bde3f78aa3158ac054d9213d72bf16ac761912",
+    "review": "All sixteen action cells retained; sword restored on image-left hip, shield on image-right, pointed shoulder/chest/skirt design retained. First attempt with incorrect sword side was rejected.",
+    "phase": "source_keyposes_only_not_final_animation_acceptance"
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

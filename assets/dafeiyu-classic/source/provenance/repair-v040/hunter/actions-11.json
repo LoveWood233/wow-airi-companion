@@ -1,0 +1,64 @@
+{
+  "class": "hunter",
+  "sheet": "actions-11",
+  "original_sha256": "4e330d40bcf2610f3a8ebff7c7c79c475d774f79438450f6d2b7530958779ad1",
+  "replacement_sha256": "f200245b4cb3bf328c8ceb152efda6f0ab2d99452fc86250b5039902ce16c3b7",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "actions-11",
+    "candidate": "source/sheets/hunter/actions-11.png",
+    "sha256": "f200245b4cb3bf328c8ceb152efda6f0ab2d99452fc86250b5039902ce16c3b7",
+    "review": "source/sheets/hunter/actions-11.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/hunter/actions-11.png",
+      "source/base-keyframes/hunter/frame-00.png",
+      "source/sheets/hunter/actions-01.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. Focus repair on LAST ROW cells12,13,14,15 only: tail slapping ground A/B, sleepy sitting then prone asleep. Their missing bow must be restored at the same character-local right hip (front-view picture-left); prone bow can lie alongside right hip with valid perspective. All first 12 cells already have visible correct bows: leave them intact, especially mirror, water gun, gaming controller and raised/crouching poses. Do not alter existing arrow quivers anywhere and do NOT add new quivers. Keep one quiver per human. Keep EXACT original tail shape and tail up/down phases, and EXACT sitting/prone poses. Hands remain in original gestures; never add a hand to carry the bow.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "actions-11",
+    "generated_file": "image_gen-output:exec-84560a08-2da0-4d65-af5a-5ed6dc04ff9f.png",
+    "output": "source/sheets/hunter/actions-11.png",
+    "sha256": "f200245b4cb3bf328c8ceb152efda6f0ab2d99452fc86250b5039902ce16c3b7",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 821906,
+      "opaque_pixels": 765931
+    },
+    "preview": "source/sheets/hunter/actions-11.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/hunter/actions-11.png",
+        "sha256": "4e330d40bcf2610f3a8ebff7c7c79c475d774f79438450f6d2b7530958779ad1"
+      },
+      {
+        "path": "source/base-keyframes/hunter/frame-00.png",
+        "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+      },
+      {
+        "path": "source/sheets/hunter/actions-01.png",
+        "sha256": "2b5ae1218d912f078a5b020a4e3bc03964f77208e97de6c1cfea6c7e2c446c9a"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "visual_review_notes": [
+      "All16 original poses/props remain, including mirror, water gun, gaming controller.",
+      "Tail row and sitting/prone sleep now show a full bow attached/lying with body; one quiver retained.",
+      "No duplicated hands observed."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

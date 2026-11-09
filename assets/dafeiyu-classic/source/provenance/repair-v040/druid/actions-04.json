@@ -1,0 +1,711 @@
+{
+  "class": "druid",
+  "sheet": "actions-04",
+  "original_sha256": "54fafdd42767ae05a828759381a182bcf679d220fcaef05915c17f736fb29819",
+  "replacement_sha256": "4c7f36afea224b93df16938231c0430afadd083d22b78b5d728979ff92461e06",
+  "freeze_manifest": "druid-repack-integration.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-04",
+    "path": "workspace-revision/top-overhang-repack/candidates/druid/actions-04.png",
+    "sha256": "4c7f36afea224b93df16938231c0430afadd083d22b78b5d728979ff92461e06",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "modified_cells": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "provenance": "workspace-revision/top-overhang-repack/provenance/druid/actions-04.json",
+    "review_status": "visually_reviewed_full_overhang_recovered",
+    "provenance_sha256": "8cb5a3ca21691ce68bcc75f4df851aa46bf49ea751b49cfbd3dd2d4a8ada40cb"
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-04",
+    "operation": "recover atlas overhang by exact RGBA extraction and integer translation; no redraw; no resizing",
+    "previous_revision": {
+      "class": "druid",
+      "sheet": "actions-04",
+      "original_sha256": "54fafdd42767ae05a828759381a182bcf679d220fcaef05915c17f736fb29819",
+      "replacement_sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035",
+      "freeze_manifest": "druid16-rogue07-freeze.json",
+      "source_review": {
+        "class": "druid",
+        "sheet": "actions-04",
+        "path": "source/sheets/druid/actions-04.png",
+        "sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035",
+        "dimensions": [
+          1261,
+          1247
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "provenance": "workspace-revision/provenance/druid/actions-04.json",
+        "review_status": "candidate_visual_reviewed",
+        "main_defects_review": "All15 humanoid cells have one staff; intentional pigeon cell3 retains pigeon form without humanoid staff. Squat, dance, tokens, ice cream, lunch, crab, rice cake props retained.",
+        "reviewed_cells_zero_based": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "remaining_limitations": [
+          "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+          "No all-frame media review here; temporal transitions remain for render QA."
+        ],
+        "frozen": true
+      },
+      "generation": {
+        "class": "druid",
+        "sheet": "actions-04",
+        "tool": "built-in image_gen.imagegen",
+        "mode": "edit",
+        "transparent_background": true,
+        "source": "source/sheets/druid/actions-04.png",
+        "source_sha256": "54fafdd42767ae05a828759381a182bcf679d220fcaef05915c17f736fb29819",
+        "reference": "source/base-keyframes/druid/frame-00.png",
+        "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+        "original_modified": false,
+        "attempts": [
+          {
+            "output_id": "exec-9ca0656c-ab76-466e-b5e8-3cf41019bd3e",
+            "path": "workspace-revision/attempts/druid/actions-04-01.png",
+            "sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035"
+          }
+        ],
+        "generated_output_id": "exec-9ca0656c-ab76-466e-b5e8-3cf41019bd3e",
+        "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+        "generated_output": "image_gen-output:exec-9ca0656c-ab76-466e-b5e8-3cf41019bd3e.png",
+        "saved_output": "source/sheets/druid/actions-04.png",
+        "final_sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035",
+        "dimensions": [
+          1261,
+          1247
+        ],
+        "mode_rgba": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "review_status": "candidate_visual_reviewed",
+        "prompt": "workspace-revision/prompts/druid/actions-04.txt",
+        "prompt_sha256": "79a14a5672c822d6014a4259ab71bb06cfd6910d608541d21f0d339f9e8fdc37",
+        "visual_review": {
+          "method": "actual generated-image output viewed all16 cells; saved file hash matches generated output",
+          "cells_viewed_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "result": "All15 humanoid cells have one staff; intentional pigeon cell3 retains pigeon form without humanoid staff. Squat, dance, tokens, ice cream, lunch, crab, rice cake props retained.",
+          "grid_cut_review": "Four-column/four-row layout preserved; no apparent cross-cell cut; outer edges occasionally close to alpha content and must use existing per-cell trim checks.",
+          "full_video_validation": false
+        },
+        "correction_prompts": []
+      },
+      "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+      "prompts": [
+        {
+          "name": "actions-04.txt",
+          "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 原地重力下蹲压缩. Preserve source pose A and B: 双腿屈膝，躯干降低，蓄力。动作语义：双腿弯曲下蹲，身体真实降低 / 落地屈膝，身体下沉。与A必须是不同的动作阶段，保持道具形状/位置关系。缓慢起身\nCells [2, 3]: 变鸽子. Preserve source pose A and B: 角色双手在胸前准备变身魔术，蓝色微光围身，仍是完整角色。 / 完整变成白色小鸽子，蓝色羽冠与该职业小饰物保留，鸽子展开双翼。\nCells [4, 5]: 可爱宅舞. Preserve source pose A and B: 双手向前可爱打拍，脚尖内扣。动作语义：左右摆手、肩膀打拍 / 向左移重心，一臂抬起另一臂伸侧。与A必须是不同的动作阶段，保持道具形状/位置关系。小跳落地摆出可爱姿势\nCells [6, 7]: 吃Token. Preserve source pose A and B: 双手胸前端托，手腕形成物体接触面；道具：token_chips。动作语义：拿带Token符号的小饼片咬下，符号可识别 / 左手端物，右手持食物送到张开的嘴前；道具：token_chips。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [8, 9]: 吃冰淇淋融化. Preserve source pose A and B: 手举完整冰淇淋甜筒到嘴边轻舔，冰球尚完整，开心。 / 冰球明显融化向下滴，角色惊讶，另一手伸到甜筒下接滴液。\nCells [10, 11]: 吃午餐. Preserve source pose A and B: 左手端碗，右手持筷抬起食物；道具：lunch_bento, chopsticks。动作语义：打开午餐便当，夹菜和米饭吃 / 左手端物，右手持食物送到张开的嘴前；道具：lunch_bento, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [12, 13]: 吃大闸蟹. Preserve source pose A and B: 双手拿橙红大闸蟹，正把蟹壳掰开，蟹腿和大钳可识别。 / 左手托半个蟹壳，右手拿白色蟹肉送到嘴里，已经张嘴咬下。\nCells [14, 15]: 吃年糕. Preserve source pose A and B: 左手端碗，右手持筷抬起食物；道具：niangao_plate, niangao_stretch, chopsticks。动作语义：夹起年糕，短暂拉丝后咬断 / 左手端物，右手持食物送到张开的嘴前；道具：niangao_plate, niangao_stretch, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nIMPORTANT: cell3 is deliberately a pigeon. Preserve pigeon form and its druid crest; do not attach a full humanoid staff/robe to the pigeon. Cell2 is human and needs the staff.\n"
+        }
+      ]
+    },
+    "previous_revision_file_sha256": "3eb95218ce4b0c1f0b337b8abf60d767c8105abfd84bc93e006ca94cbe74870a",
+    "previous_workspace_generation": {
+      "class": "druid",
+      "sheet": "actions-04",
+      "tool": "built-in image_gen.imagegen",
+      "mode": "edit",
+      "transparent_background": true,
+      "source": "source/sheets/druid/actions-04.png",
+      "source_sha256": "54fafdd42767ae05a828759381a182bcf679d220fcaef05915c17f736fb29819",
+      "reference": "source/base-keyframes/druid/frame-00.png",
+      "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+      "original_modified": false,
+      "attempts": [
+        {
+          "output_id": "exec-9ca0656c-ab76-466e-b5e8-3cf41019bd3e",
+          "path": "workspace-revision/attempts/druid/actions-04-01.png",
+          "sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035"
+        }
+      ],
+      "generated_output_id": "exec-9ca0656c-ab76-466e-b5e8-3cf41019bd3e",
+      "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+      "generated_output": "image_gen-output:exec-9ca0656c-ab76-466e-b5e8-3cf41019bd3e.png",
+      "saved_output": "source/sheets/druid/actions-04.png",
+      "final_sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035",
+      "dimensions": [
+        1261,
+        1247
+      ],
+      "mode_rgba": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "review_status": "candidate_visual_reviewed",
+      "prompt": "workspace-revision/prompts/druid/actions-04.txt",
+      "prompt_sha256": "79a14a5672c822d6014a4259ab71bb06cfd6910d608541d21f0d339f9e8fdc37",
+      "visual_review": {
+        "method": "actual generated-image output viewed all16 cells; saved file hash matches generated output",
+        "cells_viewed_zero_based": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "result": "All15 humanoid cells have one staff; intentional pigeon cell3 retains pigeon form without humanoid staff. Squat, dance, tokens, ice cream, lunch, crab, rice cake props retained.",
+        "grid_cut_review": "Four-column/four-row layout preserved; no apparent cross-cell cut; outer edges occasionally close to alpha content and must use existing per-cell trim checks.",
+        "full_video_validation": false
+      },
+      "correction_prompts": []
+    },
+    "source_sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035",
+    "replacement_sha256": "4c7f36afea224b93df16938231c0430afadd083d22b78b5d728979ff92461e06",
+    "modified_cells": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "unchanged_cells_exact_RGBA": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      12,
+      13,
+      14,
+      15
+    ],
+    "cells": [
+      {
+        "cell": 8,
+        "source_cell_xyxy": [
+          0,
+          623,
+          315,
+          935
+        ],
+        "main_component_alpha_threshold": 8,
+        "main_component_id": 95,
+        "selected_components": [
+          {
+            "id": 95,
+            "bbox_area": [
+              38,
+              605,
+              244,
+              289,
+              46937
+            ]
+          },
+          {
+            "id": 100,
+            "bbox_area": [
+              124,
+              625,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 102,
+            "bbox_area": [
+              138,
+              626,
+              1,
+              2,
+              2
+            ]
+          },
+          {
+            "id": 103,
+            "bbox_area": [
+              214,
+              627,
+              1,
+              2,
+              2
+            ]
+          },
+          {
+            "id": 105,
+            "bbox_area": [
+              138,
+              629,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 110,
+            "bbox_area": [
+              80,
+              683,
+              2,
+              2,
+              2
+            ]
+          },
+          {
+            "id": 118,
+            "bbox_area": [
+              72,
+              732,
+              1,
+              3,
+              3
+            ]
+          },
+          {
+            "id": 121,
+            "bbox_area": [
+              128,
+              867,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 124,
+            "bbox_area": [
+              132,
+              880,
+              1,
+              2,
+              2
+            ]
+          },
+          {
+            "id": 126,
+            "bbox_area": [
+              132,
+              884,
+              1,
+              2,
+              2
+            ]
+          }
+        ],
+        "source_extract_xyxy": [
+          34,
+          601,
+          286,
+          898
+        ],
+        "destination_local_xy": [
+          31,
+          7
+        ],
+        "scale": 1.0,
+        "pixels_resampled": false,
+        "exact_RGBA_piece_equality": true,
+        "all_selected_alpha_gt8_component_pixels_preserved": true,
+        "neighbor_large_components_in_piece": [],
+        "original_current_crops_removed": [
+          {
+            "bottom_trim_px": 27,
+            "right_trim_px": 0
+          }
+        ],
+        "visual_review": "full intended body and effects visible; no subject clipping or neighboring sprite in after cell"
+      },
+      {
+        "cell": 9,
+        "source_cell_xyxy": [
+          315,
+          623,
+          630,
+          935
+        ],
+        "main_component_alpha_threshold": 8,
+        "main_component_id": 96,
+        "selected_components": [
+          {
+            "id": 96,
+            "bbox_area": [
+              353,
+              605,
+              238,
+              288,
+              47792
+            ]
+          },
+          {
+            "id": 99,
+            "bbox_area": [
+              428,
+              623,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 101,
+            "bbox_area": [
+              405,
+              625,
+              1,
+              2,
+              2
+            ]
+          },
+          {
+            "id": 108,
+            "bbox_area": [
+              382,
+              661,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 111,
+            "bbox_area": [
+              401,
+              685,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 119,
+            "bbox_area": [
+              381,
+              776,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 122,
+            "bbox_area": [
+              475,
+              874,
+              2,
+              1,
+              2
+            ]
+          }
+        ],
+        "source_extract_xyxy": [
+          349,
+          601,
+          595,
+          897
+        ],
+        "destination_local_xy": [
+          34,
+          8
+        ],
+        "scale": 1.0,
+        "pixels_resampled": false,
+        "exact_RGBA_piece_equality": true,
+        "all_selected_alpha_gt8_component_pixels_preserved": true,
+        "neighbor_large_components_in_piece": [],
+        "original_current_crops_removed": [
+          {
+            "bottom_trim_px": 26,
+            "right_trim_px": 0
+          }
+        ],
+        "visual_review": "full intended body and effects visible; no subject clipping or neighboring sprite in after cell"
+      },
+      {
+        "cell": 10,
+        "source_cell_xyxy": [
+          630,
+          623,
+          945,
+          935
+        ],
+        "main_component_alpha_threshold": 8,
+        "main_component_id": 97,
+        "selected_components": [
+          {
+            "id": 97,
+            "bbox_area": [
+              651,
+              604,
+              246,
+              291,
+              49718
+            ]
+          },
+          {
+            "id": 94,
+            "bbox_area": [
+              780,
+              603,
+              2,
+              1,
+              2
+            ]
+          },
+          {
+            "id": 114,
+            "bbox_area": [
+              710,
+              690,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 115,
+            "bbox_area": [
+              854,
+              691,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 120,
+            "bbox_area": [
+              884,
+              780,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 123,
+            "bbox_area": [
+              777,
+              877,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 125,
+            "bbox_area": [
+              782,
+              882,
+              1,
+              7,
+              7
+            ]
+          }
+        ],
+        "source_extract_xyxy": [
+          647,
+          599,
+          901,
+          899
+        ],
+        "destination_local_xy": [
+          30,
+          6
+        ],
+        "scale": 1.0,
+        "pixels_resampled": false,
+        "exact_RGBA_piece_equality": true,
+        "all_selected_alpha_gt8_component_pixels_preserved": true,
+        "neighbor_large_components_in_piece": [],
+        "original_current_crops_removed": [
+          {
+            "bottom_trim_px": 25,
+            "right_trim_px": 0
+          }
+        ],
+        "visual_review": "full intended body and effects visible; no subject clipping or neighboring sprite in after cell"
+      },
+      {
+        "cell": 11,
+        "source_cell_xyxy": [
+          945,
+          623,
+          1261,
+          935
+        ],
+        "main_component_alpha_threshold": 8,
+        "main_component_id": 98,
+        "selected_components": [
+          {
+            "id": 98,
+            "bbox_area": [
+              967,
+              604,
+              250,
+              291,
+              49981
+            ]
+          },
+          {
+            "id": 104,
+            "bbox_area": [
+              1121,
+              627,
+              1,
+              2,
+              2
+            ]
+          },
+          {
+            "id": 106,
+            "bbox_area": [
+              1022,
+              633,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 107,
+            "bbox_area": [
+              1024,
+              635,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 109,
+            "bbox_area": [
+              1007,
+              681,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 112,
+            "bbox_area": [
+              1001,
+              684,
+              2,
+              1,
+              2
+            ]
+          },
+          {
+            "id": 113,
+            "bbox_area": [
+              1005,
+              684,
+              4,
+              1,
+              4
+            ]
+          },
+          {
+            "id": 116,
+            "bbox_area": [
+              1187,
+              716,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "id": 117,
+            "bbox_area": [
+              1191,
+              717,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "source_extract_xyxy": [
+          963,
+          600,
+          1221,
+          899
+        ],
+        "destination_local_xy": [
+          29,
+          6
+        ],
+        "scale": 1.0,
+        "pixels_resampled": false,
+        "exact_RGBA_piece_equality": true,
+        "all_selected_alpha_gt8_component_pixels_preserved": true,
+        "neighbor_large_components_in_piece": [],
+        "original_current_crops_removed": [
+          {
+            "bottom_trim_px": 25,
+            "right_trim_px": 0
+          }
+        ],
+        "visual_review": "full intended body and effects visible; no subject clipping or neighboring sprite in after cell"
+      }
+    ],
+    "visual_review": "All four changed cells viewed before/after: complete antlers/hair/cursor and intended props retained; no neighboring character visible. Original-alpha selected components preserved by exact RGBA integer translation at scale 1."
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-04.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 原地重力下蹲压缩. Preserve source pose A and B: 双腿屈膝，躯干降低，蓄力。动作语义：双腿弯曲下蹲，身体真实降低 / 落地屈膝，身体下沉。与A必须是不同的动作阶段，保持道具形状/位置关系。缓慢起身\nCells [2, 3]: 变鸽子. Preserve source pose A and B: 角色双手在胸前准备变身魔术，蓝色微光围身，仍是完整角色。 / 完整变成白色小鸽子，蓝色羽冠与该职业小饰物保留，鸽子展开双翼。\nCells [4, 5]: 可爱宅舞. Preserve source pose A and B: 双手向前可爱打拍，脚尖内扣。动作语义：左右摆手、肩膀打拍 / 向左移重心，一臂抬起另一臂伸侧。与A必须是不同的动作阶段，保持道具形状/位置关系。小跳落地摆出可爱姿势\nCells [6, 7]: 吃Token. Preserve source pose A and B: 双手胸前端托，手腕形成物体接触面；道具：token_chips。动作语义：拿带Token符号的小饼片咬下，符号可识别 / 左手端物，右手持食物送到张开的嘴前；道具：token_chips。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [8, 9]: 吃冰淇淋融化. Preserve source pose A and B: 手举完整冰淇淋甜筒到嘴边轻舔，冰球尚完整，开心。 / 冰球明显融化向下滴，角色惊讶，另一手伸到甜筒下接滴液。\nCells [10, 11]: 吃午餐. Preserve source pose A and B: 左手端碗，右手持筷抬起食物；道具：lunch_bento, chopsticks。动作语义：打开午餐便当，夹菜和米饭吃 / 左手端物，右手持食物送到张开的嘴前；道具：lunch_bento, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [12, 13]: 吃大闸蟹. Preserve source pose A and B: 双手拿橙红大闸蟹，正把蟹壳掰开，蟹腿和大钳可识别。 / 左手托半个蟹壳，右手拿白色蟹肉送到嘴里，已经张嘴咬下。\nCells [14, 15]: 吃年糕. Preserve source pose A and B: 左手端碗，右手持筷抬起食物；道具：niangao_plate, niangao_stretch, chopsticks。动作语义：夹起年糕，短暂拉丝后咬断 / 左手端物，右手持食物送到张开的嘴前；道具：niangao_plate, niangao_stretch, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nIMPORTANT: cell3 is deliberately a pigeon. Preserve pigeon form and its druid crest; do not attach a full humanoid staff/robe to the pigeon. Cell2 is human and needs the staff.\n"
+    }
+  ]
+}

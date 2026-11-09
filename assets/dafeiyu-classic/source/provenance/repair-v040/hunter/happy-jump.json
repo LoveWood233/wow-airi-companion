@@ -1,0 +1,60 @@
+{
+  "class": "hunter",
+  "sheet": "happy-jump",
+  "original_sha256": "2068b2ca998df04a94a5a74b2fba85b03415e4791e3e0e31e313d53376587b23",
+  "replacement_sha256": "b2de5899769db4c5e035d5fe230feded717b66fdae35d21868d5b6e01845c321",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "happy-jump",
+    "candidate": "source/sheets/hunter/happy-jump.png",
+    "sha256": "b2de5899769db4c5e035d5fe230feded717b66fdae35d21868d5b6e01845c321",
+    "review": "source/sheets/hunter/happy-jump.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/hunter/happy-jump.png",
+      "source/base-keyframes/hunter/frame-00.png",
+      "source/sheets/hunter/actions-01.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. This is a continuous16-pose FRONT-FACING happy jump sequence: keep all16 poses, crouching depth, knee bends, each original arm angle from down through horizontal to highV, excited open/closed-eye faces, and original cell placement. Restore one identical full curved weapon bow at picture-left hip in EVERY pose, rotating only with torso but staying secured; do not let it shrink to a small gold tip or vanish when arms rise. Arrow quiver remains the one existing right-shoulder bundle. Never create another arrow cluster near head. Exactly two hands, do not add hand to hold bow. Do not simplify raised arms or bent knees into neutral poses. Ensure same armor plate geometry and gold edges across the sequence, same blue waist gem and same shoulder pieces.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "happy-jump",
+    "generated_file": "image_gen-output:exec-eff2d33d-a202-463c-8a67-3c71c0cebb4f.png",
+    "output": "source/sheets/hunter/happy-jump.png",
+    "sha256": "b2de5899769db4c5e035d5fe230feded717b66fdae35d21868d5b6e01845c321",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 711104,
+      "opaque_pixels": 667491
+    },
+    "preview": "source/sheets/hunter/happy-jump.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/hunter/happy-jump.png",
+        "sha256": "2068b2ca998df04a94a5a74b2fba85b03415e4791e3e0e31e313d53376587b23"
+      },
+      {
+        "path": "source/base-keyframes/hunter/frame-00.png",
+        "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+      },
+      {
+        "path": "source/sheets/hunter/actions-01.png",
+        "sha256": "2b5ae1218d912f078a5b020a4e3bc03964f77208e97de6c1cfea6c7e2c446c9a"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "visual_review_notes": "Reviewed all 16 source poses; one picture-left bow and picture-right quiver preserved. Small gold trim/bow curve redraw remains: source equipment-restoration pass only. Fixed-master rig is required for pixel-stable happy jump."
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}
