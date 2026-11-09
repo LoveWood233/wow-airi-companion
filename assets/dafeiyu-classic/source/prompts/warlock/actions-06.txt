@@ -1,0 +1,19 @@
+Use case: identity-preserve. Produce one professional animation KEY-POSE SPRITE ATLAS matching the reference's SAME DaFeiYu chibi blue-haired whale-maid character. Preserve facial identity, long blue hair, white maid headband, blue whale tail, exact costume and body proportions. WARLOCK: exactly the reference dark purple Nemesis robe, ivory bone trims and little bone horns at headband, green shoulder gem and hip spellbook. Output exactly 4 columns by 4 rows = 16 equally sized cells on a SQUARE high-resolution canvas, TRANSPARENT BACKGROUND. One full-body pose in each cell. All poses fit inside cell with empty margins; stable camera scale and horizontal center, natural baseline 90% down. No grid lines, numbers, labels, text or watermark (except required 福 on red paper or token symbol on chips). Props must be clearly drawn and visibly held/touched, not floating arbitrarily. This sheet contains EIGHT different actions in adjacent A/B pairs, read left-to-right top-to-bottom. Each pair must have visibly different action stages; costume remains identical. Do not replace action with generic waving. For seated/lying poses keep the SAME character scale, not enlarged. Render these exact 16 cells:
+Cell 1 (吃重阳糕, pose A): 左手端托小碗或小物，右手空闲；道具：chongyang_cake_plate, cake_piece。动作语义：举起多层重阳糕小块吃，保留层次和装饰
+Cell 2 (吃重阳糕, pose B): 左手端物，右手持食物送到张开的嘴前；道具：chongyang_cake_plate, cake_piece。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 3 (吃长寿面, pose A): 左手端碗，右手持筷抬起食物；道具：noodle_bowl, long_noodles, chopsticks。动作语义：筷子提起长面条，从嘴到碗保持面条连续
+Cell 4 (吃长寿面, pose B): 双手抬小碗贴近嘴边，微微仰头；道具：noodle_bowl, long_noodles, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 5 (吃青团, pose A): 双手胸前端托，手腕形成物体接触面；道具：qingtuan_full, qingtuan_bitten。动作语义：双手拿绿色青团咬开，露出内馅
+Cell 6 (吃青团, pose B): 左手端物，右手持食物送到张开的嘴前；道具：qingtuan_full, qingtuan_bitten。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 7 (吃饭·碗饭, pose A): 左手端托小碗或小物，右手空闲；道具：rice_bowl, spoon。动作语义：左手捧碗、右手舀饭吃，显示一碗米饭
+Cell 8 (吃饭·碗饭, pose B): 左手端物，右手持食物送到张开的嘴前；道具：rice_bowl, spoon。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 9 (吃饭团, pose A): 双手胸前端托，手腕形成物体接触面；道具：onigiri_full, onigiri_bitten。动作语义：举起三角海苔饭团咬下，保留明确缺口
+Cell 10 (吃饭团, pose B): 左手端物，右手持食物送到张开的嘴前；道具：onigiri_full, onigiri_bitten。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 11 (吃饺子, pose A): 左手端碗，右手持筷抬起食物；道具：dumpling_plate, chopsticks。动作语义：夹起月牙褶边饺子咬开，保留形状特征
+Cell 12 (吃饺子, pose B): 左手端物，右手持食物送到张开的嘴前；道具：dumpling_plate, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 13 (吹气球, pose A): 双手在嘴前握住气球口或吹具，鼓腮；道具：balloon_deflated, balloon_half, balloon_full。动作语义：嘴贴气球口吹气，气球逐步变大
+Cell 14 (吹气球, pose B): 双手胸前端托，手腕形成物体接触面；道具：balloon_deflated, balloon_half, balloon_full。与A必须是不同的动作阶段，保持道具形状/位置关系。捏住气口并惊喜查看
+Cell 15 (吹笛子, pose A): 笛子横到嘴前，手指按孔组合A；道具：flute。动作语义：气息吹奏，手指切换按孔
+Cell 16 (吹笛子, pose B): 笛子位置稳定，手指按孔组合B；道具：flute。与A必须是不同的动作阶段，保持道具形状/位置关系。结束移开笛子
+Keep hands anatomically coherent, clear facial expression, actual specific props and correct contact points. Crisp anime cel shading and line work matching reference. Cell position critical. Transparent alpha only; no scenery background.
+IMPORTANT: every character and all props remain inside the central 80% of each cell. At least 8% transparent space below feet or furniture in EVERY cell. No sprite crosses cell boundaries.

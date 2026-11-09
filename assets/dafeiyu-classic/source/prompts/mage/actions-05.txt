@@ -1,0 +1,19 @@
+Use case: identity-preserve. Production animation sprite sheet for AIRI. Reference is the APPROVED MAGE DaFeiYu mascot. Preserve exactly her blue hair, blue eyes, white maid headband, long wavy hair, blue whale tail, face and compact chibi proportions, and purple-and-gold Netherwind long robe with blue glowing gems, gold forehead tiara, blue-orb staff stowed on back. Every cell wears the SAME costume; weapons stowed so hands can interact. Crisp anime cel-shaded linework, identical fixed camera scale. Exactly 4x4 evenly spaced sprites on a square canvas, truly transparent alpha, no floor. All props must be drawn and recognizable. Highest available resolution. Required poses follow:
+Use case: stylized-concept. Create a production transparent raster sprite sheet, not a poster. EXACTLY 4 columns x 4 rows, 16 equal square cells, row-major. One full-body chibi blue-haired whale-maid character per cell, same identity and approved CLASS OUTFIT from the reference. Keep full hair, hands, shoes and whale tail inside each cell with generous transparent gutters; no grid lines, no text, no numbers, no white background. Consistent rendering, size, light, camera and ground line. No oversized weapons unless the action requires them. Each adjacent cell pair is two distinct key poses of the SAME named action. Preserve the reference class armor colors, shoulder silhouette, crown/hood ornaments, maid frills and facial style. New props must be drawn in the same polished anime game-sprite style and contact hands/mouth correctly. True transparent alpha. Aim high resolution; actions must remain legible at 640x360 playback.
+
+Cell 1 (row 1, col 1), action 吃早餐, pose A: 左手端托小碗或小物，右手空闲；道具：breakfast_toast, milk_cup。动作语义：咬吐司再举牛奶杯喝一口，早餐组合明确
+Cell 2 (row 1, col 2), same action pose B: 左手端物，右手持食物送到张开的嘴前；道具：breakfast_toast, milk_cup。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 3 (row 1, col 3), action 吃晚餐, pose A: 左手端托小碗或小物，右手空闲；道具：dinner_plate, fork。动作语义：叉起晚餐盘中的菜肴送入口
+Cell 4 (row 1, col 4), same action pose B: 左手端物，右手持食物送到张开的嘴前；道具：dinner_plate, fork。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 5 (row 2, col 1), action 吃汤圆, pose A: 左手端托小碗或小物，右手空闲；道具：tangyuan_bowl, spoon。动作语义：勺子捞起白色圆汤圆，吹凉后吃
+Cell 6 (row 2, col 2), same action pose B: 左手端物，右手持食物送到张开的嘴前；道具：tangyuan_bowl, spoon。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 7 (row 2, col 3), action 吃白饭, pose A: 左手端碗，右手持筷抬起食物；道具：rice_bowl, chopsticks。动作语义：从白米饭碗夹饭送入口，咀嚼
+Cell 8 (row 2, col 4), same action pose B: 左手端物，右手持食物送到张开的嘴前；道具：rice_bowl, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 9 (row 3, col 1), action 吃粽子, pose A: 双手向两侧掰开食品，道具具有左右接触点；道具：zongzi_wrapped, zongzi_open。动作语义：剥开竹叶露出糯米粽子后咬下
+Cell 10 (row 3, col 2), same action pose B: 左手端物，右手持食物送到张开的嘴前；道具：zongzi_wrapped, zongzi_open。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 11 (row 3, col 3), action 吃糖葫芦, pose A: 拿一串完整红色糖葫芦，最上面一颗贴近张开的嘴。
+Cell 12 (row 3, col 4), same action pose B: 最上面一颗已被咬出清晰缺口，角色闭嘴鼓腮嚼，竹签和其余果子保持一致。
+Cell 13 (row 4, col 1), action 吃腊八粥, pose A: 左手端托小碗或小物，右手空闲；道具：laba_porridge_bowl, spoon。动作语义：从五谷腊八粥碗舀起粥吃，显示豆谷颗粒
+Cell 14 (row 4, col 2), same action pose B: 左手端物，右手持食物送到张开的嘴前；道具：laba_porridge_bowl, spoon。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 15 (row 4, col 3), action 吃西瓜, pose A: 双手托完整红瓤绿皮西瓜片到嘴前，张嘴准备咬。
+Cell 16 (row 4, col 4), same action pose B: 同一西瓜片红瓤出现明显弧形咬口，角色闭嘴鼓腮咀嚼。

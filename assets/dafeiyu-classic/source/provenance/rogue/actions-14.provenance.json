@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-1247222b-d05a-4119-b96b-e79e1eca41d9.png",
+  "prompt": "prompts/rogue/actions-14.txt",
+  "sha256": "1d4646e1c69d5fc6374501cd1ca647af6298b058b026cabe1d0f0e7a7c176f86",
+  "visual_qa": "16 cells inspected; meaningful pose pairs; props and costume consistent"
+}

@@ -1,0 +1,1447 @@
+{
+  "version": 1,
+  "fps": 60,
+  "grid": [
+    4,
+    4
+  ],
+  "sheet_count_per_class": 14,
+  "original_newly_drawn_action_count": 110,
+  "actions": [
+    {
+      "name": "三球抛接",
+      "sheet": "actions-01",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "双手拿球准备 → 三球沿交错抛物线轮流抛接 → 手掌在球到达时接住再抛 → 收球回正",
+      "poseA": "三颗红黄蓝球正在抛接：左手向上抛红球，黄球在头顶，右手接蓝球。",
+      "poseB": "交换抛接阶段：右手抛蓝球，红球在头顶，左手接黄球，三球位置与手接触明确。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "下五子棋",
+      "sheet": "actions-01",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "坐在棋盘前观察 → 捏棋子思考 → 棋子准确落在交点 → 检查棋局回正",
+      "poseA": "坐在棋盘前，一手托腮，另一手捏棋子；道具：gomoku_board, black_stones, white_stones。动作语义：捏棋子思考",
+      "poseB": "身体前倾，将棋子落到交点；道具：gomoku_board, black_stones, white_stones。与A必须是不同的动作阶段，保持道具形状/位置关系。棋子准确落在交点",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "东张西望",
+      "sheet": "actions-01",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "站定 → 先转头向左停顿观察 → 再向右观察 → 回正",
+      "poseA": "头和视线转左，身体基本正面。动作语义：先转头向左停顿观察",
+      "poseB": "头和视线转右，身体基本正面。与A必须是不同的动作阶段，保持道具形状/位置关系。再向右观察",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "中秋赏月吃月饼",
+      "sheet": "actions-01",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "拿好对应食物与餐具 → 抬头赏月，再咬月饼，饼皮与馅料可辨 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "头和视线转左，身体基本正面；道具：moon, mooncake_full, mooncake_bitten。动作语义：抬头赏月，再咬月饼，饼皮与馅料可辨",
+      "poseB": "双手胸前端托，手腕形成物体接触面；道具：moon, mooncake_full, mooncake_bitten。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "优雅女仆舞",
+      "sheet": "actions-01",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "先提裙礼 → 左右轻踏并舒展双臂 → 转身半圈收势 → 屈膝行礼回正",
+      "poseA": "向左移重心，一臂抬起另一臂伸侧。动作语义：左右轻踏并舒展双臂",
+      "poseB": "向右移重心，左右手臂交换。与A必须是不同的动作阶段，保持道具形状/位置关系。转身半圈收势",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "余额-分文不剩",
+      "sheet": "actions-01",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "拿出钱袋 → 摊开完全瘪掉的钱袋，沮丧垂头 → 查看对应余额状态 → 收袋回正",
+      "poseA": "张开瘪钱袋，两手外翻，垂眉；道具：money_bag_flat。动作语义：摊开完全瘪掉的钱袋，沮丧垂头",
+      "poseB": "低头抿嘴，湿润眼睑，双手绞在一起；道具：money_bag_flat。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "余额-数金皱眉",
+      "sheet": "actions-01",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "拿出钱袋 → 逐枚数剩余金币，越数眉头越紧 → 查看对应余额状态 → 收袋回正",
+      "poseA": "一手持袋，另一手捏金币查看；道具：money_bag_low, few_gold_coins。动作语义：逐枚数剩余金币，越数眉头越紧",
+      "poseB": "一手托下巴，眉眼思索；道具：money_bag_low, few_gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "余额-袋空如洗",
+      "sheet": "actions-01",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "拿出钱袋 → 倒过空钱袋没有金币掉出，失望叹气 → 查看对应余额状态 → 收袋回正",
+      "poseA": "双手展示钱袋，眼睛注视袋口；道具：money_bag_empty。动作语义：倒过空钱袋没有金币掉出，失望叹气",
+      "poseB": "张开瘪钱袋，两手外翻，垂眉；道具：money_bag_empty。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "余额-金袋叮当",
+      "sheet": "actions-02",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "拿出钱袋 → 提起饱满钱袋轻摇，数几枚金币并微笑 → 查看对应余额状态 → 收袋回正",
+      "poseA": "双手展示钱袋，眼睛注视袋口；道具：money_bag_full, gold_coins。动作语义：提起饱满钱袋轻摇，数几枚金币并微笑",
+      "poseB": "一手持袋，另一手捏金币查看；道具：money_bag_full, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "余额-钱袋如常",
+      "sheet": "actions-02",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "拿出钱袋 → 平静查看普通钱袋中的金币并收好 → 查看对应余额状态 → 收袋回正",
+      "poseA": "双手展示钱袋，眼睛注视袋口；道具：money_bag_normal, gold_coins。动作语义：平静查看普通钱袋中的金币并收好",
+      "poseB": "一手持袋，另一手捏金币查看；道具：money_bag_normal, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "余额-钱袋满溢",
+      "sheet": "actions-02",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "拿出钱袋 → 打开鼓鼓钱袋，金币满溢，开心举起 → 查看对应余额状态 → 收袋回正",
+      "poseA": "双手展示钱袋，眼睛注视袋口；道具：money_bag_overflow, gold_coins。动作语义：打开鼓鼓钱袋，金币满溢，开心举起",
+      "poseB": "开心闭眼，双拳抬到胸前；道具：money_bag_overflow, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "侧身急躁跑",
+      "sheet": "actions-02",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "急躁侧身 → 侧向快速跑步 → 急停皱眉 → 回正",
+      "poseA": "焦急皱眉的左侧面跑步，左腿前右腿后，右臂前左臂后。",
+      "poseB": "同一焦急左侧面，跑步步相完全交换，发尾与鲸尾追随。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "偷吃零食被抓住",
+      "sheet": "actions-02",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "左右观察 → 偷偷拿零食咬一口 → 被发现后鼓腮僵住、藏起零食 → 回正",
+      "poseA": "头和视线转左，身体基本正面；道具：snack_bag, snack_piece。动作语义：偷偷拿零食咬一口",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：snack_bag, snack_piece。与A必须是不同的动作阶段，保持道具形状/位置关系。被发现后鼓腮僵住、藏起零食",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "写代码",
+      "sheet": "actions-02",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "就位电脑前 → 左右手交替打字 → 停顿思考后继续输入 → 收起回正",
+      "poseA": "坐或站于桌前，两手不同高度敲键盘；道具：desk, laptop。动作语义：左右手交替打字",
+      "poseB": "左右手换位敲键盘，视线朝屏幕；道具：desk, laptop。与A必须是不同的动作阶段，保持道具形状/位置关系。停顿思考后继续输入",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "写福字",
+      "sheet": "actions-02",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "铺开红纸蘸墨 → 毛笔落纸写福字 → 举起写好的福字展示 → 回正",
+      "poseA": "毛笔笔尖触红纸，左手扶纸，正在写粗黑福字，墨水瓶在旁。",
+      "poseB": "双手举起同一红纸展示完整正向福字，表情满意；不可把字镜像。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "凭空生花",
+      "sheet": "actions-02",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "展示空手 → 手中花苞出现并开放 → 微笑把花向前展示 → 收手回正",
+      "poseA": "向前展示空掌心，另一手遮在上方，神秘期待微笑。",
+      "poseB": "同一掌心出现一朵完整盛开的花，另一手张开，惊喜展示。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "动物环绕",
+      "sheet": "actions-03",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "发现小动物 → 猫兔沿脚边走，鸟在肩侧飞 → 低身打招呼 → 动物散去回正",
+      "poseA": "头和视线转左，身体基本正面；道具：cat, bunny, bird。动作语义：猫兔沿脚边走，鸟在肩侧飞",
+      "poseB": "头和视线转右，身体基本正面；道具：cat, bunny, bird。与A必须是不同的动作阶段，保持道具形状/位置关系。低身打招呼",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "原地专心玩魔方",
+      "sheet": "actions-03",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "双手拿魔方 → 两手真实转动不同层 → 停顿观察再转动 → 回正",
+      "poseA": "双手在胸前夹住魔方，右手转上层；道具：rubik_cube。动作语义：两手真实转动不同层",
+      "poseB": "双手相反方向转动魔方层；道具：rubik_cube。与A必须是不同的动作阶段，保持道具形状/位置关系。停顿观察再转动",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "原地小憩沉眠",
+      "sheet": "actions-03",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "坐下 → 伏低蜷睡 → 抬头醒来 → 起身回正",
+      "poseA": "身体蜷卧地面，闭眼，头发和尾巴自然摊开。动作语义：伏低蜷睡",
+      "poseB": "蜷卧抬头，半睁眼，手支撑地面。与A必须是不同的动作阶段，保持道具形状/位置关系。抬头醒来",
+      "duration_seconds_recommended": 10,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "原地左转奔跑",
+      "sheet": "actions-03",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "起步转左 → 明确朝左侧面左右腿交替跑动 → 减速转回 → 站定",
+      "poseA": "完整左侧面跑步，左腿前右腿后、右臂前左臂后，头发和鲸尾拖后。",
+      "poseB": "完整左侧面跑步，右腿前左腿后、左臂前右臂后，真实相反跑步步相。",
+      "duration_seconds_recommended": 12,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "原地敲击桌面互动",
+      "sheet": "actions-03",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "出现桌面并抬手 → 手指左右轮换敲桌，手部确实接触桌面 → 停手看前方 → 收桌回正",
+      "poseA": "坐或站于桌前，两手不同高度敲键盘；道具：small_desk。动作语义：手指左右轮换敲桌，手部确实接触桌面",
+      "poseB": "左右手换位敲键盘，视线朝屏幕；道具：small_desk。与A必须是不同的动作阶段，保持道具形状/位置关系。停手看前方",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "原地漂浮踏步",
+      "sheet": "actions-03",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "身体升起 → 悬浮中左右踏步 → 下降 → 站定",
+      "poseA": "轻盈悬浮，左脚屈起右脚伸展。动作语义：悬浮中左右踏步",
+      "poseB": "轻盈悬浮，右脚屈起左脚伸展。与A必须是不同的动作阶段，保持道具形状/位置关系。下降",
+      "duration_seconds_recommended": 10,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "原地跳跃抓碎头顶物品",
+      "sheet": "actions-03",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "抬头发现物品 → 下蹲跳起并伸手抓到物品 → 双手捏碎，碎片散开 → 落地回正",
+      "poseA": "角色离地跳起，双臂伸过头顶抓住一枚大星形玩具，脚蜷起。",
+      "poseB": "双手头顶合握将同一玩具捏碎，星形碎片散开，身体准备落地。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "原地蹲下玩玩具汽车",
+      "sheet": "actions-03",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "蹲下看地面小车 → 用手推小车向前 → 收手看车滑动 → 起身回正",
+      "poseA": "双腿屈膝，躯干降低，蓄力；道具：toy_car。动作语义：用手推小车向前",
+      "poseB": "跪坐，手向前推动地面小玩具；道具：toy_car。与A必须是不同的动作阶段，保持道具形状/位置关系。收手看车滑动",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "原地重力下蹲压缩",
+      "sheet": "actions-04",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "站定 → 双腿弯曲下蹲，身体真实降低 → 缓慢起身 → 回正",
+      "poseA": "双腿屈膝，躯干降低，蓄力。动作语义：双腿弯曲下蹲，身体真实降低",
+      "poseB": "落地屈膝，身体下沉。与A必须是不同的动作阶段，保持道具形状/位置关系。缓慢起身",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "变鸽子",
+      "sheet": "actions-04",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "准备魔术 → 角色完全变成鸽子并扑翼 → 鸽子变回角色 → 回正",
+      "poseA": "角色双手在胸前准备变身魔术，蓝色微光围身，仍是完整角色。",
+      "poseB": "完整变成白色小鸽子，蓝色羽冠与该职业小饰物保留，鸽子展开双翼。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "可爱宅舞",
+      "sheet": "actions-04",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "双手可爱打拍 → 左右摆手、肩膀打拍 → 小跳落地摆出可爱姿势 → 回正",
+      "poseA": "双手向前可爱打拍，脚尖内扣。动作语义：左右摆手、肩膀打拍",
+      "poseB": "向左移重心，一臂抬起另一臂伸侧。与A必须是不同的动作阶段，保持道具形状/位置关系。小跳落地摆出可爱姿势",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃Token",
+      "sheet": "actions-04",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "拿好对应食物与餐具 → 拿带Token符号的小饼片咬下，符号可识别 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "双手胸前端托，手腕形成物体接触面；道具：token_chips。动作语义：拿带Token符号的小饼片咬下，符号可识别",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：token_chips。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃冰淇淋融化",
+      "sheet": "actions-04",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "拿好对应食物与餐具 → 舔冰淇淋后发现融化滴落，慌忙接住滴液 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "手举完整冰淇淋甜筒到嘴边轻舔，冰球尚完整，开心。",
+      "poseB": "冰球明显融化向下滴，角色惊讶，另一手伸到甜筒下接滴液。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃午餐",
+      "sheet": "actions-04",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "拿好对应食物与餐具 → 打开午餐便当，夹菜和米饭吃 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端碗，右手持筷抬起食物；道具：lunch_bento, chopsticks。动作语义：打开午餐便当，夹菜和米饭吃",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：lunch_bento, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃大闸蟹",
+      "sheet": "actions-04",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "拿好对应食物与餐具 → 双手掰蟹壳、取蟹肉送入口，蟹形清楚 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "双手拿橙红大闸蟹，正把蟹壳掰开，蟹腿和大钳可识别。",
+      "poseB": "左手托半个蟹壳，右手拿白色蟹肉送到嘴里，已经张嘴咬下。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃年糕",
+      "sheet": "actions-04",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "拿好对应食物与餐具 → 夹起年糕，短暂拉丝后咬断 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端碗，右手持筷抬起食物；道具：niangao_plate, niangao_stretch, chopsticks。动作语义：夹起年糕，短暂拉丝后咬断",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：niangao_plate, niangao_stretch, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃早餐",
+      "sheet": "actions-05",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "拿好对应食物与餐具 → 咬吐司再举牛奶杯喝一口，早餐组合明确 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端托小碗或小物，右手空闲；道具：breakfast_toast, milk_cup。动作语义：咬吐司再举牛奶杯喝一口，早餐组合明确",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：breakfast_toast, milk_cup。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃晚餐",
+      "sheet": "actions-05",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "拿好对应食物与餐具 → 叉起晚餐盘中的菜肴送入口 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端托小碗或小物，右手空闲；道具：dinner_plate, fork。动作语义：叉起晚餐盘中的菜肴送入口",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：dinner_plate, fork。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃汤圆",
+      "sheet": "actions-05",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "拿好对应食物与餐具 → 勺子捞起白色圆汤圆，吹凉后吃 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端托小碗或小物，右手空闲；道具：tangyuan_bowl, spoon。动作语义：勺子捞起白色圆汤圆，吹凉后吃",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：tangyuan_bowl, spoon。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃白饭",
+      "sheet": "actions-05",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "拿好对应食物与餐具 → 从白米饭碗夹饭送入口，咀嚼 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端碗，右手持筷抬起食物；道具：rice_bowl, chopsticks。动作语义：从白米饭碗夹饭送入口，咀嚼",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：rice_bowl, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃粽子",
+      "sheet": "actions-05",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "拿好对应食物与餐具 → 剥开竹叶露出糯米粽子后咬下 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "双手向两侧掰开食品，道具具有左右接触点；道具：zongzi_wrapped, zongzi_open。动作语义：剥开竹叶露出糯米粽子后咬下",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：zongzi_wrapped, zongzi_open。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃糖葫芦",
+      "sheet": "actions-05",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "拿好对应食物与餐具 → 举起红色糖葫芦串咬下一颗，串上数量减少 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "拿一串完整红色糖葫芦，最上面一颗贴近张开的嘴。",
+      "poseB": "最上面一颗已被咬出清晰缺口，角色闭嘴鼓腮嚼，竹签和其余果子保持一致。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃腊八粥",
+      "sheet": "actions-05",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "拿好对应食物与餐具 → 从五谷腊八粥碗舀起粥吃，显示豆谷颗粒 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端托小碗或小物，右手空闲；道具：laba_porridge_bowl, spoon。动作语义：从五谷腊八粥碗舀起粥吃，显示豆谷颗粒",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：laba_porridge_bowl, spoon。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃西瓜",
+      "sheet": "actions-05",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "拿好对应食物与餐具 → 双手托西瓜片，沿红瓤咬出明确缺口 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "双手托完整红瓤绿皮西瓜片到嘴前，张嘴准备咬。",
+      "poseB": "同一西瓜片红瓤出现明显弧形咬口，角色闭嘴鼓腮咀嚼。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃重阳糕",
+      "sheet": "actions-06",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "拿好对应食物与餐具 → 举起多层重阳糕小块吃，保留层次和装饰 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端托小碗或小物，右手空闲；道具：chongyang_cake_plate, cake_piece。动作语义：举起多层重阳糕小块吃，保留层次和装饰",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：chongyang_cake_plate, cake_piece。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃长寿面",
+      "sheet": "actions-06",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "拿好对应食物与餐具 → 筷子提起长面条，从嘴到碗保持面条连续 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端碗，右手持筷抬起食物；道具：noodle_bowl, long_noodles, chopsticks。动作语义：筷子提起长面条，从嘴到碗保持面条连续",
+      "poseB": "双手抬小碗贴近嘴边，微微仰头；道具：noodle_bowl, long_noodles, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃青团",
+      "sheet": "actions-06",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "拿好对应食物与餐具 → 双手拿绿色青团咬开，露出内馅 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "双手胸前端托，手腕形成物体接触面；道具：qingtuan_full, qingtuan_bitten。动作语义：双手拿绿色青团咬开，露出内馅",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：qingtuan_full, qingtuan_bitten。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃饭·碗饭",
+      "sheet": "actions-06",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "拿好对应食物与餐具 → 左手捧碗、右手舀饭吃，显示一碗米饭 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端托小碗或小物，右手空闲；道具：rice_bowl, spoon。动作语义：左手捧碗、右手舀饭吃，显示一碗米饭",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：rice_bowl, spoon。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃饭团",
+      "sheet": "actions-06",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "拿好对应食物与餐具 → 举起三角海苔饭团咬下，保留明确缺口 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "双手胸前端托，手腕形成物体接触面；道具：onigiri_full, onigiri_bitten。动作语义：举起三角海苔饭团咬下，保留明确缺口",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：onigiri_full, onigiri_bitten。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吃饺子",
+      "sheet": "actions-06",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "拿好对应食物与餐具 → 夹起月牙褶边饺子咬开，保留形状特征 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端碗，右手持筷抬起食物；道具：dumpling_plate, chopsticks。动作语义：夹起月牙褶边饺子咬开，保留形状特征",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：dumpling_plate, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吹气球",
+      "sheet": "actions-06",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "拿起瘪气球 → 嘴贴气球口吹气，气球逐步变大 → 捏住气口并惊喜查看 → 放走气球回正",
+      "poseA": "双手在嘴前握住气球口或吹具，鼓腮；道具：balloon_deflated, balloon_half, balloon_full。动作语义：嘴贴气球口吹气，气球逐步变大",
+      "poseB": "双手胸前端托，手腕形成物体接触面；道具：balloon_deflated, balloon_half, balloon_full。与A必须是不同的动作阶段，保持道具形状/位置关系。捏住气口并惊喜查看",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "吹笛子",
+      "sheet": "actions-06",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "拿起笛子到嘴前 → 气息吹奏，手指切换按孔 → 结束移开笛子 → 回正",
+      "poseA": "横笛贴嘴，双手手指按住靠近嘴的音孔，鼓腮吹奏。",
+      "poseB": "同一横笛位置，抬起外侧两根手指换按孔，眼神专注，嘴仍贴笛孔。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "哈欠连天",
+      "sheet": "actions-07",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "倦怠半闭眼 → 捂嘴连续打两个哈欠 → 眨眼恢复 → 回正",
+      "poseA": "自然站姿半闭眼。动作语义：捂嘴连续打两个哈欠",
+      "poseB": "一手捂大张嘴，眼睛半闭。与A必须是不同的动作阶段，保持道具形状/位置关系。眨眼恢复",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "堆雪人",
+      "sheet": "actions-07",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "推雪球 → 把小雪球叠在大雪球上 → 装上胡萝卜鼻子并查看成品 → 回正",
+      "poseA": "蹲姿，双手推地上雪球；道具：snowball_large, snowball_small, snowman_carrot, snowman。动作语义：把小雪球叠在大雪球上",
+      "poseB": "双手抬起较小雪球置于大雪球上；道具：snowball_large, snowball_small, snowman_carrot, snowman。与A必须是不同的动作阶段，保持道具形状/位置关系。装上胡萝卜鼻子并查看成品",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "大口吃零食",
+      "sheet": "actions-07",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "拿好对应食物与餐具 → 从袋里拿出大块零食塞入口，鼓腮咀嚼 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端托小碗或小物，右手空闲；道具：snack_bag, snack_piece。动作语义：从袋里拿出大块零食塞入口，鼓腮咀嚼",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：snack_bag, snack_piece。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "女仆屈膝礼仪",
+      "sheet": "actions-07",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "提起衣摆 → 屈膝低头行礼 → 起身微笑 → 放下衣摆回正",
+      "poseA": "双手轻提衣摆，脚跟并拢。动作语义：屈膝低头行礼",
+      "poseB": "提衣摆屈膝低身行礼。与A必须是不同的动作阶段，保持道具形状/位置关系。起身微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "小提琴演奏",
+      "sheet": "actions-07",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "把小提琴架到肩颈 → 弓在琴弦上推拉，左指按弦 → 结束抬弓 → 回正",
+      "poseA": "小提琴稳夹肩颈，左手按琴弦，右手持弓向外拉，弓贴琴弦。",
+      "poseB": "同一琴与手位，右手弓向内推到另一行程端，左手换按指，琴弦接触正确。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "工作状态-原地踱步张望",
+      "sheet": "actions-07",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "原地踱两小步 → 停顿向左张望 → 反向踱步再向右张望 → 回正",
+      "poseA": "身体正面，左腿向侧跨步，尾巴反向平衡。动作语义：停顿向左张望",
+      "poseB": "身体正面，右腿收拢，手臂自然保持平衡。与A必须是不同的动作阶段，保持道具形状/位置关系。反向踱步再向右张望",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "工作状态-垂头叹气冒汗",
+      "sheet": "actions-07",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "工作受挫 → 垂头塌肩叹气 → 额角一滴汗滑下 → 回正",
+      "poseA": "垂头塌肩，眼睛低垂、嘴张开叹气，一滴汗挂在额角。",
+      "poseB": "双手垂下、头更低，汗滴沿脸侧滑落，脸部仍可辨。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "工作状态-忙碌点按",
+      "sheet": "actions-07",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "面向工作台 → 双手快速轮换点按键盘 → 短暂检查后继续 → 回正",
+      "poseA": "坐或站于桌前，两手不同高度敲键盘；道具：desk, keyboard。动作语义：双手快速轮换点按键盘",
+      "poseB": "左右手换位敲键盘，视线朝屏幕；道具：desk, keyboard。与A必须是不同的动作阶段，保持道具形状/位置关系。短暂检查后继续",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "工作状态-思考冒泡",
+      "sheet": "actions-08",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "停下手中工作 → 手托下巴思考，泡泡逐个冒出 → 想到主意抬头 → 回正",
+      "poseA": "一手托下巴，眉眼思索；道具：thought_bubbles。动作语义：手托下巴思考，泡泡逐个冒出",
+      "poseB": "头和视线转左，身体基本正面；道具：thought_bubbles。与A必须是不同的动作阶段，保持道具形状/位置关系。想到主意抬头",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "工作状态-清点归档",
+      "sheet": "actions-08",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "取出资料 → 从左逐张清点并整理到右侧 → 放入文件夹并记一笔 → 回正",
+      "poseA": "从左侧拿取纸张或小物；道具：paper_stack_left, paper_stack_right, folder。动作语义：从左逐张清点并整理到右侧",
+      "poseB": "向右侧叠放纸张或小物；道具：paper_stack_left, paper_stack_right, folder。与A必须是不同的动作阶段，保持道具形状/位置关系。放入文件夹并记一笔",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "开心小跑",
+      "sheet": "actions-08",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "开心起步 → 前向小跑，手腿交替 → 减速微笑 → 站定",
+      "poseA": "正面小跑，左腿抬起，右手前摆。动作语义：前向小跑，手腿交替",
+      "poseB": "正面小跑，右腿抬起，左手前摆。与A必须是不同的动作阶段，保持道具形状/位置关系。减速微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "悠闲哼歌",
+      "sheet": "actions-08",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "轻松站姿 → 嘴型配合哼歌，头部打拍 → 微闭眼微笑 → 回正",
+      "poseA": "正面小开口说话。动作语义：嘴型配合哼歌，头部打拍",
+      "poseB": "正面大开口说话。与A必须是不同的动作阶段，保持道具形状/位置关系。微闭眼微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "扑克魔术",
+      "sheet": "actions-08",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "展示扑克牌 → 洗牌遮手后展开扇形牌 → 抽牌变换再亮牌 → 回正",
+      "poseA": "一手握拳置前，另一手遮挡，神秘微笑；道具：card_deck, card_fan。动作语义：洗牌遮手后展开扇形牌",
+      "poseB": "双手张开展示，惊喜微笑；道具：card_deck, card_fan。与A必须是不同的动作阶段，保持道具形状/位置关系。抽牌变换再亮牌",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "打瞌睡被惊醒",
+      "sheet": "actions-08",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "站着眼皮下垂 → 头部逐渐打盹 → 突然睁眼惊醒 → 回正",
+      "poseA": "站着打盹，头低垂、眼睛闭合，身体往前歪，双手松垂。",
+      "poseB": "突然睁大眼惊醒，肩膀耸起、双手护胸、身体后仰，明显惊吓反应。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "抽陀螺",
+      "sheet": "actions-08",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "放好陀螺 → 挥短鞭抽击陀螺侧面 → 陀螺持续旋转、角色跟随观察 → 回正",
+      "poseA": "手持短绳鞭向后蓄力，视线朝地面陀螺；道具：spinning_top, short_whip。动作语义：挥短鞭抽击陀螺侧面",
+      "poseB": "手向前下方甩绳，身体随动作前倾；道具：spinning_top, short_whip。与A必须是不同的动作阶段，保持道具形状/位置关系。陀螺持续旋转、角色跟随观察",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "拆礼物",
+      "sheet": "actions-08",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "捧着盒子期待 → 拉开丝带并掀盖 → 看见礼物星星眼 → 收起回正",
+      "poseA": "双手托系丝带的关闭礼物盒，低头期待，手指抓住丝带结。",
+      "poseB": "盒盖已经被左手揭起，右手托开放盒子，丝带松开，星星眼看盒中。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "插茱萸赏菊",
+      "sheet": "actions-09",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "拿起茱萸 → 把茱萸插在发侧 → 低头欣赏菊花 → 回正",
+      "poseA": "伸手把装饰物挂到树枝；道具：dogwood_branch, chrysanthemum_pot。动作语义：把茱萸插在发侧",
+      "poseB": "头和视线转左，身体基本正面；道具：dogwood_branch, chrysanthemum_pot。与A必须是不同的动作阶段，保持道具形状/位置关系。低头欣赏菊花",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "摇扇纳凉",
+      "sheet": "actions-09",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "展开折扇 → 手腕扇动，头发轻轻随风 → 舒适微笑 → 合扇回正",
+      "poseA": "扇子展开，持扇手向外摆；道具：folding_fan。动作语义：手腕扇动，头发轻轻随风",
+      "poseB": "扇子靠近脸侧，轻轻扇动；道具：folding_fan。与A必须是不同的动作阶段，保持道具形状/位置关系。舒适微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "撸猫",
+      "sheet": "actions-09",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "蹲下靠近猫 → 手掌从头顶沿猫背抚摸 → 猫抬头蹭手 → 起身回正",
+      "poseA": "跪坐，手掌轻放动物头顶；道具：cat。动作语义：手掌从头顶沿猫背抚摸",
+      "poseB": "跪坐，手掌沿动物背部抚摸；道具：cat。与A必须是不同的动作阶段，保持道具形状/位置关系。猫抬头蹭手",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "收红包",
+      "sheet": "actions-09",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "接过红色红包 → 打开红包口 → 看到金币开心 → 收好回正",
+      "poseA": "双手胸前端托，手腕形成物体接触面；道具：red_envelope, gold_coins。动作语义：打开红包口",
+      "poseB": "一手揭开盒盖，另一手托盒；道具：red_envelope, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。看到金币开心",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "放孔明灯",
+      "sheet": "actions-09",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "双手托住灯笼 → 灯笼充气亮起 → 手松开后向上缓缓升空 → 回正",
+      "poseA": "双手托住尚在胸前的发光孔明灯底部，仰头准备放飞。",
+      "poseB": "双手上举张开放开，同一孔明灯已升到头顶上方，与手明确分离。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "放河灯",
+      "sheet": "actions-09",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "捧河灯蹲下 → 把灯轻放到水面 → 松手后河灯随波纹漂远 → 回正",
+      "poseA": "蹲下双手捧莲花河灯，灯底刚接触一小片水面。",
+      "poseB": "仍蹲着，双手已经松开，莲花河灯向前漂开，周围有柔和水波纹。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "放烟花",
+      "sheet": "actions-09",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "准备点燃地面烟花 → 后退安全观看 → 烟花由底部喷出并在空中散开 → 回正",
+      "poseA": "蹲下伸手到地面小烟花筒旁，筒口尚无烟花，角色谨慎看着。",
+      "poseB": "角色站直双手胸前、抬头星星眼，身侧同一烟花筒喷出金色火花并在头顶散开。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "放风筝",
+      "sheet": "actions-09",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "抬头举线轮 → 风筝升空、线始终连接手和风筝 → 拉线控制方向 → 收势回正",
+      "poseA": "抬头看天，一手举风筝线轮，一手牵线；道具：kite, kite_reel, kite_string。动作语义：风筝升空、线始终连接手和风筝",
+      "poseB": "身体后仰，双手收线；道具：kite, kite_reel, kite_string。与A必须是不同的动作阶段，保持道具形状/位置关系。拉线控制方向",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "整体换装试色",
+      "sheet": "actions-10",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "取出配色布样 → 在身前比对两种布样，再转身查看 → 保持本职业主装备轮廓 → 收起布样回正",
+      "poseA": "保持该职业原装备，拿一块暖色布样比在胸前，低头审视搭配。",
+      "poseB": "同一装备与姿态，换一块冷色布样比在肩前，身体轻侧转查看搭配。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "是啊，吃什么",
+      "sheet": "actions-10",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "听见话题 → 歪头思考并说话 → 头顶出现不同食物选项 → 回正",
+      "poseA": "一手托下巴，眉眼思索；道具：food_thought_bubble。动作语义：歪头思考并说话",
+      "poseB": "正面小开口说话；道具：food_thought_bubble。与A必须是不同的动作阶段，保持道具形状/位置关系。头顶出现不同食物选项",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "晨间刷牙",
+      "sheet": "actions-10",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "拿起牙刷 → 刷毛贴近嘴部左右短程刷动 → 用水杯漱口 → 回正",
+      "poseA": "牙刷贴口，持刷手向外；道具：toothbrush, cup。动作语义：刷毛贴近嘴部左右短程刷动",
+      "poseB": "牙刷贴口，持刷手向内；道具：toothbrush, cup。与A必须是不同的动作阶段，保持道具形状/位置关系。用水杯漱口",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "期待开饭",
+      "sheet": "actions-10",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "看到餐具 → 双手捧空碗期待看前方 → 握筷轻轻期待跃动 → 回正",
+      "poseA": "双眼明确星形高光，身体微前倾，双手握拳期待；道具：empty_bowl, chopsticks。动作语义：双手捧空碗期待看前方",
+      "poseB": "双手胸前端托，手腕形成物体接触面；道具：empty_bowl, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。握筷轻轻期待跃动",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "涮火锅",
+      "sheet": "actions-10",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "拿好对应食物与餐具 → 筷子把肉片放入热锅涮，再夹出蘸酱吃 → 吞咽并满足微笑 → 收起餐具回正",
+      "poseA": "左手端碗，右手持筷抬起食物；道具：hotpot, chopsticks, meat_slice, dipping_bowl。动作语义：筷子把肉片放入热锅涮，再夹出蘸酱吃",
+      "poseB": "左手端物，右手持食物送到张开的嘴前；道具：hotpot, chopsticks, meat_slice, dipping_bowl。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "深度思考碎碎念",
+      "sheet": "actions-10",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "托腮思考 → 嘴部小声说话并间歇停顿 → 眉眼变化、继续思考 → 回正",
+      "poseA": "一手托下巴，眉眼思索。动作语义：嘴部小声说话并间歇停顿",
+      "poseB": "正面小开口说话。与A必须是不同的动作阶段，保持道具形状/位置关系。眉眼变化、继续思考",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "点击回应-傲娇生气",
+      "sheet": "actions-10",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "站定 → 鼓腮抱胸 → 小跺脚并扭头 → 回正",
+      "poseA": "皱眉鼓腮，双臂抱胸。动作语义：鼓腮抱胸",
+      "poseB": "皱眉，抬起一脚准备跺地。与A必须是不同的动作阶段，保持道具形状/位置关系。小跺脚并扭头",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "点击回应-元气挥手",
+      "sheet": "actions-10",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "抬手 → 高举手掌连续挥动 → 开心微笑 → 放下手回正",
+      "poseA": "一手抬起接近脸侧。动作语义：高举手掌连续挥动",
+      "poseB": "一手高举，张开手掌。与A必须是不同的动作阶段，保持道具形状/位置关系。开心微笑",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "点击回应-害羞惊讶",
+      "sheet": "actions-11",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "点击后惊讶缩肩 → 红脸双手靠胸 → 遮脸偷看 → 回正",
+      "poseA": "肩膀耸起，身体后缩，睁大眼，手护胸。动作语义：红脸双手靠胸",
+      "poseB": "红脸，双手遮半脸，眼睛仍可辨。与A必须是不同的动作阶段，保持道具形状/位置关系。遮脸偷看",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "点击回应-开心跃动",
+      "sheet": "actions-11",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "站定 → 开心举拳 → 屈膝起跳并落地 → 回正",
+      "poseA": "双腿屈膝，躯干降低，蓄力。动作语义：开心举拳",
+      "poseB": "真实离地，双脚收起，头发和尾巴向下滞后。与A必须是不同的动作阶段，保持道具形状/位置关系。屈膝起跳并落地",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "点击回应-挠痒咯咯笑",
+      "sheet": "actions-11",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "触发后缩腰 → 左右躲痒笑出声 → 护腹笑到后仰 → 回正",
+      "poseA": "闭眼大笑，歪头，手护腹部。动作语义：左右躲痒笑出声",
+      "poseB": "笑得后仰，双手靠身侧。与A必须是不同的动作阶段，保持道具形状/位置关系。护腹笑到后仰",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "照镜子",
+      "sheet": "actions-11",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "拿起小镜子 → 照镜并整理刘海 → 换侧检查 → 收起镜子回正",
+      "poseA": "一手持镜朝脸，另一手整理刘海；道具：hand_mirror。动作语义：照镜并整理刘海",
+      "poseB": "脸侧向镜子，整理另一侧头发；道具：hand_mirror。与A必须是不同的动作阶段，保持道具形状/位置关系。换侧检查",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "玩水枪",
+      "sheet": "actions-11",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "双手握水枪瞄准 → 扣扳机喷出连续水柱 → 手臂回弹再喷一次 → 放下回正",
+      "poseA": "双手持水枪水平瞄准，单眼微眯；道具：water_gun。动作语义：扣扳机喷出连续水柱",
+      "poseB": "保持瞄准，手臂轻回弹，表情兴奋；道具：water_gun。与A必须是不同的动作阶段，保持道具形状/位置关系。手臂回弹再喷一次",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "玩游戏气急败坏",
+      "sheet": "actions-11",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "拿起手柄玩游戏 → 双手按键 → 失败后气得举起手柄跺脚 → 回正",
+      "poseA": "双手握手柄，眼睛专注看前方；道具：game_controller。动作语义：双手按键",
+      "poseB": "握紧手柄上抬，气鼓鼓皱眉；道具：game_controller。与A必须是不同的动作阶段，保持道具形状/位置关系。失败后气得举起手柄跺脚",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "用鲸鱼尾巴拍打地面",
+      "sheet": "actions-11",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "准备拍尾 → 尾巴抬起再落地 → 连续拍两次 → 回正",
+      "poseA": "鲸尾明显抬高离地、弯向身后，角色身体稍前倾准备拍。",
+      "poseB": "鲸尾确实拍在脚边地面，尾缘压低，接触处少量尘点，身体轻反弹。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "睡觉-开始",
+      "sheet": "actions-11",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "站姿准备 → 坐下收腿 → 降低头身蜷卧 → 停在睡眠循环首姿",
+      "poseA": "角色坐下收腿，双手膝前，头低垂，眼皮困倦，身体正向蜷缩。",
+      "poseB": "角色完全蜷卧睡着，头贴在折起的手旁，长发和鲸尾铺在地上，双眼闭合。",
+      "duration_seconds_recommended": 4,
+      "endpoint_policy": "sleep_curl"
+    },
+    {
+      "name": "睡觉-循环",
+      "sheet": "actions-12",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "保持蜷卧 → 胸背轻微呼吸、闭眼 → 保持睡姿 → 循环回同一蜷卧姿",
+      "poseA": "角色完全蜷卧睡着，头贴在折起的手旁，长发和鲸尾铺在地上，呼气末端胸背稍低。",
+      "poseB": "与A完全相同的蜷卧睡姿、闭眼和发尾位置，仅胸背吸气微微抬起；绝不坐起或站起。",
+      "duration_seconds_recommended": 6,
+      "endpoint_policy": "sleep_curl_loop"
+    },
+    {
+      "name": "睡觉-起来",
+      "sheet": "actions-12",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "从循环卧姿开始 → 抬头撑起上身 → 坐起打哈欠并站起 → 回到全局neutral",
+      "poseA": "从蜷卧睡姿撑起上身，双手支地，半睁眼，头发和鲸尾仍在身后地面。",
+      "poseB": "已经站起伸展身体，双手放松下来，困倦眨眼，服装和轮廓回到标准站姿。",
+      "duration_seconds_recommended": 4,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "碎碎念-发呆碎碎念",
+      "sheet": "actions-12",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "发呆视线飘开 → 嘴部轻声开合 → 短暂停顿眨眼 → 回正",
+      "poseA": "头和视线转左，身体基本正面。动作语义：嘴部轻声开合",
+      "poseB": "自然站姿半闭眼。与A必须是不同的动作阶段，保持道具形状/位置关系。短暂停顿眨眼",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "碎碎念-擦桌碎碎念",
+      "sheet": "actions-12",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "取出抹布 → 手压桌面左右擦拭，同时张嘴碎念 → 停下看一眼桌面 → 回正",
+      "poseA": "一手持抹布压住桌面，手臂向左伸；道具：small_desk, cleaning_cloth。动作语义：手压桌面左右擦拭，同时张嘴碎念",
+      "poseB": "持抹布手臂向右伸；道具：small_desk, cleaning_cloth。与A必须是不同的动作阶段，保持道具形状/位置关系。停下看一眼桌面",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "穿针乞巧",
+      "sheet": "actions-12",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "双手准备针线 → 线穿过针眼并在布上缝一针 → 拉线查看成果 → 收起回正",
+      "poseA": "双手胸前，一手针一手布，穿线准备；道具：needle, thread, embroidery_cloth。动作语义：线穿过针眼并在布上缝一针",
+      "poseB": "一手轻拉线，布面保持固定；道具：needle, thread, embroidery_cloth。与A必须是不同的动作阶段，保持道具形状/位置关系。拉线查看成果",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "舞狮头",
+      "sheet": "actions-12",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "举起舞狮头 → 狮头随双手上下摆动 → 屈膝小跳再落地 → 收势回正",
+      "poseA": "双手托舞狮头到面前，屈膝；道具：lion_head。动作语义：狮头随双手上下摆动",
+      "poseB": "双手举舞狮头到头顶，身体伸展；道具：lion_head。与A必须是不同的动作阶段，保持道具形状/位置关系。屈膝小跳再落地",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "荡秋千",
+      "sheet": "actions-12",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "坐上秋千抓紧绳 → 前后摆动，腿部随相位伸收 → 逐渐减速 → 回正",
+      "poseA": "双手抓秋千绳，身体后倾，腿伸前；道具：swing_seat, swing_ropes。动作语义：前后摆动，腿部随相位伸收",
+      "poseB": "双手抓绳，身体前倾，腿向下收；道具：swing_seat, swing_ropes。与A必须是不同的动作阶段，保持道具形状/位置关系。逐渐减速",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "萌化小幽灵",
+      "sheet": "actions-12",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "准备变身 → 变成可爱小幽灵悬浮晃动 → 恢复穿职业装备的角色 → 回正",
+      "poseA": "角色双手胸前准备魔法，身体周围出现淡蓝半透明光晕。",
+      "poseB": "变成可爱蓝白小幽灵，保留蓝发和该职业识别饰物，漂浮尾端收成幽灵尖形。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "蓝鲸现世",
+      "sheet": "actions-13",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "准备变身 → 完整可识别蓝鲸形态出现并摆尾 → 恢复角色轮廓 → 回正",
+      "poseA": "角色双手张开施展魔法，蓝色水纹围绕身体，仍是完整原角色。",
+      "poseB": "角色变化成圆润可爱蓝鲸，保留蓝色角色标记与表情，大鲸尾明显；不是旁边加鲸鱼贴纸。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "蝴蝶蜜蜂环绕头顶开花",
+      "sheet": "actions-13",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "抬头观察 → 蜂蝶沿头上曲线飞行 → 头顶花苞逐瓣绽放 → 蜂蝶散去回正",
+      "poseA": "蝴蝶和小蜜蜂围着头顶紧闭花苞飞，角色抬眼看花苞。",
+      "poseB": "同一位置的头顶花苞完全开放，蜂蝶换到另一侧飞行，角色开心微笑。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "螃蟹走路",
+      "sheet": "actions-13",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "准备侧移 → 正面侧步交替，脚底有抬落 → 继续侧步 → 站定",
+      "poseA": "身体正面，左腿向侧跨步，尾巴反向平衡。动作语义：正面侧步交替，脚底有抬落",
+      "poseB": "身体正面，右腿收拢，手臂自然保持平衡。与A必须是不同的动作阶段，保持道具形状/位置关系。继续侧步",
+      "duration_seconds_recommended": 10,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "被吓一跳",
+      "sheet": "actions-13",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "自然站立 → 突然睁眼缩肩跳起 → 落地双手护胸 → 回正",
+      "poseA": "肩膀耸起，身体后缩，睁大眼，手护胸。动作语义：突然睁眼缩肩跳起",
+      "poseB": "真实离地，双脚收起，头发和尾巴向下滞后。与A必须是不同的动作阶段，保持道具形状/位置关系。落地双手护胸",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "被落叶淹没",
+      "sheet": "actions-13",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "发现落叶 → 落叶持续堆积到肩部，角色逐渐被遮住 → 从叶堆探出头 → 拨开落叶回正",
+      "poseA": "几片金红落叶开始落在头发和肩头，角色惊讶抬手看叶子。",
+      "poseB": "角色蹲低，被落叶堆淹没到肩膀，仅头和双手露出，叶堆清晰。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "被鼠标拖拽悬空反馈",
+      "sheet": "actions-13",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "由拖拽接口进入 → 头顶受力悬空，四肢下垂 → 身体轻摆，表情受惊 → 悬空锚点与接口衔接",
+      "poseA": "角色被头顶拖起悬空，手脚垂落，睁大眼，身体略向左歪；没有地面接触。",
+      "poseB": "同样悬空，身体向右摆，腿和鲸尾向左滞后，双手紧张张开。",
+      "duration_seconds_recommended": 6,
+      "endpoint_policy": "drag_suspended"
+    },
+    {
+      "name": "装点圣诞树",
+      "sheet": "actions-13",
+      "cells": [
+        12,
+        13
+      ],
+      "motion": "拿装饰物走近小树 → 把彩球挂上树枝 → 最后挂星星并欣赏 → 回正",
+      "poseA": "站在小圣诞树旁，一手拿金色星饰、另一手扶树，准备向上伸。",
+      "poseB": "一手将同一星饰放在树顶，树上已有彩球，角色仰头露出开心表情。",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "讨糖南瓜灯",
+      "sheet": "actions-13",
+      "cells": [
+        14,
+        15
+      ],
+      "motion": "端着南瓜桶 → 向前伸桶期待讨糖 → 糖果落入桶中开心 → 回正",
+      "poseA": "双手胸前端托，手腕形成物体接触面；道具：pumpkin_bucket, candies。动作语义：向前伸桶期待讨糖",
+      "poseB": "星星眼抬头，伸手向外邀请去玩；道具：pumpkin_bucket, candies。与A必须是不同的动作阶段，保持道具形状/位置关系。糖果落入桶中开心",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "超大伸懒腰",
+      "sheet": "actions-14",
+      "cells": [
+        0,
+        1
+      ],
+      "motion": "准备伸展 → 双臂高举伸长身体 → 左右拉伸并轻打哈欠 → 放松回正",
+      "poseA": "双臂高举伸懒腰，躯干拉长。动作语义：双臂高举伸长身体",
+      "poseB": "双臂上举向侧弯腰。与A必须是不同的动作阶段，保持道具形状/位置关系。左右拉伸并轻打哈欠",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "踢毽子",
+      "sheet": "actions-14",
+      "cells": [
+        2,
+        3
+      ],
+      "motion": "看向毽子准备 → 脚内侧向上踢中毽子 → 毽子升落，重复接踢 → 收脚回正",
+      "poseA": "单脚站立，另一腿弯曲准备踢毽子；道具：shuttlecock。动作语义：脚内侧向上踢中毽子",
+      "poseB": "抬脚内侧向上踢，双臂平衡；道具：shuttlecock。与A必须是不同的动作阶段，保持道具形状/位置关系。毽子升落，重复接踢",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "轻快摇摆舞",
+      "sheet": "actions-14",
+      "cells": [
+        4,
+        5
+      ],
+      "motion": "抬手准备 → 左右交替转移重心，手臂随节拍摆动 → 前向打拍 → 回正",
+      "poseA": "向左移重心，一臂抬起另一臂伸侧。动作语义：左右交替转移重心，手臂随节拍摆动",
+      "poseB": "向右移重心，左右手臂交换。与A必须是不同的动作阶段，保持道具形状/位置关系。前向打拍",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "轻快记录",
+      "sheet": "actions-14",
+      "cells": [
+        6,
+        7
+      ],
+      "motion": "取出本子 → 笔尖在纸上快速记录 → 抬笔检查 → 收起回正",
+      "poseA": "一手扶纸，另一手执笔笔尖触纸；道具：notepad, pen。动作语义：笔尖在纸上快速记录",
+      "poseB": "执笔手抬起，眼睛检查纸面；道具：notepad, pen。与A必须是不同的动作阶段，保持道具形状/位置关系。抬笔检查",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "骑木马",
+      "sheet": "actions-14",
+      "cells": [
+        8,
+        9
+      ],
+      "motion": "跨坐上木马握把 → 木马与角色同步前后摇 → 慢慢停下 → 离开回正",
+      "poseA": "跨坐木马，握把，身体后倾；道具：rocking_horse。动作语义：木马与角色同步前后摇",
+      "poseB": "跨坐木马，身体前倾；道具：rocking_horse。与A必须是不同的动作阶段，保持道具形状/位置关系。慢慢停下",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    },
+    {
+      "name": "鲸鱼吐泡泡特效",
+      "sheet": "actions-14",
+      "cells": [
+        10,
+        11
+      ],
+      "motion": "鼓腮准备 → 从嘴前吹出大小不同泡泡 → 泡泡上升并破裂 → 回正",
+      "poseA": "双手在嘴前握住气球口或吹具，鼓腮。动作语义：从嘴前吹出大小不同泡泡",
+      "poseB": "双手在嘴前握住气球口或吹具，鼓腮。与A必须是不同的动作阶段，保持道具形状/位置关系。泡泡上升并破裂",
+      "duration_seconds_recommended": 8,
+      "endpoint_policy": "neutral"
+    }
+  ],
+  "notes": [
+    "References approved v02 for existing idle/speech/joy. Both original360 and newcute-spin use dedicated turnaround frames in emotions.png.",
+    "Do not count padded neutral cells on actions-14 as extra actions.",
+    "Sleep pose seams require actual frame reuse at extraction, not merely matching prompts."
+  ]
+}

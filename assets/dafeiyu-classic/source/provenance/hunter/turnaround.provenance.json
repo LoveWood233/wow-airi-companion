@@ -1,0 +1,15 @@
+{
+  "class_id": "hunter",
+  "sheet": "turnaround",
+  "source": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-17fc5020-c2d3-493d-9ad0-8d3699dec60e.png",
+  "visual_check": "16 distinct sequential views around vertical body axis. Full back has no face. Outfit and proportions consistent, clear cell gutters.",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "prompt": "source/prompts/hunter/turnaround.txt",
+  "sha256": "86fb2c704de210432610ab14d9a2b61581afaac667dbdffe8494b8686d23b99d",
+  "size": [
+    1254,
+    1254
+  ],
+  "status": "generated_and_visually_inspected"
+}

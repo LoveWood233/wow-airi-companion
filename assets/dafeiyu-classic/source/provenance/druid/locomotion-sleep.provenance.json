@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-18f66862-f07e-429d-a0bb-7e761273d89a.png",
+  "prompt": "prompts/druid/locomotion-sleep.txt",
+  "sha256": "87d3b17407358c52ebc3ec571301d8b9b4b8baad9e873118d097bc1693df7b8f",
+  "visual_qa": "8 sleep intermediate poses and two 4-pose running cycles inspected; passing and airborne phases visible"
+}

@@ -1,0 +1,956 @@
+{
+  "status": "artifacts_ready_for_encoding",
+  "classes": [
+    "warrior",
+    "druid"
+  ],
+  "count": 30,
+  "all_png_rgba_actual_alpha": true,
+  "generated_in_this_agent": 29,
+  "preexisting_warrior_emotions": true,
+  "tap_table_repair": {
+    "sheets": [
+      "warrior/actions-03",
+      "druid/actions-03"
+    ],
+    "cells": [
+      8,
+      9
+    ],
+    "result": "bare table, raised palm then palm tabletop contact; laptops removed"
+  },
+  "motion_caveat": "These are2keypose semantic reconstructions. Full temporal/video and all114source-video choreography equivalence not assessed here. Runners vary little at leg phase, so inspect output cycles for apparent sliding. Effects/largeprops sometimes approach sourcecell bounds.",
+  "extraction_note": "Imagegen canvases vary and are not always square; use independentwidth/4andheight/4 partitions.",
+  "files": [
+    {
+      "class": "warrior",
+      "sheet": "emotions",
+      "width": 1254,
+      "height": 1254,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4666,
+        0.4472,
+        0.4739,
+        0.4612,
+        0.4607,
+        0.4555,
+        0.4685,
+        0.4644,
+        0.4577,
+        0.4516,
+        0.4422,
+        0.415,
+        0.3937,
+        0.4033,
+        0.3941,
+        0.3945
+      ],
+      "bytes": 2379431,
+      "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-01",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4364,
+        0.4238,
+        0.4717,
+        0.4664,
+        0.4302,
+        0.4336,
+        0.47,
+        0.4691,
+        0.4389,
+        0.4151,
+        0.4436,
+        0.4248,
+        0.4557,
+        0.4872,
+        0.4287,
+        0.4616
+      ],
+      "bytes": 2476465,
+      "sha256": "55954d7fd52ac3918209233dd0df706416da5013e7d15e7b67996c1a83ed9cbc",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-02",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4302,
+        0.4324,
+        0.432,
+        0.4304,
+        0.4533,
+        0.4666,
+        0.4103,
+        0.4075,
+        0.4392,
+        0.4554,
+        0.4979,
+        0.5111,
+        0.5136,
+        0.466,
+        0.4596,
+        0.4803
+      ],
+      "bytes": 2387179,
+      "sha256": "b5d887298eddbd63c1ab0ebcdd365d934ac874831f67f1c819c430041005d936",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-03",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.5595,
+        0.4919,
+        0.4748,
+        0.4829,
+        0.3461,
+        0.4108,
+        0.4002,
+        0.3906,
+        0.5053,
+        0.5029,
+        0.3925,
+        0.3989,
+        0.4217,
+        0.433,
+        0.4142,
+        0.4255
+      ],
+      "bytes": 2312806,
+      "sha256": "3eabbce76a8413cddf4896d955264089e2df83b122324f6b0cc8f29db79c8618",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-04",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4583,
+        0.3986,
+        0.5226,
+        0.3663,
+        0.4166,
+        0.4033,
+        0.4447,
+        0.4431,
+        0.4608,
+        0.4621,
+        0.4608,
+        0.4651,
+        0.4938,
+        0.5003,
+        0.5091,
+        0.5013
+      ],
+      "bytes": 2487408,
+      "sha256": "1770e19285bffe6ad1f27da4510fe4fdd25f40c17425ca3983f26f785cab250b",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-05",
+      "width": 1263,
+      "height": 1246,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4561,
+        0.4568,
+        0.4537,
+        0.4543,
+        0.4526,
+        0.4567,
+        0.4508,
+        0.452,
+        0.4569,
+        0.4551,
+        0.4523,
+        0.4527,
+        0.4528,
+        0.4543,
+        0.4536,
+        0.4533
+      ],
+      "bytes": 2356739,
+      "sha256": "1900de750f0b549a38a753dcec0df8a75bf896d3ff5b794ad6d6f31852059794",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-06",
+      "width": 1247,
+      "height": 1261,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4554,
+        0.4614,
+        0.4529,
+        0.4492,
+        0.459,
+        0.4518,
+        0.4602,
+        0.4539,
+        0.4592,
+        0.4507,
+        0.4602,
+        0.4617,
+        0.4574,
+        0.4556,
+        0.4638,
+        0.4698
+      ],
+      "bytes": 2492902,
+      "sha256": "d6000780121d48f03d06fe72d5cd837515779219c41010ca56227179fedfd2de",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-07",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4187,
+        0.4254,
+        0.4209,
+        0.4831,
+        0.4292,
+        0.4284,
+        0.4241,
+        0.3939,
+        0.4324,
+        0.4371,
+        0.4223,
+        0.4211,
+        0.4405,
+        0.4308,
+        0.5025,
+        0.5048
+      ],
+      "bytes": 2310945,
+      "sha256": "e366a373c4a8217adff491c31a7a5e349c024acd4c14b774ff0e3987e2910dfa",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-08",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4702,
+        0.4864,
+        0.4941,
+        0.4888,
+        0.4026,
+        0.3969,
+        0.4032,
+        0.4066,
+        0.4439,
+        0.4807,
+        0.4134,
+        0.4328,
+        0.4684,
+        0.4354,
+        0.4223,
+        0.4676
+      ],
+      "bytes": 2502319,
+      "sha256": "4d1a8063c2d8ee06c962a95fe64528fffd0d6a8801c24584bed539fbfe183243",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-09",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.5041,
+        0.4784,
+        0.4402,
+        0.429,
+        0.4588,
+        0.4566,
+        0.4307,
+        0.4328,
+        0.396,
+        0.3573,
+        0.4325,
+        0.4213,
+        0.3753,
+        0.4237,
+        0.3672,
+        0.3603
+      ],
+      "bytes": 2468471,
+      "sha256": "8a15401a47b783ee1e7372443c39aecb5919a1d046e6ff2140f78182e0d18726",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-10",
+      "width": 1263,
+      "height": 1246,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4524,
+        0.4441,
+        0.4997,
+        0.5184,
+        0.4294,
+        0.4224,
+        0.4355,
+        0.4107,
+        0.51,
+        0.4954,
+        0.4531,
+        0.4644,
+        0.4197,
+        0.4386,
+        0.4437,
+        0.4709
+      ],
+      "bytes": 2573780,
+      "sha256": "6cee63bbd32865b143c7ecef8f4464687277796b174ecc0353aa860d7efed830",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-11",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4309,
+        0.4231,
+        0.3889,
+        0.3997,
+        0.438,
+        0.4177,
+        0.4394,
+        0.4273,
+        0.4098,
+        0.4085,
+        0.4271,
+        0.4564,
+        0.4338,
+        0.4368,
+        0.4185,
+        0.3675
+      ],
+      "bytes": 2379006,
+      "sha256": "7649a64f09d686b4b4085bbb180ffbfadf8cb0314cbfaf0eb0d460345627ed96",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-12",
+      "width": 1254,
+      "height": 1254,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.3604,
+        0.3593,
+        0.391,
+        0.4446,
+        0.4442,
+        0.4428,
+        0.496,
+        0.4911,
+        0.4814,
+        0.4784,
+        0.4547,
+        0.4665,
+        0.4904,
+        0.4463,
+        0.668,
+        0.3989
+      ],
+      "bytes": 2389539,
+      "sha256": "0e05ed6e3c218c4f5b6f7b5d07d0c998014908e17c15ef49427332316286e885",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-13",
+      "width": 1264,
+      "height": 1244,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.5641,
+        0.5549,
+        0.4146,
+        0.4677,
+        0.4249,
+        0.4093,
+        0.4349,
+        0.4059,
+        0.4537,
+        0.4555,
+        0.3608,
+        0.3887,
+        0.5657,
+        0.6114,
+        0.4742,
+        0.5181
+      ],
+      "bytes": 2681762,
+      "sha256": "9fd0b876f6f4ef75f2cf6d0c7123e1ec196d7f5937256d75d3de885f62a459d4",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "warrior",
+      "sheet": "actions-14",
+      "width": 1263,
+      "height": 1245,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.418,
+        0.4356,
+        0.4222,
+        0.3894,
+        0.3958,
+        0.4149,
+        0.4114,
+        0.4058,
+        0.4432,
+        0.4294,
+        0.4288,
+        0.4671,
+        0.4541,
+        0.453,
+        0.4524,
+        0.4527
+      ],
+      "bytes": 2484937,
+      "sha256": "6111d1081b4661075cffb50233e49d53600747a7f35152526ad2e9d5079095ee",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "emotions",
+      "width": 1254,
+      "height": 1254,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4876,
+        0.4717,
+        0.4681,
+        0.4533,
+        0.4747,
+        0.4701,
+        0.482,
+        0.4637,
+        0.5056,
+        0.4731,
+        0.461,
+        0.4419,
+        0.3948,
+        0.3962,
+        0.4032,
+        0.42
+      ],
+      "bytes": 2627338,
+      "sha256": "c6d153dcf365bf58ecac3bd7888325b1a45604e851450e89477ebbf4d482ea80",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-01",
+      "width": 1262,
+      "height": 1246,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4425,
+        0.4407,
+        0.4933,
+        0.487,
+        0.4194,
+        0.4194,
+        0.4796,
+        0.4938,
+        0.4253,
+        0.4122,
+        0.4633,
+        0.4336,
+        0.4466,
+        0.465,
+        0.4262,
+        0.4525
+      ],
+      "bytes": 2618927,
+      "sha256": "ee7db01c6c8ca742619f529ac57484555f2a250ce5772cdbd6dbc708aa81f279",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-02",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4577,
+        0.4627,
+        0.4542,
+        0.4563,
+        0.4704,
+        0.4927,
+        0.4357,
+        0.4208,
+        0.4618,
+        0.4708,
+        0.5285,
+        0.551,
+        0.5271,
+        0.4796,
+        0.4572,
+        0.4908
+      ],
+      "bytes": 2638530,
+      "sha256": "f740bc0cc6509677ccd7be17f81e11173c78405aad6d09df80813f1b28534e24",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-03",
+      "width": 1263,
+      "height": 1246,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.506,
+        0.4558,
+        0.4449,
+        0.4439,
+        0.3721,
+        0.4281,
+        0.4185,
+        0.4061,
+        0.4562,
+        0.4543,
+        0.3876,
+        0.3608,
+        0.3932,
+        0.4098,
+        0.4242,
+        0.4198
+      ],
+      "bytes": 2328122,
+      "sha256": "e21d2de3bb8312e76412c6b37829ba6b890b3c2af5eeed6f631513498231449c",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-04",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4358,
+        0.3861,
+        0.4499,
+        0.3419,
+        0.3593,
+        0.37,
+        0.3911,
+        0.4061,
+        0.4084,
+        0.4303,
+        0.4284,
+        0.4385,
+        0.4222,
+        0.4173,
+        0.4286,
+        0.4365
+      ],
+      "bytes": 2398714,
+      "sha256": "54fafdd42767ae05a828759381a182bcf679d220fcaef05915c17f736fb29819",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-05",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4302,
+        0.434,
+        0.4369,
+        0.4335,
+        0.4294,
+        0.4315,
+        0.4296,
+        0.4303,
+        0.4257,
+        0.4276,
+        0.4381,
+        0.4355,
+        0.4287,
+        0.4254,
+        0.4337,
+        0.4295
+      ],
+      "bytes": 2424594,
+      "sha256": "17669d9ef4c797b0df812b784a883a21c66b17b4fb9f2d2ee062073b03d26344",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-06",
+      "width": 1247,
+      "height": 1261,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4511,
+        0.4529,
+        0.4524,
+        0.4482,
+        0.4493,
+        0.451,
+        0.4469,
+        0.4466,
+        0.4443,
+        0.4486,
+        0.4506,
+        0.4472,
+        0.4486,
+        0.462,
+        0.4484,
+        0.4533
+      ],
+      "bytes": 2590446,
+      "sha256": "16a649b1f2bbfb421a12ed5fe48e7f6ec86dd253ba2f6b3dbf1a733f15a0c4a3",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-07",
+      "width": 1262,
+      "height": 1246,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4037,
+        0.4042,
+        0.4379,
+        0.4987,
+        0.407,
+        0.4164,
+        0.4111,
+        0.3869,
+        0.3977,
+        0.3981,
+        0.3919,
+        0.3795,
+        0.3842,
+        0.3725,
+        0.4166,
+        0.4173
+      ],
+      "bytes": 2367351,
+      "sha256": "53415e6b738916e49d53dc69cdaaba40e800a8c19529e9c9b2156b48fc185ed6",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-08",
+      "width": 1278,
+      "height": 1230,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4458,
+        0.4578,
+        0.4828,
+        0.4736,
+        0.3832,
+        0.3779,
+        0.3984,
+        0.3975,
+        0.4114,
+        0.4367,
+        0.4052,
+        0.4052,
+        0.4103,
+        0.3896,
+        0.4451,
+        0.4516
+      ],
+      "bytes": 2542471,
+      "sha256": "2ce92f15fe902f10a45624e5b1c031594ff99fa58dd27546b8e911249f64df77",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-09",
+      "width": 1262,
+      "height": 1246,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4865,
+        0.4496,
+        0.4486,
+        0.4076,
+        0.4496,
+        0.4335,
+        0.4199,
+        0.4159,
+        0.3754,
+        0.388,
+        0.4155,
+        0.4416,
+        0.3709,
+        0.4494,
+        0.359,
+        0.359
+      ],
+      "bytes": 2486446,
+      "sha256": "cabbff29199c769494342007fb228a8cb9409757752ec608e234650e47eb5578",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-10",
+      "width": 1247,
+      "height": 1261,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4403,
+        0.4312,
+        0.4663,
+        0.5188,
+        0.4172,
+        0.4109,
+        0.43,
+        0.4083,
+        0.4921,
+        0.4792,
+        0.4164,
+        0.4426,
+        0.4382,
+        0.4582,
+        0.437,
+        0.4492
+      ],
+      "bytes": 2558255,
+      "sha256": "555abad8559aa2fa9724eabd66a8a534cbc4e423363dcddd9c5ab34ae5eacbcd",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-11",
+      "width": 1239,
+      "height": 1269,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.4067,
+        0.4066,
+        0.374,
+        0.3989,
+        0.4133,
+        0.4178,
+        0.4304,
+        0.4245,
+        0.4088,
+        0.414,
+        0.4349,
+        0.4378,
+        0.3963,
+        0.405,
+        0.396,
+        0.3749
+      ],
+      "bytes": 2568527,
+      "sha256": "1a9972b7bccc34c0686eb75b632e8db28ffd450df7db8b3222d8dd728e7d7249",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-12",
+      "width": 1254,
+      "height": 1254,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.3667,
+        0.3674,
+        0.3866,
+        0.4567,
+        0.4474,
+        0.445,
+        0.5051,
+        0.469,
+        0.4634,
+        0.4684,
+        0.4493,
+        0.4263,
+        0.4613,
+        0.423,
+        0.5011,
+        0.4188
+      ],
+      "bytes": 2621884,
+      "sha256": "a2b730ab826c3d0f0d57312a094d61979afa21045050196c20160f3fbbb90efb",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-13",
+      "width": 1247,
+      "height": 1261,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.557,
+        0.4511,
+        0.4323,
+        0.4558,
+        0.4142,
+        0.3996,
+        0.4301,
+        0.3669,
+        0.4796,
+        0.4034,
+        0.3794,
+        0.398,
+        0.5025,
+        0.5517,
+        0.4585,
+        0.4765
+      ],
+      "bytes": 2662290,
+      "sha256": "b063923eb46fb1512ee07821af80de965d0b1977367c22cb69618966fa7e0b7f",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-14",
+      "width": 1261,
+      "height": 1247,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "cell_alpha_occupancy": [
+        0.409,
+        0.3802,
+        0.3803,
+        0.3779,
+        0.3936,
+        0.4095,
+        0.4035,
+        0.4095,
+        0.4092,
+        0.416,
+        0.4074,
+        0.4272,
+        0.4161,
+        0.4151,
+        0.415,
+        0.4134
+      ],
+      "bytes": 2560807,
+      "sha256": "d4f9a4b2980e340be0ffcd202846a686b6f5aa59d2b9d05c12b225b27a886d8d",
+      "visual_review": "Generated output inspected for16grid cells, class identity, required main props and pose pairs. Emotions has10emotion cells plus6turnaround views; actions14 last4cells unused padding."
+    }
+  ]
+}

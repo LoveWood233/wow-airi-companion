@@ -1,0 +1,15 @@
+{
+  "class_id": "mage",
+  "sheet": "locomotion-sleep",
+  "source": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-3ed81600-18a9-48c1-81b7-4d67510a22ab.png",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "prompt": "source/prompts/mage/locomotion-sleep.txt",
+  "sha256": "f548219154ccb443b3df958993cdfccc41ed22432b835d7fddda008950edbef1",
+  "size": [
+    1254,
+    1254
+  ],
+  "status": "generated_and_visually_inspected",
+  "visual_check": "16 cells. Eight graded sleep poses, four side-running phases and four front-running phases. Curled body has stable head size. Passing/flight and front left/right knees differ."
+}

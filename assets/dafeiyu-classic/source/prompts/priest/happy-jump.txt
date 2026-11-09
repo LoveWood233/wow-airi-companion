@@ -1,0 +1,24 @@
+Use case: identity-preserve.
+Asset type: transparent game character sprite sheet, 16 consecutive local-pose keyframes, 4 columns by 4 rows.
+Edit the reference character into ONE complete 4x4 sprite sheet showing a JOYFUL JUMP in place. The reference images are identity/style references only. Image 1 provides exact costume/colors/details; image 2 is the approved neutral character. Use the same blue-haired priest girl, white frilled headband, small blue hair flowers, thin gold headpiece with central gold diamond, long white and ivory priest robe with burgundy and gold trims, large ivory sleeves, blue oval belt gem, dark little shoes. The gold staff ornament visible beside the left shoulder in the reference is worn fixed on her back, keep it subtle and in that same location, not held in either hand. Both hands empty. Preserve exact robe length and all recognizable costume details.
+CRITICAL: every sprite faces straight FRONT with identical head yaw and front-view costume, same scale, same head and body proportions, same hair silhouette and bone lengths. No turn, no spin, no side or back view. Show enormous genuine celebratory joy, not coyness, shyness, hands on cheeks, or a cute spinning dance.
+Canvas: exactly square, high resolution. Exactly sixteen isolated full-body character sprites in 4 equal columns and 4 equal rows, regular invisible cell layout. Each character horizontally centered in its own cell. Keep each sprite comfortably inside its cell with clear transparent padding. Feet-bottom baseline aligned at the same local cell height (approximately 90% from top). No world-space jump height: the animation code will add vertical travel. Change knee/hip bend, arm angles and expression only. Keep hands and shoes visible and connected correctly. Draw each pair of arms with shoulder-elbow-wrist continuity and only two hands. High V at frames 8 and 9 should be the maximum plausible arm raise with short natural chibi arms, hand centers around eye/forehead height, without lengthening arms.
+READING ORDER: left-to-right then top-to-bottom:
+0 normal front standing, small happy smile, arms comfortably down at sides.
+1 slightly bend knees, torso lowers slightly through knee bend, both arms a little behind hips.
+2 deeper anticipation squat, both arms swept slightly farther back and low.
+3 begin pushing from knees, both arms swing smoothly forward from low.
+4 both legs extend, both arms forward/up 30 degrees from hanging down.
+5 both arms smoothly rise to 60 degrees, legs length unchanged.
+6 both arms smoothly rise to shoulder height 90 degrees, delighted wide open laughing mouth.
+7 both arms smoothly rise to 120 degrees, knees lightly bend with feet still under body.
+8 apex local pose: both arms joyfully in a high V over head, lightly bent knees, joyful closed smiling eyes and laughing open mouth.
+9 near-identical to 8 for apex hold.
+10 both arms smoothly lower to 120 degrees, same big joyful expression.
+11 both arms smoothly lower to shoulder height 90 degrees, legs extend downward under body.
+12 both arms lower to 60 degrees, legs extend downward ready to land.
+13 small landing squat, both arms down-forward 30 degrees.
+14 recover to original upright standing, happy smile, arms at sides.
+15 exactly same shape and pose as frame 0 so the loop closes.
+The intermediate poses must be true gradual in-betweens, not a collection of unrelated expressions. Left/right hands must never swap. All frames use same rigid head, facial placement and outfit geometry; no body distortion, no duplicated limbs, no flying detached hands. Hair may gently follow movement but no costume changes.
+Background genuinely transparent with alpha, absolutely no floor, no ground shadows, no glow, no speed arcs, no stars, no symbols, no labels, no text, no grid/borders, no extra props. Preserve crisp outlined polished chibi fantasy illustration quality of the references.

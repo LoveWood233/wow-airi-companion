@@ -1,0 +1,42 @@
+{
+  "repository": "https://github.com/LoveWood233/wow-airi-companion",
+  "commit": "e3ddb35f8bf692c4fe3f8284caae9f4e4d526790",
+  "files": [
+    {
+      "path": "airi/apps/stage-tamagotchi/src/main/services/airi/dsh-pet-library.ts",
+      "sha256": "bf57930b59e4c1e10c4f1f289c1403aa5866b7dc57d4b7e6acfd9b9e772df2cc",
+      "bytes": 9261,
+      "modifications": "none"
+    },
+    {
+      "path": "airi/apps/stage-tamagotchi/src/shared/dsh-pet.ts",
+      "sha256": "347293458fbf6c5b0cc370de2f9b4468ac4546216d1ed1ad0c652a797cb5f8aa",
+      "bytes": 4337,
+      "modifications": "none"
+    },
+    {
+      "path": "airi/apps/stage-tamagotchi/src/shared/dsh-pet-library.ts",
+      "sha256": "129389f98c1d9063e10a5444e78912827e923763c98c0f39909adb32d89392ef",
+      "bytes": 727,
+      "modifications": "none"
+    },
+    {
+      "path": "airi/apps/stage-tamagotchi/src/renderer/public/dsh-pet/builtin/pack.json",
+      "sha256": "89e8361efcc693c8c491b58d19f0f1a7a668900163371350341161ee5aacfd42",
+      "bytes": 8088,
+      "modifications": "none"
+    },
+    {
+      "path": "airi/LICENSE",
+      "sha256": "11535fc9a00d682ce6a3e32f4c2c2e8a210426f2003439e690e17540c1c04fb0",
+      "bytes": 1096,
+      "modifications": "none"
+    },
+    {
+      "path": "airi/apps/stage-tamagotchi/src/renderer/utils/dsh-pet-animation.ts",
+      "sha256": "852fee9371f93af9ac95f96de1bbea0952f7549c04ef726026023e1849e7d532",
+      "bytes": 2949,
+      "modifications": "none"
+    }
+  ]
+}

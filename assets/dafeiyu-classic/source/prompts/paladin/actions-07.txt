@@ -1,0 +1,19 @@
+Use case: identity-preserve. Produce one professional animation KEY-POSE SPRITE ATLAS matching the reference's SAME DaFeiYu chibi blue-haired whale-maid character. Preserve facial identity, long blue hair, white maid headband, blue whale tail, exact costume and body proportions. PALADIN: exactly the reference red, black and gold Judgement armor with gold cross patterns, gold circlet with red center gem, gold gauntlets and small holy book at belt. Output exactly 4 columns by 4 rows = 16 equally sized cells on a SQUARE high-resolution canvas, TRANSPARENT BACKGROUND. One full-body pose in each cell. All poses fit inside cell with empty margins; stable camera scale and horizontal center, natural baseline 90% down. No grid lines, numbers, labels, text or watermark (except required 福 on red paper or token symbol on chips). Props must be clearly drawn and visibly held/touched, not floating arbitrarily. This sheet contains EIGHT different actions in adjacent A/B pairs, read left-to-right top-to-bottom. Each pair must have visibly different action stages; costume remains identical. Do not replace action with generic waving. For seated/lying poses keep the SAME character scale, not enlarged. Render these exact 16 cells:
+Cell 1 (哈欠连天, pose A): 自然站姿半闭眼。动作语义：捂嘴连续打两个哈欠
+Cell 2 (哈欠连天, pose B): 一手捂大张嘴，眼睛半闭。与A必须是不同的动作阶段，保持道具形状/位置关系。眨眼恢复
+Cell 3 (堆雪人, pose A): 蹲姿，双手推地上雪球；道具：snowball_large, snowball_small, snowman_carrot, snowman。动作语义：把小雪球叠在大雪球上
+Cell 4 (堆雪人, pose B): 双手抬起较小雪球置于大雪球上；道具：snowball_large, snowball_small, snowman_carrot, snowman。与A必须是不同的动作阶段，保持道具形状/位置关系。装上胡萝卜鼻子并查看成品
+Cell 5 (大口吃零食, pose A): 左手端托小碗或小物，右手空闲；道具：snack_bag, snack_piece。动作语义：从袋里拿出大块零食塞入口，鼓腮咀嚼
+Cell 6 (大口吃零食, pose B): 左手端物，右手持食物送到张开的嘴前；道具：snack_bag, snack_piece。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 7 (女仆屈膝礼仪, pose A): 双手轻提衣摆，脚跟并拢。动作语义：屈膝低头行礼
+Cell 8 (女仆屈膝礼仪, pose B): 提衣摆屈膝低身行礼。与A必须是不同的动作阶段，保持道具形状/位置关系。起身微笑
+Cell 9 (小提琴演奏, pose A): 小提琴夹在下巴，持弓手向外拉；道具：violin, violin_bow。动作语义：弓在琴弦上推拉，左指按弦
+Cell 10 (小提琴演奏, pose B): 小提琴夹在下巴，持弓手向内推；道具：violin, violin_bow。与A必须是不同的动作阶段，保持道具形状/位置关系。结束抬弓
+Cell 11 (工作状态-原地踱步张望, pose A): 身体正面，左腿向侧跨步，尾巴反向平衡。动作语义：停顿向左张望
+Cell 12 (工作状态-原地踱步张望, pose B): 身体正面，右腿收拢，手臂自然保持平衡。与A必须是不同的动作阶段，保持道具形状/位置关系。反向踱步再向右张望
+Cell 13 (工作状态-垂头叹气冒汗, pose A): 垂头叹气，肩膀塌下。动作语义：垂头塌肩叹气
+Cell 14 (工作状态-垂头叹气冒汗, pose B): 低头抿嘴，湿润眼睑，双手绞在一起。与A必须是不同的动作阶段，保持道具形状/位置关系。额角一滴汗滑下
+Cell 15 (工作状态-忙碌点按, pose A): 坐或站于桌前，两手不同高度敲键盘；道具：desk, keyboard。动作语义：双手快速轮换点按键盘
+Cell 16 (工作状态-忙碌点按, pose B): 左右手换位敲键盘，视线朝屏幕；道具：desk, keyboard。与A必须是不同的动作阶段，保持道具形状/位置关系。短暂检查后继续
+Keep hands anatomically coherent, clear facial expression, actual specific props and correct contact points. Crisp anime cel shading and line work matching reference. Cell position critical. Transparent alpha only; no scenery background.
+IMPORTANT: every character and all props remain inside the central 80% of each cell. At least 8% transparent space below feet or furniture in EVERY cell. No sprite crosses cell boundaries.

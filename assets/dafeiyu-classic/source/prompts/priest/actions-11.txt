@@ -1,0 +1,20 @@
+Use case: stylized-concept. Create a production transparent raster sprite sheet, not a poster. EXACTLY 4 columns x 4 rows, 16 equal square cells, row-major. One full-body chibi blue-haired whale-maid character per cell, same identity and approved CLASS OUTFIT from the reference. Keep full hair, hands, shoes and whale tail inside each cell with generous transparent gutters; no grid lines, no text, no numbers, no white background. Consistent rendering, size, light, camera and ground line. No oversized weapons unless the action requires them. Each adjacent cell pair is two distinct key poses of the SAME named action. Preserve the reference class armor colors, shoulder silhouette, crown/hood ornaments, maid frills and facial style. New props must be drawn in the same polished anime game-sprite style and contact hands/mouth correctly. True transparent alpha. Aim high resolution; actions must remain legible at 640x360 playback.
+
+Cell 1 (row 1, col 1), action 点击回应-害羞惊讶, pose A: 肩膀耸起，身体后缩，睁大眼，手护胸。动作语义：红脸双手靠胸
+Cell 2 (row 1, col 2), same action pose B: 红脸，双手遮半脸，眼睛仍可辨。与A必须是不同的动作阶段，保持道具形状/位置关系。遮脸偷看
+Cell 3 (row 1, col 3), action 点击回应-开心跃动, pose A: 双腿屈膝，躯干降低，蓄力。动作语义：开心举拳
+Cell 4 (row 1, col 4), same action pose B: 真实离地，双脚收起，头发和尾巴向下滞后。与A必须是不同的动作阶段，保持道具形状/位置关系。屈膝起跳并落地
+Cell 5 (row 2, col 1), action 点击回应-挠痒咯咯笑, pose A: 闭眼大笑，歪头，手护腹部。动作语义：左右躲痒笑出声
+Cell 6 (row 2, col 2), same action pose B: 笑得后仰，双手靠身侧。与A必须是不同的动作阶段，保持道具形状/位置关系。护腹笑到后仰
+Cell 7 (row 2, col 3), action 照镜子, pose A: 一手持镜朝脸，另一手整理刘海；道具：hand_mirror。动作语义：照镜并整理刘海
+Cell 8 (row 2, col 4), same action pose B: 脸侧向镜子，整理另一侧头发；道具：hand_mirror。与A必须是不同的动作阶段，保持道具形状/位置关系。换侧检查
+Cell 9 (row 3, col 1), action 玩水枪, pose A: 双手持水枪水平瞄准，单眼微眯；道具：water_gun。动作语义：扣扳机喷出连续水柱
+Cell 10 (row 3, col 2), same action pose B: 保持瞄准，手臂轻回弹，表情兴奋；道具：water_gun。与A必须是不同的动作阶段，保持道具形状/位置关系。手臂回弹再喷一次
+Cell 11 (row 3, col 3), action 玩游戏气急败坏, pose A: 双手握手柄，眼睛专注看前方；道具：game_controller。动作语义：双手按键
+Cell 12 (row 3, col 4), same action pose B: 握紧手柄上抬，气鼓鼓皱眉；道具：game_controller。与A必须是不同的动作阶段，保持道具形状/位置关系。失败后气得举起手柄跺脚
+Cell 13 (row 4, col 1), action 用鲸鱼尾巴拍打地面, pose A: 鲸尾明显抬高离地、弯向身后，角色身体稍前倾准备拍。
+Cell 14 (row 4, col 2), same action pose B: 鲸尾确实拍在脚边地面，尾缘压低，接触处少量尘点，身体轻反弹。
+Cell 15 (row 4, col 3), action 睡觉-开始, pose A: 角色坐下收腿，双手膝前，头低垂，眼皮困倦，身体正向蜷缩。
+Cell 16 (row 4, col 4), same action pose B: 角色完全蜷卧睡着，头贴在折起的手旁，长发和鲸尾铺在地上，双眼闭合。
+
+IDENTITY LOCK: Same DaFeiYu PRIEST blue-haired whale-maid in reference, long blue hair, blue tail, white maid headband, ivory white and gold Transcendence robes with burgundy edging and gold ornaments. Same costume and body proportions all16 cells. Replace all source poses with requested new poses, equal4x4grid, generous transparent empty gutters. All limbs hair tail props must fit each square cell. For sleeping, completely lying curled horizontally, closed eyes, head on folded hands. Meaningfully different A/B gestures and clear expressions; toy water gun, not weapon, spray blue water. No text labels/grid/background. Clean cel shaded style matching reference.

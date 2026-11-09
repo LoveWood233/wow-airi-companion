@@ -1,0 +1,20 @@
+Use case: identity-preserve. Production animation bridge atlas, exactly FOUR columns by FOUR rows, 16 equal square cells, transparent background. SAME approved DaFeiYu class outfit, face, proportions, blue long hair, white maid headband and whale tail in every cell. Reference for identity and costume only. Carefully controlled continuous in-between drawings, no unrelated props, no text, no labels or grid. Every character and tail fully inside cell with at least 12% clear empty margins on ALL sides. Fixed camera size and ground baseline at 86% of cell height. No effects crossing cells. Sleep bends body naturally, head does not melt or change size. Row-major cells:
+1 neutral standing, front view, relaxed arms.
+2 sitting on floor with legs folded, torso upright and sleepy eyes, hands by knees.
+3 sitting with torso leaning 30 degrees toward folded hands on floor, eyes closed, beginning to curl; head natural and same size.
+4 torso leans 60 degrees toward floor, head close to folded hands, body almost lying down, eyes closed.
+5 fully curled lying horizontally asleep on folded hands, closed eyes, hair and whale tail resting naturally on floor.
+6 SAME exact fully curled pose as cell5, closed eyes, only chest/back slightly lifted for breathing; no limb/head position shift.
+7 from same sleeping curl, head lifted slightly, forearms push gently, torso 30 degrees above floor, half-open sleepy eyes.
+8 torso raised to 60 degrees, sitting up using hands on floor, sleepy face, transitioning toward seated cell2.
+9 FULL LEFT SIDE RUN view, long stride: near leg extended FORWARD toward LEFT edge, far leg extended BACK toward RIGHT edge, arms opposite legs. Keep costume, head/hair size fixed.
+10 SAME LEFT SIDE RUN view, passing phase: BOTH feet below hips, near knee lifts, other foot points down; narrow silhouette very different from wide stride in9.
+11 SAME LEFT SIDE RUN view, opposite stride: NEAR leg extended BACK toward RIGHT edge and FAR leg forward LEFT, swap arm positions; different from9, body same position.
+12 SAME LEFT SIDE RUN view, flight phase: BOTH knees bent and feet tucked behind under body, both feet off floor; head/hair same as9, body slightly higher.
+13 FRONT VIEW happy running: LEFT knee raised visibly high, RIGHT foot reaches down, RIGHT arm forward, LEFT arm back.
+14 SAME FRONT VIEW, passing phase both feet near ground under hips, knees softly bent, arms passing at sides.
+15 SAME FRONT VIEW, RIGHT knee raised visibly high, LEFT foot reaches down, LEFT arm forward, RIGHT arm back.
+16 SAME FRONT VIEW, small flight phase with both knees bent and both feet slightly above ground, happy relaxed smile.
+All16 equally spaced full-body sprites. Prioritize accurate sequential anatomy and stable character identity. Transparent alpha, no background rectangle or ground surface; only a small isolated soft shadow if needed, clear margins remain.
+
+Identity lock: ROGUE: black-and-deep-red Bloodfang leather armor, red pointed shoulders and scarf, black-red boots, blue oval belt gem. NO gold crown or armor. Match the supplied approved character exactly. Distinct near and far legs, accurately alternate contact and passing phases. Hands remain free. Preserve outfit in sleeping and running poses. Transparent 4x4, exactly 16 cells.

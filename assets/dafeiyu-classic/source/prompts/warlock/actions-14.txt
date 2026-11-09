@@ -1,0 +1,19 @@
+Use case: identity-preserve. Produce one professional animation KEY-POSE SPRITE ATLAS matching the reference's SAME DaFeiYu chibi blue-haired whale-maid character. Preserve facial identity, long blue hair, white maid headband, blue whale tail, exact costume and body proportions. WARLOCK: exactly the reference dark purple Nemesis robe, ivory bone trims and little bone horns at headband, green shoulder gem and hip spellbook. Output exactly 4 columns by 4 rows = 16 equally sized cells on a SQUARE high-resolution canvas, TRANSPARENT BACKGROUND. One full-body pose in each cell. All poses fit inside cell with empty margins; stable camera scale and horizontal center, natural baseline 90% down. No grid lines, numbers, labels, text or watermark (except required 福 on red paper or token symbol on chips). Props must be clearly drawn and visibly held/touched, not floating arbitrarily. This sheet contains EIGHT different actions in adjacent A/B pairs, read left-to-right top-to-bottom. Each pair must have visibly different action stages; costume remains identical. Do not replace action with generic waving. For seated/lying poses keep the SAME character scale, not enlarged. Render these exact 16 cells:
+Cell 1 (超大伸懒腰, pose A): 双臂高举伸懒腰，躯干拉长。动作语义：双臂高举伸长身体
+Cell 2 (超大伸懒腰, pose B): 双臂上举向侧弯腰。与A必须是不同的动作阶段，保持道具形状/位置关系。左右拉伸并轻打哈欠
+Cell 3 (踢毽子, pose A): 单脚站立，另一腿弯曲准备踢毽子；道具：shuttlecock。动作语义：脚内侧向上踢中毽子
+Cell 4 (踢毽子, pose B): 抬脚内侧向上踢，双臂平衡；道具：shuttlecock。与A必须是不同的动作阶段，保持道具形状/位置关系。毽子升落，重复接踢
+Cell 5 (轻快摇摆舞, pose A): 向左移重心，一臂抬起另一臂伸侧。动作语义：左右交替转移重心，手臂随节拍摆动
+Cell 6 (轻快摇摆舞, pose B): 向右移重心，左右手臂交换。与A必须是不同的动作阶段，保持道具形状/位置关系。前向打拍
+Cell 7 (轻快记录, pose A): 一手扶纸，另一手执笔笔尖触纸；道具：notepad, pen。动作语义：笔尖在纸上快速记录
+Cell 8 (轻快记录, pose B): 执笔手抬起，眼睛检查纸面；道具：notepad, pen。与A必须是不同的动作阶段，保持道具形状/位置关系。抬笔检查
+Cell 9 (骑木马, pose A): 跨坐木马，握把，身体后倾；道具：rocking_horse。动作语义：木马与角色同步前后摇
+Cell 10 (骑木马, pose B): 跨坐木马，身体前倾；道具：rocking_horse。与A必须是不同的动作阶段，保持道具形状/位置关系。慢慢停下
+Cell 11 (鲸鱼吐泡泡特效, pose A): 双手在嘴前握住气球口或吹具，鼓腮。动作语义：从嘴前吹出大小不同泡泡
+Cell 12 (鲸鱼吐泡泡特效, pose B): 双手在嘴前握住气球口或吹具，鼓腮。与A必须是不同的动作阶段，保持道具形状/位置关系。泡泡上升并破裂
+Cell 13: canonical neutral front full-body relaxed pose matching reference.
+Cell 14: canonical neutral front full-body relaxed pose matching reference.
+Cell 15: canonical neutral front full-body relaxed pose matching reference.
+Cell 16: canonical neutral front full-body relaxed pose matching reference.
+Keep hands anatomically coherent, clear facial expression, actual specific props and correct contact points. Crisp anime cel shading and line work matching reference. Cell position critical. Transparent alpha only; no scenery background.
+IMPORTANT: every character and all props remain inside the central 80% of each cell. At least 8% transparent space below feet or furniture in EVERY cell. No sprite crosses cell boundaries.

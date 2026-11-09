@@ -1,0 +1,159 @@
+{
+  "release": "dafeiyu-classic-motion-v031",
+  "releaseVersion": "0.3.1",
+  "createdAt": "2026-11-08T19:29:21.832528+00:00",
+  "status": "complete_resource_package_validated",
+  "classes": [
+    {
+      "class": "warrior",
+      "label": "战士",
+      "set": "愤怒",
+      "actions": 120,
+      "originalNamedActions": 114,
+      "newActions": 6,
+      "mediaBytes": 337285805,
+      "totalSeconds": 1162,
+      "nativeImporter": "passed",
+      "nativeCopiedHashesMatched": 120
+    },
+    {
+      "class": "hunter",
+      "label": "猎人",
+      "set": "巨龙追猎者",
+      "actions": 120,
+      "originalNamedActions": 114,
+      "newActions": 6,
+      "mediaBytes": 312217396,
+      "totalSeconds": 1162,
+      "nativeImporter": "passed",
+      "nativeCopiedHashesMatched": 120
+    },
+    {
+      "class": "mage",
+      "label": "法师",
+      "set": "灵风",
+      "actions": 120,
+      "originalNamedActions": 114,
+      "newActions": 6,
+      "mediaBytes": 323623032,
+      "totalSeconds": 1162,
+      "nativeImporter": "passed",
+      "nativeCopiedHashesMatched": 120
+    },
+    {
+      "class": "rogue",
+      "label": "盗贼",
+      "set": "血牙",
+      "actions": 120,
+      "originalNamedActions": 114,
+      "newActions": 6,
+      "mediaBytes": 258855823,
+      "totalSeconds": 1162,
+      "nativeImporter": "passed",
+      "nativeCopiedHashesMatched": 120
+    },
+    {
+      "class": "paladin",
+      "label": "圣骑士",
+      "set": "审判",
+      "actions": 120,
+      "originalNamedActions": 114,
+      "newActions": 6,
+      "mediaBytes": 290467252,
+      "totalSeconds": 1162,
+      "nativeImporter": "passed",
+      "nativeCopiedHashesMatched": 120
+    },
+    {
+      "class": "warlock",
+      "label": "术士",
+      "set": "复仇",
+      "actions": 120,
+      "originalNamedActions": 114,
+      "newActions": 6,
+      "mediaBytes": 292333361,
+      "totalSeconds": 1162,
+      "nativeImporter": "passed",
+      "nativeCopiedHashesMatched": 120
+    },
+    {
+      "class": "priest",
+      "label": "牧师",
+      "set": "卓越",
+      "actions": 120,
+      "originalNamedActions": 114,
+      "newActions": 6,
+      "mediaBytes": 275825798,
+      "totalSeconds": 1162,
+      "nativeImporter": "passed",
+      "nativeCopiedHashesMatched": 120
+    },
+    {
+      "class": "druid",
+      "label": "德鲁伊",
+      "set": "怒风",
+      "actions": 120,
+      "originalNamedActions": 114,
+      "newActions": 6,
+      "mediaBytes": 338980677,
+      "totalSeconds": 1162,
+      "nativeImporter": "passed",
+      "nativeCopiedHashesMatched": 120
+    }
+  ],
+  "totals": {
+    "classes": 8,
+    "actionsPerClass": 120,
+    "originalNamesPerClass": 114,
+    "addedPerClass": 6,
+    "videos": 960,
+    "fps": 60,
+    "resolution": [
+      640,
+      360
+    ],
+    "codec": "VP9 WebM alpha",
+    "mediaBytes": 2429589144,
+    "finalSourceAtlases": 144
+  },
+  "addedActions": [
+    "害怕",
+    "害羞",
+    "难过（眼睛饱含泪水）",
+    "想去玩（期待星星眼）",
+    "大哭",
+    "开心蹦跳"
+  ],
+  "validation": {
+    "nativeImporterClassesPassed": 8,
+    "nativeCopiedHashesMatched": 960,
+    "sourceHashesAndAuditedCropsCurrent": true,
+    "mediaFrameCountsDecoded": 960,
+    "newMediaAlphaSampleDecoded": 960,
+    "allMediaUsesContinuousVisibilityPolicy": true,
+    "nativeSchemaAndMediaMetadataPassed": 960,
+    "offlineViewerStaticChecks": "passed",
+    "temporaryImportProfilesRemoved": true,
+    "electronUiRuntimeVerified": false,
+    "browserPlaybackVerified": false
+  },
+  "scope": {
+    "originalActionNamesAndInterfacePreserved": true,
+    "originalMovesAndTimingContractPreserved": true,
+    "semanticKeyPoseRemake": true,
+    "originalVideoFrameExactCostumeTransfer": false,
+    "newArtworkGenerator": "built-in image_gen",
+    "frameInterpolation": "bidirectional alpha-aware optical flow with continuous reliability weighting",
+    "replacedCustomSpinWith": "开心蹦跳",
+    "jointMidpointHardSwitchRemoved": true,
+    "incompatibleFormTransitions": "premultiplied-alpha dissolve for dove, whale and ghost transformations",
+    "newAutomaticEmotionRoutingAdded": false
+  },
+  "limitations": [
+    "60fps includes held poses and interpolated frames; not 60 independently drawn frames per second.",
+    "This is image interpolation, not a skeletal rig. Some occluded contours can still soften or overlap; continuity metrics do not prove anatomically valid joints.",
+    "Native import was verified in temporary profiles, not in the user current Electron window."
+  ],
+  "airiCommit": "e3ddb35f8bf692c4fe3f8284caae9f4e4d526790",
+  "dshPetCommit": "be4536da0ca71947058777d904874977ab9ab841"
+}

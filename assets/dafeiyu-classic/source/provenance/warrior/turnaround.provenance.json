@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-4e548836-ac88-4d22-960e-9141e416cee8.png",
+  "prompt": "prompts/warrior/turnaround.txt",
+  "sha256": "72131253e02be64921ac148a61bf470e227f58592f829c293996d16f65ee1ba5",
+  "visual_qa": "16 distinct viewpoints inspected, genuine full back, same costume, no effects or cell intrusion"
+}

@@ -1,0 +1,18 @@
+Use case: stylized-concept. Create a production transparent raster sprite sheet, not a poster. EXACTLY 4 columns x 4 rows, 16 equal square cells, row-major. One full-body chibi blue-haired whale-maid character per cell, same identity and approved CLASS OUTFIT from the reference. Keep full hair, hands, shoes and whale tail inside each cell with generous transparent gutters; no grid lines, no text, no numbers, no white background. Consistent rendering, size, light, camera and ground line. No oversized weapons unless the action requires them. Each adjacent cell pair is two distinct key poses of the SAME named action. Preserve the reference class armor colors, shoulder silhouette, crown/hood ornaments, maid frills and facial style. New props must be drawn in the same polished anime game-sprite style and contact hands/mouth correctly. True transparent alpha. Aim high resolution; actions must remain legible at 640x360 playback.
+
+Cell 1 (row 1, col 1), action 超大伸懒腰, pose A: 双臂高举伸懒腰，躯干拉长。动作语义：双臂高举伸长身体
+Cell 2 (row 1, col 2), same action pose B: 双臂上举向侧弯腰。与A必须是不同的动作阶段，保持道具形状/位置关系。左右拉伸并轻打哈欠
+Cell 3 (row 1, col 3), action 踢毽子, pose A: 单脚站立，另一腿弯曲准备踢毽子；道具：shuttlecock。动作语义：脚内侧向上踢中毽子
+Cell 4 (row 1, col 4), same action pose B: 抬脚内侧向上踢，双臂平衡；道具：shuttlecock。与A必须是不同的动作阶段，保持道具形状/位置关系。毽子升落，重复接踢
+Cell 5 (row 2, col 1), action 轻快摇摆舞, pose A: 向左移重心，一臂抬起另一臂伸侧。动作语义：左右交替转移重心，手臂随节拍摆动
+Cell 6 (row 2, col 2), same action pose B: 向右移重心，左右手臂交换。与A必须是不同的动作阶段，保持道具形状/位置关系。前向打拍
+Cell 7 (row 2, col 3), action 轻快记录, pose A: 一手扶纸，另一手执笔笔尖触纸；道具：notepad, pen。动作语义：笔尖在纸上快速记录
+Cell 8 (row 2, col 4), same action pose B: 执笔手抬起，眼睛检查纸面；道具：notepad, pen。与A必须是不同的动作阶段，保持道具形状/位置关系。抬笔检查
+Cell 9 (row 3, col 1), action 骑木马, pose A: 跨坐木马，握把，身体后倾；道具：rocking_horse。动作语义：木马与角色同步前后摇
+Cell 10 (row 3, col 2), same action pose B: 跨坐木马，身体前倾；道具：rocking_horse。与A必须是不同的动作阶段，保持道具形状/位置关系。慢慢停下
+Cell 11 (row 3, col 3), action 鲸鱼吐泡泡特效, pose A: 双手在嘴前握住气球口或吹具，鼓腮。动作语义：从嘴前吹出大小不同泡泡
+Cell 12 (row 3, col 4), same action pose B: 双手在嘴前握住气球口或吹具，鼓腮。与A必须是不同的动作阶段，保持道具形状/位置关系。泡泡上升并破裂
+Cell 13: exact canonical neutral standing pose matching reference, no props; spare calibration cell.
+Cell 14: exact canonical neutral standing pose matching reference, no props; spare calibration cell.
+Cell 15: exact canonical neutral standing pose matching reference, no props; spare calibration cell.
+Cell 16: exact canonical neutral standing pose matching reference, no props; spare calibration cell.

@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-43439f27-5573-44f1-a391-467c8c60c220.png",
+  "prompt": "prompts/rogue/actions-04.txt",
+  "sha256": "40cb7e44de59882cadd8fa24c9457eac682112738647a3bed256f038c8328cf5",
+  "visual_qa": "16 cells; squat/pigeon/dance/tokens/icecream/lunch/crab/ricecake visible, A/B differ"
+}

@@ -1,0 +1,289 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bc64-46b6-7270-b269-6dc20d433a26/exec-8af0d2fd-2f00-4ba8-b99e-6f19e351d8ce.png",
+  "prompt": "prompts/warrior/happy-jump.txt",
+  "references": [
+    "base-keyframes/warrior/frame-00.png",
+    "source/sheets/warrior/emotions.png"
+  ],
+  "sha256": "74a43bf6a238c7ff77a6ca4fb838019d1812411326ebb3cf18e74bccab816619",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "created_at": "2026-11-08T18:24:53.567811+00:00",
+  "visual_qa": "Inspected full 4x4 atlas: all 16 are front-facing, two connected arms and legs, joyful closed-eye laugh at apex, knee compression and arm rise/return are visible, no text/effects or spins. Short-arm chibi anatomy limits high-V hand height to temple/eye level. Source geometry is approximate keyframes; renderer must anchor and interpolate.",
+  "grid_qa": {
+    "shape": [
+      4,
+      4
+    ],
+    "cell_count": 16,
+    "all_nonempty": true,
+    "min_opaque_margin_px": 6,
+    "note": "Use fractional 1254/4 grid boundaries rounded to integers. Sole baselines differ modestly; anchor feet consistently during extraction before applying jump root motion. Frame 15 is visually similar, not pixel-identical, to frame 0; renderer may reuse frame 0 to close loop.",
+    "cells": [
+      {
+        "index": 0,
+        "crop": [
+          0,
+          0,
+          314,
+          314
+        ],
+        "alpha32_bbox": [
+          57,
+          10,
+          266,
+          303
+        ],
+        "min_margin": 10
+      },
+      {
+        "index": 1,
+        "crop": [
+          314,
+          0,
+          627,
+          314
+        ],
+        "alpha32_bbox": [
+          55,
+          20,
+          266,
+          304
+        ],
+        "min_margin": 10
+      },
+      {
+        "index": 2,
+        "crop": [
+          627,
+          0,
+          940,
+          314
+        ],
+        "alpha32_bbox": [
+          56,
+          38,
+          270,
+          303
+        ],
+        "min_margin": 11
+      },
+      {
+        "index": 3,
+        "crop": [
+          940,
+          0,
+          1254,
+          314
+        ],
+        "alpha32_bbox": [
+          57,
+          25,
+          267,
+          304
+        ],
+        "min_margin": 10
+      },
+      {
+        "index": 4,
+        "crop": [
+          0,
+          314,
+          314,
+          627
+        ],
+        "alpha32_bbox": [
+          56,
+          13,
+          267,
+          302
+        ],
+        "min_margin": 11
+      },
+      {
+        "index": 5,
+        "crop": [
+          314,
+          314,
+          627,
+          627
+        ],
+        "alpha32_bbox": [
+          56,
+          14,
+          266,
+          302
+        ],
+        "min_margin": 11
+      },
+      {
+        "index": 6,
+        "crop": [
+          627,
+          314,
+          940,
+          627
+        ],
+        "alpha32_bbox": [
+          56,
+          11,
+          266,
+          302
+        ],
+        "min_margin": 11
+      },
+      {
+        "index": 7,
+        "crop": [
+          940,
+          314,
+          1254,
+          627
+        ],
+        "alpha32_bbox": [
+          56,
+          6,
+          266,
+          302
+        ],
+        "min_margin": 6
+      },
+      {
+        "index": 8,
+        "crop": [
+          0,
+          627,
+          314,
+          940
+        ],
+        "alpha32_bbox": [
+          58,
+          7,
+          267,
+          290
+        ],
+        "min_margin": 7
+      },
+      {
+        "index": 9,
+        "crop": [
+          314,
+          627,
+          627,
+          940
+        ],
+        "alpha32_bbox": [
+          56,
+          7,
+          267,
+          287
+        ],
+        "min_margin": 7
+      },
+      {
+        "index": 10,
+        "crop": [
+          627,
+          627,
+          940,
+          940
+        ],
+        "alpha32_bbox": [
+          56,
+          10,
+          267,
+          302
+        ],
+        "min_margin": 10
+      },
+      {
+        "index": 11,
+        "crop": [
+          940,
+          627,
+          1254,
+          940
+        ],
+        "alpha32_bbox": [
+          53,
+          10,
+          269,
+          302
+        ],
+        "min_margin": 10
+      },
+      {
+        "index": 12,
+        "crop": [
+          0,
+          940,
+          314,
+          1254
+        ],
+        "alpha32_bbox": [
+          56,
+          14,
+          267,
+          302
+        ],
+        "min_margin": 12
+      },
+      {
+        "index": 13,
+        "crop": [
+          314,
+          940,
+          627,
+          1254
+        ],
+        "alpha32_bbox": [
+          56,
+          15,
+          267,
+          303
+        ],
+        "min_margin": 11
+      },
+      {
+        "index": 14,
+        "crop": [
+          627,
+          940,
+          940,
+          1254
+        ],
+        "alpha32_bbox": [
+          56,
+          12,
+          267,
+          302
+        ],
+        "min_margin": 12
+      },
+      {
+        "index": 15,
+        "crop": [
+          940,
+          940,
+          1254,
+          1254
+        ],
+        "alpha32_bbox": [
+          57,
+          12,
+          268,
+          303
+        ],
+        "min_margin": 11
+      }
+    ]
+  }
+}

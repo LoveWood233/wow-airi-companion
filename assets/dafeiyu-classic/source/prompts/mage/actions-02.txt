@@ -1,0 +1,19 @@
+Use case: identity-preserve. Production animation sprite sheet for AIRI. Reference is the APPROVED MAGE DaFeiYu mascot. Preserve exactly her blue hair, blue eyes, white maid headband, long wavy hair, blue whale tail, face and compact chibi proportions, and purple-and-gold Netherwind long robe with blue glowing gems, gold forehead tiara, blue-orb staff stowed on back. Every cell wears the SAME costume; weapons stowed so hands can interact. Crisp anime cel-shaded linework, identical fixed camera scale. Exactly 4x4 evenly spaced sprites on a square canvas, truly transparent alpha, no floor. All props must be drawn and recognizable. Highest available resolution. Required poses follow:
+Use case: stylized-concept. Create a production transparent raster sprite sheet, not a poster. EXACTLY 4 columns x 4 rows, 16 equal square cells, row-major. One full-body chibi blue-haired whale-maid character per cell, same identity and approved CLASS OUTFIT from the reference. Keep full hair, hands, shoes and whale tail inside each cell with generous transparent gutters; no grid lines, no text, no numbers, no white background. Consistent rendering, size, light, camera and ground line. No oversized weapons unless the action requires them. Each adjacent cell pair is two distinct key poses of the SAME named action. Preserve the reference class armor colors, shoulder silhouette, crown/hood ornaments, maid frills and facial style. New props must be drawn in the same polished anime game-sprite style and contact hands/mouth correctly. True transparent alpha. Aim high resolution; actions must remain legible at 640x360 playback.
+
+Cell 1 (row 1, col 1), action 余额-金袋叮当, pose A: 双手展示钱袋，眼睛注视袋口；道具：money_bag_full, gold_coins。动作语义：提起饱满钱袋轻摇，数几枚金币并微笑
+Cell 2 (row 1, col 2), same action pose B: 一手持袋，另一手捏金币查看；道具：money_bag_full, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态
+Cell 3 (row 1, col 3), action 余额-钱袋如常, pose A: 双手展示钱袋，眼睛注视袋口；道具：money_bag_normal, gold_coins。动作语义：平静查看普通钱袋中的金币并收好
+Cell 4 (row 1, col 4), same action pose B: 一手持袋，另一手捏金币查看；道具：money_bag_normal, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态
+Cell 5 (row 2, col 1), action 余额-钱袋满溢, pose A: 双手展示钱袋，眼睛注视袋口；道具：money_bag_overflow, gold_coins。动作语义：打开鼓鼓钱袋，金币满溢，开心举起
+Cell 6 (row 2, col 2), same action pose B: 开心闭眼，双拳抬到胸前；道具：money_bag_overflow, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态
+Cell 7 (row 2, col 3), action 侧身急躁跑, pose A: 焦急皱眉的左侧面跑步，左腿前右腿后，右臂前左臂后。
+Cell 8 (row 2, col 4), same action pose B: 同一焦急左侧面，跑步步相完全交换，发尾与鲸尾追随。
+Cell 9 (row 3, col 1), action 偷吃零食被抓住, pose A: 头和视线转左，身体基本正面；道具：snack_bag, snack_piece。动作语义：偷偷拿零食咬一口
+Cell 10 (row 3, col 2), same action pose B: 左手端物，右手持食物送到张开的嘴前；道具：snack_bag, snack_piece。与A必须是不同的动作阶段，保持道具形状/位置关系。被发现后鼓腮僵住、藏起零食
+Cell 11 (row 3, col 3), action 写代码, pose A: 坐或站于桌前，两手不同高度敲键盘；道具：desk, laptop。动作语义：左右手交替打字
+Cell 12 (row 3, col 4), same action pose B: 左右手换位敲键盘，视线朝屏幕；道具：desk, laptop。与A必须是不同的动作阶段，保持道具形状/位置关系。停顿思考后继续输入
+Cell 13 (row 4, col 1), action 写福字, pose A: 毛笔笔尖触红纸，左手扶纸，正在写粗黑福字，墨水瓶在旁。
+Cell 14 (row 4, col 2), same action pose B: 双手举起同一红纸展示完整正向福字，表情满意；不可把字镜像。
+Cell 15 (row 4, col 3), action 凭空生花, pose A: 向前展示空掌心，另一手遮在上方，神秘期待微笑。
+Cell 16 (row 4, col 4), same action pose B: 同一掌心出现一朵完整盛开的花，另一手张开，惊喜展示。

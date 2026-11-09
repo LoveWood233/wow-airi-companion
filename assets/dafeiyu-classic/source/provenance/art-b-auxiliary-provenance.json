@@ -1,0 +1,106 @@
+{
+  "status": "source_art_complete",
+  "count": 6,
+  "notes": [
+    "warlock turnaround white background rejected and removed with image_gen before publication",
+    "sleep/run and turn poses are newly generated source drawings; final motion QA belongs to encoded media"
+  ],
+  "items": [
+    {
+      "class": "paladin",
+      "sheet": "locomotion-sleep",
+      "file": "sheets/paladin/locomotion-sleep.png",
+      "sha256": "3eef9ef91aebc5ad9962bce67b7be49322277a1fc83ed279dcbe14819f48e878",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-14099b9f-9041-463f-ad02-1e1428613ff0.png",
+      "prompt": "prompts/paladin/locomotion-sleep.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.54215,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16 cell layout, genuine side/rear perspectives or sleep/run phases checked",
+      "actual_12_percent_margin_not_measured": true
+    },
+    {
+      "class": "paladin",
+      "sheet": "turnaround",
+      "file": "sheets/paladin/turnaround.png",
+      "sha256": "0d2179762fb78460f8763487f68637693efede966981ad9c0f82d4d9806ec59a",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-4d820489-c1a9-4c6e-8483-57751d30a13d.png",
+      "prompt": "prompts/paladin/turnaround.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.58065,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16 cell layout, genuine side/rear perspectives or sleep/run phases checked",
+      "actual_12_percent_margin_not_measured": true
+    },
+    {
+      "class": "warlock",
+      "sheet": "locomotion-sleep",
+      "file": "sheets/warlock/locomotion-sleep.png",
+      "sha256": "3e5458186a6dec5077db06e7e88328b9f1b5123a720ebf2c36c1a2ef25d0fb50",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-b65aea16-73be-4f1f-a42e-eb66c20fcbb1.png",
+      "prompt": "prompts/warlock/locomotion-sleep.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.50366,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16 cell layout, genuine side/rear perspectives or sleep/run phases checked",
+      "actual_12_percent_margin_not_measured": true
+    },
+    {
+      "class": "warlock",
+      "sheet": "turnaround",
+      "file": "sheets/warlock/turnaround.png",
+      "sha256": "97e4efc4d2b68a17648a1e4e929293769098d6438f7cd9eb6aef1343115865c8",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-24af552b-cb3c-44a3-9312-438ee0990f3b.png",
+      "prompt": "prompts/warlock/turnaround.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.50267,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16 cell layout, genuine side/rear perspectives or sleep/run phases checked",
+      "actual_12_percent_margin_not_measured": true
+    },
+    {
+      "class": "priest",
+      "sheet": "locomotion-sleep",
+      "file": "sheets/priest/locomotion-sleep.png",
+      "sha256": "5d0ac10849f73412e12ef5d20f0874432382b35a4dfce2c7d769145de0507b9f",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-b617b014-53c3-4304-b75c-3e488e9ec533.png",
+      "prompt": "prompts/priest/locomotion-sleep.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.5236,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16 cell layout, genuine side/rear perspectives or sleep/run phases checked",
+      "actual_12_percent_margin_not_measured": true
+    },
+    {
+      "class": "priest",
+      "sheet": "turnaround",
+      "file": "sheets/priest/turnaround.png",
+      "sha256": "bf3d50d5ada38b8463ee365fcda913382d4d3ee7df287d49cec8ea58caca97c5",
+      "source": "image_gen-output:01a1bbe9-7333-7d41-822e-2141290f473e/exec-abfc7b2d-15c8-4555-addf-b5d96a050495.png",
+      "prompt": "prompts/priest/turnaround.txt",
+      "generator": "built-in image_gen",
+      "transparent_pixel_fraction": 0.51537,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "visual_review": "16 cell layout, genuine side/rear perspectives or sleep/run phases checked",
+      "actual_12_percent_margin_not_measured": true
+    }
+  ]
+}

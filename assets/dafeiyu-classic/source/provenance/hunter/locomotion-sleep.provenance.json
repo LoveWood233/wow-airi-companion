@@ -1,0 +1,15 @@
+{
+  "class_id": "hunter",
+  "sheet": "locomotion-sleep",
+  "source": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-04d66acc-000e-4c5f-a72a-415ce9e8db29.png",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "prompt": "source/prompts/hunter/locomotion-sleep.txt",
+  "sha256": "64fc7b3deeb8ed47104bcd968ff2b39c44fc78386210efc16eb49f4006afc913",
+  "size": [
+    1254,
+    1254
+  ],
+  "status": "generated_and_visually_inspected",
+  "visual_check": "16 cells. Eight graded sleep poses, four side-running phases and four front-running phases. Curled body has stable head size. Passing/flight and front left/right knees differ."
+}

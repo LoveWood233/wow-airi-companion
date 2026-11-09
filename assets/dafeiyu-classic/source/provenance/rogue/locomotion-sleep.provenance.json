@@ -1,0 +1,17 @@
+{
+  "class_id": "rogue",
+  "sheet": "locomotion-sleep",
+  "source": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-9c915737-2807-48f2-b084-08f7ffd85934.png",
+  "visual_check": "16 cells: 8 graded sleep poses, 4 side run phases, 4 front run phases. Gray speckles removed through built-in imagegen correction.",
+  "original_generated": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-46335ce6-a867-49bd-acf0-b3b4d8133602.png",
+  "correction_prompt": "prompts/rogue/locomotion-sleep-correction.txt",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "prompt": "source/prompts/rogue/locomotion-sleep.txt",
+  "sha256": "ed549fb5bc6ff4030865bddeff14af359c5d4c0b88fa9ecb4f5e6db1eeb1f23d",
+  "size": [
+    1254,
+    1254
+  ],
+  "status": "generated_and_visually_inspected"
+}

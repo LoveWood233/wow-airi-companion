@@ -1,0 +1,19 @@
+{
+  "name": "dafeiyu-classic-assets",
+  "version": "0.3.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "test": "node --import tsx --test tools/validate.test.mjs",
+    "check:contract": "node --import tsx tools/validate.mjs --contract",
+    "validate": "node --import tsx tools/validate.mjs --media",
+    "smoke:import": "node --import tsx tools/validate.mjs --native"
+  },
+  "dependencies": {
+    "tsx": "4.23.15",
+    "valibot": "1.4.2"
+  }
+}

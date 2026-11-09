@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-f1d15cc9-b83b-4c15-bf7a-797a88324fc2.png",
+  "prompt": "prompts/rogue/actions-03.txt",
+  "sha256": "ef58928d60b4c3b8eda907cdddc3f1bfcd28a6ebc6511ba885f3d124140c29be",
+  "visual_qa": "16 cells; action-specific props and stages inspected; sheet03 desk tapping corrected"
+}

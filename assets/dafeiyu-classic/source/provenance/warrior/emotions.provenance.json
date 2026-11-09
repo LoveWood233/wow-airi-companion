@@ -1,0 +1,7 @@
+{
+  "method": "builtin_imagegen",
+  "source": "image_gen-output:01a1bbad-4b9d-74a2-8097-57fa86a63fa1/exec-5ad7a478-ce4f-4488-88ae-68be720c8fe9.png",
+  "prompt": "prompts/emotions-template.txt",
+  "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190",
+  "visual_qa": "Five emotional A/B pairs and six genuine turn views inspected"
+}

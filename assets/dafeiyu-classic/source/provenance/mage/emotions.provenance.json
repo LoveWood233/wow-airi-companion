@@ -1,0 +1,18 @@
+{
+  "asset": "emotions.png",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "source_generated_file": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-9ed89150-fd81-46c9-9666-2afd02e015fc.png",
+  "prompt": "source/prompts/mage/emotions.txt",
+  "sha256": "9398a77492f4c025eee48154cdd4c910fc04eea7ac8e84d185ffa25e7c9c887b",
+  "size": [
+    1254,
+    1254
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "visual_check": "16 cells. Five facial emotion pairs and six distinct turn views. Matching class outfit.",
+  "status": "generated_and_visually_inspected"
+}

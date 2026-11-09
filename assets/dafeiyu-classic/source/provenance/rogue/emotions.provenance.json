@@ -1,0 +1,18 @@
+{
+  "asset": "emotions.png",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "source_generated_file": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-bf7c0696-8600-445d-8fd5-45ac17a2abba.png",
+  "prompt": "source/prompts/rogue/emotions.txt",
+  "sha256": "64968e469c52c7a3602c8e564f2d069df7e97beb7db5c401e543c419ef3b4648",
+  "size": [
+    1254,
+    1254
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "visual_check": "16 cells. Five facial emotion pairs and six distinct turn views. Matching class outfit.",
+  "status": "generated_and_visually_inspected"
+}

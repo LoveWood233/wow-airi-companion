@@ -1,0 +1,18 @@
+Use case: stylized-concept. Create a production transparent raster sprite sheet, not a poster. EXACTLY 4 columns x 4 rows, 16 equal square cells, row-major. One full-body chibi blue-haired whale-maid character per cell, same identity and approved CLASS OUTFIT from the reference. Keep full hair, hands, shoes and whale tail inside each cell with generous transparent gutters; no grid lines, no text, no numbers, no white background. Consistent rendering, size, light, camera and ground line. No oversized weapons unless the action requires them. Each adjacent cell pair is two distinct key poses of the SAME named action. Preserve the reference class armor colors, shoulder silhouette, crown/hood ornaments, maid frills and facial style. New props must be drawn in the same polished anime game-sprite style and contact hands/mouth correctly. True transparent alpha. Aim high resolution; actions must remain legible at 640x360 playback.
+
+Cell 1 (row 1, col 1), action 三球抛接, pose A: 三颗红黄蓝球正在抛接：左手向上抛红球，黄球在头顶，右手接蓝球。
+Cell 2 (row 1, col 2), same action pose B: 交换抛接阶段：右手抛蓝球，红球在头顶，左手接黄球，三球位置与手接触明确。
+Cell 3 (row 1, col 3), action 下五子棋, pose A: 坐在棋盘前，一手托腮，另一手捏棋子；道具：gomoku_board, black_stones, white_stones。动作语义：捏棋子思考
+Cell 4 (row 1, col 4), same action pose B: 身体前倾，将棋子落到交点；道具：gomoku_board, black_stones, white_stones。与A必须是不同的动作阶段，保持道具形状/位置关系。棋子准确落在交点
+Cell 5 (row 2, col 1), action 东张西望, pose A: 头和视线转左，身体基本正面。动作语义：先转头向左停顿观察
+Cell 6 (row 2, col 2), same action pose B: 头和视线转右，身体基本正面。与A必须是不同的动作阶段，保持道具形状/位置关系。再向右观察
+Cell 7 (row 2, col 3), action 中秋赏月吃月饼, pose A: 头和视线转左，身体基本正面；道具：moon, mooncake_full, mooncake_bitten。动作语义：抬头赏月，再咬月饼，饼皮与馅料可辨
+Cell 8 (row 2, col 4), same action pose B: 双手胸前端托，手腕形成物体接触面；道具：moon, mooncake_full, mooncake_bitten。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑
+Cell 9 (row 3, col 1), action 优雅女仆舞, pose A: 向左移重心，一臂抬起另一臂伸侧。动作语义：左右轻踏并舒展双臂
+Cell 10 (row 3, col 2), same action pose B: 向右移重心，左右手臂交换。与A必须是不同的动作阶段，保持道具形状/位置关系。转身半圈收势
+Cell 11 (row 3, col 3), action 余额-分文不剩, pose A: 张开瘪钱袋，两手外翻，垂眉；道具：money_bag_flat。动作语义：摊开完全瘪掉的钱袋，沮丧垂头
+Cell 12 (row 3, col 4), same action pose B: 低头抿嘴，湿润眼睑，双手绞在一起；道具：money_bag_flat。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态
+Cell 13 (row 4, col 1), action 余额-数金皱眉, pose A: 一手持袋，另一手捏金币查看；道具：money_bag_low, few_gold_coins。动作语义：逐枚数剩余金币，越数眉头越紧
+Cell 14 (row 4, col 2), same action pose B: 一手托下巴，眉眼思索；道具：money_bag_low, few_gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态
+Cell 15 (row 4, col 3), action 余额-袋空如洗, pose A: 双手展示钱袋，眼睛注视袋口；道具：money_bag_empty。动作语义：倒过空钱袋没有金币掉出，失望叹气
+Cell 16 (row 4, col 4), same action pose B: 张开瘪钱袋，两手外翻，垂眉；道具：money_bag_empty。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态

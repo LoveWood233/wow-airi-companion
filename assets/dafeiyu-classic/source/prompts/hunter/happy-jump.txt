@@ -1,0 +1,24 @@
+Use case: identity-preserve.
+Asset type: transparent 4 by 4 sprite atlas containing exactly 16 sequential full-body local articulation poses for one ecstatic jump.
+Input images: image 1 = approved HUNTER identity, costume and front-view drawing reference; image 2 = additional facial/hair/material reference only. Use precisely this same character: blue flowing hair and blue eyes, white frilled maid headdress, gold hunter headdress ornaments, purple and gold hunter armor, gold pointed shoulders, same gloves, skirt armor and boots, and the existing quiver worn on her back. Her bow is stowed behind her back and both hands are EMPTY through every frame. Preserve existing worn costume details. Do not copy reference effects, extra objects, spinning views or alternate poses.
+Primary request: redraw this exact hunter character in 16 closely spaced, smoothly continuous HAPPY JUMP key poses. She is intensely delighted, laughing joyfully as both arms gradually reach overhead and return. Every pose faces the viewer straight-on. No spin, no turns, no side/back views.
+Composition: square 4x4 equal-cell atlas, reading left to right then top to bottom. No visible grid or labels. Exactly one complete character per cell. Uniform scale, head size and limb bone lengths in every cell. Keep both boots' lowest sole baseline at the same relative cell y, using natural knee bending only for local body compression; do not add world-space jump elevation (that is applied by the renderer). Fixed orthographic camera, centered pelvis at same cell x. Use generous transparent margins per cell; raised fingertips, full hair and boots stay inside their own cell. The tallest raised-arm pose should fill no more than 84% of cell height and 86% width.
+Frame sequence, one exact numbered description per cell (DO NOT print numbers):
+0 relaxed normal upright stand, warm smile, both hands beside hips.
+1 knees slightly flexed, both arms angled slightly backward/downward, anticipating joyful jump.
+2 deeper compact knee squat, hips lower, arms still low slightly behind, excited smile.
+3 legs start pushing straight, both arms gently swinging forward to 15 degrees from downward.
+4 legs fully extend, both arms swing symmetrically 30 degrees from downward.
+5 both arms 60 degrees from downward, knees nearly straight, growing smile.
+6 both arms horizontal at 90 degrees from downward, mouth open in delighted laugh.
+7 both arms diagonally up 120 degrees from downward, knees gently flex.
+8 both arms fully extended into a high V at 165 degrees from downward, hands beside the upper temples as permitted by the original short chibi arm lengths, knees slightly tucked, eyes smiling closed and mouth laughing.
+9 hold the same high V ecstatic apex, only minimal natural articulation variation.
+10 both arms symmetrically lower to 120 degrees, knees gradually straighten.
+11 both arms horizontal 90 degrees, legs point downward, joyful open eyes.
+12 both arms lower to 60 degrees, both legs extend down ready to land.
+13 shallow knee bend landing cushion, both arms at 30 degrees, cheerful smile.
+14 restore standing upright, both hands alongside hips.
+15 identical pose, face and silhouette to frame 0 for a seamless loop.
+Art and anatomy constraints: reproduce reference's polished hand-painted chibi anime rendering with clean outlines, no redesign. Shoulders, elbows, wrists, hips, knees and ankles connect anatomically in EVERY frame. Exactly two arms, two hands and two legs. Same upper/lower limb lengths throughout, no disjointed limbs, no extra elbows, no left/right swaps. Hands empty and natural. Keep garment construction consistent while joints articulate. Hair may sway only very subtly. No cartoon horizontal squash/stretch, no head bobble detached from body.
+Background: true RGBA transparent empty background. No shadows, floor, lines, frames, checkerboard, stars, sparkle, text, speech bubbles, rings, watermarks or new props.

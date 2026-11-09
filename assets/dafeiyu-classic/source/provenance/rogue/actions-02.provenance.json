@@ -1,0 +1,15 @@
+{
+  "class_id": "rogue",
+  "sheet": "actions-02",
+  "source": "image_gen-output:01a1bbe6-221b-7551-ba37-c0b21bd20add/exec-025430c0-8d9d-4dd4-b6ae-913a2a83000b.png",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in",
+  "prompt": "source/prompts/rogue/actions-02.txt",
+  "sha256": "acfaf4fa81edd3c6c19194491d62eb60ad3eb7ee9c71ce129ab14e69cfcd1007",
+  "size": [
+    1254,
+    1254
+  ],
+  "status": "generated_and_visually_inspected",
+  "visual_check": "16 cells. All eight action pairs in requested row-major order. Visible matching props and A/B gesture changes."
+}

@@ -1,0 +1,1070 @@
+{
+  "status": "contract_plan_only_media_not_validated",
+  "releaseVersion": "0.3.1",
+  "owningCommit": "e3ddb35f8bf692c4fe3f8284caae9f4e4d526790",
+  "classes": [
+    {
+      "id": "warrior",
+      "label": "战士",
+      "set": "愤怒"
+    },
+    {
+      "id": "hunter",
+      "label": "猎人",
+      "set": "巨龙追猎者"
+    },
+    {
+      "id": "mage",
+      "label": "法师",
+      "set": "灵风"
+    },
+    {
+      "id": "rogue",
+      "label": "盗贼",
+      "set": "血牙"
+    },
+    {
+      "id": "paladin",
+      "label": "圣骑士",
+      "set": "审判"
+    },
+    {
+      "id": "warlock",
+      "label": "术士",
+      "set": "复仇"
+    },
+    {
+      "id": "priest",
+      "label": "牧师",
+      "set": "卓越"
+    },
+    {
+      "id": "druid",
+      "label": "德鲁伊",
+      "set": "怒风"
+    }
+  ],
+  "originalActionsPerClass": 114,
+  "addedActionsPerClass": 6,
+  "expectedActionsPerClass": 120,
+  "expectedMediaCount": 960,
+  "fps": 60,
+  "format": {
+    "codec": "vp9",
+    "extension": ".webm",
+    "alphaRequired": true,
+    "recommendedSize": [
+      640,
+      360
+    ]
+  },
+  "limits": {
+    "filesPerPack": 256,
+    "singleFileBytes": 33554432,
+    "totalPackBytes": 536870912,
+    "manifestBytes": 131072
+  },
+  "import": "Extract the archive and select the directory containing pack.json.",
+  "newActionRouting": "Existing categories API, category 情绪. Explicit playback uses the exact action name through props.animation.",
+  "automaticEmotionMappingChanged": false,
+  "fidelityRequirement": "Distinct action-specific character poses and props are required. Matching filenames alone do not prove original action fidelity.",
+  "moveTiming": {
+    "originalDefaults": {
+      "minDist": 60,
+      "maxDist": 240,
+      "margin": 20,
+      "leadSec": 2,
+      "tailSec": 2
+    },
+    "originalActions": [
+      {
+        "name": "螃蟹走路"
+      },
+      {
+        "name": "原地漂浮踏步",
+        "params": {
+          "minDist": 40,
+          "maxDist": 120
+        }
+      },
+      {
+        "name": "原地左转奔跑",
+        "params": {
+          "minDist": 120,
+          "maxDist": 320,
+          "leadSec": 1.75,
+          "tailSec": 4.8
+        }
+      }
+    ],
+    "note": "Preserve original movement lead/tail timing. Verify clip length against these parameters."
+  },
+  "actions": [
+    {
+      "name": "三球抛接",
+      "file": "三球抛接.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "下五子棋",
+      "file": "下五子棋.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "东张西望",
+      "file": "东张西望.webm",
+      "origin": "original",
+      "buckets": [
+        "turn"
+      ]
+    },
+    {
+      "name": "中秋赏月吃月饼",
+      "file": "中秋赏月吃月饼.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "优雅女仆舞",
+      "file": "优雅女仆舞.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "余额-分文不剩",
+      "file": "余额-分文不剩.webm",
+      "origin": "original",
+      "buckets": [
+        "events.balance"
+      ]
+    },
+    {
+      "name": "余额-数金皱眉",
+      "file": "余额-数金皱眉.webm",
+      "origin": "original",
+      "buckets": [
+        "events.balance"
+      ]
+    },
+    {
+      "name": "余额-袋空如洗",
+      "file": "余额-袋空如洗.webm",
+      "origin": "original",
+      "buckets": [
+        "events.balance"
+      ]
+    },
+    {
+      "name": "余额-金袋叮当",
+      "file": "余额-金袋叮当.webm",
+      "origin": "original",
+      "buckets": [
+        "events.balance"
+      ]
+    },
+    {
+      "name": "余额-钱袋如常",
+      "file": "余额-钱袋如常.webm",
+      "origin": "original",
+      "buckets": [
+        "events.balance"
+      ]
+    },
+    {
+      "name": "余额-钱袋满溢",
+      "file": "余额-钱袋满溢.webm",
+      "origin": "original",
+      "buckets": [
+        "events.balance"
+      ]
+    },
+    {
+      "name": "侧身急躁跑",
+      "file": "侧身急躁跑.webm",
+      "origin": "original",
+      "buckets": [
+        "baifan"
+      ]
+    },
+    {
+      "name": "偷吃零食被抓住",
+      "file": "偷吃零食被抓住.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "写代码",
+      "file": "写代码.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "写福字",
+      "file": "写福字.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "凭空生花",
+      "file": "凭空生花.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "动物环绕",
+      "file": "动物环绕.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "原地专心玩魔方",
+      "file": "原地专心玩魔方.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "原地小憩沉眠",
+      "file": "原地小憩沉眠.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "原地左转奔跑",
+      "file": "原地左转奔跑.webm",
+      "origin": "original",
+      "buckets": [
+        "moves"
+      ]
+    },
+    {
+      "name": "原地敲击桌面互动",
+      "file": "原地敲击桌面互动.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "原地漂浮踏步",
+      "file": "原地漂浮踏步.webm",
+      "origin": "original",
+      "buckets": [
+        "moves"
+      ]
+    },
+    {
+      "name": "原地跳跃抓碎头顶物品",
+      "file": "原地跳跃抓碎头顶物品.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "原地蹲下玩玩具汽车",
+      "file": "原地蹲下玩玩具汽车.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "原地重力下蹲压缩",
+      "file": "原地重力下蹲压缩.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "变鸽子",
+      "file": "变鸽子.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "可爱宅舞",
+      "file": "可爱宅舞.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "吃Token",
+      "file": "吃Token.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "吃冰淇淋融化",
+      "file": "吃冰淇淋融化.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "吃午餐",
+      "file": "吃午餐.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "吃大闸蟹",
+      "file": "吃大闸蟹.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "吃年糕",
+      "file": "吃年糕.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "吃早餐",
+      "file": "吃早餐.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "吃晚餐",
+      "file": "吃晚餐.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "吃汤圆",
+      "file": "吃汤圆.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "吃白饭",
+      "file": "吃白饭.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "吃粽子",
+      "file": "吃粽子.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "吃糖葫芦",
+      "file": "吃糖葫芦.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "吃腊八粥",
+      "file": "吃腊八粥.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "吃西瓜",
+      "file": "吃西瓜.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "吃重阳糕",
+      "file": "吃重阳糕.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "吃长寿面",
+      "file": "吃长寿面.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "吃青团",
+      "file": "吃青团.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "吃饭·碗饭",
+      "file": "吃饭·碗饭.webm",
+      "origin": "original",
+      "buckets": [
+        "baifan"
+      ]
+    },
+    {
+      "name": "吃饭团",
+      "file": "吃饭团.webm",
+      "origin": "original",
+      "buckets": [
+        "baifan"
+      ]
+    },
+    {
+      "name": "吃饺子",
+      "file": "吃饺子.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "吹气球",
+      "file": "吹气球.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "吹笛子",
+      "file": "吹笛子.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "哈欠连天",
+      "file": "哈欠连天.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "堆雪人",
+      "file": "堆雪人.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "大口吃零食",
+      "file": "大口吃零食.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "女仆屈膝礼仪",
+      "file": "女仆屈膝礼仪.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "小幅度原地360度旋转展示",
+      "file": "小幅度原地360度旋转展示.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "小提琴演奏",
+      "file": "小提琴演奏.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "工作状态-原地踱步张望",
+      "file": "工作状态-原地踱步张望.webm",
+      "origin": "original",
+      "buckets": [
+        "events.workStatus"
+      ]
+    },
+    {
+      "name": "工作状态-垂头叹气冒汗",
+      "file": "工作状态-垂头叹气冒汗.webm",
+      "origin": "original",
+      "buckets": [
+        "events.workStatus"
+      ]
+    },
+    {
+      "name": "工作状态-忙碌点按",
+      "file": "工作状态-忙碌点按.webm",
+      "origin": "original",
+      "buckets": [
+        "events.workStatus"
+      ]
+    },
+    {
+      "name": "工作状态-思考冒泡",
+      "file": "工作状态-思考冒泡.webm",
+      "origin": "original",
+      "buckets": [
+        "events.workStatus"
+      ]
+    },
+    {
+      "name": "工作状态-清点归档",
+      "file": "工作状态-清点归档.webm",
+      "origin": "original",
+      "buckets": [
+        "events.workStatus"
+      ]
+    },
+    {
+      "name": "工作状态-雀跃庆祝",
+      "file": "工作状态-雀跃庆祝.webm",
+      "origin": "original",
+      "buckets": [
+        "events.workStatus"
+      ]
+    },
+    {
+      "name": "开心小跑",
+      "file": "开心小跑.webm",
+      "origin": "original",
+      "buckets": [
+        "baifan"
+      ]
+    },
+    {
+      "name": "待机呼吸休闲",
+      "file": "待机呼吸休闲.webm",
+      "origin": "original",
+      "buckets": [
+        "idle"
+      ]
+    },
+    {
+      "name": "悠闲哼歌",
+      "file": "悠闲哼歌.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "扑克魔术",
+      "file": "扑克魔术.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "打瞌睡被惊醒",
+      "file": "打瞌睡被惊醒.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "抽陀螺",
+      "file": "抽陀螺.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "拆礼物",
+      "file": "拆礼物.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "插茱萸赏菊",
+      "file": "插茱萸赏菊.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "摇扇纳凉",
+      "file": "摇扇纳凉.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "撸猫",
+      "file": "撸猫.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "收红包",
+      "file": "收红包.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "放孔明灯",
+      "file": "放孔明灯.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "放河灯",
+      "file": "放河灯.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "放烟花",
+      "file": "放烟花.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "放风筝",
+      "file": "放风筝.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "整体换装试色",
+      "file": "整体换装试色.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "是啊，吃什么",
+      "file": "是啊，吃什么.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.文字"
+      ]
+    },
+    {
+      "name": "晨间刷牙",
+      "file": "晨间刷牙.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "期待开饭",
+      "file": "期待开饭.webm",
+      "origin": "original",
+      "buckets": [
+        "baifan"
+      ]
+    },
+    {
+      "name": "涮火锅",
+      "file": "涮火锅.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.吃什么"
+      ]
+    },
+    {
+      "name": "深度思考碎碎念",
+      "file": "深度思考碎碎念.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.文字"
+      ]
+    },
+    {
+      "name": "点击回应-傲娇生气",
+      "file": "点击回应-傲娇生气.webm",
+      "origin": "original",
+      "buckets": [
+        "clicks"
+      ]
+    },
+    {
+      "name": "点击回应-元气挥手",
+      "file": "点击回应-元气挥手.webm",
+      "origin": "original",
+      "buckets": [
+        "clicks"
+      ]
+    },
+    {
+      "name": "点击回应-害羞惊讶",
+      "file": "点击回应-害羞惊讶.webm",
+      "origin": "original",
+      "buckets": [
+        "clicks"
+      ]
+    },
+    {
+      "name": "点击回应-开心跃动",
+      "file": "点击回应-开心跃动.webm",
+      "origin": "original",
+      "buckets": [
+        "clicks"
+      ]
+    },
+    {
+      "name": "点击回应-挠痒咯咯笑",
+      "file": "点击回应-挠痒咯咯笑.webm",
+      "origin": "original",
+      "buckets": [
+        "clicks"
+      ]
+    },
+    {
+      "name": "照镜子",
+      "file": "照镜子.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "玩水枪",
+      "file": "玩水枪.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "玩游戏气急败坏",
+      "file": "玩游戏气急败坏.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "用鲸鱼尾巴拍打地面",
+      "file": "用鲸鱼尾巴拍打地面.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "睡觉-开始",
+      "file": "睡觉-开始.webm",
+      "origin": "original",
+      "buckets": [
+        "sleep"
+      ]
+    },
+    {
+      "name": "睡觉-循环",
+      "file": "睡觉-循环.webm",
+      "origin": "original",
+      "buckets": [
+        "sleep"
+      ]
+    },
+    {
+      "name": "睡觉-起来",
+      "file": "睡觉-起来.webm",
+      "origin": "original",
+      "buckets": [
+        "sleep"
+      ]
+    },
+    {
+      "name": "碎碎念-发呆碎碎念",
+      "file": "碎碎念-发呆碎碎念.webm",
+      "origin": "original",
+      "buckets": [
+        "events.whisper"
+      ]
+    },
+    {
+      "name": "碎碎念-对屏碎碎念",
+      "file": "碎碎念-对屏碎碎念.webm",
+      "origin": "original",
+      "buckets": [
+        "events.whisper"
+      ]
+    },
+    {
+      "name": "碎碎念-擦桌碎碎念",
+      "file": "碎碎念-擦桌碎碎念.webm",
+      "origin": "original",
+      "buckets": [
+        "events.whisper"
+      ]
+    },
+    {
+      "name": "穿针乞巧",
+      "file": "穿针乞巧.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "舞狮头",
+      "file": "舞狮头.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "荡秋千",
+      "file": "荡秋千.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "萌化小幽灵",
+      "file": "萌化小幽灵.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "蓝鲸现世",
+      "file": "蓝鲸现世.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "蝴蝶蜜蜂环绕头顶开花",
+      "file": "蝴蝶蜜蜂环绕头顶开花.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "螃蟹走路",
+      "file": "螃蟹走路.webm",
+      "origin": "original",
+      "buckets": [
+        "moves"
+      ]
+    },
+    {
+      "name": "被吓一跳",
+      "file": "被吓一跳.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "被落叶淹没",
+      "file": "被落叶淹没.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "被鼠标拖拽悬空反馈",
+      "file": "被鼠标拖拽悬空反馈.webm",
+      "origin": "original",
+      "buckets": [
+        "drag"
+      ]
+    },
+    {
+      "name": "装点圣诞树",
+      "file": "装点圣诞树.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "讨糖南瓜灯",
+      "file": "讨糖南瓜灯.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.时节"
+      ]
+    },
+    {
+      "name": "超大伸懒腰",
+      "file": "超大伸懒腰.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "踢毽子",
+      "file": "踢毽子.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "轻快摇摆舞",
+      "file": "轻快摇摆舞.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "轻快记录",
+      "file": "轻快记录.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.小动作"
+      ]
+    },
+    {
+      "name": "骑木马",
+      "file": "骑木马.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "鲸鱼吐泡泡特效",
+      "file": "鲸鱼吐泡泡特效.webm",
+      "origin": "original",
+      "buckets": [
+        "categories.玩耍"
+      ]
+    },
+    {
+      "name": "害怕",
+      "semantic": "惊恐睁眼、缩肩、护胸，小幅颤抖后安定。",
+      "file": "害怕.webm",
+      "origin": "new",
+      "buckets": [
+        "categories.情绪"
+      ]
+    },
+    {
+      "name": "害羞",
+      "semantic": "脸红、垂眼、双手贴近脸颊，含羞摇摆。",
+      "file": "害羞.webm",
+      "origin": "new",
+      "buckets": [
+        "categories.情绪"
+      ]
+    },
+    {
+      "name": "难过（眼睛饱含泪水）",
+      "semantic": "眼眶蓄泪、眉眼下垂，泪水停留在眼眶。",
+      "file": "难过（眼睛饱含泪水）.webm",
+      "origin": "new",
+      "buckets": [
+        "categories.情绪"
+      ]
+    },
+    {
+      "name": "想去玩（期待星星眼）",
+      "semantic": "瞳孔出现星星高光，身体前倾、双手期待握起。",
+      "file": "想去玩（期待星星眼）.webm",
+      "origin": "new",
+      "buckets": [
+        "categories.情绪"
+      ]
+    },
+    {
+      "name": "大哭",
+      "semantic": "张口哭泣、明显泪流，擦泪并抽泣。",
+      "file": "大哭.webm",
+      "origin": "new",
+      "buckets": [
+        "categories.情绪"
+      ]
+    },
+    {
+      "name": "开心蹦跳",
+      "semantic": "全程正面，开心屈膝蓄力、推地跃起、双臂连续高举，笑眼张嘴后落地缓冲并回到站姿。",
+      "file": "开心蹦跳.webm",
+      "origin": "new",
+      "buckets": [
+        "categories.情绪"
+      ]
+    }
+  ]
+}
