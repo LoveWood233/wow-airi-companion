@@ -1,29 +1,34 @@
-大肥鱼 × 经典八职业 — 120 动作 / 60 fps / v0.3.1
+大肥鱼 × 经典八职业 — 120 动作 / 60 fps / v0.3.2
 
-本版内容
+本版内容与修复范围
 每职业包含原仓库114个动作名对应的职业换装重制动画，以及6个新增动作。
 八职业各120段，共960段。文件为640×360透明VP9 WebM，无音轨。
-角色造型沿用已确认的大肥鱼与魔兽经典60级T2装备设计。
-动画使用动作专属关键姿态与道具绘图，以60fps采样；v0.3.1全库过渡去掉中点硬切，使用连续透明权重。
-此次为图像插帧修复，角色仍无骨骼绑定；此前沿用的24段视频也纳入本次重新编码。
-这是一套按动作语义重制的逐帧资源，并非原始114段视频的逐帧等同换装。
-已补绘睡眠/起身过渡、正面与侧面四步相跑步、原版360度展示所用16视角转身。
-新增“开心蹦跳”使用全程正面连续姿态，包含屈膝蓄力、举臂跃起、笑眼张嘴、落地缓冲。
-变鸽子、蓝鲸现世、萌化小幽灵的跨形态变化采用透明渐变，避免不同形态之间的脸部拉伸。
-图像补间在复杂遮挡处仍可能有局部形变，不保证骨骼或关节运动的精确性。
+角色以大肥鱼形象和魔兽经典60级T2装备外观为参考。
+
+v0.3.2只替换战士的“开心蹦跳”这一段媒体；其余959段沿用v0.3.1。
+八份manifest同步为v0.3.2，用于标识这一套交付，并不表示八职业动作都已重新制作或验收。
+旧战士蹦跳在两组装备不同的姿态间插帧，导致剑盾消失、肩甲换形；此前验收遗漏了装备一致性。
+新版让身体与装备始终采样同一张基准纹理，以连续二维网格运动表现蓄力、跃起和落地。
+新增闭眼笑参考只在脸内限定区域合成，装备不使用生成图中的替代画法。
+动作幅度克制；不是完整三维骨骼动画，也不作全部关节自然或全部960段装备一致的保证。
+其它动作仍可能存在源图设计差异、局部重影、软化或形变，需要另行审查。
+这是一套按动作语义重制的资源，并非原始114段视频的逐帧等同换装。
 
 观看与重建
-仓库预览见preview/happy-jump.mp4（八职业开心蹦跳）与preview/continuity-comparison.mp4（连续性对照）。
+仓库preview/happy-jump.mp4为修复后的单战士蹦跳预览。
+preview/happy-jump.png为同一动作不同阶段的装备检查图。
+preview/continuity-comparison.mp4是v0.3.1历史插帧对照，不代表本轮装备验收结果。
 MP4是带背景的观看副本；AIRI使用每个职业目录中的透明WebM。
 源文件不包含生成的视频；先按README运行tools/render.py，完整生成的职业位于build/packs/。
 tools/package.py生成的ZIP包含packs/<职业>/pack.json与120个WebM，以及IMPORT.txt和ATTRIBUTION.txt。
 该ZIP不包含预览页面、图集、提示词和验证报告；这些内容保存在Git仓库资产目录。
+完整可导入ZIP在本地生成，不进入Git。
 
 导入步骤
 1. 完整解压ZIP，不要直接把ZIP作为角色目录选择。
 2. 在AIRI的大肥鱼资源包导入入口，选择packs下面某一个职业文件夹。
    所选文件夹内应直接看到pack.json和120个.webm文件。
-3. 按需分别导入八职业，选择名称含“120动作 60fps v0.3.1”的角色包。
+3. 按需分别导入八职业，选择名称含“120动作 60fps v0.3.2”的角色包。
 
 职业目录
 warrior  战士 · 愤怒
@@ -36,13 +41,11 @@ priest   牧师 · 卓越
 druid    德鲁伊 · 怒风
 
 接口兼容
-pack.json沿用原版严格version=1 schema。
+pack.json沿用原版严格version=1 schema；这是接口版本，与资源包v0.3.2标识分开。
 原114个文件名及idle/turn/drag/clicks/moves/baifan/categories/events/sleep映射保留。
 原版“小幅度原地360度旋转展示”继续保留；新增动作的替换不改变该接口。
 原移动leadSec/tailSec等参数保留，移动动画预留相应启动和结束时间。
-侧向跑步保留最后步态到移动窗口结束，再连续回站，已移除收尾不足两帧的强制换步。
-睡觉-开始末姿、睡觉-循环首末姿、睡觉-起来首姿使用同一卧睡关键帧。
-普通动作回到同一职业的标准站姿；60fps是输出采样率，包含静止保持帧与算法中间帧。
+60fps是输出采样率，包含静止保持帧、算法中间帧或网格采样帧，不表示每秒60张独立绘画。
 
 新增动作名（包括括号文字，调用时逐字使用）
 害怕
@@ -56,14 +59,15 @@ pack.json沿用原版严格version=1 schema。
 
 核验与源文件
 以下路径均相对于Git仓库的assets/dafeiyu-classic目录，未收录到生成的ZIP中。
-verification/media.json：交付媒体的完整覆盖、schema、帧率、媒体元数据与导入大小限制核验。
-verification/native.json：原生DshPetLibrary导入、文件复制哈希、资源解析及选择持久化核验。
-verification/original-release-summary.json：原始完整交付的总数与状态。
-verification/portable-render-smoke.json：独立重建两段关键动作的逐帧像素比对与命令行校验。
-source/sheets/、source/base-keyframes/、source/prompts/、source/provenance/：图源、提示词与制作记录。
+verification/equipment-identity-v032.json：战士蹦跳修复的装备图源、运动方法和实际专项检查范围。
+verification/media.json：当前交付媒体的完整覆盖、schema、帧率、媒体元数据与导入大小限制检查。
+verification/native.json：当前原生DshPetLibrary导入、文件复制哈希、资源解析及选择持久化检查。
+verification/history/portable-render-smoke-v031.json与verification/original-release-summary.json是历史记录，不是本版视觉验收结论。
+source/sheets/、source/base-keyframes/、source/expressions/共273张PNG；source/prompts/、source/provenance/保存提示词与制作记录。
+source/media-index.json登记当前交付的960条媒体哈希；要验证对应交付，可追加--release-hashes。
 本次工具运行的报告输出到build/中，具体命令和路径见README。
-连续性抽检不代表960段全部关节均经逐帧人工验收；复杂遮挡处仍可能出现重影。
-导入验证在隔离临时profile完成；没有在用户当前AIRI Electron窗口中做运行验收。
+文件完整性、帧率和导入成功不等于装备或关节视觉正确；本轮未完成其它职业/动作的装备一致性验收。
+没有在用户当前AIRI Electron窗口中完成实播验收。
 
 目标接口源码
 LoveWood233/wow-airi-companion

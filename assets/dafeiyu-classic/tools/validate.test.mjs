@@ -35,7 +35,7 @@ test('a changed original action order, mapping, move parameter, or weight fails'
   for (const mutate of mutations) {
     const manifest = expectedManifest(character)
     mutate(manifest)
-    assert.throws(() => validateManifest(manifest, character), /Changed v0.3.1 action contract/)
+    assert.throws(() => validateManifest(manifest, character), /Changed v0.3.2 action contract/)
   }
 })
 
@@ -46,7 +46,7 @@ test('the six added actions include happy jumping and reject the superseded spin
   const manifest = expectedManifest(classes[0])
   manifest.files[manifest.files.indexOf('开心蹦跳.webm')] = '卖萌转圈圈.webm'
   manifest.animations.categories.at(-1).actions[5] = '卖萌转圈圈'
-  assert.throws(() => validateManifest(manifest, classes[0]), /Changed v0.3.1 action contract/)
+  assert.throws(() => validateManifest(manifest, classes[0]), /Changed v0.3.2 action contract/)
 })
 
 test('strict upstream schema rejects unknown settings and missing referenced files', () => {
@@ -58,7 +58,19 @@ test('strict upstream schema rejects unknown settings and missing referenced fil
 
 test('a manifest cannot silently reuse another class identity', async () => {
   const manifest = JSON.parse(await readFile(join(packageRoot, 'manifests/warrior/pack.json'), 'utf8'))
-  assert.throws(() => validateManifest(manifest, classes[1]), /Changed v0.3.1 action contract/)
+  assert.throws(() => validateManifest(manifest, classes[1]), /Changed v0.3.2 action contract/)
+})
+
+test('all eight pack identities use v0.3.2 while the native schema remains version 1', async () => {
+  for (const character of classes) {
+    const manifest = JSON.parse(await readFile(join(packageRoot, 'manifests', character.id, 'pack.json'), 'utf8'))
+    assert.equal(manifest.version, 1)
+    assert.equal(manifest.id, `dafeiyu-classic-${character.id}-full-v032`)
+    assert(manifest.name.endsWith('v0.3.2）'))
+    validateManifest(manifest, character)
+    manifest.id = `dafeiyu-classic-${character.id}-full-v031`
+    assert.throws(() => validateManifest(manifest, character), /Changed v0.3.2 action contract/)
+  }
 })
 
 test('path validation rejects links and directory traversal without reading the target', async t => {

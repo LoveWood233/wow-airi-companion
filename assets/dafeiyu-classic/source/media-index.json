@@ -1,5 +1,5 @@
 {
-  "version": "0.3.1",
+  "version": "0.3.2",
   "files": [
     {
       "path": "packs/warrior/大口吃零食.webm",
@@ -125,8 +125,8 @@
       "path": "packs/warrior/开心蹦跳.webm",
       "class": "warrior",
       "action": "开心蹦跳",
-      "bytes": 2264764,
-      "sha256": "529b7e3fb77b46c575ff751edda852d4651b7af20f0db6348033d487b3e5a912",
+      "bytes": 1291561,
+      "sha256": "f1967dfdb9ca0deb0b9161526143634fa7522ac5103a9e7949f10664a0b7b357",
       "frames": 480,
       "fps": 60,
       "duration_seconds": 8

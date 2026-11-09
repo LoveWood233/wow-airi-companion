@@ -1240,6 +1240,14 @@
   "notes": [
     "Superseded PNG backups are excluded from the archive.",
     "Source atlases are unchanged; audited sprite cell boundaries are recorded in extraction-crops.json.",
-    "Per-sheet or consolidated provenance and original prompts accompany the sources."
+    "Per-sheet or consolidated provenance and original prompts accompany the sources.",
+    "v0.3.2 keeps the original 144 atlases and 128 base keyframes; expression inputs are indexed separately and do not replace the fixed equipment texture."
+  ],
+  "expressions": [
+    {
+      "path": "expressions/warrior/happy-face.png",
+      "bytes": 703703,
+      "sha256": "47b03936bf0e011de2ba2fd3c9085669ae4ef05bd3aae6a059bc78b58b653741"
+    }
   ]
 }
