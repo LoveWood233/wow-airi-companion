@@ -4,7 +4,7 @@
 
 **v0.4.0 是全量修复候选版，尚未通过全量视觉验收。** 本轮修订装备图源、扩展固定母版运动，并将其它动作的默认补间改为 RIFE 4.26 预乘 RGBA。实际编码后的视频仍发现舞狮、堆雪人、落叶遮挡、小憩和跑步接缝等残影或关节重叠；不能据此声称 960 段装备不再漂移、关节完全连贯或已经达到最终交付质量。
 
-本轮修订 **78 张姿态图集**，候选完整导出 **960 段、557,760 帧、2,810,234,552 字节**。全帧技术解码、文件哈希和原生导入分别记录于 `verification/v040/`；这些结果不等于视觉验收。原 v0.3.2 交付与旧图源保留在本地，未被本轮候选覆盖。
+本轮修订 **78 张姿态图集**，候选完整导出 **960 段、557,760 帧、2,810,234,552 字节**。全帧技术解码、文件哈希和原生导入分别记录于 `verification/v040/`；这些结果不等于视觉验收。v0.3.2 是历史交付，可从同一 GitHub Release 下载。
 
 [八职业蹦跳预览](preview/eight-class-fixed-jump-v040.mp4) · [五种情绪合览](preview/eight-class-emotions-v040.mp4) · [猎人点击动作前后对照](preview/hunter-before-after-v040.mp4) · [导入说明](IMPORT.txt) · [来源与许可](ATTRIBUTION.txt) · [v0.3.2 战士单段修复预览（历史）](preview/happy-jump.mp4) · [v0.3.1 插帧对比（历史）](preview/continuity-comparison.mp4)
 
@@ -19,7 +19,7 @@
 | `priest` | 牧师 | 卓越 |
 | `druid` | 德鲁伊 | 怒风 |
 
-本目录保存 144 张姿态图集、128 张基础关键帧、表情参考与配置、提示词、八份 manifest 和制作工具。本轮已替换部分姿态 PNG，并记录新旧来源及哈希；不再沿用“原有 PNG 全部不变”的描述。完整视频、模型权重和可导入 ZIP 在本地构建，不进入 Git。`manifests/` 只有配置，不能单独作为完整角色包导入。
+本目录保存 144 张姿态图集、128 张基础关键帧、表情参考与配置、提示词、八份 manifest 和制作工具。本轮已替换部分姿态 PNG，并记录新旧来源及哈希；不再沿用“原有 PNG 全部不变”的描述。完整 WebM 以 GitHub Release 附件分发。模型权重由重建工具按固定来源下载。`manifests/` 只有配置，不能单独作为完整角色包导入。
 
 ## v0.4.0 制作方法与未通过项
 
@@ -51,6 +51,20 @@ v0.3.2 实际只替换战士 `开心蹦跳` 这一段，其余 959 段沿用上�
 新增动作是 `害怕`、`害羞`、`难过（眼睛饱含泪水）`、`想去玩（期待星星眼）`、`大哭`、`开心蹦跳`，均进入已有 `categories.情绪` 接口。原 114 个动作名、权重、事件和移动参数保留，包括原版 `小幅度原地360度旋转展示`；没有修改 AIRI 自动 emotion 路由或应用运行设置。manifest 严格 schema 仍为 `version: 1`，与资源包的 v0.4.0 标识分开。
 
 本资源依据动作语义重制，未声称对原版 114 段视频逐帧等同换装。60 fps 是输出采样率，包含保持帧、算法中间帧和网格采样帧，不表示每秒 60 张独立绘画。
+
+## 下载与导入
+
+[GitHub 数字资产下载](https://github.com/LoveWood233/wow-airi-companion/releases/tag/dafeiyu-assets-v0.4.0-candidate)提供当前 v0.4.0 八职业候选包、历史交付和逐帧证据。当前包共 960 段透明 WebM，每职业 120 段。
+
+1. 下载 `dafeiyu-classic-motion-v040-CANDIDATE-NOT-ACCEPTED.zip.part01`、`.part02`、`.part03`，以及 `join-release-parts.py` 和 `release-assets.json`，放在同一个目录。
+2. 在该目录运行以下命令。工具按清单顺序合并文件，并核对每段及完整 ZIP 的 SHA-256。在 Windows 可用 `py -3.12` 替换 `python3`。将输出保存到支持硬链接的文件系统，例如 APFS、NTFS 或 ext4。
+3. 解压得到的 ZIP，在 AIRI 大肥鱼资源包入口选择 `packs/<职业>`，该目录内直接包含 `pack.json` 与 120 个 WebM。
+
+```sh
+python3 join-release-parts.py dafeiyu-classic-motion-v040-CANDIDATE-NOT-ACCEPTED.zip --manifest release-assets.json
+```
+
+也可直接从 GitHub 获取[历史预览](preview/history/README.md)。Release 下载与导入声明见 [DOWNLOAD.md](DOWNLOAD.md)，附件大小及校验和见 Release 中的 `SHA256SUMS.txt`。
 
 ## 安装与重建
 

@@ -54,7 +54,9 @@ pack.json沿用严格version=1 schema，与资源包v0.4.0标识分开。
 新增6动作进入已有categories.情绪分类；未修改AIRI自动emotion映射，不新增fear/cry等自动路由。
 
 观看与重建
-Git仓库不包含完整视频、模型权重或完整可导入ZIP；按README重建后，职业包位于build/packs/。
+可从 GitHub Release 下载完整 WebM 资产包，参见仓库 DOWNLOAD.md。
+https://github.com/LoveWood233/wow-airi-companion/releases/tag/dafeiyu-assets-v0.4.0-candidate
+也可按README重建，职业包位于build/packs/。
 本轮制作环境为Python3.12、tools/requirements-rife.txt固定依赖、Node.js24+和带libvpx-vp9的FFmpeg/ffprobe。
 先运行tools/download-rife.py，脚本按tools/rife_v426/UPSTREAM.json下载固定版本模型，并校验压缩包与权重SHA256。
 默认权重位于build/models/rife-v4.26/flownet.pkl；渲染会再次校验哈希。

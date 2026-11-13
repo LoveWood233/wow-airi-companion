@@ -1,0 +1,25 @@
+{
+  "01-original-60fps.mp4": {
+    "width": 640,
+    "height": 360,
+    "fps": "60/1",
+    "frames": 480,
+    "duration": 8.0,
+    "bytes": 1891702,
+    "frame_durations": [
+      "0.016667"
+    ]
+  },
+  "02-gif-50fps.gif": {
+    "width": 640,
+    "height": 360,
+    "fps": "50/1",
+    "frames": 400,
+    "duration": 8.0,
+    "bytes": 12134406,
+    "frame_durations": [
+      "0.020000"
+    ],
+    "infinite_loop": true
+  }
+}

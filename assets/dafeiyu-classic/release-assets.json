@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "assets": [
+    {
+      "name": "dafeiyu-classic-motion-v031-happy-jump-continuous-60fps.zip",
+      "bytes": 2860333192,
+      "sha256": "0e544825fd4a23d335649c78a39cb2eb09cafaf5df8fd06f0b08df2799ede6d5",
+      "parts": [
+        {
+          "name": "dafeiyu-classic-motion-v031-happy-jump-continuous-60fps.zip.part01",
+          "bytes": 1073741824,
+          "sha256": "ef343b156bf67a79d2a7a2fcaa70bc544b7cb1fcffcd696e7b6d549fdcf6cb82"
+        },
+        {
+          "name": "dafeiyu-classic-motion-v031-happy-jump-continuous-60fps.zip.part02",
+          "bytes": 1073741824,
+          "sha256": "74e28fd5ea0b015b6de794d65ed2a80ad56fcaf468e85b408410b8e7a709ed92"
+        },
+        {
+          "name": "dafeiyu-classic-motion-v031-happy-jump-continuous-60fps.zip.part03",
+          "bytes": 712849544,
+          "sha256": "3f4321feb64045536cdd7e43ea39c929ce240e589f01d705f62926ad931bf528"
+        }
+      ]
+    },
+    {
+      "name": "dafeiyu-classic-motion-v032-equipment-fixed.zip",
+      "bytes": 2428896290,
+      "sha256": "9fbc308e1152cae9f1a63ea833ecb2711b75f30317c4a1be1d294aea623d661d",
+      "parts": [
+        {
+          "name": "dafeiyu-classic-motion-v032-equipment-fixed.zip.part01",
+          "bytes": 1073741824,
+          "sha256": "4df9ea6087e69d1ce8c093fa570a06f941bbc939e8d845570f3d6acfcb3be785"
+        },
+        {
+          "name": "dafeiyu-classic-motion-v032-equipment-fixed.zip.part02",
+          "bytes": 1073741824,
+          "sha256": "214f22e99a8e504d01e548db3d903fe0d5300f351faa88d64a787db3a42d7531"
+        },
+        {
+          "name": "dafeiyu-classic-motion-v032-equipment-fixed.zip.part03",
+          "bytes": 281412642,
+          "sha256": "513e56f1bd00255729a905af7d145064a2fdc588399b29b750f1dc46d5428064"
+        }
+      ]
+    },
+    {
+      "name": "dafeiyu-classic-motion-v040-CANDIDATE-NOT-ACCEPTED.zip",
+      "bytes": 2810519249,
+      "sha256": "a4b5fe8adbf62eb8b6ba6a7632002c5794680356f5de60f9e95a930fff59bc69",
+      "parts": [
+        {
+          "name": "dafeiyu-classic-motion-v040-CANDIDATE-NOT-ACCEPTED.zip.part01",
+          "bytes": 1073741824,
+          "sha256": "58b4b0679d1008534e7d9c82655521b2f358a212e59b0a9bfd902d1466d46120"
+        },
+        {
+          "name": "dafeiyu-classic-motion-v040-CANDIDATE-NOT-ACCEPTED.zip.part02",
+          "bytes": 1073741824,
+          "sha256": "338455428ddc4b976b85e1db834d97757cbb06c54a6a8653d7177d06405e3749"
+        },
+        {
+          "name": "dafeiyu-classic-motion-v040-CANDIDATE-NOT-ACCEPTED.zip.part03",
+          "bytes": 663035601,
+          "sha256": "eca75d8c3c12a766aec36026c9599951346fba39572d1c851f96b6da5155b33d"
+        }
+      ]
+    }
+  ]
+}
