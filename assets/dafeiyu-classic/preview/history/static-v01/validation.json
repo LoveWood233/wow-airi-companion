@@ -1,0 +1,122 @@
+[
+  {
+    "file": "01-warrior-wrath.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "bit_depth": 8,
+    "png_color_type": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 890406,
+    "bytes": 1363990
+  },
+  {
+    "file": "02-hunter-dragonstalker.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "bit_depth": 8,
+    "png_color_type": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 940526,
+    "bytes": 1320386
+  },
+  {
+    "file": "03-mage-netherwind.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "bit_depth": 8,
+    "png_color_type": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 855212,
+    "bytes": 1410273
+  },
+  {
+    "file": "04-rogue-bloodfang.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "bit_depth": 8,
+    "png_color_type": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 893600,
+    "bytes": 1267118
+  },
+  {
+    "file": "05-paladin-judgement.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "bit_depth": 8,
+    "png_color_type": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 829592,
+    "bytes": 1470035
+  },
+  {
+    "file": "06-warlock-nemesis.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "bit_depth": 8,
+    "png_color_type": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 890712,
+    "bytes": 1405329
+  },
+  {
+    "file": "07-priest-transcendence.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "bit_depth": 8,
+    "png_color_type": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 901273,
+    "bytes": 1347494
+  },
+  {
+    "file": "08-druid-stormrage.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "bit_depth": 8,
+    "png_color_type": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 880406,
+    "bytes": 1425064
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "local_image_links": 8,
+  "image_links_exist": true,
+  "inline_script_syntax": "passed",
+  "json_parsing": "passed",
+  "browser_visual_review": false,
+  "reason": "Automated browser blocks file URLs; no workaround attempted."
+}
