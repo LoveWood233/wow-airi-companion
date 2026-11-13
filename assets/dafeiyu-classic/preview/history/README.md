@@ -5,7 +5,7 @@
 | 版本 | 预览 |
 | --- | --- |
 | v0.1 静态 | [八职业立绘与预览页](static-v01/) |
-| v0.1 动作 | [八职业 MP4](motion-v01/preview-eight-classes.mp4) · [GIF](motion-v01/preview-eight-classes.gif) |
+| v0.1 动作 | [八职业 MP4](motion-v01/preview-eight-classes.mp4) · [GIF](motion-v01/preview-eight-classes.gif) · [早期动作源图](motion-v01/source/) |
 | v0.2 | [八职业 60 fps](motion-v02/preview-eight-classes.mp4) · [战士流畅度对比](motion-v02/comparison-warrior.mp4) |
 | v0.3.1 | [动作样本](motion-v031/preview-samples.mp4) · [情绪](motion-v031/preview-emotions.mp4) · [蹦跳](motion-v031/preview-jump.mp4) |
 | v0.3.1 格式对比 | [MP4](gif-comparison-v031/01-original-60fps.mp4) · [GIF](gif-comparison-v031/02-gif-50fps.gif) · [同时间点](gif-comparison-v031/qa-same-time.png) |
