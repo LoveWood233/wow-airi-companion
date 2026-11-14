@@ -1,0 +1,1116 @@
+{
+  "entries": [
+    {
+      "class": "druid",
+      "sheet": "actions-04",
+      "old_source_sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035",
+      "new_source_sha256": "4c7f36afea224b93df16938231c0430afadd083d22b78b5d728979ff92461e06",
+      "cloned_entries": [
+        {
+          "class": "druid",
+          "sheet": "actions-04",
+          "cell": 4,
+          "bottom_trim_px": 18,
+          "source_sha256": "4c7f36afea224b93df16938231c0430afadd083d22b78b5d728979ff92461e06",
+          "source_cell_size": [
+            315,
+            312
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 5,
+              "cell_bbox": [
+                140,
+                295,
+                49,
+                17
+              ],
+              "area": 524,
+              "global_component": 45,
+              "same_component_pixels_in_next_cell": 45678,
+              "global_component_bbox": [
+                38,
+                606,
+                243,
+                287
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 6,
+              "cell_bbox": [
+                104,
+                305,
+                23,
+                7
+              ],
+              "area": 128,
+              "global_component": 45,
+              "same_component_pixels_in_next_cell": 45678,
+              "global_component_bbox": [
+                38,
+                606,
+                243,
+                287
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-00.jpg",
+          "review_candidate_id": 8,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "可爱宅舞"
+          ],
+          "migration_note": "Exact unchanged cell pixels in original-pixel overhang repack; correction cloned to new sheet SHA."
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-04",
+          "cell": 5,
+          "bottom_trim_px": 18,
+          "source_sha256": "4c7f36afea224b93df16938231c0430afadd083d22b78b5d728979ff92461e06",
+          "source_cell_size": [
+            315,
+            312
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 10,
+              "cell_bbox": [
+                133,
+                295,
+                49,
+                17
+              ],
+              "area": 522,
+              "global_component": 46,
+              "same_component_pixels_in_next_cell": 46490,
+              "global_component_bbox": [
+                353,
+                606,
+                238,
+                287
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 11,
+              "cell_bbox": [
+                94,
+                302,
+                24,
+                10
+              ],
+              "area": 189,
+              "global_component": 46,
+              "same_component_pixels_in_next_cell": 46490,
+              "global_component_bbox": [
+                353,
+                606,
+                238,
+                287
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-00.jpg",
+          "review_candidate_id": 9,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "可爱宅舞"
+          ],
+          "migration_note": "Exact unchanged cell pixels in original-pixel overhang repack; correction cloned to new sheet SHA."
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-04",
+          "cell": 6,
+          "bottom_trim_px": 19,
+          "source_sha256": "4c7f36afea224b93df16938231c0430afadd083d22b78b5d728979ff92461e06",
+          "source_cell_size": [
+            315,
+            312
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 3,
+              "cell_bbox": [
+                123,
+                294,
+                51,
+                18
+              ],
+              "area": 586,
+              "global_component": 43,
+              "same_component_pixels_in_next_cell": 48385,
+              "global_component_bbox": [
+                651,
+                605,
+                246,
+                290
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 4,
+              "cell_bbox": [
+                84,
+                306,
+                22,
+                6
+              ],
+              "area": 110,
+              "global_component": 43,
+              "same_component_pixels_in_next_cell": 48385,
+              "global_component_bbox": [
+                651,
+                605,
+                246,
+                290
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 5,
+              "cell_bbox": [
+                202,
+                310,
+                15,
+                2
+              ],
+              "area": 25,
+              "global_component": 43,
+              "same_component_pixels_in_next_cell": 48385,
+              "global_component_bbox": [
+                651,
+                605,
+                246,
+                290
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-00.jpg",
+          "review_candidate_id": 10,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "吃Token"
+          ],
+          "migration_note": "Exact unchanged cell pixels in original-pixel overhang repack; correction cloned to new sheet SHA."
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-04",
+          "cell": 7,
+          "bottom_trim_px": 19,
+          "source_sha256": "4c7f36afea224b93df16938231c0430afadd083d22b78b5d728979ff92461e06",
+          "source_cell_size": [
+            316,
+            312
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 7,
+              "cell_bbox": [
+                125,
+                294,
+                50,
+                18
+              ],
+              "area": 573,
+              "global_component": 44,
+              "same_component_pixels_in_next_cell": 48663,
+              "global_component_bbox": [
+                967,
+                605,
+                250,
+                290
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 8,
+              "cell_bbox": [
+                86,
+                305,
+                22,
+                7
+              ],
+              "area": 116,
+              "global_component": 44,
+              "same_component_pixels_in_next_cell": 48663,
+              "global_component_bbox": [
+                967,
+                605,
+                250,
+                290
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 9,
+              "cell_bbox": [
+                200,
+                308,
+                19,
+                4
+              ],
+              "area": 59,
+              "global_component": 44,
+              "same_component_pixels_in_next_cell": 48663,
+              "global_component_bbox": [
+                967,
+                605,
+                250,
+                290
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-00.jpg",
+          "review_candidate_id": 11,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "吃Token"
+          ],
+          "migration_note": "Exact unchanged cell pixels in original-pixel overhang repack; correction cloned to new sheet SHA."
+        }
+      ],
+      "omitted_entries_for_repacked_clean_cells": [
+        {
+          "class": "druid",
+          "sheet": "actions-04",
+          "cell": 8,
+          "bottom_trim_px": 27,
+          "source_sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035",
+          "source_cell_size": [
+            315,
+            312
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 7,
+              "cell_bbox": [
+                140,
+                286,
+                51,
+                26
+              ],
+              "area": 741,
+              "global_component": 57,
+              "same_component_pixels_in_next_cell": 47835,
+              "global_component_bbox": [
+                40,
+                909,
+                248,
+                292
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 8,
+              "cell_bbox": [
+                96,
+                298,
+                27,
+                14
+              ],
+              "area": 269,
+              "global_component": 57,
+              "same_component_pixels_in_next_cell": 47835,
+              "global_component_bbox": [
+                40,
+                909,
+                248,
+                292
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 9,
+              "cell_bbox": [
+                218,
+                301,
+                24,
+                11
+              ],
+              "area": 180,
+              "global_component": 57,
+              "same_component_pixels_in_next_cell": 47835,
+              "global_component_bbox": [
+                40,
+                909,
+                248,
+                292
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-00.jpg",
+          "review_candidate_id": 12,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "吃冰淇淋融化"
+          ]
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-04",
+          "cell": 9,
+          "bottom_trim_px": 26,
+          "source_sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035",
+          "source_cell_size": [
+            315,
+            312
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 4,
+              "cell_bbox": [
+                134,
+                287,
+                51,
+                25
+              ],
+              "area": 704,
+              "global_component": 58,
+              "same_component_pixels_in_next_cell": 46425,
+              "global_component_bbox": [
+                353,
+                910,
+                236,
+                291
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 5,
+              "cell_bbox": [
+                90,
+                298,
+                27,
+                14
+              ],
+              "area": 256,
+              "global_component": 58,
+              "same_component_pixels_in_next_cell": 46425,
+              "global_component_bbox": [
+                353,
+                910,
+                236,
+                291
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 6,
+              "cell_bbox": [
+                212,
+                304,
+                21,
+                8
+              ],
+              "area": 129,
+              "global_component": 58,
+              "same_component_pixels_in_next_cell": 46425,
+              "global_component_bbox": [
+                353,
+                910,
+                236,
+                291
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-00.jpg",
+          "review_candidate_id": 13,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "吃冰淇淋融化"
+          ]
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-04",
+          "cell": 10,
+          "bottom_trim_px": 25,
+          "source_sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035",
+          "source_cell_size": [
+            315,
+            312
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 5,
+              "cell_bbox": [
+                126,
+                288,
+                53,
+                24
+              ],
+              "area": 725,
+              "global_component": 59,
+              "same_component_pixels_in_next_cell": 48006,
+              "global_component_bbox": [
+                652,
+                911,
+                247,
+                290
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 6,
+              "cell_bbox": [
+                81,
+                297,
+                28,
+                15
+              ],
+              "area": 281,
+              "global_component": 59,
+              "same_component_pixels_in_next_cell": 48006,
+              "global_component_bbox": [
+                652,
+                911,
+                247,
+                290
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 7,
+              "cell_bbox": [
+                207,
+                305,
+                21,
+                7
+              ],
+              "area": 114,
+              "global_component": 59,
+              "same_component_pixels_in_next_cell": 48006,
+              "global_component_bbox": [
+                652,
+                911,
+                247,
+                290
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-00.jpg",
+          "review_candidate_id": 14,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "吃午餐"
+          ]
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-04",
+          "cell": 11,
+          "bottom_trim_px": 25,
+          "source_sha256": "eb21a921edb12c2850905eb84b912bc1ef29ecb82cc026ac0bd69d5b7be20035",
+          "source_cell_size": [
+            316,
+            312
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 4,
+              "cell_bbox": [
+                128,
+                288,
+                52,
+                24
+              ],
+              "area": 698,
+              "global_component": 60,
+              "same_component_pixels_in_next_cell": 49114,
+              "global_component_bbox": [
+                968,
+                911,
+                253,
+                291
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 5,
+              "cell_bbox": [
+                83,
+                296,
+                28,
+                16
+              ],
+              "area": 310,
+              "global_component": 60,
+              "same_component_pixels_in_next_cell": 49114,
+              "global_component_bbox": [
+                968,
+                911,
+                253,
+                291
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 6,
+              "cell_bbox": [
+                206,
+                302,
+                23,
+                10
+              ],
+              "area": 174,
+              "global_component": 60,
+              "same_component_pixels_in_next_cell": 49114,
+              "global_component_bbox": [
+                968,
+                911,
+                253,
+                291
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 7,
+              "cell_bbox": [
+                70,
+                310,
+                7,
+                2
+              ],
+              "area": 10,
+              "global_component": 60,
+              "same_component_pixels_in_next_cell": 49114,
+              "global_component_bbox": [
+                968,
+                911,
+                253,
+                291
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-00.jpg",
+          "review_candidate_id": 15,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "吃午餐"
+          ]
+        }
+      ],
+      "old_entries_preserved": true
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-13",
+      "old_source_sha256": "b31788fe58c96fd50af64386e9e504d88fd8d249823fdb20bbff8ed60fe3c7ec",
+      "new_source_sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+      "cloned_entries": [
+        {
+          "class": "druid",
+          "sheet": "actions-13",
+          "cell": 3,
+          "bottom_trim_px": 7,
+          "source_sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+          "source_cell_size": [
+            310,
+            317
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 3,
+              "cell_bbox": [
+                136,
+                311,
+                29,
+                6
+              ],
+              "area": 122,
+              "global_component": 8,
+              "same_component_pixels_in_next_cell": 41124,
+              "global_component_bbox": [
+                970,
+                311,
+                226,
+                282
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "root viewed candidate cell plus adjoining-row boundary; next-row disconnected sliver only",
+          "review_contact_sheet": "workspace-revision/integrated-crops/page-02.jpg",
+          "migration_note": "Exact unchanged cell pixels in original-pixel overhang repack; correction cloned to new sheet SHA."
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-13",
+          "cell": 4,
+          "bottom_trim_px": 13,
+          "source_sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+          "source_cell_size": [
+            309,
+            317
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 3,
+              "cell_bbox": [
+                117,
+                305,
+                42,
+                12
+              ],
+              "area": 349,
+              "global_component": 15,
+              "same_component_pixels_in_next_cell": 52768,
+              "global_component_bbox": [
+                19,
+                622,
+                266,
+                287
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "root viewed candidate cell plus adjoining-row boundary; next-row disconnected sliver only",
+          "review_contact_sheet": "workspace-revision/integrated-crops/page-02.jpg",
+          "migration_note": "Exact unchanged cell pixels in original-pixel overhang repack; correction cloned to new sheet SHA."
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-13",
+          "cell": 6,
+          "bottom_trim_px": 22,
+          "source_sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+          "source_cell_size": [
+            310,
+            317
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 2,
+              "cell_bbox": [
+                132,
+                296,
+                80,
+                21
+              ],
+              "area": 984,
+              "global_component": 14,
+              "same_component_pixels_in_next_cell": 42060,
+              "global_component_bbox": [
+                638,
+                613,
+                230,
+                277
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 3,
+              "cell_bbox": [
+                80,
+                312,
+                10,
+                5
+              ],
+              "area": 37,
+              "global_component": 14,
+              "same_component_pixels_in_next_cell": 42060,
+              "global_component_bbox": [
+                638,
+                613,
+                230,
+                277
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-01.jpg",
+          "review_candidate_id": 31,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "被吓一跳"
+          ],
+          "migration_note": "Exact unchanged cell pixels in original-pixel overhang repack; correction cloned to new sheet SHA."
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-13",
+          "cell": 7,
+          "bottom_trim_px": 26,
+          "source_sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+          "source_cell_size": [
+            310,
+            317
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 2,
+              "cell_bbox": [
+                199,
+                292,
+                29,
+                25
+              ],
+              "area": 492,
+              "global_component": 13,
+              "same_component_pixels_in_next_cell": 42436,
+              "global_component_bbox": [
+                947,
+                609,
+                260,
+                280
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 3,
+              "cell_bbox": [
+                135,
+                297,
+                72,
+                20
+              ],
+              "area": 835,
+              "global_component": 13,
+              "same_component_pixels_in_next_cell": 42436,
+              "global_component_bbox": [
+                947,
+                609,
+                260,
+                280
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-02.jpg",
+          "review_candidate_id": 32,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "被吓一跳"
+          ],
+          "migration_note": "Exact unchanged cell pixels in original-pixel overhang repack; correction cloned to new sheet SHA."
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-13",
+          "cell": 8,
+          "bottom_trim_px": 18,
+          "source_sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+          "source_cell_size": [
+            309,
+            317
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 7,
+              "cell_bbox": [
+                99,
+                300,
+                96,
+                17
+              ],
+              "area": 998,
+              "global_component": 30,
+              "same_component_pixels_in_next_cell": 52327,
+              "global_component_bbox": [
+                6,
+                934,
+                270,
+                286
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-02.jpg",
+          "review_candidate_id": 33,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "被落叶淹没"
+          ],
+          "migration_note": "Exact unchanged cell pixels in original-pixel overhang repack; correction cloned to new sheet SHA."
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-13",
+          "cell": 9,
+          "bottom_trim_px": 21,
+          "source_sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+          "source_cell_size": [
+            310,
+            317
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 7,
+              "cell_bbox": [
+                124,
+                297,
+                93,
+                20
+              ],
+              "area": 1065,
+              "global_component": 29,
+              "same_component_pixels_in_next_cell": 58580,
+              "global_component_bbox": [
+                307,
+                931,
+                294,
+                288
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-02.jpg",
+          "review_candidate_id": 34,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "被落叶淹没"
+          ],
+          "migration_note": "Exact unchanged cell pixels in original-pixel overhang repack; correction cloned to new sheet SHA."
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-13",
+          "cell": 8,
+          "source_sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+          "cell_size": [
+            309,
+            317
+          ],
+          "right_trim_px": 3,
+          "strip_components": [
+            {
+              "label": 4,
+              "bbox": [
+                307,
+                236,
+                2,
+                9
+              ],
+              "area": 12
+            },
+            {
+              "label": 6,
+              "bbox": [
+                308,
+                253,
+                1,
+                3
+              ],
+              "area": 3
+            }
+          ],
+          "affects_actions": [
+            "被落叶淹没"
+          ],
+          "visual_review": "confirmed neighboring sprite fragment; source crop context viewed",
+          "evidence_image": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/right-edge-context.jpg",
+          "migration_note": "Exact unchanged cell pixels in original-pixel overhang repack; correction cloned to new sheet SHA."
+        }
+      ],
+      "omitted_entries_for_repacked_clean_cells": [
+        {
+          "class": "druid",
+          "sheet": "actions-13",
+          "cell": 11,
+          "bottom_trim_px": 25,
+          "source_sha256": "b31788fe58c96fd50af64386e9e504d88fd8d249823fdb20bbff8ed60fe3c7ec",
+          "source_cell_size": [
+            310,
+            317
+          ],
+          "reason": "Bottom sliver is disconnected from this cell subject but belongs to a large next-row character component; proposed strip contains no other alpha>16 component.",
+          "evidence_components": [
+            {
+              "component": 5,
+              "cell_bbox": [
+                79,
+                293,
+                98,
+                24
+              ],
+              "area": 1096,
+              "global_component": 28,
+              "same_component_pixels_in_next_cell": 51015,
+              "global_component_bbox": [
+                956,
+                927,
+                248,
+                294
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 6,
+              "cell_bbox": [
+                183,
+                304,
+                38,
+                13
+              ],
+              "area": 309,
+              "global_component": 28,
+              "same_component_pixels_in_next_cell": 51015,
+              "global_component_bbox": [
+                956,
+                927,
+                248,
+                294
+              ],
+              "connects_next_row_character": true
+            },
+            {
+              "component": 7,
+              "cell_bbox": [
+                222,
+                314,
+                10,
+                3
+              ],
+              "area": 20,
+              "global_component": 28,
+              "same_component_pixels_in_next_cell": 51015,
+              "global_component_bbox": [
+                956,
+                927,
+                248,
+                294
+              ],
+              "connects_next_row_character": true
+            }
+          ],
+          "visual_review": "Independent agent viewed full cell plus adjoining row boundary; confirmed disconnected next-row hair/antlers only.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/expanded-02.jpg",
+          "review_candidate_id": 35,
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "被鼠标拖拽悬空反馈"
+          ]
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-13",
+          "cell": 10,
+          "bottom_trim_px": 26,
+          "source_sha256": "b31788fe58c96fd50af64386e9e504d88fd8d249823fdb20bbff8ed60fe3c7ec",
+          "source_cell_size": [
+            310,
+            317
+          ],
+          "reason": "Visual boundary review: own character component ends at local y255, next-row character starts at y292. Trim starts y291, safely below own sprite. Earlier automatic conflict is a single isolated alpha>16 pixel at (125,309) inside the next-row sliver band.",
+          "evidence_components": [
+            {
+              "cell_bbox": [
+                19,
+                0,
+                230,
+                256
+              ],
+              "area": 42060,
+              "role": "retained_own_character"
+            },
+            {
+              "cell_bbox": [
+                79,
+                292,
+                95,
+                25
+              ],
+              "area": 1144,
+              "role": "next_row_character"
+            },
+            {
+              "cell_bbox": [
+                189,
+                305,
+                32,
+                12
+              ],
+              "area": 260,
+              "role": "next_row_antler"
+            },
+            {
+              "cell_bbox": [
+                125,
+                309,
+                1,
+                1
+              ],
+              "area": 1,
+              "role": "isolated_pixel_in_next_row_band"
+            }
+          ],
+          "visual_review": "Manually reviewed expanded cell plus next-row boundary, including full-alpha-component stats.",
+          "review_contact_sheet": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/druid13-cell10-boundary.png",
+          "all_retained_source_pixels_identical": true,
+          "affected_original_actions": [
+            "被鼠标拖拽悬空反馈"
+          ]
+        },
+        {
+          "class": "druid",
+          "sheet": "actions-13",
+          "cell": 12,
+          "source_sha256": "b31788fe58c96fd50af64386e9e504d88fd8d249823fdb20bbff8ed60fe3c7ec",
+          "cell_size": [
+            309,
+            318
+          ],
+          "right_trim_px": 3,
+          "strip_components": [
+            {
+              "label": 2,
+              "bbox": [
+                307,
+                208,
+                2,
+                6
+              ],
+              "area": 10
+            }
+          ],
+          "affects_actions": [
+            "装点圣诞树"
+          ],
+          "visual_review": "confirmed neighboring sprite fragment; source crop context viewed",
+          "evidence_image": "outputs/all-class-equipment-revision/independent-rogue-druid-review/crop-qa/right-edge-context.jpg"
+        }
+      ],
+      "old_entries_preserved": true
+    }
+  ],
+  "old_manifest_sha256": "f3fcaa3bc6434edcf97bf6a8ae170ce3e3ad6817de8d6937ca1dd05639f6bfc6",
+  "source_original_pngs_untouched": true
+}

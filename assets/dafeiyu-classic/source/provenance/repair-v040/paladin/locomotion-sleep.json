@@ -1,0 +1,173 @@
+{
+  "class": "paladin",
+  "sheet": "locomotion-sleep",
+  "original_sha256": "3eef9ef91aebc5ad9962bce67b7be49322277a1fc83ed279dcbe14819f48e878",
+  "replacement_sha256": "b9b10f4f6141a9440d138a490c6d9d7ca9563075dd2eddd6bfe7628857ca0e6b",
+  "freeze_manifest": "paladin-08-14-freeze-manifest.json",
+  "source_review": {
+    "sheet": "locomotion-sleep",
+    "candidate": "source/sheets/paladin/locomotion-sleep.png",
+    "sha256": "b9b10f4f6141a9440d138a490c6d9d7ca9563075dd2eddd6bfe7628857ca0e6b",
+    "review": "source/sheets/paladin/locomotion-sleep.json",
+    "cells_reviewed": 16,
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/paladin/locomotion-sleep.png",
+      "source/base-keyframes/paladin/frame-00.png",
+      "source/sheets/paladin/actions-08.png",
+      "source/sheets/paladin/actions-12.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Asset: transparent 4x4 action sprite atlas, identity/equipment repair only.\nImage 1 is the EDIT TARGET with sixteen original action poses. Image 2 is the canonical paladin master identity and equipment reference. Preserve the target's exact 4x4 grid, sixteen cell positions, character scale, pose silhouettes, two original arms/hands, expressions, action props, clothing, gold cross symbols, face, hair and colors. Do not substitute idle poses and do not redraw an action.\n\nRepair only the missing canonical equipment. The paladin has exactly ONE compact gold warhammer with rectangular red-inset head, at the character's anatomical RIGHT hip (PICTURE LEFT in front view), and exactly ONE small red/gold cross holy book at anatomical LEFT hip (PICTURE RIGHT in front view). Keep the book already present; do not duplicate it or replace action props with it. Match the master hammer shape, size and proportions: short handle, broad compact rectangular head, total length roughly one fifth of character height. It hangs diagonally down/out from the same left waist belt attachment, not as a tall staff or giant mallet. When both original hands are busy, the hammer is belt-holstered and leaves both hands free; do not add a third hand to hold it. In side/prone poses, rotate and foreshorten this same attached hammer with the pelvis, allowing physically correct occlusion by body, hair or props. Keep the head and handle connected. Never move the hammer to the other hip between paired action cells.\nAll original action props remain distinct from equipped hammer/book: no converting cards, fans, toys, food or paperwork into extra holy equipment. Exactly two anatomical arms and hands, except legal occlusion.\nKeep genuine transparent background; no labels, borders, checkerboard, extra decoration, duplicate body parts, or new effects. Preserve every original cell's different action.\nImage3 is approved standing belt equipment; Image4 is approved prone equipment occlusion reference, NOT new poses. Keep all16 target poses: row1 standing/sitting/lowering/prone; row2 deep-prone breathing/rising/sitting; row3 four LEFT-FACING side-running gait poses; row4 four front-running gait poses.\nThe existing holy book must stay on its original hip in every cell. Add only one belt-attached short hammer on the opposite anatomical hip, left of the character in FRONT view. In prone cells3..6 the right-hip hammer is on the far side and may be mostly occluded, with only a small head edge above/behind the pelvis as in reference4, never under her face or in resting hands. In left-facing side runs8..11 the hammer is likewise on the FAR hip behind torso/hair: a narrow attached edge may appear, but do not put a full hammer beside the near-side book. Never move it to the same visible waist as the book. Front run12..15 must show left waist hammer and right book. Preserve all arms, leg bends, head heights and original ground shadows.",
+    "generated_file": "image_gen-output:exec-66c2fa45-9d2f-4334-aecb-7a7a81bea892.png",
+    "tool": "built-in image_gen",
+    "class": "paladin",
+    "sheet": "locomotion-sleep",
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "output": "outputs/all-class-equipment-revision/repaired-sheets/paladin/locomotion-sleep.png",
+    "sha256": "b9b10f4f6141a9440d138a490c6d9d7ca9563075dd2eddd6bfe7628857ca0e6b",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 555467,
+      "opaque_pixels": 522579
+    },
+    "preview": "outputs/all-class-equipment-revision/repaired-sheets/paladin/locomotion-sleep.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/paladin/locomotion-sleep.png",
+        "sha256": "3eef9ef91aebc5ad9962bce67b7be49322277a1fc83ed279dcbe14819f48e878"
+      },
+      {
+        "path": "source/base-keyframes/paladin/frame-00.png",
+        "sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7"
+      },
+      {
+        "path": "source/sheets/paladin/actions-08.png",
+        "sha256": "555841301aaa408631be5524e2cecd81f1175bad31974f1c9d885185ac939935"
+      },
+      {
+        "path": "source/sheets/paladin/actions-12.png",
+        "sha256": "57d7713e81c19a663b8bce0f70295e479528020e67344f44470cdc7101960af8"
+      }
+    ],
+    "video_frames_reviewed": 0,
+    "previous_iterations": [
+      {
+        "generated_file": "image_gen-output:exec-d489d259-8f93-46c9-bb64-d64a6b7798e1.png",
+        "reason": "Side-run far-side hammer should be occluded, not exposed beside near-side book"
+      }
+    ],
+    "correction_prompt": "Use case: precise-object-edit. Image1 is the nearly-approved 4x4 paladin locomotion atlas. Image2 shows the original action poses. Image3 is approved body-local weapon placement across angles.\nChange ONLY zero-based cells8,9,10,11 (row3), the four LEFT-FACING profile running poses. The newly added exposed hammer at PICTURE-RIGHT rear hip behind/beside the visible holy book is misleading and on the wrong visible side. REMOVE that exposed extra hammer head and its visible handle in all four running cells. KEEP the existing red/gold holy book absolutely unchanged at its original near-side hip. The actual hammer's anatomical right hip is the FAR side in this left-facing profile, so it is naturally fully hidden behind torso/hair during these four side-running poses, as the left profile cell4 of reference3. Do not move the hammer somewhere else on the visible silhouette. Do not expose a new floating gold head. Restore original armor/hair/leg silhouette behind the removed visible hammer from reference2. Keep both original running arms, hands, stride legs and clothing precisely as original.\nDo not change the OTHER12 cells: their standing/front-running left hammers and right books and prone partially hidden hammer edges are approved. Keep grid, cell size, colors, faces, shadows and transparent background. No extra hands or objects.",
+    "cell_reviews": [
+      {
+        "cell": 0,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Front neutral left hammer/right book."
+      },
+      {
+        "cell": 1,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Seated front, gear tilts with belt, hands on knees."
+      },
+      {
+        "cell": 2,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Lowering onto hands, left hammer/right book."
+      },
+      {
+        "cell": 3,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Prone side: near book visible, far hammer mostly occluded with only small hip-edge cue."
+      },
+      {
+        "cell": 4,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Deep prone, far hammer edge above hip; original face/hands unchanged."
+      },
+      {
+        "cell": 5,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Prone breathing counterpart has same far-side occlusion."
+      },
+      {
+        "cell": 6,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Rising on hands, book near-side and hammer far-side partial, no weapon pillow."
+      },
+      {
+        "cell": 7,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Sitting up front, left hammer/right book visible."
+      },
+      {
+        "cell": 8,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Corrected exposed rear hammer: left-facing side-run shows near book; far hammer naturally hidden by torso/hair."
+      },
+      {
+        "cell": 9,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Same far-side hammer occlusion, original bent-knee gait retained."
+      },
+      {
+        "cell": 10,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Same far-side hammer occlusion, extended stride retained."
+      },
+      {
+        "cell": 11,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Same far-side hammer occlusion, airborne bent-knee gait retained."
+      },
+      {
+        "cell": 12,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Front-run raised knee: hammer left belt, book right."
+      },
+      {
+        "cell": 13,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Front-run grounded phase: same belt gear, original fists."
+      },
+      {
+        "cell": 14,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Front-run opposite knee: same gear sides."
+      },
+      {
+        "cell": 15,
+        "action": "locomotion phase",
+        "status": "pass_source_pose",
+        "note": "Front-run airborne phase: gear follows pelvis."
+      }
+    ],
+    "limitations": [
+      "Only source-pose identity/equipment and anatomical attachment/occlusion reviewed. Generated minor linework differences and final motion artifacts require separate review."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

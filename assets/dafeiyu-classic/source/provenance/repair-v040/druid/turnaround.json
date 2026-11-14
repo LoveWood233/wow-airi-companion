@@ -1,0 +1,128 @@
+{
+  "class": "druid",
+  "sheet": "turnaround",
+  "original_sha256": "5ea95d1d5a432e746cab3c7045178d0ec99eb390660ec3cd312653aeac5b471c",
+  "replacement_sha256": "c1c6b91bd3d5968a36c265504ae31eeb053f7e86b606d367c726531bcc147c68",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "turnaround",
+    "path": "source/sheets/druid/turnaround.png",
+    "sha256": "c1c6b91bd3d5968a36c265504ae31eeb053f7e86b606d367c726531bcc147c68",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/turnaround.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "Cells2/3 staff moved behind left-turning torso, preserving all16 original views and arms; each frame shows one staff. Hidden mount/continuous trajectory between view angles is not proved and requires temporal review.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA.",
+      "Hidden body-local attachment and between-view trajectories need temporal validation; source endpoints alone do not prove continuous mount."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "turnaround",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/turnaround.png",
+    "source_sha256": "5ea95d1d5a432e746cab3c7045178d0ec99eb390660ec3cd312653aeac5b471c",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-d7481da3-3362-4b99-806d-eb43c696a43d",
+        "path": "workspace-revision/attempts/druid/turnaround-01.png",
+        "sha256": "2eba63adab715f585ca2244a776f70889fb313c69333b6108be3a6021a0afecb"
+      },
+      {
+        "output_id": "exec-c2eaa801-cebb-4fd1-b22c-e9989b311d1b",
+        "path": "workspace-revision/attempts/druid/turnaround-02.png",
+        "sha256": "c1c6b91bd3d5968a36c265504ae31eeb053f7e86b606d367c726531bcc147c68"
+      }
+    ],
+    "generated_output_id": "exec-c2eaa801-cebb-4fd1-b22c-e9989b311d1b",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-c2eaa801-cebb-4fd1-b22c-e9989b311d1b.png",
+    "saved_output": "source/sheets/druid/turnaround.png",
+    "final_sha256": "c1c6b91bd3d5968a36c265504ae31eeb053f7e86b606d367c726531bcc147c68",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/druid/turnaround.txt",
+    "prompt_sha256": "0ddb89327df1a5aad58d472d585ca75751fcedf50e450729f0fd90516e36291b",
+    "visual_review": {
+      "method": "generatedImage full atlas actually viewed all16 cells",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "Cells2/3 staff moved behind left-turning torso, preserving all16 original views and arms; each frame shows one staff. Hidden mount/continuous trajectory between view angles is not proved and requires temporal review.",
+      "grid_cut_review": "No apparent cross-cell figure/prop cuts.",
+      "full_video_validation": false
+    },
+    "correction_prompts": [
+      "workspace-revision/prompts/druid/turnaround-correction-02.txt"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "turnaround-correction-02.txt",
+      "text": "Make ONLY a local staff placement correction in input1 transparent 4x4 TURNAROUND atlas. Cells2 and3 (FIRST ROW THIRD/FOURTH columns) are turning LEFT, but currently the staff curl is in FRONT of the face at their left edge. Remove that front-of-face curl/green gem in both cells and restore face/hair. Put exactly ONE matching staff behind the head/upper BACK, towards the RIGHT edge of each left-turning sprite, similar to cell4 (SECOND ROW FIRST cell) where the single staff is already correctly behind the back. In cell2 partly hide the staff behind head/hair as appropriate for quarter view; in cell3 show curl/gem just above rear shoulder at right, not in front of nose. This makes cell1->2->3->4 smooth continuous body-local back mount. DO NOT alter any view angles, face, poses or other14 cells. Reference2 fixes equipment design. Transparent alpha, preserve4x4 positions.\n"
+    },
+    {
+      "name": "turnaround.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nThis is the 16-stage TURNAROUND atlas. Retain each exact successive viewpoint, including front, quarter, left profile, rear quarter, full back, opposite profiles and front again. The staff must rotate with the back mount in 3D character-local position; it naturally changes screen side during turning. Back views show its proper mounting location on the back behind hair; do not add a second copy. Keep original arm extension and skirt silhouette in all cells. Do not replace side/back views with front views. No spin effects or changed faces."
+    }
+  ]
+}

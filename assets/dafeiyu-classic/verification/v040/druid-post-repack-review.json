@@ -1,0 +1,226 @@
+[
+  {
+    "class": "druid",
+    "name": "吃冰淇淋融化",
+    "clip_id": "D028",
+    "media_sha256": "d089a95cc469ad0a7f7d495c2e4adb51943fed494449716d8e965841627a9c35",
+    "sample_frames": [
+      51,
+      90,
+      123,
+      156,
+      192,
+      525
+    ],
+    "held_pose_frames": [
+      90,
+      156
+    ],
+    "page": "current-00.jpg",
+    "evidence_page_sha256": "0bb19e76a0eb6adc60a0a21719c514e4fa3b51ae677d5dfce78956377820bbdc",
+    "visual_status": "reject",
+    "full_video_human_review": false,
+    "frames": [
+      51,
+      123,
+      192,
+      525
+    ],
+    "defects": [
+      "hand_ghost",
+      "double_face",
+      "staff_ghost"
+    ],
+    "frame_findings": {
+      "51": [
+        "hand_ghost",
+        "staff_ghost"
+      ],
+      "123": [
+        "double_face"
+      ],
+      "192": [
+        "double_face"
+      ],
+      "525": [
+        "hand_ghost",
+        "staff_ghost"
+      ]
+    },
+    "note": "Complete antlers/hair tuft and ice cream visible in both held poses. Intermediate hand/face/staff ghosts remain.",
+    "boundary_review_status": "recovered_top_overhang_no_subject_clipping_or_neighbor_fragment_in_all_six_reviewed_frames",
+    "held_pose_boundary_frames": [
+      90,
+      156
+    ],
+    "visual_scope": "Four unique transition midpoints plus two held source poses, decoded from this exact current SHA; sampled visual review, not all-frame acceptance."
+  },
+  {
+    "class": "druid",
+    "name": "吃午餐",
+    "clip_id": "D029",
+    "media_sha256": "2f065149131f5b18b6eb3e577def4688e8fb3e5c6463f43b2001fa2624902054",
+    "sample_frames": [
+      51,
+      90,
+      123,
+      156,
+      192,
+      525
+    ],
+    "held_pose_frames": [
+      90,
+      156
+    ],
+    "page": "current-01.jpg",
+    "evidence_page_sha256": "0976cee54761e0f5f6bf52323879906415da19cb296098f5b875e191d8eab65f",
+    "visual_status": "reject",
+    "full_video_human_review": false,
+    "frames": [
+      51,
+      525
+    ],
+    "defects": [
+      "hand_ghost",
+      "food_body_double_exposure",
+      "staff_ghost"
+    ],
+    "frame_findings": {
+      "51": [
+        "hand_ghost",
+        "food_body_double_exposure",
+        "staff_ghost"
+      ],
+      "525": [
+        "hand_ghost",
+        "food_body_double_exposure",
+        "staff_ghost"
+      ]
+    },
+    "note": "Complete antlers/hair tuft, food bowl, and chopsticks visible in both held poses. Recovery/entry still shows old glove/wrist and food through body.",
+    "boundary_review_status": "recovered_top_overhang_no_subject_clipping_or_neighbor_fragment_in_all_six_reviewed_frames",
+    "held_pose_boundary_frames": [
+      90,
+      156
+    ],
+    "visual_scope": "Four unique transition midpoints plus two held source poses, decoded from this exact current SHA; sampled visual review, not all-frame acceptance."
+  },
+  {
+    "class": "druid",
+    "name": "被鼠标拖拽悬空反馈",
+    "clip_id": "D110",
+    "media_sha256": "ab309c276be773faa9de48987de48b72614340721ab8c345120611863025ecfe",
+    "sample_frames": [
+      51,
+      90,
+      123,
+      156,
+      192,
+      525
+    ],
+    "held_pose_frames": [
+      90,
+      156
+    ],
+    "page": "current-02.jpg",
+    "evidence_page_sha256": "2f75a980f746c31f8c5be0bfac977343142e0b3129b9a1479160d1831f91f9eb",
+    "visual_status": "reject",
+    "full_video_human_review": false,
+    "frames": [
+      51,
+      123,
+      192,
+      525
+    ],
+    "defects": [
+      "extra_arms",
+      "extra_legs",
+      "body_double_exposure",
+      "staff_ghost"
+    ],
+    "frame_findings": {
+      "51": [
+        "extra_legs",
+        "staff_ghost"
+      ],
+      "123": [
+        "extra_arms",
+        "extra_legs",
+        "body_double_exposure"
+      ],
+      "192": [
+        "extra_legs",
+        "body_double_exposure"
+      ],
+      "525": [
+        "extra_legs",
+        "staff_ghost"
+      ]
+    },
+    "note": "Complete cursor/hair tuft/antlers and both detached sweat drops visible in held poses. Frame123 clearly four arms and doubled torso/legs.",
+    "boundary_review_status": "recovered_top_overhang_no_subject_clipping_or_neighbor_fragment_in_all_six_reviewed_frames",
+    "held_pose_boundary_frames": [
+      90,
+      156
+    ],
+    "visual_scope": "Four unique transition midpoints plus two held source poses, decoded from this exact current SHA; sampled visual review, not all-frame acceptance."
+  },
+  {
+    "class": "druid",
+    "name": "装点圣诞树",
+    "clip_id": "D111",
+    "media_sha256": "bd42328e325f81edf2592e432c6b4810debf0ca1007537a57de544b8fe540027",
+    "sample_frames": [
+      51,
+      90,
+      123,
+      156,
+      192,
+      525
+    ],
+    "held_pose_frames": [
+      90,
+      156
+    ],
+    "page": "current-03.jpg",
+    "evidence_page_sha256": "dc0d6bec008467d616b93f75f45ef9f3160f30db3625ce6d31998284a73b2979",
+    "visual_status": "reject",
+    "full_video_human_review": false,
+    "frames": [
+      51,
+      123,
+      192,
+      525
+    ],
+    "defects": [
+      "extra_hands",
+      "staff_ghost",
+      "tree_double_exposure"
+    ],
+    "frame_findings": {
+      "51": [
+        "extra_hands",
+        "staff_ghost",
+        "tree_double_exposure"
+      ],
+      "123": [
+        "staff_ghost"
+      ],
+      "192": [
+        "staff_ghost"
+      ],
+      "525": [
+        "extra_hands",
+        "staff_ghost",
+        "tree_double_exposure"
+      ]
+    },
+    "note": "Complete antlers/hair tuft, tree, and star visible in held poses. Entry/recovery retains old waist hands as new tree/star hands appear.",
+    "boundary_review_status": "recovered_top_overhang_no_subject_clipping_or_neighbor_fragment_in_all_six_reviewed_frames",
+    "held_pose_boundary_frames": [
+      90,
+      156
+    ],
+    "visual_scope": "Four unique transition midpoints plus two held source poses, decoded from this exact current SHA; sampled visual review, not all-frame acceptance."
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "id": "warrior",
+    "prompt": "Use case: identity-preserve animation sprite sheet. You are drawing production keyframes, not a poster.\nINPUT 1 is the APPROVED warrior DaFeiYu character and outfit, authoritative for identity, face, blue hair, white maid headband, blue whale fin ears and tail, cobalt-and-gold spiky Classic Wrath armor.\nINPUTS 2-4 are ONLY pose/expression references from the original DSH \"joyful celebration\" animation; do not copy their maid dress. Keep INPUT 1 armor on every frame.\nCreate ONE transparent PNG SPRITE SHEET, exactly FOUR columns by FOUR rows, exactly SIXTEEN equal square cells, reading left to right then top to bottom. Prefer 2048x2048 pixels or larger, square aspect ratio. The sheet fills the image edge to edge with 4x4 mathematically equal cells. No title, labels, letters, grid lines, cell borders, background, shadows, perspective camera, extra tiny characters or decorations outside each figure. True transparent alpha everywhere outside art.\nEach cell contains one complete SAME character at same size and registration: body center x=50% of cell, stationary feet baseline y=90% of cell, top of ahoge about y=16%, safe margins on all sides. Character occupies about 74% cell height, never touches or overlaps cell boundary. Head and torso size must be identical across ALL 16 frames. Identical costume details across all frames. Except deliberate hop in frame13, baseline is fixed. Do NOT create side/back views. All are front facing, still camera. She has ONE blue whale tail on screen right.\nACTION-READY EQUIPMENT: her sword is sheathed at her screen-left hip, golden hilt and sheath visible, and her small blue/gold shield is strapped to her back with its rim visible beside screen-right shoulder. BOTH HANDS ARE EMPTY, gloved. These same stowed props remain in exactly the same position on her body in every frame; nothing disappears. This preserves the approved equipment while enabling the original two-fist happy gesture. No weapon attack.\nArt style must match INPUT1: compact 2.2-head chibi, large round blue-haired head, small body, tiny short legs, crisp dark navy linework, anime cel shading. Do not simplify into pixel art or change character.\n\nCELL CONTENTS (numbered here only for your understanding; DO NOT draw numbers):\nROW1, idle blink keyframes:\n1 neutral standard front standing, blue eyes open, tiny closed mouth, hands relaxed at sides.\n2 exact same standing silhouette as 1, eyelids half closed, almost no body movement.\n3 exact same standing silhouette as 1, eyelids fully closed as a natural blink, closed mouth.\n4 exactly matching frame1, blue eyes open and neutral stance again.\nROW2, speaking keyframes:\n5 same exact standing pose as1, relaxed closed mouth.\n6 same pose and blue eyes as1, small open mouth, clearly speaking.\n7 same pose as1, medium wide open smiling speech mouth.\n8 same pose as1, small relaxed open mouth, eyes gently smiling but open.\nROW3, joyful celebration first half:\n9 exactly matching frame1 neutral front standing.\n10 blue eyes become starry excited eyes like INPUT2, mouth open happy, both forearms slightly lift toward torso.\n11 eyes closed in happy crescents, broad happy smile, both small clenched fists raised beside chest like INPUT3; small gold stars only just above head INSIDE cell.\n12 eyes happy closed, knees bend and body squats a little preparing a small hop, fists stay beside chest, hair and tail compress naturally.\nROW4, joyful celebration second half:\n13 a small actual jump: both boots visibly lift 7% of cell height above the normal foot baseline, knees bend, fists up beside chest, joyful closed eyes, hair and tail bounce with body, armor attached correctly, a couple tiny stars just above head.\n14 landing: both boots return to same y90% baseline, knees slightly bent, body squashes gently, hair and tail follow through, delighted eyes closed.\n15 body straightens, eyes gently closed like INPUT4, arms lower in front of body, mouth relaxed happy, no stars.\n16 exactly matching frame1 neutral front standing with blue eyes open, arms relaxed at sides.\nPrecision priorities: consistent identity and scale; complete16cells; correct row/column count; real eye, mouth and limb changes; all equipment stays; transparent background; pixel-registered stationary poses.",
+    "source": "warrior.png",
+    "reference": "../../static-v01/01-warrior-wrath.png",
+    "source_generation_file": "exec-63e46e93-3959-4691-bbca-4eb3678e6614.png",
+    "original_reference": "outputs/dafeiyu-classic-v01/01-warrior-wrath.png"
+  },
+  {
+    "id": "hunter",
+    "source": "hunter.png",
+    "sheet": "hunter.png",
+    "reference": "../../static-v01/02-hunter-dragonstalker.png",
+    "source_generation_file": "exec-41d8f545-ffd1-441f-b130-a4ec26292d88.png",
+    "original_reference": "../dafeiyu-classic-v01/02-hunter-dragonstalker.png"
+  },
+  {
+    "id": "mage",
+    "source": "mage.png",
+    "sheet": "mage.png",
+    "reference": "../../static-v01/03-mage-netherwind.png",
+    "source_generation_file": "exec-2b4661b5-30ae-4aef-b1d7-f4cc1f0185fc.png",
+    "original_reference": "../dafeiyu-classic-v01/03-mage-netherwind.png"
+  },
+  {
+    "id": "rogue",
+    "source": "rogue.png",
+    "sheet": "rogue.png",
+    "reference": "../../static-v01/04-rogue-bloodfang.png",
+    "source_generation_file": "exec-4dc410de-9275-4c24-ad40-017c1f69ef0a.png",
+    "original_reference": "../dafeiyu-classic-v01/04-rogue-bloodfang.png"
+  },
+  {
+    "id": "paladin",
+    "source": "paladin.png",
+    "sheet": "paladin.png",
+    "reference": "../../static-v01/05-paladin-judgement.png",
+    "source_generation_file": "exec-804739fc-8729-4b6f-b5cc-3309db29eb93.png",
+    "original_reference": "../dafeiyu-classic-v01/05-paladin-judgement.png"
+  },
+  {
+    "id": "warlock",
+    "source": "warlock.png",
+    "sheet": "warlock.png",
+    "reference": "../../static-v01/06-warlock-nemesis.png",
+    "source_generation_file": "exec-b199042d-51fe-4923-b827-e20611e19f01.png",
+    "original_reference": "../dafeiyu-classic-v01/06-warlock-nemesis.png"
+  },
+  {
+    "id": "priest",
+    "source": "priest.png",
+    "sheet": "priest.png",
+    "reference": "../../static-v01/07-priest-transcendence.png",
+    "source_generation_file": "exec-7e183836-130e-4c9d-a62c-170a67052c3f.png",
+    "original_reference": "../dafeiyu-classic-v01/07-priest-transcendence.png"
+  },
+  {
+    "id": "druid",
+    "source": "druid.png",
+    "sheet": "druid.png",
+    "reference": "../../static-v01/08-druid-stormrage.png",
+    "source_generation_file": "exec-fc61cb2c-6880-4610-969e-ff497f88b801.png",
+    "original_reference": "../dafeiyu-classic-v01/08-druid-stormrage.png"
+  }
+]

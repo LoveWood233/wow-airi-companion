@@ -1,0 +1,100 @@
+{
+  "class": "priest",
+  "sheet": "actions-11",
+  "original_sha256": "2e1a2723cc27dc83b793fe14a91af16a4c77830eea62508b9752a8a3e8b7e6a6",
+  "replacement_sha256": "815150df0bfb3d12580439df2fa33f554b60e056c527de76c3b983ca2743f608",
+  "freeze_manifest": "priest11-followup-freeze.json",
+  "source_review": {
+    "class": "priest",
+    "sheet": "actions-11",
+    "cell": 6,
+    "sha256": "815150df0bfb3d12580439df2fa33f554b60e056c527de76c3b983ca2743f608",
+    "priorSha256": "0234a2bd07589f382809ae935e761f48659c8b40d788d2e9a389ca0a4c01cde2",
+    "candidatePath": "source/sheets/priest/actions-11.png",
+    "status": "accepted_source_pose_review_after_single_cell_anatomy_fix",
+    "other15CellsPixelIdentical": true,
+    "provenance": "workspace-revision/priest11-cell6-repair/provenance.json",
+    "requiresRestageAndRerender": true,
+    "path": "source/sheets/priest/actions-11.png"
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "date": "2026-11-09",
+    "class": "priest",
+    "sheet": "actions-11",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1 is EDIT TARGET priest/actions-11; Image 2 is same character neutral EQUIPMENT REFERENCE ONLY.\nRestore the persistent gold leaf/spear-shaped staff head and short shaft behind the screen-left shoulder in all near-front poses. For the sleeping cell keep it attached in the corresponding position behind the shoulder, naturally partly occluded by head/hair, do not stick a floating staff in front. Preserve all expressions, jumps, tickling/laughing, mirror, water pistol, gaming controller, blue whale-tail motion and sleeping poses.\nLocalized correction only. Preserve every original cell's pose, expression, hand positions, action prop, visual effects, original chibi proportions, blue hair and 4x4 layout/margins. Do not replace action poses with the neutral reference. Keep exact costume patterns and colors across poses. Exactly one persistent golden staff per character; no duplicate staff heads or extra jewelry. Staff is physically attached behind shoulder, follows torso, not floating beside temple; at front the staff head is next to the lower cheek/shoulder BELOW ear fin. Existing hands or props may partially cover it. No changes to unaffected cells. Preserve transparent RGBA background, no black/white background, no checkerboard, no labels, no border or watermark.",
+    "generated_original": "image_gen-output:exec-d0ff7695-2ffe-4f31-9fe2-fc1d3a040def.png",
+    "output_file": "source/sheets/priest/actions-11.png",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "output_sha256": "0234a2bd07589f382809ae935e761f48659c8b40d788d2e9a389ca0a4c01cde2",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 644832,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/priest/actions-11-alpha-inspect.jpg",
+    "selected_generated_original": "image_gen-output:exec-8ae6da04-f084-4f98-9aa5-f2af886ec055.png",
+    "iteration_records": [
+      "source/sheets/priest/actions-11.finalfix.json"
+    ],
+    "qa_note": "Mirror cells6/7 no longer have staff on viewer right; restored left staff may be mostly hidden by mirror. All other staff attachments reviewed.",
+    "singleCellAnatomyCorrection": {
+      "tool": "image_gen__imagegen",
+      "prompt": "Use case: precise-object-edit. Image 1 is the exact edit target, one transparent chibi priest sprite looking in a mirror. Fix ONLY the anatomical third-arm mistake. Keep the correct hand holding the golden mirror on PICTURE LEFT, and the correct hand touching/combing the hair at the upper-left forehead. DELETE the WRONG extra downward arm, cream/gold cuff and tiny flesh-colored hand on PICTURE RIGHT at the hip (original cell near x=202,y=232). Restore the adjacent gold-white robe side and blue hair behind that removed arm; the forehead-touching arm can travel up behind the hair without a visible additional sleeve at the hip. Exactly TWO hands total: one at the mirror handle, one on top of the hair. Keep the full original mirror, sparkle effects, facial expression, head/crown, all gold-white robe patterns, blue hair silhouette, skirt, shoes, scale and margins. Do not add any new hand, arm, weapon, accessory or text. Do not change the pose, face, perspective or costume. Preserve the square single-sprite framing and transparent background. Output only this corrected one sprite.",
+      "referenced_image_paths": [
+        "workspace-revision/priest11-cell6-repair/cell6-before.png"
+      ],
+      "transparent_background": true,
+      "generatedOriginal": "image_gen-output:exec-6d97bdc3-fc54-4454-b980-d2b4e51bb0de.png",
+      "scope": "Single-cell precise object edit; atlas assembly only; no drawing by code",
+      "output": "source/sheets/priest/actions-11.png",
+      "sha256": "815150df0bfb3d12580439df2fa33f554b60e056c527de76c3b983ca2743f608",
+      "priorSha256": "0234a2bd07589f382809ae935e761f48659c8b40d788d2e9a389ca0a4c01cde2",
+      "reviewStatus": "accepted_source_pose_review_after_single_cell_anatomy_fix",
+      "visualQA": {
+        "reviewedCells": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "reviewedAdjacentPairs": [
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "finding": "Removed third downward picture-right arm/hand in cell6. Kept mirror-hand and forehead-touching hand. All other15 cells pixel-identical. No final-media pass implied.",
+        "pixelProof": "workspace-revision/priest11-cell6-repair/pixel-proof.json"
+      }
+    }
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

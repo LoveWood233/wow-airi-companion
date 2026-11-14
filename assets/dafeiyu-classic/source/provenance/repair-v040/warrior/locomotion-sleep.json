@@ -1,0 +1,36 @@
+{
+  "class": "warrior",
+  "sheet": "locomotion-sleep",
+  "original_sha256": "24451c6925ee031ba857b0404c21414dda8f76b5fd048ee28b5b5169f8d293e5",
+  "replacement_sha256": "ad4b5992130df14a44959841e87549bc93d01b4665c771f94de26c245671d82c",
+  "freeze_manifest": "warrior-partial-freeze.json",
+  "source_review": {
+    "class": "warrior",
+    "sheet": "locomotion-sleep",
+    "path": "source/sheets/warrior/locomotion-sleep.png",
+    "sha256": "ad4b5992130df14a44959841e87549bc93d01b4665c771f94de26c245671d82c",
+    "qa_status": "source_pose_major_equipment_repair_reviewed_pending_motion"
+  },
+  "generation": {
+    "class": "warrior",
+    "sheet": "locomotion-sleep",
+    "method": "built_in_image_gen_precise_object_edit",
+    "original_sha256": "24451c6925ee031ba857b0404c21414dda8f76b5fd048ee28b5b5169f8d293e5",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "imagegen_output": "image_gen-output:exec-88c7b558-4ae3-4e95-9395-2a806f92f433.png",
+    "sha256": "ad4b5992130df14a44959841e87549bc93d01b4665c771f94de26c245671d82c",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "review_status": "accepted_source_endpoint",
+    "review_note": "All16 poses reviewed: one sheathed sword and shield attached to hip/back, canonical frontal left/right, dark gloves restored; sleeping equipment moves with body. Intermediate motion not yet checked."
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "locomotion-sleep.txt",
+      "text": "Precise equipment continuity repair of Image1, an existing4x4 sleeping/running atlas. Image2 is canonical warrior equipment reference. Keep all16 original postures, viewpoints, hands, feet, expressions and placements. Every HUMAN pose must retain the same navy/gold sword in sheath attached to belt and same round gold-rim navy shield strapped behind shoulder. Front-facing sword on IMAGE LEFT, shield on IMAGE RIGHT; one of each only. In seated/lying poses sword follows the hip and rests alongside her body, shield stays on her back, not floating. Side-run four cells all show SAME belt sword and strapped shield, same side throughout gait. Front-run bottom4 retain canonical left sword, right shield. Restore canonical dark gloves to the bare hands in sleep and run while keeping fingers/pose unchanged. Preserve spiked golden shoulder silhouette and segmented armor skirt. Do not alter step order, sleeping pose, character proportions or faces. Real transparent alpha with empty margins within each cell; no grid, labels or new props.\n"
+    }
+  ]
+}

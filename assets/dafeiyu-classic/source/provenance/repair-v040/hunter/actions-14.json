@@ -1,0 +1,63 @@
+{
+  "class": "hunter",
+  "sheet": "actions-14",
+  "original_sha256": "e877ee392a41f17de89d69207a91c5176821f8ddcb1d209aa575a952e673e792",
+  "replacement_sha256": "1fce2641166d737554ef50357c27ae299d5d7eaa386a78daf8e22ff8f51cf887",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "actions-14",
+    "candidate": "source/sheets/hunter/actions-14.png",
+    "sha256": "1fce2641166d737554ef50357c27ae299d5d7eaa386a78daf8e22ff8f51cf887",
+    "review": "source/sheets/hunter/actions-14.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/hunter/actions-14.png",
+      "source/base-keyframes/hunter/frame-00.png",
+      "source/sheets/hunter/actions-01.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. This atlas first12 cells lack complete bow, last4 neutral cells already have correct bow. Preserve last4 cells entirely. Restore same left-hip bow to first12 human sprites. Pairs0/1 stretching arms overhead then side bending;2/3 kicking shuttlecock with one raised leg;4/5 cheerful sway dance;6/7 writing in notebook with pen;8/9 riding rocking wooden horse and gripping reins/handle;10/11 blowing bubbles. Do not alter raised arms/legs or change horse/pen/shuttlecock/bubbles. For horse sitting show visible bow portions on character picture-left, avoid putting a bow through horse head or using extra hands. Retain only the existing ONE quiver, do not add new arrow bundles near head. Exactly two hands on every human.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "actions-14",
+    "generated_file": "image_gen-output:exec-a3ac0083-7e42-43a4-9a8c-ff80f4017129.png",
+    "output": "source/sheets/hunter/actions-14.png",
+    "sha256": "1fce2641166d737554ef50357c27ae299d5d7eaa386a78daf8e22ff8f51cf887",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 743108,
+      "opaque_pixels": 688648
+    },
+    "preview": "source/sheets/hunter/actions-14.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/hunter/actions-14.png",
+        "sha256": "e877ee392a41f17de89d69207a91c5176821f8ddcb1d209aa575a952e673e792"
+      },
+      {
+        "path": "source/base-keyframes/hunter/frame-00.png",
+        "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+      },
+      {
+        "path": "source/sheets/hunter/actions-01.png",
+        "sha256": "2b5ae1218d912f078a5b020a4e3bc03964f77208e97de6c1cfea6c7e2c446c9a"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "visual_review_notes": [
+      "First12 action poses retain consistent left hip bow, right quiver; neutral last4 still same outfit.",
+      "Shuttlecock, rocking horse, notebook and bubble props remain distinct; exactly two hands observed."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

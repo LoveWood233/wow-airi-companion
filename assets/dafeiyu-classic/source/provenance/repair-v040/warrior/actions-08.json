@@ -1,0 +1,36 @@
+{
+  "class": "warrior",
+  "sheet": "actions-08",
+  "original_sha256": "4d1a8063c2d8ee06c962a95fe64528fffd0d6a8801c24584bed539fbfe183243",
+  "replacement_sha256": "ad0623f6e35a5e904ee94392075ce120c4cd2a1558ce9d133fcd19e8df9c0981",
+  "freeze_manifest": "warrior-partial-freeze.json",
+  "source_review": {
+    "class": "warrior",
+    "sheet": "actions-08",
+    "path": "source/sheets/warrior/actions-08.png",
+    "sha256": "ad0623f6e35a5e904ee94392075ce120c4cd2a1558ce9d133fcd19e8df9c0981",
+    "qa_status": "source_pose_major_equipment_repair_reviewed_pending_motion"
+  },
+  "generation": {
+    "class": "warrior",
+    "sheet": "actions-08",
+    "method": "built_in_image_gen_precise_object_edit",
+    "original_sha256": "4d1a8063c2d8ee06c962a95fe64528fffd0d6a8801c24584bed539fbfe183243",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "imagegen_output": "image_gen-output:exec-17d22945-f99c-4879-b276-a513a9cca55e.png",
+    "sha256": "ad0623f6e35a5e904ee94392075ce120c4cd2a1558ce9d133fcd19e8df9c0981",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "review_status": "accepted_source_endpoint",
+    "review_note": "All sixteen cells reviewed: single left navy/gold sword and right shield; tasks and props retained. Behind desk parts may be occluded."
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-08.txt",
+      "text": "Precise equipment repair. Image 1 is target, Image 2 is correct reference. Preserve the entire original 4x4 atlas and all sixteen unique poses, activity objects, faces, hands, armor patterns and cell positions. Add the missing navy/gold scabbarded sword to the belt on the LEFT OF THE IMAGE pointing down-left, and gold-rim navy round shield behind the shoulder on the RIGHT OF THE IMAGE, exactly as reference. Sword and shield on OPPOSITE sides; only ONE of each. Do not move existing props or hands and do not invent extra limbs. The same equipment rotates naturally with the torso when crouching, sitting or leaning. Keep all activity props: this sheet's actions must remain readable, not replaced with standing. True transparent background, clean alpha margins inside each of sixteen cells, no labels or grid.\n"
+    }
+  ]
+}

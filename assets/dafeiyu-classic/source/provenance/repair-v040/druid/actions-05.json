@@ -1,0 +1,116 @@
+{
+  "class": "druid",
+  "sheet": "actions-05",
+  "original_sha256": "17669d9ef4c797b0df812b784a883a21c66b17b4fb9f2d2ee062073b03d26344",
+  "replacement_sha256": "9da40b78d99b2ede3f99f1c47e645d622a06086858f91a4fc3bda4fcb01b7cba",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-05",
+    "path": "source/sheets/druid/actions-05.png",
+    "sha256": "9da40b78d99b2ede3f99f1c47e645d622a06086858f91a4fc3bda4fcb01b7cba",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/actions-05.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "All16 meal poses have one staff; cup/toast, steak, tangyuan, rice, zongzi, tanghulu, porridge and watermelon remain distinct.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-05",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/actions-05.png",
+    "source_sha256": "17669d9ef4c797b0df812b784a883a21c66b17b4fb9f2d2ee062073b03d26344",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-3bf1bbad-49b8-4028-8d4e-a451960141a4",
+        "path": "workspace-revision/attempts/druid/actions-05-01.png",
+        "sha256": "9da40b78d99b2ede3f99f1c47e645d622a06086858f91a4fc3bda4fcb01b7cba"
+      }
+    ],
+    "generated_output_id": "exec-3bf1bbad-49b8-4028-8d4e-a451960141a4",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-3bf1bbad-49b8-4028-8d4e-a451960141a4.png",
+    "saved_output": "source/sheets/druid/actions-05.png",
+    "final_sha256": "9da40b78d99b2ede3f99f1c47e645d622a06086858f91a4fc3bda4fcb01b7cba",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/druid/actions-05.txt",
+    "prompt_sha256": "32a017a303d31df202926c31b888767566ddc01ff44c279617974b280fcdf170",
+    "visual_review": {
+      "method": "actual generated-image output viewed all16 cells; saved file hash matches generated output",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "All16 meal poses have one staff; cup/toast, steak, tangyuan, rice, zongzi, tanghulu, porridge and watermelon remain distinct.",
+      "grid_cut_review": "Four-column/four-row layout preserved; no apparent cross-cell cut; outer edges occasionally close to alpha content and must use existing per-cell trim checks.",
+      "full_video_validation": false
+    },
+    "correction_prompts": []
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-05.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 吃早餐. Preserve source pose A and B: 左手端托小碗或小物，右手空闲；道具：breakfast_toast, milk_cup。动作语义：咬吐司再举牛奶杯喝一口，早餐组合明确 / 左手端物，右手持食物送到张开的嘴前；道具：breakfast_toast, milk_cup。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [2, 3]: 吃晚餐. Preserve source pose A and B: 左手端托小碗或小物，右手空闲；道具：dinner_plate, fork。动作语义：叉起晚餐盘中的菜肴送入口 / 左手端物，右手持食物送到张开的嘴前；道具：dinner_plate, fork。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [4, 5]: 吃汤圆. Preserve source pose A and B: 左手端托小碗或小物，右手空闲；道具：tangyuan_bowl, spoon。动作语义：勺子捞起白色圆汤圆，吹凉后吃 / 左手端物，右手持食物送到张开的嘴前；道具：tangyuan_bowl, spoon。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [6, 7]: 吃白饭. Preserve source pose A and B: 左手端碗，右手持筷抬起食物；道具：rice_bowl, chopsticks。动作语义：从白米饭碗夹饭送入口，咀嚼 / 左手端物，右手持食物送到张开的嘴前；道具：rice_bowl, chopsticks。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [8, 9]: 吃粽子. Preserve source pose A and B: 双手向两侧掰开食品，道具具有左右接触点；道具：zongzi_wrapped, zongzi_open。动作语义：剥开竹叶露出糯米粽子后咬下 / 左手端物，右手持食物送到张开的嘴前；道具：zongzi_wrapped, zongzi_open。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [10, 11]: 吃糖葫芦. Preserve source pose A and B: 拿一串完整红色糖葫芦，最上面一颗贴近张开的嘴。 / 最上面一颗已被咬出清晰缺口，角色闭嘴鼓腮嚼，竹签和其余果子保持一致。\nCells [12, 13]: 吃腊八粥. Preserve source pose A and B: 左手端托小碗或小物，右手空闲；道具：laba_porridge_bowl, spoon。动作语义：从五谷腊八粥碗舀起粥吃，显示豆谷颗粒 / 左手端物，右手持食物送到张开的嘴前；道具：laba_porridge_bowl, spoon。与A必须是不同的动作阶段，保持道具形状/位置关系。吞咽并满足微笑\nCells [14, 15]: 吃西瓜. Preserve source pose A and B: 双手托完整红瓤绿皮西瓜片到嘴前，张嘴准备咬。 / 同一西瓜片红瓤出现明显弧形咬口，角色闭嘴鼓腮咀嚼。\n"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "class": "priest",
+  "sheet": "actions-13",
+  "original_sha256": "c505c9cb6d7f924b802b1435e66b90f107dfb0eb02c622d6d9956abf6f9bf294",
+  "replacement_sha256": "2abfb97f26bb661d07a1d2e2732362355668643979ba5f349a3448e032e08f80",
+  "freeze_manifest": "casters-acceptance.json",
+  "source_review": {
+    "class": "priest",
+    "sheet": "actions-13",
+    "path": "source/sheets/priest/actions-13.png",
+    "sha256": "2abfb97f26bb661d07a1d2e2732362355668643979ba5f349a3448e032e08f80",
+    "qa_status": "accepted_source_pose_review",
+    "alpha_review_image": "source/sheets/priest/actions-13-alpha-inspect.jpg",
+    "source_defect_repaired": true
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "date": "2026-11-09",
+    "class": "priest",
+    "sheet": "actions-13",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1 is EDIT TARGET priest/actions-13; Image 2 is same character neutral EQUIPMENT REFERENCE ONLY.\nRestore the persistent gold leaf/spear-shaped staff head and short shaft behind screen-left shoulder in humanoid poses. Keep legitimate coverage by leaves/tree/held props. The whale-form cell1 is an intentional transformation; preserve its form and cream/gold costume motifs and do not turn it back into a humanoid. Preserve all blue whale magic, flowers/butterflies/bees, crab walking, surprised jumping, leaf pile hiding, cursor drag, decorating tree and Halloween candy props.\nLocalized correction only. Preserve every original cell's pose, expression, hand positions, action prop, visual effects, original chibi proportions, blue hair and 4x4 layout/margins. Do not replace action poses with the neutral reference. Keep exact costume patterns and colors across poses. Exactly one persistent golden staff per character; no duplicate staff heads or extra jewelry. Staff is physically attached behind shoulder, follows torso, not floating beside temple; at front the staff head is next to the lower cheek/shoulder BELOW ear fin. In EVERY front-facing or near-front-facing humanoid, it remains on SCREEN LEFT, never on right, even if the left side has props. Existing hands or props may partially cover it. No changes to unaffected cells. Preserve transparent RGBA background, no black/white background, no checkerboard, no labels, no border or watermark.",
+    "generated_original": "image_gen-output:exec-a3cb456b-d2de-4e61-a995-c3a259fe0385.png",
+    "output_file": "source/sheets/priest/actions-13.png",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "notes": "Intentional transformation/props preserved. Final animation frame QA pending.",
+    "output_sha256": "2abfb97f26bb661d07a1d2e2732362355668643979ba5f349a3448e032e08f80",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 630351,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/priest/actions-13-alpha-inspect.jpg",
+    "iteration_records": []
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

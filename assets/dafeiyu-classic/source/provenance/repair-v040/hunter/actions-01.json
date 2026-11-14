@@ -1,0 +1,17 @@
+{
+  "class": "hunter",
+  "sheet": "actions-01",
+  "original_sha256": "57f7708fbfffe24645b128e22f429ed432dddc1c7d03668f0858eaf712e1cb8f",
+  "replacement_sha256": "2b5ae1218d912f078a5b020a4e3bc03964f77208e97de6c1cfea6c7e2c446c9a",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "actions-01",
+    "candidate": "source/sheets/hunter/actions-01.png",
+    "sha256": "2b5ae1218d912f078a5b020a4e3bc03964f77208e97de6c1cfea6c7e2c446c9a",
+    "review": "source/sheets/hunter/actions-01.review.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": null,
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

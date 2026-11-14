@@ -1,0 +1,1334 @@
+{
+  "class": "warrior",
+  "sheet": "actions-12",
+  "original_sha256": "0e05ed6e3c218c4f5b6f7b5d07d0c998014908e17c15ef49427332316286e885",
+  "replacement_sha256": "263c84f24bcccd461964207dde69c3f0868fe324fbeaa0bef0744d0d1404544e",
+  "freeze_manifest": "warrior-six-repair-integration.json",
+  "source_review": {
+    "sheet": "actions-12",
+    "path": "source/sheets/warrior/actions-12.png",
+    "sha256": "263c84f24bcccd461964207dde69c3f0868fe324fbeaa0bef0744d0d1404544e",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/warrior/actions-12.json",
+    "review_status": "candidate_visual_reviewed_major_equipment_defects_repaired",
+    "review_note": "Full 16-cell final atlas visually reviewed. Ten replaced cells have one left scabbard and right rear shield, both arms retained; embroidery/lion/swing/magic semantics retained. Three sleep poses, two cleaning poses, intentional ghost transformation remain pixel-identical. Swing13 neighboring blue aura bleed removed through isolated regeneration. Magic14 ambient fog disk reduced to ring; motif/proportion variation persists. No visible cell crossover after alpha>8 bbox fit. This is major structural defect repair, not full texture identity acceptance.",
+    "remaining_limitations": [
+      "Independent bitmap redraws may change micro ornaments, proportions and hand contours; no pixel-locked texture guarantee.",
+      "Temporal consistency and intermediate rendered frames require separate QA."
+    ]
+  },
+  "generation": {
+    "class": "warrior",
+    "sheet": "actions-12",
+    "method": "built_in_imagegen_per_cell_edit_then_uniform_alpha_bbox_atlas_assembly",
+    "original_sha256": "0e05ed6e3c218c4f5b6f7b5d07d0c998014908e17c15ef49427332316286e885",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "imagegen_output": "image_gen-output:exec-92324193-6057-4f01-97a9-8de17370c423.png",
+    "sha256": "263c84f24bcccd461964207dde69c3f0868fe324fbeaa0bef0744d0d1404544e",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "review_status": "candidate_visual_reviewed_major_equipment_defects_repaired",
+    "review_note": "Full 16-cell final atlas visually reviewed. Ten replaced cells have one left scabbard and right rear shield, both arms retained; embroidery/lion/swing/magic semantics retained. Three sleep poses, two cleaning poses, intentional ghost transformation remain pixel-identical. Swing13 neighboring blue aura bleed removed through isolated regeneration. Magic14 ambient fog disk reduced to ring; motif/proportion variation persists. No visible cell crossover after alpha>8 bbox fit. This is major structural defect repair, not full texture identity acceptance.",
+    "rejected_correction_outputs": [
+      {
+        "path": "image_gen-output:exec-356e1cde-3e47-4446-acb0-160ee63ebb81.png",
+        "reason": "Front weapons remain right; removed left duplicate instead. Not copied into repaired-sheets."
+      }
+    ],
+    "history": [
+      {
+        "before_cell_assembly": {
+          "class": "warrior",
+          "sheet": "actions-12",
+          "method": "built_in_image_gen_precise_object_edit",
+          "original_sha256": "0e05ed6e3c218c4f5b6f7b5d07d0c998014908e17c15ef49427332316286e885",
+          "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+          "imagegen_output": "image_gen-output:exec-92324193-6057-4f01-97a9-8de17370c423.png",
+          "sha256": "8feffa0c7b6ebaf65a1576e6a5d1798ba644acee1b67841d679b10629d8c4ebe",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "review_status": "needs_local_correction",
+          "review_note": "Several frontal cells have sword on right or two swords; must only have one left, shield right.",
+          "rejected_correction_outputs": [
+            {
+              "path": "image_gen-output:exec-356e1cde-3e47-4446-acb0-160ee63ebb81.png",
+              "reason": "Front weapons remain right; removed left duplicate instead. Not copied into repaired-sheets."
+            }
+          ]
+        }
+      },
+      {
+        "before_cell_assembly": {
+          "class": "warrior",
+          "sheet": "actions-12",
+          "method": "built_in_imagegen_per_cell_edit_then_uniform_alpha_bbox_atlas_assembly",
+          "original_sha256": "0e05ed6e3c218c4f5b6f7b5d07d0c998014908e17c15ef49427332316286e885",
+          "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+          "imagegen_output": "image_gen-output:exec-92324193-6057-4f01-97a9-8de17370c423.png",
+          "sha256": "35a9575d6a3dd6e22f332dd6ec291e0ba4c3f6b7c797107bed66887a3d0af33e",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "review_status": "assembled_pending_visual_review",
+          "review_note": "Several frontal cells have sword on right or two swords; must only have one left, shield right.",
+          "rejected_correction_outputs": [
+            {
+              "path": "image_gen-output:exec-356e1cde-3e47-4446-acb0-160ee63ebb81.png",
+              "reason": "Front weapons remain right; removed left duplicate instead. Not copied into repaired-sheets."
+            }
+          ],
+          "assembly_source": "workspace-revision/attempts/warrior/actions-12-before-cell-repair.png",
+          "assembly_source_sha256": "8feffa0c7b6ebaf65a1576e6a5d1798ba644acee1b67841d679b10629d8c4ebe",
+          "cell_repairs": [
+            {
+              "cell": 3,
+              "source_tile_sha256": "0549bcd2d57c8640eb1b9ac102294f600886a2cd0f38aa2795e69393165e3a3a",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-03.png",
+                "generated_output": "image_gen-output:exec-e3991195-e1c0-469a-ada9-4b1aaa8fea64.png",
+                "output_id": "exec-e3991195-e1c0-469a-ada9-4b1aaa8fea64",
+                "sha256": "119dc35517abc26afb582d2fb7e118ec361ed21d3173892b940e7344d65544ca",
+                "source_sha256": "0549bcd2d57c8640eb1b9ac102294f600886a2cd0f38aa2795e69393165e3a3a",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-03.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                0,
+                0,
+                278,
+                313
+              ],
+              "generated_alpha_bbox": [
+                0,
+                15,
+                1234,
+                1254
+              ],
+              "uniform_scale": 0.2252836304700162,
+              "packed_dimensions": [
+                278,
+                279
+              ],
+              "packed_top_left": [
+                0,
+                34
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 4,
+              "source_tile_sha256": "c7a7e8e768f334ad8b8a00dd3ff697253508d1438bfe394cc94fe0aeb917b9a7",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-04.png",
+                "generated_output": "image_gen-output:exec-f49e57ae-2525-42d4-8969-029b323c461d.png",
+                "output_id": "exec-f49e57ae-2525-42d4-8969-029b323c461d",
+                "sha256": "1f0de6e4e1cb9e1b804788016049be63f1d32ed0b94143e3fd214160eb856f41",
+                "source_sha256": "c7a7e8e768f334ad8b8a00dd3ff697253508d1438bfe394cc94fe0aeb917b9a7",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-04.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                0,
+                0,
+                277,
+                314
+              ],
+              "generated_alpha_bbox": [
+                0,
+                11,
+                1226,
+                1254
+              ],
+              "uniform_scale": 0.22593800978792822,
+              "packed_dimensions": [
+                277,
+                281
+              ],
+              "packed_top_left": [
+                0,
+                33
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 5,
+              "source_tile_sha256": "f36fb9ee1eee9edbde6d295dd9d998347aff89c2007d2721285420aed90744af",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-05.png",
+                "generated_output": "image_gen-output:exec-2bb6815e-fcc1-4bd7-a52e-69bb1601a740.png",
+                "output_id": "exec-2bb6815e-fcc1-4bd7-a52e-69bb1601a740",
+                "sha256": "a930d4598a62d14324ad796e1456a8a34eea88e87b7456ade196143414bcaea3",
+                "source_sha256": "f36fb9ee1eee9edbde6d295dd9d998347aff89c2007d2721285420aed90744af",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-05.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                36,
+                5,
+                304,
+                314
+              ],
+              "generated_alpha_bbox": [
+                0,
+                22,
+                1248,
+                1214
+              ],
+              "uniform_scale": 0.21474358974358973,
+              "packed_dimensions": [
+                268,
+                256
+              ],
+              "packed_top_left": [
+                36,
+                58
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 8,
+              "source_tile_sha256": "20857ff8ef78ac92aa9b1b748547b8fe8e3f9921e5cb1d43517274d1f9f99106",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-08.png",
+                "generated_output": "image_gen-output:exec-3a991ec6-efea-4c48-b1d0-f49936d6d37b.png",
+                "output_id": "exec-3a991ec6-efea-4c48-b1d0-f49936d6d37b",
+                "sha256": "cca4e737383f4850e9fe2a2e85e1963f0d2819d2547d06c23a2ef68106de1800",
+                "source_sha256": "20857ff8ef78ac92aa9b1b748547b8fe8e3f9921e5cb1d43517274d1f9f99106",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-08.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                35,
+                0,
+                312,
+                313
+              ],
+              "generated_alpha_bbox": [
+                0,
+                15,
+                1168,
+                1254
+              ],
+              "uniform_scale": 0.23715753424657535,
+              "packed_dimensions": [
+                277,
+                294
+              ],
+              "packed_top_left": [
+                35,
+                19
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 9,
+              "source_tile_sha256": "8462a39386c026637c027b35d765fa5e9fdf020129b01cfd6a1e62f86a6270b7",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-09.png",
+                "generated_output": "image_gen-output:exec-31cc1910-377f-4853-bd59-239033cc45b4.png",
+                "output_id": "exec-31cc1910-377f-4853-bd59-239033cc45b4",
+                "sha256": "8ee93c1a9ded466440521aae1c5f3e5bbd9dbaac4a1534a80ff87345d819365c",
+                "source_sha256": "8462a39386c026637c027b35d765fa5e9fdf020129b01cfd6a1e62f86a6270b7",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-09.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                13,
+                0,
+                306,
+                313
+              ],
+              "generated_alpha_bbox": [
+                0,
+                16,
+                1238,
+                1254
+              ],
+              "uniform_scale": 0.23667205169628433,
+              "packed_dimensions": [
+                293,
+                293
+              ],
+              "packed_top_left": [
+                13,
+                20
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 10,
+              "source_tile_sha256": "f3408631f92235af4410a523324d83ac6eb68285b7e6a5d77c2bc17cdab6bb5e",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-10.png",
+                "generated_output": "image_gen-output:exec-9a460b29-a028-4e7a-8709-b5ffb1314ff3.png",
+                "output_id": "exec-9a460b29-a028-4e7a-8709-b5ffb1314ff3",
+                "sha256": "5f6ba2c62ecf2b83e60daa71f7334f0ce8b1257e0fbe955ef2bb998a74c2587e",
+                "source_sha256": "f3408631f92235af4410a523324d83ac6eb68285b7e6a5d77c2bc17cdab6bb5e",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-10.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                17,
+                7,
+                313,
+                313
+              ],
+              "generated_alpha_bbox": [
+                0,
+                17,
+                1234,
+                1254
+              ],
+              "uniform_scale": 0.23987034035656402,
+              "packed_dimensions": [
+                296,
+                297
+              ],
+              "packed_top_left": [
+                17,
+                16
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 11,
+              "source_tile_sha256": "fbd4903d82fce5b37d425dc72bdc62a56efbff4f46064937c3f40326a38cd68a",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-11.png",
+                "generated_output": "image_gen-output:exec-3ae495ed-96e9-458e-afb7-8e8f6ffb77da.png",
+                "output_id": "exec-3ae495ed-96e9-458e-afb7-8e8f6ffb77da",
+                "sha256": "749960667c1efc05919e2da7b5c842fdd5ff23f82e1f74d961d2ddafaee6d131",
+                "source_sha256": "fbd4903d82fce5b37d425dc72bdc62a56efbff4f46064937c3f40326a38cd68a",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-11.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                0,
+                0,
+                295,
+                313
+              ],
+              "generated_alpha_bbox": [
+                0,
+                14,
+                1236,
+                1254
+              ],
+              "uniform_scale": 0.23867313915857605,
+              "packed_dimensions": [
+                295,
+                296
+              ],
+              "packed_top_left": [
+                0,
+                17
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 14,
+              "source_tile_sha256": "2f78de149cb86619bb01528c8da0e6b144f781c8795eb768b16aafe1020a23a5",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-14.png",
+                "generated_output": "image_gen-output:exec-93d96d03-ee30-4671-8251-46895aaf7fc7.png",
+                "output_id": "exec-93d96d03-ee30-4671-8251-46895aaf7fc7",
+                "sha256": "2ddd13dff79201498822466b9c1d267d766a15a20f766aa9dd7634350f4e6a51",
+                "source_sha256": "2f78de149cb86619bb01528c8da0e6b144f781c8795eb768b16aafe1020a23a5",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-14.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                0,
+                0,
+                313,
+                314
+              ],
+              "generated_alpha_bbox": [
+                0,
+                13,
+                1236,
+                1254
+              ],
+              "uniform_scale": 0.25302175664786464,
+              "packed_dimensions": [
+                313,
+                314
+              ],
+              "packed_top_left": [
+                0,
+                0
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            }
+          ],
+          "unchanged_cells_pixel_verified": [
+            0,
+            1,
+            2,
+            6,
+            7,
+            12,
+            13,
+            15
+          ],
+          "final_sha256": "35a9575d6a3dd6e22f332dd6ec291e0ba4c3f6b7c797107bed66887a3d0af33e",
+          "remaining_limitations": [
+            "Independent bitmap redraws may change micro ornaments, proportions and hand contours; no pixel-locked texture guarantee.",
+            "Temporal consistency and intermediate rendered frames require separate QA."
+          ]
+        }
+      },
+      {
+        "before_cell_assembly": {
+          "class": "warrior",
+          "sheet": "actions-12",
+          "method": "built_in_imagegen_per_cell_edit_then_uniform_alpha_bbox_atlas_assembly",
+          "original_sha256": "0e05ed6e3c218c4f5b6f7b5d07d0c998014908e17c15ef49427332316286e885",
+          "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+          "imagegen_output": "image_gen-output:exec-92324193-6057-4f01-97a9-8de17370c423.png",
+          "sha256": "e20d48f5949ea92fb4e79446fbc7df101b29e039c0fed6090ab416337ac8a007",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "review_status": "assembled_pending_visual_review",
+          "review_note": "Several frontal cells have sword on right or two swords; must only have one left, shield right.",
+          "rejected_correction_outputs": [
+            {
+              "path": "image_gen-output:exec-356e1cde-3e47-4446-acb0-160ee63ebb81.png",
+              "reason": "Front weapons remain right; removed left duplicate instead. Not copied into repaired-sheets."
+            }
+          ],
+          "assembly_source": "workspace-revision/attempts/warrior/actions-12-before-cell-repair.png",
+          "assembly_source_sha256": "8feffa0c7b6ebaf65a1576e6a5d1798ba644acee1b67841d679b10629d8c4ebe",
+          "cell_repairs": [
+            {
+              "cell": 3,
+              "source_tile_sha256": "0549bcd2d57c8640eb1b9ac102294f600886a2cd0f38aa2795e69393165e3a3a",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-03.png",
+                "generated_output": "image_gen-output:exec-e3991195-e1c0-469a-ada9-4b1aaa8fea64.png",
+                "output_id": "exec-e3991195-e1c0-469a-ada9-4b1aaa8fea64",
+                "sha256": "119dc35517abc26afb582d2fb7e118ec361ed21d3173892b940e7344d65544ca",
+                "source_sha256": "0549bcd2d57c8640eb1b9ac102294f600886a2cd0f38aa2795e69393165e3a3a",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-03.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                0,
+                0,
+                278,
+                313
+              ],
+              "generated_alpha_bbox": [
+                0,
+                15,
+                1234,
+                1254
+              ],
+              "uniform_scale": 0.2252836304700162,
+              "packed_dimensions": [
+                278,
+                279
+              ],
+              "packed_top_left": [
+                0,
+                34
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 4,
+              "source_tile_sha256": "c7a7e8e768f334ad8b8a00dd3ff697253508d1438bfe394cc94fe0aeb917b9a7",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-04.png",
+                "generated_output": "image_gen-output:exec-f49e57ae-2525-42d4-8969-029b323c461d.png",
+                "output_id": "exec-f49e57ae-2525-42d4-8969-029b323c461d",
+                "sha256": "1f0de6e4e1cb9e1b804788016049be63f1d32ed0b94143e3fd214160eb856f41",
+                "source_sha256": "c7a7e8e768f334ad8b8a00dd3ff697253508d1438bfe394cc94fe0aeb917b9a7",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-04.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                0,
+                0,
+                277,
+                314
+              ],
+              "generated_alpha_bbox": [
+                0,
+                11,
+                1226,
+                1254
+              ],
+              "uniform_scale": 0.22593800978792822,
+              "packed_dimensions": [
+                277,
+                281
+              ],
+              "packed_top_left": [
+                0,
+                33
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 5,
+              "source_tile_sha256": "f36fb9ee1eee9edbde6d295dd9d998347aff89c2007d2721285420aed90744af",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-05.png",
+                "generated_output": "image_gen-output:exec-2bb6815e-fcc1-4bd7-a52e-69bb1601a740.png",
+                "output_id": "exec-2bb6815e-fcc1-4bd7-a52e-69bb1601a740",
+                "sha256": "a930d4598a62d14324ad796e1456a8a34eea88e87b7456ade196143414bcaea3",
+                "source_sha256": "f36fb9ee1eee9edbde6d295dd9d998347aff89c2007d2721285420aed90744af",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-05.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                36,
+                5,
+                304,
+                314
+              ],
+              "generated_alpha_bbox": [
+                0,
+                22,
+                1248,
+                1214
+              ],
+              "uniform_scale": 0.21474358974358973,
+              "packed_dimensions": [
+                268,
+                256
+              ],
+              "packed_top_left": [
+                36,
+                58
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 8,
+              "source_tile_sha256": "20857ff8ef78ac92aa9b1b748547b8fe8e3f9921e5cb1d43517274d1f9f99106",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-08.png",
+                "generated_output": "image_gen-output:exec-3a991ec6-efea-4c48-b1d0-f49936d6d37b.png",
+                "output_id": "exec-3a991ec6-efea-4c48-b1d0-f49936d6d37b",
+                "sha256": "cca4e737383f4850e9fe2a2e85e1963f0d2819d2547d06c23a2ef68106de1800",
+                "source_sha256": "20857ff8ef78ac92aa9b1b748547b8fe8e3f9921e5cb1d43517274d1f9f99106",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-08.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                35,
+                0,
+                312,
+                313
+              ],
+              "generated_alpha_bbox": [
+                0,
+                15,
+                1168,
+                1254
+              ],
+              "uniform_scale": 0.23715753424657535,
+              "packed_dimensions": [
+                277,
+                294
+              ],
+              "packed_top_left": [
+                35,
+                19
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 9,
+              "source_tile_sha256": "8462a39386c026637c027b35d765fa5e9fdf020129b01cfd6a1e62f86a6270b7",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-09.png",
+                "generated_output": "image_gen-output:exec-31cc1910-377f-4853-bd59-239033cc45b4.png",
+                "output_id": "exec-31cc1910-377f-4853-bd59-239033cc45b4",
+                "sha256": "8ee93c1a9ded466440521aae1c5f3e5bbd9dbaac4a1534a80ff87345d819365c",
+                "source_sha256": "8462a39386c026637c027b35d765fa5e9fdf020129b01cfd6a1e62f86a6270b7",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-09.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                13,
+                0,
+                306,
+                313
+              ],
+              "generated_alpha_bbox": [
+                0,
+                16,
+                1238,
+                1254
+              ],
+              "uniform_scale": 0.23667205169628433,
+              "packed_dimensions": [
+                293,
+                293
+              ],
+              "packed_top_left": [
+                13,
+                20
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 10,
+              "source_tile_sha256": "f3408631f92235af4410a523324d83ac6eb68285b7e6a5d77c2bc17cdab6bb5e",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-10.png",
+                "generated_output": "image_gen-output:exec-9a460b29-a028-4e7a-8709-b5ffb1314ff3.png",
+                "output_id": "exec-9a460b29-a028-4e7a-8709-b5ffb1314ff3",
+                "sha256": "5f6ba2c62ecf2b83e60daa71f7334f0ce8b1257e0fbe955ef2bb998a74c2587e",
+                "source_sha256": "f3408631f92235af4410a523324d83ac6eb68285b7e6a5d77c2bc17cdab6bb5e",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-10.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                17,
+                7,
+                313,
+                313
+              ],
+              "generated_alpha_bbox": [
+                0,
+                17,
+                1234,
+                1254
+              ],
+              "uniform_scale": 0.23987034035656402,
+              "packed_dimensions": [
+                296,
+                297
+              ],
+              "packed_top_left": [
+                17,
+                16
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 11,
+              "source_tile_sha256": "fbd4903d82fce5b37d425dc72bdc62a56efbff4f46064937c3f40326a38cd68a",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-11.png",
+                "generated_output": "image_gen-output:exec-3ae495ed-96e9-458e-afb7-8e8f6ffb77da.png",
+                "output_id": "exec-3ae495ed-96e9-458e-afb7-8e8f6ffb77da",
+                "sha256": "749960667c1efc05919e2da7b5c842fdd5ff23f82e1f74d961d2ddafaee6d131",
+                "source_sha256": "fbd4903d82fce5b37d425dc72bdc62a56efbff4f46064937c3f40326a38cd68a",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-11.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                0,
+                0,
+                295,
+                313
+              ],
+              "generated_alpha_bbox": [
+                0,
+                14,
+                1236,
+                1254
+              ],
+              "uniform_scale": 0.23867313915857605,
+              "packed_dimensions": [
+                295,
+                296
+              ],
+              "packed_top_left": [
+                0,
+                17
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 12,
+              "source_tile_sha256": "51d986682c04c9e03e8d60f5649de790f366fdc523e58e72b5c4da74a9d8557a",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-12.png",
+                "generated_output": "image_gen-output:exec-89a1e5af-a61b-4d5c-a945-39834ac9bb1f.png",
+                "output_id": "exec-89a1e5af-a61b-4d5c-a945-39834ac9bb1f",
+                "sha256": "5f281492bf13b86d564a54280702d356e0cef05ec0dcc155384496b908063520",
+                "source_sha256": "51d986682c04c9e03e8d60f5649de790f366fdc523e58e72b5c4da74a9d8557a",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-12.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                26,
+                0,
+                302,
+                286
+              ],
+              "generated_alpha_bbox": [
+                87,
+                12,
+                1170,
+                1254
+              ],
+              "uniform_scale": 0.23027375201288244,
+              "packed_dimensions": [
+                249,
+                286
+              ],
+              "packed_top_left": [
+                40,
+                0
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 13,
+              "source_tile_sha256": "4f08a952ee5609c580fca81f19ce35089521d702af146eb33a66747bd8849d24",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-13.png",
+                "generated_output": "image_gen-output:exec-79d035b3-50d9-4eb8-a430-61865889647a.png",
+                "output_id": "exec-79d035b3-50d9-4eb8-a430-61865889647a",
+                "sha256": "724d58754d0ef3b6894fc0b036fd722d5c0f23794d75a1260cc0ca5924f53144",
+                "source_sha256": "4f08a952ee5609c580fca81f19ce35089521d702af146eb33a66747bd8849d24",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-13.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                40,
+                0,
+                314,
+                314
+              ],
+              "generated_alpha_bbox": [
+                0,
+                11,
+                1240,
+                1254
+              ],
+              "uniform_scale": 0.22096774193548388,
+              "packed_dimensions": [
+                274,
+                275
+              ],
+              "packed_top_left": [
+                40,
+                39
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            },
+            {
+              "cell": 14,
+              "source_tile_sha256": "2f78de149cb86619bb01528c8da0e6b144f781c8795eb768b16aafe1020a23a5",
+              "generated": {
+                "file": "workspace-revision/pose-repaired/warrior/actions-12-14.png",
+                "generated_output": "image_gen-output:exec-93d96d03-ee30-4671-8251-46895aaf7fc7.png",
+                "output_id": "exec-93d96d03-ee30-4671-8251-46895aaf7fc7",
+                "sha256": "2ddd13dff79201498822466b9c1d267d766a15a20f766aa9dd7634350f4e6a51",
+                "source_sha256": "2f78de149cb86619bb01528c8da0e6b144f781c8795eb768b16aafe1020a23a5",
+                "source": "workspace-revision/pose-targets/warrior/actions-12-14.png",
+                "size": [
+                  1254,
+                  1254
+                ],
+                "visual_status": "pending"
+              },
+              "old_alpha_bbox": [
+                0,
+                0,
+                313,
+                314
+              ],
+              "generated_alpha_bbox": [
+                0,
+                13,
+                1236,
+                1254
+              ],
+              "uniform_scale": 0.25302175664786464,
+              "packed_dimensions": [
+                313,
+                314
+              ],
+              "packed_top_left": [
+                0,
+                0
+              ],
+              "placement": "uniform contain in original alpha bbox, bottom aligned"
+            }
+          ],
+          "unchanged_cells_pixel_verified": [
+            0,
+            1,
+            2,
+            6,
+            7,
+            15
+          ],
+          "final_sha256": "e20d48f5949ea92fb4e79446fbc7df101b29e039c0fed6090ab416337ac8a007",
+          "remaining_limitations": [
+            "Independent bitmap redraws may change micro ornaments, proportions and hand contours; no pixel-locked texture guarantee.",
+            "Temporal consistency and intermediate rendered frames require separate QA."
+          ]
+        }
+      }
+    ],
+    "assembly_source": "workspace-revision/attempts/warrior/actions-12-before-cell-repair.png",
+    "assembly_source_sha256": "8feffa0c7b6ebaf65a1576e6a5d1798ba644acee1b67841d679b10629d8c4ebe",
+    "cell_repairs": [
+      {
+        "cell": 3,
+        "source_tile_sha256": "0549bcd2d57c8640eb1b9ac102294f600886a2cd0f38aa2795e69393165e3a3a",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/actions-12-03.png",
+          "generated_output": "image_gen-output:exec-e3991195-e1c0-469a-ada9-4b1aaa8fea64.png",
+          "output_id": "exec-e3991195-e1c0-469a-ada9-4b1aaa8fea64",
+          "sha256": "119dc35517abc26afb582d2fb7e118ec361ed21d3173892b940e7344d65544ca",
+          "source_sha256": "0549bcd2d57c8640eb1b9ac102294f600886a2cd0f38aa2795e69393165e3a3a",
+          "source": "workspace-revision/pose-targets/warrior/actions-12-03.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          0,
+          0,
+          278,
+          313
+        ],
+        "generated_alpha_bbox": [
+          132,
+          15,
+          1094,
+          1136
+        ],
+        "alpha_support_threshold": 8,
+        "uniform_scale": 0.2792149866190901,
+        "packed_dimensions": [
+          269,
+          313
+        ],
+        "packed_top_left": [
+          4,
+          0
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      },
+      {
+        "cell": 4,
+        "source_tile_sha256": "c7a7e8e768f334ad8b8a00dd3ff697253508d1438bfe394cc94fe0aeb917b9a7",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/actions-12-04.png",
+          "generated_output": "image_gen-output:exec-f49e57ae-2525-42d4-8969-029b323c461d.png",
+          "output_id": "exec-f49e57ae-2525-42d4-8969-029b323c461d",
+          "sha256": "1f0de6e4e1cb9e1b804788016049be63f1d32ed0b94143e3fd214160eb856f41",
+          "source_sha256": "c7a7e8e768f334ad8b8a00dd3ff697253508d1438bfe394cc94fe0aeb917b9a7",
+          "source": "workspace-revision/pose-targets/warrior/actions-12-04.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          0,
+          0,
+          277,
+          314
+        ],
+        "generated_alpha_bbox": [
+          178,
+          11,
+          1074,
+          1138
+        ],
+        "alpha_support_threshold": 8,
+        "uniform_scale": 0.27861579414374443,
+        "packed_dimensions": [
+          250,
+          314
+        ],
+        "packed_top_left": [
+          14,
+          0
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      },
+      {
+        "cell": 5,
+        "source_tile_sha256": "f36fb9ee1eee9edbde6d295dd9d998347aff89c2007d2721285420aed90744af",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/actions-12-05.png",
+          "generated_output": "image_gen-output:exec-2bb6815e-fcc1-4bd7-a52e-69bb1601a740.png",
+          "output_id": "exec-2bb6815e-fcc1-4bd7-a52e-69bb1601a740",
+          "sha256": "a930d4598a62d14324ad796e1456a8a34eea88e87b7456ade196143414bcaea3",
+          "source_sha256": "f36fb9ee1eee9edbde6d295dd9d998347aff89c2007d2721285420aed90744af",
+          "source": "workspace-revision/pose-targets/warrior/actions-12-05.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          36,
+          5,
+          304,
+          314
+        ],
+        "generated_alpha_bbox": [
+          169,
+          23,
+          1075,
+          1160
+        ],
+        "alpha_support_threshold": 8,
+        "uniform_scale": 0.2717678100263852,
+        "packed_dimensions": [
+          246,
+          309
+        ],
+        "packed_top_left": [
+          47,
+          5
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      },
+      {
+        "cell": 8,
+        "source_tile_sha256": "20857ff8ef78ac92aa9b1b748547b8fe8e3f9921e5cb1d43517274d1f9f99106",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/actions-12-08.png",
+          "generated_output": "image_gen-output:exec-3a991ec6-efea-4c48-b1d0-f49936d6d37b.png",
+          "output_id": "exec-3a991ec6-efea-4c48-b1d0-f49936d6d37b",
+          "sha256": "cca4e737383f4850e9fe2a2e85e1963f0d2819d2547d06c23a2ef68106de1800",
+          "source_sha256": "20857ff8ef78ac92aa9b1b748547b8fe8e3f9921e5cb1d43517274d1f9f99106",
+          "source": "workspace-revision/pose-targets/warrior/actions-12-08.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          35,
+          0,
+          312,
+          313
+        ],
+        "generated_alpha_bbox": [
+          159,
+          15,
+          1116,
+          1165
+        ],
+        "alpha_support_threshold": 8,
+        "uniform_scale": 0.27217391304347827,
+        "packed_dimensions": [
+          260,
+          313
+        ],
+        "packed_top_left": [
+          44,
+          0
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      },
+      {
+        "cell": 9,
+        "source_tile_sha256": "8462a39386c026637c027b35d765fa5e9fdf020129b01cfd6a1e62f86a6270b7",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/actions-12-09.png",
+          "generated_output": "image_gen-output:exec-31cc1910-377f-4853-bd59-239033cc45b4.png",
+          "output_id": "exec-31cc1910-377f-4853-bd59-239033cc45b4",
+          "sha256": "8ee93c1a9ded466440521aae1c5f3e5bbd9dbaac4a1534a80ff87345d819365c",
+          "source_sha256": "8462a39386c026637c027b35d765fa5e9fdf020129b01cfd6a1e62f86a6270b7",
+          "source": "workspace-revision/pose-targets/warrior/actions-12-09.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          13,
+          0,
+          306,
+          313
+        ],
+        "generated_alpha_bbox": [
+          142,
+          17,
+          1109,
+          1161
+        ],
+        "alpha_support_threshold": 8,
+        "uniform_scale": 0.2736013986013986,
+        "packed_dimensions": [
+          265,
+          313
+        ],
+        "packed_top_left": [
+          27,
+          0
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      },
+      {
+        "cell": 10,
+        "source_tile_sha256": "f3408631f92235af4410a523324d83ac6eb68285b7e6a5d77c2bc17cdab6bb5e",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/actions-12-10.png",
+          "generated_output": "image_gen-output:exec-9a460b29-a028-4e7a-8709-b5ffb1314ff3.png",
+          "output_id": "exec-9a460b29-a028-4e7a-8709-b5ffb1314ff3",
+          "sha256": "5f6ba2c62ecf2b83e60daa71f7334f0ce8b1257e0fbe955ef2bb998a74c2587e",
+          "source_sha256": "f3408631f92235af4410a523324d83ac6eb68285b7e6a5d77c2bc17cdab6bb5e",
+          "source": "workspace-revision/pose-targets/warrior/actions-12-10.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          17,
+          7,
+          313,
+          313
+        ],
+        "generated_alpha_bbox": [
+          125,
+          47,
+          1114,
+          1149
+        ],
+        "alpha_support_threshold": 8,
+        "uniform_scale": 0.2776769509981851,
+        "packed_dimensions": [
+          275,
+          306
+        ],
+        "packed_top_left": [
+          28,
+          7
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      },
+      {
+        "cell": 11,
+        "source_tile_sha256": "fbd4903d82fce5b37d425dc72bdc62a56efbff4f46064937c3f40326a38cd68a",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/actions-12-11.png",
+          "generated_output": "image_gen-output:exec-3ae495ed-96e9-458e-afb7-8e8f6ffb77da.png",
+          "output_id": "exec-3ae495ed-96e9-458e-afb7-8e8f6ffb77da",
+          "sha256": "749960667c1efc05919e2da7b5c842fdd5ff23f82e1f74d961d2ddafaee6d131",
+          "source_sha256": "fbd4903d82fce5b37d425dc72bdc62a56efbff4f46064937c3f40326a38cd68a",
+          "source": "workspace-revision/pose-targets/warrior/actions-12-11.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          0,
+          0,
+          295,
+          313
+        ],
+        "generated_alpha_bbox": [
+          125,
+          15,
+          1113,
+          1141
+        ],
+        "alpha_support_threshold": 8,
+        "uniform_scale": 0.27797513321492007,
+        "packed_dimensions": [
+          275,
+          313
+        ],
+        "packed_top_left": [
+          10,
+          0
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      },
+      {
+        "cell": 12,
+        "source_tile_sha256": "51d986682c04c9e03e8d60f5649de790f366fdc523e58e72b5c4da74a9d8557a",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/actions-12-12.png",
+          "generated_output": "image_gen-output:exec-89a1e5af-a61b-4d5c-a945-39834ac9bb1f.png",
+          "output_id": "exec-89a1e5af-a61b-4d5c-a945-39834ac9bb1f",
+          "sha256": "5f281492bf13b86d564a54280702d356e0cef05ec0dcc155384496b908063520",
+          "source_sha256": "51d986682c04c9e03e8d60f5649de790f366fdc523e58e72b5c4da74a9d8557a",
+          "source": "workspace-revision/pose-targets/warrior/actions-12-12.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          26,
+          0,
+          302,
+          286
+        ],
+        "generated_alpha_bbox": [
+          101,
+          12,
+          1139,
+          1137
+        ],
+        "alpha_support_threshold": 8,
+        "uniform_scale": 0.25422222222222224,
+        "packed_dimensions": [
+          264,
+          286
+        ],
+        "packed_top_left": [
+          32,
+          0
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      },
+      {
+        "cell": 13,
+        "source_tile_sha256": "4f08a952ee5609c580fca81f19ce35089521d702af146eb33a66747bd8849d24",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/actions-12-13.png",
+          "generated_output": "image_gen-output:exec-79d035b3-50d9-4eb8-a430-61865889647a.png",
+          "output_id": "exec-79d035b3-50d9-4eb8-a430-61865889647a",
+          "sha256": "724d58754d0ef3b6894fc0b036fd722d5c0f23794d75a1260cc0ca5924f53144",
+          "source_sha256": "4f08a952ee5609c580fca81f19ce35089521d702af146eb33a66747bd8849d24",
+          "source": "workspace-revision/pose-targets/warrior/actions-12-13.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          40,
+          0,
+          314,
+          314
+        ],
+        "generated_alpha_bbox": [
+          157,
+          11,
+          1098,
+          1156
+        ],
+        "alpha_support_threshold": 8,
+        "uniform_scale": 0.274235807860262,
+        "packed_dimensions": [
+          258,
+          314
+        ],
+        "packed_top_left": [
+          48,
+          0
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      },
+      {
+        "cell": 14,
+        "source_tile_sha256": "2f78de149cb86619bb01528c8da0e6b144f781c8795eb768b16aafe1020a23a5",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/actions-12-14.png",
+          "generated_output": "image_gen-output:exec-93d96d03-ee30-4671-8251-46895aaf7fc7.png",
+          "output_id": "exec-93d96d03-ee30-4671-8251-46895aaf7fc7",
+          "sha256": "2ddd13dff79201498822466b9c1d267d766a15a20f766aa9dd7634350f4e6a51",
+          "source_sha256": "2f78de149cb86619bb01528c8da0e6b144f781c8795eb768b16aafe1020a23a5",
+          "source": "workspace-revision/pose-targets/warrior/actions-12-14.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          0,
+          0,
+          313,
+          314
+        ],
+        "generated_alpha_bbox": [
+          87,
+          13,
+          1129,
+          1149
+        ],
+        "alpha_support_threshold": 8,
+        "uniform_scale": 0.2764084507042254,
+        "packed_dimensions": [
+          288,
+          314
+        ],
+        "packed_top_left": [
+          12,
+          0
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      }
+    ],
+    "unchanged_cells_pixel_verified": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      15
+    ],
+    "final_sha256": "263c84f24bcccd461964207dde69c3f0868fe324fbeaa0bef0744d0d1404544e",
+    "remaining_limitations": [
+      "Independent bitmap redraws may change micro ornaments, proportions and hand contours; no pixel-locked texture guarantee.",
+      "Temporal consistency and intermediate rendered frames require separate QA."
+    ],
+    "endpoint_notes": {
+      "3": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "4": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "5": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "8": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "9": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "10": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "11": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "12": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "13": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "14": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked. Large ambient aura disk became a thinner ring."
+    }
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-12-03-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-12-04-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-12-05-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-12-08-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-12-09-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-12-10-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-12-11-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-12-14-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-12-agent-correction-02.txt",
+      "text": "编辑图1这张4×4透明精灵图集。图2是母版；图3是已经正确的装备摆放示范，所有正面姿态都是【观众看到的画面左侧腰间挂一把深蓝金边剑鞘，画面右侧背后是一面圆盾】。只搬移武器，不镜像人物。剑必须有深蓝剑鞘、金色边和金色尖端，不能是银色裸刃。保持每格动作、四肢、表情、头发、盔甲和所有道具原样，透明底。只改第3、4、5、8、9、10、11、14格。右腰的剑要完整移到左腰，只留一把。第10、14格两边都有剑，直接删掉右剑保留左剑。第3/4/5/8/9/11格右边一把剑，先删除右边再把同一把剑镜像放左边。前三格横卧睡觉与起身、6/7擦桌、12/13秋千和15幽灵不动。不能删任何狮头、绣布、桌子、秋千、魔法光球。\n"
+    },
+    {
+      "name": "actions-12-agent-correction.txt",
+      "text": "Input1 is transparent4x4 warrior atlas. Input2 is canonical equipment. Correct ONLY cells3,4,5,8,9,10,11,14 (zero-based; first-rowlast; second-rowfirsttwo; entirethirdrow; bottom-rowthird). In those FRONT-FACING humanoid cells, DELETE every sword/scabbard/hilt on IMAGE-RIGHT beside the right thigh and KEEP ONE sword in the reference's canonical IMAGE-LEFT waist position. If no left sword is present, restore one compact NAVY SCABBARD with GOLD edging/tip pointing down-left, attached to left waist. Exactly ONE sword, one round shield at IMAGE-RIGHT back. Do not change shield or hands. Preserve sleeping0,1,2 and swing12,13 with their rotated equipment; preserve ghost15 without adding human equipment. Preserve table/cloth, embroidery, lion head and magic orb and all expressions/poses.4x4 positions and transparent alpha unchanged. Correct weapon side/count only.\n"
+    },
+    {
+      "name": "actions-12.txt",
+      "text": "Use case: precise-object-edit. Fix missing warrior equipment only in target Image 1. Image 2 shows approved equipment. Copy that gold-bordered NAVY sheathed sword at screen-left waist pointing down-left, and gold-rim round navy shield at screen-right back. For frontal figures: SWORD on picture LEFT, SHIELD on picture RIGHT, exactly one each, never a sword on shield side. Keep original sixteen poses, hands, faces, clothes motifs, all activity props and magic effects. Each depicted hand must retain its original prop; weapons are attached at belt/back so need NO extra hands. Sitting, prone, tilted and jumping figures retain same equipment attached with the torso. A transformed whale/ghost retains original species and clothing, exempt from human equipment. Keep mouse cursors, bubbles, mirror, water gun, controller, swing, lion headdress, Christmas tree, pumpkin, toy horse, shuttlecock exactly when present. Do not simplify choreography or replace poses. Exact existing4x4 atlas layout, clean transparent gaps between cells, genuine transparent alpha, no captions or background.\n"
+    }
+  ]
+}

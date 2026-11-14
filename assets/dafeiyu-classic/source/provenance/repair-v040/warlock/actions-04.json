@@ -1,0 +1,38 @@
+{
+  "class": "warlock",
+  "sheet": "actions-04",
+  "original_sha256": "c53ed9b23b69eda860b4ff9219df6a6fdb591cf918b054c005db76a48c738bbf",
+  "replacement_sha256": "7734336edef597defe40e38a93f73106ab36a6972431f7b42d6885695e53d821",
+  "freeze_manifest": "casters-acceptance.json",
+  "source_review": {
+    "class": "warlock",
+    "sheet": "actions-04",
+    "path": "source/sheets/warlock/actions-04.png",
+    "sha256": "7734336edef597defe40e38a93f73106ab36a6972431f7b42d6885695e53d821",
+    "qa_status": "accepted_source_pose_review",
+    "alpha_review_image": "source/sheets/warlock/actions-04-alpha-inspect.jpg",
+    "source_defect_repaired": true
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "date": "2026-11-09",
+    "class": "warlock",
+    "sheet": "actions-04",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1 is EDIT TARGET warlock/actions-04; Image 2 is same character neutral EQUIPMENT REFERENCE ONLY.\nMake exactly one type of localized edit in cells6 and7 only (0-based; row2 columns3 and4), the two eating-Token poses. Replace only the Chinese 福 mark on the edible round token with a clearly readable uppercase Latin letter T. Keep token/cookie size and shape, bite state, hand/face positions, class outfit, bone horns, green shoulder orb and hanging book. Do not alter the other fourteen cells, especially the intentional dove transformation.\nLocalized correction only. Preserve every original cell's pose, expression, hand positions, action prop, visual effects, original chibi proportions, blue hair and 4x4 layout/margins. Do not replace action poses with neutral reference. Keep exact costume patterns and colors across poses. No additional props or equipment. No changes to unaffected cells. Preserve transparent RGBA background, no black/white background, no checkerboard, no labels, no border or watermark.",
+    "generated_original": "image_gen-output:exec-87235653-3b88-40cb-bc46-712672c93594.png",
+    "output_file": "source/sheets/warlock/actions-04.png",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "output_sha256": "7734336edef597defe40e38a93f73106ab36a6972431f7b42d6885695e53d821",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 728661,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/warlock/actions-04-alpha-inspect.jpg",
+    "iteration_records": []
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

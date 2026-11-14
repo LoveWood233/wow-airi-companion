@@ -11,6 +11,7 @@ from unittest import mock
 import zipfile
 
 import package
+from build_state import INCOMPLETE, build_lock
 
 
 class PackageTests(unittest.TestCase):
@@ -129,6 +130,20 @@ class PackageTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Unexpected or missing pack files'):
             self.verified()
 
+    def test_failed_render_is_not_packaged_even_without_a_manifest(self):
+        (self.media.parent / INCOMPLETE).write_text('{}', encoding='utf-8')
+        (self.media.parent / 'pack.json').unlink()
+        with self.assertRaisesRegex(ValueError, 'Incomplete render'):
+            self.archive()
+        self.assertFalse(self.output.exists())
+
+    def test_cli_cannot_package_during_a_render(self):
+        with build_lock(self.packs.parent):
+            result = package.main(['--asset-root', str(self.asset), '--packs', str(self.packs),
+                                   '--class', 'warrior', '--output', str(self.output)])
+        self.assertEqual(result, 1)
+        self.assertFalse(self.output.exists())
+
     def test_media_symlinks_are_rejected(self):
         target = self.root / 'target.webm'
         target.write_bytes(self.media.read_bytes())
@@ -139,6 +154,27 @@ class PackageTests(unittest.TestCase):
             self.skipTest(f'Symlink creation is unavailable: {error}')
         with self.assertRaisesRegex(ValueError, 'Symlink'):
             self.verified()
+
+    def test_old_release_plan_or_manifest_cannot_be_relabelled_by_packaging(self):
+        plan_path = self.source / 'action-plan.json'
+        plan = json.loads(plan_path.read_text())
+        plan['releaseVersion'] = '0.3.1'
+        plan_path.write_text(json.dumps(plan))
+        with self.assertRaisesRegex(ValueError, 'Action plan release version'):
+            package.validate_manifests(self.asset)
+        plan['releaseVersion'] = package.VERSION
+        plan_path.write_text(json.dumps(plan))
+        manifest_path = self.asset / 'manifests/warrior/pack.json'
+        manifest = json.loads(manifest_path.read_text())
+        manifest['id'] = 'dafeiyu-classic-warrior-full-v031'
+        manifest_path.write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValueError, 'Manifest identity differs'):
+            package.validate_manifests(self.asset)
+        manifest['id'] = f'dafeiyu-classic-warrior-full-v{package.VERSION.replace(".", "")}'
+        manifest['name'] = manifest['name'].replace(package.VERSION, '0.3.1')
+        manifest_path.write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValueError, 'Manifest display name differs'):
+            package.validate_manifests(self.asset)
 
 
 if __name__ == '__main__':

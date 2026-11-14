@@ -1,6 +1,6 @@
 {
-  "status": "contract_plan_only_media_not_validated",
-  "releaseVersion": "0.3.1",
+  "status": "candidate_media_technically_verified_visual_not_accepted",
+  "releaseVersion": "0.4.0",
   "owningCommit": "e3ddb35f8bf692c4fe3f8284caae9f4e4d526790",
   "classes": [
     {

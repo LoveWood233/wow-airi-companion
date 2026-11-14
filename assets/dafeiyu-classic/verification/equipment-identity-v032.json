@@ -1,0 +1,199 @@
+{
+  "release_version": "0.3.2",
+  "status": "PASS_SCOPED_EQUIPMENT_IDENTITY_REPAIR",
+  "scope": {
+    "class": "warrior",
+    "action": "开心蹦跳",
+    "changed_media": [
+      "packs/warrior/开心蹦跳.webm"
+    ],
+    "unchanged_media_count": 959,
+    "other_actions_or_classes_equipment_reviewed": false
+  },
+  "final_media": {
+    "path": "packs/warrior/开心蹦跳.webm",
+    "sha256": "f1967dfdb9ca0deb0b9161526143634fa7522ac5103a9e7949f10664a0b7b357",
+    "bytes": 1291561,
+    "fps": 60,
+    "frames": 480,
+    "duration_seconds": 8,
+    "decoded_alpha_edge_max_all_frames": 2,
+    "visible_alpha_pixels_range": [
+      40146,
+      41025
+    ]
+  },
+  "visual_review": {
+    "original_frames_reviewed": 480,
+    "original_frames_inclusive": [
+      0,
+      479
+    ],
+    "original_contact_pages": 24,
+    "gif_frames_reviewed": 400,
+    "gif_frames_inclusive": [
+      0,
+      399
+    ],
+    "gif_contact_pages": 20,
+    "equipment_result": "Sword, shield, pointed shoulder armor and chest/skirt motifs persist; old arm/gauntlet double silhouettes no longer observed.",
+    "method": "Every decoded frame was visually examined in numbered contact sheets; representative frames were enlarged. Not a claim of anatomical or per-pixel perfection."
+  },
+  "source_equipment": {
+    "method": "single_equipment_texture_continuous_coordinate_map_with_face_only_expression",
+    "policy": "warrior_fixed_texture_continuous_jump_v1",
+    "image_inputs": [
+      {
+        "path": "base-keyframes/warrior/frame-00.png",
+        "sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc"
+      },
+      {
+        "path": "expressions/warrior/happy-face.png",
+        "sha256": "47b03936bf0e011de2ba2fd3c9085669ae4ef05bd3aae6a059bc78b58b653741"
+      }
+    ],
+    "face_only_expression": {
+      "outside_face_mask_changed_pixels": 0,
+      "equipment_region_changed_pixels": 0,
+      "alpha_unchanged": true,
+      "changed_pixels": 2857
+    },
+    "old_warrior_jump_atlas_used": false
+  },
+  "geometry_all_480_frames": {
+    "jacobian_min": 0.42599427700042725,
+    "jacobian_max": 1.283758282661438,
+    "inverse_residual_max_px": 0.0029908784199506044,
+    "unencoded_first_last_exact_master": true,
+    "geometry_class_ast_matches_checked_prototype": true,
+    "equipment_landmark_pairwise_distance_drift": {
+      "shield": {
+        "pairwise_distance_max_drift_px": 3.814697265625e-05,
+        "landmarks": [
+          [
+            378.0,
+            200.0
+          ],
+          [
+            404.0,
+            200.0
+          ],
+          [
+            404.0,
+            270.0
+          ],
+          [
+            378.0,
+            270.0
+          ]
+        ]
+      },
+      "sword": {
+        "pairwise_distance_max_drift_px": 4.1961669921875e-05,
+        "landmarks": [
+          [
+            263.0,
+            270.0
+          ],
+          [
+            287.0,
+            270.0
+          ],
+          [
+            287.0,
+            308.0
+          ],
+          [
+            263.0,
+            308.0
+          ]
+        ]
+      },
+      "chest_center": {
+        "pairwise_distance_max_drift_px": 0.03894805908203125,
+        "landmarks": [
+          [
+            313.0,
+            205.0
+          ],
+          [
+            338.0,
+            205.0
+          ],
+          [
+            338.0,
+            248.0
+          ],
+          [
+            313.0,
+            248.0
+          ]
+        ]
+      }
+    }
+  },
+  "review_to_final_media_equality": {
+    "frames": 480,
+    "all_decoded_rgba_frames_identical_after_finite_guard": true,
+    "final_sha256": "f1967dfdb9ca0deb0b9161526143634fa7522ac5103a9e7949f10664a0b7b357",
+    "geometric_class_ast_matches_full_480_frame_prototype_check": true
+  },
+  "regression_tests": {
+    "python_passed": 26,
+    "node_passed": 10,
+    "source_png_count": 273
+  },
+  "renderer_inputs": [
+    {
+      "path": "tools/render.py",
+      "sha256": "401530d03149f087a913c09e6b65aa7c7dd8b2e1dc2b15f65a4169efa724033a"
+    },
+    {
+      "path": "tools/continuous-motion.py",
+      "sha256": "33a73823a3388953e617b791067357255b802b55e18f73cf13b73225be734c19"
+    },
+    {
+      "path": "tools/jump-motion.py",
+      "sha256": "642c862c7121d71804c7e02ccb0c9ee631c6a798763407afdf0b94a707f2d177"
+    },
+    {
+      "path": "tools/jump-arm-guides.json",
+      "sha256": "8c4766b6e4723e5c0c68b4dd69ae667b7a84787bf81a307dd8f48db94ccba259"
+    },
+    {
+      "path": "tools/identity-motion.py",
+      "sha256": "be8074b310e7e8f4e1fdb1dc4fdbca959dd7e05a95b8d8c0d02cffc7516f5367"
+    },
+    {
+      "path": "tools/requirements.txt",
+      "sha256": "cf533c35f54363304cfd1554b65da1f5099daa65748ce53eef44ef669aa69580"
+    }
+  ],
+  "source_metadata": [
+    {
+      "path": "atlas-plan.json",
+      "sha256": "873172ec6f9ed5ec20555c366cffeede3953d4f68aeca683374a0c361750f8f5"
+    },
+    {
+      "path": "extraction-crops.json",
+      "sha256": "1da74e918dd9e25561d7490233fdd7ac317031f727353a3f83831ec7379d7edf"
+    },
+    {
+      "path": "base-timelines.json",
+      "sha256": "3b32bd0ee5758af53f4809e49ccdeba90aff3df29e6fe744a556acb56b525e57"
+    },
+    {
+      "path": "expressions/warrior/happy-face.json",
+      "sha256": "096fd4defa20d575399ec1972755d6db6a1994ed0c84fb51b5f2ddbf080ecb9e"
+    }
+  ],
+  "known_limits": [
+    "Only this warrior action is repaired; the other 959 media are retained and not visually certified.",
+    "The 0.45-0.65 s and 6.05-6.25 s face transitions use local expression crossfades; paused frames may show overlapping eye shapes.",
+    "Motion is a restrained 2D texture deformation with small arm movement, not a complete 3D skeletal jump.",
+    "GIF adds palette dithering; the import asset remains transparent VP9 WebM.",
+    "Native importer checks do not constitute AIRI Electron-window playback acceptance."
+  ],
+  "preview": "preview/happy-jump.mp4",
+  "equipment_evidence": "preview/happy-jump.png"
+}

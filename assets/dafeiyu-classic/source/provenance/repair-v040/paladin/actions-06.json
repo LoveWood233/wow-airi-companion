@@ -1,0 +1,85 @@
+{
+  "class": "paladin",
+  "sheet": "actions-06",
+  "original_sha256": "1ed56212e56e10d11a6e7c7fdc97030183e6e4ec1495db50781344187688b2cb",
+  "replacement_sha256": "4d9d897abfaebfa3b50adb709e93ee023e58e1c6ebd0d3387049fe5abaaab5bd",
+  "freeze_manifest": "paladin-01-07-freeze-manifest.json",
+  "source_review": {
+    "class": "paladin",
+    "sheet": "actions-06",
+    "path": "source/sheets/paladin/actions-06.png",
+    "sha256": "4d9d897abfaebfa3b50adb709e93ee023e58e1c6ebd0d3387049fe5abaaab5bd",
+    "bytes": 2144271,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "reviewStatus": "accepted_source_pose_review",
+    "reviewedCells": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "reviewNotes": "All 16 poses visually reviewed. Left hammer and right book remain throughout. Cake, noodles, qingtuan, rice, rice balls, dumplings, balloon and flute remain distinct. Flute and two hands examined at enlargement; no extra hand or detached weapon visible.",
+    "provenance": "source/sheets/paladin/actions-06.provenance.json",
+    "preview": "source/sheets/paladin/actions-06-alpha-inspect.jpg",
+    "sourceSnapshotAtFreezeSha256": "1ed56212e56e10d11a6e7c7fdc97030183e6e4ec1495db50781344187688b2cb"
+  },
+  "generation": {
+    "tool": "image_gen__imagegen",
+    "date": "2026-11-09",
+    "sheet": "actions-06",
+    "prompt": "Use case: precise-object-edit. Asset: transparent 4x4 action sprite atlas, identity/equipment repair only.\nImage 1 is the EDIT TARGET with sixteen original action poses. Image 2 is the canonical paladin master identity and equipment reference. Preserve the target's exact 4x4 grid, sixteen cell positions, character scale, pose silhouettes, two original arms/hands, expressions, action props, clothing, gold cross symbols, face, hair and colors. Do not substitute idle poses and do not redraw an action.\n\nRepair only the missing canonical equipment. The paladin has exactly ONE compact gold warhammer with rectangular red-inset head, at the character's anatomical RIGHT hip (PICTURE LEFT in front view), and exactly ONE small red/gold cross holy book at anatomical LEFT hip (PICTURE RIGHT in front view). Keep the book already present; do not duplicate it or replace action props with it. Match the master hammer shape, size and proportions: short handle, broad compact rectangular head, total length roughly one fifth of character height. It hangs diagonally down/out from the same left waist belt attachment, not as a tall staff or giant mallet. When both original hands are busy, the hammer is belt-holstered and leaves both hands free; do not add a third hand to hold it. In side/prone poses, rotate and foreshorten this same attached hammer with the pelvis, allowing physically correct occlusion by body, hair or props. Keep the head and handle connected. Never move the hammer to the other hip between paired action cells.\nAll original action props remain distinct from equipped hammer/book: no converting cards, fans, toys, food or paperwork into extra holy equipment. Exactly two anatomical arms and hands, except legal occlusion.\nKeep genuine transparent background; no labels, borders, checkerboard, extra decoration, duplicate body parts, or new effects. Preserve every original cell's different action.\n\nImage3 is an ACCEPTED HAMMER MOUNTING REFERENCE ONLY: same character with hammer correctly at picture-left hip and book at picture-right hip. Copy only equipment mounting relationship and proportions from Image3, not its actions or layout. The existing book in Image1 MUST STAY AT ITS ORIGINAL LOCATION. The new hammer goes on the OPPOSITE HIP to that already-present book. Never swap the book/hammer. Keep hands free for their original actions.\n\nTarget actions-06: All sixteen poses are eight pairs: Chongyang cake, long noodles, green qingtuan cake, rice bowl, rice ball, dumplings, blowing up balloon, playing flute. Preserve each food/balloon/flute, gestures and two hands. When instrument or bowl covers the belt, allow genuine partial hammer occlusion without moving hammer to book side. Book stays original right side, hammer anatomical right/picture-left front.",
+    "references": [
+      "source/sheets/paladin/actions-06.png",
+      "source/base-keyframes/paladin/frame-00.png",
+      "source/sheets/paladin/actions-08.png"
+    ],
+    "generatedOriginal": "image_gen-output:exec-492904d0-6338-4f2c-9561-9ee916c60a17.png",
+    "output": "source/sheets/paladin/actions-06.png",
+    "reviewStatus": "accepted_source_pose_review",
+    "sha256": "4d9d897abfaebfa3b50adb709e93ee023e58e1c6ebd0d3387049fe5abaaab5bd",
+    "visualQA": {
+      "cellsReviewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "method": "explicit gray alpha composite, all sixteen cells; enlarged hip/hand crop review on major attachments",
+      "notes": "All 16 poses visually reviewed. Left hammer and right book remain throughout. Cake, noodles, qingtuan, rice, rice balls, dumplings, balloon and flute remain distinct. Flute and two hands examined at enlargement; no extra hand or detached weapon visible.",
+      "scope": "source poses only, not encoded animation frames or AIRI playback"
+    }
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

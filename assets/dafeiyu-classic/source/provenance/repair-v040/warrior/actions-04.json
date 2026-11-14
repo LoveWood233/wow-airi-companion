@@ -1,0 +1,36 @@
+{
+  "class": "warrior",
+  "sheet": "actions-04",
+  "original_sha256": "1770e19285bffe6ad1f27da4510fe4fdd25f40c17425ca3983f26f785cab250b",
+  "replacement_sha256": "d1f5f32d885c45e45dc411479af59efff4223512e92c1a24c6f985b1152401e6",
+  "freeze_manifest": "warrior-partial-freeze.json",
+  "source_review": {
+    "class": "warrior",
+    "sheet": "actions-04",
+    "path": "source/sheets/warrior/actions-04.png",
+    "sha256": "d1f5f32d885c45e45dc411479af59efff4223512e92c1a24c6f985b1152401e6",
+    "qa_status": "source_pose_major_equipment_repair_reviewed_pending_motion"
+  },
+  "generation": {
+    "class": "warrior",
+    "sheet": "actions-04",
+    "method": "built_in_image_gen_precise_object_edit",
+    "original_sha256": "1770e19285bffe6ad1f27da4510fe4fdd25f40c17425ca3983f26f785cab250b",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "imagegen_output": "image_gen-output:exec-49b34245-8ae4-4abf-96df-7efd96188044.png",
+    "sha256": "d1f5f32d885c45e45dc411479af59efff4223512e92c1a24c6f985b1152401e6",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "review_status": "accepted_source_endpoint",
+    "review_note": "Reviewed all 16 cells: human poses keep left navy/gold sheathed sword and right gold-rim shield, no extra hands; pigeon transform retained. Motion intermediates not yet verified."
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-04-canonical-equipment.txt",
+      "text": "Use case: precise-object-edit. Image 1 is the TARGET existing 4x4 warrior animation atlas. Image 2 is the approved equipment continuity reference, not a new pose sheet. Keep every original target pose, face, hands, action props, transformations and cell positions. Add ONLY the missing canonical equipment to every HUMAN pose. Copy equipment design and attachment from Image 2: a NAVY flat sword/scabbard with GOLD edges and pointed GOLD tip carried at the belt on the VIEWER LEFT (image-left), diagonally down-left, small GOLD hilt at waist, NOT a silver sword or shoulder-length upright weapon. Round navy shield with thick GOLD rim is mounted behind the shoulder on VIEWER RIGHT (image-right). Exactly one sword/scabbard and one shield. They are attached to body, hands remain busy with original props, no extra hands. Keep navy/gold spiked shoulders, original breastplate motifs, skirt, crown and boots. During sideways running or lying/sleeping let the same equipment rotate with the torso, clearly attached, not mirrored or replaced. Keep intentional pigeon transformation as pigeon with its existing costume, do NOT attach human weapons to pigeon. Keep edible Token coins marked T and all original activities unchanged. Do not replace poses with generic standing. Same sixteen-cell 4x4 layout with transparent margins per cell, no cropping between cells. Real transparent alpha, no grid/text/background.\n"
+    }
+  ]
+}

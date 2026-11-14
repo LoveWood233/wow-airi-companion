@@ -1,0 +1,85 @@
+{
+  "class": "paladin",
+  "sheet": "actions-01",
+  "original_sha256": "3b5b3b665b7eee4396ba3b5a526d20ccb39732b6fd4ec7e1718113441c1302e2",
+  "replacement_sha256": "eb1011c35a9ca68ca98978459d6dd375ed5a2c452875042fe5798b431fb02504",
+  "freeze_manifest": "paladin-01-07-freeze-manifest.json",
+  "source_review": {
+    "class": "paladin",
+    "sheet": "actions-01",
+    "path": "source/sheets/paladin/actions-01.png",
+    "sha256": "eb1011c35a9ca68ca98978459d6dd375ed5a2c452875042fe5798b431fb02504",
+    "bytes": 2672208,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "reviewStatus": "accepted_source_pose_review",
+    "reviewedCells": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "reviewNotes": "All 16 poses visually reviewed. One left-hip hammer, original right-hip book. Juggling, board game, glance, mooncake, dance, coin/bag gestures remain distinct. Board and bags occlude parts naturally. Rejected first attempt swapped the equipment sides; current output is the independently regenerated second attempt.",
+    "provenance": "source/sheets/paladin/actions-01.provenance.json",
+    "preview": "source/sheets/paladin/actions-01-alpha-inspect.jpg",
+    "sourceSnapshotAtFreezeSha256": "3b5b3b665b7eee4396ba3b5a526d20ccb39732b6fd4ec7e1718113441c1302e2"
+  },
+  "generation": {
+    "tool": "image_gen__imagegen",
+    "date": "2026-11-09",
+    "sheet": "actions-01",
+    "prompt": "Use case: precise-object-edit. Asset: transparent 4x4 action sprite atlas, identity/equipment repair only.\nImage 1 is the EDIT TARGET with sixteen original action poses. Image 2 is the canonical paladin master identity and equipment reference. Preserve the target's exact 4x4 grid, sixteen cell positions, character scale, pose silhouettes, two original arms/hands, expressions, action props, clothing, gold cross symbols, face, hair and colors. Do not substitute idle poses and do not redraw an action.\n\nRepair only the missing canonical equipment. The paladin has exactly ONE compact gold warhammer with rectangular red-inset head, at the character's anatomical RIGHT hip (PICTURE LEFT in front view), and exactly ONE small red/gold cross holy book at anatomical LEFT hip (PICTURE RIGHT in front view). Keep the book already present; do not duplicate it or replace action props with it. Match the master hammer shape, size and proportions: short handle, broad compact rectangular head, total length roughly one fifth of character height. It hangs diagonally down/out from the same left waist belt attachment, not as a tall staff or giant mallet. When both original hands are busy, the hammer is belt-holstered and leaves both hands free; do not add a third hand to hold it. In side/prone poses, rotate and foreshorten this same attached hammer with the pelvis, allowing physically correct occlusion by body, hair or props. Keep the head and handle connected. Never move the hammer to the other hip between paired action cells.\nAll original action props remain distinct from equipped hammer/book: no converting cards, fans, toys, food or paperwork into extra holy equipment. Exactly two anatomical arms and hands, except legal occlusion.\nKeep genuine transparent background; no labels, borders, checkerboard, extra decoration, duplicate body parts, or new effects. Preserve every original cell's different action.\n\nImage3 is an ACCEPTED HAMMER MOUNTING REFERENCE ONLY: same character with hammer correctly at picture-left hip and book at picture-right hip. Copy only equipment mounting relationship and proportions from Image3, not its actions or layout. The existing book in Image1 MUST STAY AT ITS ORIGINAL LOCATION. The new hammer goes on the OPPOSITE HIP to that already-present book. Never swap the book/hammer. Keep hands free for their original actions.\n\nTarget actions-01: Keep all juggling balls, Go board and stone placement, sideways glances, mooncakes, dance poses, coin counts and money bag stages exactly. Hammer may be partly hidden by board/money bag. Do not move existing book to the other hip.",
+    "generatedOriginal": "image_gen-output:exec-921ce8b6-0448-4fe2-92d5-be4f0c93e1ca.png",
+    "output": "source/sheets/paladin/actions-01.png",
+    "reviewStatus": "accepted_source_pose_review",
+    "references": [
+      "source/sheets/paladin/actions-01.png",
+      "source/base-keyframes/paladin/frame-00.png",
+      "source/sheets/paladin/actions-08.png"
+    ],
+    "sha256": "eb1011c35a9ca68ca98978459d6dd375ed5a2c452875042fe5798b431fb02504",
+    "visualQA": {
+      "cellsReviewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "method": "explicit gray alpha composite, all sixteen cells; enlarged hip/hand crop review on major attachments",
+      "notes": "All 16 poses visually reviewed. One left-hip hammer, original right-hip book. Juggling, board game, glance, mooncake, dance, coin/bag gestures remain distinct. Board and bags occlude parts naturally. Rejected first attempt swapped the equipment sides; current output is the independently regenerated second attempt.",
+      "scope": "source poses only, not encoded animation frames or AIRI playback"
+    }
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

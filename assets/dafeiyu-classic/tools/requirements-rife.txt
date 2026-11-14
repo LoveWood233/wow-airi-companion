@@ -1,0 +1,5 @@
+# Python 3.12 profile used for neural RGBA interpolation.
+# ffmpeg / ffprobe 7.1.1 with libvpx-vp9 are also required.
+numpy==2.1.3
+opencv-python-headless==4.11.0.86
+torch==2.9.0

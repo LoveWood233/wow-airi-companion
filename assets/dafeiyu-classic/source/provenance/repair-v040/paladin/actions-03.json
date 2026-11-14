@@ -1,0 +1,100 @@
+{
+  "class": "paladin",
+  "sheet": "actions-03",
+  "original_sha256": "009764ce32c0b685c4e09bc73bbdbbaafcd5f4db0e69f3b414b42ccc2340b4c0",
+  "replacement_sha256": "ad4f3d0d6fbdb4fb232fd1e05b2b3cb8f718e4de39255b80f326ac5b5d28269d",
+  "freeze_manifest": "paladin-01-07-freeze-manifest.json",
+  "source_review": {
+    "class": "paladin",
+    "sheet": "actions-03",
+    "path": "source/sheets/paladin/actions-03.png",
+    "sha256": "ad4f3d0d6fbdb4fb232fd1e05b2b3cb8f718e4de39255b80f326ac5b5d28269d",
+    "bytes": 2173213,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "reviewStatus": "accepted_source_pose_review",
+    "reviewedCells": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "reviewNotes": "All 16 poses visually reviewed. Local repair removed wrong near-side hammers in side-run cells6/7; far-side hammer is now occluded, book stays near hip. In prone cells4/5 the same far-side hammer only peeks above/behind the book; this was enlarged and reviewed. Animals, cube, desk, floating, star reach and car preserved. Running arm angle changed mildly during local repair but remains two connected hands and the same running intent.",
+    "provenance": "source/sheets/paladin/actions-03.provenance.json",
+    "preview": "source/sheets/paladin/actions-03-alpha-inspect.jpg",
+    "sourceSnapshotAtFreezeSha256": "009764ce32c0b685c4e09bc73bbdbbaafcd5f4db0e69f3b414b42ccc2340b4c0"
+  },
+  "generation": {
+    "tool": "image_gen__imagegen",
+    "date": "2026-11-09",
+    "sheet": "actions-03",
+    "prompt": "Use case: precise-object-edit. Make ONLY a tiny two-cell correction to Image 1, an otherwise approved transparent 4x4 paladin atlas. Image 2 is canonical equipment reference and Image 3 demonstrates correct side-running hammer position. Target only zero-based cells 6 and 7 (row 2 columns 3 and 4, left-facing running). The red/gold book on the near PICTURE RIGHT hip must stay untouched at its current location. The newly added gold/red hammer overlaps that same near hip/book on PICTURE RIGHT and is wrong. Remove only that added wrong hammer (gold rectangular head and handle immediately to right/above red book). The ONE hammer is mounted on opposite anatomical RIGHT/far hip and should be largely hidden by pelvis/skirt/hair while running: allow fully occluded, or at most a small connected red/gold hammer-head edge peeking at the PICTURE LEFT waist, like the side-run examples in Image 3. Do not reposition the book. Do NOT change prone cells 4/5: their far-hip hammer edge is correctly foreshortened behind the near book. Preserve all other 14 cells exactly, every expression, two arms/hands, animal/cube/table/star/toycar, armor, outfit, scale and cell placement. Do not create any extra hand. Keep transparent background and the 4x4 atlas.",
+    "references": [
+      "source/sheets/paladin/actions-03.png",
+      "source/base-keyframes/paladin/frame-00.png",
+      "source/sheets/paladin/actions-02.png"
+    ],
+    "generatedOriginal": "image_gen-output:exec-d4ef3e6c-4083-45b4-8e2d-d357911d16f7.png",
+    "output": "source/sheets/paladin/actions-03.png",
+    "reviewStatus": "accepted_source_pose_review",
+    "sha256": "ad4f3d0d6fbdb4fb232fd1e05b2b3cb8f718e4de39255b80f326ac5b5d28269d",
+    "visualQA": {
+      "cellsReviewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "method": "explicit gray alpha composite, all sixteen cells; enlarged hip/hand crop review on major attachments",
+      "notes": "All 16 poses visually reviewed. Local repair removed wrong near-side hammers in side-run cells6/7; far-side hammer is now occluded, book stays near hip. In prone cells4/5 the same far-side hammer only peeks above/behind the book; this was enlarged and reviewed. Animals, cube, desk, floating, star reach and car preserved. Running arm angle changed mildly during local repair but remains two connected hands and the same running intent.",
+      "scope": "source poses only, not encoded animation frames or AIRI playback"
+    },
+    "priorProvenance": {
+      "tool": "image_gen__imagegen",
+      "date": "2026-11-09",
+      "sheet": "actions-03",
+      "prompt": "Use case: precise-object-edit. Asset: transparent 4x4 action sprite atlas, identity/equipment repair only.\nImage 1 is the EDIT TARGET with sixteen original action poses. Image 2 is the canonical paladin master identity and equipment reference. Preserve the target's exact 4x4 grid, sixteen cell positions, character scale, pose silhouettes, two original arms/hands, expressions, action props, clothing, gold cross symbols, face, hair and colors. Do not substitute idle poses and do not redraw an action.\n\nRepair only the missing canonical equipment. The paladin has exactly ONE compact gold warhammer with rectangular red-inset head, at the character's anatomical RIGHT hip (PICTURE LEFT in front view), and exactly ONE small red/gold cross holy book at anatomical LEFT hip (PICTURE RIGHT in front view). Keep the book already present; do not duplicate it or replace action props with it. Match the master hammer shape, size and proportions: short handle, broad compact rectangular head, total length roughly one fifth of character height. It hangs diagonally down/out from the same left waist belt attachment, not as a tall staff or giant mallet. When both original hands are busy, the hammer is belt-holstered and leaves both hands free; do not add a third hand to hold it. In side/prone poses, rotate and foreshorten this same attached hammer with the pelvis, allowing physically correct occlusion by body, hair or props. Keep the head and handle connected. Never move the hammer to the other hip between paired action cells.\nAll original action props remain distinct from equipped hammer/book: no converting cards, fans, toys, food or paperwork into extra holy equipment. Exactly two anatomical arms and hands, except legal occlusion.\nKeep genuine transparent background; no labels, borders, checkerboard, extra decoration, duplicate body parts, or new effects. Preserve every original cell's different action.\n\nImage3 is an ACCEPTED HAMMER MOUNTING REFERENCE ONLY: same character with hammer correctly at picture-left hip and book at picture-right hip. Copy only equipment mounting relationship and proportions from Image3, not its actions or layout. The existing book in Image1 MUST STAY AT ITS ORIGINAL LOCATION. The new hammer goes on the OPPOSITE HIP to that already-present book. Never swap the book/hammer. Keep hands free for their original actions.\n\nTarget actions-03: Keep animal interaction, puzzle cube, lying/resting, side running, table tapping, floating steps, reaching for star overhead and toy car play. Preserve every original pose. In prone/side poses rotate/foreshorten the same right-hip hung hammer and allow it partly obscured by body/hair. Do not add floating weapon in front of face or desk. Keep book on its original opposite hip.",
+      "generatedOriginal": "image_gen-output:exec-8502b83b-b790-4c7f-83a0-af7aadff53c6.png",
+      "output": "source/sheets/paladin/actions-03.png",
+      "reviewStatus": "pending explicit 16-cell visual QA",
+      "references": [
+        "source/sheets/paladin/actions-03.png",
+        "source/base-keyframes/paladin/frame-00.png",
+        "source/sheets/paladin/actions-08.png"
+      ]
+    },
+    "finalIterationRecord": "source/sheets/paladin/actions-03-local.iteration2.json"
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}
