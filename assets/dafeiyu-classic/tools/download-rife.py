@@ -5,7 +5,7 @@ import argparse,hashlib,json,os,tempfile,urllib.request,zipfile
 
 TOOLS=Path(__file__).resolve().parent
 def install(destination):
-    meta=json.loads((TOOLS/'rife_v426/UPSTREAM.json').read_text())
+    meta=json.loads((TOOLS/'rife_v426/UPSTREAM.json').read_text(encoding='utf-8'))
     if destination.exists() and hashlib.sha256(destination.read_bytes()).hexdigest()==meta['weights_sha256']:
         return destination
     destination.parent.mkdir(parents=True,exist_ok=True)

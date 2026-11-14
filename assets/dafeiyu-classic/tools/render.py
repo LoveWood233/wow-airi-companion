@@ -8,10 +8,11 @@ Sources resolve beside this tool, independently of the working directory.
 Requires ffmpeg and ffprobe on PATH (libvpx-vp9 encoding and alpha decoding).
 """
 from __future__ import annotations
-import argparse, bisect, concurrent.futures, hashlib, importlib.util, json, math, os, shutil, subprocess, sys, time
+import argparse, bisect, concurrent.futures, hashlib, importlib.util, json, math, multiprocessing, os, shutil, subprocess, sys, time
 from pathlib import Path
 import cv2
 import numpy as np
+from build_state import INCOMPLETE, atomic_bytes, build_lock, exclusive_lock, temporary_path
 
 TOOLS=Path(__file__).resolve().parent
 ASSET=TOOLS.parent
@@ -257,7 +258,22 @@ def schedule(kind,name):
             (3.95,1),(4.75,2),(5.1,2),(5.9,1),(6.25,1),(7.05,2),
             (7.45,2),(8.35,1),(9.15,0),(10,0)],10
 
+def ensure_owner_alive():
+    parent=multiprocessing.parent_process()
+    if parent is not None and not parent.is_alive():
+        raise RuntimeError('Render owner exited; refusing to publish an orphan worker result')
+
+
 def encode(task):
+    target=OUT/'packs'/task['class']/(task['name']+'.webm')
+    target.parent.mkdir(parents=True,exist_ok=True)
+    lock=OUT/'.render-locks'/task['class']/(task['name']+'.lock')
+    with exclusive_lock(lock), temporary_path(target,suffix='.encoding.webm') as temporary:
+        ensure_owner_alive()
+        return encode_locked(task,temporary)
+
+
+def encode_locked(task,tmp):
     cv2.setNumThreads(1)
     cls,name=task['class'],task['name']
     pack=OUT/'packs'/cls; pack.mkdir(parents=True,exist_ok=True)
@@ -291,7 +307,6 @@ def encode(task):
     if kind=='happy_jump':
         top=min(int(np.where(f[:,:,3]>32)[0].min()) for f in frames[4:14])
         jump_amplitude=float(max(8,min(32,20+top-9)))
-    tmp=target.with_suffix('.encoding.webm')
     command=['ffmpeg','-y','-v','error','-f','rawvideo','-pix_fmt','rgba','-video_size','640x360',
              '-framerate','60','-i','pipe:0','-vf','format=yuva420p','-c:v','libvpx-vp9',
              '-crf','22','-b:v','0','-pix_fmt','yuva420p','-auto-alt-ref','0',
@@ -366,6 +381,9 @@ def encode(task):
     if render_provenance(task)!=provenance or effective_crops(task)!=extraction_crops:
         tmp.unlink(missing_ok=True)
         raise RuntimeError('Render inputs changed while encoding; rerun with stable sources')
+    # A terminated owner releases the build lock on spawn-based platforms.
+    # Old workers must not publish into a later build after that happens.
+    ensure_owner_alive()
     os.replace(tmp,target)
     r={'class':cls,'name':name,'status':'encoded_and_decoded','method':'continuous_bidirectional_RGBA_flow_without_midpoint_endpoint_switch','render_policy':RENDER_POLICY,
        'fps':60,'duration_seconds':duration,'frames':count,'size':[640,360],'alpha_decoded':True,
@@ -394,7 +412,7 @@ def encode(task):
             if name=='开心蹦跳':
                 r['jump_trajectory']={'amplitude_pixels':rig.maximum_lift,'takeoffs_seconds':[1.25,4.25],'airtime_seconds':1.1,'position_and_velocity_continuous':True,'turning':False}
     if name in TRANSFORM_ACTIONS:r['transition_policy']=TRANSFORM_POLICY
-    report_path.write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    atomic_bytes(report_path,(json.dumps(r,ensure_ascii=False,indent=2)+'\n').encode('utf-8'))
     return {k:r[k] for k in ['class','name','status','bytes','elapsed_seconds']}
 
 def input_images(task):
@@ -413,7 +431,7 @@ def render_provenance(task):
     metadata=[SOURCE/name for name in ('atlas-plan.json','base-timelines.json')]
     if warrior_identity_jump(task):metadata.append(SOURCE/'expressions'/'warrior'/'happy-face.json')
     if class_identity_motion.supports(task):metadata+=class_identity_motion.metadata_paths(SOURCE,task)
-    renderer_files=[TOOLS/name for name in ('render.py','continuous-motion.py','jump-motion.py','jump-arm-guides.json','identity-motion.py','requirements.txt')]
+    renderer_files=[TOOLS/name for name in ('render.py','build_state.py','continuous-motion.py','jump-motion.py','jump-arm-guides.json','identity-motion.py','requirements.txt')]
     if class_identity_motion.supports(task):renderer_files.append(TOOLS/'class-identity-motion.py')
     interpolation={}
     if not fixed_identity_action(task) and MOTION_BACKEND=='rife':
@@ -469,23 +487,58 @@ def complete_manifests(selected):
     return result
 
 
+def begin_render(output,selected):
+    """Invalidate old manifests before any WebM can be replaced.
+
+    Partial/failed runs keep this marker. A complete class rerun is required to
+    restore importability; valid per-action results remain available as cache.
+    """
+    classes=list(dict.fromkeys(task['class'] for task in selected))
+    # A directory alias could bypass the common build lock and redirect writes
+    # into another build. Reject all selected output aliases before invalidation.
+    for parent in ('packs','reports','.render-locks'):
+        directory=output/parent
+        if directory.is_symlink():
+            raise ValueError(f'Render output must not contain symlink directories: {directory}')
+        for cls in classes:
+            child=directory/cls
+            if child.is_symlink():
+                raise ValueError(f'Render output must not contain symlink directories: {child}')
+            if child.exists() and (not child.is_dir() or any(p.is_symlink() for p in child.iterdir())):
+                raise ValueError(f'Render output must be a directory without symlinks: {child}')
+    for cls in classes:
+        pack=output/'packs'/cls
+        pack.mkdir(parents=True,exist_ok=True)
+        marker={'status':'render_incomplete','class':cls,
+                'recovery':'Rerun all 120 actions for this class before importing or packaging.'}
+        atomic_bytes(pack/INCOMPLETE,(json.dumps(marker,ensure_ascii=False)+'\n').encode('utf-8'))
+        (pack/'pack.json').unlink(missing_ok=True)
+
+
 def publish_manifests(output,selected,failures,manifests):
     """Partial renders never create a manifest claiming a complete pack."""
     results=[]
     failed_classes={cls for cls,_ in failures}
     for cls in dict.fromkeys(task['class'] for task in selected):
+        pack=output/'packs'/cls
         names=[task['name']+'.webm' for task in selected if task['class']==cls]
         status='not_written_partial_selection'
         if cls in failed_classes:
             status='not_written_failed'
         elif cls in manifests:
-            pack=output/'packs'/cls
             if not all((pack/name).is_file() for name in names):
                 raise RuntimeError(f'Cannot publish {cls}: a rendered WebM is missing')
-            temporary=pack/'pack.json.tmp'
-            temporary.write_bytes(manifests[cls])
-            os.replace(temporary,pack/'pack.json')
+            # Only complete, successful runs may clear the persistent failure
+            # marker. A failed publication must not leave an importable pack.
+            try:
+                atomic_bytes(pack/'pack.json',manifests[cls])
+                (pack/INCOMPLETE).unlink()
+            except BaseException:
+                (pack/'pack.json').unlink(missing_ok=True)
+                raise
             status='written'
+        if status!='written':
+            (pack/'pack.json').unlink(missing_ok=True)
         results.append({'class':cls,'selected_actions':len(names),'manifest_status':status})
     return results
 
@@ -530,9 +583,18 @@ def main():
     if output==SOURCE or SOURCE in output.parents or output==TOOLS or TOOLS in output.parents:
         p.error('--output must be outside the source/ and tools/ directories')
     output.mkdir(parents=True,exist_ok=True)
+    try:
+        with build_lock(output):
+            return render_selected(output,selected,manifests,args.workers)
+    except (OSError,ValueError,RuntimeError) as error:
+        p.error(str(error))
+
+
+def render_selected(output,selected,manifests,workers):
+    begin_render(output,selected)
     completed=0
     failures=[]
-    with concurrent.futures.ProcessPoolExecutor(max_workers=args.workers,
+    with concurrent.futures.ProcessPoolExecutor(max_workers=workers,
             initializer=initialize_worker,initargs=(str(output),MOTION_BACKEND)) as pool:
         pending={pool.submit(encode,task):(task['class'],task['name']) for task in selected}
         for future in concurrent.futures.as_completed(pending):

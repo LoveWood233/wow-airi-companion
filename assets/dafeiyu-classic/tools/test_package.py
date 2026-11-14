@@ -11,6 +11,7 @@ from unittest import mock
 import zipfile
 
 import package
+from build_state import INCOMPLETE, build_lock
 
 
 class PackageTests(unittest.TestCase):
@@ -128,6 +129,20 @@ class PackageTests(unittest.TestCase):
         (self.media.parent / 'unlisted.webm').write_bytes(package.EBML)
         with self.assertRaisesRegex(ValueError, 'Unexpected or missing pack files'):
             self.verified()
+
+    def test_failed_render_is_not_packaged_even_without_a_manifest(self):
+        (self.media.parent / INCOMPLETE).write_text('{}', encoding='utf-8')
+        (self.media.parent / 'pack.json').unlink()
+        with self.assertRaisesRegex(ValueError, 'Incomplete render'):
+            self.archive()
+        self.assertFalse(self.output.exists())
+
+    def test_cli_cannot_package_during_a_render(self):
+        with build_lock(self.packs.parent):
+            result = package.main(['--asset-root', str(self.asset), '--packs', str(self.packs),
+                                   '--class', 'warrior', '--output', str(self.output)])
+        self.assertEqual(result, 1)
+        self.assertFalse(self.output.exists())
 
     def test_media_symlinks_are_rejected(self):
         target = self.root / 'target.webm'

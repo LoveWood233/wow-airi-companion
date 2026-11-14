@@ -191,7 +191,7 @@ def build_warrior(source_root):
     source_root=Path(source_root)
     base=read_rgba(source_root/'base-keyframes'/'warrior'/'frame-00.png')
     generated=read_rgba(source_root/'expressions'/'warrior'/'happy-face.png')
-    config=json.loads((source_root/'expressions'/'warrior'/'happy-face.json').read_text())
+    config=json.loads((source_root/'expressions'/'warrior'/'happy-face.json').read_text(encoding='utf-8'))
     if list(base.shape[1::-1])!=config['reference_size'] or list(generated.shape[1::-1])!=config['generated_size']:
         raise ValueError('Expression alignment has stale dimensions')
     return WarriorHappyJump(base,generated,config)

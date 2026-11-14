@@ -102,9 +102,13 @@ python tools/package.py --packs build/packs --output dist
 
 这些命令生成媒体和检查记录，**不会自动授予视觉合格状态**。打包出的 v0.4.0 仍须按修复候选使用，检查未通过动作后才能作最终验收。`--motion-backend dis` 仅用于旧算法对照，不是本轮默认制作方法。
 
-也可用 `--class warrior` 只重建一个职业，或以 `--output` 指定独立输出目录。完整职业成功后才会写入 `pack.json`。渲染会复用图源、配置、工具和模型指纹均匹配的结果，输入变化时重新生成。全量编码需要较长时间；请为数 GB 媒体、模型和打包副本预留空间，当前候选媒体约 2.62 GiB，打包另需近似容量。
+也可用 `--class warrior` 只重建一个职业，或以 `--output` 指定独立输出目录。渲染会复用图源、配置、工具和模型指纹均匹配的结果，输入变化时重新生成。全量编码需要较长时间；请为数 GB 媒体、模型和打包副本预留空间，当前候选媒体约 2.62 GiB，打包另需近似容量。
 
-打包工具只读输入，写临时 ZIP、检查 CRC 后原子发布。已有输出默认拒绝覆盖，需显式传 `--overwrite`；它不会删除旧交付包。可先运行 `--verify-only`，或用 `--class warrior` 只打包一个职业。
+生成前会为选中职业写入 `.render-incomplete.json`，并移除旧的 `pack.json`。只有该职业全部 120 个动作成功，才重新发布导入清单并清除标记。生成失败、中断或只选择部分动作时，保留已完成的视频供续跑，但不能导入、打包或进行整职业审计。请对同一输出目录完整重跑该职业，例如 `python tools/render.py --class warrior --output build`；有效缓存会复用。不要手动删除标记或复制旧清单来恢复导入。
+
+渲染、打包及审计共享输出目录中的 `.render.lock`，重复操作会立即报错。每段生成另有目标锁和独立临时文件，父进程退出后旧工作进程拒绝发布。锁由操作系统释放，锁文件保留，不要在操作期间删除。旧版本脚本不遵守这些锁，请先结束旧版本生成进程，再使用新工具。中文配置与预览按 UTF-8 读写。
+
+打包工具不修改输入媒体，除共享锁文件外只读取输入，写临时 ZIP、检查 CRC 后原子发布。已有输出默认拒绝覆盖，需显式传 `--overwrite`；它不会删除旧交付包。可先运行 `--verify-only`，或用 `--class warrior` 只打包一个职业。
 
 ## 本地逐帧预览
 
@@ -125,12 +129,14 @@ python tools/serve-preview.py --media-root build --port 8769
 
 - `verify-source.py`：PNG 文件集合、索引、哈希和路径检查。
 - Node 与 Python 测试：原 114 动作契约、六个新增动作、八份 manifest、固定母版运动约束、补间边界及打包行为。
-- `audit-frames.py`：实际 WebM 全帧解码、透明通道、空帧、边界接触和相邻变化指标；生成抽样与高变化接触页供人工看图。自动检查不是装备识别或关节正确性证明。
+- `audit-frames.py`：先核对八职业各 120 个视频和对应渲染记录，缺少文件、无效职业或输出与输入目录重叠时拒绝开始。`--class warrior` 可限定整职业，摘要会明确是否覆盖八职业。实际 WebM 全帧解码后记录透明通道、空帧、边界接触和相邻变化指标，并生成接触页。每段解码默认上限 300 秒，可用 `--decode-timeout` 调整；媒体探测上限 30 秒。错误日志与视频分开读取，异常会回收子进程并取消尚未开始的任务。自动检查不是装备识别或关节正确性证明。
 - `npm run validate`：完整文件集、大小限制、VP9、60 fps、尺寸和 alpha 元数据。
 - `npm run smoke:import`：原生导入器复制、媒体哈希、选择持久化、资源拒绝及临时 profile 清理。
 - 视觉记录：必须注明具体职业、动作、视频哈希、实际查看帧号及未通过项，不能把抽样看图写成全帧目检。
 
 本轮记录位于 `verification/v040/media.json`、`native.json`、`frame-audit.json`、`render-records.json` 与 `assessment.json`；它们与 `source/media-index.json` 对应当前文件 SHA。原 `verification/media.json` 和 `verification/native.json` 保留历史版本。验证、导入或打包时追加 `--release-hashes` 可检查本轮候选的精确媒体。重建的容器 TrackUID、FFmpeg 或平台差异可能改变文件字节，不要求普通重建的 WebM 哈希逐字节相同。
+
+2026-11-14 工具健壮性修订说明见 [静态复核记录](verification/robustness-20261114.md)。该次代码修订按用户要求未运行测试、重建、解码或导入，新增回归用例尚未执行。上面的历史媒体验证记录不代表新工具已通过运行验证。
 
 [v0.3.1 可移植渲染检查](verification/history/portable-render-smoke-v031.json)、[原始交付摘要](verification/original-release-summary.json) 和 v0.3.2 单段记录保留作历史证据。它们不证明本轮装备与关节视觉正确。
 

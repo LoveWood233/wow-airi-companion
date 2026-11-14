@@ -1,8 +1,11 @@
 """Identity, semantics routing and continuity invariants, not visual acceptance."""
 import hashlib
 import importlib.util
+import json
 from pathlib import Path
+import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 
@@ -12,6 +15,32 @@ spec=importlib.util.spec_from_file_location('emotion_motion_test_target',TOOLS/'
 motion=importlib.util.module_from_spec(spec);spec.loader.exec_module(motion)
 render_spec=importlib.util.spec_from_file_location('emotion_render_test_target',TOOLS/'render.py')
 render=importlib.util.module_from_spec(render_spec);render_spec.loader.exec_module(render)
+
+
+class Utf8MotionConfigTests(unittest.TestCase):
+    def test_chinese_config_and_face_bank_survive_non_utf8_default(self):
+        original_read_text=Path.read_text
+        def legacy_read_text(path,encoding=None,errors=None):
+            return original_read_text(path,encoding=encoding or 'cp1252',errors=errors)
+        with tempfile.TemporaryDirectory() as directory:
+            source=Path(directory)
+            (source/'expressions').mkdir()
+            config={'master':'牧师母版.png'}
+            (source/'class-identity-motion.json').write_text(
+                json.dumps({'classes':{'priest':config}},ensure_ascii=False),encoding='utf-8')
+            face={'name':'害怕','notes':'脸内区域'}
+            banks={'class-emotion-face-sources.json':{'100':face},
+                   'class-face-sources.json':{'0':face}}
+            for name,bank in banks.items():
+                (source/'expressions'/name).write_text(
+                    json.dumps({'classes':{'priest':bank}},ensure_ascii=False),encoding='utf-8')
+            for action,bank in ((motion.EMOTIONS[0],banks['class-emotion-face-sources.json']),
+                                (motion.KEEP[0],banks['class-face-sources.json'])):
+                task={'class':'priest','name':action}
+                with self.subTest(action=action),patch.object(Path,'read_text',legacy_read_text), \
+                        patch.object(motion,'ClassIdentityMotion') as rig:
+                    self.assertIs(motion.build(task,source),rig.return_value)
+                    rig.assert_called_once_with(task,source,config,bank)
 
 
 class EmotionIdentityTests(unittest.TestCase):

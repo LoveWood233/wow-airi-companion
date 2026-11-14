@@ -363,9 +363,9 @@ class ClassIdentityMotion:
 def build(task,source):
     if not supports(task):
         raise ValueError('Unsupported fixed-master action; warrior happy jump remains in identity-motion.py')
-    config=json.loads((Path(source)/'class-identity-motion.json').read_text())['classes'][task['class']]
+    config=json.loads((Path(source)/'class-identity-motion.json').read_text(encoding='utf-8'))['classes'][task['class']]
     bank='class-emotion-face-sources.json' if task['name'] in EMOTIONS else 'class-face-sources.json'
-    faces=json.loads((Path(source)/'expressions'/bank).read_text())['classes'][task['class']]
+    faces=json.loads((Path(source)/'expressions'/bank).read_text(encoding='utf-8'))['classes'][task['class']]
     if task['name'] in EMOTIONS:
         idx=str(100+EMOTIONS.index(task['name']))
         faces={idx:faces[idx]}

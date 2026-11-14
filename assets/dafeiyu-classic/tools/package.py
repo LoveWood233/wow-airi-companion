@@ -17,6 +17,7 @@ import stat
 import sys
 import tempfile
 import zipfile
+from build_state import INCOMPLETE, build_lock
 
 CLASSES = ('warrior', 'hunter', 'mage', 'rogue', 'paladin', 'warlock', 'priest', 'druid')
 VERSION = '0.4.0'
@@ -205,6 +206,8 @@ def verify_media(asset_root, packs_root, selected, index_path=None, release_hash
     totals = []
     for class_id in selected:
         directory = root_directory(safe_child(packs_root, class_id))
+        require(not os.path.lexists(directory / INCOMPLETE),
+                f'Incomplete render for {class_id}; rerun all 120 class actions before packaging')
         reject_symlinks(directory)
         item = manifests[class_id]
         filenames = item['manifest']['files']
@@ -320,10 +323,13 @@ def main(argv=None):
                     'Archive output cannot be inside an input directory')
             if not args.verify_only:
                 require(not output.exists() or args.overwrite, 'Archive already exists; choose a new output or use --overwrite')
-        manifests, docs, records, report = verify_media(asset_root, packs_root, selected, args.media_index, args.release_hashes)
-        if not args.verify_only:
-            report['archive'] = create_archive(output, selected, manifests, docs, records, args.overwrite)
-            report['status'] = 'archive_created_and_verified'
+        # Share the renderer's lock through verification and final publication,
+        # so a rebuild cannot replace half of the inputs during packaging.
+        with build_lock(packs_root.parent):
+            manifests, docs, records, report = verify_media(asset_root, packs_root, selected, args.media_index, args.release_hashes)
+            if not args.verify_only:
+                report['archive'] = create_archive(output, selected, manifests, docs, records, args.overwrite)
+                report['status'] = 'archive_created_and_verified'
         print(json.dumps(report, ensure_ascii=False, indent=2))
         return 0
     except (OSError, ValueError, KeyError, TypeError, AttributeError, zipfile.BadZipFile) as error:
