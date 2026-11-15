@@ -41,6 +41,15 @@ class ProtocolTests(unittest.TestCase):
         self.assertEqual(frame[:4], b"WCP1")
         self.assertEqual(decode_frame(frame), snapshot())
 
+    def test_forever_full_name_uses_a_game_specific_byte_limit(self):
+        name = "\U00020000" * 12 + " " + "\U00020001" * 12
+        value = snapshot(name=name)
+        frame = encode_frame(value, "WCF1")
+        self.assertEqual(decode_frame(frame, "WCF1"), value)
+        for protocol, invalid_name in (("WCF1", name + "A"), ("WCP1", "A" * 65)):
+            with self.subTest(protocol=protocol), self.assertRaisesRegex(FrameError, "name"):
+                encode_frame(snapshot(name=invalid_name), protocol)
+
     def test_pixels_round_trip_at_multiple_scales(self):
         frame = encode_frame(snapshot())
         for scale in (1, 2, 3, 4):
@@ -316,7 +325,7 @@ class HttpTests(unittest.TestCase):
         status, _, body = self.request("GET", "/health")
         self.assertEqual(status, 200)
         self.assertEqual(json.loads(body)["protocol"], "WCP1")
-        self.assertEqual(json.loads(body)["version"], "2.25.0")
+        self.assertEqual(json.loads(body)["version"], "2.26.0")
 
     def test_external_origin_and_dns_rebinding_rejected(self):
         self.assertEqual(self.request("GET", "/api/status", headers={"Origin": "https://evil.example"})[0], 403)

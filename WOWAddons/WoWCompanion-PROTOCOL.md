@@ -1,5 +1,58 @@
 # WoW Companion: WCP1 / WCF1 frames, snapshot version 3
 
+## Login captures and activity frames
+
+Both game addons send v3 character metadata during the first 12 one-second ticks after a valid profile becomes available. The first equipment loadout, carried counts, and carried storage captures use their existing fragment formats with at most one retry pass per revision. Incomplete carried item details may be refined during the initial scan. A map loading screen pauses pending fragments. Re-entering the world within the same session resumes them. Reloading the addon or logging back in starts a new capture.
+
+After the login burst, ordinary screen frames carry this compact heartbeat:
+
+```json
+{"v":1,"kind":"pulse","s":"session","g":"Player-1-A","q":12,"t":40,"on":true,"c":true,"d":false}
+```
+
+- `s` and `g` bind the heartbeat to the saved profile for this game window. `q` and `t` track the state sequence and heartbeat tick. `on`, `c` and `d` report online, combat and death state.
+- `p` carries a new map or instance with `map`, `zone`, `instanceType`, `instanceID` and the paired `px` and `py` values. The location repeats for up to eight ticks. Coordinates describe the arrival sample.
+- `h` carries `id` and integer `percent` for the first readable positive health below 20% in each combat. It expires after eight ticks or when that combat ends or the character dies. Unavailable or restricted values produce no alert. [无限图鉴 wuxianwow.com · UnitHealth](https://wuxianwow.com/api/?q=UnitHealth#api)
+- `{v:1,kind:"loot",s,g,id,item,name,n}` carries the ID, optional name and positive quantity of a new acquisition. Repeated frames use the same observation ID. Equipment upgrades still use the equipment comparison and confirmation streams. The carried inventory baseline excludes bank withdrawals from pickup alerts.
+
+The character, gear, and bag records continue to update in memory for the game's SavedVariables flush on reload, logout, or exit. The bridge keeps the login profile separate from current online, combat, death and scene state. For a compact-heartbeat session, the HTTP snapshot includes `profileObservedAt` in Unix milliseconds. It records the first verified full profile observation and does not advance with heartbeats. A bridge that starts after the login burst without a matching profile exposes `needsProfile`. Use `/reload` to synchronize again. New addons and the companion bridge should be updated together. The code grid and byte limits stay the same, and the bridge still accepts older v3 producers.
+
+## Weapon proficiency (Retail 2.26.0 / Infinite 1.22.0)
+
+`WeaponSkills.lua` captures learned weapon skill lines through public client APIs.
+Infinite uses `C_SkillInfo.GetSkillLineInfoByID`, without changing skill-panel headers or reading localized chat messages.
+Retail publishes `unsupported` because it does not expose numeric weapon-skill progression.
+Unavailable or restricted observations never become zero-valued skills.
+
+Each learned skill uses one 512-byte frame. The 504-byte payload limit and 64×64 grid remain unchanged.
+
+```json
+{"v":1,"kind":"wskill","s":"session","g":"Player-1-A","id":1,"p":1,"n":1,"t":1700000000,"status":"available","entry":{"skillLineID":43,"name":"Swords","rank":123,"maxRank":300,"modifier":5,"temporary":0}}
+```
+
+- `s` and `g` bind every part to the current transport session and character GUID.
+- `id` is a positive, session-local revision. `p` is the one-based part number. `n` is at most 32.
+- `t` is the capture time in Unix seconds. All parts in one revision share the same metadata.
+- `status` is `available`, `unsupported`, or `unavailable`.
+- An empty snapshot uses `p=n=1` and `entry=null`. A non-available snapshot must be empty.
+- `skillLineID` is a positive integer. `name` is at most 64 UTF-8 bytes without control characters.
+- `rank` and `maxRank` are integers from 0 through 65535, with `rank<=maxRank`.
+- `modifier` and `temporary` are signed integers from -65535 through 65535.
+  They retain the API's permanent and temporary bonuses separately. Consumers must not derive missing ranks from level or equipment.
+
+The receiver publishes a revision only after all its parts pass validation and skill IDs are unique.
+Partial or conflicting revisions cannot overwrite a complete snapshot. Pending storage is bounded.
+Replayed parts do not renew freshness. Observations expire after 120 seconds and cannot describe another character or session.
+
+The bridge exposes the assembled record as the optional `snapshot.weaponSkills` field:
+`{v,id,session,guid,observedAt,status,entries}`. Main character snapshots remain v3.
+The desktop validates this field and only uses current, matching observations in conversation context.
+No new database, settings page or automatic proficiency announcement is introduced.
+
+Client API source: [无限图鉴 wuxianwow.com](https://wuxianwow.com/api/?q=C_SkillInfo.GetSkillLineInfoByID#api).
+The Infinite weapon skill list follows its exported [Blizzard SkillsFrame.lua](https://github.com/reckhou/WoWBlzCode/blob/main/Forever/BlizzardInterfaceCode/Interface/AddOns/Blizzard_UIPanels_Game/Camelot/SkillsFrame.lua).
+These sources describe APIs. Live-client behavior still requires in-game verification.
+
 ## Life progress transport (2.23.0)
 
 Retail 2.23.0 and Forever 1.19.0 send a separate small frame. New character snapshots omit the inline login pair.
@@ -66,8 +119,8 @@ Storage accepts materials without relaxing validation for worn equipment.
 `cached=true` retains a dated bank capture from SavedVariables, not a new live bank observation.
 
 Only publicly viewable bank types and purchased tabs are scanned. Closed or unavailable banks never publish an empty replacement.
-Changed containers create revisions. In-flight revisions finish before their coalesced successor, with fair container rotation.
-Frames are encoded lazily and replay in background capacity. Existing heartbeat and fresh equipment-comparison priorities remain intact.
+Changed bank containers create revisions while the bank is available. Carried containers use the login capture policy above. In-flight revisions finish before their coalesced successor, with fair container rotation.
+Frames are encoded lazily and receive a retry in background capacity. Existing heartbeat and fresh equipment-comparison priorities remain intact.
 
 The frequent status response adds `itemStorageRevision` and `itemStorageError` without including full item bodies.
 `GET /api/item-storage?after=N` returns `{instanceId,cursor,record,hasMore}`, with at most one changed container.
@@ -259,6 +312,7 @@ This example is synthetic. Production frames contain the current character's ava
 - `combat`, `dead`, and `online` describe available player state.
 - The addon filters secret values before comparison, encoding, or display.
 - Text is bounded and truncated at UTF-8 boundaries when required.
+- On WCF1, `name` carries the character's given name and surname in the client's display order, separated by a space. The decoder accepts up to 97 UTF-8 bytes. The encoder reduces other labels and optional observations first when a full name needs extra space. `realm` comes from `GetRealmName()`.
 
 All three components require snapshot version 3. Update the addon, bridge, and 魔兽陪伴精灵 together.
 Both games use the same layout and snapshot fields. Frame magic identifies the game. Decoders reject the other game’s magic.

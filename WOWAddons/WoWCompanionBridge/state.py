@@ -18,7 +18,8 @@ from protocol import (COMPARISON_MAX_BYTES, EQUIPMENT_MAX_BYTES, LOADOUT_MAX_BYT
                       validate_loadout_fragment, validate_equipment_loadout, validate_macro, validate_calendar, validate_group_buff, validate_life,
                       INVENTORY_MAX_BYTES, validate_inventory_fragment, validate_inventory,
                       QUEST_MAX_BYTES, validate_quest_fragment, validate_quests,
-                      TALENT_MAX_BYTES, validate_talent_fragment, validate_talents)
+                      TALENT_MAX_BYTES, validate_talent_fragment, validate_talents, validate_weapon_skill,
+                      validate_loot, validate_pulse)
 
 from item_storage import ItemStorageAssembler
 
@@ -39,14 +40,18 @@ TALENT_TTL_SECONDS = 1200
 TALENT_PENDING_LIMIT = 2
 TALENT_PENDING_BYTES = TALENT_MAX_BYTES * TALENT_PENDING_LIMIT
 LIFE_TTL_SECONDS = 5
+WEAPON_SKILL_TTL_SECONDS = 120
+WEAPON_SKILL_PENDING_LIMIT = 2
+BULK_RECOVERY_SECONDS = 5
 
 
-def known_zone(snapshot: dict) -> tuple[int, str] | None:
-    """Only positive map IDs with meaningful labels can announce a location change."""
+def known_zone(snapshot: dict) -> tuple[int, str, int | None] | None:
+    """A named map or instance can establish a location."""
     zone = snapshot["zone"].strip()
-    if snapshot["map"] <= 0 or not zone or zone.casefold() in ("当前位置暂不可用", "location unavailable"):
+    map_id, instance_id = snapshot["map"], snapshot.get("instanceID")
+    if (map_id <= 0 and instance_id is None) or not zone or zone.casefold() in ("当前位置暂不可用", "location unavailable"):
         return None
-    return snapshot["map"], zone
+    return map_id, zone, instance_id
 
 
 def utc_now() -> str:
@@ -98,7 +103,7 @@ class CompanionState:
         self.error = f"等待插件的 {self.protocol} 遥测网格"
         self.demo = False
         self.reset_baseline = True
-        self.last_known_zone: tuple[int, str] | None = None
+        self.last_known_zone: tuple[int, str, int | None] | None = None
         self.frame_bmp: bytes | None = None
         self.equipment = deque(maxlen=10)
         self.equipment_error: str | None = None
@@ -155,17 +160,75 @@ class CompanionState:
         self.talents_rejected: OrderedDict[int, float] = OrderedDict()
         self.talents_parts: dict[int, bytes] = {}
         self.talents_count = 0
+        self.weapon_skills: dict | None = None
+        self.weapon_skills_at: float | None = None
+        self.weapon_skills_error: str | None = None
+        self.weapon_skills_identity = None
+        self.weapon_skills_floor = 0
+        self.weapon_skills_not_before = 0.0
+        self.weapon_skills_pending: dict[int, dict] = {}
+        self.weapon_skills_parts: dict[int, dict] = {}
         self.capture_revision = 0
         self.connection = {"phase": "locating", "reason": None, "attempts": 0, "consecutive": 0,
                            "lastFrameAt": None, "calibratedAt": None, "retrySeconds": 0, "calibration": None}
         self.transfer_results = {}
         self.transfer_latest = {}
         self.calendar_started = None
+        self._verified_source = None
+        self._reported_source = None
+        self._bulk_recovery = None
+        # Compact pulses depend on the full profile from this physical client.
+        self._profile_source = None
+        self._profile_observed_at: int | None = None
+        self._pulse_active = False
+        self._needs_profile = False
+        self._low_health_id = 0
+        self._loot_max = 0
+        self._loot_seen: set[int] = set()
 
-    def report_connection(self, diagnostic: dict) -> None:
+    def _valid_source(self, source_token) -> bool:
+        return (isinstance(source_token, tuple) and len(source_token) == 3
+                and source_token[0] == self.game and isinstance(source_token[1], tuple)
+                and len(source_token[1]) == 3 and all(type(value) is int and value > 0 for value in source_token[1])
+                and source_token[2] == (self.config["x"], self.config["y"], self.config["cellSize"], self.protocol))
+
+    def _recovery_matches(self, source_token) -> bool:
+        saved = self._bulk_recovery
+        return (saved is not None and self._valid_source(source_token) and source_token == saved["source"]
+                and self.config == saved["config"] and self.capture_revision == saved["revision"]
+                and 0 <= self.clock() - saved["heartbeat_at"] <= BULK_RECOVERY_SECONDS)
+
+    def _profile_matches_source(self) -> bool:
+        # Calibration can change without changing the physical game window.
+        reported, profile = self._reported_source, self._profile_source
+        if reported is None or profile is None:
+            return reported is profile
+        return reported[:2] == profile[:2]
+
+    def report_connection(self, diagnostic: dict, *, source_token=None, transient=False) -> None:
         with self.lock:
+            self._reported_source = source_token if self._valid_source(source_token) else None
+            if self._bulk_recovery is not None and (not self._recovery_matches(source_token)
+                    or diagnostic["phase"] == "connected" and diagnostic.get("reason") is not None):
+                self._clear_equipment()
+            if (self._bulk_recovery is None and transient and diagnostic["phase"] == "locating"
+                    and diagnostic.get("reason") == "grid-unreadable" and self.connection["phase"] == "connected"
+                    and self._status() == "live" and not self.error and not self.demo and not self.reset_baseline
+                    and self._valid_source(source_token) and source_token == self._verified_source):
+                self._bulk_recovery = {
+                    "source": source_token, "config": dict(self.config), "revision": self.capture_revision,
+                    "heartbeat_at": self.fresh_at, "tick": self.last_tick,
+                    "identity": (self.game, self.snapshot["account"], self.snapshot["guid"], self.snapshot["session"])}
             self.connection = copy.deepcopy(diagnostic)
             if diagnostic["phase"] != "connected":
+                preserve = (self._recovery_matches(source_token) and transient
+                            and diagnostic["phase"] in ("locating", "validating")
+                            and diagnostic.get("reason") in (None, "grid-unreadable"))
+                reason = diagnostic.get("reason")
+                same_window_gap = (diagnostic["phase"] == "validating" or transient
+                                   or reason in ("window-minimized", "window-hidden", "window-missing"))
+                self._clear_equipment(preserve_bulk=preserve, preserve_loadout=(
+                    self._pulse_active and same_window_gap and self._profile_matches_source()))
                 self.life_at = None
                 self.fresh_at = None
                 self.reset_baseline = True
@@ -183,12 +246,18 @@ class CompanionState:
             if self.demo or self.config["paused"]:
                 raise ValueError("请先结束演示并取消暂停，再重新定位")
             self.capture_revision += 1
+            self._bulk_recovery = None
+            self._verified_source = None
+            self._reported_source = None
+            self._clear_weapon_skills()
             self.equipment_pending.clear()
             self.comparison_pending.clear()
-            self.loadout_pending.clear()
-            self.inventory_pending.clear()
+            if not self._pulse_active:
+                self.loadout_pending.clear()
+                self.inventory_pending.clear()
             self.quests_pending.clear()
             self.talents_pending.clear()
+            self.item_storage.pending.clear()
             self.transfer_results.clear()
             self.transfer_latest.clear()
             if self.calendar is None:
@@ -247,8 +316,11 @@ class CompanionState:
             results["calendar"] = self._transfer("calendar", self.calendar_key[3], len(self.calendar_parts), "receiving", self.calendar_started)
         return list(results.values())
 
-    def _clear_equipment(self) -> None:
-        self.item_storage.reset()
+    def _clear_equipment(self, *, preserve_bulk=False, preserve_loadout=False) -> None:
+        self._clear_weapon_skills()
+        if not preserve_bulk:
+            self._bulk_recovery = None
+            self.item_storage.reset()
         self.transfer_results.clear()
         self.transfer_latest.clear()
         self.calendar_started = None
@@ -278,19 +350,22 @@ class CompanionState:
         self.comparison_seen.clear()
         self.comparison_rejected.clear()
         self.comparison_floor = 0
-        self.equipment_loadout = None
-        self.equipment_loadout_error = None
-        self.loadout_pending.clear()
-        self.loadout_rejected.clear()
-        self.loadout_parts.clear()
-        self.loadout_count = 0
-        self.inventory = None
-        self.inventory_received_at = None
-        self.inventory_error = None
-        self.inventory_pending.clear()
-        self.inventory_rejected.clear()
-        self.inventory_parts.clear()
-        self.inventory_count = 0
+        if preserve_bulk:
+            return
+        if not preserve_loadout:
+            self.equipment_loadout = None
+            self.equipment_loadout_error = None
+            self.loadout_pending.clear()
+            self.loadout_rejected.clear()
+            self.loadout_parts.clear()
+            self.loadout_count = 0
+            self.inventory = None
+            self.inventory_received_at = None
+            self.inventory_error = None
+            self.inventory_pending.clear()
+            self.inventory_rejected.clear()
+            self.inventory_parts.clear()
+            self.inventory_count = 0
         self.quests = None
         self.quests_received_at = None
         self.quests_error = None
@@ -306,6 +381,97 @@ class CompanionState:
         self.talents_parts.clear()
         self.talents_count = 0
 
+    def _clear_weapon_skills(self) -> None:
+        identity = ((self.snapshot["session"], self.snapshot["guid"])
+                    if self.snapshot is not None else None)
+        if identity != self.weapon_skills_identity:
+            self.weapon_skills_identity = identity
+            self.weapon_skills_floor = 0
+            self.weapon_skills_not_before = 0.0
+        elif self.weapon_skills is not None or self.weapon_skills_pending:
+            # Preserve revision watermarks across reconnects of the same game session.
+            # A new observation must also postdate the reset, not a cached unseen part.
+            self.weapon_skills_floor = max([self.weapon_skills_floor, *self.weapon_skills_pending])
+            self.weapon_skills_not_before = max(self.weapon_skills_not_before, self.wall_clock())
+        self.weapon_skills = None
+        self.weapon_skills_at = None
+        self.weapon_skills_error = None
+        self.weapon_skills_pending.clear()
+        self.weapon_skills_parts.clear()
+
+    def _retire_weapon_skills(self, identifier: int) -> None:
+        # Completed, conflicting, timed-out and evicted revisions cannot restart.
+        self.weapon_skills_floor = max(self.weapon_skills_floor, identifier)
+        self.weapon_skills_pending = {revision: pending for revision, pending in self.weapon_skills_pending.items()
+                                      if revision > self.weapon_skills_floor}
+
+    def _ingest_weapon_skills(self, value: dict) -> None:
+        if (self.demo or self._status() != "live" or self.reset_baseline or self.error
+                or self.snapshot is None or not self.snapshot["online"]):
+            return
+        try:
+            fragment = validate_weapon_skill(value)
+            if (fragment["s"], fragment["g"]) != (self.snapshot["session"], self.snapshot["guid"]):
+                return
+            identifier = fragment["id"]
+            latest = self.weapon_skills
+            if latest is not None and identifier == latest["id"]:
+                if self.weapon_skills_parts.get(fragment["p"]) != fragment:
+                    self.weapon_skills = None
+                    self.weapon_skills_at = None
+                    self.weapon_skills_parts.clear()
+                    self.weapon_skills_error = "Conflicting completed weapon-skill revision discarded"
+                return
+            if identifier <= self.weapon_skills_floor:
+                return
+            if (not self.wall_clock() - WEAPON_SKILL_TTL_SECONDS <= fragment["t"] <= self.wall_clock() + 120
+                    or fragment["t"] <= self.weapon_skills_not_before):
+                self._retire_weapon_skills(identifier)
+                raise FrameError("Weapon-skill observation is expired, future-dated or predates reconnect")
+            self._expire_equipment()
+            if identifier <= self.weapon_skills_floor:
+                return
+            pending = self.weapon_skills_pending.get(identifier)
+            if pending is None:
+                if len(self.weapon_skills_pending) >= WEAPON_SKILL_PENDING_LIMIT:
+                    oldest = min(self.weapon_skills_pending)
+                    if identifier < oldest:
+                        return
+                    self._retire_weapon_skills(oldest)
+                pending = {"started": self.clock(), "metadata": (fragment["n"], fragment["t"], fragment["status"]), "parts": {}}
+                self.weapon_skills_pending[identifier] = pending
+            part = fragment["p"]
+            if (pending["metadata"] != (fragment["n"], fragment["t"], fragment["status"])
+                    or part in pending["parts"] and pending["parts"][part] != fragment):
+                self._retire_weapon_skills(identifier)
+                raise FrameError("Conflicting weapon-skill parts discarded")
+            pending["parts"][part] = copy.deepcopy(fragment)
+            if len(pending["parts"]) != fragment["n"]:
+                return
+            entries = [pending["parts"][index]["entry"] for index in range(1, fragment["n"] + 1)
+                       if pending["parts"][index]["entry"] is not None]
+            if len({entry["skillLineID"] for entry in entries}) != len(entries):
+                self._retire_weapon_skills(identifier)
+                raise FrameError("Duplicate weapon skill in one revision")
+            self._retire_weapon_skills(identifier)
+            self.weapon_skills = {"v": 1, "id": identifier, "session": fragment["s"], "guid": fragment["g"],
+                                  "observedAt": fragment["t"], "status": fragment["status"], "entries": copy.deepcopy(entries)}
+            self.weapon_skills_at = self.clock()
+            self.weapon_skills_parts = copy.deepcopy(pending["parts"])
+            self.weapon_skills_error = None
+        except FrameError as exc:
+            self.weapon_skills_error = str(exc)
+
+    def _current_weapon_skills(self, status: str) -> dict | None:
+        record = self.weapon_skills
+        if (status != "live" or self.demo or self.error or self.reset_baseline
+                or self.snapshot is None or not self.snapshot["online"] or record is None
+                or self.weapon_skills_at is None or self.clock() - self.weapon_skills_at >= WEAPON_SKILL_TTL_SECONDS
+                or (record["session"], record["guid"]) != (self.snapshot["session"], self.snapshot["guid"])
+                or not self.wall_clock() - WEAPON_SKILL_TTL_SECONDS <= record["observedAt"] <= self.wall_clock() + 120):
+            return None
+        return copy.deepcopy(record)
+
     def _reject_equipment(self, identifier: int) -> None:
         self.equipment_pending.pop(identifier, None)
         self.equipment_rejected[identifier] = self.clock() + EQUIPMENT_TTL_SECONDS
@@ -314,6 +480,10 @@ class CompanionState:
 
     def _expire_equipment(self) -> None:
         now = self.clock()
+        for identifier, pending in list(self.weapon_skills_pending.items()):
+            if now - pending["started"] >= WEAPON_SKILL_TTL_SECONDS:
+                self._retire_weapon_skills(identifier)
+                self.weapon_skills_error = "Weapon-skill observation parts expired"
         for identifier, expires in list(self.inventory_rejected.items()):
             if expires <= now:
                 del self.inventory_rejected[identifier]
@@ -376,6 +546,8 @@ class CompanionState:
         """Publish a complete revision atomically. Acquisition history stays separate."""
         self._expire_equipment()
         if self.demo or self._status() != "live" or self.reset_baseline:
+            if self._pulse_active:
+                return
             self.loadout_pending.clear()
             self.equipment_loadout_error = "当前装备分片需要当前角色的实时状态帧"
             return
@@ -443,6 +615,8 @@ class CompanionState:
         """Only complete transfers replace a revision. Capture completeness stays an independent fact."""
         self._expire_equipment()
         if self.demo or self._status() != "live" or self.reset_baseline or self.error:
+            if self._pulse_active:
+                return
             self.inventory_pending.clear()
             self.inventory_error = "背包库存需要当前角色的实时状态帧"
             return
@@ -901,11 +1075,20 @@ class CompanionState:
 
     def view(self, after: int | None = None) -> dict:
         with self.lock:
+            if self._bulk_recovery is not None and not self._recovery_matches(self._reported_source):
+                self._clear_equipment()
             self._expire_equipment()
             age = round(max(0, self.clock() - self.fresh_at), 2) if self.fresh_at is not None else None
             status = self._status()
             current_snapshot = copy.deepcopy(self.snapshot)
             self._merge_life(current_snapshot, status)
+            if current_snapshot is not None:
+                if self._pulse_active and self._profile_observed_at is not None:
+                    current_snapshot["profileObservedAt"] = self._profile_observed_at
+                current_snapshot.pop("weaponSkills", None)
+                weapon_skills = self._current_weapon_skills(status)
+                if weapon_skills is not None:
+                    current_snapshot["weaponSkills"] = weapon_skills
             # Keep event observations historical. An expired or paused current
             # view must not present the last recorded position as live.
             if current_snapshot is not None and status not in ("live", "demo"):
@@ -919,7 +1102,9 @@ class CompanionState:
             current_inventory = self._current_inventory(status)
             current_quests = self._current_quests(status)
             current_talents = self._current_talents(status)
+            needs_profile = {"needsProfile": True} if self._needs_profile and status == "waiting" else {}
             return {"instanceId": self.instance_id, "status": status, "source": "demo" if self.demo else "screen", "snapshot": current_snapshot,
+                    **needs_profile,
                     "lastSeen": self.last_seen, "ageSeconds": age, "itemStorageRevision": self.item_storage.sequence,
                     "itemStorageError": self.item_storage.error,
                     "eventCursor": self.event_id,
@@ -942,7 +1127,8 @@ class CompanionState:
                     and not self.error and self.macro_import_at is not None and self.clock() - self.macro_import_at < 2.5 else None,
                     "equipmentComparisons": copy.deepcopy(self.equipment_comparisons),
                     "equipmentComparisonError": self.equipment_comparison_error,
-                    "equipmentLoadout": copy.deepcopy(self.equipment_loadout),
+                    "equipmentLoadout": copy.deepcopy(self.equipment_loadout) if self._bulk_recovery is None
+                    and (not self._pulse_active or status == "live") else None,
                     "equipmentLoadoutError": self.equipment_loadout_error,
                     "inventory": current_inventory,
                     "inventoryReceivedAt": self.inventory_received_at if current_inventory is not None else None,
@@ -955,13 +1141,109 @@ class CompanionState:
                     "talentsError": self.talents_error,
                     "staleAfterSeconds": 5, "protocol": self.protocol, "game": self.game}
 
-    def _event(self, kind: str, title: str, detail: str, snapshot: dict) -> None:
+    def read_item_storage(self, after: int) -> dict:
+        with self.lock:
+            if self._bulk_recovery is not None:
+                return {"cursor": after, "record": None, "hasMore": False}
+            return self.item_storage.read(after)
+
+    def _event(self, kind: str, title: str, detail: str, snapshot: dict, **metadata) -> None:
         self.event_id += 1
         self.events.append({"id": self.event_id, "type": kind, "timestamp": utc_now(), "title": title,
-                            "detail": detail, "snapshot": copy.deepcopy(snapshot), "demo": self.demo})
+                            "detail": detail, "snapshot": copy.deepcopy(snapshot), "demo": self.demo, **metadata})
+
+    def _pulse_snapshot(self, value: dict) -> dict | None:
+        if self.demo or self.config["paused"]:
+            return None
+        base = self.snapshot
+        if (base is None or (value["s"], value["g"]) != (base["session"], base["guid"])
+                or not self._profile_matches_source()):
+            if not self._needs_profile:
+                self._clear_equipment()
+            self._needs_profile = True
+            self.fresh_at = None
+            self.life_at = None
+            self.reset_baseline = True
+            self.error = "请在游戏内输入 /reload，同步角色资料"
+            return None
+        if value["t"] < base["tick"] or value["q"] < base["seq"]:
+            return None
+        if value["t"] == base["tick"] and (self.fresh_at is None or self._status() == "stale"):
+            return None
+        self._pulse_active = True
+        # Position belongs to an arrival observation. A heartbeat without an
+        # arrival must not make an old coordinate look current.
+        return {**base, "px": None, "py": None, **value.get("p", {}), "seq": value["q"],
+                "tick": value["t"], "online": value["on"], "combat": value["c"], "dead": value["d"]}
+
+    def _record_zone(self, snapshot: dict) -> None:
+        zone = known_zone(snapshot)
+        if zone is not None and (self._pulse_active or zone[0] > 0):
+            # A loading screen does not establish a new region.
+            previous = self.last_known_zone
+            if previous is not None:
+                same_map = zone[0] == previous[0]
+                same_instance = zone[2] == previous[2]
+                # Login and compact frames can use different UTF-8 name budgets.
+                if self._pulse_active:
+                    same_map = same_map or (zone[2] is not None and min(zone[0], previous[0]) == 0)
+                    changed = not (same_map and same_instance)
+                else:
+                    changed = zone[:2] != previous[:2]
+                if changed:
+                    self._event("zone", "进入新区域", f"当前区域：{snapshot['zone']}", snapshot)
+            self.last_known_zone = zone
+
+    def _record_pulse_events(self, snapshot: dict, old: dict, health: dict | None) -> None:
+        self._record_zone(snapshot)
+        if snapshot["dead"] and not old["dead"]:
+            self._event("death", "角色倒下", "角色已死亡", snapshot)
+        if health is not None and health["id"] > self._low_health_id:
+            self._low_health_id = health["id"]
+            if snapshot["combat"] and not snapshot["dead"]:
+                percent = health["percent"]
+                observation = dict(snapshot)
+                self._merge_life(observation, self._status())
+                self._event("low_health", "战斗中生命过低", f"当前生命值降至 {percent}%", observation,
+                            healthPercent=percent)
+
+    def _ingest_loot(self, snapshot: dict) -> None:
+        value = validate_loot(snapshot)
+        base = self.snapshot
+        if (self.demo or self._status() != "live" or self.reset_baseline or self.error
+                or not base or not self._profile_matches_source()
+                or (value["s"], value["g"]) != (base["session"], base["guid"])):
+            return
+        identifier = value["id"]
+        if identifier in self._loot_seen or identifier <= self._loot_max - EQUIPMENT_DEDUP_LIMIT:
+            return
+        if identifier > self._loot_max:
+            self._loot_max = identifier
+            self._loot_seen = {seen for seen in self._loot_seen if seen > identifier - EQUIPMENT_DEDUP_LIMIT}
+        self._loot_seen.add(identifier)
+        label = value["name"] or f"物品 #{value['item']}"
+        self._event("loot", "获得新物品", f"{label} ×{value['n']}", base,
+                    itemId=value["item"], itemName=value["name"], quantity=value["n"])
 
     def ingest(self, snapshot: dict) -> None:
         with self.lock:
+            kind = snapshot.get("kind")
+            pulse = kind == "pulse"
+            if kind and not pulse and self._bulk_recovery is not None:
+                return
+            health = None
+            if pulse:
+                value = validate_pulse(snapshot)
+                health = value.get("h")
+                snapshot = self._pulse_snapshot(value)
+                if snapshot is None:
+                    return
+            elif kind == "loot":
+                self._ingest_loot(snapshot)
+                return
+            if snapshot.get("kind") == "wskill":
+                self._ingest_weapon_skills(snapshot)
+                return
             if snapshot.get("kind") == "life":
                 self._ingest_life(snapshot)
                 return
@@ -1035,11 +1317,20 @@ class CompanionState:
                 self._ingest_equipment_offer(snapshot)
                 return
             old = self.snapshot
-            identity_changed = old is None or (old["account"], old["guid"], old["session"]) != (snapshot["account"], snapshot["guid"], snapshot["session"])
+            identity_changed = (old is None or not self._profile_matches_source()
+                                or (old["account"], old["guid"], old["session"])
+                                != (snapshot["account"], snapshot["guid"], snapshot["session"]))
             was_stale = self._status() not in ("live", "demo")
             if not identity_changed and old is not None and snapshot["seq"] < old["seq"]:
+                if self._bulk_recovery is not None:
+                    self._clear_equipment()
                 self.error = "忽略旧序号遥测帧"
                 return
+            resume_bulk = (self._recovery_matches(self._reported_source)
+                           and self.connection["phase"] == "connected" and self.connection.get("consecutive", 0) >= 3
+                           and snapshot["online"]
+                           and self._bulk_recovery["identity"] == (self.game, snapshot["account"], snapshot["guid"], snapshot["session"])
+                           and snapshot["tick"] > self._bulk_recovery["tick"])
             tick_changed = identity_changed or self.last_tick != snapshot["tick"]
             if tick_changed:
                 self.fresh_at = self.clock()
@@ -1048,21 +1339,48 @@ class CompanionState:
             self.error = "遥测画面已停更，等待新的心跳" if not tick_changed and self._status() == "stale" else None
             # A repeated, frozen frame must never revive a stale state or generate events.
             if not tick_changed and self._status() == "stale":
+                self._clear_weapon_skills()
                 self.reset_baseline = True
                 self.equipment_pending.clear()
                 self.comparison_pending.clear()
                 self.loadout_pending.clear()
                 return
             self.snapshot = copy.deepcopy(snapshot)
+            self._verified_source = self._reported_source
+            if identity_changed:
+                self._pulse_active = False
+                self._low_health_id = 0
+                self._loot_max = 0
+                self._loot_seen.clear()
+            if not pulse:
+                self._profile_source = self._reported_source
+                if identity_changed or self._profile_observed_at is None:
+                    self._profile_observed_at = int(self.wall_clock() * 1000)
+            self._needs_profile = False
             self._sync_life_identity(snapshot)
             if was_stale:
                 self.life_at = None
             if self.reset_baseline or identity_changed or was_stale:
-                self._clear_equipment()
+                self._clear_equipment(preserve_bulk=resume_bulk,
+                                      preserve_loadout=self._pulse_active and not identity_changed)
+                self._bulk_recovery = None
+                if resume_bulk:
+                    self._expire_equipment()
                 self.reset_baseline = False
-                self.last_known_zone = known_zone(snapshot) if snapshot["online"] else None
-                if snapshot["online"]:
+                if self._pulse_active:
+                    if snapshot["online"]:
+                        self._record_pulse_events(snapshot, old, health)
+                    return
+                self.last_known_zone = known_zone(snapshot) if snapshot["online"] and snapshot["map"] > 0 else None
+                if snapshot["online"] and not resume_bulk:
                     self._event("connected", "已连接角色", f"{snapshot['name']} · {snapshot['level']} 级 · {snapshot['zone']}", snapshot)
+                return
+            if self._pulse_active:
+                if snapshot["online"]:
+                    self._record_pulse_events(snapshot, old, health)
+                elif old["online"]:
+                    self._clear_equipment(preserve_loadout=True)
+                    self.reset_baseline = True
                 return
             if old is None or snapshot["seq"] == old["seq"]:
                 return
@@ -1075,13 +1393,7 @@ class CompanionState:
                 return
             if snapshot["level"] > old["level"]:
                 self._event("level_up", "角色升级", f"{snapshot['name']} 从 {old['level']} 级升到 {snapshot['level']} 级", snapshot)
-            zone = known_zone(snapshot)
-            if zone is not None:
-                # Temporary loading/secret values are not travel. Preserve the last
-                # valid region so returning to it does not announce a second journey.
-                if self.last_known_zone is not None and zone != self.last_known_zone:
-                    self._event("zone", "进入新区域", f"当前区域：{snapshot['zone']}", snapshot)
-                self.last_known_zone = zone
+            self._record_zone(snapshot)
             if snapshot["dead"] != old["dead"]:
                 if snapshot["dead"]:
                     self._event("death", "角色倒下", "角色已死亡", snapshot)
@@ -1097,12 +1409,15 @@ class CompanionState:
             self.life_at = None
             self.error = message
             if self._status() == "stale":
+                self._clear_weapon_skills()
                 self.reset_baseline = True
                 self.equipment_pending.clear()
                 self.comparison_pending.clear()
-                self.loadout_pending.clear()
-                self.inventory_pending.clear()
-            self.quests_pending.clear()
+                if not self._pulse_active:
+                    self.loadout_pending.clear()
+                    self.inventory_pending.clear()
+            if self._bulk_recovery is None:
+                self.quests_pending.clear()
 
     def capture_inventory_error(self, message: str) -> None:
         with self.lock:
@@ -1115,6 +1430,12 @@ class CompanionState:
     def capture_talents_error(self, message: str) -> None:
         with self.lock:
             self.talents_error = message
+
+    def capture_weapon_skills_error(self, message: str) -> None:
+        with self.lock:
+            # Keep a valid complete observation until its TTL. A bad newer part
+            # cannot replace it or invalidate the independent character heartbeat.
+            self.weapon_skills_error = message
 
     def capture_swap_error(self, message: str) -> None:
         with self.lock:
@@ -1140,7 +1461,7 @@ class CompanionState:
             if changed:
                 self.life_at = None
                 self.capture_revision += 1
-                self._clear_equipment()
+                self._clear_equipment(preserve_loadout=self._pulse_active)
                 self.reset_baseline = True
                 self.last_known_zone = None
                 self.fresh_at = None
@@ -1161,6 +1482,13 @@ class CompanionState:
                 self._clear_equipment()
                 self.demo = enabled
                 self.snapshot = None
+                self._profile_source = None
+                self._profile_observed_at = None
+                self._pulse_active = False
+                self._needs_profile = False
+                self._low_health_id = 0
+                self._loot_max = 0
+                self._loot_seen.clear()
                 self.fresh_at = None
                 self.last_tick = None
                 self.last_seen = None

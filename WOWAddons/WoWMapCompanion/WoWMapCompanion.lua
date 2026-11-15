@@ -7,8 +7,12 @@ local Public = Protocol.Public
 local state, config, db, ticker, transmissionTicker, pendingLevel
 local ready, online, combat, dead = false, false, false, false
 local refreshTimers = {}
-local defaults = { telemetry = true, x = 8, y = 8, cell = 1 }
+local defaults = { telemetry = true, x = 8, y = 8, cell = 1, brightness = 85 }
 local lastBusinessJSON, currentJSON
+local cachedFrame, cachedSeq, cachedTick
+local bootstrap, bootstrapTick, gearOwner
+local locationKey, pendingLocation, locationTick
+local pendingHealth, healthTick, healthID, lowThisFight = nil, nil, 0, false
 local savingHistory = false
 local loginProgress
 
@@ -43,14 +47,41 @@ end
 
 local function Export()
     if not ready or not state then return end
-    local bytes, payload, clean = Protocol.Encode(state)
-    if not bytes then Print(L("遥测编码失败：") .. tostring(payload)); return end
-    currentJSON = payload
-    -- The client flushes these on reload/logout, never as live disk writes.
-    db.snapshot, db.snapshotJSON = clean, payload
-    if ns.OfflineHistory then ns.OfflineHistory.Observe(clean, payload, savingHistory) end
-    db.updatedAt = Number(Call(GetServerTime) or Call(time), 0)
-    Telemetry.Render(Transfer.Current(bytes))
+    -- The disk snapshot follows local observations. Only the login burst sends full character data.
+    if cachedSeq ~= state.seq or cachedTick ~= state.tick then
+        local payload, clean = Protocol.Snapshot(state)
+        if not payload then Print(L("遥测编码失败：") .. tostring(clean)); return end
+        cachedSeq, cachedTick, currentJSON = state.seq, state.tick, payload
+        if state.online and state.guid ~= "" and state.name ~= "" and state.level > 0
+            and (not bootstrap or bootstrap.guid ~= state.guid) then
+            bootstrap, bootstrapTick = clean, state.tick
+        end
+        local position = pendingLocation and state.online and (state.map > 0 or state.instanceID)
+            and state.tick - locationTick < 8 and pendingLocation or nil
+        local health = pendingHealth and state.online and state.combat and not state.dead
+            and state.tick - healthTick < 8 and pendingHealth or nil
+        local newActivity = locationTick == state.tick or healthTick == state.tick
+        local fullFrame = not (position or health) or (not newActivity and state.tick % 2 == 0)
+        if bootstrap and state.online and state.tick - bootstrapTick < 12
+            and (bootstrapTick == state.tick or fullFrame) then
+            -- Repeat full metadata for screen calibration. Scene changes still describe the current scene.
+            local frame = {}
+            for key, value in pairs(bootstrap) do frame[key] = value end
+            for _, key in ipairs({ "seq", "tick", "map", "zone", "instanceType", "instanceID", "px", "py", "combat", "dead", "online" }) do
+                frame[key] = state[key]
+            end
+            cachedFrame = Protocol.Encode(frame)
+        elseif bootstrap then
+            cachedFrame = Protocol.EncodePulse(state, position, health)
+        end
+        -- The client flushes these on reload/logout, never as live disk writes.
+        db.snapshot, db.snapshotJSON = clean, payload
+        if ns.OfflineHistory then ns.OfflineHistory.Observe(clean, payload, savingHistory) end
+        db.updatedAt = Number(Call(GetServerTime) or Call(time), 0)
+    elseif savingHistory and ns.OfflineHistory then
+        ns.OfflineHistory.Observe(db.snapshot, currentJSON, true)
+    end
+    if cachedFrame then Telemetry.Render(Transfer.Current(cachedFrame)) end
 end
 
 local function SamplePosition(mapID)
@@ -125,6 +156,33 @@ local function ObserveCombat(entering)
     end
 end
 
+local function ObserveActivity()
+    local changed = false
+    if state.online and (state.map > 0 or state.instanceID) then
+        local key = state.map .. ":" .. state.instanceType .. ":" .. (state.instanceID or "")
+        if key ~= locationKey then
+            if locationKey or bootstrap then
+                pendingLocation = { map = state.map, zone = state.zone, instanceType = state.instanceType,
+                    instanceID = state.instanceID, px = state.px, py = state.py }
+                locationTick, changed = state.tick, true
+            end
+            locationKey = key
+        end
+    end
+    if not state.combat or state.dead then
+        lowThisFight, pendingHealth = false, nil
+    elseif state.online and not lowThisFight then
+        local health = Number(Call(UnitHealth, "player", false), nil)
+        local maximum = Number(Call(UnitHealthMax, "player"), nil)
+        if health and maximum and health > 0 and health * 5 < maximum then
+            healthID, lowThisFight = healthID + 1, true
+            pendingHealth = { id = healthID, percent = math.floor(health * 100 / maximum) }
+            healthTick, changed = state.tick, true
+        end
+    end
+    return changed
+end
+
 local function Sample()
     if not ready then return end
     local guid = Text(Call(UnitGUID, "player"), nil, 48)
@@ -158,11 +216,12 @@ local function Sample()
     state.px, state.py = SamplePosition(mapID)
     state.instanceType, state.instanceID = SampleInstance()
     state.online, state.combat, state.dead = online, combat, dead
+    local activityChanged = ObserveActivity()
     local seq, tick = state.seq, state.tick
     state.seq, state.tick = 0, 0
     local businessJSON = Protocol.JSON(state)
     state.seq, state.tick = seq, tick
-    if businessJSON ~= lastBusinessJSON then
+    if activityChanged or businessJSON ~= lastBusinessJSON then
         lastBusinessJSON = businessJSON
         state.seq = state.seq + 1
         Export()
@@ -190,6 +249,7 @@ local function Initialize()
     config.x = Number(config.x, 8, 16000)
     config.y = Number(config.y, 8, 16000)
     config.cell = math.max(1, math.min(6, Number(config.cell, 1, 6)))
+    config.brightness = math.max(85, math.min(100, Number(config.brightness, 85, 100)))
     -- Migrate existing large grids once; later explicit cell choices survive reloads.
     if config.compactLayoutVersion ~= 1 then
         config.cell, config.compactLayoutVersion = 1, 1
@@ -207,15 +267,19 @@ local function Initialize()
     end, Transfer.AddComparison)
     Equipment.Initialize(state, function(record)
         Transfer.Add(record)
-        ConfirmEquip.Add(record)
+        local offered, comparison = ConfirmEquip.Add(record)
+        local review = comparison and comparison.current and comparison.candidate.itemLevel > comparison.current.itemLevel
+            and comparison.assessment.verdict == "review" and comparison.assessment.reason ~= "primary_upgrade_tradeoff"
+        if not offered and not review then Transfer.AddLoot(record) end
     end, function(record)
         if ns.OfflineHistory then ns.OfflineHistory.Equipment(record) end
-        Transfer.SetGear(record)
-    end)
+        if gearOwner ~= record.guid and Transfer.SetGear(record) then gearOwner = record.guid end
+    end, Transfer.AddLoot)
     ns.ItemStorage.Initialize(state, db)
-    ns.Inventory.Initialize(state, Transfer.SetInventory, Transfer.InventoryBusy)
+    ns.Inventory.Initialize(state, Transfer.SetInventory)
     ns.Quests.Initialize(state, Transfer.SetQuests, Transfer.QuestsBusy)
     ns.Talents.Initialize(state, Transfer.SetTalents, Transfer.TalentsBusy)
+    ns.WeaponSkills.Initialize(state, db, Transfer.SetWeaponSkills, Transfer.WeaponSkillsBusy)
     ready = true
     ticker = C_Timer.NewTicker(1, function()
         state.tick = (state.tick + 1) % 2147483647
@@ -225,6 +289,7 @@ local function Initialize()
         ns.Inventory.Tick()
         ns.Quests.Tick()
         ns.Talents.Tick()
+        ns.WeaponSkills.Tick()
         Export()
     end)
     -- Keep business heartbeats at one second while each data frame remains visible for 250 ms.
@@ -236,19 +301,28 @@ local function Initialize()
 end
 
 local events = CreateFrame("Frame")
+for _, event in ipairs({ "UNIT_HEALTH", "UNIT_MAXHEALTH" }) do pcall(events.RegisterEvent, events, event) end
 for _, event in ipairs({ "BANKFRAME_OPENED", "BANKFRAME_CLOSED", "PLAYERBANKSLOTS_CHANGED", "PLAYERREAGENTBANKSLOTS_CHANGED", "BANK_TABS_CHANGED", "PLAYER_ACCOUNT_BANK_TAB_SLOTS_CHANGED" }) do pcall(events.RegisterEvent, events, event) end
 for _, event in ipairs({ "ADDON_LOADED", "PLAYER_ENTERING_WORLD", "PLAYER_LEAVING_WORLD", "PLAYER_LOGOUT", "PLAYER_MONEY", "PLAYER_LEVEL_UP", "ZONE_CHANGED_NEW_AREA", "ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "PLAYER_SPECIALIZATION_CHANGED", "NEUTRAL_FACTION_SELECT_RESULT", "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "PLAYER_DEAD", "PLAYER_ALIVE", "PLAYER_UNGHOST", "UI_SCALE_CHANGED", "DISPLAY_SIZE_CHANGED", "BAG_UPDATE_DELAYED", "PLAYER_EQUIPMENT_CHANGED", "ITEM_PUSH", "GET_ITEM_INFO_RECEIVED", "ITEM_DATA_LOAD_RESULT" }) do events:RegisterEvent(event) end
 for _, event in ipairs({"QUEST_LOG_UPDATE", "QUEST_ACCEPTED", "QUEST_REMOVED", "QUEST_WATCH_UPDATE", "QUEST_TURNED_IN"}) do events:RegisterEvent(event) end
 
 for _, event in ipairs({"PLAYER_TALENT_UPDATE", "TRAIT_CONFIG_UPDATED", "TRAIT_CONFIG_LIST_UPDATED", "TRAIT_NODE_CHANGED", "TRAIT_TREE_CHANGED"}) do events:RegisterEvent(event) end
 
+for _, event in ipairs({"SKILL_LINES_CHANGED", "CHAT_MSG_SKILL", "UNIT_STATS"}) do pcall(events.RegisterEvent, events, event) end
+
 events:SetScript("OnEvent", function(_, event, arg1, arg2)
     if event == "ADDON_LOADED" then if arg1 == addonName then Initialize() end; return end
     if not ready then return end
+    if event == "UNIT_HEALTH" or event == "UNIT_MAXHEALTH" then
+        if Public(arg1) == "player" and online and combat and not dead and not lowThisFight then Sample() end
+        return
+    end
     ns.ItemStorage.OnEvent(event)
     ns.Inventory.OnEvent(event)
     ns.Quests.OnEvent(event, arg1)
     ns.Talents.OnEvent(event, arg1)
+    ns.WeaponSkills.OnEvent(event, arg1)
+    if event == "SKILL_LINES_CHANGED" or event == "CHAT_MSG_SKILL" or event == "UNIT_STATS" then return end
     if string.sub(event, 1, 6) == "QUEST_" or string.sub(event, 1, 6) == "TRAIT_" or event == "PLAYER_TALENT_UPDATE" then return end
     ConfirmEquip.OnEvent(event, arg1, arg2)
     if event ~= "PLAYER_ENTERING_WORLD" then Equipment.OnEvent(event, arg1, arg2) end
@@ -309,6 +383,14 @@ SlashCmdList.WOWMAPCOMPANION = function(message)
         config.cell = cell
         Telemetry.UpdateLayout(); Export()
         Print(L("遥测单元尺寸：") .. cell .. L(" 像素；请同步桌面端设置。"))
+    elseif command == "contrast" then
+        local brightness = tonumber(arg)
+        if not brightness or brightness ~= math.floor(brightness) or brightness < 85 or brightness > 100 then
+            Print(string.format(L("用法：%s contrast 85（85–100）"), "/wowc")); return
+        end
+        config.brightness = brightness
+        Export()
+        Print(string.format(L("数据码亮度：%d%%"), brightness))
     elseif command == "selftest" then
         local ok, detail = Protocol.SelfTest()
         Print((ok and L("编码自检通过：") or L("编码自检失败：")) .. detail)
@@ -326,6 +408,7 @@ SlashCmdList.WOWMAPCOMPANION = function(message)
         Print(Money.Format(state.copper) .. L(" · 累计收入 ") .. Money.Format(state.earned) .. L(" · 累计支出 ") .. Money.Format(state.spent))
     else
         Print(L("/wowc telemetry 遥测；status 状态；selftest 编码自检"))
+        Print(string.format(L("用法：%s contrast 85（85–100）"), "/wowc"))
         Print(L("equip on | off | status；equip check [物品ID]：复查当前背包装备"))
         Print(L("/wowc pos 8 8 位置；compact 最小网格；cell 1 像素尺寸；reset 重置设置"))
     end

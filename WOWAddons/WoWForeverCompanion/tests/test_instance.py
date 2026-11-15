@@ -142,11 +142,12 @@ class InstanceTest(unittest.TestCase):
     def test_capacity_policy_omits_scene_without_retaining_id(self):
         self.scene(b'pvp',529)
         snapshot=self.g[test_addon.ROOT.name.encode()+b'DB'][b'snapshot']
-        exact={b'guid':b'G'*48,b'session':b's'*28,b'account':b'a'*29,b'moneyEpoch':b'e'*29,
+        exact={b'guid':b'G'*48,b'session':b's'*24,b'account':b'a'*29,b'moneyEpoch':b'e'*29,
                b'px':10000,b'py':10000,b'copper':9007199254740991,b'earned':9007199254740991,
                b'spent':9007199254740991,b'faction':b'Alliance',b'class':b'M'*20}
         for key,value in exact.items(): snapshot[key]=value
-        for key in [b'name',b'realm',b'zone']: snapshot[key]=('测试'*100).encode()
+        snapshot[b'name']=b'A Z'
+        for key in [b'realm',b'zone']: snapshot[key]=('测试'*100).encode()
         snapshot[b'seq'],snapshot[b'tick']=2147483647,2147483647
         snapshot[b'map'],snapshot[b'spec'],snapshot[b'level']=10000000,65535,255
         snapshot[b'race']=('熊'*16).encode()

@@ -121,11 +121,11 @@ end''')
         self.g.AdvanceTime(.51)
         self.assertEqual(self.record()['slots'][4]['item']['itemID'], 101)
 
-    def test_character_exit_cancels_pending_reads_and_old_replays(self):
+    def test_character_logout_cancels_pending_reads_and_old_replays(self):
         self.g.SetupOld(5, 100, b'Chest', 150)
         self.capture()
         self.ns[b'Equipment'][b'RequestCurrent'](b'refresh')
-        self.ns[b'Equipment'][b'OnEvent'](b'PLAYER_LEAVING_WORLD')
+        self.ns[b'Equipment'][b'OnEvent'](b'PLAYER_LOGOUT')
         self.g.AdvanceTime(30)
         self.assertEqual(len(self.g.GearRecords), 1)
         for _ in range(20):
@@ -183,7 +183,7 @@ end''')
             self.assertTrue(item['truncated'])
             self.assertFalse(item['tooltipComplete'])
 
-    def test_crc_fragments_replay_without_starving_the_next_full_inventory(self):
+    def test_crc_fragments_replay_twice_without_starving_the_next_full_inventory(self):
         self.g.SetupOld(5, 100, b'Chest', 150)
         self.capture()
         expected = self.record()
@@ -202,7 +202,7 @@ end''')
             if fragment['p'] == 1:
                 seen_ids.append(fragment['id'])
             parts[fragment['p']] = base64.b64decode(fragment['d'], validate=True)
-        self.assertGreaterEqual(len(seen_ids), 2)
+        self.assertEqual(len(seen_ids), 2)
         self.assertEqual(json.loads(b''.join(parts[p] for p in sorted(parts))), expected)
         self.g.SetupOld(5, 101, b'Replacement', 180)
         self.capture(b'equipment_changed')
@@ -224,7 +224,7 @@ end''')
         g.NS = ns
         g.SetupOld(16, 100, b'Worn weapon', 170, b'INVTYPE_2HWEAPON')
         load = runtime.eval(b'function(source,name,ns) assert(loadstring(source))(name,ns) end')
-        for filename in ('Protocol.lua', 'Money.lua', 'Equipment.lua', 'Transfer.lua', 'EquipmentCompare.lua', 'ConfirmEquip.lua', 'Inventory.lua', 'ItemStorage.lua', 'Quests.lua', 'Talents.lua', 'Telemetry.lua', ROOT.name + '.lua'):
+        for filename in ('Protocol.lua', 'Money.lua', 'Equipment.lua', 'Transfer.lua', 'EquipmentCompare.lua', 'ConfirmEquip.lua', 'Inventory.lua', 'ItemStorage.lua', 'Quests.lua', 'Talents.lua','WeaponSkills.lua', 'Telemetry.lua', ROOT.name + '.lua'):
             load((ROOT / filename).read_bytes(), ROOT.name.encode(), ns)
         g.Fire(b'ADDON_LOADED', ROOT.name.encode())
         g.Model[b'guid'] = b'Player-login-new'
@@ -240,7 +240,7 @@ end''')
                 messages.append(fragment)
         self.assertTrue(messages)
         self.assertTrue(all(value['g'] == 'Player-login-new' for value in messages))
-        self.assertTrue(all(value['kind'] == 'gear' for value in messages))
+        self.assertEqual({value['kind'] for value in messages}, {'gear', 'wskill'})
 
     def to_lua(self, value):
         if isinstance(value, dict):
@@ -250,13 +250,18 @@ end''')
         return value.encode() if isinstance(value, str) else value
 
     def next_fragment(self):
-        for _ in range(2):
+        # Ordinary replay now leaves unused background slots. Bound the wait to two carrier seconds.
+        for _ in range(8):
             self.ns[b'Transfer'][b'Advance']()
             frame = self.ns[b'Transfer'][b'Current'](b'state')
             if frame != b'state':
-                size = struct.unpack('<H', frame[4:6])[0]
-                return json.loads(frame[8:8 + size])
-        return None
+                self.assertEqual(len(frame), 512)
+                size, checksum = struct.unpack('<HH', frame[4:8])
+                self.assertLessEqual(size, 504)
+                payload = frame[8:8 + size]
+                self.assertEqual(binascii.crc_hqx(payload, 0xffff), checksum)
+                return json.loads(payload)
+        self.fail('No real fragment within eight 250 ms carrier slots')
 
     def comparison(self):
         return json.loads((ROOT / 'tests' / 'fixtures' / 'lua-comparison-cases.json').read_text(encoding='utf-8'))[0]['comparison']

@@ -2,6 +2,7 @@ local _, ns = ...
 local Telemetry = {}
 ns.Telemetry = Telemetry
 local frame, textures, previous, settings
+local previousBytes, renderedFrame, renderedLight
 local layoutScale, layoutPixelToUI
 
 local function PixelToUIUnit()
@@ -52,7 +53,7 @@ function Telemetry.Initialize(config)
         frame:SetClampedToScreen(true)
         -- Blizzard's PixelUtil recommends native layout rounding for pixel-aligned regions.
         if frame.SetRoundLayoutToNearestPixel then frame:SetRoundLayoutToNearestPixel(true) end
-        textures, previous = {}, {}
+        textures, previous, previousBytes, renderedFrame, renderedLight = {}, {}, {}, nil, nil
         for index = 1, 4096 do
             local texture = frame:CreateTexture(nil, "OVERLAY")
             if texture.SetRoundLayoutToNearestPixel then texture:SetRoundLayoutToNearestPixel(true) end
@@ -72,13 +73,29 @@ function Telemetry.Render(bytes)
     -- Login can change UIParent after its scale event. Repair on the next heartbeat,
     -- while leaving all 4096 texture positions untouched when the scale is stable.
     if UIParent:GetEffectiveScale() ~= layoutScale or PixelToUIUnit() ~= layoutPixelToUI then Layout() end
-    for index = 0, 4095 do
-        local value = ns.Protocol.Bit(bytes, index)
-        if previous[index + 1] ~= value then
-            local texture = textures[index + 1]
-            texture:SetColorTexture(value, value, value, 1)
-            if texture.SetSnapToPixelGrid then texture:SetSnapToPixelGrid(true) end
-            previous[index + 1] = value
+    local brightness = settings.brightness
+    if type(brightness) ~= "number" or brightness ~= brightness or brightness < 85 or brightness > 100 then brightness = 85 end
+    local light = brightness / 100
+    if bytes == renderedFrame and light == renderedLight then return end
+    if light ~= renderedLight then previousBytes, previous = {}, {} end
+    renderedFrame, renderedLight = bytes, light
+    -- A changed byte affects only its eight pixels. Unchanged bytes need no bit decoding.
+    for offset = 0, 511 do
+        local byte = string.byte(bytes, offset + 1) or 0
+        if previousBytes[offset + 1] ~= byte then
+            previousBytes[offset + 1] = byte
+            for bit = 0, 7 do
+                local index = offset * 8 + bit + 1
+                local value = math.floor(byte / 2 ^ (7 - bit)) % 2
+                if previous[index] ~= value then
+                    local texture = textures[index]
+                    -- Keep alpha opaque. The dimmer light bit still exceeds the decoder's 160/255 threshold.
+                    local color = value * light
+                    texture:SetColorTexture(color, color, color, 1)
+                    if texture.SetSnapToPixelGrid then texture:SetSnapToPixelGrid(true) end
+                    previous[index] = value
+                end
+            end
         end
     end
 end

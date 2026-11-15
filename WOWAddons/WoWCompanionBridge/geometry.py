@@ -12,10 +12,11 @@ import struct
 import time
 
 from protocol import (COLS, ROWS, FRAME_BYTES, MAX_PAYLOAD, FrameError,
-                      EquipmentComparisonError, EquipmentOfferError, EquipmentSwapError, EquipmentLoadoutError, InventoryError, QuestError, TalentError,
+                      EquipmentComparisonError, EquipmentOfferError, EquipmentSwapError, EquipmentLoadoutError, InventoryError, QuestError, TalentError, WeaponSkillError, LootError,
                       decode_frame, decode_pixels, frame_magic)
 
-DATA_ERRORS = (EquipmentComparisonError, EquipmentOfferError, EquipmentSwapError, EquipmentLoadoutError, InventoryError, QuestError, TalentError)
+DATA_ERRORS = (EquipmentComparisonError, EquipmentOfferError, EquipmentSwapError, EquipmentLoadoutError,
+               InventoryError, QuestError, TalentError, WeaponSkillError, LootError)
 RETRY_SECONDS = 2.0
 SEARCH_SECONDS = 1.5
 COMPACT_SEARCH_SECONDS = .35

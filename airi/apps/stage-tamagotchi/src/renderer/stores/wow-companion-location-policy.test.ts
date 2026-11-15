@@ -94,6 +94,37 @@ describe('location arrival policy', () => {
     expect(continueUntil(policy, state, 5000, 65_000)).toEqual([])
   })
 
+  it('waits for instance identity and speaks once without a floor map', () => {
+    const policy = new LocationPolicy()
+    const state = loadoutStateFixture()
+    const snapshot = state.bridge!.snapshot!
+    Object.assign(snapshot, { map: 1429, instanceType: 'none', instanceID: null })
+    expect(observe(policy, state, 0)).toBeUndefined()
+
+    Object.assign(snapshot, { map: 0, instanceType: 'party', instanceID: 36 })
+    expect(observe(policy, state, 1000)).toBeUndefined()
+    expect(observe(policy, state, 4000)?.instanceID).toBe(36)
+
+    snapshot.map = 291
+    expect(continueUntil(policy, state, 5000, 65_000)).toEqual([])
+  })
+
+  it('keeps a baseline without narration and leaves the cooldown available for the next story', () => {
+    const policy = new LocationPolicy()
+    const state = loadoutStateFixture()
+    state.bridge!.snapshot!.map = 1429
+    const noNarration = { ...ready, canNarrate: false }
+    observe(policy, state, 0, noNarration)
+    state.bridge!.snapshot!.map = 999999
+    observe(policy, state, 1000, noNarration)
+    expect(observe(policy, state, 4000, noNarration)).toBeUndefined()
+    expect(policy.hasPending).toBe(false)
+
+    state.bridge!.snapshot!.map = 1436
+    expect(observe(policy, state, 5000)).toBeUndefined()
+    expect(observe(policy, state, 8000)?.map).toBe(1436)
+  })
+
   it('does not announce instance metadata discovery or loss on the same map', () => {
     const policy = new LocationPolicy()
     const state = loadoutStateFixture()

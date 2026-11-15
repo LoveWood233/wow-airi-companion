@@ -248,8 +248,11 @@ Bags[6]={[1]=NewItem(400,"Bank-item","Bank item")}
         self.lua.execute(b'Bags[0][1]=NewItem(401,"Bag-item","Carried item")')
         self.fire('BAG_UPDATE_DELAYED')
         self.assertFalse(any(entry['scope'] != 'bags' for entry in self.records()))
-        carried = [entry for entry in self.records() if entry['container'] == 0][-1]
-        self.assertEqual(carried['slots'][0]['item']['name'], 'Carried item')
+        carried = [entry for entry in self.records() if entry['container'] == 0]
+        self.assertEqual(len(carried), 1)
+        self.assertEqual(carried[0]['slots'][0]['state'], 'empty')
+        saved = self.g.Database[b'itemStorage'][b'characters'][self.g.Owner[b'guid']][b'bags:0']
+        self.assertEqual(saved[b'slots'][1][b'item'][b'name'], b'Carried item')
 
     def test_classic_global_container_and_item_apis_preserve_bags_and_open_bank(self):
         self.lua.execute(b'''

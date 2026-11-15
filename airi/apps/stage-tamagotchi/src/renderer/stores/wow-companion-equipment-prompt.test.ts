@@ -335,6 +335,16 @@ describe('equipmentPromptController', () => {
     expect(h.view()).toBeNull()
   })
 
+  it('uses the fresh game offer when the login profile has an older specialization', () => {
+    const h = harness()
+    h.muted(true)
+    const profile = state()
+    profile.bridge!.snapshot!.profileObservedAt = Date.now() - 60_000
+    profile.bridge!.snapshot!.spec++
+    h.controller.observe('retail', profile)
+    expect(h.view()?.phase).toBe('notice')
+  })
+
   it('asks about a supported secondary trade-off without relabeling it as a clear upgrade', () => {
     const h = harness()
     h.muted(true)

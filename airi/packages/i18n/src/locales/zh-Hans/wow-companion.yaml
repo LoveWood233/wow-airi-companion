@@ -231,6 +231,7 @@ exploring: 探索中
 current: 当前有效
 historical: 上次已知状态
 no-character: 尚未读取到角色。请检查桥接服务和屏幕坐标。
+sync-character-profile: 已读到插件信号。请在游戏内输入 /reload，同步当前角色资料。
 preferences: 陪伴偏好
 preferences-description: 离开此页面后连接仍会继续。仅主角色窗口生成回应，避免多窗口重复播报。
 options:
@@ -245,7 +246,7 @@ options:
 hints:
   enabled: 将当前游戏状态提供给角色的对话上下文。
   muted: 继续更新上下文，但不主动回应游戏事件。
-  quietInCombat: 保留一个重要事件，战斗结束后回应；超过 30 秒的事件会丢弃。
+  quietInCombat: 保留一条普通游戏通知，战斗结束后播报。低血量提醒仍可在战斗中播报。
   levelUp: 只在同一角色会话内检测等级提高。
   zone: 地图或区域改变时回应，遵守提醒间隔。
   death: '倒下时给出简短鼓励。'
@@ -673,7 +674,7 @@ chatter:
     instanceScenery: 副本／团队截图互动
   budget-title: 主动模型调用预算
   budget-enabled: 限制每小时主动模型调用
-  budget-description: 两个游戏版本共用最近 60 分钟额度，范围 1～1000，默认关闭。每次主动生成计一次，失败也计数；截图互动包含看图与回答两次。角色事件、日历摘要和地图逸闻也计数。固定台词、语音合成及手动问答不占额度；模型内部工具步骤不按账单请求逐笔统计。重启及关闭开关保留最近计数。
+  budget-description: 两个游戏版本共用最近 60 分钟额度，范围 1～1000，默认关闭。每次主动生成计一次，失败也计数；截图互动包含看图与回答两次。角色事件、日历摘要和地图逸闻在调用聊天模型时计数。固定台词、语音合成及手动问答不占额度；模型内部工具步骤不按账单请求逐笔统计。重启及关闭开关保留最近计数。
   budget-limit: 最近 60 分钟调用上限
   budget-usage: '最近已用 {used} 次 · 按当前上限剩余 {remaining}/{limit} 次'
   budget-exhausted: 主动模型额度已用尽，等待额度恢复后再开始新互动，不补播已丢弃的事件。手动问答仍可用。
@@ -705,7 +706,7 @@ chatter:
   location-title: '地图逸闻'
   location-description: '更换地图、进入副本或战场后，讲一小段关于当前地点的逸闻，并显示语音字幕。'
   location-enabled: '开启地图逸闻'
-  location-enabled-description: '默认开启。需配置聊天与语音模型，并开启对应游戏页面的地区提醒。不会截图，无需视觉模型。'
+  location-enabled-description: '默认开启。请配置语音模型，并开启游戏页面的地区提醒。《无限》内置故事直接用中文播报，其余地点使用聊天模型。'
   location-trigger: '讲一小段关于当前地点的逸闻。'
   location-error: '地图逸闻生成失败，请检查聊天或语音配置。'
 
@@ -979,6 +980,9 @@ archives:
 fixed-notices:
   level_up: '{player}，恭喜升到{level}级，你又变强了。'
   death: '{player}，这次倒下不是旅途的终点。我陪你再来。'
+  low_health: '{player}，小心，刚才的生命值只有百分之{percent}。'
+  loot: '你获得了{item}。 | 你获得了{count}件{item}。'
+  loot-unknown: '你获得了一件物品。 | 你获得了{count}件物品。'
   revive: '{player}，欢迎回来。新的冒险还在等着我们。'
   zone: '{player}，我们到了{zone}。一起看看这里吧。'
   demo: '这是演示通知：{text}'

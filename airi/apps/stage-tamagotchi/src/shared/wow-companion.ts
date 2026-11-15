@@ -20,6 +20,7 @@ import { inventorySnapshotSchema } from './wow-companion-inventory'
 import { equipmentLoadoutSchema } from './wow-companion-loadout'
 import { questSnapshotSchema } from './wow-companion-quests'
 import { talentSnapshotSchema } from './wow-companion-talents'
+import { weaponSkillsSnapshotSchema } from './wow-companion-weapon-skills'
 import { connectionSchema, transferSchema } from './wow-connection'
 
 const count = pipe(number(), integer(), minValue(0), maxValue(Number.MAX_SAFE_INTEGER))
@@ -48,6 +49,8 @@ const snapshotFieldsSchema = looseObject({
   combatEnds: optional(pipe(number(), integer(), minValue(0), maxValue(2147483647))),
   seq: count,
   tick: count,
+  // Unix milliseconds when the bridge first received the login profile. A pulse leaves this time unchanged.
+  profileObservedAt: optional(count),
   guid: label,
   name: label,
   realm: label,
@@ -55,6 +58,7 @@ const snapshotFieldsSchema = looseObject({
   class: label,
   faction: nullable(picklist(['Alliance', 'Horde', 'Neutral'])),
   race: nullable(raceLabel),
+  weaponSkills: optional(weaponSkillsSnapshotSchema),
   spec: count,
   map: count,
   zone: label,
@@ -87,12 +91,14 @@ export const snapshotSchema = pipe(snapshotFieldsSchema, check((snapshot) => {
   const hasLogin = Object.hasOwn(snapshot, 'loginId')
   const hasCount = Object.hasOwn(snapshot, 'combatEnds')
   return (!hasLogin && !hasCount) || (hasLogin && hasCount && typeof snapshot.loginId === 'string' && typeof snapshot.combatEnds === 'number')
-}, 'Login progress requires both the login identity and combat count.'), check(snapshot => snapshot.instanceID == null
-  || (snapshot.instanceType !== undefined && !['none', 'unknown'].includes(snapshot.instanceType)), 'Instance IDs require an observed instance type.'), transform((snapshot): InferOutput<typeof snapshotFieldsSchema> => {
-  const { loginId, combatEnds, ...observations } = snapshot
+}, 'Login progress requires both the login identity and combat count.'), check(snapshot => !snapshot.weaponSkills
+  || (snapshot.weaponSkills.session === snapshot.session && snapshot.weaponSkills.guid === snapshot.guid), 'Weapon skills require the current character and session.'), check(snapshot => snapshot.instanceID == null
+    || (snapshot.instanceType !== undefined && !['none', 'unknown'].includes(snapshot.instanceType)), 'Instance IDs require an observed instance type.'), transform((snapshot): InferOutput<typeof snapshotFieldsSchema> => {
+  const { loginId, combatEnds, weaponSkills, ...observations } = snapshot
   return {
     ...observations,
     ...(snapshot.online && loginId !== undefined && combatEnds !== undefined ? { loginId, combatEnds } : {}),
+    ...(snapshot.online && weaponSkills !== undefined ? { weaponSkills } : {}),
     // An absent pair is unknown. Offline observations and unknown maps cannot retain a current position.
     px: snapshot.online && snapshot.map > 0 ? snapshot.px ?? null : null,
     py: snapshot.online && snapshot.map > 0 ? snapshot.py ?? null : null,
@@ -101,15 +107,22 @@ export const snapshotSchema = pipe(snapshotFieldsSchema, check((snapshot) => {
   }
 }))
 
-export const eventSchema = object({
+const positiveEventInteger = pipe(number(), integer(), minValue(1), maxValue(2147483647))
+
+export const eventSchema = pipe(object({
   id: count,
-  type: picklist(['connected', 'level_up', 'zone', 'death', 'revive', 'combat_start', 'combat_end', 'offline']),
+  type: picklist(['connected', 'level_up', 'zone', 'death', 'revive', 'combat_start', 'combat_end', 'offline', 'low_health', 'loot']),
+  healthPercent: optional(pipe(count, maxValue(19))),
+  itemId: optional(positiveEventInteger),
+  itemName: optional(nullable(pipe(string(), minLength(1), maxLength(128)))),
+  quantity: optional(positiveEventInteger),
   timestamp: string(),
   title: label,
   detail: pipe(string(), maxLength(2048)),
   snapshot: nullable(snapshotSchema),
   demo: boolean(),
-})
+}), check(event => event.type !== 'low_health' || event.healthPercent !== undefined, 'Low health requires a measured percentage.'), check(event => event.type !== 'loot'
+  || (event.itemId !== undefined && event.itemName !== undefined && event.quantity !== undefined), 'Loot requires an item ID, an optional name, and a quantity.'))
 
 export const captureSchema = object({
   x: pipe(number(), integer(), minValue(-32768), maxValue(32767)),
@@ -133,6 +146,7 @@ export const bridgeSchema = looseObject({
   groupBuff: groupBuffSchema,
   eventCursor: count,
   events: pipe(array(eventSchema), maxLength(500)),
+  needsProfile: optional(literal(true)),
   // Published bridges without equipment support remain a supported source of character observations.
   equipment: optional(pipe(array(equipmentSchema), maxLength(10))),
   equipmentError: optional(nullable(pipe(string(), maxLength(2048)))),

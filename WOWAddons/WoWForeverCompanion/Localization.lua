@@ -2,6 +2,8 @@
 local _, ns = ...
 local messages = {
   enUS = {
+    ["用法：%s contrast 85（85–100）"] = "Usage: %s contrast 85 (85-100)",
+    ["数据码亮度：%d%%"] = "Data grid brightness: %d%%",
     ["这里对现在的你而言太早了，前面的区域，以后再来探索吧"] = "It is too early for you to be here. Come back to explore this area later.",
     ["金币暂不可用"] = "Gold unavailable",
     ["%.0f金 %d银 %d铜"] = "%.0fg %ds %dc",
@@ -107,6 +109,8 @@ local messages = {
     ["、"] = ", ",
   },
   zhCN = {
+    ["用法：%s contrast 85（85–100）"] = "用法：%s contrast 85（85–100）",
+    ["数据码亮度：%d%%"] = "数据码亮度：%d%%",
     ["这里对现在的你而言太早了，前面的区域，以后再来探索吧"] = "这里对现在的你而言太早了，前面的区域，以后再来探索吧",
     ["金币暂不可用"] = "金币暂不可用",
     ["%.0f金 %d银 %d铜"] = "%.0f金 %d银 %d铜",
@@ -212,6 +216,8 @@ local messages = {
     ["、"] = "、",
   },
   zhTW = {
+    ["用法：%s contrast 85（85–100）"] = "用法：%s contrast 85（85–100）",
+    ["数据码亮度：%d%%"] = "資料碼亮度：%d%%",
     ["金币暂不可用"] = "金幣暫不可用",
     ["%.0f金 %d银 %d铜"] = "%.0f金 %d銀 %d銅",
     ["装备：%s · 等待资料 %d · 跳过 %d"] = "裝備：%s · 等待資料 %d · 跳過 %d",
@@ -316,6 +322,8 @@ local messages = {
     ["、"] = "、",
   },
   esES = {
+    ["用法：%s contrast 85（85–100）"] = "Uso: %s contrast 85 (85-100)",
+    ["数据码亮度：%d%%"] = "Brillo del código de datos: %d%%",
     ["金币暂不可用"] = "Oro no disponible",
     ["%.0f金 %d银 %d铜"] = "%.0f oro %d plata %d cobre",
     ["装备：%s · 等待资料 %d · 跳过 %d"] = "Equipo: %s · espera de datos %d · saltó %d",
@@ -420,6 +428,8 @@ local messages = {
     ["|cffefd18b[魔兽无限陪伴精灵]|r "] = "|cffefd18b[WoW Forever [Compañero]|r ",
   },
   frFR = {
+    ["用法：%s contrast 85（85–100）"] = "Utilisation : %s contrast 85 (85-100)",
+    ["数据码亮度：%d%%"] = "Luminosité du code de données : %d%%",
     ["金币暂不可用"] = "L'or n'est pas disponible",
     ["%.0f金 %d银 %d铜"] = "%.0f or %d argent %d cuivre",
     ["装备：%s · 等待资料 %d · 跳过 %d"] = "Equipement: %s · attendant les données %d · sauté %d",
@@ -524,6 +534,8 @@ local messages = {
     ["|cffefd18b[魔兽无限陪伴精灵]|r "] = "|cffefd18b[WoW Forever - Je vous en prie.|r ",
   },
   itIT = {
+    ["用法：%s contrast 85（85–100）"] = "Uso: %s contrast 85 (85-100)",
+    ["数据码亮度：%d%%"] = "Luminosità del codice dati: %d%%",
     ["金币暂不可用"] = "Oro non disponibile",
     ["%.0f金 %d银 %d铜"] = "%.0f oro %d argento %d rame",
     ["装备：%s · 等待资料 %d · 跳过 %d"] = "Equipaggiamento: %s · attesa di dati %d · saltato %d",
@@ -628,6 +640,8 @@ local messages = {
     ["、"] = ", ",
   },
   ptBR = {
+    ["用法：%s contrast 85（85–100）"] = "Uso: %s contrast 85 (85-100)",
+    ["数据码亮度：%d%%"] = "Brilho do código de dados: %d%%",
     ["金币暂不可用"] = "Ouro não disponível",
     ["%.0f金 %d银 %d铜"] = "%.0f ouro %d prata %d cobre",
     ["装备：%s · 等待资料 %d · 跳过 %d"] = "Equipamento: %s · esperando por dados %d · saltou %d",
@@ -732,6 +746,8 @@ local messages = {
     ["、"] = ", ",
   },
   jaJP = {
+    ["用法：%s contrast 85（85–100）"] = "使い方: %s contrast 85 (85-100)",
+    ["数据码亮度：%d%%"] = "データコードの明るさ: %d%%",
     ["金币暂不可用"] = "ゴールドは利用できない",
     ["%.0f金 %d银 %d铜"] = "%.0fゴールド %dシルバー %dカッパー",
     ["装备：%s · 等待资料 %d · 跳过 %d"] = "機器: %s · データの待機 %d · %dを逃した",
@@ -836,6 +852,8 @@ local messages = {
     ["|cffefd18b[魔兽无限陪伴精灵]|r "] = "|cffefd18b[WoW Forever [同伴]|r ",
   },
   koKR = {
+    ["用法：%s contrast 85（85–100）"] = "사용법: %s contrast 85 (85-100)",
+    ["数据码亮度：%d%%"] = "데이터 코드 밝기: %d%%",
     ["金币暂不可用"] = "금이 없습니다",
     ["%.0f金 %d银 %d铜"] = "%.0f골드 %d실버 %d코퍼",
     ["装备：%s · 等待资料 %d · 跳过 %d"] = "장비: %s · 데이터 기다림 %d · 점프된 %d",
@@ -940,6 +958,8 @@ local messages = {
     ["|cffefd18b[魔兽无限陪伴精灵]|r "] = "|cffefd18b[WoW Forever [행동자]|r ",
   },
   ruRU = {
+    ["用法：%s contrast 85（85–100）"] = "Использование: %s contrast 85 (85-100)",
+    ["数据码亮度：%d%%"] = "Яркость кода данных: %d%%",
     ["金币暂不可用"] = "Золото недоступно",
     ["%.0f金 %d银 %d铜"] = "%.0f золота %d серебра %d меди",
     ["装备：%s · 等待资料 %d · 跳过 %d"] = "Оборудование: %s · ожидание данных %d · пропущенный %d",

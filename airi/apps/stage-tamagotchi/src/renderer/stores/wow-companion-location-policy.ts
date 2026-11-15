@@ -5,25 +5,29 @@ import { canInteract } from './wow-companion-idle'
 
 type Location = Pick<Snapshot, 'map' | 'instanceType' | 'instanceID'>
 
-function locationKey(snapshot: Location) {
+function instanceKey(snapshot: Location) {
   if (snapshot.instanceType && snapshot.instanceType !== 'none' && snapshot.instanceType !== 'unknown'
     && snapshot.instanceID && snapshot.instanceID > 0) {
     return `instance:${snapshot.instanceType}:${snapshot.instanceID}`
   }
-  // A map remains usable without instance metadata. Unknown data cannot prove that the player entered an instance.
-  return `map:${snapshot.map}`
+}
+
+function locationKey(snapshot: Location) {
+  return instanceKey(snapshot) ?? `map:${snapshot.map}`
 }
 
 /** Compares observed destinations. A known instance ID keeps its floors within one arrival. */
 export function isSameLocation(first: Location, second: Location): boolean {
+  const firstInstance = instanceKey(first)
+  const secondInstance = instanceKey(second)
+  if (firstInstance && secondInstance)
+    return firstInstance === secondInstance
   if (first.map <= 0 || second.map <= 0)
     return false
   const firstType = first.instanceType === 'unknown' ? undefined : first.instanceType
   const secondType = second.instanceType === 'unknown' ? undefined : second.instanceType
   if (firstType && secondType && firstType !== secondType)
     return false
-  if (firstType && firstType !== 'none' && secondType && secondType !== 'none' && first.instanceID && second.instanceID)
-    return first.instanceID === second.instanceID
   // Partial instance observations do not turn metadata discovery into an arrival on the same map.
   return first.map === second.map
 }
@@ -56,7 +60,7 @@ export class LocationPolicy {
   }
 
   /** Combat delays a recent arrival. Busy work retains one destination, with no backlog of earlier locations. */
-  observe(state: CompanionState, now: number, { eligible, busy }: IdleEligibility): Snapshot | undefined {
+  observe(state: CompanionState, now: number, { eligible, busy, canNarrate = true }: IdleEligibility & { canNarrate?: boolean }): Snapshot | undefined {
     const bridge = state.bridge
     const snapshot = bridge?.snapshot
     const observedAt = Date.parse(bridge?.lastSeen ?? '')
@@ -91,10 +95,10 @@ export class LocationPolicy {
 
     if (this.pending && now - this.pending.changedAt >= 120_000)
       this.pending = undefined
-    const destination = Number.isSafeInteger(snapshot.map) && snapshot.map > 0
+    const destination = instanceKey(snapshot) || (Number.isSafeInteger(snapshot.map) && snapshot.map > 0)
       ? { map: snapshot.map, instanceType: snapshot.instanceType, instanceID: snapshot.instanceID }
       : undefined
-    // Loading screens can briefly remove the map. They neither establish a destination nor consume a pending arrival.
+    // A loading sample without a map or instance ID cannot establish or consume a destination.
     if (destination === undefined) {
       if (this.pending)
         this.pending.stableSince = undefined
@@ -116,10 +120,14 @@ export class LocationPolicy {
     const pending = this.pending
     if (pending && pending.stableSince === undefined)
       pending.stableSince = now
-    if (!pending || !isSameLocation(pending.destination, destination) || now - pending.stableSince! < 3000
-      || now - this.lastSpokenAt < 60_000 || busy || !canInteract(state, now)) {
+    if (!pending || !isSameLocation(pending.destination, destination) || now - pending.stableSince! < 3000)
+      return
+    if (!canNarrate) {
+      this.pending = undefined
       return
     }
+    if (now - this.lastSpokenAt < 60_000 || busy || !canInteract(state, now))
+      return
     this.pending = undefined
     this.lastSpokenAt = now
     this.spoken.set(locationKey(destination), now)

@@ -1,6 +1,7 @@
 import type { CompanionState } from '../../shared/wow-companion'
 import type { PlayerAddress } from './wow-companion-player-address'
 
+import { hasRecentCharacterCapture } from '../utils/wow-companion-observation'
 import { equipmentQuestion } from './wow-companion-loadout-context'
 
 /** Personal snapshot requests need local character data, unlike database questions about item sources or recommended builds. */
@@ -37,13 +38,17 @@ export function snapshotUnavailable(kind: ReturnType<typeof characterSnapshotKin
     return true
   }
   const matches = (record: { guid: string, session: string } | null | undefined) => record?.guid === snapshot.guid && record.session === snapshot.session
+  const loginProfile = snapshot.profileObservedAt
+  const expiredProfile = loginProfile !== undefined && !hasRecentCharacterCapture(loginProfile, now)
+  const expiredCapture = (record: { observedAt: number }) => loginProfile !== undefined && !hasRecentCharacterCapture(record.observedAt * 1000, now)
   switch (kind) {
     case 'equipment': return !!bridge.equipmentLoadoutError || !matches(bridge.equipmentLoadout)
+      || expiredCapture(bridge.equipmentLoadout!)
       || bridge.equipmentLoadout!.slots.some(slot => slot.state === 'unknown' || (slot.item
         && (!slot.item.infoComplete || !slot.item.statsComplete || !slot.item.tooltipComplete || slot.item.truncated)))
-    case 'gold': return snapshot.copper === null
-    case 'level': return snapshot.level <= 0
-    case 'inventory': return !!bridge.inventoryError || !matches(bridge.inventory) || !bridge.inventory!.complete
+    case 'gold': return expiredProfile || snapshot.copper === null
+    case 'level': return expiredProfile || snapshot.level <= 0
+    case 'inventory': return !!bridge.inventoryError || !matches(bridge.inventory) || expiredCapture(bridge.inventory!) || !bridge.inventory!.complete
     case 'talents': return !!bridge.talentsError || !matches(bridge.talents) || !bridge.talents!.complete || bridge.talents!.status !== 'active'
     case 'quests': return !!bridge.questsError || !matches(bridge.quests) || !bridge.quests!.log.complete || bridge.quests!.log.truncated
   }

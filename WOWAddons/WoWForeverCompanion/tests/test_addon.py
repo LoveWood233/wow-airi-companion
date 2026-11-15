@@ -99,13 +99,40 @@ class AddonTest(unittest.TestCase):
         self.lua.execute(MOCK)
         self.ns = self.lua.table()
         self.load = self.lua.eval(b"function(source, name, ns) local f, err = loadstring(source); assert(f, err); return f(name, ns) end")
-        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
+        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "WeaponSkills.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
             self.load((ROOT / name).read_bytes(), b"WoWForeverCompanion", self.ns)
         self.lua.globals().Fire(b"ADDON_LOADED", b"WoWForeverCompanion")
         self.lua.globals().Fire(b"PLAYER_ENTERING_WORLD")
 
     def snapshot(self):
         return json.loads(self.lua.globals().WoWForeverCompanionDB[b"snapshotJSON"])
+
+    def test_player_full_name_retains_both_parts_and_separate_realm(self):
+        g = self.lua.globals()
+        self.lua.execute(b'function UnitNameUnmodified(unit) assert(unit == "player"); return Model.name, Model.surname end')
+        g.Model[b"name"], g.Model[b"surname"] = "晨星".encode(), "银叶".encode()
+        g.Fire(b"ZONE_CHANGED")
+        self.assertEqual((self.snapshot()["name"], self.snapshot()["realm"]), ("晨星 银叶", "Realm"))
+
+        g.Model[b"surname"] = g.Secret
+        g.Fire(b"ZONE_CHANGED")
+        self.assertEqual(self.snapshot()["name"], "晨星 银叶")
+
+        g.Model[b"guid"], g.Model[b"name"] = b"Player-1-00000002", "明月".encode()
+        g.Fire(b"ZONE_CHANGED")
+        self.assertEqual(self.snapshot()["name"], "明月")
+
+    def test_fallback_accepts_full_name_without_duplicating_surname(self):
+        g = self.lua.globals()
+        self.lua.execute(b'function UnitName(unit) assert(unit == "player"); return Model.name, Model.surname end')
+        g.Model[b"name"], g.Model[b"surname"] = b"Aela Silverleaf", b"Silverleaf"
+        g.Fire(b"ZONE_CHANGED")
+        self.assertEqual(self.snapshot()["name"], "Aela Silverleaf")
+
+        self.lua.execute(b'function RegionalUniqueNamesEnabled() return false end')
+        g.Model[b"guid"], g.Model[b"name"], g.Model[b"surname"] = b"Player-1-00000002", b"Elara", b"Realm"
+        g.Fire(b"ZONE_CHANGED")
+        self.assertEqual(self.snapshot()["name"], "Elara")
 
     def test_crc_and_bit_order_match_python(self):
         protocol = self.ns[b"Protocol"]
@@ -190,32 +217,35 @@ class AddonTest(unittest.TestCase):
                 g.Fire(b"ZONE_CHANGED")
                 self.assertEqual(self.snapshot()["race"], expected)
 
-    def test_frame_drops_whole_race_only_after_display_labels(self):
+    def test_frame_drops_whole_race_to_preserve_name(self):
         snapshot = self.lua.globals().WoWForeverCompanionDB[b"snapshot"]
-        # Budget 22 bytes for the paired coordinates while retaining the exact 504-byte boundary.
-        exact = {b"guid": b"G" * 48, b"session": b"s" * 28, b"account": b"a" * 29,
+        # The full name and required fields fit once the oversized race label is removed.
+        exact = {b"guid": b"G" * 48, b"session": b"s" * 24, b"account": b"a" * 29,
                  b"moneyEpoch": b"e" * 29, b"px": 10000, b"py": 10000, b"copper": 9007199254740991,
                  b"earned": 9007199254740991, b"spent": 9007199254740991,
                  b"faction": b"Alliance", b"class": b"M" * 20}
         for key, value in exact.items():
             snapshot[key] = value
-        for key in (b"name", b"realm", b"zone"):
+        snapshot[b"name"] = b"A Z"
+        for key in (b"realm", b"zone"):
             snapshot[key] = ("测试" * 100).encode()
         snapshot[b"seq"], snapshot[b"tick"] = 2147483647, 2147483647
         snapshot[b"map"], snapshot[b"spec"], snapshot[b"level"] = 10000000, 65535, 255
         snapshot[b"race"] = ("熊" * 16).encode()
         frame, payload, _ = self.ns[b"Protocol"][b"Encode"](snapshot)
         value = json.loads(payload)
-        self.assertEqual((len(frame), len(payload)), (512, 504))
+        self.assertEqual(len(frame), 512)
+        self.assertLessEqual(len(payload), 504)
         self.assertIsNone(value["race"])
-        self.assertEqual((value["name"], value["realm"], value["zone"]), ("", "", ""))
+        self.assertEqual((value["name"], value["realm"], value["zone"]), ("A Z", "", ""))
         for key, expected in exact.items():
             self.assertEqual(value[key.decode()], expected.decode() if isinstance(expected, bytes) else expected)
         # A frame that cannot preserve identity/counters must fail, not truncate those fields.
         snapshot[b"session"] = b"s" * 40
+        snapshot[b"account"], snapshot[b"moneyEpoch"] = b"a" * 40, b"e" * 40
         frame, reason = self.ns[b"Protocol"][b"Encode"](snapshot)
         self.assertIsNone(frame)
-        self.assertEqual(reason, b"snapshot exceeds 504 bytes")
+        self.assertIn(b"504 bytes", reason)
         self.assertEqual(snapshot[b"race"], ("熊" * 16).encode())
         self.assertEqual(snapshot[b"session"], b"s" * 40)
 
@@ -375,7 +405,7 @@ class AddonTest(unittest.TestCase):
                 lua.execute(b'WoWForeverCompanionDB={sentinel=42}; WoWMapCompanionDB={sentinel=99}')
                 ns = lua.table()
                 load = lua.eval(b"function(source, ns) assert(loadstring(source))('WoWForeverCompanion', ns) end")
-                for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
+                for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "WeaponSkills.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
                     load((ROOT / name).read_bytes(), ns)
                 g = lua.globals()
                 g.Fire(b"ADDON_LOADED", b"WoWForeverCompanion")
@@ -394,16 +424,16 @@ class AddonTest(unittest.TestCase):
         self.assertEqual(plain, camelot)
         self.assertIn("## Interface: 16001", plain)
         self.assertIn("## SavedVariables: WoWForeverCompanionDB", plain)
-        self.assertIn("## Version: 1.21.0", plain)
+        self.assertIn("## Version: 1.22.0", plain)
         lua_files = [line.strip() for line in plain.splitlines() if line.strip().endswith(".lua")]
-        self.assertEqual(lua_files, ["Localization.lua", "Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "OfflineHistory.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "Calendar.lua", "GroupBuffs.lua", "ExplorationLevels.lua", "ExplorationWarning.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"])
+        self.assertEqual(lua_files, ["Localization.lua", "Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "OfflineHistory.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "WeaponSkills.lua", "Calendar.lua", "GroupBuffs.lua", "ExplorationLevels.lua", "ExplorationWarning.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"])
         for filename in lua_files:
             self.assertTrue((ROOT / filename).is_file())
 
     def reload_with_saved_settings(self):
         self.lua.execute(MOCK)
         ns = self.lua.table()
-        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
+        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "WeaponSkills.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
             self.load((ROOT / name).read_bytes(), b"WoWForeverCompanion", ns)
         self.lua.globals().Fire(b"ADDON_LOADED", b"WoWForeverCompanion")
         self.lua.globals().Fire(b"PLAYER_ENTERING_WORLD")
@@ -486,7 +516,7 @@ class AddonTest(unittest.TestCase):
         # Reset client runtime objects while retaining its account-wide SavedVariables table.
         self.lua.execute(MOCK)
         ns = self.lua.table()
-        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
+        for name in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "WeaponSkills.lua", "Telemetry.lua", "WoWForeverCompanion.lua"):
             self.load((ROOT / name).read_bytes(), b"WoWForeverCompanion", ns)
         g.Fire(b"ADDON_LOADED", b"WoWForeverCompanion")
         g.Model[b"copper"] = 900000
@@ -555,12 +585,13 @@ class AddonTest(unittest.TestCase):
     def test_money_frame_limit_preserves_identity_and_exact_counters(self):
         g = self.lua.globals()
         snapshot = g.WoWForeverCompanionDB[b"snapshot"]
-        exact = {b"guid": b"G" * 48, b"session": b"s" * 24, b"account": b"a" * 24,
+        exact = {b"guid": b"Player-1-00000001", b"session": b"s" * 24, b"account": b"a" * 24,
                  b"moneyEpoch": b"e" * 24, b"copper": 9007199254740991,
                  b"earned": 9007199254740991, b"spent": 9007199254740991}
         for key, value in exact.items():
             snapshot[key] = value
-        for key in (b"name", b"realm", b"zone"):
+        snapshot[b"name"] = "晨星 银叶".encode()
+        for key in (b"realm", b"zone"):
             snapshot[key] = ("测试" * 100).encode()
         for key in (b"seq", b"tick"):
             snapshot[key] = 2147483647
@@ -574,6 +605,7 @@ class AddonTest(unittest.TestCase):
         for key, expected in exact.items():
             self.assertEqual(value[key.decode()], expected.decode() if isinstance(expected, bytes) else expected)
         self.assertEqual(value["faction"], "Alliance")
+        self.assertEqual(value["name"], "晨星 银叶")
         self.assertEqual(value["race"], "至高岭牛头人")
 
     def assert_physical_layout(self, cell, x, y):

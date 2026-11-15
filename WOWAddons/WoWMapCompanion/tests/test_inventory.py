@@ -94,17 +94,19 @@ C_Container.GetContainerItemInfo=function(bag,slot) if bag==0 and slot==2 then r
         self.assertFalse(record['complete'])
         self.assertEqual(record['items'], [{'itemID': 12359, 'quantity': 7}])
 
-    def test_bag_events_coalesce_and_publish_a_new_revision(self):
-        self.capture()
+    def test_bag_events_and_same_login_world_changes_keep_the_login_revision(self):
+        login_inventory = self.capture()
         self.lua.execute(b'Bags[0][1]={id=12359,quantity=9}')
         for _ in range(25):
             self.ns[b'Inventory'][b'OnEvent'](b'BAG_UPDATE_DELAYED')
         self.g.AdvanceTime(.41)
-        self.assertEqual(len(self.g.Captures), 2)
-        self.assertEqual(self.record()['id'], 2)
-        self.assertEqual(self.record()['items'][0]['quantity'], 9)
+        self.ns[b'Inventory'][b'OnEvent'](b'PLAYER_LEAVING_WORLD')
+        self.ns[b'Inventory'][b'OnEvent'](b'PLAYER_ENTERING_WORLD')
+        self.g.AdvanceTime(.41)
+        self.assertEqual(len(self.g.Captures), 1)
+        self.assertEqual(self.drain(), login_inventory)
 
-    def test_quiet_inventory_refreshes_after_transmission_not_each_heartbeat(self):
+    def test_quiet_inventory_transmits_two_passes_without_recapturing(self):
         self.lua.execute(b'function GetServerTime() return 1700000000 + math.floor(GetTime()) end')
         self.capture()
         for _ in range(10):
@@ -114,11 +116,15 @@ C_Container.GetContainerItemInfo=function(bag,slot) if bag==0 and slot==2 then r
         self.ns[b'Inventory'][b'Tick']()
         self.g.AdvanceTime(.41)
         self.assertEqual(len(self.g.Captures), 1)
-        self.drain()
+        self.assertEqual(self.drain(), self.record())
+        self.assertEqual(self.drain(), self.record())
         self.ns[b'Inventory'][b'Tick']()
         self.g.AdvanceTime(.41)
-        self.assertEqual(len(self.g.Captures), 2)
-        self.assertGreater(self.record()['observedAt'], 1700000000)
+        self.assertEqual(len(self.g.Captures), 1)
+        self.assertEqual(self.record()['observedAt'], 1700000000)
+        for _ in range(60):
+            self.ns[b'Transfer'][b'Advance']()
+            self.assertEqual(self.ns[b'Transfer'][b'Current'](b'state'), b'state')
 
     def test_unknown_capture_clock_retries_without_publishing_a_false_time(self):
         self.lua.execute(b'function GetServerTime() return Secret end')
@@ -130,10 +136,10 @@ C_Container.GetContainerItemInfo=function(bag,slot) if bag==0 and slot==2 then r
         self.g.AdvanceTime(.41)
         self.assertEqual(len(self.g.Captures), 1)
 
-    def test_exit_cancels_pending_collection_and_all_inventory_replays(self):
+    def test_logout_cancels_pending_collection_and_all_inventory_replays(self):
         self.capture()
         self.ns[b'Inventory'][b'OnEvent'](b'BAG_UPDATE_DELAYED')
-        self.ns[b'Inventory'][b'OnEvent'](b'PLAYER_LEAVING_WORLD')
+        self.ns[b'Inventory'][b'OnEvent'](b'PLAYER_LOGOUT')
         self.g.AdvanceTime(40)
         self.ns[b'Inventory'][b'Tick']()
         self.assertEqual(len(self.g.Captures), 1)

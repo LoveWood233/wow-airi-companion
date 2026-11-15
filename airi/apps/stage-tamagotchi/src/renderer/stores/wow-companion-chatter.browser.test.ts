@@ -20,6 +20,8 @@ import { beforeEach, describe, expect, it, onTestFinished, vi } from 'vitest'
 import { render } from 'vitest-browser-vue'
 import { defineComponent, h, nextTick } from 'vue'
 
+import stories from './wow-forever-region-stories.json'
+
 import { loadoutStateFixture } from '../../shared/wow-companion-loadout.test-helper'
 import { i18n } from '../modules/i18n'
 import { useWowChatterSettingsStore } from './wow-chatter-settings'
@@ -65,25 +67,29 @@ beforeEach(async () => {
   await localforage.clear()
 })
 
-async function companionFixture(options: { chat?: boolean, speech?: boolean, combats?: number, consumed?: number, emptyMemory?: boolean, capacityFull?: boolean, combat?: boolean } = {}) {
+async function companionFixture(options: { chat?: boolean, speech?: boolean, combats?: number, consumed?: number, emptyMemory?: boolean, capacityFull?: boolean, combat?: boolean, game?: GameVersion, location?: boolean } = {}) {
   vi.useFakeTimers({ toFake: ['Date'] })
   vi.setSystemTime(startedAt)
   const pinia = createPinia()
   setActivePinia(pinia)
+  const game = options.game ?? 'retail'
   const state = loadoutStateFixture()
-  state.settings = { ...state.settings, muted: false, zone: false, levelUp: false, death: false, revive: false }
+  state.game = game
+  state.settings = { ...state.settings, muted: false, zone: options.location ?? false, levelUp: false, death: false, revive: false }
   state.bridge!.snapshot = { ...state.bridge!.snapshot!, loginId: 'real-game-login', combatEnds: options.combats ?? 5, combat: options.combat ?? false }
   state.bridge!.equipmentOffer = null
   state.bridge!.equipmentComparisons = []
   state.bridge!.events = []
   state.bridge!.eventCursor = 0
   const snapshot = state.bridge!.snapshot!
-  const forever = loadoutStateFixture()
-  forever.game = 'forever'
-  forever.settings.enabled = false
-  forever.bridge!.snapshot!.online = false
+  if (game === 'forever')
+    Object.assign(snapshot, { map: 1453, zone: '暴风城', instanceType: 'none', instanceID: null })
+  const otherProfile = loadoutStateFixture()
+  otherProfile.game = game === 'forever' ? 'retail' : 'forever'
+  otherProfile.settings.enabled = false
+  otherProfile.bridge!.snapshot!.online = false
   if (options.consumed !== undefined) {
-    localStorage.setItem(combatKey, JSON.stringify([{ game: 'retail', account: snapshot.account, guid: snapshot.guid, loginId: snapshot.loginId, consumed: options.consumed, lastInteractionAt: startedAt }]))
+    localStorage.setItem(combatKey, JSON.stringify([{ game, account: snapshot.account, guid: snapshot.guid, loginId: snapshot.loginId, consumed: options.consumed, lastInteractionAt: startedAt }]))
   }
   const modules = {
     consciousness: options.chat === false ? { provider: '', model: '' } : { provider: 'chatter-test-chat', model: 'test-chat' },
@@ -102,7 +108,7 @@ async function companionFixture(options: { chat?: boolean, speech?: boolean, com
   const goal: CompanionMemoryEntry = {
     id: 'current-plan',
     personaId: 'default',
-    character: { game: 'retail', account: snapshot.account, guid: snapshot.guid },
+    character: { game, account: snapshot.account, guid: snapshot.guid },
     characterName: snapshot.name,
     kind: 'session-goal',
     source: 'user',
@@ -129,8 +135,8 @@ async function companionFixture(options: { chat?: boolean, speech?: boolean, com
   })
   ipc.activate.mockResolvedValue(undefined)
   ipc.remember.mockImplementation(async () => memoryState())
-  ipc.state.mockImplementation(async ({ game }: { game: GameVersion }) => {
-    const current = structuredClone(game === 'retail' ? state : forever)
+  ipc.state.mockImplementation(async ({ game: requested }: { game: GameVersion }) => {
+    const current = structuredClone(requested === game ? state : otherProfile)
     current.updatedAt = Date.now()
     current.bridge!.lastSeen = new Date().toISOString()
     current.bridge!.ageSeconds = 0
@@ -149,11 +155,11 @@ async function companionFixture(options: { chat?: boolean, speech?: boolean, com
   } })
   const screen = await render(host, { global: { plugins: [pinia, i18n] } })
   const preferences = useWowChatterSettingsStore(pinia)
-  preferences.regularEnabled = true
+  preferences.regularEnabled = !options.location
   preferences.regularIntervalMinutes = 5
   preferences.combatsRequired = 5
   preferences.sceneryEnabled = false
-  preferences.locationEnabled = false
+  preferences.locationEnabled = options.location ?? false
   preferences.questEnabled = false
   const configs = useProviderConfigStore(pinia)
   configs.ensureProvider('chatter-test-chat', 'ollama', { model: 'test-chat' })
@@ -200,11 +206,11 @@ async function companionFixture(options: { chat?: boolean, speech?: boolean, com
   })
   companion!.start(true)
   await settle()
-  await expect.poll(() => companion!.profiles.retail.loaded).toBe(true)
+  await expect.poll(() => companion!.profiles[game].loaded).toBe(true)
 
   async function refreshAt(time: number) {
     vi.setSystemTime(time)
-    await companion!.refresh('retail')
+    await companion!.refresh(game)
     await settle()
   }
 
@@ -216,6 +222,25 @@ async function companionFixture(options: { chat?: boolean, speech?: boolean, com
   return { companion: companion!, state, snapshot, sessions, sessionId, stream, synthesize, output, preferences, observedUserInput, refreshAt, observeUntil, goal, sendMessage: (text: string) => useChatStore(pinia).send({ sessionId, text, messageId: 'owner-input-memory-limit' }), cancelMessage: () => useChatStore(pinia).cancelTurn({ sessionId, turnId: 'owner-input-memory-limit' }), setMemories: (value: CompanionMemoryEntry[]) => entries = value, removeMemories: () => entries = [], deferModel: () => deferred = true, resolveModel: (text: string) => pendingModels.at(-1)?.resolve(text), setReply: (text: string) => reply = text, progress: () => JSON.parse(localStorage.getItem(combatKey) ?? '[]') as { consumed: number }[] }
 }
 
+describe('location speech in Forever', () => {
+  it('plays the local background and anecdote after a stable arrival without a chat model', async () => {
+    const result = await companionFixture({ game: 'forever', chat: false, location: true })
+    const destination = stories.find(entry => entry.mapId === 1429)!
+    expect(destination.anecdote).toBeTruthy()
+    Object.assign(result.snapshot, { map: 1429, zone: 'Elwynn Forest' })
+    await result.refreshAt(startedAt + 1000)
+    expect(result.synthesize).not.toHaveBeenCalled()
+    await result.refreshAt(startedAt + 4000)
+    await expect.poll(() => result.sessions.messages.at(-1)?.content).toBe(
+      `${destination.name}。 ${destination.background} ${destination.anecdote}`,
+    )
+    await expect.poll(() => result.synthesize.mock.calls.map(([request]) => request.text).join('')).toContain(destination.name)
+    expect(result.stream).not.toHaveBeenCalled()
+    await result.refreshAt(startedAt + 65_000)
+    expect(result.sessions.messages.filter(message => message.role === 'assistant' && message.proactive?.turnId.startsWith('wow-location:'))).toHaveLength(1)
+  })
+})
+
 describe('fixed game notices with the shared voice owner', () => {
   it('speaks a level event without a chat model or a model request', async () => {
     const result = await companionFixture({ chat: false })
@@ -226,6 +251,30 @@ describe('fixed game notices with the shared voice owner', () => {
     await result.refreshAt(startedAt + 1000)
     await expect.poll(() => result.synthesize.mock.calls.map(([request]) => request.text).join(' ')).toContain(String(result.snapshot.level))
     expect(result.synthesize.mock.calls.map(([request]) => request.text).join(' ')).toContain(result.snapshot.name)
+    expect(result.stream).not.toHaveBeenCalled()
+  })
+
+  it('speaks the measured low-health alert during combat without invoking the chat model', async () => {
+    const result = await companionFixture({ chat: false, speech: true })
+    result.snapshot.combat = true
+    result.state.settings.quietInCombat = true
+    result.state.bridge!.events = [{ id: 1, type: 'low_health', healthPercent: 19, timestamp: new Date(startedAt + 1000).toISOString(), title: 'Low health', detail: '', snapshot: structuredClone(result.snapshot), demo: false }]
+    result.state.bridge!.eventCursor = 1
+    await result.refreshAt(startedAt + 1000)
+    await expect.poll(() => result.synthesize.mock.calls.map(([request]) => request.text).join(' ')).toContain('19')
+    await settle()
+    const requests = result.synthesize.mock.calls.length
+    await result.refreshAt(startedAt + 2000)
+    expect(result.synthesize).toHaveBeenCalledTimes(requests)
+    expect(result.stream).not.toHaveBeenCalled()
+  })
+
+  it.each(['Tough Jerky', null])('announces received items with the observed quantity and name %s', async (itemName) => {
+    const result = await companionFixture({ chat: false, speech: false })
+    result.state.bridge!.events = [{ id: 1, type: 'loot', itemId: 117, itemName, quantity: 2, timestamp: new Date(startedAt + 1000).toISOString(), title: 'Loot', detail: '', snapshot: structuredClone(result.snapshot), demo: false }]
+    result.state.bridge!.eventCursor = 1
+    await result.refreshAt(startedAt + 1000)
+    expect(result.companion.chatterCaption).toBe(i18n.global.t(itemName ? 'wow-companion.fixed-notices.loot' : 'wow-companion.fixed-notices.loot-unknown', { item: itemName }, 2))
     expect(result.stream).not.toHaveBeenCalled()
   })
 

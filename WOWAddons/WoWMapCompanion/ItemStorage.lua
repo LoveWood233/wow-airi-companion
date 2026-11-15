@@ -4,6 +4,7 @@ local Storage = {}
 ns.ItemStorage = Storage
 local owner, database, active, bankOpen, timer, worker
 local revision, signatures, pending, queued = 0, {}, {}, {}
+local wireOwner, wireSession, wireBags, wireStartedAt
 local retries = {}
 local Public = ns.Protocol.Public
 
@@ -110,17 +111,25 @@ local function Discover()
     end
 end
 
-local function Save(record)
+local function Save(record, needsRetry)
     local key = Key(record.scope, record.container)
     -- Identity and capture time do not invalidate otherwise unchanged contents.
     local signature = ns.Transfer.StorageSlotsJSON(record)
     if signatures[key] == signature then return end
-    if ns.Transfer.SetStorage(record) then
-        signatures[key] = signature
-        local saved = database.itemStorage.characters[record.guid]
-        if type(saved) ~= "table" then saved = {}; database.itemStorage.characters[record.guid] = saved end
-        saved[key] = record
+    if record.scope ~= "bags" then
+        ns.Transfer.SetStorage(record)
+    elseif wireOwner == record.guid and wireSession == record.session then
+        -- Refine missing item metadata within the login capture window.
+        local sent = wireBags[key]
+        if (sent == nil or (sent == false and (GetTime() or 0) - wireStartedAt < 12))
+            and ns.Transfer.SetStorage(record) then
+            wireBags[key] = not needsRetry
+        end
     end
+    signatures[key] = signature
+    local saved = database.itemStorage.characters[record.guid]
+    if type(saved) ~= "table" then saved = {}; database.itemStorage.characters[record.guid] = saved end
+    saved[key] = record
 end
 
 local function Capture(descriptor)
@@ -172,7 +181,7 @@ local function Capture(descriptor)
             if not descriptor.invalid then
                 revision = revision + 1
                 record.id = revision
-                Save(record)
+                Save(record, needsRetry)
                 if needsRetry then Retry(descriptor) end
                 if not needsRetry and retries[descriptor.key] then retries[descriptor.key]:Cancel(); retries[descriptor.key] = nil end
             end
@@ -210,7 +219,8 @@ function Storage.OnEvent(event)
         timer = C_Timer.NewTimer(0.4, function()
             timer = nil
             if not Current() then return end
-            if owner and database and database.itemStorage then
+            if wireOwner ~= owner.guid or wireSession ~= owner.session then
+                wireOwner, wireSession, wireBags, wireStartedAt = owner.guid, owner.session, {}, GetTime() or 0
                 local saved = database.itemStorage.characters[owner.guid]
                 if type(saved) == "table" then
                     local count = 0
@@ -238,7 +248,7 @@ function Storage.OnEvent(event)
         for _, retry in pairs(retries) do retry:Cancel() end
         retries, Storage.current = {}, nil
         pending, queued, signatures = {}, {}, {}
-        ns.Transfer.ClearStorage()
+        if event == "PLAYER_LOGOUT" then ns.Transfer.ClearStorage() end
         return
     elseif event == "BANKFRAME_OPENED" then
         bankOpen = true

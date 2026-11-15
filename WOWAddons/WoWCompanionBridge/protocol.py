@@ -28,6 +28,7 @@ QUEST_MAX_BYTES = 32768
 QUEST_MAX_PARTS = 137
 TALENT_MAX_BYTES = 65536
 TALENT_MAX_PARTS = 274
+INSTANCE_TYPES = ("none", "party", "raid", "pvp", "arena", "scenario", "unknown")
 
 
 def frame_magic(protocol: str) -> bytes:
@@ -70,6 +71,14 @@ class QuestError(FrameError):
 
 class TalentError(FrameError):
     """An intact committed-talent fragment failed, not the character heartbeat."""
+
+
+class WeaponSkillError(FrameError):
+    """An intact weapon-skill part failed, not the character heartbeat."""
+
+
+class LootError(FrameError):
+    """An item observation failed independently of the character heartbeat."""
 
 
 def load_json(payload: bytes) -> object:
@@ -793,7 +802,114 @@ def validate_life(value: object) -> dict:
     return dict(value)
 
 
-def validate_message(value: object) -> dict:
+def validate_pulse(value: object) -> dict:
+    """A pulse renews a known character and can carry one location and low-health observation."""
+    fields = {"v", "kind", "s", "g", "q", "t", "on", "c", "d"}
+    if (not isinstance(value, dict) or value.get("kind") != "pulse"
+            or not fields <= value.keys() or value.keys() - fields - {"p", "h"}):
+        raise FrameError("Compact heartbeat fields are invalid")
+    _integer(value["v"], "v", 1, 1)
+    _text(value["s"], "s", 40, identity=True)
+    _text(value["g"], "g", 48, identity=True)
+    _integer(value["q"], "q", 0, 2147483647)
+    _integer(value["t"], "t", 0, 2147483647)
+    if any(type(value[key]) is not bool for key in ("on", "c", "d")):
+        raise FrameError("Compact heartbeat flags must be boolean")
+    result = dict(value)
+    if "p" in value:
+        position = value["p"]
+        if not isinstance(position, dict) or set(position) != {"map", "zone", "instanceType", "instanceID", "px", "py"}:
+            raise FrameError("Compact heartbeat location fields are invalid")
+        map_id = _integer(position["map"], "map", 0, 2147483647)
+        _text(position["zone"], "zone", 192)
+        scene = position["instanceType"]
+        if scene not in INSTANCE_TYPES:
+            raise FrameError("Compact heartbeat scene type is invalid")
+        instance_id = position["instanceID"]
+        if instance_id is not None:
+            _integer(instance_id, "instanceID", 1, 2147483647)
+            if scene in ("none", "unknown"):
+                raise FrameError("Compact heartbeat instance requires a known scene type")
+        x, y = position["px"], position["py"]
+        if x is not None or y is not None:
+            _integer(x, "px", 0, 10000)
+            _integer(y, "py", 0, 10000)
+        result["p"] = dict(position)
+        if not value["on"] or not map_id:
+            result["p"].update(px=None, py=None)
+        if not value["on"]:
+            result["p"].update(instanceType="unknown", instanceID=None)
+    if "h" in value:
+        health = value["h"]
+        if not isinstance(health, dict) or set(health) != {"id", "percent"}:
+            raise FrameError("Low-health observation fields are invalid")
+        _integer(health["id"], "id", 1, 2147483647)
+        _integer(health["percent"], "percent", 0, 19)
+        result["h"] = dict(health)
+    return result
+
+
+def validate_loot(value: object) -> dict:
+    fields = {"v", "kind", "s", "g", "id", "item", "name", "n"}
+    if not isinstance(value, dict) or value.get("kind") != "loot" or set(value) != fields:
+        raise FrameError("Item acquisition fields are invalid")
+    _integer(value["v"], "v", 1, 1)
+    _text(value["s"], "s", 40, identity=True)
+    _text(value["g"], "g", 48, identity=True)
+    for key in ("id", "item", "n"):
+        _integer(value[key], key, 1, 2147483647)
+    name = _text(value["name"], "name", 96, nullable=True)
+    if name is not None and (not name.strip() or any(127 <= ord(character) <= 159 for character in name)):
+        raise FrameError("Item acquisition name is empty or has control characters")
+    return dict(value)
+
+
+def validate_weapon_skill(value: object) -> dict:
+    """Each part carries one observed weapon skill, or an explicit empty status."""
+    fields = {"v", "kind", "s", "g", "id", "p", "n", "t", "status", "entry"}
+    entry_fields = {"skillLineID", "name", "rank", "maxRank", "modifier", "temporary"}
+    try:
+        if not isinstance(value, dict) or set(value) != fields or value["kind"] != "wskill":
+            raise FrameError("Invalid weapon-skill frame fields")
+        _integer(value["v"], "v", 1, 1)
+        _text(value["s"], "s", 40, identity=True)
+        _text(value["g"], "g", 48, identity=True)
+        _integer(value["id"], "id", 1, 2147483647)
+        count = _integer(value["n"], "n", 1, 32)
+        _integer(value["p"], "p", 1, count)
+        _integer(value["t"], "t", 1, 2147483647)
+        if value["status"] not in ("available", "unsupported", "unavailable"):
+            raise FrameError("Invalid weapon-skill status")
+        entry = value["entry"]
+        if entry is None:
+            if value["n"] != 1 or value["p"] != 1:
+                raise FrameError("An empty weapon-skill observation requires one part")
+        else:
+            if value["status"] != "available" or not isinstance(entry, dict) or set(entry) != entry_fields:
+                raise FrameError("Invalid weapon-skill entry fields or status")
+            _integer(entry["skillLineID"], "skillLineID", 1, 2147483647)
+            name = _text(entry["name"], "name", 64)
+            if not name or any(127 <= ord(character) <= 159 for character in name):
+                raise FrameError("Invalid weapon-skill name")
+            maximum = _integer(entry["maxRank"], "maxRank", 0, 65535)
+            _integer(entry["rank"], "rank", 0, maximum)
+            _integer(entry["modifier"], "modifier", -65535, 65535)
+            _integer(entry["temporary"], "temporary", -65535, 65535)
+        return {**value, "entry": dict(entry) if entry is not None else None}
+    except FrameError as exc:
+        raise WeaponSkillError(str(exc)) from exc
+
+
+def validate_message(value: object, protocol: str = "WCP1") -> dict:
+    if isinstance(value, dict) and value.get("kind") == "pulse":
+        return validate_pulse(value)
+    if isinstance(value, dict) and value.get("kind") == "loot":
+        try:
+            return validate_loot(value)
+        except FrameError as exc:
+            raise LootError(str(exc)) from exc
+    if isinstance(value, dict) and value.get("kind") == "wskill":
+        return validate_weapon_skill(value)
     if isinstance(value, dict) and value.get("kind") == "life":
         return validate_life(value)
     if isinstance(value, dict) and value.get("kind") == "store":
@@ -823,15 +939,17 @@ def validate_message(value: object) -> dict:
         return validate_equipment_swap(value)
     if isinstance(value, dict) and value.get("kind") == "offer":
         return validate_equipment_offer(value)
-    return validate_snapshot(value)
+    return validate_snapshot(value, protocol)
 
 
-def validate_snapshot(value: object) -> dict:
+def validate_snapshot(value: object, protocol: str = "WCP1") -> dict:
     if not isinstance(value, dict):
         raise FrameError("快照必须是 JSON 对象")
     if type(value.get("v")) is not int or value["v"] != 3:
         raise FrameError("角色快照需要 v3，请同时更新插件、桥接和 AIRI")
-    string_limits = {"session": 64, "guid": 96, "name": 64, "realm": 96, "class": 32, "zone": 192}
+    # Camelot permits up to 12 characters in each part plus the separating space.
+    name_limit = 12 * 4 * 2 + 1 if protocol == "WCF1" else 64
+    string_limits = {"session": 64, "guid": 96, "name": name_limit, "realm": 96, "class": 32, "zone": 192}
     result = {"v": 3}
     for key, maximum in string_limits.items():
         item = value.get(key)
@@ -908,10 +1026,9 @@ def validate_snapshot(value: object) -> dict:
         px, py = None, None
     result["px"], result["py"] = px, py
     # Scene observations are optional in v3. Missing fields never imply an outdoor scene.
-    instance_types = ("none", "party", "raid", "pvp", "arena", "scenario", "unknown")
     if "instanceType" in value:
         kind = value["instanceType"]
-        if not isinstance(kind, str) or kind not in instance_types:
+        if not isinstance(kind, str) or kind not in INSTANCE_TYPES:
             raise FrameError("字段 instanceType 不是支持的场景类型")
         result["instanceType"] = kind if result["online"] else "unknown"
     if "instanceID" in value:
@@ -927,7 +1044,7 @@ def validate_snapshot(value: object) -> dict:
 
 def encode_frame(snapshot: dict, protocol: str = "WCP1") -> bytes:
     """Used for fixtures and diagnostics; the game addon implements the same codec."""
-    validate_message(snapshot)
+    validate_message(snapshot, protocol)
     payload = json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     if len(payload) > MAX_PAYLOAD:
         raise FrameError("遥测数据超过 504 字节")
@@ -947,7 +1064,7 @@ def decode_frame(frame: bytes, protocol: str = "WCP1") -> dict:
     payload = frame[8:8 + length]
     if binascii.crc_hqx(payload, 0xFFFF) != expected_crc:
         raise FrameError("CRC 校验失败，等待下一完整帧")
-    return validate_message(load_json(payload))
+    return validate_message(load_json(payload), protocol)
 
 
 def decode_pixels(bgra: bytes, width: int, height: int, cell_size: int, protocol: str = "WCP1") -> dict:

@@ -200,6 +200,7 @@ exploring: Exploring
 current: Current
 historical: Last known state
 no-character: No character observation yet. Check the bridge and capture coordinates.
+sync-character-profile: The addon signal is visible. Enter /reload in the game to sync your character profile.
 preferences: Companion preferences
 preferences-description: The connection continues when you close this page. Only the main character window generates replies.
 options:
@@ -214,7 +215,7 @@ options:
 hints:
   enabled: Keep the current game state available to the character.
   muted: Continue to update context without proactive game replies.
-  quietInCombat: Hold one important event until combat ends. Discard events after 30 seconds.
+  quietInCombat: Hold one ordinary game notice until combat ends. Low-health alerts can still play during combat.
   levelUp: Detect a higher level within the same character session.
   zone: React to a new map or zone, subject to the cooldown.
   death: 'Give brief encouragement after a death.'
@@ -643,7 +644,7 @@ chatter:
     instanceScenery: Instance screenshots
   budget-title: Proactive model budget
   budget-enabled: Limit hourly proactive generation
-  budget-description: Both games share a rolling 60-minute limit, from 1 to 1000. Disabled by default. Failed generation attempts count. Scenery uses two attempts. Events, calendars, and lore count. Fixed phrases, speech synthesis, and manual chat use no quota. Internal tool steps are not individual billing requests. Restarts and toggles retain usage.
+  budget-description: Both games share a rolling 60-minute limit, from 1 to 1000. Disabled by default. Failed generation attempts count. Scenery uses two attempts. Event, calendar, and location replies count when they call the chat model. Fixed phrases, speech synthesis, and manual chat use no quota. Internal tool steps are not individual billing requests. Restarts and toggles retain usage.
   budget-limit: Generation limit per 60 minutes
   budget-usage: 'Used {used} · Remaining under current limit {remaining}/{limit}'
   budget-exhausted: Proactive quota is exhausted. New interactions wait for quota. Discarded events do not replay. Manual chat remains available.
@@ -675,7 +676,7 @@ chatter:
   location-title: 'Location lore'
   location-description: 'After a map change or entry into a dungeon, raid, or battleground, hear a short story about the destination.'
   location-enabled: 'Enable location lore'
-  location-enabled-description: 'Enabled by default. Requires chat and speech models plus region reminders in the game profile. No screenshots or vision model.'
+  location-enabled-description: 'Enabled by default. Enable region reminders and configure a speech model. Built-in Forever stories play in Chinese. Other location stories also use the chat model.'
   location-trigger: 'Share a short story about this location.'
   location-error: 'Location lore failed. Check your chat and speech settings.'
 
@@ -980,6 +981,9 @@ archives:
 fixed-notices:
   level_up: '{player}, congratulations on reaching level {level}. You are getting stronger.'
   death: '{player}, this fall does not end our journey. I am here for another try.'
+  low_health: 'Careful, {player}. Your health was just at {percent}%.'
+  loot: 'You received {item}. | You received {count} × {item}.'
+  loot-unknown: 'You received an item. | You received {count} items.'
   revive: 'Welcome back, {player}. More adventures await us.'
   zone: '{player}, we have reached {zone}. Let us take a look around.'
   demo: 'This is a demonstration notice: {text}'

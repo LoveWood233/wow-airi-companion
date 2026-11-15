@@ -28,6 +28,7 @@ class ConnectionReader:
         self.last_heartbeat = None
         self.last_advance = None
         self.proven = False
+        self.transient_error = False
         self.image = None
         self.fallback = None
         self.next_discovery = 0.0
@@ -40,13 +41,20 @@ class ConnectionReader:
         self.window = None
         self.last_heartbeat, self.last_advance = None, None
         self.proven = False
+        self.transient_error = False
         self.next_discovery = 0.0
         self.diagnostic.update(phase="locating", reason=None, consecutive=0, retrySeconds=0)
 
     def blocked(self, code: str):
         self.proven = False
+        self.transient_error = False
         self.last_heartbeat, self.last_advance = None, None
         self.diagnostic.update(phase="blocked", reason=code, consecutive=0)
+
+    @property
+    def source_token(self):
+        """Internal provenance only. It is never included in the public diagnostic response."""
+        return (self.game, self.window.identity, self.signature) if self.window is not None else None
 
     def _load(self, basis):
         if self.path is None or not self.path.exists():
@@ -93,6 +101,7 @@ class ConnectionReader:
         self.fallback = relative if relative != (x, y) else None
         self.last_heartbeat, self.last_advance = None, None
         self.proven = False
+        self.transient_error = False
         self.diagnostic.update(phase="locating", reason=None, consecutive=0,
                                attempts=self.diagnostic["attempts"] + 1)
 
@@ -115,6 +124,7 @@ class ConnectionReader:
                 raise WindowFailure("calibration-save-failed")
         self.anchor = value
         self.proven = True
+        self.transient_error = False
         self.diagnostic.update(phase="connected", reason=None, calibratedAt=stamp(),
                                calibration={"x": grid.rect[0], "y": grid.rect[1], "pitchX": grid.pitch_x, "pitchY": grid.pitch_y})
 
@@ -155,8 +165,13 @@ class ConnectionReader:
         except DATA_ERRORS:
             self.image = self.reader.image
             raise
-        except FrameError:
+        except FrameError as exc:
             self.proven = False
+            # Unreadable pixels, CRC or the selected magic can retain already-verified bulk parts.
+            # Every bad frame is still discarded. Foreign protocols and invalid messages reset.
+            self.transient_error = str(exc) in {
+                "CRC 校验失败，等待下一完整帧", "网格像素模糊或被遮挡，请检查缩放、位置和 HDR",
+                f"未找到 {protocol} 网格，请检查坐标、大小和游戏画面"}
             self.last_heartbeat, self.last_advance = None, None
             self.diagnostic.update(phase="locating", reason="grid-unreadable", consecutive=0,
                                    retrySeconds=round(max(0, self.reader.next_search - self.clock()), 1))
@@ -170,16 +185,24 @@ class ConnectionReader:
             raise
         self.diagnostic["lastFrameAt"] = stamp()
         self.diagnostic["retrySeconds"] = 0
-        if not message.get("kind"):
-            heartbeat = (message["guid"], message["session"], message["tick"])
-            if self.last_heartbeat is None or heartbeat[:2] != self.last_heartbeat[:2]:
+        kind = message.get("kind")
+        if kind is None or kind == "pulse":
+            previous = self.last_heartbeat
+            if kind == "pulse":
+                identity = (message["g"], message["s"])
+                account = previous[0] if previous is not None and previous[1:3] == identity else None
+                heartbeat = (account, *identity, message["t"])
+            else:
+                heartbeat = (message["account"], message["guid"], message["session"], message["tick"])
+            if (previous is None or heartbeat[1:3] != previous[1:3]
+                    or previous[0] is not None and heartbeat[0] != previous[0]):
                 self.diagnostic["consecutive"] = 1
                 self.proven = False
                 self.last_advance = self.clock()
-            elif heartbeat[2] > self.last_heartbeat[2]:
+            elif heartbeat[3] > previous[3]:
                 self.diagnostic["consecutive"] = min(3, self.diagnostic["consecutive"] + 1)
                 self.last_advance = self.clock()
-            elif heartbeat[2] < self.last_heartbeat[2]:
+            elif heartbeat[3] < previous[3]:
                 self.blocked("heartbeat-stale")
             self.last_heartbeat = heartbeat
         if self.last_advance is not None and self.clock() - self.last_advance > 5:

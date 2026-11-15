@@ -7,11 +7,15 @@ local Protocol = ns.Protocol
 local records, cursor, current, currentPart, equipmentPhase = {}, 0, nil, 0, false
 local heldFrame, dropped = nil, 0
 local swaps, swapCursor, dataOpportunity = {}, 0, 0
+local loot, lootID = {}, 0
 local offer, offerOpportunity = nil, 0
 local gear, gearPart, gearReplay = nil, 0, false
 local inventory, inventoryPart = nil, 0
 local quests, questPart, snapshotOpportunity = nil, 0, 0
 local talents, talentPart, snapshotCursor = nil, 0, 0
+local replayCursor = 0
+local backgroundOpportunity = 0
+local weaponSkills, weaponSkillPart = nil, 0
 local comparisons, comparisonCursor, currentComparison, comparisonPart, comparisonReplay = {}, 0, nil, 0, false
 local alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 local keys = { "v", "id", "session", "guid", "itemID", "itemGUID", "link", "name", "type", "subtype", "equipLoc", "quality", "itemLevel", "requiredLevel", "stats", "tooltip", "quantity", "observedAt", "source", "infoComplete", "statsComplete", "tooltipComplete", "truncated" }
@@ -84,7 +88,7 @@ function Transfer.SetInventory(record)
     if not record then inventory, inventoryPart = nil, 0; return true end
     local frames = Transfer.EncodeInventory(record)
     if not frames then dropped = dropped + 1; return false end
-    inventory, inventoryPart = { frames = frames, fresh = true }, 0
+    inventory, inventoryPart = { frames = frames, fresh = true, passes = 2 }, 0
     return true
 end
 
@@ -93,7 +97,10 @@ function Transfer.InventoryBusy() return inventory and inventory.fresh or false 
 local function NextInventory()
     inventoryPart = inventoryPart % #inventory.frames + 1
     heldFrame = inventory.frames[inventoryPart]
-    if inventoryPart == #inventory.frames then inventory.fresh = false end
+    if inventoryPart == #inventory.frames then
+        inventory.passes, inventory.fresh = inventory.passes - 1, false
+        if inventory.passes == 0 then inventory, inventoryPart = nil, 0 end
+    end
 end
 
 function Transfer.QuestsJSON(record)
@@ -298,7 +305,7 @@ function Transfer.SetStorage(record)
         if #storageOrder >= 40 then return false end
         storageOrder[#storageOrder + 1] = key
     end
-    encoded.fresh = not record.cached
+    encoded.fresh, encoded.passes = not record.cached, 2
     if storageOrder[storageCursor] == key and storagePart > 0 then
         -- Finish the immutable in-flight revision. Repeated loot changes coalesce into one latest successor.
         storage[key].next = encoded
@@ -321,15 +328,22 @@ local function NextStorage()
         end
         storageCursor = selected or (storageCursor % #storageOrder + 1)
     end
-    local record = storage[storageOrder[storageCursor]]
+    local key = storageOrder[storageCursor]
+    local record = storage[key]
     storagePart = storagePart + 1
     local payload = '{"v":1,"kind":"store","s":' .. Value(record.session) .. ',"g":' .. Value(record.guid)
         .. ',"id":' .. record.id .. ',"p":' .. storagePart .. ',"n":' .. record.count
         .. ',"d":' .. Escape(Transfer.Base64(string.sub(record.body, (storagePart - 1) * 240 + 1, storagePart * 240))) .. '}'
     heldFrame = Protocol.Frame(payload)
     if storagePart == record.count then
-        storagePart, record.fresh = 0, false
-        if record.next then storage[storageOrder[storageCursor]] = record.next end
+        storagePart, record.passes, record.fresh = 0, record.passes - 1, false
+        if record.next then
+            storage[key] = record.next
+        elseif record.passes == 0 then
+            storage[key] = nil
+            table.remove(storageOrder, storageCursor)
+            storageCursor = storageCursor - 1
+        end
     end
 end
 
@@ -380,8 +394,8 @@ function Transfer.SetGear(record)
     if not record then gear, gearPart, gearReplay = nil, 0, false; return end
     local frames = Transfer.EncodeGear(record)
     if not frames then dropped = dropped + 1; return false end
-    -- Only the latest coherent loadout is kept. Its fragments replay until a newer capture replaces it.
-    gear, gearPart, gearReplay = { frames = frames, fresh = true }, 0, false
+    -- A login capture gets one bounded retry pass for missed screen frames.
+    gear, gearPart, gearReplay = { frames = frames, fresh = true, passes = 2 }, 0, false
     -- Restart only interrupted old replay streams, so their later pass cannot resume beyond a receiver TTL.
     if current and not current.fresh then current, currentPart = nil, 0 end
     if currentComparison and not currentComparison.fresh then currentComparison, comparisonPart = nil, 0 end
@@ -390,7 +404,10 @@ end
 local function NextGear()
     gearPart = gearPart % #gear.frames + 1
     heldFrame = gear.frames[gearPart]
-    if gearPart == #gear.frames then gear.fresh = false; gearReplay = false end
+    if gearPart == #gear.frames then
+        gear.passes, gear.fresh, gearReplay = gear.passes - 1, false, false
+        if gear.passes == 0 then gear, gearPart = nil, 0 end
+    end
 end
 
 local comparisonKeys = { "v", "id", "session", "guid", "class", "spec", "primary", "observedAt", "slot", "usable", "specMatch", "current", "candidate", "assessment", "deltas" }
@@ -564,6 +581,76 @@ local function PlainName(value)
     end
     return string.find(value, "%S") ~= nil
 end
+function Transfer.WeaponSkillsJSON(record)
+    local entries = {}
+    for _, entry in ipairs(record.entries) do
+        entries[#entries + 1] = FieldsJSON(entry, {"skillLineID", "name", "rank", "maxRank", "modifier", "temporary"})
+    end
+    local fields = FieldsJSON(record, {"v", "id", "session", "guid", "observedAt", "status"})
+    return string.sub(fields, 1, -2) .. ',"entries":[' .. table.concat(entries, ",") .. ']}'
+end
+function Transfer.EncodeWeaponSkills(record)
+    if type(record) ~= "table" or record.v ~= 1 or not Identity(record.session, 40) or not Identity(record.guid, 48)
+        or not Integer(record.id, 1, 2147483647) or not Integer(record.observedAt, 1, 2147483647)
+        or (record.status ~= "available" and record.status ~= "unsupported" and record.status ~= "unavailable")
+        or type(record.entries) ~= "table" or #record.entries > 32
+        or (record.status ~= "available" and #record.entries ~= 0) then return nil, "invalid weapon skills" end
+    local seen = {}
+    for index in pairs(record.entries) do
+        if not Integer(index, 1, #record.entries) then return nil, "invalid weapon skill entries" end
+    end
+    for _, entry in ipairs(record.entries) do
+        if type(entry) ~= "table" or not Integer(entry.skillLineID, 1, 2147483647) or seen[entry.skillLineID]
+            or not PlainName(entry.name) or #entry.name > 64 or string.find(entry.name, "\194[\128-\159]")
+            or not Integer(entry.rank, 0, 65535) or not Integer(entry.maxRank, 0, 65535) or entry.rank > entry.maxRank
+            or not Integer(entry.modifier, -65535, 65535) or not Integer(entry.temporary, -65535, 65535) then
+            return nil, "invalid weapon skill entry"
+        end
+        seen[entry.skillLineID] = true
+    end
+    local count, frames = math.max(1, #record.entries), {}
+    for part = 1, count do
+        local entry = record.entries[part]
+        local payload = '{"v":1,"kind":"wskill","s":' .. Value(record.session) .. ',"g":' .. Value(record.guid)
+            .. ',"id":' .. record.id .. ',"p":' .. part .. ',"n":' .. count .. ',"t":' .. record.observedAt
+            .. ',"status":' .. Value(record.status) .. ',"entry":'
+            .. (entry and FieldsJSON(entry, {"skillLineID", "name", "rank", "maxRank", "modifier", "temporary"}) or "null") .. '}'
+        if #payload > 504 then return nil, "weapon skill frame exceeds 504 bytes" end
+        frames[part] = Protocol.Frame(payload)
+    end
+    return frames, Transfer.WeaponSkillsJSON(record)
+end
+function Transfer.SetWeaponSkills(record)
+    local previous = weaponSkills
+    local frames = record and Transfer.EncodeWeaponSkills(record)
+    if record and not frames then dropped = dropped + 1; return false end
+    weaponSkills, weaponSkillPart = frames and { frames = frames, fresh = true } or nil, 0
+    if previous then
+        for _, frame in ipairs(previous.frames) do if heldFrame == frame then heldFrame = nil; break end end
+    end
+    return true
+end
+function Transfer.WeaponSkillsBusy() return weaponSkills and weaponSkills.fresh or false end
+local function NextWeaponSkills()
+    weaponSkillPart = weaponSkillPart % #weaponSkills.frames + 1
+    heldFrame = weaponSkills.frames[weaponSkillPart]
+    if weaponSkillPart == #weaponSkills.frames then weaponSkills.fresh = false end
+end
+
+function Transfer.AddLoot(record)
+    if not Identity(record.session, 40) or not Identity(record.guid, 48)
+        or not Integer(record.itemID, 1, 2147483647) or not Integer(record.quantity, 1, 2147483647)
+        or lootID >= 2147483647 or #loot >= 32 then return false end
+    lootID = lootID + 1
+    local name = Protocol.UTF8Prefix(record.name, 96)
+    if not PlainName(name) then name = nil end
+    local payload = FieldsJSON({ v = 1, kind = "loot", s = record.session, g = record.guid,
+        id = lootID, item = record.itemID, name = name, n = record.quantity },
+        { "v", "kind", "s", "g", "id", "item", "name", "n" })
+    loot[#loot + 1] = { frame = Protocol.Frame(payload), passes = 2, expires = (GetTime() or 0) + 120 }
+    return true
+end
+
 function Transfer.EncodeOffer(result)
     if type(result) ~= "table" or result.v ~= 1 or result.kind ~= "offer" or not Identity(result.s, 40) or not Identity(result.g, 48)
         or not Integer(result.id, 1, 2147483647) or not Integer(result.q, 1, 2147483647)
@@ -599,7 +686,7 @@ end
 function Transfer.Advance()
     equipmentPhase = not equipmentPhase
     heldFrame = nil
-    if not equipmentPhase then return end
+    if not equipmentPhase or (macroState and macroState.online == false) then return end
     macroOpportunity = (macroOpportunity or 0) + 1
     -- One existing macro slot every two seconds carries life progress. State phases stay unchanged.
     if macroOpportunity % 4 == 2 then
@@ -633,6 +720,15 @@ function Transfer.Advance()
         end
     end
     local now = GetTime() or 0
+    if macroOpportunity % 4 == 3 and #loot > 0 then
+        while #loot > 0 and loot[1].expires <= now do table.remove(loot, 1) end
+        if #loot > 0 then
+            local entry = table.remove(loot, 1)
+            heldFrame, entry.passes = entry.frame, entry.passes - 1
+            if entry.passes > 0 then loot[#loot + 1] = entry end
+            return
+        end
+    end
     for index=#comparisons,1,-1 do
         if comparisons[index].expires<=now then
             if currentComparison==comparisons[index] then currentComparison,comparisonPart=nil,0 end
@@ -673,7 +769,14 @@ function Transfer.Advance()
     if freshComparison and currentComparison and not currentComparison.fresh then currentComparison, comparisonPart = nil, 0 end
     local freshEquipment = current and current.fresh or false
     for _, entry in ipairs(records) do if entry.fresh then freshEquipment = true; break end end
-    -- Fresh observation streams rotate fairly; their replays take only one quarter of background slots.
+    -- Control slots and fresh equipment retain their existing cadence. Ordinary background
+    -- opportunities are halved. Fresh loadouts and short-lived weapon snapshots finish at full rate.
+    if not freshComparison and not freshEquipment and not (gear and gear.fresh) and not (weaponSkills and weaponSkills.fresh) then
+        backgroundOpportunity = backgroundOpportunity + 1
+        if backgroundOpportunity % 2 == 0 then return end
+    end
+    -- Fresh observations rotate fairly. A quarter of these opportunities can replay cold caches
+    -- so late receivers recover missed parts even while another observation keeps changing.
     if not freshComparison and not freshEquipment then
         snapshotOpportunity = snapshotOpportunity + 1
         local pending = {}
@@ -681,6 +784,21 @@ function Transfer.Advance()
         if inventory and inventory.fresh then pending[#pending + 1] = NextInventory end
         if quests and quests.fresh then pending[#pending + 1] = NextQuests end
         if talents and talents.fresh then pending[#pending + 1] = NextTalents end
+        if weaponSkills and weaponSkills.fresh then pending[#pending + 1] = NextWeaponSkills end
+        if #pending > 0 and snapshotOpportunity % 4 == 0 and not (gear and gear.fresh) then
+            local replays = {}
+            if #storageOrder > 0 and not StoragePending() then replays[#replays + 1] = NextStorage end
+            if inventory and not inventory.fresh then replays[#replays + 1] = NextInventory end
+            if quests and not quests.fresh then replays[#replays + 1] = NextQuests end
+            if talents and not talents.fresh then replays[#replays + 1] = NextTalents end
+            if weaponSkills and not weaponSkills.fresh then replays[#replays + 1] = NextWeaponSkills end
+            if gear then replays[#replays + 1] = NextGear end
+            if #replays > 0 then
+                replayCursor = replayCursor % #replays + 1
+                replays[replayCursor]()
+                return
+            end
+        end
         if #pending > 0 and not (gear and gear.fresh and snapshotOpportunity % 4 == 0) then
             snapshotCursor = snapshotCursor % #pending + 1
             pending[snapshotCursor]()
@@ -690,18 +808,18 @@ function Transfer.Advance()
             if inventory then pending[#pending + 1] = NextInventory end
             if quests then pending[#pending + 1] = NextQuests end
             if talents then pending[#pending + 1] = NextTalents end
+            if weaponSkills then pending[#pending + 1] = NextWeaponSkills end
             if #pending > 0 then
-                snapshotCursor = snapshotCursor % #pending + 1
-                pending[snapshotCursor]()
+                replayCursor = replayCursor % #pending + 1
+                pending[replayCursor]()
                 return
             end
         end
     end
     if gear and not freshComparison and not freshEquipment then
-        -- Gear gets all remaining data slots for its first pass, then alternates with ordinary replays.
         if gear.fresh or gearReplay or (#records == 0 and #comparisons == 0) then
             NextGear()
-            if not gear.fresh then gearReplay = false end
+            if gear and not gear.fresh then gearReplay = false end
             return
         end
         gearReplay = true
@@ -737,7 +855,7 @@ function Transfer.Advance()
     if currentPart >= #current.frames then current.fresh = false; current, currentPart = nil, 0; comparisonReplay=true end
 end
 
-function Transfer.Current(stateFrame) return heldFrame or stateFrame end
+function Transfer.Current(stateFrame) return (not macroState or macroState.online ~= false) and heldFrame or stateFrame end
 
 function Transfer.Status()
     return string.format(L("装备传输：缓存 %d/6 · 比较 %d/6 · 换装结果 %d/10 · 全身装备 %s · 过载/编码跳过 %d · 状态与数据每0.25秒交替"), #records, #comparisons, #swaps, gear and (gearPart .. "/" .. #gear.frames) or L("无"), dropped)

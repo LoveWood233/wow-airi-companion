@@ -9,6 +9,7 @@ interface Selection {
   entry: SavedLoadout | undefined
   storageError: string | null
   source: 'live_bridge' | 'saved'
+  loginProfileObservedAt?: number
   class: string | null
   spec: number | null
 }
@@ -40,8 +41,9 @@ function select(states: readonly CompanionState[], current: ReturnType<PlayerAdd
       storageError: state?.equipmentLoadouts.storageError ?? null,
       entry: preferLive ? { account: snapshot.account, name: snapshot.name, realm: snapshot.realm, receivedAt: 0, loadout: live } : saved,
       source: preferLive ? 'live_bridge' : 'saved',
+      loginProfileObservedAt: snapshot.profileObservedAt,
       class: snapshot.class,
-      spec: snapshot.spec,
+      spec: snapshot.profileObservedAt === undefined ? snapshot.spec : null,
     }
   }
   let selected: Selection | undefined
@@ -81,12 +83,20 @@ export class LoadoutContext {
       return this.text
     }
     const { game, character, online, entry, storageError, source } = selected
-    const key = JSON.stringify([game, character.account, character.guid, character.session, character.name, online, entry?.loadout.session, entry?.loadout.id, entry?.receivedAt, storageError, source, selected.class, selected.spec])
+    const key = JSON.stringify([game, character.account, character.guid, character.session, character.name, online, entry?.loadout.session, entry?.loadout.id, entry?.receivedAt, storageError, source, selected.class, selected.spec, selected.loginProfileObservedAt])
     if (key === this.key)
       return this.text
     this.key = key
     const sameSession = entry?.loadout.session === character.session
-    const status = !entry ? 'not_received' : source === 'live_bridge' ? 'current_session_snapshot' : online && !sameSession ? 'previous_session_waiting_for_refresh' : 'last_recorded_snapshot'
+    let status = 'not_received'
+    if (entry) {
+      if (online && !sameSession)
+        status = 'previous_session_waiting_for_refresh'
+      else if (source === 'live_bridge')
+        status = selected.loginProfileObservedAt === undefined ? 'current_session_snapshot' : 'login_session_snapshot'
+      else
+        status = 'last_recorded_snapshot'
+    }
     const data = {
       game,
       character: { account: character.account, guid: character.guid, name: character.name, realm: character.realm },
@@ -108,6 +118,7 @@ export class LoadoutContext {
       + 'This snapshot belongs only to the named game, local account, and character. Do not mix another character or game version into this equipment. '
       + 'These are equipped slots at equipmentObservedAt (Unix seconds), received locally at receivedAt (Unix milliseconds). They are not bag acquisitions or total character stats. '
       + 'A zero observation time means unknown. Offline data and previous-session data are historical, not proof of current equipment. '
+      + 'login_session_snapshot describes gear captured when entering or reloading the game. Later heartbeats do not show gear changes. Give the capture time when you discuss these items. '
       + 'A previous_session_waiting_for_refresh status means a new login has not delivered its equipment revision yet. not_received means no saved equipment exists for this character. '
       + 'All 19 slots are included when a snapshot exists. empty means observed empty. unknown and null mean unavailable, never zero or empty. '
       + 'Incomplete or truncated item data cannot support complete comparisons. Tooltip descriptions of set bonuses do not prove those bonuses are active. '

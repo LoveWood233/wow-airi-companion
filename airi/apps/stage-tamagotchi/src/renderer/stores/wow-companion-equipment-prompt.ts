@@ -103,7 +103,8 @@ export class EquipmentPromptController {
       return
     }
     const comparison = bridge.equipmentComparisons.find(value => value.id === offer.id && value.session === offer.s && value.guid === offer.g)
-    if (!comparison || comparison.v !== 2 || comparison.class !== snapshot.class || comparison.spec !== snapshot.spec
+    if (!comparison || comparison.v !== 2 || comparison.class !== snapshot.class
+      || (snapshot.profileObservedAt === undefined && comparison.spec !== snapshot.spec)
       || comparison.slot !== offer.slot || comparison.candidate.itemID !== offer.item || comparison.candidate.itemLevel !== offer.il
       || comparison.current?.itemID !== offer.old || comparison.current.itemLevel !== offer.ol) {
       return
@@ -131,7 +132,7 @@ export class EquipmentPromptController {
     // A review is informational. It requires a recent acquisition, never a saved comparison or a manual bag rescan.
     for (const comparison of [...bridge.equipmentComparisons].sort((a, b) => b.id - a.id)) {
       if (comparison.v !== 2 || comparison.session !== snapshot.session || comparison.guid !== snapshot.guid
-        || comparison.class !== snapshot.class || comparison.spec !== snapshot.spec
+        || comparison.class !== snapshot.class || (snapshot.profileObservedAt === undefined && comparison.spec !== snapshot.spec)
         || comparison.observedAt * 1000 > now + 5000 || now - comparison.observedAt * 1000 > 180_000
         || !comparison.current || comparison.candidate.itemLevel <= comparison.current.itemLevel
         || bridge.equipmentOffer?.id === comparison.id) {

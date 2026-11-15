@@ -163,9 +163,10 @@ class PositionTest(unittest.TestCase):
         snapshot[b'px'], snapshot[b'py'] = 10000,10000
         snapshot[b'session'] = b's'*40
         snapshot[b'guid'] = b'g'*48
-        snapshot[b'account'] = b'a'*64
-        snapshot[b'moneyEpoch'] = b'e'*64
-        for key in [b'name',b'realm',b'zone']:
+        snapshot[b'account'] = b'a'*40
+        snapshot[b'moneyEpoch'] = b'e'*40
+        snapshot[b'name'] = '晨星 银叶'.encode()
+        for key in [b'realm',b'zone']:
             snapshot[key] = ('测试角色与地图'*12).encode()
         frame,payload,clean = self.ns[b'Protocol'][b'Encode'](snapshot)
         self.assertEqual(len(frame),512)
@@ -175,6 +176,7 @@ class PositionTest(unittest.TestCase):
         self.assertEqual(crc,binascii.crc_hqx(payload,0xffff))
         value=json.loads(payload)
         self.assertEqual((value['px'],value['py']), (10000,10000))
+        self.assertEqual(value['name'], '晨星 银叶')
         for key in ['session','guid','account','moneyEpoch','seq','tick','map','copper','earned','spent']:
             self.assertEqual(value[key], snapshot[key.encode()].decode() if isinstance(snapshot[key.encode()],bytes) else snapshot[key.encode()])
 

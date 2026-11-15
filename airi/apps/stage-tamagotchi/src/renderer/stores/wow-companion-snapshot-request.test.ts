@@ -35,6 +35,25 @@ describe('character snapshot recovery', () => {
     expect(snapshotUnavailable('equipment', [state], undefined, now)).toBe(true)
   })
 
+  it('does not let a fresh pulse renew the login profile or equipment observation', () => {
+    const state = loadoutStateFixture()
+    const bridge = state.bridge!
+    const now = Date.now()
+    const snapshot = bridge.snapshot!
+    const current = { game: state.game, snapshot }
+    bridge.equipmentLoadout!.slots[1] = { slot: 2, state: 'empty', item: null }
+    snapshot.profileObservedAt = now - 60_000
+    bridge.equipmentLoadout!.observedAt = Math.floor(now / 1000) - 60
+    expect(snapshotUnavailable('equipment', [state], current, now)).toBe(true)
+    expect(snapshotUnavailable('level', [state], current, now)).toBe(true)
+    expect(snapshotUnavailable('gold', [state], current, now)).toBe(true)
+    snapshot.profileObservedAt = now
+    bridge.equipmentLoadout!.observedAt = Math.floor(now / 1000)
+    expect(snapshotUnavailable('equipment', [state], current, now)).toBe(false)
+    expect(snapshotUnavailable('level', [state], current, now)).toBe(false)
+    expect(snapshotUnavailable('gold', [state], current, now)).toBe(false)
+  })
+
   it('rejects missing, partial, stale, and error observations without consulting historical equipment', () => {
     const state = loadoutStateFixture()
     const current = { game: state.game, snapshot: state.bridge!.snapshot! }

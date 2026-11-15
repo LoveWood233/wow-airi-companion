@@ -13,18 +13,25 @@ import { buildStateFixture } from '../utils/wow-build.test-helper'
 import { useWowChatterSettingsStore } from './wow-chatter-settings'
 import { useWowCompanionStore } from './wow-companion'
 
-const ipc = vi.hoisted(() => ({ get: vi.fn(), unexpected: vi.fn() }))
-vi.mock('@proj-airi/electron-vueuse', async original => ({
-  ...await original<typeof import('@proj-airi/electron-vueuse')>(),
-  useElectronEventaInvoke: (event: { receiveEvent?: { id?: string } }) => {
-    if (event.receiveEvent?.id === 'eventa:invoke:wow-companion:get-receive')
-      return ipc.get
-    return async () => {
-      ipc.unexpected(event.receiveEvent?.id)
-      throw new Error(`Unexpected IPC ${event.receiveEvent?.id}`)
-    }
-  },
-}))
+const ipc = vi.hoisted(() => ({ get: vi.fn(), activate: vi.fn(), unexpected: vi.fn() }))
+vi.mock('@proj-airi/electron-vueuse', async (original) => {
+  const { createContext } = await import('@moeru/eventa')
+  const context = createContext()
+  return {
+    ...await original<typeof import('@proj-airi/electron-vueuse')>(),
+    getElectronEventaContext: () => context,
+    useElectronEventaInvoke: (event: { receiveEvent?: { id?: string } }) => {
+      if (event.receiveEvent?.id === 'eventa:invoke:wow-companion:get-receive')
+        return ipc.get
+      if (event.receiveEvent?.id === 'eventa:invoke:wow-memory:activate-receive')
+        return ipc.activate
+      return async () => {
+        ipc.unexpected(event.receiveEvent?.id)
+        throw new Error(`Unexpected IPC ${event.receiveEvent?.id}`)
+      }
+    },
+  }
+})
 
 const clock = Date.parse('2026-11-01T08:00:00.000Z')
 let pinia: ReturnType<typeof createPinia>
@@ -47,6 +54,7 @@ beforeEach(() => {
   vi.useFakeTimers({ toFake: ['Date', 'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval'] })
   vi.setSystemTime(clock)
   vi.resetAllMocks()
+  ipc.activate.mockResolvedValue(undefined)
   localStorage.clear()
   pinia = createPinia()
   setActivePinia(pinia)
@@ -91,6 +99,25 @@ afterEach(async () => {
 })
 
 describe('talent chat context owner lifetime with real Pinia', () => {
+  it('keeps raw weapon proficiency out of persistent character context', async () => {
+    const player = state.bridge!.snapshot!
+    player.weaponSkills = {
+      v: 1,
+      id: 1,
+      session: player.session,
+      guid: player.guid,
+      observedAt: clock / 1000,
+      status: 'available',
+      entries: [{ skillLineID: 43, name: 'Request-only sword', rank: 123, maxRank: 300, modifier: 5, temporary: 2 }],
+    }
+    companion.start(true)
+    await advance(0)
+    const text = context.getContextsSnapshot()['wow-companion-forever']?.at(-1)?.text
+    expect(text).toContain(player.name)
+    expect(text).not.toContain('weaponSkills')
+    expect(text).not.toContain('Request-only sword')
+  })
+
   it('expires previously published active ranks while the next bridge request remains pending', async () => {
     companion.start(true)
     await advance(0)
@@ -119,6 +146,7 @@ describe('talent chat context owner lifetime with real Pinia', () => {
     expect(talentText()).toContain('"status":"active"')
     const timersWhilePending = vi.getTimerCount()
     companion.stop()
+    expect(ipc.activate).toHaveBeenCalledWith({ personaId: null })
     expect(talentText()).toBeUndefined()
     expect(vi.getTimerCount()).toBe(timersWhilePending - 1)
     const historyAfterStop = context.contextHistory.length

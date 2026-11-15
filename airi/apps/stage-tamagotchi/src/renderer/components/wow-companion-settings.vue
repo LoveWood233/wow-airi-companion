@@ -261,8 +261,8 @@ onMounted(() => companion.start())
         <p :class="['text-sm text-neutral-500 dark:text-neutral-400']">
           {{ tn('start-bridge') }}
         </p>
-        <p v-if="error && (actionError || profile.error || profile.state.error || !bridge?.connection?.reason)" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
-          {{ formatCompanionError(error, t) }}
+        <p v-if="bridge?.needsProfile || (error && (actionError || profile.error || profile.state.error || !bridge?.connection?.reason))" role="alert" :class="['break-words text-sm text-red-600 dark:text-red-400']">
+          {{ bridge?.needsProfile && !actionError && !profile.error && !profile.state.error ? tn('sync-character-profile') : formatCompanionError(error, t) }}
         </p>
         <p v-if="message" role="status" :class="['text-sm text-primary-600 dark:text-primary-300']">
           {{ message }}

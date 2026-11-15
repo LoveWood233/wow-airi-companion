@@ -15,12 +15,12 @@ from pathlib import Path
 from typing import BinaryIO
 from urllib.parse import parse_qs, urlsplit
 
-from protocol import ItemStorageError, GAME_PROTOCOLS, EquipmentComparisonError, EquipmentOfferError, EquipmentSwapError, EquipmentLoadoutError, InventoryError, QuestError, TalentError, FrameError
+from protocol import ItemStorageError, GAME_PROTOCOLS, EquipmentComparisonError, EquipmentOfferError, EquipmentSwapError, EquipmentLoadoutError, InventoryError, QuestError, TalentError, WeaponSkillError, LootError, FrameError
 from retail_query import RetailDatabase
 from state import CompanionState, validate_config
 
 ROOT = Path(__file__).resolve().parent
-VERSION = "2.25.0"
+VERSION = "2.26.0"
 
 
 def allowed_origin(origin: str | None) -> bool:
@@ -154,7 +154,7 @@ class Handler(BaseHTTPRequestHandler):
                 self._json(400, {"error": "Invalid item storage cursor"})
                 return
             with self.server.state.lock:
-                value = self.server.state.item_storage.read(after)
+                value = self.server.state.read_item_storage(after)
                 instance_id = self.server.state.instance_id
             self._json(200, {"instanceId": instance_id, **value})
         elif path == "/api/events":
@@ -293,7 +293,7 @@ def capture_loop(state: CompanionState, stop: threading.Event, config_path: Path
                     with state.lock:
                         # Config/demo may have changed while BitBlt was running.
                         if state.config == config and state.capture_revision == revision and not state.demo:
-                            state.report_connection(reader.diagnostic)
+                            state.report_connection(reader.diagnostic, source_token=reader.source_token, transient=reader.transient_error)
                             if reader.image is not None:
                                 state.frame_bmp = to_bmp(pixels, width, height)
                             if snapshot is not None:
@@ -302,8 +302,11 @@ def capture_loop(state: CompanionState, stop: threading.Event, config_path: Path
                     with state.lock:
                         if state.capture_revision == revision and not state.demo:
                             reader.blocked(exc.code)
-                            state.report_connection(reader.diagnostic)
+                            state.report_connection(reader.diagnostic, source_token=reader.source_token, transient=reader.transient_error)
                             state.capture_error("连接状态：" + exc.code)
+                except LootError:
+                    # An intact rejected observation leaves the validated heartbeat untouched.
+                    pass
                 except ItemStorageError as exc:
                     with state.lock:
                         if state.config == config and state.capture_revision == revision and not state.demo:
@@ -318,6 +321,11 @@ def capture_loop(state: CompanionState, stop: threading.Event, config_path: Path
                         if state.config == config and state.capture_revision == revision and not state.demo:
                             state.frame_bmp = to_bmp(pixels, width, height)
                             state.capture_quests_error(str(exc))
+                except WeaponSkillError as exc:
+                    with state.lock:
+                        if state.config == config and state.capture_revision == revision and not state.demo:
+                            state.frame_bmp = to_bmp(pixels, width, height)
+                            state.capture_weapon_skills_error(str(exc))
                 except TalentError as exc:
                     with state.lock:
                         if state.config == config and state.capture_revision == revision and not state.demo:
@@ -346,13 +354,13 @@ def capture_loop(state: CompanionState, stop: threading.Event, config_path: Path
                 except FrameError as exc:
                     with state.lock:
                         if state.config == config and state.capture_revision == revision and not state.demo:
-                            state.report_connection(reader.diagnostic)
+                            state.report_connection(reader.diagnostic, source_token=reader.source_token, transient=reader.transient_error)
                             state.capture_error(str(exc))
                 except (OSError, ValueError) as exc:
                     with state.lock:
                         if state.capture_revision == revision and not state.demo:
                             reader.blocked("access-denied" if getattr(exc, "winerror", None) == 5 else "capture-failed")
-                            state.report_connection(reader.diagnostic)
+                            state.report_connection(reader.diagnostic, source_token=reader.source_token, transient=reader.transient_error)
                             state.capture_error("屏幕采集失败")
         stop.wait(config["pollMs"] / 1000)
 

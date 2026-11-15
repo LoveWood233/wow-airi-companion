@@ -1,5 +1,10 @@
 import type { BridgeStatus, CompanionState, Snapshot } from '../../shared/wow-companion'
 
+/** Measures the character data itself. A current compact heartbeat does not extend this interval. */
+export function hasRecentCharacterCapture(observedAt: number, now: number): boolean {
+  return observedAt > 0 && Math.abs(now - observedAt) <= 5000
+}
+
 /**
  * Keeps current observation validity separate from speech eligibility. Manual reads remain available during combat or death.
  * @example hasFreshCompanionObservation(state, Date.now()) // => false when the bridge is disconnected

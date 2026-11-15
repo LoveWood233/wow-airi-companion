@@ -267,10 +267,11 @@ C_Container.GetContainerItemInfo=function(bag,slot) if bag==0 and slot==1 then r
         ns = lua.table()
         load = lua.eval(b"function(source,name,ns) assert(loadstring(source))(name,ns) end")
         addon = ROOT.name.encode()
-        for filename in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "Telemetry.lua", ROOT.name + ".lua"):
+        for filename in ("Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "WeaponSkills.lua", "Telemetry.lua", ROOT.name + ".lua"):
             load((ROOT / filename).read_bytes(), addon, ns)
         lua.globals().Fire(b"ADDON_LOADED", addon)
         lua.globals().Fire(b"PLAYER_ENTERING_WORLD")
+        login_level = lua.globals().Model[b"level"]
         lua.globals().AdvanceTime(2)
         lua.execute('New=NewItem(12345,"integration","测试护甲"); Bags[0][1]=New'.encode())
         lua.globals().Fire(b"BAG_UPDATE_DELAYED")
@@ -280,7 +281,7 @@ C_Container.GetContainerItemInfo=function(bag,slot) if bag==0 and slot==1 then r
         textures = lua.globals().Objects[frame_name][b"textures"]
 
         def pixels():
-            return bytes(sum(int(textures[byte * 8 + bit + 1][b"color"][1]) << (7 - bit) for bit in range(8)) for byte in range(512))
+            return bytes(sum(int(round(textures[byte * 8 + bit + 1][b"color"][1] * 255) >= 160) << (7 - bit) for bit in range(8)) for byte in range(512))
 
         first = pixels()
         payload_length = struct.unpack("<H", first[4:6])[0]
@@ -290,7 +291,9 @@ C_Container.GetContainerItemInfo=function(bag,slot) if bag==0 and slot==1 then r
         lua.globals().Heartbeat()
         state_frame = pixels()
         payload_length = struct.unpack("<H", state_frame[4:6])[0]
-        self.assertEqual(json.loads(state_frame[8:8 + payload_length])["level"], 30)
+        self.assertEqual(json.loads(state_frame[8:8 + payload_length])["level"], login_level)
+        saved = lua.globals()[ROOT.name.encode() + b"DB"][b"snapshotJSON"]
+        self.assertEqual(json.loads(saved)["level"], 30)
 
 
 if __name__ == "__main__":

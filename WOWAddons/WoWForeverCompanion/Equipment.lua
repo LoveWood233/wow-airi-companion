@@ -9,6 +9,7 @@ local active, initialized, nextID, dropped = false, false, 0, 0
 local RETRIES = { 0.5, 1, 2, 4 }
 local currentEmit, currentTimer, currentRequest, currentRevision, currentMissing
 local currentGeneration = 0
+local lootEmit, previousCounts, bankOpen
 
 local function Call(fn, ...)
     if type(fn) ~= "function" then return nil end
@@ -137,11 +138,16 @@ local function Tooltip(entry, record)
     data = Readable(data)
     local lines = data and Readable(data.lines)
     if not lines then return false end
+    local equipSlotType = Enum and Enum.TooltipDataLineType and Enum.TooltipDataLineType.EquipSlot
     local complete = true
     for _, line in ipairs(lines) do
         line = Readable(line)
         if not line then complete = false
         else
+            -- Preserve the client's item type restriction before flattening the tooltip columns.
+            if equipSlotType and Public(line.type) == equipSlotType and Public(line.isValidItemType) == false then
+                record.incompatibleEquipType = true
+            end
             local left, leftCut = Text(line.leftText, 256)
             local right, rightCut = Text(line.rightText, 256)
             if issecretvalue and (issecretvalue(line.leftText) or issecretvalue(line.rightText)) then complete = false end
@@ -256,13 +262,14 @@ function Equipment.Scan()
     if not active then return end
     local entries = Entries()
     if not entries then return end
-    local counts, additions, fallbackEntries = {}, {}, {}
+    local counts, additions, fallbackEntries, representatives = {}, {}, {}, {}
     for _, entry in ipairs(entries) do
         if not entry.itemGUID then fallbackLinks[entry.link] = true end
     end
     for _, entry in ipairs(entries) do
         local key = entry.itemGUID
         counts[entry.link] = (counts[entry.link] or 0) + entry.quantity
+        if not entry.inventory then representatives[entry.link] = entry end
         if key then
             if not fallbackLinks[entry.link] and not seen[key] and initialized and not entry.inventory then additions[#additions + 1] = entry end
             seen[key] = true
@@ -276,6 +283,20 @@ function Equipment.Scan()
         end
     end
     for link, count in pairs(counts) do maximumCounts[link] = math.max(maximumCounts[link] or 0, count) end
+    if initialized and not bankOpen and type(lootEmit) == "function" then
+        for link, entry in pairs(representatives) do
+            local gained = counts[link] - (previousCounts[link] or 0)
+            if gained > 0 and ItemType(entry) == false then
+                local itemID = tonumber(string.match(link, "item:(%d+)"))
+                if itemID then
+                    local name = Call(ItemAPI("GetItemInfo"), link) or string.match(link, "|h%[(.-)%]|h")
+                    lootEmit({ session = owner.session, guid = owner.guid, itemID = itemID, quantity = gained, name = Text(name, 96) })
+                end
+            end
+        end
+    end
+    previousCounts = counts
+    if bankOpen then return true end
     for _, entry in ipairs(additions) do
         local pendingCount = 0
         for _ in pairs(pending) do pendingCount = pendingCount + 1 end
@@ -425,7 +446,8 @@ function Equipment.RequestCurrent(reason)
     currentTimer = C_Timer.NewTimer(0.2, function() AttemptCurrent(request) end)
 end
 
-function Equipment.Initialize(state, callback, currentCallback)
+function Equipment.Initialize(state, callback, currentCallback, lootCallback)
+    lootEmit, previousCounts, bankOpen = lootCallback, {}, false
     if currentTimer then currentTimer:Cancel() end
     currentEmit, currentTimer, currentRequest, currentRevision, currentMissing = currentCallback, nil, nil, 0, {}
     currentGeneration = currentGeneration + 1
@@ -451,10 +473,15 @@ function Equipment.OnEvent(event, itemID, success)
         active = false
         currentGeneration = currentGeneration + 1
         currentRequest = nil
-        if ns.Transfer and ns.Transfer.SetGear then ns.Transfer.SetGear(nil) end
+        if event == "PLAYER_LOGOUT" and ns.Transfer and ns.Transfer.SetGear then ns.Transfer.SetGear(nil) end
+        bankOpen = false
         if currentTimer then currentTimer:Cancel(); currentTimer = nil end
         if scanTimer then scanTimer:Cancel() end
     elseif event == "PLAYER_ENTERING_WORLD" then Equipment.EnterWorld()
+    elseif event == "BANKFRAME_OPENED" then bankOpen = true
+    elseif event == "BANKFRAME_CLOSED" then
+        if active and bankOpen then Equipment.Scan() end
+        bankOpen = false
     elseif event == "BAG_UPDATE_DELAYED" or event == "PLAYER_EQUIPMENT_CHANGED" or event == "ITEM_PUSH" then
         if not active then return end
         if event == "PLAYER_EQUIPMENT_CHANGED" then Equipment.RequestCurrent("equipment_changed") end

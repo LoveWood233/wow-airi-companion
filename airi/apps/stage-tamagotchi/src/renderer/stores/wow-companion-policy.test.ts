@@ -3,7 +3,7 @@ import type { BridgeStatus, CompanionEvent, Snapshot } from '../../shared/wow-co
 import { parse } from 'valibot'
 import { describe, expect, it } from 'vitest'
 
-import { bridgeSchema, captureSchema, defaultSettings, settingsSchema, snapshotSchema } from '../../shared/wow-companion'
+import { bridgeSchema, captureSchema, defaultSettings, eventSchema, settingsSchema, snapshotSchema } from '../../shared/wow-companion'
 import { CompanionPolicy } from './wow-companion-policy'
 
 const now = Date.parse('2026-10-22T10:00:00Z')
@@ -146,6 +146,64 @@ describe('woW companion notification policy', () => {
     policy.accept(bridge([], { snapshot: { ...snapshot, px: 1234, py: 5678 } }), defaultSettings, now)
     expect(policy.accept(bridge([], { snapshot: { ...snapshot, seq: 2, tick: 2, px: 1250, py: 5700 } }), defaultSettings, now + 1000)).toBeUndefined()
     expect(policy.accept(bridge([event(1)], { snapshot: { ...snapshot, seq: 3, tick: 3, px: 1250, py: 5700 } }), defaultSettings, now + 2000)?.type).toBe('level_up')
+  })
+})
+
+describe('event telemetry notices', () => {
+  const fighting = { ...snapshot, combat: true, loginId: 'login-combat', combatEnds: 1 }
+  const healthEvent = event(2, 'low_health', { healthPercent: 19, snapshot: fighting })
+  const lootEvent = event(1, 'loot', { itemId: 117, itemName: 'Tough Jerky', quantity: 2, snapshot: fighting })
+
+  it('plays a low-health alert in combat despite the ordinary cooldown', () => {
+    const policy = new CompanionPolicy()
+    policy.accept(bridge(), defaultSettings, now)
+    expect(policy.accept(bridge([event(1)]), defaultSettings, now)?.type).toBe('level_up')
+    const combat = bridge([healthEvent], { snapshot: fighting })
+    expect(policy.accept(combat, defaultSettings, now + 1000)).toEqual(healthEvent)
+    expect(policy.accept(combat, defaultSettings, now + 2000)).toBeUndefined()
+  })
+
+  it.each([
+    { ...fighting, combat: false },
+    { ...fighting, combatEnds: 2 },
+    { ...fighting, dead: true },
+  ])('discards an alert after its fight ends: %j', (current) => {
+    const policy = new CompanionPolicy()
+    policy.accept(bridge(), defaultSettings, now)
+    expect(policy.accept(bridge([healthEvent], { snapshot: current }), defaultSettings, now + 1000)).toBeUndefined()
+  })
+
+  it('plays a recent alert while login progress arrives on its separate frame', () => {
+    const policy = new CompanionPolicy()
+    const alert = { ...healthEvent, snapshot: { ...snapshot, combat: true } }
+    policy.accept(bridge(), defaultSettings, now)
+    expect(policy.accept(bridge([alert], { snapshot: fighting }), defaultSettings, now + 1000)).toEqual(alert)
+  })
+
+  it('discards old or muted health alerts', () => {
+    const policy = new CompanionPolicy()
+    policy.accept(bridge(), defaultSettings, now)
+    expect(policy.accept(bridge([healthEvent], { snapshot: fighting }), { ...defaultSettings, muted: true }, now + 1000)).toBeUndefined()
+    expect(policy.accept(bridge([{ ...healthEvent, id: 3 }], { snapshot: fighting }), defaultSettings, now + 12_000)).toBeUndefined()
+  })
+
+  it('plays a loot notice once after combat and keeps the measured quantity', () => {
+    const policy = new CompanionPolicy()
+    policy.accept(bridge(), defaultSettings, now)
+    expect(policy.accept(bridge([lootEvent], { snapshot: fighting }), defaultSettings, now + 1000)).toBeUndefined()
+    expect(policy.accept(bridge([lootEvent], { snapshot: { ...fighting, combat: false } }), defaultSettings, now + 2000)).toEqual(lootEvent)
+    expect(policy.accept(bridge([lootEvent]), defaultSettings, now + 3000)).toBeUndefined()
+  })
+
+  it('validates threshold and loot data at the bridge boundary', () => {
+    expect(parse(eventSchema, healthEvent).healthPercent).toBe(19)
+    expect(parse(eventSchema, { ...lootEvent, itemName: null }).itemName).toBeNull()
+    expect(() => parse(eventSchema, { ...healthEvent, healthPercent: 20 })).toThrow()
+    expect(() => parse(eventSchema, { ...healthEvent, healthPercent: undefined })).toThrow()
+    expect(() => parse(eventSchema, { ...lootEvent, itemId: 0 })).toThrow()
+    expect(() => parse(eventSchema, { ...lootEvent, quantity: 1.5 })).toThrow()
+    expect(() => parse(eventSchema, { ...lootEvent, itemName: undefined })).toThrow()
+    expect(parse(bridgeSchema, { ...bridge(), needsProfile: true }).needsProfile).toBe(true)
   })
 })
 

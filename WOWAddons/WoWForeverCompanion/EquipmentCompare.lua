@@ -302,17 +302,20 @@ function Compare.Capture(owner,record,forcedSlot)
     -- The Ret weapon profile is explicit, even when a broad item spec table permits class-wide use.
     if class=="PALADIN" and spec==70 and (record.equipLoc=="INVTYPE_WEAPON" or record.equipLoc=="INVTYPE_WEAPONMAINHAND"
         or record.equipLoc=="INVTYPE_WEAPONOFFHAND" or record.equipLoc=="INVTYPE_SHIELD" or record.equipLoc=="INVTYPE_HOLDABLE") then match=false end
-    local equipped=Call(C_Item and C_Item.IsEquippableItem,record.link)
+    local equippable=Call(C_Item and C_Item.IsEquippableItem,record.link)
+    -- The item can occupy an equipment slot without being usable by this character.
+    local usableByPlayer=candidate.itemID>0 and Call(C_PlayerInfo and C_PlayerInfo.CanUseItem,candidate.itemID)
     -- IsUsableItem describes an item's use action; passive armor can return false.
     -- Equippability, level, complete facts and the spec checks below gate dressing.
     local playerLevel=Number(Call(UnitLevel,"player"),0,255)
     local required=Number(record.requiredLevel,0,255)
-    if type(equipped)~="boolean" or not playerLevel or not required then candidate.complete=false end
+    if type(equippable)~="boolean" or not playerLevel or not required then candidate.complete=false end
     local worn=target and Inventory(target) or nil
     if not worn then target=0 end
     local value={v=2,id=record.id,session=owner.session,guid=owner.guid,class=class,spec=spec,primary=primary or 0,
         observedAt=math.floor(Number(Call(GetServerTime),0,4102444800) or 0),slot=target or 0,
-        usable=equipped~=false and (not playerLevel or not required or playerLevel>=required),
+        usable=equippable~=false and usableByPlayer~=false and not record.incompatibleEquipType
+            and (not playerLevel or not required or playerLevel>=required),
         specMatch=match,current=worn,candidate=candidate}
     value.assessment=Compare.Evaluate(value)
     value.deltas=Compare.Deltas(value)

@@ -3,8 +3,10 @@
 local _, ns = ...
 local Protocol = {}
 ns.Protocol = Protocol
+-- Camelot's given name and surname each allow 12 characters, separated by a space.
+Protocol.MAX_NAME_BYTES = 12 * 4 * 2 + 1
 local keys = { "v", "session", "loginId", "combatEnds", "seq", "tick", "guid", "name", "realm", "level", "class", "faction", "race", "spec", "map", "instanceType", "instanceID", "px", "py", "zone", "combat", "dead", "online", "account", "moneyEpoch", "copper", "earned", "spent" }
-local limits = { session = 40, guid = 48, name = 48, realm = 48, class = 20, zone = 96 }
+local limits = { session = 40, guid = 48, name = Protocol.MAX_NAME_BYTES, realm = 48, class = 20, zone = 96 }
 
 local function Public(value)
     if issecretvalue and issecretvalue(value) then return nil end
@@ -79,7 +81,7 @@ local function Escape(value)
     end) .. '"'
 end
 
-function Protocol.JSON(snapshot)
+function Protocol.JSON(snapshot, omitPosition)
     local items = {}
     local includeScene = Public(snapshot.instanceType) ~= nil
     local includeLogin = Public(snapshot.loginId) ~= nil and Public(snapshot.combatEnds) ~= nil
@@ -91,7 +93,8 @@ function Protocol.JSON(snapshot)
         elseif kind == "number" and value == value and value ~= math.huge and value ~= -math.huge then encoded = string.format("%.0f", value)
         else encoded = "null" end
         if (includeScene or (key ~= "instanceType" and key ~= "instanceID"))
-            and (includeLogin or (key ~= "loginId" and key ~= "combatEnds")) then
+            and (includeLogin or (key ~= "loginId" and key ~= "combatEnds"))
+            and (not omitPosition or (key ~= "px" and key ~= "py")) then
             items[#items + 1] = Escape(key) .. ":" .. encoded
         end
     end
@@ -139,7 +142,7 @@ function Protocol.EncodeLife(snapshot)
     return Protocol.Frame(payload), payload
 end
 
-function Protocol.Encode(snapshot)
+function Protocol.Snapshot(snapshot)
     local clean = {}
     for _, key in ipairs(keys) do
         local value = Public(snapshot[key])
@@ -160,8 +163,8 @@ function Protocol.Encode(snapshot)
         clean.px, clean.py = nil, nil
     end
     local payload = Protocol.JSON(clean)
-    -- Preserve faction, IDs and counters. Shrink display labels before dropping the whole race label.
-    for _, key in ipairs({ "zone", "realm", "name" }) do
+    -- Preserve the full character name ahead of other display labels and optional observations.
+    for _, key in ipairs({ "zone", "realm" }) do
         while #payload > 504 and #clean[key] > 0 do
             clean[key] = Protocol.UTF8Prefix(clean[key], math.max(0, #clean[key] - 8))
             payload = Protocol.JSON(clean)
@@ -176,8 +179,49 @@ function Protocol.Encode(snapshot)
         clean.race = nil
         payload = Protocol.JSON(clean)
     end
-    if #payload > 504 then return nil, "snapshot exceeds 504 bytes" end
+    if #payload > 504 then
+        local withoutPosition = Protocol.JSON(clean, true)
+        if #withoutPosition <= 504 then
+            clean.px, clean.py = nil, nil
+            payload = withoutPosition
+        end
+    end
+    -- An extreme combination of large identity and money fields can still require a shorter name.
+    while #payload > 504 and #clean.name > 0 do
+        clean.name = Protocol.UTF8Prefix(clean.name, #clean.name - 1)
+        payload = Protocol.JSON(clean)
+    end
+    if #payload > 504 or clean.name == "" then return nil, "snapshot exceeds 504 bytes or has no character name" end
+    return payload, clean
+end
+
+function Protocol.Encode(snapshot)
+    local payload, clean = Protocol.Snapshot(snapshot)
+    if not payload then return nil, clean end
     return Protocol.Frame(payload), payload, clean
+end
+
+-- After login bootstrap the carrier publishes control flags and recent activity only.
+function Protocol.EncodePulse(snapshot, position, health)
+    local session, guid = snapshot.session, snapshot.guid
+    if session == "" or guid == "" then return nil end
+    local payload = '{"v":1,"kind":"pulse","s":' .. Escape(session) .. ',"g":' .. Escape(guid)
+        .. ',"q":' .. snapshot.seq .. ',"t":' .. snapshot.tick
+        .. ',"on":' .. tostring(snapshot.online) .. ',"c":' .. tostring(snapshot.combat)
+        .. ',"d":' .. tostring(snapshot.dead)
+    if position then
+        local px, py = Coordinate(position.px), Coordinate(position.py)
+        if not px or not py or position.map == 0 then px, py = nil, nil end
+        local zone = position.zone
+        if #zone > 64 then zone = Protocol.UTF8Prefix(zone, 64) end
+        payload = payload .. ',"p":{"map":' .. position.map .. ',"zone":' .. Escape(zone)
+            .. ',"instanceType":' .. Escape(position.instanceType) .. ',"instanceID":' .. tostring(position.instanceID or "null")
+            .. ',"px":' .. tostring(px or "null") .. ',"py":' .. tostring(py or "null") .. '}'
+    end
+    if health then
+        payload = payload .. ',"h":{"id":' .. health.id .. ',"percent":' .. health.percent .. '}'
+    end
+    return Protocol.Frame(payload .. '}')
 end
 
 function Protocol.Bit(frame, index)

@@ -207,6 +207,36 @@ class EquipmentCompareTest(unittest.TestCase):
         self.g.New[b"equippable"] = False
         self.assertEqual(self.decision(), ("not_upgrade", "unusable"))
 
+    def test_incompatible_gun_keeps_acquisition_without_a_review_or_offer(self):
+        for client_can_use, valid_item_type, expected in [
+            (b'false', None, ("not_upgrade", "unusable")),
+            (b'Secret', False, ("not_upgrade", "unusable")),
+            (b'true', True, ("review", "unknown_spec")),
+        ]:
+            with self.subTest(client_can_use=client_can_use, valid_item_type=valid_item_type):
+                self.setUp()
+                self.lua.execute(b'''Owner.class="PALADIN"; Model.spec=1486; Owner.spec=1486; Model.level=36
+                    Enum=Enum or {}; Enum.TooltipDataLineType={EquipSlot=21}
+                    C_PaperDollInfo.IsRangedSlotShown=function() return true end
+                    C_Item.GetItemSpecInfo=function() return {} end
+                    C_PlayerInfo={CanUseItem=function(id) assert(id==3042); return ''' + client_can_use + b''' end}''')
+                item = self.g.NewItem(3042, b"new-gun", "BKP“麻雀”短枪".encode())
+                item[b"kind"], item[b"level"], item[b"requiredLevel"] = b"INVTYPE_RANGEDRIGHT", 33, 28
+                item[b"itemType"], item[b"subtype"] = "武器".encode(), "枪械".encode()
+                item[b"bagLines"] = self.table([
+                    {"leftText": "BKP“麻雀”短枪"},
+                    {"type": 21, "leftText": "远程", "rightText": "枪械", "isValidItemType": valid_item_type},
+                ])
+                self.g.Bags[0][2] = item
+                self.ns[b"Equipment"][b"Scan"]()
+                self.assertEqual(self.g.Records[1][b"itemID"], 3042)
+                self.assertEqual(self.decision(), expected)
+                _, body, _ = self.comparison()
+                self.assertIsNone(body["specMatch"])
+                self.assertEqual(body["current"]["itemID"], 0)
+                self.assertIsNone(self.g.Visible)
+                self.assertEqual(len(self.g.Offers), 0)
+
     def test_actual_passive_plate_boots_produce_offer_and_only_equip_after_game_click(self):
         self.lua.execute(b'Model.class="PALADIN"; Model.spec=70; Owner.class="PALADIN"; Owner.spec=70; function GetSpecializationInfo() return Model.spec,"Spec",nil,123,"DAMAGER",1 end')
         old = self.g.SetupOld(8, 272256, "誓言使者战靴".encode(), 133, b"INVTYPE_FEET")
@@ -491,7 +521,7 @@ class EquipmentCompareTest(unittest.TestCase):
         g.NS=ns
         g.SetupOld(5,100,b"Old chest",100)
         load=runtime.eval(b'function(source,name,ns) assert(loadstring(source))(name,ns) end')
-        for filename in ('Protocol.lua','Money.lua','Equipment.lua','Transfer.lua','EquipmentCompare.lua','ConfirmEquip.lua','Inventory.lua', 'ItemStorage.lua','Quests.lua','Talents.lua','Telemetry.lua',ROOT.name+'.lua'):
+        for filename in ('Protocol.lua','Money.lua','Equipment.lua','Transfer.lua','EquipmentCompare.lua','ConfirmEquip.lua','Inventory.lua', 'ItemStorage.lua','Quests.lua','Talents.lua','WeaponSkills.lua','Telemetry.lua',ROOT.name+'.lua'):
             load((ROOT/filename).read_bytes(),ROOT.name.encode(),ns)
         g.Fire(b'ADDON_LOADED',ROOT.name.encode());g.Fire(b'PLAYER_ENTERING_WORLD');g.AdvanceTime(2)
         self.assertEqual([g.Tickers[i][b'delay'] for i in range(1,len(g.Tickers)+1)],[1,0.25])

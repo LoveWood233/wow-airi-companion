@@ -327,7 +327,7 @@ function ConfirmEquip.Add(record)
     seen[record.id] = true
     local comparison,assessment=ns.EquipmentCompare.Capture(owner,record)
     local published=publishComparison and publishComparison(comparison)
-    if settings.confirmEquip ~= true or published~=true or not ns.EquipmentCompare.CanOffer(assessment) then skipped=skipped+1; return false end
+    if settings.confirmEquip ~= true or published~=true or not ns.EquipmentCompare.CanOffer(assessment) then skipped=skipped+1; return false, published == true and comparison or nil end
     if not Eligible(record) then skipped = skipped + 1; return false end
     local old, guard = Choose(record)
     if not old or old.slot~=comparison.slot or not Find(record) then skipped = skipped + 1; return false end
