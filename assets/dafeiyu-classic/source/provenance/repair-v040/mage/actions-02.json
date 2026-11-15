@@ -1,0 +1,39 @@
+{
+  "class": "mage",
+  "sheet": "actions-02",
+  "original_sha256": "fca3dceaafe5385c56f7ff0a7b70c4bbda10de2cae5cdf0a5a6648d95f27221b",
+  "replacement_sha256": "0236ceeae45b33ba16ad282914ce448d65306f80eb7308970e36dead99fb7631",
+  "freeze_manifest": "casters-acceptance.json",
+  "source_review": {
+    "class": "mage",
+    "sheet": "actions-02",
+    "path": "source/sheets/mage/actions-02.png",
+    "sha256": "0236ceeae45b33ba16ad282914ce448d65306f80eb7308970e36dead99fb7631",
+    "qa_status": "accepted_source_pose_review",
+    "alpha_review_image": "source/sheets/mage/actions-02-alpha-inspect.jpg",
+    "source_defect_repaired": true
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "date": "2026-11-09",
+    "class": "mage",
+    "sheet": "actions-02",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1 is EDIT TARGET mage/actions-02; Image 2 is same character neutral EQUIPMENT REFERENCE ONLY.\nMake exactly one localized correction in cell5 (0-based; row2 column2): restore the blue orb held by its gold crescent/claw-shaped staff head behind screen-left shoulder. It is missing in this happy fists-up full-money-bag pose. Match the blue-orb staff in cell4 and the equipment reference. Keep the coin bag and both fists, do not move or alter them. All other fifteen cells are already acceptable; preserve them as closely as possible.\nLocalized correction only. Preserve every original cell's pose, expression, hand positions, action prop, visual effects, original chibi proportions, blue hair and 4x4 layout/margins. Do not replace action poses with the neutral reference. Keep exact costume patterns and colors across poses. Exactly one persistent blue orb gold staff per character. Staff is physically attached behind shoulder, follows torso, not floating beside temple; at front the staff head is beside lower cheek/shoulder BELOW ear fin. Never swap staff to the screen right in front poses. Existing hands or props may partially cover it. No changes to unaffected cells. Preserve transparent RGBA background, no black/white background, no checkerboard, no labels, no border or watermark.",
+    "generated_original": "image_gen-output:exec-ced51e69-d996-4d06-ac25-69eae79c858c.png",
+    "output_file": "source/sheets/mage/actions-02.png",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "notes": "Localized missing orb/side error corrected, other poses reviewed, frame QA pending.",
+    "output_sha256": "0236ceeae45b33ba16ad282914ce448d65306f80eb7308970e36dead99fb7631",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 790460,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/mage/actions-02-alpha-inspect.jpg",
+    "iteration_records": []
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

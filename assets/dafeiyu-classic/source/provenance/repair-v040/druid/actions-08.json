@@ -1,0 +1,115 @@
+{
+  "class": "druid",
+  "sheet": "actions-08",
+  "original_sha256": "2ce92f15fe902f10a45624e5b1c031594ff99fa58dd27546b8e911249f64df77",
+  "replacement_sha256": "e998b629d6f50537af91a365b5938d3da01baf159acf6769743c3e7cfeaabc0d",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-08",
+    "path": "source/sheets/druid/actions-08.png",
+    "sha256": "e998b629d6f50537af91a365b5938d3da01baf159acf6769743c3e7cfeaabc0d",
+    "dimensions": [
+      1278,
+      1230
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/actions-08.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "One staff each; thought bubbles, document stacks, front-run phases, singing, card fan, wake-up, whip/top and gift interactions retained. Staff shaft sometimes protrudes behind lower robe; remains same single diagonal mount.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-08",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/actions-08.png",
+    "source_sha256": "2ce92f15fe902f10a45624e5b1c031594ff99fa58dd27546b8e911249f64df77",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-a425c4f1-ee02-4fe0-837c-0a61bdd36b73",
+        "path": "workspace-revision/attempts/druid/actions-08-01.png",
+        "sha256": "e998b629d6f50537af91a365b5938d3da01baf159acf6769743c3e7cfeaabc0d"
+      }
+    ],
+    "generated_output_id": "exec-a425c4f1-ee02-4fe0-837c-0a61bdd36b73",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-a425c4f1-ee02-4fe0-837c-0a61bdd36b73.png",
+    "saved_output": "source/sheets/druid/actions-08.png",
+    "final_sha256": "e998b629d6f50537af91a365b5938d3da01baf159acf6769743c3e7cfeaabc0d",
+    "dimensions": [
+      1278,
+      1230
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/druid/actions-08.txt",
+    "prompt_sha256": "9309333fdb3ed41d47db4bc91c1776e5b26506431fd0b70cdbdf40e3b8a51c03",
+    "visual_review": {
+      "method": "generatedImage full atlas actually viewed, all16 cells",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "One staff each; thought bubbles, document stacks, front-run phases, singing, card fan, wake-up, whip/top and gift interactions retained. Staff shaft sometimes protrudes behind lower robe; remains same single diagonal mount.",
+      "grid_cut_review": "No apparent cross-cell figure overlap at four-way divisions; transparent outer margins vary.",
+      "full_video_validation": false
+    }
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-08.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 工作状态-思考冒泡. Preserve source pose A and B: 一手托下巴，眉眼思索；道具：thought_bubbles。动作语义：手托下巴思考，泡泡逐个冒出 / 头和视线转左，身体基本正面；道具：thought_bubbles。与A必须是不同的动作阶段，保持道具形状/位置关系。想到主意抬头\nCells [2, 3]: 工作状态-清点归档. Preserve source pose A and B: 从左侧拿取纸张或小物；道具：paper_stack_left, paper_stack_right, folder。动作语义：从左逐张清点并整理到右侧 / 向右侧叠放纸张或小物；道具：paper_stack_left, paper_stack_right, folder。与A必须是不同的动作阶段，保持道具形状/位置关系。放入文件夹并记一笔\nCells [4, 5]: 开心小跑. Preserve source pose A and B: 正面小跑，左腿抬起，右手前摆。动作语义：前向小跑，手腿交替 / 正面小跑，右腿抬起，左手前摆。与A必须是不同的动作阶段，保持道具形状/位置关系。减速微笑\nCells [6, 7]: 悠闲哼歌. Preserve source pose A and B: 正面小开口说话。动作语义：嘴型配合哼歌，头部打拍 / 正面大开口说话。与A必须是不同的动作阶段，保持道具形状/位置关系。微闭眼微笑\nCells [8, 9]: 扑克魔术. Preserve source pose A and B: 一手握拳置前，另一手遮挡，神秘微笑；道具：card_deck, card_fan。动作语义：洗牌遮手后展开扇形牌 / 双手张开展示，惊喜微笑；道具：card_deck, card_fan。与A必须是不同的动作阶段，保持道具形状/位置关系。抽牌变换再亮牌\nCells [10, 11]: 打瞌睡被惊醒. Preserve source pose A and B: 站着打盹，头低垂、眼睛闭合，身体往前歪，双手松垂。 / 突然睁大眼惊醒，肩膀耸起、双手护胸、身体后仰，明显惊吓反应。\nCells [12, 13]: 抽陀螺. Preserve source pose A and B: 手持短绳鞭向后蓄力，视线朝地面陀螺；道具：spinning_top, short_whip。动作语义：挥短鞭抽击陀螺侧面 / 手向前下方甩绳，身体随动作前倾；道具：spinning_top, short_whip。与A必须是不同的动作阶段，保持道具形状/位置关系。陀螺持续旋转、角色跟随观察\nCells [14, 15]: 拆礼物. Preserve source pose A and B: 双手托系丝带的关闭礼物盒，低头期待，手指抓住丝带结。 / 盒盖已经被左手揭起，右手托开放盒子，丝带松开，星星眼看盒中。\n"
+    }
+  ]
+}

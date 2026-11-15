@@ -1,0 +1,137 @@
+{
+  "class": "druid",
+  "sheet": "actions-09",
+  "original_sha256": "cabbff29199c769494342007fb228a8cb9409757752ec608e234650e47eb5578",
+  "replacement_sha256": "b50e585988853f3eb00ef24fca5979c4b5094cc53b89d9c3fb8f1ab64f1e9054",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-09",
+    "path": "source/sheets/druid/actions-09.png",
+    "sha256": "b50e585988853f3eb00ef24fca5979c4b5094cc53b89d9c3fb8f1ab64f1e9054",
+    "dimensions": [
+      1262,
+      1246
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/actions-09.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "Cell9 staff moved from right edge to viewer-left back location. All tree/fan/cat/envelope/lantern/firework/kite phases retained. Cell0 turns toward tree, staff visible behind body at screen-right is pose-dependent.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-09",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/actions-09.png",
+    "source_sha256": "cabbff29199c769494342007fb228a8cb9409757752ec608e234650e47eb5578",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-d008ffc4-d938-44b7-ac7f-b68cf5d1bae3",
+        "path": "workspace-revision/attempts/druid/actions-09-01.png",
+        "sha256": "9ce31f01d7835023a8c1f3cffc66d0d8a3bacf488524c6aba7e377bedc151fb8"
+      },
+      {
+        "output_id": "exec-94214174-4f29-4515-b227-da29456daf0e",
+        "path": "workspace-revision/attempts/druid/actions-09-02.png",
+        "sha256": "8e68bdeeae197fc798f2b85a652d6f52fd6b994e683f892ec53cd5a3c90f008b"
+      },
+      {
+        "output_id": "exec-1ac97794-a9f2-457c-aa5b-9c2d004d5359",
+        "path": "workspace-revision/attempts/druid/actions-09-03.png",
+        "sha256": "b50e585988853f3eb00ef24fca5979c4b5094cc53b89d9c3fb8f1ab64f1e9054"
+      }
+    ],
+    "generated_output_id": "exec-1ac97794-a9f2-457c-aa5b-9c2d004d5359",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-1ac97794-a9f2-457c-aa5b-9c2d004d5359.png",
+    "saved_output": "source/sheets/druid/actions-09.png",
+    "final_sha256": "b50e585988853f3eb00ef24fca5979c4b5094cc53b89d9c3fb8f1ab64f1e9054",
+    "dimensions": [
+      1262,
+      1246
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/druid/actions-09.txt",
+    "prompt_sha256": "ea3a3be2297c9f36351158b281ceb8283b29571c02ead3cdd67ef174f7b2cc7f",
+    "visual_review": {
+      "method": "generatedImage full atlas actually viewed all16 cells",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "Cell9 staff moved from right edge to viewer-left back location. All tree/fan/cat/envelope/lantern/firework/kite phases retained. Cell0 turns toward tree, staff visible behind body at screen-right is pose-dependent.",
+      "grid_cut_review": "No apparent neighboring sprite cut; fireworks and sky lantern remain within their cells.",
+      "full_video_validation": false
+    },
+    "correction_prompts": [
+      "workspace-revision/prompts/druid/actions-09-correction-02.txt",
+      "workspace-revision/prompts/druid/actions-09-correction-03.txt"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-09-correction-02.txt",
+      "text": "Precise local correction to input1 transparent 4x4 atlas. Input2 is staff design reference. Preserve every other cell and every pose, hand, prop, face, armor, antler and all 4x4 positions exactly. Keep transparent alpha, no new objects, no alternate poses. Change ONLY cell9 (zero-based row-major, THIRD ROW SECOND COLUMN), the front-facing girl releasing the glowing sky lantern with arms raised. Her single curled green-gem staff is incorrectly on viewer RIGHT. REMOVE that right-side staff completely and restore blue hair behind it. Put the same ONE staff at the canonical viewer LEFT back mount beside the left of her head/upper shoulder, partly behind hair, as reference. Keep sky lantern and both arms unobstructed. No duplicated staff; exactly one visible curl and one green gem.\n"
+    },
+    {
+      "name": "actions-09-correction-03.txt",
+      "text": "Input1 is edit target, a transparent 4x4 atlas. Make ONLY one local edit in cell9, THIRD ROW SECOND COLUMN, girl with both arms out releasing the sky lantern. Currently a brown hook and green diamond hang BEYOND HER RIGHT HAND, at the right edge of that cell (near x590,y750 on this atlas). DELETE that entire right-edge hooked staff and dangling green diamond; reconstruct the BLUE HAIR/transparent background at its place. Reinsert ONE matching short staff curl and green diamond BEHIND HER OTHER SHOULDER at the LEFT edge of that SAME cell (near x375,y800), below the raised left forearm, partly hidden by hair. This must move the staff from right to left within ONLY this one cell. Do not touch lantern, face, arms or any other15 cells. Staff must not remain on right, no duplicates. Match reference2 staff design. Same 4x4 layout and alpha. No further edits.\n"
+    },
+    {
+      "name": "actions-09.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 插茱萸赏菊. Preserve source pose A and B: 伸手把装饰物挂到树枝；道具：dogwood_branch, chrysanthemum_pot。动作语义：把茱萸插在发侧 / 头和视线转左，身体基本正面；道具：dogwood_branch, chrysanthemum_pot。与A必须是不同的动作阶段，保持道具形状/位置关系。低头欣赏菊花\nCells [2, 3]: 摇扇纳凉. Preserve source pose A and B: 扇子展开，持扇手向外摆；道具：folding_fan。动作语义：手腕扇动，头发轻轻随风 / 扇子靠近脸侧，轻轻扇动；道具：folding_fan。与A必须是不同的动作阶段，保持道具形状/位置关系。舒适微笑\nCells [4, 5]: 撸猫. Preserve source pose A and B: 跪坐，手掌轻放动物头顶；道具：cat。动作语义：手掌从头顶沿猫背抚摸 / 跪坐，手掌沿动物背部抚摸；道具：cat。与A必须是不同的动作阶段，保持道具形状/位置关系。猫抬头蹭手\nCells [6, 7]: 收红包. Preserve source pose A and B: 双手胸前端托，手腕形成物体接触面；道具：red_envelope, gold_coins。动作语义：打开红包口 / 一手揭开盒盖，另一手托盒；道具：red_envelope, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。看到金币开心\nCells [8, 9]: 放孔明灯. Preserve source pose A and B: 双手托住尚在胸前的发光孔明灯底部，仰头准备放飞。 / 双手上举张开放开，同一孔明灯已升到头顶上方，与手明确分离。\nCells [10, 11]: 放河灯. Preserve source pose A and B: 蹲下双手捧莲花河灯，灯底刚接触一小片水面。 / 仍蹲着，双手已经松开，莲花河灯向前漂开，周围有柔和水波纹。\nCells [12, 13]: 放烟花. Preserve source pose A and B: 蹲下伸手到地面小烟花筒旁，筒口尚无烟花，角色谨慎看着。 / 角色站直双手胸前、抬头星星眼，身侧同一烟花筒喷出金色火花并在头顶散开。\nCells [14, 15]: 放风筝. Preserve source pose A and B: 抬头看天，一手举风筝线轮，一手牵线；道具：kite, kite_reel, kite_string。动作语义：风筝升空、线始终连接手和风筝 / 身体后仰，双手收线；道具：kite, kite_reel, kite_string。与A必须是不同的动作阶段，保持道具形状/位置关系。拉线控制方向\n"
+    }
+  ]
+}

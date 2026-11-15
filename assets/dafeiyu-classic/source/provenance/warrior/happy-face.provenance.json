@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "tool": "built-in image_gen",
+  "mode": "edit",
+  "use_case": "precise-object-edit",
+  "transparent_background": true,
+  "reference": {
+    "path": "base-keyframes/warrior/frame-00.png",
+    "sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc"
+  },
+  "output": {
+    "path": "expressions/warrior/happy-face.png",
+    "sha256": "47b03936bf0e011de2ba2fd3c9085669ae4ef05bd3aae6a059bc78b58b653741",
+    "bytes": 703703,
+    "size": [
+      1672,
+      941
+    ]
+  },
+  "prompt": "prompts/warrior/happy-face.txt",
+  "integration": "expressions/warrior/happy-face.json",
+  "raw_generation_id": "exec-ee2a5ee7-c1df-427f-8066-0c2ee7311a8f",
+  "method_note": "The generated full sprite is not used as replacement equipment artwork. Only the aligned facial polygon is composited onto the immutable original sprite. Everything outside that polygon and the entire alpha channel remain byte-identical before motion sampling.",
+  "equipment_identity_qa": {
+    "outside_mask_changed_pixels": 0,
+    "equipment_region_y_gte_200_changed_pixels": 0,
+    "reference_alpha_unchanged": true
+  }
+}

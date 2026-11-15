@@ -1,0 +1,115 @@
+{
+  "class": "druid",
+  "sheet": "actions-01",
+  "original_sha256": "ee7db01c6c8ca742619f529ac57484555f2a250ce5772cdbd6dbc708aa81f279",
+  "replacement_sha256": "823fc94a02157f905a4fdf70ba47663da26f539dac8e547eb9436c6213a3b36e",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-01",
+    "path": "source/sheets/druid/actions-01.png",
+    "sha256": "823fc94a02157f905a4fdf70ba47663da26f539dac8e547eb9436c6213a3b36e",
+    "dimensions": [
+      1262,
+      1246
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/actions-01.json",
+    "review_status": "candidate_visual_reviewed_parent_sample_approved",
+    "main_defects_review": "One wooden curled staff with green diamond/leaf is visible at viewer-left local back attachment in every cell; antlers, leaf shoulders, green-gold robe, purple panel, blue waist gem, brown bracers/boots retained.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-01",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/actions-01.png",
+    "source_sha256": "ee7db01c6c8ca742619f529ac57484555f2a250ce5772cdbd6dbc708aa81f279",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "prompt": "workspace-revision/prompts/druid/actions-01.txt",
+    "prompt_sha256": "036674cc290f5d65ce12969c133a9e06d61bdfcad8504adfabb5e58a42bcfb3e",
+    "generated_output_id": "exec-240765c7-1d02-4ba5-bacd-2d5984c3417c",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-240765c7-1d02-4ba5-bacd-2d5984c3417c.png",
+    "saved_output": "source/sheets/druid/actions-01.png",
+    "final_sha256": "823fc94a02157f905a4fdf70ba47663da26f539dac8e547eb9436c6213a3b36e",
+    "dimensions": [
+      1262,
+      1246
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed_parent_sample_approved",
+    "parent_approval": "root visually approved sample before expansion",
+    "original_modified": false,
+    "visual_review": {
+      "method": "actual view_image original-resolution inspection of saved output; compare with viewed original atlas and frame00",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "macro_equipment_result": "One wooden curled staff with green diamond/leaf is visible at viewer-left local back attachment in every cell; antlers, leaf shoulders, green-gold robe, purple panel, blue waist gem, brown bracers/boots retained.",
+      "pose_and_props_result": "Juggling retains 3 colored balls and two phases; gomoku retains board and pieces; two glances remain; mooncake/moon objects preserved; both dance poses retained; all distinct money bag/coin interactions retained.",
+      "limitations": [
+        "This is source endpoint visual repair, not proof of video temporal continuity.",
+        "Exact invisible back attachment and pixel-identical garment ornamentation are not established by this inspection."
+      ],
+      "macro_visual_candidate_acceptable": true,
+      "direct_import_ready": false,
+      "grid_note": "Runtime divides by actual width/height. Non1280 dimensions are not by themselves a rejection."
+    }
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-01.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4 by 4 character animation source atlas, 16 separate RGBA sprites.\nInput image 1 is the exact EDIT TARGET (druid actions-01 atlas). Input image 2 is the fixed equipment reference (druid frame-00).\nPrimary request: repair only equipment identity across all 16 cells of image 1. Preserve every original pose, face expression, hand position, object, object interaction, and 4x4 cell placement. Keep the original blue-haired chibi character and original drawing style.\nUse exactly the reference's same brown branching antlers with leaves and green forehead diamond; same leaf shoulders, collar, dark green robe with gold vine pattern, purple center skirt panel, oval blue belt gem, brown bracers and boots. Do not redesign the clothing or patterns between cells. Restore exactly ONE wooden curled-branch staff with the same hanging green diamond gem and green leaves in EVERY humanoid cell. The staff is fixed on the character's right-back side, appearing on viewer LEFT in front-facing poses, like reference image 2. It is securely back-mounted so both hands remain free for their existing actions. The wooden upper curl and green gem must be clearly visible beside the character at upper-arm/head-base height; shaft follows the back mounting, behind arms and props, consistent local position, not floating and not duplicated. Retain sensible occlusion behind hair/arms without hiding the whole identifying staff.\nSpecific cell invariants in row-major order:\nRow1 cells0-1: juggling exactly three colored balls at the existing two different phases. Preserve all balls and hands. Cells2-3: gomoku board, black and white stones, bowls, thinking then placing stone.\nRow2 cells4-5: arms-down left/right glances. Cells6-7: moon, mooncakes and eating/serving phases.\nRow3 cells8-9: two distinct maid-dance poses, leg positions and arm gestures. Cells10-11: distressed empty purse, then holding gathered money pouch.\nRow4 cells12-13: counting coins with pouch, then concerned thinking. Cells14-15: tipping an empty money bag, then showing it empty. Preserve different expressions and all money/bag objects.\nConstraints: keep a square 4x4 atlas with sixteen occupied equally sized cells in exactly the same order, each full sprite stays within its cell with transparent separation. Match original canvas size and character framing. Genuine transparent background/alpha, no color backdrop, no checkerboard drawn into the image, no grid lines, no labels, no extra objects. Do not replace diverse actions with standing poses. Do not change limbs or pose layouts. No added cape, no new weapon, no alternate armor. Edit only equipment consistency and missing back-mounted staff.\n"
+    }
+  ]
+}

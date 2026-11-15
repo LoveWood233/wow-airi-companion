@@ -1,0 +1,104 @@
+{
+  "class": "warrior",
+  "sheet": "actions-10",
+  "original_sha256": "6cee63bbd32865b143c7ecef8f4464687277796b174ecc0353aa860d7efed830",
+  "replacement_sha256": "f80628bbd675b316ee910ceb6717630d7bac960becf6aa52eb3a7557d74a626d",
+  "freeze_manifest": "warrior-six-repair-integration.json",
+  "source_review": {
+    "sheet": "actions-10",
+    "path": "source/sheets/warrior/actions-10.png",
+    "sha256": "f80628bbd675b316ee910ceb6717630d7bac960becf6aa52eb3a7557d74a626d",
+    "size": [
+      1263,
+      1246
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/warrior/actions-10.json",
+    "review_status": "candidate_visual_reviewed",
+    "review_note": "All16 front-facing sprites now have one left waist sheathed sword and right-back shield; right duplicate weapons deleted. Cloth swatches/toothbrush/cup/bowls/hotpot/thoughts/waves intact.",
+    "remaining_limitations": [
+      "Micro ornament/proportion variance remains; temporal frames not reviewed."
+    ]
+  },
+  "generation": {
+    "class": "warrior",
+    "sheet": "actions-10",
+    "method": "built_in_image_gen_precise_object_edit",
+    "original_sha256": "6cee63bbd32865b143c7ecef8f4464687277796b174ecc0353aa860d7efed830",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "imagegen_output": "image_gen-output:exec-21a95be2-0d88-4142-8d90-c17934929ba3.png",
+    "sha256": "f80628bbd675b316ee910ceb6717630d7bac960becf6aa52eb3a7557d74a626d",
+    "dimensions": [
+      1263,
+      1246
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "review_note": "All16 front-facing sprites now have one left waist sheathed sword and right-back shield; right duplicate weapons deleted. Cloth swatches/toothbrush/cup/bowls/hotpot/thoughts/waves intact.",
+    "attempts": [
+      {
+        "output_id": "parent-input",
+        "path": "workspace-revision/attempts/warrior/actions-10-parent-input.png",
+        "sha256": "77d765f48a33c9d697b439d4c93e8d04c5d12f2225421abaa7984b47635cdbf7"
+      },
+      {
+        "output_id": "exec-21a95be2-0d88-4142-8d90-c17934929ba3",
+        "path": "workspace-revision/attempts/warrior/actions-10-02.png",
+        "sha256": "f80628bbd675b316ee910ceb6717630d7bac960becf6aa52eb3a7557d74a626d"
+      }
+    ],
+    "generated_output_id": "exec-21a95be2-0d88-4142-8d90-c17934929ba3",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-21a95be2-0d88-4142-8d90-c17934929ba3.png",
+    "saved_output": "source/sheets/warrior/actions-10.png",
+    "final_sha256": "f80628bbd675b316ee910ceb6717630d7bac960becf6aa52eb3a7557d74a626d",
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "prompt": "workspace-revision/prompts/warrior/actions-10.txt",
+    "prompt_sha256": "de0a228d81c476ffbd4144c238336ee8b42b6b6d2bf1a2d5fb8c340f3de9526b",
+    "visual_review": {
+      "method": "generatedImage actual full16-cell inspection",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "All16 front-facing sprites now have one left waist sheathed sword and right-back shield; right duplicate weapons deleted. Cloth swatches/toothbrush/cup/bowls/hotpot/thoughts/waves intact.",
+      "grid_cut_review": "No apparent adjacent cell clipping.",
+      "full_video_validation": false
+    },
+    "correction_prompts": [
+      "workspace-revision/prompts/warrior/actions-10-agent-correction.txt"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-10-agent-correction.txt",
+      "text": "Input1 is a transparent4x4 warrior atlas. It contains WRONG DUPLICATE SWORDS on the RIGHT SIDE of nearly every girl's waist. DELETE every sword/scabbard/hilt on the IMAGE-RIGHT side of each sprite. KEEP the existing SINGLE sword/scabbard on IMAGE-LEFT (same side as input2 canonical reference). Where a left sword is only partly behind a prop/hand, leave natural occlusion. Each girl must have exactly ONE sword on IMAGE-LEFT and one round shield on IMAGE-RIGHT. No sword may remain by the right thigh. Do NOT mirror or move the character, shield, hands or props. Preserve all16 poses/expressions, red-blue cloth swatches, thought bubbles, brush/cup, meal bowls, hotpot and waving hands. Keep same navy/gold armor,4x4 layout and genuine transparent alpha. Only remove wrong right-hand-side duplicate weapons; restore underlying blue hair/armor/background.\n"
+    },
+    {
+      "name": "actions-10.txt",
+      "text": "Precise equipment repair. Image 1 is target, Image 2 is correct reference. Preserve the entire original 4x4 atlas and all sixteen unique poses, activity objects, faces, hands, armor patterns and cell positions. Add the missing navy/gold scabbarded sword to the belt on the LEFT OF THE IMAGE pointing down-left, and gold-rim navy round shield behind the shoulder on the RIGHT OF THE IMAGE, exactly as reference. Sword and shield on OPPOSITE sides; only ONE of each. Do not move existing props or hands and do not invent extra limbs. The same equipment rotates naturally with the torso when crouching, sitting or leaning. Keep all activity props: this sheet's actions must remain readable, not replaced with standing. True transparent background, clean alpha margins inside each of sixteen cells, no labels or grid.\n"
+    }
+  ]
+}

@@ -1,0 +1,2095 @@
+{
+  "scope": "26 time samples per class on first jump/celebration; source/rig QA only, not encoded full-video review",
+  "classes": {
+    "warrior": {
+      "samples": [
+        {
+          "time": 0.5,
+          "jacobian_min_on_visible_source": 1.0,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 0.0
+        },
+        {
+          "time": 0.6,
+          "jacobian_min_on_visible_source": 1.0,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 0.0
+        },
+        {
+          "time": 0.7,
+          "jacobian_min_on_visible_source": 0.9852485060691833,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.07407677173614502
+        },
+        {
+          "time": 0.7999999999999999,
+          "jacobian_min_on_visible_source": 0.894623339176178,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.5261357426643372
+        },
+        {
+          "time": 0.8999999999999999,
+          "jacobian_min_on_visible_source": 0.7840723395347595,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.0711231231689453
+        },
+        {
+          "time": 0.9999999999999999,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.3353748321533203
+        },
+        {
+          "time": 1.0999999999999999,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.3353748321533203
+        },
+        {
+          "time": 1.1999999999999997,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.3353748321533203
+        },
+        {
+          "time": 1.2999999999999998,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.3353748321533203
+        },
+        {
+          "time": 1.4,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 2.80281662940979
+        },
+        {
+          "time": 1.4999999999999998,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 2.80281662940979
+        },
+        {
+          "time": 1.5999999999999996,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.3353748321533203
+        },
+        {
+          "time": 1.6999999999999997,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.708311676979065
+        },
+        {
+          "time": 1.7999999999999998,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 4.84266996383667
+        },
+        {
+          "time": 1.8999999999999997,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 8.549901008605957
+        },
+        {
+          "time": 1.9999999999999996,
+          "jacobian_min_on_visible_source": 0.7300904393196106,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 10.578967094421387
+        },
+        {
+          "time": 2.0999999999999996,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 9.870742797851562
+        },
+        {
+          "time": 2.1999999999999997,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 6.794871807098389
+        },
+        {
+          "time": 2.3,
+          "jacobian_min_on_visible_source": 0.7300792336463928,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 3.048530101776123
+        },
+        {
+          "time": 2.3999999999999995,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 1.322455644607544
+        },
+        {
+          "time": 2.4999999999999996,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.3353748321533203
+        },
+        {
+          "time": 2.5999999999999996,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.3353748321533203
+        },
+        {
+          "time": 2.6999999999999993,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.3353748321533203
+        },
+        {
+          "time": 2.7999999999999994,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.3353748321533203
+        },
+        {
+          "time": 2.8999999999999995,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.3353748321533203
+        },
+        {
+          "time": 2.9999999999999996,
+          "jacobian_min_on_visible_source": 0.7300848364830017,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.3353748321533203
+        }
+      ],
+      "minimum_jacobian": 0.7300792336463928,
+      "maximum_inverse_residual": 4.31583721365314e-05,
+      "rig_diagnostics": {
+        "policy": "class_fixed_master_bounded_continuous_motion_v1",
+        "coordinate_space": "640x360 master",
+        "immutable_master": "base-keyframes/warrior/frame-00.png",
+        "master_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+        "fixed_parts": [
+          "head ornaments",
+          "shoulder armor",
+          "chest armor",
+          "weapons and equipped objects"
+        ],
+        "arm_pivots_and_forearm_ends": [
+          [
+            281,
+            216,
+            282,
+            256
+          ],
+          [
+            366,
+            216,
+            367,
+            256
+          ]
+        ],
+        "maximum_forearm_angle_degrees": 10,
+        "maximum_lift_pixels": 31.0,
+        "weapon_protection_polygons": [
+          [
+            [
+              370,
+              195
+            ],
+            [
+              401,
+              190
+            ],
+            [
+              415,
+              213
+            ],
+            [
+              410,
+              247
+            ],
+            [
+              388,
+              272
+            ],
+            [
+              370,
+              268
+            ]
+          ],
+          [
+            [
+              277,
+              246
+            ],
+            [
+              292,
+              251
+            ],
+            [
+              281,
+              275
+            ],
+            [
+              260,
+              310
+            ],
+            [
+              249,
+              310
+            ],
+            [
+              251,
+              292
+            ],
+            [
+              269,
+              266
+            ]
+          ]
+        ],
+        "weapon_core_margin_pixels": 8,
+        "weapon_attachments": [
+          "torso",
+          "torso"
+        ],
+        "expression_outside_face_changed_pixels": 0,
+        "expression_alpha_unchanged": true,
+        "limits": [
+          "Bounded continuous forearm cheer; not a high-V arm raise.",
+          "One source texture with mild hair/leg deformation; no 3D reconstruction.",
+          "Numeric invariants do not replace rendered-frame visual review."
+        ]
+      }
+    },
+    "hunter": {
+      "samples": [
+        {
+          "time": 0.5,
+          "jacobian_min_on_visible_source": 1.0,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 0.0
+        },
+        {
+          "time": 0.6,
+          "jacobian_min_on_visible_source": 0.9817962646484375,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.39662185311317444
+        },
+        {
+          "time": 0.7,
+          "jacobian_min_on_visible_source": 0.857086181640625,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 3.114121675491333
+        },
+        {
+          "time": 0.7999999999999999,
+          "jacobian_min_on_visible_source": 0.7015686631202698,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 6.527444362640381
+        },
+        {
+          "time": 0.8999999999999999,
+          "jacobian_min_on_visible_source": 0.6323703527450562,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 8.100679397583008
+        },
+        {
+          "time": 0.9999999999999999,
+          "jacobian_min_on_visible_source": 0.7015603184700012,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 6.700403690338135
+        },
+        {
+          "time": 1.0999999999999999,
+          "jacobian_min_on_visible_source": 0.8492782711982727,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 3.4688425064086914
+        },
+        {
+          "time": 1.1999999999999997,
+          "jacobian_min_on_visible_source": 0.8575685620307922,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 2.2174835205078125
+        },
+        {
+          "time": 1.2999999999999998,
+          "jacobian_min_on_visible_source": 0.7795791029930115,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 3.5280401706695557
+        },
+        {
+          "time": 1.4,
+          "jacobian_min_on_visible_source": 0.6974042654037476,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 6.093224048614502
+        },
+        {
+          "time": 1.4999999999999998,
+          "jacobian_min_on_visible_source": 0.6191447973251343,
+          "maximum_inverse_residual_on_visible_output": 6.291359750321135e-05,
+          "max_displacement": 10.225586891174316
+        },
+        {
+          "time": 1.5999999999999996,
+          "jacobian_min_on_visible_source": 0.5525027513504028,
+          "maximum_inverse_residual_on_visible_output": 9.650505671743304e-05,
+          "max_displacement": 14.770524978637695
+        },
+        {
+          "time": 1.6999999999999997,
+          "jacobian_min_on_visible_source": 0.5040732622146606,
+          "maximum_inverse_residual_on_visible_output": 0.0005501634441316128,
+          "max_displacement": 18.302650451660156
+        },
+        {
+          "time": 1.7999999999999998,
+          "jacobian_min_on_visible_source": 0.47862446308135986,
+          "maximum_inverse_residual_on_visible_output": 0.0014718997990712523,
+          "max_displacement": 19.73810386657715
+        },
+        {
+          "time": 1.8999999999999997,
+          "jacobian_min_on_visible_source": 0.4786016047000885,
+          "maximum_inverse_residual_on_visible_output": 0.0016743696760386229,
+          "max_displacement": 18.650592803955078
+        },
+        {
+          "time": 1.9999999999999996,
+          "jacobian_min_on_visible_source": 0.5040850043296814,
+          "maximum_inverse_residual_on_visible_output": 0.0006665139808319509,
+          "max_displacement": 15.40011215209961
+        },
+        {
+          "time": 2.0999999999999996,
+          "jacobian_min_on_visible_source": 0.5524911880493164,
+          "maximum_inverse_residual_on_visible_output": 0.00010235906665911898,
+          "max_displacement": 11.00527572631836
+        },
+        {
+          "time": 2.1999999999999997,
+          "jacobian_min_on_visible_source": 0.6191350817680359,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 6.905577182769775
+        },
+        {
+          "time": 2.3,
+          "jacobian_min_on_visible_source": 0.6838024854660034,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 4.332027435302734
+        },
+        {
+          "time": 2.3999999999999995,
+          "jacobian_min_on_visible_source": 0.7330147624015808,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 2.8740875720977783
+        },
+        {
+          "time": 2.4999999999999996,
+          "jacobian_min_on_visible_source": 0.7716159820556641,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.776466131210327
+        },
+        {
+          "time": 2.5999999999999996,
+          "jacobian_min_on_visible_source": 0.7290029525756836,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 5.272799968719482
+        },
+        {
+          "time": 2.6999999999999993,
+          "jacobian_min_on_visible_source": 0.8228220343589783,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 3.407396078109741
+        },
+        {
+          "time": 2.7999999999999994,
+          "jacobian_min_on_visible_source": 0.9595239162445068,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.5456025004386902
+        },
+        {
+          "time": 2.8999999999999995,
+          "jacobian_min_on_visible_source": 0.994873046875,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.04546554014086723
+        },
+        {
+          "time": 2.9999999999999996,
+          "jacobian_min_on_visible_source": 0.9997940063476562,
+          "maximum_inverse_residual_on_visible_output": 1.52587890625e-05,
+          "max_displacement": 0.0015504010953009129
+        }
+      ],
+      "minimum_jacobian": 0.4786016047000885,
+      "maximum_inverse_residual": 0.0016743696760386229,
+      "rig_diagnostics": {
+        "policy": "class_fixed_master_bounded_continuous_motion_v1",
+        "coordinate_space": "640x360 master",
+        "immutable_master": "base-keyframes/hunter/frame-00.png",
+        "master_sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4",
+        "fixed_parts": [
+          "head ornaments",
+          "shoulder armor",
+          "chest armor",
+          "weapons and equipped objects"
+        ],
+        "arm_pivots_and_forearm_ends": [
+          [
+            282,
+            217,
+            274,
+            253
+          ],
+          [
+            355,
+            216,
+            367,
+            252
+          ]
+        ],
+        "maximum_forearm_angle_degrees": 10,
+        "maximum_lift_pixels": 15.0,
+        "weapon_protection_polygons": [
+          [
+            [
+              225,
+              188
+            ],
+            [
+              244,
+              188
+            ],
+            [
+              258,
+              204
+            ],
+            [
+              256,
+              227
+            ],
+            [
+              265,
+              247
+            ],
+            [
+              268,
+              276
+            ],
+            [
+              283,
+              299
+            ],
+            [
+              278,
+              317
+            ],
+            [
+              268,
+              304
+            ],
+            [
+              257,
+              288
+            ],
+            [
+              247,
+              274
+            ],
+            [
+              244,
+              251
+            ],
+            [
+              233,
+              247
+            ],
+            [
+              232,
+              238
+            ],
+            [
+              238,
+              232
+            ],
+            [
+              238,
+              212
+            ],
+            [
+              230,
+              205
+            ],
+            [
+              219,
+              205
+            ]
+          ],
+          [
+            [
+              371,
+              167
+            ],
+            [
+              394,
+              174
+            ],
+            [
+              381,
+              198
+            ],
+            [
+              364,
+              189
+            ]
+          ]
+        ],
+        "weapon_core_margin_pixels": 8,
+        "weapon_attachments": [
+          "torso",
+          "torso"
+        ],
+        "expression_outside_face_changed_pixels": 0,
+        "expression_alpha_unchanged": true,
+        "limits": [
+          "Bounded continuous forearm cheer; not a high-V arm raise.",
+          "One source texture with mild hair/leg deformation; no 3D reconstruction.",
+          "Numeric invariants do not replace rendered-frame visual review."
+        ]
+      }
+    },
+    "mage": {
+      "samples": [
+        {
+          "time": 0.5,
+          "jacobian_min_on_visible_source": 1.0,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 0.0
+        },
+        {
+          "time": 0.6,
+          "jacobian_min_on_visible_source": 0.9671173095703125,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.39660683274269104
+        },
+        {
+          "time": 0.7,
+          "jacobian_min_on_visible_source": 0.7418973445892334,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 3.114349842071533
+        },
+        {
+          "time": 0.7999999999999999,
+          "jacobian_min_on_visible_source": 0.46105456352233887,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 6.529267311096191
+        },
+        {
+          "time": 0.8999999999999999,
+          "jacobian_min_on_visible_source": 0.3360747992992401,
+          "maximum_inverse_residual_on_visible_output": 6.103515625e-05,
+          "max_displacement": 8.106239318847656
+        },
+        {
+          "time": 0.9999999999999999,
+          "jacobian_min_on_visible_source": 0.46105414628982544,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 6.712162971496582
+        },
+        {
+          "time": 1.0999999999999999,
+          "jacobian_min_on_visible_source": 0.7418932318687439,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.465921640396118
+        },
+        {
+          "time": 1.1999999999999997,
+          "jacobian_min_on_visible_source": 0.8397920727729797,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 2.3368794918060303
+        },
+        {
+          "time": 1.2999999999999998,
+          "jacobian_min_on_visible_source": 0.752234160900116,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 4.049325466156006
+        },
+        {
+          "time": 1.4,
+          "jacobian_min_on_visible_source": 0.6600093245506287,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 8.268149375915527
+        },
+        {
+          "time": 1.4999999999999998,
+          "jacobian_min_on_visible_source": 0.5722340941429138,
+          "maximum_inverse_residual_on_visible_output": 9.650505671743304e-05,
+          "max_displacement": 15.443808555603027
+        },
+        {
+          "time": 1.5999999999999996,
+          "jacobian_min_on_visible_source": 0.49749377369880676,
+          "maximum_inverse_residual_on_visible_output": 0.00013037114695180207,
+          "max_displacement": 23.36004638671875
+        },
+        {
+          "time": 1.6999999999999997,
+          "jacobian_min_on_visible_source": 0.4431840777397156,
+          "maximum_inverse_residual_on_visible_output": 0.004138030577450991,
+          "max_displacement": 29.482086181640625
+        },
+        {
+          "time": 1.7999999999999998,
+          "jacobian_min_on_visible_source": 0.41465693712234497,
+          "maximum_inverse_residual_on_visible_output": 0.015579074621200562,
+          "max_displacement": 31.906658172607422
+        },
+        {
+          "time": 1.8999999999999997,
+          "jacobian_min_on_visible_source": 0.4146530032157898,
+          "maximum_inverse_residual_on_visible_output": 0.01255074143409729,
+          "max_displacement": 29.89826011657715
+        },
+        {
+          "time": 1.9999999999999996,
+          "jacobian_min_on_visible_source": 0.44318872690200806,
+          "maximum_inverse_residual_on_visible_output": 0.0016940004425123334,
+          "max_displacement": 24.104230880737305
+        },
+        {
+          "time": 2.0999999999999996,
+          "jacobian_min_on_visible_source": 0.49749547243118286,
+          "maximum_inverse_residual_on_visible_output": 0.0003479539300315082,
+          "max_displacement": 16.348941802978516
+        },
+        {
+          "time": 2.1999999999999997,
+          "jacobian_min_on_visible_source": 0.5722328424453735,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 9.066132545471191
+        },
+        {
+          "time": 2.3,
+          "jacobian_min_on_visible_source": 0.660024106502533,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 4.583498954772949
+        },
+        {
+          "time": 2.3999999999999995,
+          "jacobian_min_on_visible_source": 0.7522283792495728,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.311598062515259
+        },
+        {
+          "time": 2.4999999999999996,
+          "jacobian_min_on_visible_source": 0.7283892631530762,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.9087724685668945
+        },
+        {
+          "time": 2.5999999999999996,
+          "jacobian_min_on_visible_source": 0.5850303173065186,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 5.274735450744629
+        },
+        {
+          "time": 2.6999999999999993,
+          "jacobian_min_on_visible_source": 0.728398323059082,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 3.408383846282959
+        },
+        {
+          "time": 2.7999999999999994,
+          "jacobian_min_on_visible_source": 0.9592850208282471,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.5479713082313538
+        },
+        {
+          "time": 2.8999999999999995,
+          "jacobian_min_on_visible_source": 0.994873046875,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.04571961984038353
+        },
+        {
+          "time": 2.9999999999999996,
+          "jacobian_min_on_visible_source": 0.9997940063476562,
+          "maximum_inverse_residual_on_visible_output": 1.52587890625e-05,
+          "max_displacement": 0.0015804452123120427
+        }
+      ],
+      "minimum_jacobian": 0.3360747992992401,
+      "maximum_inverse_residual": 0.015579074621200562,
+      "rig_diagnostics": {
+        "policy": "class_fixed_master_bounded_continuous_motion_v1",
+        "coordinate_space": "640x360 master",
+        "immutable_master": "base-keyframes/mage/frame-00.png",
+        "master_sha256": "59bf2ae063309035fc0e59ceb5ca22969b768886ed3eac3bb03dbb556b9b3291",
+        "fixed_parts": [
+          "head ornaments",
+          "shoulder armor",
+          "chest armor",
+          "weapons and equipped objects"
+        ],
+        "arm_pivots_and_forearm_ends": [
+          [
+            280,
+            221,
+            263,
+            262
+          ],
+          [
+            359,
+            222,
+            374,
+            262
+          ]
+        ],
+        "maximum_forearm_angle_degrees": 10,
+        "maximum_lift_pixels": 27.0,
+        "weapon_protection_polygons": [
+          [
+            [
+              211,
+              173
+            ],
+            [
+              223,
+              164
+            ],
+            [
+              241,
+              173
+            ],
+            [
+              247,
+              191
+            ],
+            [
+              237,
+              207
+            ],
+            [
+              263,
+              245
+            ],
+            [
+              257,
+              252
+            ],
+            [
+              228,
+              210
+            ],
+            [
+              217,
+              203
+            ],
+            [
+              210,
+              191
+            ]
+          ]
+        ],
+        "weapon_core_margin_pixels": 8,
+        "weapon_attachments": [
+          "torso"
+        ],
+        "expression_outside_face_changed_pixels": 0,
+        "expression_alpha_unchanged": true,
+        "limits": [
+          "Bounded continuous forearm cheer; not a high-V arm raise.",
+          "One source texture with mild hair/leg deformation; no 3D reconstruction.",
+          "Numeric invariants do not replace rendered-frame visual review."
+        ]
+      }
+    },
+    "rogue": {
+      "samples": [
+        {
+          "time": 0.5,
+          "jacobian_min_on_visible_source": 1.0,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 0.0
+        },
+        {
+          "time": 0.6,
+          "jacobian_min_on_visible_source": 0.9778595566749573,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.39663708209991455
+        },
+        {
+          "time": 0.7,
+          "jacobian_min_on_visible_source": 0.826201319694519,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 3.1144723892211914
+        },
+        {
+          "time": 0.7999999999999999,
+          "jacobian_min_on_visible_source": 0.6369753479957581,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 6.530189514160156
+        },
+        {
+          "time": 0.8999999999999999,
+          "jacobian_min_on_visible_source": 0.552436113357544,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 8.108914375305176
+        },
+        {
+          "time": 0.9999999999999999,
+          "jacobian_min_on_visible_source": 0.6383212804794312,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 6.717347145080566
+        },
+        {
+          "time": 1.0999999999999999,
+          "jacobian_min_on_visible_source": 0.8319490551948547,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.489677667617798
+        },
+        {
+          "time": 1.1999999999999997,
+          "jacobian_min_on_visible_source": 0.9117935299873352,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.2935994863510132
+        },
+        {
+          "time": 1.2999999999999998,
+          "jacobian_min_on_visible_source": 0.8560118675231934,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 2.041551113128662
+        },
+        {
+          "time": 1.4,
+          "jacobian_min_on_visible_source": 0.7722281217575073,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 5.752182483673096
+        },
+        {
+          "time": 1.4999999999999998,
+          "jacobian_min_on_visible_source": 0.6835862994194031,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 11.859969139099121
+        },
+        {
+          "time": 1.5999999999999996,
+          "jacobian_min_on_visible_source": 0.6055673360824585,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 18.42235565185547
+        },
+        {
+          "time": 1.6999999999999997,
+          "jacobian_min_on_visible_source": 0.5533775687217712,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 23.36787223815918
+        },
+        {
+          "time": 1.7999999999999998,
+          "jacobian_min_on_visible_source": 0.5377845764160156,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 25.35763168334961
+        },
+        {
+          "time": 1.8999999999999997,
+          "jacobian_min_on_visible_source": 0.5620721578598022,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 23.719154357910156
+        },
+        {
+          "time": 1.9999999999999996,
+          "jacobian_min_on_visible_source": 0.6211317777633667,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 18.89157485961914
+        },
+        {
+          "time": 2.0999999999999996,
+          "jacobian_min_on_visible_source": 0.7029151320457458,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 12.437015533447266
+        },
+        {
+          "time": 2.1999999999999997,
+          "jacobian_min_on_visible_source": 0.7647584676742554,
+          "maximum_inverse_residual_on_visible_output": 4.57763671875e-05,
+          "max_displacement": 6.455954074859619
+        },
+        {
+          "time": 2.3,
+          "jacobian_min_on_visible_source": 0.7767825126647949,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 2.9106509685516357
+        },
+        {
+          "time": 2.3999999999999995,
+          "jacobian_min_on_visible_source": 0.808246910572052,
+          "maximum_inverse_residual_on_visible_output": 4.57763671875e-05,
+          "max_displacement": 1.8637924194335938
+        },
+        {
+          "time": 2.4999999999999996,
+          "jacobian_min_on_visible_source": 0.8001267313957214,
+          "maximum_inverse_residual_on_visible_output": 4.57763671875e-05,
+          "max_displacement": 3.796862840652466
+        },
+        {
+          "time": 2.5999999999999996,
+          "jacobian_min_on_visible_source": 0.7212966680526733,
+          "maximum_inverse_residual_on_visible_output": 4.57763671875e-05,
+          "max_displacement": 5.280440330505371
+        },
+        {
+          "time": 2.6999999999999993,
+          "jacobian_min_on_visible_source": 0.8157294392585754,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 3.411280632019043
+        },
+        {
+          "time": 2.7999999999999994,
+          "jacobian_min_on_visible_source": 0.9697117805480957,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.5493898987770081
+        },
+        {
+          "time": 2.8999999999999995,
+          "jacobian_min_on_visible_source": 0.9954071044921875,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.045813556760549545
+        },
+        {
+          "time": 2.9999999999999996,
+          "jacobian_min_on_visible_source": 0.99981689453125,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.0015551992692053318
+        }
+      ],
+      "minimum_jacobian": 0.5377845764160156,
+      "maximum_inverse_residual": 6.823938019806519e-05,
+      "rig_diagnostics": {
+        "policy": "class_fixed_master_bounded_continuous_motion_v1",
+        "coordinate_space": "640x360 master",
+        "immutable_master": "base-keyframes/rogue/frame-00.png",
+        "master_sha256": "4920d84307c8d30f29e2e7d909e29548023651a76cb4d952ef0ef7d72c0ca62b",
+        "fixed_parts": [
+          "head ornaments",
+          "shoulder armor",
+          "chest armor",
+          "weapons and equipped objects"
+        ],
+        "arm_pivots_and_forearm_ends": [
+          [
+            281,
+            217,
+            267,
+            261
+          ],
+          [
+            365,
+            217,
+            380,
+            261
+          ]
+        ],
+        "maximum_forearm_angle_degrees": 3,
+        "maximum_lift_pixels": 23.0,
+        "weapon_protection_polygons": [
+          [
+            [
+              273,
+              253
+            ],
+            [
+              286,
+              259
+            ],
+            [
+              260,
+              288
+            ],
+            [
+              252,
+              290
+            ],
+            [
+              259,
+              273
+            ]
+          ],
+          [
+            [
+              366,
+              254
+            ],
+            [
+              377,
+              253
+            ],
+            [
+              394,
+              278
+            ],
+            [
+              395,
+              287
+            ],
+            [
+              386,
+              282
+            ]
+          ]
+        ],
+        "weapon_core_margin_pixels": 8,
+        "weapon_attachments": [
+          "left_arm",
+          "right_arm"
+        ],
+        "expression_outside_face_changed_pixels": 0,
+        "expression_alpha_unchanged": true,
+        "limits": [
+          "Bounded continuous forearm cheer; not a high-V arm raise.",
+          "One source texture with mild hair/leg deformation; no 3D reconstruction.",
+          "Numeric invariants do not replace rendered-frame visual review."
+        ]
+      }
+    },
+    "paladin": {
+      "samples": [
+        {
+          "time": 0.5,
+          "jacobian_min_on_visible_source": 1.0,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 0.0
+        },
+        {
+          "time": 0.6,
+          "jacobian_min_on_visible_source": 0.9671173095703125,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.3965609073638916
+        },
+        {
+          "time": 0.7,
+          "jacobian_min_on_visible_source": 0.7418975830078125,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 3.114014148712158
+        },
+        {
+          "time": 0.7999999999999999,
+          "jacobian_min_on_visible_source": 0.46105456352233887,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 6.526520729064941
+        },
+        {
+          "time": 0.8999999999999999,
+          "jacobian_min_on_visible_source": 0.3360745310783386,
+          "maximum_inverse_residual_on_visible_output": 6.103515625e-05,
+          "max_displacement": 8.097989082336426
+        },
+        {
+          "time": 0.9999999999999999,
+          "jacobian_min_on_visible_source": 0.46105414628982544,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 6.695231914520264
+        },
+        {
+          "time": 1.0999999999999999,
+          "jacobian_min_on_visible_source": 0.7418932318687439,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 3.458238124847412
+        },
+        {
+          "time": 1.1999999999999997,
+          "jacobian_min_on_visible_source": 0.9326468706130981,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.2472957372665405
+        },
+        {
+          "time": 1.2999999999999998,
+          "jacobian_min_on_visible_source": 0.8903305530548096,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 2.5788748264312744
+        },
+        {
+          "time": 1.4,
+          "jacobian_min_on_visible_source": 0.8367342948913574,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 7.526444435119629
+        },
+        {
+          "time": 1.4999999999999998,
+          "jacobian_min_on_visible_source": 0.7653255462646484,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 15.570444107055664
+        },
+        {
+          "time": 1.5999999999999996,
+          "jacobian_min_on_visible_source": 0.7019971013069153,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 24.18695640563965
+        },
+        {
+          "time": 1.6999999999999997,
+          "jacobian_min_on_visible_source": 0.6603309512138367,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 30.678438186645508
+        },
+        {
+          "time": 1.7999999999999998,
+          "jacobian_min_on_visible_source": 0.6499574780464172,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 33.011009216308594
+        },
+        {
+          "time": 1.8999999999999997,
+          "jacobian_min_on_visible_source": 0.6736350655555725,
+          "maximum_inverse_residual_on_visible_output": 6.103515625e-05,
+          "max_displacement": 30.449237823486328
+        },
+        {
+          "time": 1.9999999999999996,
+          "jacobian_min_on_visible_source": 0.7213221192359924,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 23.79078483581543
+        },
+        {
+          "time": 2.0999999999999996,
+          "jacobian_min_on_visible_source": 0.7636263966560364,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 15.126687049865723
+        },
+        {
+          "time": 2.1999999999999997,
+          "jacobian_min_on_visible_source": 0.8134746551513672,
+          "maximum_inverse_residual_on_visible_output": 4.57763671875e-05,
+          "max_displacement": 7.228491306304932
+        },
+        {
+          "time": 2.3,
+          "jacobian_min_on_visible_source": 0.8629330396652222,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 2.7883176803588867
+        },
+        {
+          "time": 2.3999999999999995,
+          "jacobian_min_on_visible_source": 0.8771328926086426,
+          "maximum_inverse_residual_on_visible_output": 4.57763671875e-05,
+          "max_displacement": 1.891453504562378
+        },
+        {
+          "time": 2.4999999999999996,
+          "jacobian_min_on_visible_source": 0.7283892631530762,
+          "maximum_inverse_residual_on_visible_output": 4.57763671875e-05,
+          "max_displacement": 3.7724814414978027
+        },
+        {
+          "time": 2.5999999999999996,
+          "jacobian_min_on_visible_source": 0.5850303173065186,
+          "maximum_inverse_residual_on_visible_output": 4.57763671875e-05,
+          "max_displacement": 5.259923934936523
+        },
+        {
+          "time": 2.6999999999999993,
+          "jacobian_min_on_visible_source": 0.728398323059082,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 3.400852680206299
+        },
+        {
+          "time": 2.7999999999999994,
+          "jacobian_min_on_visible_source": 0.9603726863861084,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.5470759272575378
+        },
+        {
+          "time": 2.8999999999999995,
+          "jacobian_min_on_visible_source": 0.9952850341796875,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.04563477262854576
+        },
+        {
+          "time": 2.9999999999999996,
+          "jacobian_min_on_visible_source": 0.99981689453125,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.00152587890625
+        }
+      ],
+      "minimum_jacobian": 0.3360745310783386,
+      "maximum_inverse_residual": 6.103515625e-05,
+      "rig_diagnostics": {
+        "policy": "class_fixed_master_bounded_continuous_motion_v1",
+        "coordinate_space": "640x360 master",
+        "immutable_master": "base-keyframes/paladin/frame-00.png",
+        "master_sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7",
+        "fixed_parts": [
+          "head ornaments",
+          "shoulder armor",
+          "chest armor",
+          "weapons and equipped objects"
+        ],
+        "arm_pivots_and_forearm_ends": [
+          [
+            282,
+            216,
+            271,
+            251
+          ],
+          [
+            363,
+            216,
+            373,
+            251
+          ]
+        ],
+        "maximum_forearm_angle_degrees": 3,
+        "maximum_lift_pixels": 30.0,
+        "weapon_protection_polygons": [
+          [
+            [
+              261,
+              245
+            ],
+            [
+              278,
+              251
+            ],
+            [
+              255,
+              277
+            ],
+            [
+              250,
+              299
+            ],
+            [
+              221,
+              291
+            ],
+            [
+              228,
+              269
+            ],
+            [
+              244,
+              271
+            ]
+          ],
+          [
+            [
+              361,
+              247
+            ],
+            [
+              387,
+              250
+            ],
+            [
+              388,
+              279
+            ],
+            [
+              363,
+              278
+            ]
+          ]
+        ],
+        "weapon_core_margin_pixels": 8,
+        "weapon_attachments": [
+          "left_arm",
+          "torso"
+        ],
+        "expression_outside_face_changed_pixels": 0,
+        "expression_alpha_unchanged": true,
+        "limits": [
+          "Bounded continuous forearm cheer; not a high-V arm raise.",
+          "One source texture with mild hair/leg deformation; no 3D reconstruction.",
+          "Numeric invariants do not replace rendered-frame visual review."
+        ]
+      }
+    },
+    "warlock": {
+      "samples": [
+        {
+          "time": 0.5,
+          "jacobian_min_on_visible_source": 1.0,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 0.0
+        },
+        {
+          "time": 0.6,
+          "jacobian_min_on_visible_source": 0.9671173095703125,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.39660659432411194
+        },
+        {
+          "time": 0.7,
+          "jacobian_min_on_visible_source": 0.7418975830078125,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 3.114396333694458
+        },
+        {
+          "time": 0.7999999999999999,
+          "jacobian_min_on_visible_source": 0.4610596001148224,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 6.529581546783447
+        },
+        {
+          "time": 0.8999999999999999,
+          "jacobian_min_on_visible_source": 0.336075097322464,
+          "maximum_inverse_residual_on_visible_output": 6.103515625e-05,
+          "max_displacement": 8.107080459594727
+        },
+        {
+          "time": 0.9999999999999999,
+          "jacobian_min_on_visible_source": 0.4610541760921478,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 6.7134809494018555
+        },
+        {
+          "time": 1.0999999999999999,
+          "jacobian_min_on_visible_source": 0.7418932318687439,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.479778289794922
+        },
+        {
+          "time": 1.1999999999999997,
+          "jacobian_min_on_visible_source": 0.8795220255851746,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.568057894706726
+        },
+        {
+          "time": 1.2999999999999998,
+          "jacobian_min_on_visible_source": 0.8109723925590515,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 2.6581003665924072
+        },
+        {
+          "time": 1.4,
+          "jacobian_min_on_visible_source": 0.7355974912643433,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 5.140129089355469
+        },
+        {
+          "time": 1.4999999999999998,
+          "jacobian_min_on_visible_source": 0.6631746888160706,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 9.195517539978027
+        },
+        {
+          "time": 1.5999999999999996,
+          "jacobian_min_on_visible_source": 0.6020086407661438,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 13.575114250183105
+        },
+        {
+          "time": 1.6999999999999997,
+          "jacobian_min_on_visible_source": 0.5588245987892151,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 16.896120071411133
+        },
+        {
+          "time": 1.7999999999999998,
+          "jacobian_min_on_visible_source": 0.5382437109947205,
+          "maximum_inverse_residual_on_visible_output": 6.291359750321135e-05,
+          "max_displacement": 18.147642135620117
+        },
+        {
+          "time": 1.8999999999999997,
+          "jacobian_min_on_visible_source": 0.542316198348999,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 16.978845596313477
+        },
+        {
+          "time": 1.9999999999999996,
+          "jacobian_min_on_visible_source": 0.5704988837242126,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 13.838013648986816
+        },
+        {
+          "time": 2.0999999999999996,
+          "jacobian_min_on_visible_source": 0.6182904243469238,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 9.837540626525879
+        },
+        {
+          "time": 2.1999999999999997,
+          "jacobian_min_on_visible_source": 0.679660439491272,
+          "maximum_inverse_residual_on_visible_output": 6.103515625e-05,
+          "max_displacement": 6.4827046394348145
+        },
+        {
+          "time": 2.3,
+          "jacobian_min_on_visible_source": 0.7473124861717224,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 4.712852478027344
+        },
+        {
+          "time": 2.3999999999999995,
+          "jacobian_min_on_visible_source": 0.8162766098976135,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.685748815536499
+        },
+        {
+          "time": 2.4999999999999996,
+          "jacobian_min_on_visible_source": 0.728389322757721,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.9522454738616943
+        },
+        {
+          "time": 2.5999999999999996,
+          "jacobian_min_on_visible_source": 0.5850303173065186,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 5.272461414337158
+        },
+        {
+          "time": 2.6999999999999993,
+          "jacobian_min_on_visible_source": 0.7284046411514282,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 3.407214641571045
+        },
+        {
+          "time": 2.7999999999999994,
+          "jacobian_min_on_visible_source": 0.9566977024078369,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.5479450821876526
+        },
+        {
+          "time": 2.8999999999999995,
+          "jacobian_min_on_visible_source": 0.9942474365234375,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.04581079259514809
+        },
+        {
+          "time": 2.9999999999999996,
+          "jacobian_min_on_visible_source": 0.9997711181640625,
+          "maximum_inverse_residual_on_visible_output": 2.15791860682657e-05,
+          "max_displacement": 0.001622318639419973
+        }
+      ],
+      "minimum_jacobian": 0.336075097322464,
+      "maximum_inverse_residual": 6.823938019806519e-05,
+      "rig_diagnostics": {
+        "policy": "class_fixed_master_bounded_continuous_motion_v1",
+        "coordinate_space": "640x360 master",
+        "immutable_master": "base-keyframes/warlock/frame-00.png",
+        "master_sha256": "d7e171cc5055de4b20b3411116ed5cac71ad097326b6bbdca2f4912660434fe2",
+        "fixed_parts": [
+          "head ornaments",
+          "shoulder armor",
+          "chest armor",
+          "weapons and equipped objects"
+        ],
+        "arm_pivots_and_forearm_ends": [
+          [
+            282,
+            220,
+            270,
+            253
+          ],
+          [
+            369,
+            222,
+            383,
+            253
+          ]
+        ],
+        "maximum_forearm_angle_degrees": 10,
+        "maximum_lift_pixels": 15.0,
+        "weapon_protection_polygons": [
+          [
+            [
+              245,
+              184
+            ],
+            [
+              259,
+              175
+            ],
+            [
+              273,
+              185
+            ],
+            [
+              276,
+              201
+            ],
+            [
+              271,
+              209
+            ],
+            [
+              287,
+              235
+            ],
+            [
+              279,
+              239
+            ],
+            [
+              264,
+              211
+            ],
+            [
+              251,
+              210
+            ],
+            [
+              244,
+              196
+            ]
+          ],
+          [
+            [
+              374,
+              246
+            ],
+            [
+              398,
+              250
+            ],
+            [
+              397,
+              275
+            ],
+            [
+              375,
+              273
+            ]
+          ]
+        ],
+        "weapon_core_margin_pixels": 8,
+        "weapon_attachments": [
+          "torso",
+          "torso"
+        ],
+        "expression_outside_face_changed_pixels": 0,
+        "expression_alpha_unchanged": true,
+        "limits": [
+          "Bounded continuous forearm cheer; not a high-V arm raise.",
+          "One source texture with mild hair/leg deformation; no 3D reconstruction.",
+          "Numeric invariants do not replace rendered-frame visual review."
+        ]
+      }
+    },
+    "priest": {
+      "samples": [
+        {
+          "time": 0.5,
+          "jacobian_min_on_visible_source": 1.0,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 0.0
+        },
+        {
+          "time": 0.6,
+          "jacobian_min_on_visible_source": 0.9671173095703125,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.39656078815460205
+        },
+        {
+          "time": 0.7,
+          "jacobian_min_on_visible_source": 0.7418975830078125,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 3.113633394241333
+        },
+        {
+          "time": 0.7999999999999999,
+          "jacobian_min_on_visible_source": 0.4610525667667389,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 6.523494243621826
+        },
+        {
+          "time": 0.8999999999999999,
+          "jacobian_min_on_visible_source": 0.336075097322464,
+          "maximum_inverse_residual_on_visible_output": 6.103515625e-05,
+          "max_displacement": 8.088769912719727
+        },
+        {
+          "time": 0.9999999999999999,
+          "jacobian_min_on_visible_source": 0.4610541760921478,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 6.6769561767578125
+        },
+        {
+          "time": 1.0999999999999999,
+          "jacobian_min_on_visible_source": 0.7418932318687439,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 3.4337940216064453
+        },
+        {
+          "time": 1.1999999999999997,
+          "jacobian_min_on_visible_source": 0.8573200106620789,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 2.2728381156921387
+        },
+        {
+          "time": 1.2999999999999998,
+          "jacobian_min_on_visible_source": 0.7791626453399658,
+          "maximum_inverse_residual_on_visible_output": 6.103515625e-05,
+          "max_displacement": 3.688865900039673
+        },
+        {
+          "time": 1.4,
+          "jacobian_min_on_visible_source": 0.696766197681427,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 7.620172500610352
+        },
+        {
+          "time": 1.4999999999999998,
+          "jacobian_min_on_visible_source": 0.6182699203491211,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 14.619218826293945
+        },
+        {
+          "time": 1.5999999999999996,
+          "jacobian_min_on_visible_source": 0.5513849854469299,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 22.39997673034668
+        },
+        {
+          "time": 1.6999999999999997,
+          "jacobian_min_on_visible_source": 0.5027765035629272,
+          "maximum_inverse_residual_on_visible_output": 0.0018075064290314913,
+          "max_displacement": 28.42397117614746
+        },
+        {
+          "time": 1.7999999999999998,
+          "jacobian_min_on_visible_source": 0.477220356464386,
+          "maximum_inverse_residual_on_visible_output": 0.006892058998346329,
+          "max_displacement": 30.791988372802734
+        },
+        {
+          "time": 1.8999999999999997,
+          "jacobian_min_on_visible_source": 0.4772230386734009,
+          "maximum_inverse_residual_on_visible_output": 0.006216397508978844,
+          "max_displacement": 28.773880004882812
+        },
+        {
+          "time": 1.9999999999999996,
+          "jacobian_min_on_visible_source": 0.5027880668640137,
+          "maximum_inverse_residual_on_visible_output": 0.0008217109134420753,
+          "max_displacement": 23.019227981567383
+        },
+        {
+          "time": 2.0999999999999996,
+          "jacobian_min_on_visible_source": 0.5513814091682434,
+          "maximum_inverse_residual_on_visible_output": 9.650505671743304e-05,
+          "max_displacement": 15.353937149047852
+        },
+        {
+          "time": 2.1999999999999997,
+          "jacobian_min_on_visible_source": 0.6182622313499451,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 8.243803977966309
+        },
+        {
+          "time": 2.3,
+          "jacobian_min_on_visible_source": 0.6967797875404358,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 4.233025074005127
+        },
+        {
+          "time": 2.3999999999999995,
+          "jacobian_min_on_visible_source": 0.7626238465309143,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.203670024871826
+        },
+        {
+          "time": 2.4999999999999996,
+          "jacobian_min_on_visible_source": 0.7283892631530762,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.9731342792510986
+        },
+        {
+          "time": 2.5999999999999996,
+          "jacobian_min_on_visible_source": 0.5850303769111633,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 5.248602390289307
+        },
+        {
+          "time": 2.6999999999999993,
+          "jacobian_min_on_visible_source": 0.728398323059082,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 3.3956856727600098
+        },
+        {
+          "time": 2.7999999999999994,
+          "jacobian_min_on_visible_source": 0.9598076343536377,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.5434048771858215
+        },
+        {
+          "time": 2.8999999999999995,
+          "jacobian_min_on_visible_source": 0.994873046875,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.04564398527145386
+        },
+        {
+          "time": 2.9999999999999996,
+          "jacobian_min_on_visible_source": 0.9997940063476562,
+          "maximum_inverse_residual_on_visible_output": 1.52587890625e-05,
+          "max_displacement": 0.001545286737382412
+        }
+      ],
+      "minimum_jacobian": 0.336075097322464,
+      "maximum_inverse_residual": 0.006892058998346329,
+      "rig_diagnostics": {
+        "policy": "class_fixed_master_bounded_continuous_motion_v1",
+        "coordinate_space": "640x360 master",
+        "immutable_master": "base-keyframes/priest/frame-00.png",
+        "master_sha256": "eebe5cb729f4e3d6dc5ba3d2eec6ef855ec388f9bc82322cd60331a04d75f6a2",
+        "fixed_parts": [
+          "head ornaments",
+          "shoulder armor",
+          "chest armor",
+          "weapons and equipped objects"
+        ],
+        "arm_pivots_and_forearm_ends": [
+          [
+            276,
+            218,
+            265,
+            256
+          ],
+          [
+            362,
+            218,
+            371,
+            255
+          ]
+        ],
+        "maximum_forearm_angle_degrees": 10,
+        "maximum_lift_pixels": 27.0,
+        "weapon_protection_polygons": [
+          [
+            [
+              232,
+              174
+            ],
+            [
+              245,
+              181
+            ],
+            [
+              252,
+              195
+            ],
+            [
+              243,
+              209
+            ],
+            [
+              259,
+              245
+            ],
+            [
+              253,
+              250
+            ],
+            [
+              236,
+              215
+            ],
+            [
+              226,
+              205
+            ],
+            [
+              222,
+              195
+            ],
+            [
+              229,
+              186
+            ]
+          ]
+        ],
+        "weapon_core_margin_pixels": 8,
+        "weapon_attachments": [
+          "torso"
+        ],
+        "expression_outside_face_changed_pixels": 0,
+        "expression_alpha_unchanged": true,
+        "limits": [
+          "Bounded continuous forearm cheer; not a high-V arm raise.",
+          "One source texture with mild hair/leg deformation; no 3D reconstruction.",
+          "Numeric invariants do not replace rendered-frame visual review."
+        ]
+      }
+    },
+    "druid": {
+      "samples": [
+        {
+          "time": 0.5,
+          "jacobian_min_on_visible_source": 1.0,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 0.0
+        },
+        {
+          "time": 0.6,
+          "jacobian_min_on_visible_source": 0.9671173095703125,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.39660680294036865
+        },
+        {
+          "time": 0.7,
+          "jacobian_min_on_visible_source": 0.7418975830078125,
+          "maximum_inverse_residual_on_visible_output": 0.0,
+          "max_displacement": 3.1142890453338623
+        },
+        {
+          "time": 0.7999999999999999,
+          "jacobian_min_on_visible_source": 0.4610596001148224,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 6.528661727905273
+        },
+        {
+          "time": 0.8999999999999999,
+          "jacobian_min_on_visible_source": 0.33607056736946106,
+          "maximum_inverse_residual_on_visible_output": 6.103515625e-05,
+          "max_displacement": 8.104334831237793
+        },
+        {
+          "time": 0.9999999999999999,
+          "jacobian_min_on_visible_source": 0.4610541760921478,
+          "maximum_inverse_residual_on_visible_output": 3.4119690099032596e-05,
+          "max_displacement": 6.708024024963379
+        },
+        {
+          "time": 1.0999999999999999,
+          "jacobian_min_on_visible_source": 0.7418932318687439,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.484968662261963
+        },
+        {
+          "time": 1.1999999999999997,
+          "jacobian_min_on_visible_source": 0.8762169480323792,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 1.9580078125
+        },
+        {
+          "time": 1.2999999999999998,
+          "jacobian_min_on_visible_source": 0.8083789348602295,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.145594596862793
+        },
+        {
+          "time": 1.4,
+          "jacobian_min_on_visible_source": 0.7367992997169495,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 5.683582305908203
+        },
+        {
+          "time": 1.4999999999999998,
+          "jacobian_min_on_visible_source": 0.668545126914978,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 9.828752517700195
+        },
+        {
+          "time": 1.5999999999999996,
+          "jacobian_min_on_visible_source": 0.6103689074516296,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 14.370079040527344
+        },
+        {
+          "time": 1.6999999999999997,
+          "jacobian_min_on_visible_source": 0.5680806636810303,
+          "maximum_inverse_residual_on_visible_output": 6.291359750321135e-05,
+          "max_displacement": 17.892396926879883
+        },
+        {
+          "time": 1.7999999999999998,
+          "jacobian_min_on_visible_source": 0.5458373427391052,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 19.317440032958984
+        },
+        {
+          "time": 1.8999999999999997,
+          "jacobian_min_on_visible_source": 0.5458386540412903,
+          "maximum_inverse_residual_on_visible_output": 0.00010235906665911898,
+          "max_displacement": 18.220212936401367
+        },
+        {
+          "time": 1.9999999999999996,
+          "jacobian_min_on_visible_source": 0.5680879950523376,
+          "maximum_inverse_residual_on_visible_output": 6.823938019806519e-05,
+          "max_displacement": 14.951468467712402
+        },
+        {
+          "time": 2.0999999999999996,
+          "jacobian_min_on_visible_source": 0.6103823781013489,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 10.541358947753906
+        },
+        {
+          "time": 2.1999999999999997,
+          "jacobian_min_on_visible_source": 0.6685450077056885,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 6.377772808074951
+        },
+        {
+          "time": 2.3,
+          "jacobian_min_on_visible_source": 0.7043581604957581,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.7794137001037598
+        },
+        {
+          "time": 2.3999999999999995,
+          "jacobian_min_on_visible_source": 0.7451795339584351,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 2.700223684310913
+        },
+        {
+          "time": 2.4999999999999996,
+          "jacobian_min_on_visible_source": 0.7283892631530762,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.763406991958618
+        },
+        {
+          "time": 2.5999999999999996,
+          "jacobian_min_on_visible_source": 0.5850303173065186,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 5.253345012664795
+        },
+        {
+          "time": 2.6999999999999993,
+          "jacobian_min_on_visible_source": 0.728398323059082,
+          "maximum_inverse_residual_on_visible_output": 4.31583721365314e-05,
+          "max_displacement": 3.398073673248291
+        },
+        {
+          "time": 2.7999999999999994,
+          "jacobian_min_on_visible_source": 0.9595239162445068,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.5440067648887634
+        },
+        {
+          "time": 2.8999999999999995,
+          "jacobian_min_on_visible_source": 0.994873046875,
+          "maximum_inverse_residual_on_visible_output": 3.0517578125e-05,
+          "max_displacement": 0.04542583227157593
+        },
+        {
+          "time": 2.9999999999999996,
+          "jacobian_min_on_visible_source": 0.9997940063476562,
+          "maximum_inverse_residual_on_visible_output": 1.52587890625e-05,
+          "max_displacement": 0.0015551992692053318
+        }
+      ],
+      "minimum_jacobian": 0.33607056736946106,
+      "maximum_inverse_residual": 0.00010235906665911898,
+      "rig_diagnostics": {
+        "policy": "class_fixed_master_bounded_continuous_motion_v1",
+        "coordinate_space": "640x360 master",
+        "immutable_master": "base-keyframes/druid/frame-00.png",
+        "master_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+        "fixed_parts": [
+          "head ornaments",
+          "shoulder armor",
+          "chest armor",
+          "weapons and equipped objects"
+        ],
+        "arm_pivots_and_forearm_ends": [
+          [
+            279,
+            216,
+            272,
+            247
+          ],
+          [
+            355,
+            216,
+            367,
+            246
+          ]
+        ],
+        "maximum_forearm_angle_degrees": 10,
+        "maximum_lift_pixels": 15.0,
+        "weapon_protection_polygons": [
+          [
+            [
+              218,
+              186
+            ],
+            [
+              225,
+              176
+            ],
+            [
+              236,
+              170
+            ],
+            [
+              247,
+              174
+            ],
+            [
+              256,
+              184
+            ],
+            [
+              261,
+              201
+            ],
+            [
+              266,
+              214
+            ],
+            [
+              276,
+              232
+            ],
+            [
+              269,
+              237
+            ],
+            [
+              260,
+              222
+            ],
+            [
+              253,
+              211
+            ],
+            [
+              247,
+              208
+            ],
+            [
+              241,
+              216
+            ],
+            [
+              229,
+              213
+            ],
+            [
+              225,
+              202
+            ],
+            [
+              220,
+              199
+            ]
+          ]
+        ],
+        "weapon_core_margin_pixels": 8,
+        "weapon_attachments": [
+          "torso"
+        ],
+        "expression_outside_face_changed_pixels": 0,
+        "expression_alpha_unchanged": true,
+        "limits": [
+          "Bounded continuous forearm cheer; not a high-V arm raise.",
+          "One source texture with mild hair/leg deformation; no 3D reconstruction.",
+          "Numeric invariants do not replace rendered-frame visual review."
+        ]
+      }
+    }
+  },
+  "elapsed_seconds": 66.75840997695923,
+  "code_sha256": "b3bf5cbb8fc2075b6fa2e0885384cd3c6de38a6b34a5fe59b46888d44fe9bf34",
+  "test_command": "python -m unittest discover -s assets/dafeiyu-classic/tools -p test_class_identity_motion.py -v",
+  "test_result": "9 tests passed; includes 31 supported class-action routes",
+  "visual_review": {
+    "current_final_code_apex_contacts": "all eight classes reviewed after final 8px weapon core margin",
+    "hunter_druid_jump_contacts": "eight selected time poses each, visually reviewed; crouch/lift/land, no new equipment drawings",
+    "base_action_contacts": "all eight class blink, speech and celebration textures visually reviewed before core-margin expansion; face masks unchanged in final code",
+    "not_reviewed_here": "All encoded video frames and AIRI live playback; root renders and performs final motion review",
+    "remaining_limit": "Small bounded forearm cheer, not high-V raised arms; source lacks separate clean body/arm layers for large articulation."
+  }
+}

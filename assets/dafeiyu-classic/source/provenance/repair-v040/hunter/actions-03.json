@@ -1,0 +1,66 @@
+{
+  "class": "hunter",
+  "sheet": "actions-03",
+  "original_sha256": "715b3838ed8b4c825abe2a00f6515fcd43f05bb2fa9f8bafcc3dd4ed3d4312a2",
+  "replacement_sha256": "0b59d71848653d9b5795d1c618f16ed02e0771c2a2e8c5bdd221c54c7da2b367",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "actions-03",
+    "candidate": "source/sheets/hunter/actions-03.png",
+    "sha256": "0b59d71848653d9b5795d1c618f16ed02e0771c2a2e8c5bdd221c54c7da2b367",
+    "review": "source/sheets/hunter/actions-03.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "image_gen-output:exec-6a5bfceb-941a-4e7e-ab33-5d1bb5e7c36b.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Precise local correction only: this 4x4 hunter atlas accidentally has duplicate arrow quivers in the SECOND ROW, cells 4,5,6,7 (zero based). Each of those four sprites currently shows TWO separated arrow-feather clusters: an incorrect upper cluster sticking out high behind the head/hair, and the correct lower quiver/arrow cluster attached beside the shoulder/upper back. REMOVE the extra UPPER cluster behind the head in ALL FOUR second-row sprites, restoring uninterrupted blue hair there. KEEP the ONE LOWER shoulder/upper-back quiver and its arrow feathers on each of those sprites. Exactly one quiver per character, never two. Do not touch the newly restored gold brown curved bow at the hip/alongside the prone body. Preserve all sixteen poses, all clothes, hair, expressions, props, and the 4x4 transparent layout. In row 2 col 1 and 2 keep the prone/sitting wake-up poses exactly. In row 2 col 3 and 4 keep left-facing run. All other cells completely unchanged. Do not add any new parts.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "actions-03",
+    "generated_file": "image_gen-output:exec-154f37d4-8c78-4a60-8ee1-3ca6a0c6d499.png",
+    "output": "source/sheets/hunter/actions-03.png",
+    "sha256": "0b59d71848653d9b5795d1c618f16ed02e0771c2a2e8c5bdd221c54c7da2b367",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 734750,
+      "opaque_pixels": 686411
+    },
+    "preview": "source/sheets/hunter/actions-03.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "image_gen-output:exec-6a5bfceb-941a-4e7e-ab33-5d1bb5e7c36b.png",
+        "sha256": "edb92944135613ab3758fb7f9033a659cc95ec9656fa2cba19dfd33810574a26"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "iterations": [
+      {
+        "generated_file": "image_gen-output:exec-6a5bfceb-941a-4e7e-ab33-5d1bb5e7c36b.png",
+        "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. Specific action invariants: 0/1 small animals surrounding character; 2/3 playing Rubik cube; 4/5 prone sleeping curled on floor; 6/7 left-facing run; 8/9 tapping table; 10/11 floating steps; 12/13 jumping with both hands reaching an overhead star that breaks; 14/15 kneeling pushing toy car. Existing correctly visible bows in cube/star/car poses stay unchanged. Repair missing bow in human poses. Prone sleeping must REMAIN horizontally curled asleep on floor, not become standing; bow securely travels with right hip/body and can lie alongside, with quiver on back. For side run keep correct local hip bow so it doesn't teleport from front to back. Do not remove animals, table, cube, star fragments or car; do not merge weapon with these props. Every human sprite has exactly two arms/two hands.",
+        "referenced_image_paths": [
+          "source/sheets/hunter/actions-03.png",
+          "source/base-keyframes/hunter/frame-00.png",
+          "source/sheets/hunter/actions-01.png"
+        ],
+        "result": "rejected_duplicate_quivers_all_second_row_cells"
+      }
+    ],
+    "visual_review_notes": [
+      "Second iteration removed all four extra upper quiver clusters in second row; one shoulder quiver remains per pose.",
+      "All original animal/cube/prone/running/table/floating/star/car poses retained.",
+      "Bow follows front left hip, prone lying body, and side-run hip; output must still be reviewed during animation interpolation."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

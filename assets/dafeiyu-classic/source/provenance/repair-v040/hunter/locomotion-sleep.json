@@ -1,0 +1,60 @@
+{
+  "class": "hunter",
+  "sheet": "locomotion-sleep",
+  "original_sha256": "64fc7b3deeb8ed47104bcd968ff2b39c44fc78386210efc16eb49f4006afc913",
+  "replacement_sha256": "af5cbecfdf976dcab73f4dd6d80cbf2f471dd2a0230bdcf11dcf229debfcdbb9",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "locomotion-sleep",
+    "candidate": "source/sheets/hunter/locomotion-sleep.png",
+    "sha256": "af5cbecfdf976dcab73f4dd6d80cbf2f471dd2a0230bdcf11dcf229debfcdbb9",
+    "review": "source/sheets/hunter/locomotion-sleep.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/hunter/locomotion-sleep.png",
+      "source/base-keyframes/hunter/frame-00.png",
+      "source/sheets/hunter/actions-01.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. This is a 16-phase locomotion/sleep bridge. Preserve ALL16 exact original poses and cell alignments: cells0..7 stand, sit, forward lower, lie prone, asleep, asleep, push up, sit up; cells8..11 left-facing four-phase side run; cells12..15 four-phase forward run. Do NOT replace any prone or running pose with standing. Main repair is BOW continuity: existing front-pose left bow stays, missing side/prone bow restored on character-local right hip and moving naturally with torso; in prone views it can lie aligned beside the hip/body, never stand vertically through head. Do NOT add or edit arrow quivers: retain the ONE original quiver already present in each pose, do not make extra high head-level arrow clusters. Use consistent purple/gold armor and bow shape. Only two hands per character, exactly original limb angles. Keep legs in original alternate gait and original ground contacts.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "locomotion-sleep",
+    "generated_file": "image_gen-output:exec-f04fe112-ee7d-4f5a-a69a-0bc854b2adf4.png",
+    "output": "source/sheets/hunter/locomotion-sleep.png",
+    "sha256": "af5cbecfdf976dcab73f4dd6d80cbf2f471dd2a0230bdcf11dcf229debfcdbb9",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 544960,
+      "opaque_pixels": 495514
+    },
+    "preview": "source/sheets/hunter/locomotion-sleep.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/hunter/locomotion-sleep.png",
+        "sha256": "64fc7b3deeb8ed47104bcd968ff2b39c44fc78386210efc16eb49f4006afc913"
+      },
+      {
+        "path": "source/base-keyframes/hunter/frame-00.png",
+        "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+      },
+      {
+        "path": "source/sheets/hunter/actions-01.png",
+        "sha256": "2b5ae1218d912f078a5b020a4e3bc03964f77208e97de6c1cfea6c7e2c446c9a"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "visual_review_notes": "Reviewed 16 source poses; one bow restored through crouch, prone and side run, with one quiver. Curved bow shape/attachment must be checked in final motion; no video QA claimed."
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

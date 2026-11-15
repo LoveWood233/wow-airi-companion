@@ -1,0 +1,42 @@
+{
+  "class": "priest",
+  "sheet": "actions-10",
+  "original_sha256": "74b9af9f512f6dd3b0d15d3fe6f8b494a0a917c1ce8328e648b49ccb7b6a75da",
+  "replacement_sha256": "f433a8c40ef5aeeb7219cb25d12210ba4c535735b36d2e625a68c12ee2b90961",
+  "freeze_manifest": "casters-acceptance.json",
+  "source_review": {
+    "class": "priest",
+    "sheet": "actions-10",
+    "path": "source/sheets/priest/actions-10.png",
+    "sha256": "f433a8c40ef5aeeb7219cb25d12210ba4c535735b36d2e625a68c12ee2b90961",
+    "qa_status": "accepted_source_pose_review",
+    "alpha_review_image": "source/sheets/priest/actions-10-alpha-inspect.jpg",
+    "source_defect_repaired": true
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "mode": "precise-object-edit",
+    "date": "2026-11-09",
+    "class": "priest",
+    "sheet": "actions-10",
+    "generated_original": "image_gen-output:exec-017e73eb-7dd1-4d69-8f55-b48a86bd7374.png",
+    "output_file": "source/sheets/priest/actions-10.png",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1: EDIT TARGET, priest/actions-10. Image 2: EQUIPMENT REFERENCE ONLY, same character neutral frame.\nRestore the persistent gold leaf/spear-shaped staff head and short shaft behind the screen-left shoulder in all near-front poses, matching equipment reference. Keep correct occlusion behind existing sleeves or hands. Preserve red/blue test cloth, food thought bubbles, toothbrushing cup, empty meal bowl, hotpot, thinking bubbles, folded angry arms and both waving stages.\nPreserve the exact original 4x4 cell ordering, every original body pose, expression, hand location, hairstyle, blue-haired chibi identity, props and effects. Preserve each action's distinct semantics. Do not copy the reference neutral pose into action cells. Preserve original character proportions and grid margins. Persistent costume textures and motifs should match the reference consistently; no redesigns. Localized correction only; unaffected cells must remain as close to input as possible. One full square 4x4 atlas, no borders, labels, new props, watermark or background scene. True transparent RGBA background, including gaps between cells; keep partial alpha for existing effects. Never draw a checkerboard. No cropped limbs, effects or neighboring cell overlaps.",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "output_sha256": "f433a8c40ef5aeeb7219cb25d12210ba4c535735b36d2e625a68c12ee2b90961",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 708044,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/priest/actions-10-alpha-inspect.jpg",
+    "selected_generated_original": "image_gen-output:exec-2782be4e-8e78-49db-a81e-ed4835668aac.png",
+    "iteration_records": [
+      "source/sheets/priest/actions-10.iteration2.json"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

@@ -1,0 +1,137 @@
+{
+  "class": "druid",
+  "sheet": "actions-02",
+  "original_sha256": "f740bc0cc6509677ccd7be17f81e11173c78405aad6d09df80813f1b28534e24",
+  "replacement_sha256": "db5d0a159ba8e76e629a56e3851fc7bbadd775c3a88c022beb8542c6efc5ae58",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-02",
+    "path": "source/sheets/druid/actions-02.png",
+    "sha256": "db5d0a159ba8e76e629a56e3851fc7bbadd775c3a88c022beb8542c6efc5ae58",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/actions-02.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "Correction03 removed duplicate lower staff in cell14; cells6/7 side runners now have single staff behind torso. Money, laptop, calligraphy and flower phases all retained.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-02",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/actions-02.png",
+    "source_sha256": "f740bc0cc6509677ccd7be17f81e11173c78405aad6d09df80813f1b28534e24",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-a77e53ee-607e-486e-9d96-1d2bc36b084c",
+        "path": "workspace-revision/attempts/druid/actions-02-01.png",
+        "sha256": "af9fc93be8d69b2278dda10397c2941981e8587d8bdd032901f560e97ad2f8ed"
+      },
+      {
+        "output_id": "exec-e60e09a7-43d1-4733-886d-2378860ccbf8",
+        "path": "workspace-revision/attempts/druid/actions-02-02.png",
+        "sha256": "e13578a7db94fa8c1590ab6893d56d1515da4a3a2d10f71a4eb4e67ec1c83ef1"
+      },
+      {
+        "output_id": "exec-aed97565-8ff8-4879-af5d-68ee9fb76aad",
+        "path": "workspace-revision/attempts/druid/actions-02-03.png",
+        "sha256": "db5d0a159ba8e76e629a56e3851fc7bbadd775c3a88c022beb8542c6efc5ae58"
+      }
+    ],
+    "generated_output_id": "exec-aed97565-8ff8-4879-af5d-68ee9fb76aad",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-aed97565-8ff8-4879-af5d-68ee9fb76aad.png",
+    "saved_output": "source/sheets/druid/actions-02.png",
+    "final_sha256": "db5d0a159ba8e76e629a56e3851fc7bbadd775c3a88c022beb8542c6efc5ae58",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/druid/actions-02.txt",
+    "prompt_sha256": "2295e0f669857f8e5c097c3c7eaae5f55101d2185bb56142e2fc811a59caabd3",
+    "correction_prompts": [
+      "workspace-revision/prompts/druid/actions-02-correction-02.txt",
+      "workspace-revision/prompts/druid/actions-02-correction-03.txt"
+    ],
+    "visual_review": {
+      "method": "actual generated-image output viewed all16 cells; saved file hash matches generated output",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "Correction03 removed duplicate lower staff in cell14; cells6/7 side runners now have single staff behind torso. Money, laptop, calligraphy and flower phases all retained.",
+      "grid_cut_review": "Four-column/four-row layout preserved; no apparent cross-cell cut; outer edges occasionally close to alpha content and must use existing per-cell trim checks.",
+      "full_video_validation": false
+    }
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-02-correction-02.txt",
+      "text": "Precisely edit this transparent 4x4 atlas. Correct ONLY cells6,7,14 (zero-based row-major). In cell14 (bottom row third column, magic-ring hands), there are TWO curled green-gem staff heads on its left. Delete the LOWER extra curl/gem; keep the single upper curled staff behind the shoulder. In cells6 and7 (second row third and fourth, running LEFT), the staff head is incorrectly in front of the face. Move the ONE staff to its proper BACK mounting behind the head/torso (screen RIGHT of these left-facing runners); hooked head and green gem emerge above the back, shaft follows torso behind the hair. Do not duplicate. Leave all other thirteen cells and every pose, expression, object, antlers, clothes, hand contact, proportions and grid placement exactly unchanged. Reference image2 fixes the staff design. Preserve 4x4 equal spacing, transparent alpha, no background. No other edit.\n"
+    },
+    {
+      "name": "actions-02-correction-03.txt",
+      "text": "Precise local deletion. Input1 is a transparent 4x4 atlas. Edit ONLY the BOTTOM ROW, THIRD COLUMN (zero-based cell14) showing a girl with a golden magic ring between her hands. She currently has two curled wooden staff tops stacked vertically along the LEFT edge of her head: one at cheek/upper shoulder level, another higher near the hair flower. REMOVE THE LOWER CURL AND ITS GREEN GEM COMPLETELY. Replace that small deleted region with the existing blue hair behind it, seamlessly. KEEP THE UPPER staff curl and its green gem, so exactly ONE staff remains in that cell. Do not modify any other element or any of the other15 cells. Do not add a staff. Do not edit antlers, face, hands, golden magic ring, clothes, props, poses or arrangement. Input2 is only design reference. Transparent alpha and same full atlas. One local removal only.\n"
+    },
+    {
+      "name": "actions-02.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 余额-金袋叮当. Preserve source pose A and B: 双手展示钱袋，眼睛注视袋口；道具：money_bag_full, gold_coins。动作语义：提起饱满钱袋轻摇，数几枚金币并微笑 / 一手持袋，另一手捏金币查看；道具：money_bag_full, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态\nCells [2, 3]: 余额-钱袋如常. Preserve source pose A and B: 双手展示钱袋，眼睛注视袋口；道具：money_bag_normal, gold_coins。动作语义：平静查看普通钱袋中的金币并收好 / 一手持袋，另一手捏金币查看；道具：money_bag_normal, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态\nCells [4, 5]: 余额-钱袋满溢. Preserve source pose A and B: 双手展示钱袋，眼睛注视袋口；道具：money_bag_overflow, gold_coins。动作语义：打开鼓鼓钱袋，金币满溢，开心举起 / 开心闭眼，双拳抬到胸前；道具：money_bag_overflow, gold_coins。与A必须是不同的动作阶段，保持道具形状/位置关系。查看对应余额状态\nCells [6, 7]: 侧身急躁跑. Preserve source pose A and B: 焦急皱眉的左侧面跑步，左腿前右腿后，右臂前左臂后。 / 同一焦急左侧面，跑步步相完全交换，发尾与鲸尾追随。\nCells [8, 9]: 偷吃零食被抓住. Preserve source pose A and B: 头和视线转左，身体基本正面；道具：snack_bag, snack_piece。动作语义：偷偷拿零食咬一口 / 左手端物，右手持食物送到张开的嘴前；道具：snack_bag, snack_piece。与A必须是不同的动作阶段，保持道具形状/位置关系。被发现后鼓腮僵住、藏起零食\nCells [10, 11]: 写代码. Preserve source pose A and B: 坐或站于桌前，两手不同高度敲键盘；道具：desk, laptop。动作语义：左右手交替打字 / 左右手换位敲键盘，视线朝屏幕；道具：desk, laptop。与A必须是不同的动作阶段，保持道具形状/位置关系。停顿思考后继续输入\nCells [12, 13]: 写福字. Preserve source pose A and B: 毛笔笔尖触红纸，左手扶纸，正在写粗黑福字，墨水瓶在旁。 / 双手举起同一红纸展示完整正向福字，表情满意；不可把字镜像。\nCells [14, 15]: 凭空生花. Preserve source pose A and B: 向前展示空掌心，另一手遮在上方，神秘期待微笑。 / 同一掌心出现一朵完整盛开的花，另一手张开，惊喜展示。\n"
+    }
+  ]
+}

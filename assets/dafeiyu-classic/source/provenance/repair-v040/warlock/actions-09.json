@@ -1,0 +1,41 @@
+{
+  "class": "warlock",
+  "sheet": "actions-09",
+  "original_sha256": "05e11c3170c860b69bc5cd234b829a251316edcd832733c3c4e08dfb5ccbbb21",
+  "replacement_sha256": "eec349d2c89ff3098d9ca1a9a35057bb148138cb360e39b2b1fd227759256654",
+  "freeze_manifest": "casters-acceptance.json",
+  "source_review": {
+    "class": "warlock",
+    "sheet": "actions-09",
+    "path": "source/sheets/warlock/actions-09.png",
+    "sha256": "eec349d2c89ff3098d9ca1a9a35057bb148138cb360e39b2b1fd227759256654",
+    "qa_status": "accepted_source_pose_review",
+    "alpha_review_image": "source/sheets/warlock/actions-09-alpha-inspect.jpg",
+    "source_defect_repaired": true
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "date": "2026-11-09",
+    "class": "warlock",
+    "sheet": "actions-09",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1 is EDIT TARGET warlock/actions-09; Image 2 is same character neutral EQUIPMENT REFERENCE ONLY.\nMake localized corrections in cells4 and5 only (0-based; row2 columns1 and2), the two seated petting-cat poses: restore the green orb in bone-gold mounting on screen-left shoulder, matching reference. It must follow the tilted torso and remain separate from the hand petting the cat. Preserve cat and hand contact, shoulder bone details and screen-right hanging book. Preserve other fourteen cells; do not force visible jewels into legitimately occluded flower/fan/kite poses.\nLocalized correction only. Preserve every original cell's pose, expression, hand positions, action prop, visual effects, original chibi proportions, blue hair and 4x4 layout/margins. Do not replace action poses with neutral reference. Keep exact costume patterns and colors across poses. No additional props or equipment. No changes to unaffected cells. Preserve transparent RGBA background, no black/white background, no checkerboard, no labels, no border or watermark.",
+    "generated_original": "image_gen-output:exec-08d4c50d-9f28-42fd-b97e-3f8aa3b290e8.png",
+    "output_file": "source/sheets/warlock/actions-09.png",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "output_sha256": "eec349d2c89ff3098d9ca1a9a35057bb148138cb360e39b2b1fd227759256654",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 687328,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/warlock/actions-09-alpha-inspect.jpg",
+    "selected_generated_original": "image_gen-output:exec-81870b61-4acb-4ce7-b146-bd0efefcfda8.png",
+    "iteration_records": [
+      "source/sheets/warlock/actions-09.finalfix.json"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

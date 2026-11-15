@@ -1,0 +1,66 @@
+{
+  "class": "hunter",
+  "sheet": "actions-04",
+  "original_sha256": "d09164d625f2e7673cbcb79df6fc54833d87030b08d7f5d994360085fb3cc9ac",
+  "replacement_sha256": "ac0ec1a2a53c1cd226ec7752ef18e89f2e23fb4f785a0eb92cb43683aaad92d1",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "actions-04",
+    "candidate": "source/sheets/hunter/actions-04.png",
+    "sha256": "ac0ec1a2a53c1cd226ec7752ef18e89f2e23fb4f785a0eb92cb43683aaad92d1",
+    "review": "source/sheets/hunter/actions-04.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "image_gen-output:exec-a755c505-0e6a-42f0-8a85-38e8f9773a0f.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Precise local equipment correction only. This 4x4 hunter atlas incorrectly gives every HUMAN sprite TWO arrow quivers on picture-right: (1) an extra upper arrow bundle beside the upper hair/head/ear, and (2) the intended lower arrow bundle immediately behind the shoulder beside the gold shoulder armor. In all FIFTEEN HUMAN cells remove the UPPER head-level arrow bundle and its little brown container completely, restoring continuous blue hair behind it. Keep exactly ONE LOWER shoulder-level quiver per human sprite. Keep the restored gold-brown curved bow on picture-left entirely unchanged. Do not remove the lower shoulder quiver. Cell3 row1 col4 is a white bird: leave that bird completely unchanged. Change nothing else: preserve all human poses, hands, faces, clothes, crouching/dancing/food actions, all props and magic effects, same 4x4 square canvas, genuine transparent background. Do not create replacement or additional arrows near the head. The final atlas must show one quiver per human, not two.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "actions-04",
+    "generated_file": "image_gen-output:exec-2fd0a188-feeb-4b0e-badc-1ed1d8465e08.png",
+    "output": "source/sheets/hunter/actions-04.png",
+    "sha256": "ac0ec1a2a53c1cd226ec7752ef18e89f2e23fb4f785a0eb92cb43683aaad92d1",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 840768,
+      "opaque_pixels": 794089
+    },
+    "preview": "source/sheets/hunter/actions-04.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "image_gen-output:exec-a755c505-0e6a-42f0-8a85-38e8f9773a0f.png",
+        "sha256": "4229ee7a5549c199d7d8f6c7b546f6da338c8d66299fa26a6bef68070fc0ac9a"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "iterations": [
+      {
+        "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. Specific action pairs: 0/1 deep crouch compressed by gravity, 2/3 human magic pose then WHITE PIGEON TRANSFORMATION, 4/5 cute dance, 6/7 eating Token coins, 8/9 melting ice cream, 10/11 eating lunch, 12/13 eating crab, 14/15 eating rice cake. Cell 3 zero-based (row1 col4) is an intentional white bird; keep bird completely unchanged and do NOT put a human bow on it. Restore consistent bow on remaining 15 HUMAN cells only. Crouch remains crouch; food utensils and food amount changes remain intact. Preserve exactly one quiver per human: if an indistinct old background quiver/arrow-like piece already exists, repair it rather than adding a second quiver. The master left hip bow must not become any food utensil.",
+        "referenced_image_paths": [
+          "source/sheets/hunter/actions-04.png",
+          "source/base-keyframes/hunter/frame-00.png",
+          "source/sheets/hunter/actions-01.png"
+        ],
+        "generated_file": "image_gen-output:exec-a755c505-0e6a-42f0-8a85-38e8f9773a0f.png",
+        "result": "rejected_duplicate_upper_quiver_all_human_cells"
+      }
+    ],
+    "visual_review_notes": [
+      "Every human has picture-left full bow and one shoulder quiver after upper duplicate removal.",
+      "White pigeon cell3 remains an intentional transformation with no human bow attached.",
+      "Crouch, dance and all food/utensil poses preserved; two human hands per cell."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

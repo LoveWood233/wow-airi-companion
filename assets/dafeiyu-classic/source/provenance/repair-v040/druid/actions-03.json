@@ -1,0 +1,127 @@
+{
+  "class": "druid",
+  "sheet": "actions-03",
+  "original_sha256": "e21d2de3bb8312e76412c6b37829ba6b890b3c2af5eeed6f631513498231449c",
+  "replacement_sha256": "161762b394ea13daa4c73888852fbe8bb9c786f6fa11d8e8ca5d7a3e73d4e6a6",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-03",
+    "path": "source/sheets/druid/actions-03.png",
+    "sha256": "161762b394ea13daa4c73888852fbe8bb9c786f6fa11d8e8ca5d7a3e73d4e6a6",
+    "dimensions": [
+      1263,
+      1246
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/actions-03.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "All16 cells visually reviewed for main structural issues.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-03",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/actions-03.png",
+    "source_sha256": "e21d2de3bb8312e76412c6b37829ba6b890b3c2af5eeed6f631513498231449c",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-e8ac06d5-87be-4f18-8cb2-e5c9a89e7bd9",
+        "path": "workspace-revision/attempts/druid/actions-03-01.png",
+        "sha256": "6927de8a8f3f132c23836a44a20962c7a2f4a31e253c27a7686437a1ef03284f"
+      },
+      {
+        "output_id": "exec-bf2e87d0-3e32-4382-ac16-c6cdcc92faf4",
+        "path": "workspace-revision/attempts/druid/actions-03-02.png",
+        "sha256": "161762b394ea13daa4c73888852fbe8bb9c786f6fa11d8e8ca5d7a3e73d4e6a6"
+      }
+    ],
+    "generated_output_id": "exec-bf2e87d0-3e32-4382-ac16-c6cdcc92faf4",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-bf2e87d0-3e32-4382-ac16-c6cdcc92faf4.png",
+    "saved_output": "source/sheets/druid/actions-03.png",
+    "final_sha256": "161762b394ea13daa4c73888852fbe8bb9c786f6fa11d8e8ca5d7a3e73d4e6a6",
+    "dimensions": [
+      1263,
+      1246
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/druid/actions-03.txt",
+    "prompt_sha256": "eeac4cce5e8ee2e7fffab652fffa750c5bd66460cec6aa86156b5081adad0deb",
+    "correction_prompts": [
+      "workspace-revision/prompts/druid/actions-03-correction-02.txt"
+    ],
+    "visual_review": {
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "method": "generated output displayed and inspected full atlas",
+      "grid_cut_review": "No apparent neighbor cell overlap at four-way divisions; cell3/7 right hair near boundary, maintain alpha trimming.",
+      "pose_props": "All original pose phases, rubik cube/star/toy car/animals in03 and money/laptop/calligraphy/flower in02 retained.",
+      "known_issue": "No obvious duplicate staff after correction; lying/side staff at local back; detailed hidden attachment unverified."
+    }
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-03-correction-02.txt",
+      "text": "Precisely edit this transparent 4x4 atlas. Correct ONLY cell4 (zero-based row-major, second row FIRST column), the sleeping lying-down pose. It has TWO separate curled wooden staff heads with green gems: one at lower-left near the face, one above the back at upper-right. Remove ONLY the extra lower-left staff curl/green gem near the face. Keep exactly ONE staff attached behind the sleeping character's back, the existing upper-right curl/green gem, with sensible shaft occlusion behind hair/body. Do not change the sleeping posture, hands, head, antlers, robe or ZZZ. Do not edit any of the other 15 cells, props or poses. Reference image2 fixes the staff design. Preserve transparent alpha, full 4x4 layout, no background, no further changes.\n"
+    },
+    {
+      "name": "actions-03.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 动物环绕. Preserve source pose A and B: 头和视线转左，身体基本正面；道具：cat, bunny, bird。动作语义：猫兔沿脚边走，鸟在肩侧飞 / 头和视线转右，身体基本正面；道具：cat, bunny, bird。与A必须是不同的动作阶段，保持道具形状/位置关系。低身打招呼\nCells [2, 3]: 原地专心玩魔方. Preserve source pose A and B: 双手在胸前夹住魔方，右手转上层；道具：rubik_cube。动作语义：两手真实转动不同层 / 双手相反方向转动魔方层；道具：rubik_cube。与A必须是不同的动作阶段，保持道具形状/位置关系。停顿观察再转动\nCells [4, 5]: 原地小憩沉眠. Preserve source pose A and B: 身体蜷卧地面，闭眼，头发和尾巴自然摊开。动作语义：伏低蜷睡 / 蜷卧抬头，半睁眼，手支撑地面。与A必须是不同的动作阶段，保持道具形状/位置关系。抬头醒来\nCells [6, 7]: 原地左转奔跑. Preserve source pose A and B: 完整左侧面跑步，左腿前右腿后、右臂前左臂后，头发和鲸尾拖后。 / 完整左侧面跑步，右腿前左腿后、左臂前右臂后，真实相反跑步步相。\nCells [8, 9]: 原地敲击桌面互动. Preserve source pose A and B: 坐或站于桌前，两手不同高度敲键盘；道具：small_desk。动作语义：手指左右轮换敲桌，手部确实接触桌面 / 左右手换位敲键盘，视线朝屏幕；道具：small_desk。与A必须是不同的动作阶段，保持道具形状/位置关系。停手看前方\nCells [10, 11]: 原地漂浮踏步. Preserve source pose A and B: 轻盈悬浮，左脚屈起右脚伸展。动作语义：悬浮中左右踏步 / 轻盈悬浮，右脚屈起左脚伸展。与A必须是不同的动作阶段，保持道具形状/位置关系。下降\nCells [12, 13]: 原地跳跃抓碎头顶物品. Preserve source pose A and B: 角色离地跳起，双臂伸过头顶抓住一枚大星形玩具，脚蜷起。 / 双手头顶合握将同一玩具捏碎，星形碎片散开，身体准备落地。\nCells [14, 15]: 原地蹲下玩玩具汽车. Preserve source pose A and B: 双腿屈膝，躯干降低，蓄力；道具：toy_car。动作语义：用手推小车向前 / 跪坐，手向前推动地面小玩具；道具：toy_car。与A必须是不同的动作阶段，保持道具形状/位置关系。收手看车滑动\n"
+    }
+  ]
+}

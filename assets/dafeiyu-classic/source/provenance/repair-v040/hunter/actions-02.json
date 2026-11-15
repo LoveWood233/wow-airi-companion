@@ -1,0 +1,65 @@
+{
+  "class": "hunter",
+  "sheet": "actions-02",
+  "original_sha256": "911962689c05b9741ca5223c3fad5fce06b83f57e90f656f968120705bb680cc",
+  "replacement_sha256": "49b416bc532c954528bce90fb4ac371d2c72bc0f772ea9f75a85599cd1b6ef31",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "actions-02",
+    "candidate": "source/sheets/hunter/actions-02.png",
+    "sha256": "49b416bc532c954528bce90fb4ac371d2c72bc0f772ea9f75a85599cd1b6ef31",
+    "review": "source/sheets/hunter/actions-02.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/hunter/actions-02.png",
+      "source/base-keyframes/hunter/frame-00.png",
+      "source/sheets/hunter/actions-01.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. Specific action pair invariants: 0/1 jingling full coin bag, 2/3 ordinary coin bag, 4/5 overflowing coin bag, 6/7 side-facing urgent run left, 8/9 secretly eating snack then surprised, 10/11 laptop at desk, 12/13 brush writing Chinese 福 then holding that 福 paper, 14/15 conjuring a flower in hand. Do not change hands or replace these props. Keep 福 upright and legible. The running pair must stay side-running, never made front idle. Preserve all poses including sitting/leaning behind the desk. Existing lower bow tips in money/snack poses must connect to the same full bow visible at picture left.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "actions-02",
+    "generated_file": "image_gen-output:exec-89d9c439-7b8d-4221-b86f-f7b530c7c695.png",
+    "output": "source/sheets/hunter/actions-02.png",
+    "sha256": "49b416bc532c954528bce90fb4ac371d2c72bc0f772ea9f75a85599cd1b6ef31",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 847015,
+      "opaque_pixels": 806125
+    },
+    "preview": "source/sheets/hunter/actions-02.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/hunter/actions-02.png",
+        "sha256": "911962689c05b9741ca5223c3fad5fce06b83f57e90f656f968120705bb680cc"
+      },
+      {
+        "path": "source/base-keyframes/hunter/frame-00.png",
+        "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+      },
+      {
+        "path": "source/sheets/hunter/actions-01.png",
+        "sha256": "2b5ae1218d912f078a5b020a4e3bc03964f77208e97de6c1cfea6c7e2c446c9a"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "visual_review_notes": [
+      "16 original cells and all action props preserved.",
+      "Front cells show bow picture-left and quiver picture-right; side-run cells retain a bow at hip behind forward arm.",
+      "Gomoku not in this sheet; laptop, 福 paper/brush, coin bags, snacks and flower are preserved in their original cells.",
+      "Exactly two arms per human sprite observed; some bow segments correctly occluded by desk/flower/bags."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

@@ -1,0 +1,17 @@
+{
+  "version": "0.3.2",
+  "status": "archive_created_and_verified",
+  "name": "dafeiyu-classic-motion-v032-equipment-fixed.zip",
+  "bytes": 2428896290,
+  "sha256": "9fbc308e1152cae9f1a63ea833ecb2711b75f30317c4a1be1d294aea623d661d",
+  "entries": 970,
+  "media_files": 960,
+  "manifests": 8,
+  "crc_verified_by_packager": true,
+  "changed_media": [
+    "warrior/开心蹦跳.webm"
+  ],
+  "unchanged_media_count": 959,
+  "media_and_native_validation_classes_passed": 8,
+  "scope": "Only warrior happy jump received the fixed-equipment visual repair; other 959 media are retained, not newly visually certified."
+}

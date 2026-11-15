@@ -121,9 +121,9 @@ pnpm -F @proj-airi/stage-tamagotchi build
 
 ## 大肥鱼经典八职业动作资产
 
-[大肥鱼 × 经典八职业 v0.3.1](assets/dafeiyu-classic/README.md)：144 张姿态图集、128 张基础关键帧及可重建工具，每职业生成 120 段 60fps 透明 WebM。新增开心蹦跳，并修复插帧中点硬切与侧跑收尾急变。
+[大肥鱼 × 经典八职业 v0.3.2](assets/dafeiyu-classic/README.md)：273 张源 PNG 及可重建工具，每职业生成 120 段 60fps 透明 WebM。本次修复战士开心蹦跳的装备变化，统一八份配置版本；其余 959 段媒体沿用上一版，未完成全库装备一致性验收。
 
-[蹦跳动态预览](assets/dafeiyu-classic/preview/happy-jump.mp4) · [生成与导入说明](assets/dafeiyu-classic/README.md#安装与重建)。完整视频在本地重建，局部遮挡重影等限制见资产说明。
+[修复后战士蹦跳预览](assets/dafeiyu-classic/preview/happy-jump.mp4) · [生成与导入说明](assets/dafeiyu-classic/README.md#安装与重建)。完整视频及可导入 ZIP 在本地生成；修复范围、历史验收遗漏和其余动作的限制见资产说明。
 
 ## Live2D Q 版角色
 

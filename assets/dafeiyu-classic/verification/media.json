@@ -1,6 +1,6 @@
 {
   "mode": "media",
-  "releaseVersion": "0.3.1",
+  "releaseVersion": "0.3.2",
   "sourceIntegrity": {
     "owningCommit": "e3ddb35f8bf692c4fe3f8284caae9f4e4d526790",
     "verifiedFiles": 6,
@@ -24,7 +24,7 @@
       "addedActions": 6,
       "totalActions": 120,
       "originalMappingPreserved": true,
-      "totalBytes": 337285805,
+      "totalBytes": 336312602,
       "files": [
         {
           "file": "三球抛接.webm",
@@ -623,8 +623,8 @@
         },
         {
           "file": "开心蹦跳.webm",
-          "bytes": 2264764,
-          "sha256": "529b7e3fb77b46c575ff751edda852d4651b7af20f0db6348033d487b3e5a912"
+          "bytes": 1291561,
+          "sha256": "f1967dfdb9ca0deb0b9161526143634fa7522ac5103a9e7949f10664a0b7b357"
         }
       ],
       "video": [
@@ -13570,5 +13570,5 @@
       "releaseHashesMatched": true
     }
   ],
-  "createdAt": "2026-11-09T02:02:53.572Z"
+  "createdAt": "2026-11-09T05:18:39.570Z"
 }

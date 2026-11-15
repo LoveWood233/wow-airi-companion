@@ -22,7 +22,7 @@ METHOD = "happy_jump_local_arm_rotation_guided_continuous_flow_v1"
 
 # Screen-left then screen-right: shoulder, elbow, wrist, hand center.
 # Coordinates refer to the renderer's 320px aligned poses, including neutral=0.
-GUIDE_DATA = json.loads(Path(__file__).with_name("jump-arm-guides.json").read_text())
+GUIDE_DATA = json.loads(Path(__file__).with_name("jump-arm-guides.json").read_text(encoding='utf-8'))
 GUIDES = {cls: {int(i): points for i, points in data["points"].items()}
           for cls, data in GUIDE_DATA["classes"].items()}
 

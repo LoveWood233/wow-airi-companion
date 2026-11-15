@@ -1,0 +1,63 @@
+{
+  "class": "hunter",
+  "sheet": "actions-09",
+  "original_sha256": "45800c0f245b9ea66a68ca95c07f3f570a454df61ab4f47746e2fa57d5503ebb",
+  "replacement_sha256": "aad9d77c031e1a805ffaf56effb35f4b5a39c940b7dad11df80ce865a4ea321f",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "actions-09",
+    "candidate": "source/sheets/hunter/actions-09.png",
+    "sha256": "aad9d77c031e1a805ffaf56effb35f4b5a39c940b7dad11df80ce865a4ea321f",
+    "review": "source/sheets/hunter/actions-09.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/hunter/actions-09.png",
+      "source/base-keyframes/hunter/frame-00.png",
+      "source/sheets/hunter/actions-01.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. Only ONE arrow bundle/quiver, preserve the existing shoulder one and do NOT create another near head. Exactly TWO hands per human; no extra hand to hold weapon. Pairs: 0/1 holding dogwood branch and admiring chrysanthemum flowerpot, 2/3 fanning, 4/5 sitting and petting cat, 6/7 receiving red money envelope, 8/9 releasing sky lantern, 10/11 crouching and releasing lotus river lantern onto water, 12/13 crouching to light firework then standing to watch, 14/15 flying kite with spool and string. Restore missing weapon bow but keep ALL these props and their exact hand contacts, including sitting/crouching. Do not confuse fan, lantern, string or kite spool with the weapon. Bow remains at left hip even when arms lift sky lantern; do not turn all poses into standing.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "actions-09",
+    "generated_file": "image_gen-output:exec-a31a99a2-e731-456d-b304-6b36e96fe25f.png",
+    "output": "source/sheets/hunter/actions-09.png",
+    "sha256": "aad9d77c031e1a805ffaf56effb35f4b5a39c940b7dad11df80ce865a4ea321f",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 818535,
+      "opaque_pixels": 757096
+    },
+    "preview": "source/sheets/hunter/actions-09.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/hunter/actions-09.png",
+        "sha256": "45800c0f245b9ea66a68ca95c07f3f570a454df61ab4f47746e2fa57d5503ebb"
+      },
+      {
+        "path": "source/base-keyframes/hunter/frame-00.png",
+        "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+      },
+      {
+        "path": "source/sheets/hunter/actions-01.png",
+        "sha256": "2b5ae1218d912f078a5b020a4e3bc03964f77208e97de6c1cfea6c7e2c446c9a"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "visual_review_notes": [
+      "All16 cells retain bow picture-left, quiver picture-right, and two hands.",
+      "Cat sitting, river lamp crouching, sky lamp raised arms, kite string, fan and firework stages preserved."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

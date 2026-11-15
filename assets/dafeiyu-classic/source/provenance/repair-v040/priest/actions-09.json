@@ -1,0 +1,43 @@
+{
+  "class": "priest",
+  "sheet": "actions-09",
+  "original_sha256": "b072e2c87a1bed16a5c8e4705d2d3663b7af2cb52d1bde850235b223e31a3f81",
+  "replacement_sha256": "cc07014b559feb7596cc4b14808f6eed2b721208b98f69196bd64b282c1e60a8",
+  "freeze_manifest": "casters-acceptance.json",
+  "source_review": {
+    "class": "priest",
+    "sheet": "actions-09",
+    "path": "source/sheets/priest/actions-09.png",
+    "sha256": "cc07014b559feb7596cc4b14808f6eed2b721208b98f69196bd64b282c1e60a8",
+    "qa_status": "accepted_source_pose_review",
+    "alpha_review_image": "source/sheets/priest/actions-09-alpha-inspect.jpg",
+    "source_defect_repaired": true
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "mode": "precise-object-edit",
+    "date": "2026-11-09",
+    "class": "priest",
+    "sheet": "actions-09",
+    "generated_original": "image_gen-output:exec-66968761-5550-4bef-8e0d-914183877bab.png",
+    "output_file": "source/sheets/priest/actions-09.png",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1: EDIT TARGET, priest/actions-09. Image 2: EQUIPMENT REFERENCE ONLY, same character neutral frame.\nRestore the persistent gold leaf/spear-shaped staff head and short shaft behind the screen-left shoulder in the near-front poses, matching equipment reference. Do not move it to right; keep proper occlusion behind existing action props. Preserve the insertion of seasonal flowers/hair foliage, the fan, cat, red envelopes, lanterns, fireworks and kite with all original poses.\nPreserve the exact original 4x4 cell ordering, every original body pose, expression, hand location, hairstyle, blue-haired chibi identity, props and effects. Preserve each action's distinct semantics. Do not copy the reference neutral pose into action cells. Preserve original character proportions and grid margins. Persistent costume textures and motifs should match the reference consistently; no redesigns. Localized correction only; unaffected cells must remain as close to input as possible. One full square 4x4 atlas, no borders, labels, new props, watermark or background scene. True transparent RGBA background, including gaps between cells; keep partial alpha for existing effects. Never draw a checkerboard. No cropped limbs, effects or neighboring cell overlaps.",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "output_sha256": "cc07014b559feb7596cc4b14808f6eed2b721208b98f69196bd64b282c1e60a8",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 657805,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/priest/actions-09-alpha-inspect.jpg",
+    "selected_generated_original": "image_gen-output:exec-f37e0593-4dc6-4a35-bb4a-9000f6a29a3c.png",
+    "iteration_records": [
+      "source/sheets/priest/actions-09.iteration2.json",
+      "source/sheets/priest/actions-09.finalfix.json"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

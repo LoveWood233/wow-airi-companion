@@ -1,0 +1,66 @@
+{
+  "class": "hunter",
+  "sheet": "actions-08",
+  "original_sha256": "e104a747bf62e45ca3ddb544056cced2aee9226cae2bcc1ae17de74b22b8a33e",
+  "replacement_sha256": "6d32c7f4bdcc4f474a0725591da90ac8521a13b2f448e5854e4dc93c0d5d0e68",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "actions-08",
+    "candidate": "source/sheets/hunter/actions-08.png",
+    "sha256": "6d32c7f4bdcc4f474a0725591da90ac8521a13b2f448e5854e4dc93c0d5d0e68",
+    "review": "source/sheets/hunter/actions-08.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "image_gen-output:exec-dcb944b9-232d-4d87-9295-9357262e152b.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Precise local anatomy correction to last sprite only, row4 col4 / cell15 of this 4x4 atlas. It has THREE hands: two hands holding the lower gift box, plus an erroneous third little hand over the top right corner of the raised gift lid. Remove ONLY the small extra hand at the top edge of the raised lid. Keep the lid raised at exactly the same position as if floating open in its existing magic glow. Keep both correct hands holding the lower box. Exactly two hands remain. Keep the gold brown weapon bow at picture-left, quiver picture-right, face, all gift parts/ribbon and glow unchanged. All other fifteen sprites must stay unchanged. Preserve genuine transparent background, exact original grid.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "actions-08",
+    "generated_file": "image_gen-output:exec-8b028ec6-c1ba-4b08-8c03-45e04518744c.png",
+    "output": "source/sheets/hunter/actions-08.png",
+    "sha256": "6d32c7f4bdcc4f474a0725591da90ac8521a13b2f448e5854e4dc93c0d5d0e68",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 792454,
+      "opaque_pixels": 732523
+    },
+    "preview": "source/sheets/hunter/actions-08.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "image_gen-output:exec-dcb944b9-232d-4d87-9295-9357262e152b.png",
+        "sha256": "fce0076a649073c865e8bf8abd92e06e324b03acab3f1f6ca00ac934aac61c25"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "iterations": [
+      {
+        "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. Only ONE arrow bundle/quiver, preserve the existing shoulder one and do NOT create another near head. Exactly TWO hands per human; no extra hand to hold weapon. Pairs: 0/1 thinking with bubbles, 2/3 sorting files at desk, 4/5 happy forward run, 6/7 relaxed humming, 8/9 card magic, 10/11 dozing then startled awake, 12/13 whipping spinning top, 14/15 opening gift box. Existing correct bows stay. Add missing bow in run/humming, retain feet in original gait. Keep cards distinct from clothing, whip distinct from bowstring, gift lid/body and their hand grips unchanged.",
+        "referenced_image_paths": [
+          "source/sheets/hunter/actions-08.png",
+          "source/base-keyframes/hunter/frame-00.png",
+          "source/sheets/hunter/actions-01.png"
+        ],
+        "generated_file": "image_gen-output:exec-dcb944b9-232d-4d87-9295-9357262e152b.png",
+        "result": "extra_third_gift_lid_hand_in_original_and_repair"
+      }
+    ],
+    "visual_review_notes": [
+      "All16 action cells retained; run/humming now retain full left bow.",
+      "Zoomed gift cell15: top-right pale strokes are quiver arrow feathers behind lid, not an extra hand. Earlier correction request misidentified these strokes; no extra hand claimed removed.",
+      "Gift bottom box is held by exactly two hands; raised lid and quiver feathers remain."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

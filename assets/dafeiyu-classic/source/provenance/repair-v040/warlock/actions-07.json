@@ -1,0 +1,41 @@
+{
+  "class": "warlock",
+  "sheet": "actions-07",
+  "original_sha256": "8ecda9207294b7e8d356453ee583d7f43a5a2d432dd8f04440d83eb5ac26b54f",
+  "replacement_sha256": "e4e8752b4ea479915d58c953c32f6de908ff9368cad7530c7a03053604f82f39",
+  "freeze_manifest": "casters-acceptance.json",
+  "source_review": {
+    "class": "warlock",
+    "sheet": "actions-07",
+    "path": "source/sheets/warlock/actions-07.png",
+    "sha256": "e4e8752b4ea479915d58c953c32f6de908ff9368cad7530c7a03053604f82f39",
+    "qa_status": "accepted_source_pose_review",
+    "alpha_review_image": "source/sheets/warlock/actions-07-alpha-inspect.jpg",
+    "source_defect_repaired": true
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "date": "2026-11-09",
+    "class": "warlock",
+    "sheet": "actions-07",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1 is EDIT TARGET warlock/actions-07; Image 2 is same character neutral EQUIPMENT REFERENCE ONLY.\nMake localized corrections in cells4 and5 only (0-based; row2 columns1 and2), the two large-snack-eating poses: restore the green glowing faceted orb in its bone-gold shoulder mounting at screen-left shoulder, as equipment reference and all other poses. It is currently missing or turned into a brown/gold detail. Do not replace snack held in hand or packet, do not move hands. Keep original bone horns, shoulder collar, chest and robe patterns and screen-right hanging book. Preserve other fourteen cells.\nLocalized correction only. Preserve every original cell's pose, expression, hand positions, action prop, visual effects, original chibi proportions, blue hair and 4x4 layout/margins. Do not replace action poses with neutral reference. Keep exact costume patterns and colors across poses. Exactly one persistent orb in its mount at the screen-left shoulder. Physically attached behind shoulder, follows torso, not floating beside temple; at front the orb is below ear fin. Existing hands/props may partially cover it. No changes to unaffected cells. Preserve transparent RGBA background, no black/white background, no checkerboard, no labels, no border or watermark.",
+    "generated_original": "image_gen-output:exec-5e5c30ee-7a1f-4aa7-b8a2-b019756053a6.png",
+    "output_file": "source/sheets/warlock/actions-07.png",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "output_sha256": "e4e8752b4ea479915d58c953c32f6de908ff9368cad7530c7a03053604f82f39",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 695489,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/warlock/actions-07-alpha-inspect.jpg",
+    "selected_generated_original": "image_gen-output:exec-78b7ec2b-2017-4f98-8765-049d5d49cd7a.png",
+    "iteration_records": [
+      "source/sheets/warlock/actions-07.finalfix.json"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

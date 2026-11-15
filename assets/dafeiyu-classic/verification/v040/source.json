@@ -1,0 +1,23 @@
+{
+  "status": "source_verified",
+  "version": "0.4.0",
+  "sourceHashes": {
+    "files": {
+      "files": 144,
+      "bytes": 343366566
+    },
+    "baseKeyframes": {
+      "files": 128,
+      "bytes": 22621047
+    },
+    "expressions": {
+      "files": 1,
+      "bytes": 703703
+    }
+  },
+  "manifests": 8,
+  "actionsPerClass": 120,
+  "originalActionNames": 114,
+  "addedActionNames": 6,
+  "validationScope": "PNG signatures, exact source file sets, SHA256, eight manifests and action-plan agreement; historical runtime interface validation is a separate check."
+}

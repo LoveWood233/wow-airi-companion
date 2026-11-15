@@ -1,0 +1,163 @@
+{
+  "scope": "Comparison against previous revised atlas. Only the named cell changed; this is source-image evidence, not final-motion acceptance.",
+  "repairs": [
+    {
+      "class": "priest",
+      "sheet": "actions-04",
+      "cells": [
+        4
+      ],
+      "current_sha256": "331238078aa57515ad3d602d2c5c8a41dc2f3e34358808587c3d5517b367393f",
+      "pixel_proof": {
+        "resized_generated_cell": [
+          313,
+          314
+        ],
+        "outside_cell4_pixel_equal": true,
+        "cells": [
+          {
+            "cell": 0,
+            "pixelEqual": true
+          },
+          {
+            "cell": 1,
+            "pixelEqual": true
+          },
+          {
+            "cell": 2,
+            "pixelEqual": true
+          },
+          {
+            "cell": 3,
+            "pixelEqual": true
+          },
+          {
+            "cell": 4,
+            "pixelEqual": false
+          },
+          {
+            "cell": 5,
+            "pixelEqual": true
+          },
+          {
+            "cell": 6,
+            "pixelEqual": true
+          },
+          {
+            "cell": 7,
+            "pixelEqual": true
+          },
+          {
+            "cell": 8,
+            "pixelEqual": true
+          },
+          {
+            "cell": 9,
+            "pixelEqual": true
+          },
+          {
+            "cell": 10,
+            "pixelEqual": true
+          },
+          {
+            "cell": 11,
+            "pixelEqual": true
+          },
+          {
+            "cell": 12,
+            "pixelEqual": true
+          },
+          {
+            "cell": 13,
+            "pixelEqual": true
+          },
+          {
+            "cell": 14,
+            "pixelEqual": true
+          },
+          {
+            "cell": 15,
+            "pixelEqual": true
+          }
+        ]
+      }
+    },
+    {
+      "class": "priest",
+      "sheet": "actions-11",
+      "cells": [
+        6
+      ],
+      "current_sha256": "815150df0bfb3d12580439df2fa33f554b60e056c527de76c3b983ca2743f608",
+      "pixel_proof": {
+        "cells": [
+          {
+            "cell": 0,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 1,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 2,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 3,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 4,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 5,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 6,
+            "pixelIdentical": false
+          },
+          {
+            "cell": 7,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 8,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 9,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 10,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 11,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 12,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 13,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 14,
+            "pixelIdentical": true
+          },
+          {
+            "cell": 15,
+            "pixelIdentical": true
+          }
+        ],
+        "unchangedOther15": true
+      }
+    }
+  ]
+}

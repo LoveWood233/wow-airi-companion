@@ -1,0 +1,292 @@
+{
+  "class": "warrior",
+  "sheet": "turnaround",
+  "original_sha256": "72131253e02be64921ac148a61bf470e227f58592f829c293996d16f65ee1ba5",
+  "replacement_sha256": "b75b3f326e1572c972567002c55f3f9d90a3eac81810b7159818401efb56f862",
+  "freeze_manifest": "warrior-six-repair-integration.json",
+  "source_review": {
+    "sheet": "turnaround",
+    "path": "source/sheets/warrior/turnaround.png",
+    "sha256": "b75b3f326e1572c972567002c55f3f9d90a3eac81810b7159818401efb56f862",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/warrior/turnaround.json",
+    "review_status": "candidate_visual_reviewed_major_equipment_defects_repaired",
+    "review_note": "Full final 16-cell atlas viewed. Front cells0..2 have one left scabbard/right shield and original orientation. Cells3..15 are pixel-identical to parent selected first attempt. Body-local attachment across2→3 and8→9 remains uncertain because side views show sword on changing screen sides; parent notified. Full temporal and identity acceptance pending.",
+    "remaining_limitations": [
+      "Independent bitmap redraws may change micro ornaments, proportions and hand contours; no pixel-locked texture guarantee.",
+      "Temporal consistency and intermediate rendered frames require separate QA."
+    ]
+  },
+  "generation": {
+    "class": "warrior",
+    "sheet": "turnaround",
+    "method": "built_in_imagegen_per_cell_edit_then_uniform_alpha_bbox_atlas_assembly",
+    "original_sha256": "72131253e02be64921ac148a61bf470e227f58592f829c293996d16f65ee1ba5",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "imagegen_output": "image_gen-output:exec-70c9395f-fd89-4a97-afd0-e5935a8caf50.png",
+    "sha256": "b75b3f326e1572c972567002c55f3f9d90a3eac81810b7159818401efb56f862",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "review_status": "candidate_visual_reviewed_major_equipment_defects_repaired",
+    "review_note": "Full final 16-cell atlas viewed. Front cells0..2 have one left scabbard/right shield and original orientation. Cells3..15 are pixel-identical to parent selected first attempt. Body-local attachment across2→3 and8→9 remains uncertain because side views show sword on changing screen sides; parent notified. Full temporal and identity acceptance pending.",
+    "previous_attempts": [
+      {
+        "class": "warrior",
+        "sheet": "turnaround",
+        "method": "built_in_image_gen_precise_object_edit",
+        "original_sha256": "72131253e02be64921ac148a61bf470e227f58592f829c293996d16f65ee1ba5",
+        "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+        "imagegen_output": "image_gen-output:exec-77ba8b57-5945-4825-b639-0324afc6a0ba.png",
+        "sha256": "fbe9b8112c660d4c84934b379b5ddc55fc18a869981375c1b47d211a75a26fd7",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "review_status": "needs_local_correction",
+        "review_note": "First frontal cells0..2 have sword on screen-right vs last frontal cell15 on screen-left. Needs same anatomical-side attachment through full turn; back shield retained."
+      },
+      {
+        "class": "warrior",
+        "sheet": "turnaround",
+        "method": "built_in_image_gen_precise_object_edit",
+        "original_sha256": "72131253e02be64921ac148a61bf470e227f58592f829c293996d16f65ee1ba5",
+        "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+        "imagegen_output": "image_gen-output:exec-e43a705c-959c-4a0b-aef9-1787bf2bc103.png",
+        "sha256": "54333a27be190a009eb519a2381a146ca2ba6db97bde5fd7df85aef363e62b23",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "review_status": "pending",
+        "review_note": "Candidate needs visual acceptance"
+      }
+    ],
+    "history": [
+      {
+        "before_cell_assembly": {
+          "class": "warrior",
+          "sheet": "turnaround",
+          "method": "built_in_image_gen_precise_object_edit",
+          "original_sha256": "72131253e02be64921ac148a61bf470e227f58592f829c293996d16f65ee1ba5",
+          "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+          "imagegen_output": "image_gen-output:exec-70c9395f-fd89-4a97-afd0-e5935a8caf50.png",
+          "sha256": "61a88d63af264adefd43717bd7d69cf888c7562eeb6214e581309e21ef2da48c",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "review_status": "rejected",
+          "review_note": "Generator repeatedly ignores sword side; newest result also loses sword from rear cells. Do not stage. Needs per-pose equipment intervention.",
+          "previous_attempts": [
+            {
+              "class": "warrior",
+              "sheet": "turnaround",
+              "method": "built_in_image_gen_precise_object_edit",
+              "original_sha256": "72131253e02be64921ac148a61bf470e227f58592f829c293996d16f65ee1ba5",
+              "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+              "imagegen_output": "image_gen-output:exec-77ba8b57-5945-4825-b639-0324afc6a0ba.png",
+              "sha256": "fbe9b8112c660d4c84934b379b5ddc55fc18a869981375c1b47d211a75a26fd7",
+              "dimensions": [
+                1254,
+                1254
+              ],
+              "review_status": "needs_local_correction",
+              "review_note": "First frontal cells0..2 have sword on screen-right vs last frontal cell15 on screen-left. Needs same anatomical-side attachment through full turn; back shield retained."
+            },
+            {
+              "class": "warrior",
+              "sheet": "turnaround",
+              "method": "built_in_image_gen_precise_object_edit",
+              "original_sha256": "72131253e02be64921ac148a61bf470e227f58592f829c293996d16f65ee1ba5",
+              "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+              "imagegen_output": "image_gen-output:exec-e43a705c-959c-4a0b-aef9-1787bf2bc103.png",
+              "sha256": "54333a27be190a009eb519a2381a146ca2ba6db97bde5fd7df85aef363e62b23",
+              "dimensions": [
+                1254,
+                1254
+              ],
+              "review_status": "pending",
+              "review_note": "Candidate needs visual acceptance"
+            }
+          ]
+        }
+      }
+    ],
+    "assembly_source": "workspace-revision/attempts/warrior/turnaround-before-cell-repair.png",
+    "assembly_source_sha256": "fbe9b8112c660d4c84934b379b5ddc55fc18a869981375c1b47d211a75a26fd7",
+    "cell_repairs": [
+      {
+        "cell": 0,
+        "source_tile_sha256": "979e7ecd96160ad82b40b21f2e79f9cd84f2b838a56d221d746c32fca42e7450",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/turnaround-00.png",
+          "generated_output": "image_gen-output:exec-5cf94c8a-28d5-4c23-abd2-59bbb3adc8db.png",
+          "output_id": "exec-5cf94c8a-28d5-4c23-abd2-59bbb3adc8db",
+          "sha256": "c7fcdebfddf5d2b1865d314bd37c7d9e4a597514743b7c152377a382889bfa25",
+          "source_sha256": "979e7ecd96160ad82b40b21f2e79f9cd84f2b838a56d221d746c32fca42e7450",
+          "source": "workspace-revision/pose-targets/warrior/turnaround-00.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          0,
+          0,
+          313,
+          313
+        ],
+        "generated_alpha_bbox": [
+          49,
+          15,
+          1240,
+          1232
+        ],
+        "uniform_scale": 0.257189811010682,
+        "packed_dimensions": [
+          306,
+          313
+        ],
+        "packed_top_left": [
+          4,
+          0
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      },
+      {
+        "cell": 1,
+        "source_tile_sha256": "ed1db23e3e92f7879e5d34ff2e143781d0e5f30bfda7bc74f835f9fe763e9941",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/turnaround-01.png",
+          "generated_output": "image_gen-output:exec-55395518-2b0a-428f-956d-498c8da11db6.png",
+          "output_id": "exec-55395518-2b0a-428f-956d-498c8da11db6",
+          "sha256": "aabd9c9500140b1581d2da56ee67b8bf03095ab9150273a8339e2a91574bfde4",
+          "source_sha256": "ed1db23e3e92f7879e5d34ff2e143781d0e5f30bfda7bc74f835f9fe763e9941",
+          "source": "workspace-revision/pose-targets/warrior/turnaround-01.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          0,
+          0,
+          314,
+          313
+        ],
+        "generated_alpha_bbox": [
+          130,
+          10,
+          1236,
+          1230
+        ],
+        "uniform_scale": 0.2565573770491803,
+        "packed_dimensions": [
+          284,
+          313
+        ],
+        "packed_top_left": [
+          15,
+          0
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      },
+      {
+        "cell": 2,
+        "source_tile_sha256": "aa9f290e94cc23853d1abdc49b2065b5fb4904d3b1f68686a832f6357375a190",
+        "generated": {
+          "file": "workspace-revision/pose-repaired/warrior/turnaround-02.png",
+          "generated_output": "image_gen-output:exec-3f1db41c-fb9d-45d8-9772-72055b3071c4.png",
+          "output_id": "exec-3f1db41c-fb9d-45d8-9772-72055b3071c4",
+          "sha256": "d13638ec59794a6b5118541da65ca7ecff3b59148f1183a9981200cbc4f7f711",
+          "source_sha256": "aa9f290e94cc23853d1abdc49b2065b5fb4904d3b1f68686a832f6357375a190",
+          "source": "workspace-revision/pose-targets/warrior/turnaround-02.png",
+          "size": [
+            1254,
+            1254
+          ],
+          "visual_status": "pending"
+        },
+        "old_alpha_bbox": [
+          1,
+          0,
+          313,
+          313
+        ],
+        "generated_alpha_bbox": [
+          225,
+          15,
+          1158,
+          1236
+        ],
+        "uniform_scale": 0.25634725634725636,
+        "packed_dimensions": [
+          239,
+          313
+        ],
+        "packed_top_left": [
+          38,
+          0
+        ],
+        "placement": "uniform contain in original alpha bbox, bottom aligned"
+      }
+    ],
+    "unchanged_cells_pixel_verified": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "final_sha256": "b75b3f326e1572c972567002c55f3f9d90a3eac81810b7159818401efb56f862",
+    "remaining_limitations": [
+      "Independent bitmap redraws may change micro ornaments, proportions and hand contours; no pixel-locked texture guarantee.",
+      "Temporal consistency and intermediate rendered frames require separate QA."
+    ],
+    "endpoint_notes": {
+      "0": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "1": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "2": "Independent redraw retains pose semantics but changes fine ornaments, local proportions and possibly hand contours; not pixel-locked.",
+      "3": "Unmodified side-view attachment continuity with newly corrected cell2 requires temporal review."
+    }
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "turnaround-00-local.txt",
+      "text": "请精确局部编辑这一个透明角色。唯一变化：把现在腰部画面右边的海军蓝金边剑鞘，绕角色身体的竖直中线水平镜像搬到画面左边（看图者的左手边），剑尖朝左下角。原来右边那把必须完整移除，不能留下第二把剑。右后肩的圆盾保持原地。脸、发型、头冠、盔甲、两手张开的姿势和身体朝向完全不变，不要镜像人物。务必实际移动武器，不要交回原图。真正透明背景，无文字。\n"
+    },
+    {
+      "name": "turnaround-reference-correction.txt",
+      "text": "图1为要修的16视角转身图集。图2为正确装备参考。请只纠正图1的剑的佩戴位置：正面角色应完全按照图2，剑在看图者左边腰部，圆盾在看图者右后肩。两件装备在身体的相反侧，只有一把剑。图1第一排的前三个人形、最后一排最末人形，剑现在仍在错边，必须移到图2同一侧。其他侧面背面保持同一解剖侧，不允许转身时跨越身体移到另一侧。保留原16视角、原手臂姿态、脸、发型、服装、盾牌的位置和图集四乘四布局。禁止把图2的站姿复制16遍；不要改已有动作。真正透明背景，不新增文字。\n"
+    },
+    {
+      "name": "turnaround-side-correction.txt",
+      "text": "Localized edit of THIS image, ONLY first row columns1,2,3 (the first three figures). The navy/gold belt sword is incorrectly at their PICTURE-RIGHT hip. REMOVE it from picture-right and place the very same sword at their PICTURE-LEFT hip pointing down-left, like the LAST figure in row4column4. Keep shield on picture-right. Sword must be opposite to shield in those three frontal/nearfrontal views. Do not mirror faces/bodies. ALL OTHER13FIGURES, all shields, hair, faces, hands, outfits, viewpoints and placements remain unchanged. Exactly one sword per figure, do not leave duplicates. Transparent alpha, no background/labels, exact4x4atlas.\n"
+    },
+    {
+      "name": "turnaround.txt",
+      "text": "Precise equipment continuity repair. Image1 is an existing16-view clockwise turntable atlas, Image2 canonical warrior equipment. Preserve exact16 viewpoints, body positions and order. Add ONLY missing sword/sheath and shield in all views: same navy sword/scabbard with gold edges/tip attached to hip, round navy/gold-rim shield strapped at back shoulder. In frontal FIRST and LAST poses sword is IMAGE LEFT, shield IMAGE RIGHT, same as reference. As body rotates, equipment rotates in 3D with its fixed anatomical side; never mirror a front pose or jump equipment to other hip. In rear views, shield surface visible behind hair on its fixed side and scabbard at same hip, showing appropriate reverse view and natural occlusion; no detached floating weapons, no duplicate swords. Both hands stay empty and arms in original pose. Keep navy/gold pointed shoulder armor, crown, blue hair, segmented plate skirt and all details. True transparent alpha, margins per cell, exact4x4layout no labels/background.\n"
+    }
+  ]
+}

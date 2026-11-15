@@ -1,0 +1,127 @@
+{
+  "class": "druid",
+  "sheet": "actions-11",
+  "original_sha256": "1a9972b7bccc34c0686eb75b632e8db28ffd450df7db8b3222d8dd728e7d7249",
+  "replacement_sha256": "d52e36d16107798aa71f77223c817360c76a64f4131bb3cbb7f89120203e466c",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "druid",
+    "sheet": "actions-11",
+    "path": "source/sheets/druid/actions-11.png",
+    "sha256": "d52e36d16107798aa71f77223c817360c76a64f4131bb3cbb7f89120203e466c",
+    "dimensions": [
+      1240,
+      1269
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/druid/actions-11.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "Cell15 sleep staff moved above torso/back, no duplicate; all watergun/mirror/game/tail/jump poses retained.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "druid",
+    "sheet": "actions-11",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/druid/actions-11.png",
+    "source_sha256": "1a9972b7bccc34c0686eb75b632e8db28ffd450df7db8b3222d8dd728e7d7249",
+    "reference": "source/base-keyframes/druid/frame-00.png",
+    "reference_sha256": "e6663a6e4590923f38aa78966b03f0568da5fccc598adb926e8623f70d67777a",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-e7370d95-8246-44bc-9da8-f029cec42a10",
+        "path": "workspace-revision/attempts/druid/actions-11-01.png",
+        "sha256": "1584d06ef4d2735a55ca35cecb990c09469fad9b6af54857e14eba734a589a88"
+      },
+      {
+        "output_id": "exec-a4af618b-e213-4654-9463-e377d17aa30a",
+        "path": "workspace-revision/attempts/druid/actions-11-02.png",
+        "sha256": "d52e36d16107798aa71f77223c817360c76a64f4131bb3cbb7f89120203e466c"
+      }
+    ],
+    "generated_output_id": "exec-a4af618b-e213-4654-9463-e377d17aa30a",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-a4af618b-e213-4654-9463-e377d17aa30a.png",
+    "saved_output": "source/sheets/druid/actions-11.png",
+    "final_sha256": "d52e36d16107798aa71f77223c817360c76a64f4131bb3cbb7f89120203e466c",
+    "dimensions": [
+      1240,
+      1269
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/druid/actions-11.txt",
+    "prompt_sha256": "d69a3369ac3982af19219df4c44ab4204c0be98b7964ba3ae3c038001f841a0a",
+    "visual_review": {
+      "method": "generatedImage full atlas actually viewed all16 cells",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "Cell15 sleep staff moved above torso/back, no duplicate; all watergun/mirror/game/tail/jump poses retained.",
+      "grid_cut_review": "No apparent adjacent-cell clipping.",
+      "full_video_validation": false
+    },
+    "correction_prompts": [
+      "workspace-revision/prompts/druid/actions-11-correction-02.txt"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-11-correction-02.txt",
+      "text": "Precise local correction to input1 transparent 4x4 atlas. Input2 is staff design reference. Preserve every other cell and every pose, hand, prop, face, armor, antler and all 4x4 positions exactly. Keep transparent alpha, no new objects, no alternate poses. Change ONLY cell15 (zero-based, BOTTOM ROW LAST COLUMN), the lying asleep girl. The single staff curl currently sits low in FRONT of her face at viewer LEFT. Remove it from that low-left position and restore the hair. Put the same ONE staff on her upper BACK, behind her head and above the sleeping torso at viewer RIGHT of the head; short curled top and green gem are visible above the back near shoulder, with shaft occluded behind hair/body. Keep sleep pose, hands, ZZZ and antlers intact. No second staff, do not alter any other15 cells.\n"
+    },
+    {
+      "name": "actions-11.txt",
+      "text": "Use case: precise-object-edit.\nAsset type: transparent 4x4 animation source atlas, sixteen separate RGBA sprites.\nInput 1 is EDIT TARGET: the original druid atlas. Input 2 is EQUIPMENT IDENTITY REFERENCE: druid frame-00.\nRepair only fixed equipment identity. Preserve all sixteen original poses, faces, hand positions, props, interactions, sprite scale, exact order and four-by-four positions. Keep original blue hair, face, style and line work. The reference has the same branching brown antlers/green leaves/green forehead diamond, leaf shoulders/collar, green robe with gold vine pattern, purple center skirt panel, blue oval belt gem, brown bracers/boots. Keep that one equipment design throughout, not alternate armor designs.\nRestore exactly ONE wooden curled-branch staff with reference-shaped green diamond and leaves to every HUMANOID sprite. Mount it securely on character's RIGHT BACK (viewer LEFT for frontal views), so both existing hands remain free for their current prop interactions. Keep the branch curl and hanging green gem visibly recognizable near the upper arm/head-base; shaft follows the back. Same local attachment every pose; move with body, occlude naturally behind hair/arms/props. No floating shaft, duplicate staff, or left/right swaps. For side/back/lying poses follow CHARACTER LOCAL side rather than fixed screen side. Do not force visibility through the body. Preserve intentional nonhuman transformations without adding full human outfit/limbs/staff to animal or ghost form; the HUMAN entering/exiting form must keep complete equipment.\nConstraints: one square four-column four-row atlas with 16 complete sprites, transparent gutters, no neighbor crossing or clipping. Preserve pose layouts and all distinct action phases; do not replace with neutral standing poses. Genuine transparent background and alpha, no checkerboard drawn in, no labels, gridlines, frame borders, watermarks or new unrelated objects.\nCell-by-cell action invariants (zero-based row-major pairs):\nCells [0, 1]: 点击回应-害羞惊讶. Preserve source pose A and B: 肩膀耸起，身体后缩，睁大眼，手护胸。动作语义：红脸双手靠胸 / 红脸，双手遮半脸，眼睛仍可辨。与A必须是不同的动作阶段，保持道具形状/位置关系。遮脸偷看\nCells [2, 3]: 点击回应-开心跃动. Preserve source pose A and B: 双腿屈膝，躯干降低，蓄力。动作语义：开心举拳 / 真实离地，双脚收起，头发和尾巴向下滞后。与A必须是不同的动作阶段，保持道具形状/位置关系。屈膝起跳并落地\nCells [4, 5]: 点击回应-挠痒咯咯笑. Preserve source pose A and B: 闭眼大笑，歪头，手护腹部。动作语义：左右躲痒笑出声 / 笑得后仰，双手靠身侧。与A必须是不同的动作阶段，保持道具形状/位置关系。护腹笑到后仰\nCells [6, 7]: 照镜子. Preserve source pose A and B: 一手持镜朝脸，另一手整理刘海；道具：hand_mirror。动作语义：照镜并整理刘海 / 脸侧向镜子，整理另一侧头发；道具：hand_mirror。与A必须是不同的动作阶段，保持道具形状/位置关系。换侧检查\nCells [8, 9]: 玩水枪. Preserve source pose A and B: 双手持水枪水平瞄准，单眼微眯；道具：water_gun。动作语义：扣扳机喷出连续水柱 / 保持瞄准，手臂轻回弹，表情兴奋；道具：water_gun。与A必须是不同的动作阶段，保持道具形状/位置关系。手臂回弹再喷一次\nCells [10, 11]: 玩游戏气急败坏. Preserve source pose A and B: 双手握手柄，眼睛专注看前方；道具：game_controller。动作语义：双手按键 / 握紧手柄上抬，气鼓鼓皱眉；道具：game_controller。与A必须是不同的动作阶段，保持道具形状/位置关系。失败后气得举起手柄跺脚\nCells [12, 13]: 用鲸鱼尾巴拍打地面. Preserve source pose A and B: 鲸尾明显抬高离地、弯向身后，角色身体稍前倾准备拍。 / 鲸尾确实拍在脚边地面，尾缘压低，接触处少量尘点，身体轻反弹。\nCells [14, 15]: 睡觉-开始. Preserve source pose A and B: 角色坐下收腿，双手膝前，头低垂，眼皮困倦，身体正向蜷缩。 / 角色完全蜷卧睡着，头贴在折起的手旁，长发和鲸尾铺在地上，双眼闭合。\n"
+    }
+  ]
+}

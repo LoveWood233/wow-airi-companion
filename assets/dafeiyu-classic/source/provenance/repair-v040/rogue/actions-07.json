@@ -1,0 +1,116 @@
+{
+  "class": "rogue",
+  "sheet": "actions-07",
+  "original_sha256": "9f4bc6c7ba2b49c1b1cf2d627b0c16a663e81b0aef30938fa48b04e955ebc1d7",
+  "replacement_sha256": "259780ad9fc0cf00d276b54de3ae0b27600099a30a8587a87932271bd802d951",
+  "freeze_manifest": "druid16-rogue07-freeze.json",
+  "source_review": {
+    "class": "rogue",
+    "sheet": "actions-07",
+    "path": "source/sheets/rogue/actions-07.png",
+    "sha256": "259780ad9fc0cf00d276b54de3ae0b27600099a30a8587a87932271bd802d951",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/rogue/actions-07.json",
+    "review_status": "candidate_visual_reviewed",
+    "main_defects_review": "Curtsey cells6/7 now have angular overlapping pointed leather armor panels instead of broad embroidered cloth; all14 other cells retain yawn, snowman, snack, violin, work gestures and keyboard props.",
+    "reviewed_cells_zero_based": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "remaining_limitations": [
+      "Independently edited poses still have minor ornament/proportion differences; not fixed identical pixel texture.",
+      "No all-frame media review here; temporal transitions remain for render QA."
+    ],
+    "frozen": true
+  },
+  "generation": {
+    "class": "rogue",
+    "sheet": "actions-07",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "transparent_background": true,
+    "source": "source/sheets/rogue/actions-07.png",
+    "source_sha256": "9f4bc6c7ba2b49c1b1cf2d627b0c16a663e81b0aef30938fa48b04e955ebc1d7",
+    "reference": "source/base-keyframes/rogue/frame-00.png",
+    "reference_sha256": "4920d84307c8d30f29e2e7d909e29548023651a76cb4d952ef0ef7d72c0ca62b",
+    "original_modified": false,
+    "attempts": [
+      {
+        "output_id": "exec-d2224eb9-0f6a-45d5-a586-719091703e44",
+        "path": "workspace-revision/attempts/rogue/actions-07-01.png",
+        "sha256": "259780ad9fc0cf00d276b54de3ae0b27600099a30a8587a87932271bd802d951"
+      }
+    ],
+    "generated_output_id": "exec-d2224eb9-0f6a-45d5-a586-719091703e44",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-d2224eb9-0f6a-45d5-a586-719091703e44.png",
+    "saved_output": "source/sheets/rogue/actions-07.png",
+    "final_sha256": "259780ad9fc0cf00d276b54de3ae0b27600099a30a8587a87932271bd802d951",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "prompt": "workspace-revision/prompts/rogue/actions-07.txt",
+    "prompt_sha256": "1b05a9b77b551d2ba592f84cdd1c1e6b63b51e105520cd1f42a5f4dbd5d93278",
+    "visual_review": {
+      "method": "generatedImage full atlas actually viewed all16 cells",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "Curtsey cells6/7 now have angular overlapping pointed leather armor panels instead of broad embroidered cloth; all14 other cells retain yawn, snowman, snack, violin, work gestures and keyboard props.",
+      "grid_cut_review": "No apparent cross-cell figure/prop cuts.",
+      "full_video_validation": false
+    },
+    "correction_prompts": []
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-07.txt",
+      "text": "Use case: precise-object-edit. Asset: transparent 4x4 animation atlas.\nInput1 is EDIT TARGET rogue actions-07 atlas. Input2 is FIXED EQUIPMENT REFERENCE rogue frame-00.\nMake a very small local correction ONLY in cells6 and7 (zero-based row-major, second row third and fourth columns), the two maid curtsey poses. Those two poses currently replace the character's pointed segmented red-and-black leather skirt armor with a broad gathered fabric skirt. Restore the exact reference's pointed overlapping leather armor panels, angular red trim, central red motif, blue oval belt gem and dark belt side pieces. The character performs a courteous knee bend holding the outer armor skirt panels lightly; panels hinge slightly at the waist with sensible overlaps, remain LEATHER ARMOR and keep the original pointed cut. Do not turn into a smooth soft cloth circle or add a petticoat. Keep both curtsey poses and distinct head angles/eyes/hand placement as close as possible.\nPreserve ALL OTHER FOURTEEN CELLS essentially pixel-identically: yawning, snowman construction, eating snacks, violin playing with bow, pacing/glancing, sad sweating, typing at desk. Do not delete or alter any prop, stage, hands or expression. All sixteen cells stay same arrangement/framing, no cell crossing. Keep original blue-haired chibi face, red/black bloodfang leather armor, layered outward-pointing shoulders, three red chest claws, blue oval buckle and red-edged dark boots. No new weapons or clothing. Genuine transparent background/alpha, no backdrop/checkerboard, no labels or borders."
+    }
+  ]
+}

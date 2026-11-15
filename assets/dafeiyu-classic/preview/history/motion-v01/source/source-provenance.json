@@ -1,0 +1,131 @@
+{
+  "schema": "dafeiyu-historical-source-preservation-v1",
+  "scope": "Eight v0.1 animation sprite atlases used for 24 historical preview actions. Not v0.4.0 final appearance acceptance.",
+  "source_directory": "outputs/dafeiyu-classic-motion-v01",
+  "png_policy": "Byte-identical copy: eight original PNG files preserved without re-encoding.",
+  "metadata_policy": "Only local absolute generator paths and copied-file reference paths are normalized; original JSON SHA256 values retained. Prompt text, class identity descriptions and attribution chain preserved.",
+  "assets": [
+    {
+      "class": "warrior",
+      "file": "warrior.png",
+      "original_path": "outputs/dafeiyu-classic-motion-v01/sheets/warrior.png",
+      "original_sha256": "40749bd63f62c2edd7fcd0a73e390df2e2da0eef391017fc644470e2ddaf260b",
+      "copied_sha256": "40749bd63f62c2edd7fcd0a73e390df2e2da0eef391017fc644470e2ddaf260b",
+      "bytes": 2184046,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "class": "hunter",
+      "file": "hunter.png",
+      "original_path": "outputs/dafeiyu-classic-motion-v01/sheets/hunter.png",
+      "original_sha256": "97d946796c451ece4a8a84b9cbcd7d635b778014338fa7a0ab461701339281d2",
+      "copied_sha256": "97d946796c451ece4a8a84b9cbcd7d635b778014338fa7a0ab461701339281d2",
+      "bytes": 2341623,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "class": "mage",
+      "file": "mage.png",
+      "original_path": "outputs/dafeiyu-classic-motion-v01/sheets/mage.png",
+      "original_sha256": "273da0d59350101dbc979330d079f8a8ff3e7d83d3bc1483d5847e46c00b9b6d",
+      "copied_sha256": "273da0d59350101dbc979330d079f8a8ff3e7d83d3bc1483d5847e46c00b9b6d",
+      "bytes": 2315853,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "class": "rogue",
+      "file": "rogue.png",
+      "original_path": "outputs/dafeiyu-classic-motion-v01/sheets/rogue.png",
+      "original_sha256": "e278a4ef4384b6787bff7795d31959de0b57ab1b15540c3bbb471dde7b85622b",
+      "copied_sha256": "e278a4ef4384b6787bff7795d31959de0b57ab1b15540c3bbb471dde7b85622b",
+      "bytes": 2253976,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "class": "paladin",
+      "file": "paladin.png",
+      "original_path": "outputs/dafeiyu-classic-motion-v01/sheets/paladin.png",
+      "original_sha256": "b5d481edeb47b20d8720a933926a8f693c6e46cd1b25215493905d8f681a5b43",
+      "copied_sha256": "b5d481edeb47b20d8720a933926a8f693c6e46cd1b25215493905d8f681a5b43",
+      "bytes": 2208600,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "class": "warlock",
+      "file": "warlock.png",
+      "original_path": "outputs/dafeiyu-classic-motion-v01/sheets/warlock.png",
+      "original_sha256": "58570c1160a68a7aa8c5412b96e8ce3c44460cf831b84974ec2625e91a6f3ac3",
+      "copied_sha256": "58570c1160a68a7aa8c5412b96e8ce3c44460cf831b84974ec2625e91a6f3ac3",
+      "bytes": 2350499,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "class": "priest",
+      "file": "priest.png",
+      "original_path": "outputs/dafeiyu-classic-motion-v01/sheets/priest.png",
+      "original_sha256": "7571ba1cde11a84fce8d709f8fd5e9a2ef83a8831876eb62f871b501cd5ae2b2",
+      "copied_sha256": "7571ba1cde11a84fce8d709f8fd5e9a2ef83a8831876eb62f871b501cd5ae2b2",
+      "bytes": 2090215,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "class": "druid",
+      "file": "druid.png",
+      "original_path": "outputs/dafeiyu-classic-motion-v01/sheets/druid.png",
+      "original_sha256": "1fe6ae58d42f391fde1fc5c581d504e8020ee19317010bb4ef7e97d117717832",
+      "copied_sha256": "1fe6ae58d42f391fde1fc5c581d504e8020ee19317010bb4ef7e97d117717832",
+      "bytes": 2676250,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA"
+    }
+  ],
+  "metadata": [
+    {
+      "file": "generated-sources.json",
+      "original_path": "outputs/dafeiyu-classic-motion-v01/generated-sources.json",
+      "original_sha256": "de4241c3072869963dd6eecc451ad53c028c506ec445da4c9146906b7e652527",
+      "sanitized_sha256": "f4a579db87dd614b986288bc3d62fbc935eea44b6980509144da08d56aaf4136",
+      "original_bytes": 6409,
+      "sanitized_bytes": 6673
+    },
+    {
+      "file": "generation-prompts.json",
+      "original_path": "outputs/dafeiyu-classic-motion-v01/generation-prompts.json",
+      "original_sha256": "cb84ec1fd8e95533a15d3ff0d77e3a7a3f10a5a3baf4c80e96052537ce7f475c",
+      "sanitized_sha256": "df480bfc1263d4271b7dac5317974d7509163c1ffa1f7604a366eb9636642811",
+      "original_bytes": 38533,
+      "sanitized_bytes": 38570
+    }
+  ]
+}

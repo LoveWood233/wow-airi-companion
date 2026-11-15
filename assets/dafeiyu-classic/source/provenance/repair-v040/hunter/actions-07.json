@@ -1,0 +1,67 @@
+{
+  "class": "hunter",
+  "sheet": "actions-07",
+  "original_sha256": "f8e760cf2958cc64b2a3d79f03d4e059b79f783aaf205f9d2883aa0482c13769",
+  "replacement_sha256": "6774cb73ee0639bb128e665aa9d5c230b18332ac3d30aab5a2003e76d3aae143",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "actions-07",
+    "candidate": "source/sheets/hunter/actions-07.png",
+    "sha256": "6774cb73ee0639bb128e665aa9d5c230b18332ac3d30aab5a2003e76d3aae143",
+    "review": "source/sheets/hunter/actions-07.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "image_gen-output:exec-a003e63a-e0db-4ef7-ac0f-9fd04df3a049.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Precise local correction to this 4x4 atlas. Change ONLY last sprite, row4 column4 (cell15 zero-based): there is an erroneous extra THIRD hand/fist on the picture-left of the keyboard next to the gold curved bow. Remove ONLY that extra little third hand/fist and its tiny forearm. Keep the two correct hands working on the keyboard and their correct arms. Restore purple/gold torso or blue hair behind the removed extra hand. Keep the left-side bow, right-side quiver, keyboard and desk unchanged. The final typing sprite must have exactly two arms and two hands, both in their existing typing positions. Do not alter any other 15 cells, especially the violin poses, their musical bows, or the separate curved hunter weapon. Same layout, dimensions, transparent background.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "actions-07",
+    "generated_file": "image_gen-output:exec-8bdb251e-1ea7-47aa-9db6-26db66413dbd.png",
+    "output": "source/sheets/hunter/actions-07.png",
+    "sha256": "6774cb73ee0639bb128e665aa9d5c230b18332ac3d30aab5a2003e76d3aae143",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 758180,
+      "opaque_pixels": 706093
+    },
+    "preview": "source/sheets/hunter/actions-07.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "image_gen-output:exec-a003e63a-e0db-4ef7-ac0f-9fd04df3a049.png",
+        "sha256": "ac54f2d7b4fcfc1d752148efb0fd32911a4a2316dd95a247b0bab854239b955e"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "iterations": [
+      {
+        "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. For this atlas do NOT add new quivers. Preserve the ONE existing arrow bundle at picture-right shoulder; do not add another arrow bundle near head/ear. The problem here is the weapon bow has been inconsistently placed behind picture-right shoulder. MOVE that existing WEAPON bow to picture-left hip carry matching images2/3; remove its old curve from right shoulder so exactly one weapon bow remains. Specific pairs: 0/1 yawning; 2/3 building snowman; 4/5 eating snacks; 6/7 maid curtsy holding skirt; 8/9 PLAYING VIOLIN; 10/11 pacing and looking around; 12/13 drooping/sighing with sweat; 14/15 working at laptop/desk. IMPORTANT violin pair has a separate straight violin bow held by hand: preserve that MUSICAL bow and violin, they are not the hunter curved weapon bow. Weapon bow is separately secured at picture-left hip; do not swap either hand or change instrument pose. Every sprite must retain exactly two arms/hands.",
+        "referenced_image_paths": [
+          "source/sheets/hunter/actions-07.png",
+          "source/base-keyframes/hunter/frame-00.png",
+          "source/sheets/hunter/actions-01.png"
+        ],
+        "generated_file": "image_gen-output:exec-a003e63a-e0db-4ef7-ac0f-9fd04df3a049.png",
+        "result": "rejected_extra_hand_cell15"
+      }
+    ],
+    "visual_review_notes": [
+      "Bow moved from picture-right back to picture-left hip in all human cells.",
+      "Violin and separate straight musical bow preserved.",
+      "Extra third hand in cell15 was also present in original source, now removed; exactly two hands remain.",
+      "Typing pair hand poses now nearly identical; confirm action-specific tapping during motion review."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

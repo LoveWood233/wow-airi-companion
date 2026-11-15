@@ -1,0 +1,87 @@
+{
+  "class": "paladin",
+  "sheet": "actions-04",
+  "original_sha256": "356eadc51164ff0c2555a8851cc8d356dde12626292701ea4567ec469433a9cb",
+  "replacement_sha256": "eef0ea593911fca19c4644636cf873c83a436e336c5c387feb35f4f51a2e991a",
+  "freeze_manifest": "paladin-01-07-freeze-manifest.json",
+  "source_review": {
+    "class": "paladin",
+    "sheet": "actions-04",
+    "path": "source/sheets/paladin/actions-04.png",
+    "sha256": "eef0ea593911fca19c4644636cf873c83a436e336c5c387feb35f4f51a2e991a",
+    "bytes": 2398243,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "reviewStatus": "accepted_source_pose_review",
+    "reviewedCells": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "reviewNotes": "All 16 poses visually reviewed. Extra hammer-like part at right hip in first crouch was caught during enlarged review and replaced with thin red/gold book in cells0/1. Left hammer remains. Dove transformation preserved as intentional nonhuman state. Token cells6/7 now show T instead of incorrect 福. Eating props remain distinct.",
+    "provenance": "source/sheets/paladin/actions-04.provenance.json",
+    "preview": "source/sheets/paladin/actions-04-alpha-inspect.jpg",
+    "sourceSnapshotAtFreezeSha256": "356eadc51164ff0c2555a8851cc8d356dde12626292701ea4567ec469433a9cb"
+  },
+  "generation": {
+    "tool": "image_gen__imagegen",
+    "date": "2026-11-09",
+    "sheet": "actions-04",
+    "prompt": "Use case: precise-object-edit. Image 1 is a nearly approved transparent 4x4 paladin atlas. Change ONLY cells 0 and 1 (row 1 columns 1 and 2, heavy-gravity crouching). Each must have one and only one gold warhammer at PICTURE LEFT hip, and one thin red/gold HOLY BOOK at PICTURE RIGHT hip, exactly like Image 2 canonical character and Image 3 accepted equipment examples. Cell 0 currently has an extra hammer-shaped gold cuboid on PICTURE RIGHT: remove ONLY this wrong duplicate and put the small thin red leather book there instead, with flat front red cover, narrow gold trim, gold cross, visible thin pages/spine and a short leather belt loop. For cell 1 ensure same small red book appears at PICTURE RIGHT waist, partially occluded by fist if needed. The existing correct PICTURE LEFT hammer stays unchanged in both crouching cells. Do not add any hands, don't change crouching fists/legs, face, armor, skirt, hair. Keep all other 14 cells entirely unchanged including the actual dove transformation, dancing, Token with T letters, ice cream, lunch, crab and rice cake. Preserve transparent background, exact 4x4 positions, scale. This is a local book repair, not a redraw. No hammer on picture-right anywhere.",
+    "references": [
+      "source/sheets/paladin/actions-04.png",
+      "source/base-keyframes/paladin/frame-00.png",
+      "source/sheets/paladin/actions-01.png"
+    ],
+    "generatedOriginal": "image_gen-output:exec-360eb096-e024-4689-8335-707aba804c6f.png",
+    "output": "source/sheets/paladin/actions-04.png",
+    "reviewStatus": "accepted_source_pose_review",
+    "sha256": "eef0ea593911fca19c4644636cf873c83a436e336c5c387feb35f4f51a2e991a",
+    "visualQA": {
+      "cellsReviewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "method": "explicit gray alpha composite, all sixteen cells; enlarged hip/hand crop review on major attachments",
+      "notes": "All 16 poses visually reviewed. Extra hammer-like part at right hip in first crouch was caught during enlarged review and replaced with thin red/gold book in cells0/1. Left hammer remains. Dove transformation preserved as intentional nonhuman state. Token cells6/7 now show T instead of incorrect 福. Eating props remain distinct.",
+      "scope": "source poses only, not encoded animation frames or AIRI playback"
+    },
+    "priorProvenance": null,
+    "finalIterationRecord": "source/sheets/paladin/actions-04.finalfix.json"
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

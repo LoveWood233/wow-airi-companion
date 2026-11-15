@@ -1,0 +1,39 @@
+{
+  "class": "priest",
+  "sheet": "actions-14",
+  "original_sha256": "ac06aaf1a178b920790218ceecc658c8d621c08b1b1d9f3b1bc81da2af351ebf",
+  "replacement_sha256": "9e39b300f89dd9401e3a64446e4b0261430bc5355f5b3ea7c309d84911082bc3",
+  "freeze_manifest": "casters-acceptance.json",
+  "source_review": {
+    "class": "priest",
+    "sheet": "actions-14",
+    "path": "source/sheets/priest/actions-14.png",
+    "sha256": "9e39b300f89dd9401e3a64446e4b0261430bc5355f5b3ea7c309d84911082bc3",
+    "qa_status": "accepted_source_pose_review",
+    "alpha_review_image": "source/sheets/priest/actions-14-alpha-inspect.jpg",
+    "source_defect_repaired": true
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "date": "2026-11-09",
+    "class": "priest",
+    "sheet": "actions-14",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1 is EDIT TARGET priest/actions-14; Image 2 is same character neutral EQUIPMENT REFERENCE ONLY.\nRestore the persistent gold leaf/spear-shaped staff head and short shaft behind screen-left shoulder in first twelve cells only. Preserve existing last four neutral cells pixel-nearly unchanged since their staff is already present. Preserve original stretch, shuttlecock kicking, cheerful sway, notebook, rocking horse and bubble-blowing poses and props.\nLocalized correction only. Preserve every original cell's pose, expression, hand positions, action prop, visual effects, original chibi proportions, blue hair and 4x4 layout/margins. Do not replace action poses with the neutral reference. Keep exact costume patterns and colors across poses. Exactly one persistent golden staff per character; no duplicate staff heads or extra jewelry. Staff is physically attached behind shoulder, follows torso, not floating beside temple; at front the staff head is next to the lower cheek/shoulder BELOW ear fin. In EVERY front-facing or near-front-facing humanoid, it remains on SCREEN LEFT, never on right, even if the left side has props. Existing hands or props may partially cover it. No changes to unaffected cells. Preserve transparent RGBA background, no black/white background, no checkerboard, no labels, no border or watermark.",
+    "generated_original": "image_gen-output:exec-1225cee5-9851-45b2-aeb7-5e5ba127b58c.png",
+    "output_file": "source/sheets/priest/actions-14.png",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "notes": "Intentional transformation/props preserved. Final animation frame QA pending.",
+    "output_sha256": "9e39b300f89dd9401e3a64446e4b0261430bc5355f5b3ea7c309d84911082bc3",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 614495,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/priest/actions-14-alpha-inspect.jpg",
+    "iteration_records": []
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

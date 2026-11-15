@@ -1,0 +1,150 @@
+{
+  "class": "warrior",
+  "sheet": "actions-02",
+  "original_sha256": "b5d887298eddbd63c1ab0ebcdd365d934ac874831f67f1c819c430041005d936",
+  "replacement_sha256": "1636ca7a6ba6390dce69b6dd72e3201ed2db55fb2cba18ab5b660924aef003ef",
+  "freeze_manifest": "warrior-six-repair-integration.json",
+  "source_review": {
+    "sheet": "actions-02",
+    "path": "source/sheets/warrior/actions-02.png",
+    "sha256": "1636ca7a6ba6390dce69b6dd72e3201ed2db55fb2cba18ab5b660924aef003ef",
+    "size": [
+      1261,
+      1247
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/warrior/actions-02.json",
+    "review_status": "candidate_visual_reviewed",
+    "review_note": "All exposed silver sword blades changed to navy/gold scabbards; existing sword-left/shield-right front placement retained; side-run weapons follow pose; money/snack/laptop/calligraphy/flower intact.",
+    "remaining_limitations": [
+      "Micro ornament/proportion variance remains; temporal frames not reviewed."
+    ]
+  },
+  "generation": {
+    "class": "warrior",
+    "sheet": "actions-02",
+    "method": "built_in_image_gen_precise_object_edit",
+    "original_sha256": "b5d887298eddbd63c1ab0ebcdd365d934ac874831f67f1c819c430041005d936",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "imagegen_output": "image_gen-output:exec-95cd3d26-c628-4a62-924d-0253ab186cc9.png",
+    "sha256": "1636ca7a6ba6390dce69b6dd72e3201ed2db55fb2cba18ab5b660924aef003ef",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "review_note": "All exposed silver sword blades changed to navy/gold scabbards; existing sword-left/shield-right front placement retained; side-run weapons follow pose; money/snack/laptop/calligraphy/flower intact.",
+    "previous_attempts": [
+      {
+        "class": "warrior",
+        "sheet": "actions-02",
+        "method": "built_in_image_gen_precise_object_edit",
+        "original_sha256": "b5d887298eddbd63c1ab0ebcdd365d934ac874831f67f1c819c430041005d936",
+        "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+        "imagegen_output": "image_gen-output:exec-cd578f5a-cffe-43af-8c98-c67cfb194ab6.png",
+        "sha256": "fb9d32cbe1fb2aab7db369aadea9bda2e70e3731778fa8749751d115713644e9",
+        "dimensions": [
+          1261,
+          1247
+        ],
+        "review_status": "rejected",
+        "review_note": "Frontal sword/shield sides reversed."
+      },
+      {
+        "class": "warrior",
+        "sheet": "actions-02",
+        "method": "built_in_image_gen_precise_object_edit",
+        "original_sha256": "b5d887298eddbd63c1ab0ebcdd365d934ac874831f67f1c819c430041005d936",
+        "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+        "imagegen_output": "image_gen-output:exec-d55c22e1-df82-4a43-a5cf-5791948c054a.png",
+        "sha256": "a033fac6e07b55bb722e01dcd55425950c5fc8cd53abfa845de4550f5cf5bfb3",
+        "dimensions": [
+          1261,
+          1247
+        ],
+        "review_status": "rejected",
+        "review_note": "Frontal sword/shield sides reversed."
+      }
+    ],
+    "attempts": [
+      {
+        "output_id": "parent-input",
+        "path": "workspace-revision/attempts/warrior/actions-02-parent-input.png",
+        "sha256": "25bd9460c20a8f8882507ac823be04415fc56b24429dce24f9362f075bea10b3"
+      },
+      {
+        "output_id": "exec-95cd3d26-c628-4a62-924d-0253ab186cc9",
+        "path": "workspace-revision/attempts/warrior/actions-02-02.png",
+        "sha256": "1636ca7a6ba6390dce69b6dd72e3201ed2db55fb2cba18ab5b660924aef003ef"
+      }
+    ],
+    "generated_output_id": "exec-95cd3d26-c628-4a62-924d-0253ab186cc9",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-95cd3d26-c628-4a62-924d-0253ab186cc9.png",
+    "saved_output": "source/sheets/warrior/actions-02.png",
+    "final_sha256": "1636ca7a6ba6390dce69b6dd72e3201ed2db55fb2cba18ab5b660924aef003ef",
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "prompt": "workspace-revision/prompts/warrior/actions-02.txt",
+    "prompt_sha256": "b05507b133e7fc1b5a09d9507d9131a08c4130f11697e53ea10102253e830b94",
+    "visual_review": {
+      "method": "generatedImage actual full16-cell inspection",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "All exposed silver sword blades changed to navy/gold scabbards; existing sword-left/shield-right front placement retained; side-run weapons follow pose; money/snack/laptop/calligraphy/flower intact.",
+      "grid_cut_review": "No apparent adjacent cell clipping.",
+      "full_video_validation": false
+    },
+    "correction_prompts": [
+      "workspace-revision/prompts/warrior/actions-02-agent-correction.txt",
+      "workspace-revision/prompts/warrior/actions-02-attachment-correction.txt",
+      "workspace-revision/prompts/warrior/actions-02-swap-correction.txt"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-02-agent-correction.txt",
+      "text": "Use case: precise-object-edit. Input1 is the transparent 4x4 EDIT TARGET; input2 is the fixed warrior equipment reference. Keep all16 poses, faces, hands, props, interactions, positions, blue hair, navy/gold plate armor, gold tiara, three chest scallops, blue oval belt gem, gauntlets and boots unchanged. Preserve original 4x4 grid with transparent gutters and genuine alpha; no labels/backdrop. Change ONLY the weapon details requested. Exactly ONE short navy-and-gold SHEATHED sword, never exposed silver blade; exactly ONE round navy shield with gold rim. For front-facing poses the sword hangs at viewer LEFT waist and shield at viewer RIGHT back. Hands stay free for original action props. The sword must match reference2 dark navy scabbard with gold edging and gold tip, compact angular form. The sword/shield SIDES are already correct in this atlas, including running side views. ONLY convert every exposed SILVER/WHITE blade into the reference's dark NAVY SCABBARD with gold border/tip, same size and same position. No moving sword to other side, no extra sword or shield. Keep original money/coins, snack bag, laptop/table, brush and red calligraphy paper, magic flower and all gestures. Do not change any cell placement or pose.\n"
+    },
+    {
+      "name": "actions-02-attachment-correction.txt",
+      "text": "Correct ONLY the reversed weapon attachments in Image 1. Image 2 is an annotated reference showing the exact intended screen directions: the red PICTURE LEFT box is the sword at the left hip; the green PICTURE RIGHT box is the round shield behind the right shoulder. In every FRONT-FACING sprite of Image 1, put the sword/scabbard on PICTURE LEFT, pointing down-left, and the shield on PICTURE RIGHT. Remove the incorrectly placed opposite-side copies. Do not mirror the character, do not mirror any prop, do not change faces, poses, hands, money, laptop, calligraphy, flower, costume or grid. Keep the two LEFT-FACING running sprites in their existing profile and correct their weapon attachment in that view if needed. There are exactly sixteen sprites in four equal columns and rows. Each human still has exactly two arms/hands. No output text, labels, arrows or colored boxes: Image 2 annotations are reference guidance only. Keep actual transparent background. This is one surgical correction to left/right equipment, with every other pixel/design as unchanged as possible.\n"
+    },
+    {
+      "name": "actions-02-canonical-equipment.txt",
+      "text": "Use case: precise-object-edit. Image 1 is target 4x4 atlas. Image 2 is the approved equipment reference. Change ONLY the swords in image 1 to the exact sword/scabbard design of image 2: navy blue broad flat scabbard/blade with GOLD edges and GOLD pointed tip, small GOLD hilt attached at waist on viewer LEFT, diagonally pointing down-left. No exposed silver blade, no long upright sword rising to shoulder. Match the belt-carried sword/scabbard in image 2. Keep ALL shields on viewer RIGHT unchanged, and every face, hand, armor, coin, purse, laptop, calligraphy, flower, pose and cell placement unchanged. Side running sword should match this navy/gold design at waist. True transparent alpha. Never mirror poses.\n"
+    },
+    {
+      "name": "actions-02-swap-correction.txt",
+      "text": "Edit this atlas with ONE mechanical change: SWAP the positions of the SWORD and SHIELD in every FRONT-FACING cell. The current image has a ROUND SHIELD on the viewer's left and a LONG SWORD on the viewer's right. EXCHANGE THEM. After the edit, the visible round shield must be behind the character on the viewer's RIGHT, where the sword used to be; the long sword must be at the viewer's LEFT, where the shield used to be. Opposite sides from the current image. Keep every character, face, body pose, all hands and activity objects unchanged. Do not mirror characters or activity props. Do not change the two sideways running cells. Do not modify the calligraphy. Do not produce the same arrangement as the input: physically exchange the two equipment objects on the frontal figures. Exact same 4x4 atlas, no labels or background, real transparent alpha.\n"
+    },
+    {
+      "name": "actions-02.txt",
+      "text": "Use case: precise-object-edit. Image 1 is the EDIT TARGET 4x4 atlas. Image 2 is the authoritative character/equipment reference. Image 3 shows accepted corrected equipment in other poses, and is ONLY an equipment-continuity guide, never a source of replacement choreography. Repair wardrobe continuity in Image 1 without redrawing the action. Every frontal human tile must have the same complete long gold-edged sword/scabbard at the PICTURE-LEFT HIP, pointing down-left, and the same round gold-rimmed shield behind the PICTURE-RIGHT SHOULDER. Sword and shield are on OPPOSITE sides; never move the sword to picture-right. Weapons are strapped in these consistent mounts so hands remain free for the original props. For the two side-running tiles preserve the original left-facing profile, alternate gait and weapon attachment in the corresponding physical perspective. Keep the same outward pointed shoulder spikes, navy/gold chest pattern, blue round belt buckle, segmented pointed skirt, gauntlets and boots as Image 2. Preserve all money bags and coins with correct full/normal/overflow states, the two side-running poses, caught-snacking interaction, laptop/desk typing, the writing and display of 福, and empty-hand-to-flower magic. Exactly two arms and two hands per human, no duplicate limbs, no added gestures. Every existing cell retains its pose, face and objects in the SAME 4 columns x 4 rows. No labels/grid/background; retain genuine alpha and enough transparent cell margins. Only correct missing/inconsistent equipment, never replace poses with a repeated standing character.\n"
+    }
+  ]
+}

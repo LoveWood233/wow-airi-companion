@@ -1,0 +1,36 @@
+{
+  "class": "warrior",
+  "sheet": "actions-13",
+  "original_sha256": "9fd0b876f6f4ef75f2cf6d0c7123e1ec196d7f5937256d75d3de885f62a459d4",
+  "replacement_sha256": "922462aca74eaad137f39de2eda0339dd635735251f916a801fd4037fe31514b",
+  "freeze_manifest": "warrior-partial-freeze.json",
+  "source_review": {
+    "class": "warrior",
+    "sheet": "actions-13",
+    "path": "source/sheets/warrior/actions-13.png",
+    "sha256": "922462aca74eaad137f39de2eda0339dd635735251f916a801fd4037fe31514b",
+    "qa_status": "source_pose_major_equipment_repair_reviewed_pending_motion"
+  },
+  "generation": {
+    "class": "warrior",
+    "sheet": "actions-13",
+    "method": "built_in_image_gen_precise_object_edit",
+    "original_sha256": "9fd0b876f6f4ef75f2cf6d0c7123e1ec196d7f5937256d75d3de885f62a459d4",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "imagegen_output": "image_gen-output:exec-4a2ce1d9-1833-47ac-ab88-6dc4dc649030.png",
+    "sha256": "922462aca74eaad137f39de2eda0339dd635735251f916a801fd4037fe31514b",
+    "dimensions": [
+      1265,
+      1244
+    ],
+    "review_status": "accepted_source_endpoint",
+    "review_note": "Reviewed16cells: same single left navy/gold sword, right shield; original poses, props and intentional transformations retained. Occluded parts not treated as absent; intermediates still unverified."
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-13.txt",
+      "text": "Use case: precise-object-edit. Fix missing warrior equipment only in target Image 1. Image 2 shows approved equipment. Copy that gold-bordered NAVY sheathed sword at screen-left waist pointing down-left, and gold-rim round navy shield at screen-right back. For frontal figures: SWORD on picture LEFT, SHIELD on picture RIGHT, exactly one each, never a sword on shield side. Keep original sixteen poses, hands, faces, clothes motifs, all activity props and magic effects. Each depicted hand must retain its original prop; weapons are attached at belt/back so need NO extra hands. Sitting, prone, tilted and jumping figures retain same equipment attached with the torso. A transformed whale/ghost retains original species and clothing, exempt from human equipment. Keep mouse cursors, bubbles, mirror, water gun, controller, swing, lion headdress, Christmas tree, pumpkin, toy horse, shuttlecock exactly when present. Do not simplify choreography or replace poses. Exact existing4x4 atlas layout, clean transparent gaps between cells, genuine transparent alpha, no captions or background.\n"
+    }
+  ]
+}

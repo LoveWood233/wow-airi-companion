@@ -1,0 +1,96 @@
+{
+  "class": "priest",
+  "sheet": "actions-04",
+  "original_sha256": "cafa345b87e00ccf92760afa9ff0968c795f78d191644bbef3521f4020d551a5",
+  "replacement_sha256": "331238078aa57515ad3d602d2c5c8a41dc2f3e34358808587c3d5517b367393f",
+  "freeze_manifest": "priest04-followup-freeze.json",
+  "source_review": {
+    "class": "priest",
+    "sheet": "actions-04",
+    "path": "source/sheets/priest/actions-04.png",
+    "sha256": "331238078aa57515ad3d602d2c5c8a41dc2f3e34358808587c3d5517b367393f",
+    "qa_status": "accepted_source_pose_review_after_single_cell_anatomy_fix",
+    "alpha_review_image": "source/sheets/priest/actions-04-alpha-inspect.jpg",
+    "source_defect_repaired": true,
+    "priorSha256BeforeThirdHandRepair": "228f701850d9a36a0bae2475d115aefa12d195600e848b139b83f20762ef0a4b",
+    "third_hand_correction_record": "workspace-revision/priest04-cell4-repair/provenance.json"
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "date": "2026-11-09",
+    "class": "priest",
+    "sheet": "actions-04",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1 is EDIT TARGET priest/actions-04; Image 2 is same character neutral EQUIPMENT REFERENCE ONLY.\nMake exactly one type of localized edit in cells6 and7 only (0-based; row2 columns3 and4), the two eating-Token poses. Replace only the Chinese 福 mark on the edible round token with a clearly readable uppercase Latin letter T. Keep token/cookie size and shape, bite state, hand/face positions, class outfit and gold staff. Do not alter the other fourteen cells, especially the intentional dove transformation.\nLocalized correction only. Preserve every original cell's pose, expression, hand positions, action prop, visual effects, original chibi proportions, blue hair and 4x4 layout/margins. Do not replace action poses with neutral reference. Keep exact costume patterns and colors across poses. No additional props or equipment. No changes to unaffected cells. Preserve transparent RGBA background, no black/white background, no checkerboard, no labels, no border or watermark.",
+    "generated_original": "image_gen-output:exec-b9c57698-232b-47b0-9fc4-a0f0769dc970.png",
+    "output_file": "source/sheets/priest/actions-04.png",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "output_sha256": "228f701850d9a36a0bae2475d115aefa12d195600e848b139b83f20762ef0a4b",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 574842,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/priest/actions-04-alpha-inspect.jpg",
+    "iteration_records": [],
+    "qa_note": "Token A readable T, B bite/plate detail small but original 福 symbol removed; action eating identity preserved.",
+    "singleCellAnatomyCorrection": {
+      "tool": "image_gen__imagegen",
+      "prompt": "Use case: precise-object-edit, remove one tiny anatomical drawing error. Image 1 is a single transparent priest chibi sprite and the exact edit target. It has TWO correct hands/fists lifted near the cheeks/chest for a cute happy dance, plus ONE WRONG extra flesh-colored tiny hand at the very bottom of the gold staff on PICTURE LEFT near the skirt/hip. Remove ONLY this tiny third hand at the lower staff shaft (roughly x=115,y=228 in the original 313x314 image). Restore the blue hair/transparent background or the proper connected gold staff shaft directly behind that tiny hand. Keep the staff held by its back/belt mounting, with no hand on it. Retain BOTH original raised hands exactly as they are, along with their sleeves, smile/closed eyes, hair, crown, gold staff head, gold-white robe, body proportions, feet, excited yellow accent marks, scale and margins. Exactly TWO hands total, both near the chest. Absolutely do not add an arm, don't move/delete the staff, and don't redraw any other feature. Preserve the same square single-sprite framing with transparent background. Output only this corrected one sprite, no atlas, labels or additional cells.",
+      "references": [
+        "workspace-revision/priest04-cell4-repair/cell4-before.png"
+      ],
+      "generatedOriginal": "image_gen-output:exec-0c3c3908-fcfc-4712-a353-a5fbfc5d168c.png",
+      "scope": "isolated single-cell correction, atlas assembly only; no drawing by code",
+      "reviewStatus": "accepted_source_pose_review_after_single_cell_anatomy_fix",
+      "sha256": "331238078aa57515ad3d602d2c5c8a41dc2f3e34358808587c3d5517b367393f",
+      "output": "source/sheets/priest/actions-04.png",
+      "visualQA": {
+        "reviewedCells": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "reviewedAdjacentPairs": [
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "finding": "Removed tiny third hand at lower gold staff shaft in cell4. Both chest hands, back-mounted staff and cute dance remain. Other15cells are pixel-identical.",
+        "pixelProof": "workspace-revision/priest04-cell4-repair/pixel-proof.json",
+        "scope": "Source only; stale actual videos with previous hash remain failed until regenerated and re-reviewed."
+      }
+    },
+    "sha256": "331238078aa57515ad3d602d2c5c8a41dc2f3e34358808587c3d5517b367393f",
+    "reviewStatus": "accepted_source_pose_review_after_single_cell_anatomy_fix"
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

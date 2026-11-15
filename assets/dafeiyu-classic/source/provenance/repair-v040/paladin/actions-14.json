@@ -1,0 +1,168 @@
+{
+  "class": "paladin",
+  "sheet": "actions-14",
+  "original_sha256": "1322c21fc9b72db2f5d2bbb2a3aa7ef2a38d1e30dfbcf2e461057c04eee25265",
+  "replacement_sha256": "35e22d29f52498015451380fa2f58cb7a867917bb073a8a4acaeda2ce6ced8e3",
+  "freeze_manifest": "paladin-08-14-freeze-manifest.json",
+  "source_review": {
+    "sheet": "actions-14",
+    "candidate": "source/sheets/paladin/actions-14.png",
+    "sha256": "35e22d29f52498015451380fa2f58cb7a867917bb073a8a4acaeda2ce6ced8e3",
+    "review": "source/sheets/paladin/actions-14.json",
+    "cells_reviewed": 16,
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/paladin/actions-14.png",
+      "source/base-keyframes/paladin/frame-00.png",
+      "source/sheets/paladin/actions-08.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Asset: transparent 4x4 action sprite atlas, identity/equipment repair only.\nImage 1 is the EDIT TARGET with sixteen original action poses. Image 2 is the canonical paladin master identity and equipment reference. Preserve the target's exact 4x4 grid, sixteen cell positions, character scale, pose silhouettes, two original arms/hands, expressions, action props, clothing, gold cross symbols, face, hair and colors. Do not substitute idle poses and do not redraw an action.\n\nRepair only the missing canonical equipment. The paladin has exactly ONE compact gold warhammer with rectangular red-inset head, at the character's anatomical RIGHT hip (PICTURE LEFT in front view), and exactly ONE small red/gold cross holy book at anatomical LEFT hip (PICTURE RIGHT in front view). Keep the book already present; do not duplicate it or replace action props with it. Match the master hammer shape, size and proportions: short handle, broad compact rectangular head, total length roughly one fifth of character height. It hangs diagonally down/out from the same left waist belt attachment, not as a tall staff or giant mallet. When both original hands are busy, the hammer is belt-holstered and leaves both hands free; do not add a third hand to hold it. In side/prone poses, rotate and foreshorten this same attached hammer with the pelvis, allowing physically correct occlusion by body, hair or props. Keep the head and handle connected. Never move the hammer to the other hip between paired action cells.\nAll original action props remain distinct from equipped hammer/book: no converting cards, fans, toys, food or paperwork into extra holy equipment. Exactly two anatomical arms and hands, except legal occlusion.\nKeep genuine transparent background; no labels, borders, checkerboard, extra decoration, duplicate body parts, or new effects. Preserve every original cell's different action.\nImage 3 is approved equipment placement/scale reference only. Keep the EXISTING book in Image1 at its original location; only ADD missing hammer on the opposite waist.\nTarget cells0/1 big overhead stretch;2/3 shuttlecock kicking;4/5 lively swaying dance;6/7 writing on notepad;8/9 riding wooden rocking horse;10/11 blowing bubbles;12/13/14/15 four original idle padding poses. Repair all16 human cells, including bottom four padding cells, by restoring exactly one compact left-belt hammer while leaving existing right holy book at its original waist location. Do NOT put hammer in raised stretch hands, dancing palms, writing hands, horse-gripping hands, or bubble-wand hands. All original high arm angles, kicked legs, horse body/rockers and bubble effects must stay. Equipment may be partially behind the rocking horse while connected to the same belt.",
+    "generated_file": "image_gen-output:exec-5279bba3-7057-4f3d-beb8-69eebcc4382e.png",
+    "tool": "built-in image_gen",
+    "class": "paladin",
+    "sheet": "actions-14",
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "output": "outputs/all-class-equipment-revision/repaired-sheets/paladin/actions-14.png",
+    "sha256": "35e22d29f52498015451380fa2f58cb7a867917bb073a8a4acaeda2ce6ced8e3",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 650576,
+      "opaque_pixels": 609997
+    },
+    "preview": "outputs/all-class-equipment-revision/repaired-sheets/paladin/actions-14.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/paladin/actions-14.png",
+        "sha256": "1322c21fc9b72db2f5d2bbb2a3aa7ef2a38d1e30dfbcf2e461057c04eee25265"
+      },
+      {
+        "path": "source/base-keyframes/paladin/frame-00.png",
+        "sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7"
+      },
+      {
+        "path": "source/sheets/paladin/actions-08.png",
+        "sha256": "555841301aaa408631be5524e2cecd81f1175bad31974f1c9d885185ac939935"
+      }
+    ],
+    "video_frames_reviewed": 0,
+    "previous_iterations": [
+      {
+        "generated_file": "image_gen-output:exec-e7f5a1a5-6afd-4403-847c-bc1c7032f275.png",
+        "reason": "wrong-side exposed hammer in rocking-horse cells8/9"
+      }
+    ],
+    "correction_prompt": "Use case: precise-object-edit. Image1 is a nearly-approved 4x4 transparent paladin action atlas. Image2 is the ORIGINAL pose reference. Correct ONLY zero-based cells8 and9, the two rocking-horse poses in row3 columns1 and2.\nThe added hammer is currently WRONG: it hangs on the visible PICTURE-RIGHT rear hip directly beside the existing holy book. Remove this wrong-side visible hammer (head and handle) from those two cells only. Keep the existing holy book exactly where it is. The character is turned toward picture-left on the horse; the hammer's correct anatomical RIGHT hip is on the FAR side and naturally hidden by torso/horse/saddle in this pose. Therefore it is correct for no large hammer to be visible in these two cells. If a tiny attached edge can plausibly peek from the far side, keep it subtle; do not force an exposed hammer or add hands. Restore original hair/horse/armor behind the removed wrong-side hammer using Image2 as reference. Keep both original horse-gripping hands, all16 character poses, all other14 cells, every prop/face/outfit, transparency and grid absolutely unchanged. Do NOT move any other hammer/book or redesign the hammer. No labels/borders.",
+    "cell_reviews": [
+      {
+        "cell": 0,
+        "action": "超大伸懒腰",
+        "status": "pass_source_pose",
+        "note": "High stretch hands stay empty; hammer on left belt."
+      },
+      {
+        "cell": 1,
+        "action": "超大伸懒腰",
+        "status": "pass_source_pose",
+        "note": "Side stretch retains extreme arm angles; hammer on same belt side."
+      },
+      {
+        "cell": 2,
+        "action": "踢毽子",
+        "status": "pass_source_pose",
+        "note": "Raised kicking knee partially overlaps left hammer."
+      },
+      {
+        "cell": 3,
+        "action": "踢毽子",
+        "status": "pass_source_pose",
+        "note": "Extended kick/shuttlecock retained; left hammer/right book."
+      },
+      {
+        "cell": 4,
+        "action": "轻快摇摆舞",
+        "status": "pass_source_pose",
+        "note": "Sway dance original palms/fists, one left hammer."
+      },
+      {
+        "cell": 5,
+        "action": "轻快摇摆舞",
+        "status": "pass_source_pose",
+        "note": "Counter-sway pose preserved with same hip attachment."
+      },
+      {
+        "cell": 6,
+        "action": "轻快记录",
+        "status": "pass_source_pose",
+        "note": "Pen/notepad hands retained; hammer separate at left belt."
+      },
+      {
+        "cell": 7,
+        "action": "轻快记录",
+        "status": "pass_source_pose",
+        "note": "Writing counterpart retains original two hands."
+      },
+      {
+        "cell": 8,
+        "action": "骑木马",
+        "status": "pass_source_pose",
+        "note": "Corrected wrong-side exposed hammer: far-side right-hip hammer is occluded behind horse/body; near-side holy book unchanged."
+      },
+      {
+        "cell": 9,
+        "action": "骑木马",
+        "status": "pass_source_pose",
+        "note": "Same correction for second rocking-horse pose; no exposed hammer beside near-side book."
+      },
+      {
+        "cell": 10,
+        "action": "鲸鱼吐泡泡特效",
+        "status": "pass_source_pose",
+        "note": "Bubble-wand hands and bubbles retained; hammer left belt."
+      },
+      {
+        "cell": 11,
+        "action": "鲸鱼吐泡泡特效",
+        "status": "pass_source_pose",
+        "note": "Bubble blowing second pose retains gear and prop."
+      },
+      {
+        "cell": 12,
+        "action": "neutral padding",
+        "status": "pass_source_pose",
+        "note": "Neutral padding restored left hammer/right book."
+      },
+      {
+        "cell": 13,
+        "action": "neutral padding",
+        "status": "pass_source_pose",
+        "note": "Neutral padding restored left hammer/right book."
+      },
+      {
+        "cell": 14,
+        "action": "neutral padding",
+        "status": "pass_source_pose",
+        "note": "Neutral padding restored left hammer/right book."
+      },
+      {
+        "cell": 15,
+        "action": "neutral padding",
+        "status": "pass_source_pose",
+        "note": "Neutral padding restored left hammer/right book."
+      }
+    ],
+    "limitations": [
+      "Only source-pose identity/equipment and anatomical attachment/occlusion reviewed. Generated minor linework differences and final motion artifacts require separate review."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

@@ -1,0 +1,100 @@
+{
+  "class": "paladin",
+  "sheet": "actions-07",
+  "original_sha256": "13bce5339c56915dd419b0592d802a98fd118773034aefbdef8ad5087d705409",
+  "replacement_sha256": "20cb94b05d73cc32373728bdf2db51ed50868ecdde174588ae6dba40dba2a699",
+  "freeze_manifest": "paladin-01-07-freeze-manifest.json",
+  "source_review": {
+    "class": "paladin",
+    "sheet": "actions-07",
+    "path": "source/sheets/paladin/actions-07.png",
+    "sha256": "20cb94b05d73cc32373728bdf2db51ed50868ecdde174588ae6dba40dba2a699",
+    "bytes": 2173317,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "reviewStatus": "accepted_source_pose_review",
+    "reviewedCells": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "reviewNotes": "All 16 poses visually reviewed. Initial hammer head was too flat/book-like; locally repaired all visible heads to thick gold cuboids with connected short handles, preserving left-hip position. Snowman, lifted skirt and desk naturally occlude weapon in relevant cells. Yawn, snack, curtsey, violin/bow, pacing, sigh and typing preserved. No extra hand found.",
+    "provenance": "source/sheets/paladin/actions-07.provenance.json",
+    "preview": "source/sheets/paladin/actions-07-alpha-inspect.jpg",
+    "sourceSnapshotAtFreezeSha256": "13bce5339c56915dd419b0592d802a98fd118773034aefbdef8ad5087d705409"
+  },
+  "generation": {
+    "tool": "image_gen__imagegen",
+    "date": "2026-11-09",
+    "sheet": "actions-07",
+    "prompt": "Use case: precise-object-edit, small equipment texture/shape correction only. Image 1 is the EDIT TARGET transparent 4x4 paladin atlas. Image 2 is the canonical character; Image 3 has correct gold hammer head geometry. Preserve the exact 16 original poses, hands, expressions, food, snowman, violin and bow, curtsey, keyboard/desk, all clothing and the existing red/gold book. Correct ONLY the visible HAMMER HEADS on PICTURE LEFT hips (anatomical RIGHT). The current left-hip red cross rectangles look too flat and book-like. Replace just these hammer heads with the same compact thick gold double-ended cuboid hammer head seen in Images 2 and 3: visibly thick sculpted GOLD end caps on both sides, red inset central panel, chunky beveled gold metallic volume, gold rib/ornament across face. It must unmistakably look like the canonical physical gold warhammer, NOT a second flat red cross book. Retain each existing short handle, belt mounting point, diagonal orientation, total size, and location; this is a precise same-size head substitution. The red/gold holy BOOK on PICTURE RIGHT stays completely untouched. Do not add any hammer in cells where it is hidden by snowman, skirt or desk. No extra hands. Do not change body scale, palette, grid spacing, action props or outline. Transparent background, same 4x4 atlas.",
+    "references": [
+      "source/sheets/paladin/actions-07.png",
+      "source/base-keyframes/paladin/frame-00.png",
+      "source/sheets/paladin/actions-05.png"
+    ],
+    "generatedOriginal": "image_gen-output:exec-1f61153d-5ed1-43ab-a51f-a0a03742bd34.png",
+    "output": "source/sheets/paladin/actions-07.png",
+    "reviewStatus": "accepted_source_pose_review",
+    "sha256": "20cb94b05d73cc32373728bdf2db51ed50868ecdde174588ae6dba40dba2a699",
+    "visualQA": {
+      "cellsReviewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "method": "explicit gray alpha composite, all sixteen cells; enlarged hip/hand crop review on major attachments",
+      "notes": "All 16 poses visually reviewed. Initial hammer head was too flat/book-like; locally repaired all visible heads to thick gold cuboids with connected short handles, preserving left-hip position. Snowman, lifted skirt and desk naturally occlude weapon in relevant cells. Yawn, snack, curtsey, violin/bow, pacing, sigh and typing preserved. No extra hand found.",
+      "scope": "source poses only, not encoded animation frames or AIRI playback"
+    },
+    "priorProvenance": {
+      "tool": "image_gen__imagegen",
+      "date": "2026-11-09",
+      "sheet": "actions-07",
+      "prompt": "Use case: precise-object-edit. Asset: transparent 4x4 action sprite atlas, identity/equipment repair only.\nImage 1 is the EDIT TARGET with sixteen original action poses. Image 2 is the canonical paladin master identity and equipment reference. Preserve the target's exact 4x4 grid, sixteen cell positions, character scale, pose silhouettes, two original arms/hands, expressions, action props, clothing, gold cross symbols, face, hair and colors. Do not substitute idle poses and do not redraw an action.\n\nRepair only the missing canonical equipment. The paladin has exactly ONE compact gold warhammer with rectangular red-inset head, at the character's anatomical RIGHT hip (PICTURE LEFT in front view), and exactly ONE small red/gold cross holy book at anatomical LEFT hip (PICTURE RIGHT in front view). Keep the book already present; do not duplicate it or replace action props with it. Match the master hammer shape, size and proportions: short handle, broad compact rectangular head, total length roughly one fifth of character height. It hangs diagonally down/out from the same left waist belt attachment, not as a tall staff or giant mallet. When both original hands are busy, the hammer is belt-holstered and leaves both hands free; do not add a third hand to hold it. In side/prone poses, rotate and foreshorten this same attached hammer with the pelvis, allowing physically correct occlusion by body, hair or props. Keep the head and handle connected. Never move the hammer to the other hip between paired action cells.\nAll original action props remain distinct from equipped hammer/book: no converting cards, fans, toys, food or paperwork into extra holy equipment. Exactly two anatomical arms and hands, except legal occlusion.\nKeep genuine transparent background; no labels, borders, checkerboard, extra decoration, duplicate body parts, or new effects. Preserve every original cell's different action.\n\nImage3 is an ACCEPTED HAMMER MOUNTING REFERENCE ONLY: same character with hammer correctly at picture-left hip and book at picture-right hip. Copy only equipment mounting relationship and proportions from Image3, not its actions or layout. The existing book in Image1 MUST STAY AT ITS ORIGINAL LOCATION. The new hammer goes on the OPPOSITE HIP to that already-present book. Never swap the book/hammer. Keep hands free for their original actions.\n\nTarget actions-07: Preserve the sixteen poses exactly: yawning pair, building snowman pair, large snack bite pair, maid curtsey pair, playing violin pair, pacing/looking pair, sighing/sweat pair, frantic typing pair. Do not confuse violin bow with hammer. Both hands remain operating original props. Desk can completely occlude waist/hammer; NEVER draw a hammer on picture-right beside desk simply to make it visible. The book remains original location; hammer opposite hip only. For side-facing walking respect anatomical side with occlusion.",
+      "references": [
+        "source/sheets/paladin/actions-07.png",
+        "source/base-keyframes/paladin/frame-00.png",
+        "source/sheets/paladin/actions-08.png"
+      ],
+      "generatedOriginal": "image_gen-output:exec-550b4646-7255-4489-9908-8c5f68ddc17f.png",
+      "output": "source/sheets/paladin/actions-07.png",
+      "reviewStatus": "pending explicit 16-cell visual QA"
+    },
+    "finalIterationRecord": "source/sheets/paladin/actions-07.iteration2.json"
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

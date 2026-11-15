@@ -1,0 +1,38 @@
+{
+  "class": "priest",
+  "sheet": "actions-12",
+  "original_sha256": "34b324b336a64dd67b1e47b9417355e35d3d6b76afc435cef6c3d0187a7d5bfc",
+  "replacement_sha256": "c5867a7ad48a23f6b63ac0c37fde47a25943953061b3012f14656c680f592b57",
+  "freeze_manifest": "casters-acceptance.json",
+  "source_review": {
+    "class": "priest",
+    "sheet": "actions-12",
+    "path": "source/sheets/priest/actions-12.png",
+    "sha256": "c5867a7ad48a23f6b63ac0c37fde47a25943953061b3012f14656c680f592b57",
+    "qa_status": "accepted_source_pose_review",
+    "alpha_review_image": "source/sheets/priest/actions-12-alpha-inspect.jpg",
+    "source_defect_repaired": true
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "date": "2026-11-09",
+    "class": "priest",
+    "sheet": "actions-12",
+    "prompt": "Use case: precise-object-edit, identity-preserve. Asset: transparent 4x4 animation sprite atlas.\nImage 1 is EDIT TARGET priest/actions-12; Image 2 is same character neutral EQUIPMENT REFERENCE ONLY.\nRestore the gold staff only where missing: cells6 and7 wiping desk (row2 columns3,4) need the persistent gold leaf/spear-shaped staff head at the screen-left shoulder, and cell14 (row4 column3) humanoid ghost-preparation needs its same staff. Keep existing staff in cells4,5 and8 completely intact. Keep all other cells unchanged, especially lying sleeping, lion-head props, swinging poses, needlework and the intentionally transformed ghost in last cell. Do not force a visible staff through genuinely occluding props.\nLocalized correction only. Preserve every original cell's pose, expression, hand positions, action prop, visual effects, original chibi proportions, blue hair and 4x4 layout/margins. Do not replace action poses with the neutral reference. Keep exact costume patterns and colors across poses. Exactly one persistent golden staff per character; no duplicate staff heads or extra jewelry. Staff is physically attached behind shoulder, follows torso, not floating beside temple; at front the staff head is next to the lower cheek/shoulder BELOW ear fin. Existing hands or props may partially cover it. No changes to unaffected cells. Preserve transparent RGBA background, no black/white background, no checkerboard, no labels, no border or watermark.",
+    "generated_original": "image_gen-output:exec-e7d276cf-b455-422f-a6df-08dd5db2d815.png",
+    "output_file": "source/sheets/priest/actions-12.png",
+    "qa_status": "accepted_source_pose_review",
+    "source_repo_modified": false,
+    "output_sha256": "c5867a7ad48a23f6b63ac0c37fde47a25943953061b3012f14656c680f592b57",
+    "image_size": [
+      1254,
+      1254
+    ],
+    "alpha_gt_240_pixels": 609529,
+    "review_scope": "All 16 source cells visually inspected, targeted detail crops checked; final video frames and AIRI playback not tested.",
+    "alpha_review_image": "source/sheets/priest/actions-12-alpha-inspect.jpg",
+    "iteration_records": []
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

@@ -1,0 +1,2770 @@
+{
+  "schema": "class_registered_emotion_face_only_v1",
+  "policy": "Only aligned face interior is sampled. Source armor, hands, props and outline are forbidden. Star pupils and watery/crying eyes come from the named existing emotion cell, not a substituted blink.",
+  "classes": {
+    "hunter": {
+      "100": {
+        "name": "害怕",
+        "path": "sheets/hunter/emotions.png",
+        "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f",
+        "cell": 0,
+        "crop": [
+          0,
+          0,
+          313,
+          313
+        ],
+        "to_master_affine": [
+          [
+            0.9253912251359229,
+            0.020565322733919845,
+            167.8231250142153
+          ],
+          [
+            -0.020565322733919845,
+            0.9253912251359229,
+            39.902087929042594
+          ]
+        ],
+        "matches": 13,
+        "inliers": 4,
+        "registration_review": "Manual visual check of aligned face against immutable hunter master; crying affine manually corrected to remove erroneous automatic rotation.",
+        "face_only": true,
+        "source_outfit_is_not_used": true
+      },
+      "101": {
+        "name": "害羞",
+        "path": "sheets/hunter/emotions.png",
+        "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f",
+        "cell": 2,
+        "crop": [
+          627,
+          0,
+          940,
+          313
+        ],
+        "to_master_affine": [
+          [
+            1.007465577065612,
+            -0.053511315509570355,
+            172.99948681530142
+          ],
+          [
+            0.053511315509570355,
+            1.007465577065612,
+            11.804952287314128
+          ]
+        ],
+        "matches": 15,
+        "inliers": 5,
+        "registration_review": "Manual visual check of aligned face against immutable hunter master; crying affine manually corrected to remove erroneous automatic rotation.",
+        "face_only": true,
+        "source_outfit_is_not_used": true
+      },
+      "102": {
+        "name": "难过（眼睛饱含泪水）",
+        "path": "sheets/hunter/emotions.png",
+        "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f",
+        "cell": 4,
+        "crop": [
+          0,
+          313,
+          313,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.9898316061094202,
+            -0.08760156025034516,
+            171.02499799936902
+          ],
+          [
+            0.08760156025034516,
+            0.9898316061094202,
+            6.036888988672888
+          ]
+        ],
+        "matches": 17,
+        "inliers": 5,
+        "registration_review": "Manual visual check of aligned face against immutable hunter master; crying affine manually corrected to remove erroneous automatic rotation.",
+        "face_only": true,
+        "source_outfit_is_not_used": true
+      },
+      "103": {
+        "name": "想去玩（期待星星眼）",
+        "path": "sheets/hunter/emotions.png",
+        "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f",
+        "cell": 6,
+        "crop": [
+          627,
+          313,
+          940,
+          627
+        ],
+        "to_master_affine": [
+          [
+            1.0098576914249362,
+            -0.022978116680581993,
+            168.49219449782913
+          ],
+          [
+            0.022978116680581993,
+            1.0098576914249362,
+            17.177777944710876
+          ]
+        ],
+        "matches": 10,
+        "inliers": 4,
+        "registration_review": "Manual visual check of aligned face against immutable hunter master; crying affine manually corrected to remove erroneous automatic rotation.",
+        "face_only": true,
+        "source_outfit_is_not_used": true
+      },
+      "104": {
+        "name": "大哭",
+        "path": "sheets/hunter/emotions.png",
+        "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f",
+        "cell": 8,
+        "crop": [
+          0,
+          627,
+          313,
+          940
+        ],
+        "to_master_affine": [
+          [
+            0.8,
+            0,
+            198
+          ],
+          [
+            0,
+            0.8,
+            51
+          ]
+        ],
+        "matches": 21,
+        "inliers": 4,
+        "registration_review": "Manual visual check of aligned face against immutable hunter master; crying affine manually corrected to remove erroneous automatic rotation.",
+        "face_only": true,
+        "source_outfit_is_not_used": true
+      }
+    },
+    "warrior": {
+      "100": {
+        "name": "害怕",
+        "path": "sheets/warrior/emotions.png",
+        "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190",
+        "cell": 0,
+        "crop": [
+          0,
+          0,
+          313,
+          313
+        ],
+        "to_master_affine": [
+          [
+            0.9845812404970224,
+            -0.022939835672040124,
+            165.7777531022139
+          ],
+          [
+            0.022939835672040124,
+            0.9845812404970224,
+            29.044359034228865
+          ]
+        ],
+        "matches": 24,
+        "inliers": 15,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            206,
+            132
+          ],
+          [
+            202,
+            151
+          ],
+          [
+            187,
+            160
+          ],
+          [
+            167,
+            164
+          ],
+          [
+            148,
+            162
+          ],
+          [
+            131,
+            156
+          ],
+          [
+            126,
+            151
+          ],
+          [
+            122,
+            133
+          ],
+          [
+            183,
+            100
+          ],
+          [
+            197,
+            114
+          ]
+        ],
+        "source_face_bottom": 164,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "101": {
+        "name": "害羞",
+        "path": "sheets/warrior/emotions.png",
+        "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190",
+        "cell": 2,
+        "crop": [
+          627,
+          0,
+          940,
+          313
+        ],
+        "to_master_affine": [
+          [
+            0.9729987745773451,
+            -0.1348326659833282,
+            189.39308395291485
+          ],
+          [
+            0.1348326659833282,
+            0.9729987745773451,
+            11.336329710852793
+          ]
+        ],
+        "matches": 22,
+        "inliers": 9,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            198,
+            125
+          ],
+          [
+            198,
+            151
+          ],
+          [
+            181,
+            163
+          ],
+          [
+            161,
+            169
+          ],
+          [
+            144,
+            169
+          ],
+          [
+            127,
+            165
+          ],
+          [
+            117,
+            150
+          ],
+          [
+            114,
+            141
+          ],
+          [
+            122,
+            125
+          ],
+          [
+            129,
+            120
+          ],
+          [
+            177,
+            114
+          ]
+        ],
+        "source_face_bottom": 169,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "102": {
+        "name": "难过（眼睛饱含泪水）",
+        "path": "sheets/warrior/emotions.png",
+        "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190",
+        "cell": 4,
+        "crop": [
+          0,
+          313,
+          313,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.9395314458163609,
+            -0.015954127954683237,
+            173.16914950198245
+          ],
+          [
+            0.015954127954683237,
+            0.9395314458163609,
+            26.91108441831897
+          ]
+        ],
+        "matches": 26,
+        "inliers": 13,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            209,
+            152
+          ],
+          [
+            207,
+            167
+          ],
+          [
+            193,
+            176
+          ],
+          [
+            184,
+            179
+          ],
+          [
+            139,
+            178
+          ],
+          [
+            124,
+            171
+          ],
+          [
+            118,
+            154
+          ],
+          [
+            176,
+            144
+          ]
+        ],
+        "source_face_bottom": 179,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 169,
+          "ratio": 0.7,
+          "reason": "Eye placement retained; only lower face shortened to prevent mouth clipping against immutable master chin mask."
+        }
+      },
+      "103": {
+        "name": "想去玩（期待星星眼）",
+        "path": "sheets/warrior/emotions.png",
+        "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190",
+        "cell": 6,
+        "crop": [
+          627,
+          313,
+          940,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.9569048611415641,
+            -0.02682295535432818,
+            175.82543348513306
+          ],
+          [
+            0.02682295535432818,
+            0.9569048611415641,
+            28.767126974181824
+          ]
+        ],
+        "matches": 17,
+        "inliers": 10,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            203,
+            135
+          ],
+          [
+            200,
+            154
+          ],
+          [
+            193,
+            161
+          ],
+          [
+            182,
+            166
+          ],
+          [
+            163,
+            170
+          ],
+          [
+            139,
+            167
+          ],
+          [
+            127,
+            162
+          ],
+          [
+            121,
+            157
+          ],
+          [
+            116,
+            140
+          ],
+          [
+            149,
+            128
+          ],
+          [
+            176,
+            123
+          ]
+        ],
+        "source_face_bottom": 170,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "104": {
+        "name": "大哭",
+        "path": "sheets/warrior/emotions.png",
+        "sha256": "2ee2959df704c90d975e7ba1b2f1b9eec07e084907057ce8856e3ef74c3b6190",
+        "cell": 8,
+        "crop": [
+          0,
+          627,
+          313,
+          940
+        ],
+        "to_master_affine": [
+          [
+            0.8735629986876596,
+            -0.06746187834237077,
+            187.4965596900437
+          ],
+          [
+            0.06746187834237077,
+            0.8735629986876596,
+            35.78619334377696
+          ]
+        ],
+        "matches": 20,
+        "inliers": 8,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            212,
+            127
+          ],
+          [
+            211,
+            138
+          ],
+          [
+            201,
+            165
+          ],
+          [
+            187,
+            171
+          ],
+          [
+            168,
+            174
+          ],
+          [
+            144,
+            172
+          ],
+          [
+            131,
+            168
+          ],
+          [
+            115,
+            137
+          ],
+          [
+            115,
+            127
+          ],
+          [
+            132,
+            105
+          ],
+          [
+            139,
+            102
+          ],
+          [
+            184,
+            102
+          ],
+          [
+            191,
+            104
+          ]
+        ],
+        "source_face_bottom": 174,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 169,
+          "ratio": 0.75,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      }
+    },
+    "mage": {
+      "100": {
+        "name": "害怕",
+        "path": "sheets/mage/emotions.png",
+        "sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33",
+        "cell": 0,
+        "crop": [
+          0,
+          0,
+          313,
+          313
+        ],
+        "to_master_affine": [
+          [
+            0.9887951781723097,
+            -0.0039527861389638645,
+            162.61924351922738
+          ],
+          [
+            0.0039527861389638645,
+            0.9887951781723097,
+            23.034584664179473
+          ]
+        ],
+        "matches": 9,
+        "inliers": 3,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            203,
+            136
+          ],
+          [
+            199,
+            154
+          ],
+          [
+            193,
+            160
+          ],
+          [
+            185,
+            164
+          ],
+          [
+            158,
+            167
+          ],
+          [
+            135,
+            165
+          ],
+          [
+            127,
+            161
+          ],
+          [
+            122,
+            156
+          ],
+          [
+            117,
+            139
+          ],
+          [
+            155,
+            133
+          ]
+        ],
+        "source_face_bottom": 167,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "101": {
+        "name": "害羞",
+        "path": "sheets/mage/emotions.png",
+        "sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33",
+        "cell": 2,
+        "crop": [
+          627,
+          0,
+          940,
+          313
+        ],
+        "to_master_affine": [
+          [
+            0.9919370930933268,
+            -0.08674648790659277,
+            179.26324914045057
+          ],
+          [
+            0.08674648790659277,
+            0.9919370930933268,
+            5.9944695636014975
+          ]
+        ],
+        "matches": 11,
+        "inliers": 5,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            196,
+            141
+          ],
+          [
+            194,
+            157
+          ],
+          [
+            185,
+            165
+          ],
+          [
+            159,
+            173
+          ],
+          [
+            143,
+            173
+          ],
+          [
+            126,
+            170
+          ],
+          [
+            120,
+            166
+          ],
+          [
+            112,
+            151
+          ],
+          [
+            110,
+            140
+          ],
+          [
+            119,
+            125
+          ],
+          [
+            128,
+            125
+          ]
+        ],
+        "source_face_bottom": 173,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "102": {
+        "name": "难过（眼睛饱含泪水）",
+        "path": "sheets/mage/emotions.png",
+        "sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33",
+        "cell": 4,
+        "crop": [
+          0,
+          313,
+          313,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.9688311982873467,
+            -0.0160386317401125,
+            169.52714983685692
+          ],
+          [
+            0.0160386317401125,
+            0.9688311982873467,
+            18.254277065080174
+          ]
+        ],
+        "matches": 17,
+        "inliers": 7,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            202,
+            150
+          ],
+          [
+            199,
+            161
+          ],
+          [
+            186,
+            170
+          ],
+          [
+            146,
+            174
+          ],
+          [
+            133,
+            171
+          ],
+          [
+            117,
+            161
+          ],
+          [
+            112,
+            135
+          ],
+          [
+            125,
+            120
+          ],
+          [
+            129,
+            119
+          ],
+          [
+            198,
+            141
+          ]
+        ],
+        "source_face_bottom": 174,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "103": {
+        "name": "想去玩（期待星星眼）",
+        "path": "sheets/mage/emotions.png",
+        "sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33",
+        "cell": 6,
+        "crop": [
+          627,
+          313,
+          940,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.958552891971736,
+            -0.023938847265885556,
+            177.30141038884688
+          ],
+          [
+            0.026811508937791825,
+            1.0735792390083445,
+            6.749170950885414
+          ]
+        ],
+        "matches": 12,
+        "inliers": 3,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            198,
+            137
+          ],
+          [
+            195,
+            156
+          ],
+          [
+            189,
+            162
+          ],
+          [
+            177,
+            167
+          ],
+          [
+            131,
+            168
+          ],
+          [
+            116,
+            160
+          ],
+          [
+            109,
+            143
+          ],
+          [
+            150,
+            131
+          ]
+        ],
+        "source_face_bottom": 168,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 164,
+          "ratio": 0.85,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      },
+      "104": {
+        "name": "大哭",
+        "path": "sheets/mage/emotions.png",
+        "sha256": "a6282feb25bee99dc494c817aaff2171a54cc5e46ebda9eea91bc55923231e33",
+        "cell": 8,
+        "crop": [
+          0,
+          627,
+          313,
+          940
+        ],
+        "to_master_affine": [
+          [
+            0.9611700774539456,
+            0.0006088779845829957,
+            170.5962746329452
+          ],
+          [
+            -0.0006088779845829957,
+            0.9611700774539456,
+            29.025223610669503
+          ]
+        ],
+        "matches": 15,
+        "inliers": 6,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            206,
+            127
+          ],
+          [
+            190,
+            168
+          ],
+          [
+            166,
+            174
+          ],
+          [
+            145,
+            173
+          ],
+          [
+            130,
+            169
+          ],
+          [
+            124,
+            160
+          ],
+          [
+            123,
+            150
+          ],
+          [
+            130,
+            120
+          ],
+          [
+            180,
+            107
+          ],
+          [
+            200,
+            119
+          ]
+        ],
+        "source_face_bottom": 174,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 164,
+          "ratio": 0.7,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      }
+    },
+    "rogue": {
+      "100": {
+        "name": "害怕",
+        "path": "sheets/rogue/emotions.png",
+        "sha256": "64968e469c52c7a3602c8e564f2d069df7e97beb7db5c401e543c419ef3b4648",
+        "cell": 0,
+        "crop": [
+          0,
+          0,
+          313,
+          313
+        ],
+        "to_master_affine": [
+          [
+            1.0264028815197417,
+            -0.04452843050467932,
+            162.4194571422977
+          ],
+          [
+            0.04452843050467932,
+            1.0264028815197417,
+            16.43960481996046
+          ]
+        ],
+        "matches": 13,
+        "inliers": 9,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            204,
+            132
+          ],
+          [
+            200,
+            150
+          ],
+          [
+            194,
+            157
+          ],
+          [
+            176,
+            164
+          ],
+          [
+            143,
+            164
+          ],
+          [
+            132,
+            161
+          ],
+          [
+            121,
+            152
+          ],
+          [
+            116,
+            137
+          ],
+          [
+            154,
+            128
+          ]
+        ],
+        "source_face_bottom": 164,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 164,
+          "ratio": 0.82,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      },
+      "101": {
+        "name": "害羞",
+        "path": "sheets/rogue/emotions.png",
+        "sha256": "64968e469c52c7a3602c8e564f2d069df7e97beb7db5c401e543c419ef3b4648",
+        "cell": 2,
+        "crop": [
+          627,
+          0,
+          940,
+          313
+        ],
+        "to_master_affine": [
+          [
+            1.0182090938989699,
+            -0.13003376760376492,
+            184.45027576796795
+          ],
+          [
+            0.13003376760376492,
+            1.0182090938989699,
+            -1.3274425138620904
+          ]
+        ],
+        "matches": 13,
+        "inliers": 4,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            198,
+            132
+          ],
+          [
+            197,
+            150
+          ],
+          [
+            190,
+            158
+          ],
+          [
+            172,
+            166
+          ],
+          [
+            126,
+            166
+          ],
+          [
+            120,
+            162
+          ],
+          [
+            110,
+            141
+          ],
+          [
+            116,
+            126
+          ],
+          [
+            126,
+            123
+          ]
+        ],
+        "source_face_bottom": 166,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "102": {
+        "name": "难过（眼睛饱含泪水）",
+        "path": "sheets/rogue/emotions.png",
+        "sha256": "64968e469c52c7a3602c8e564f2d069df7e97beb7db5c401e543c419ef3b4648",
+        "cell": 4,
+        "crop": [
+          0,
+          313,
+          313,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.9766737613759047,
+            0.0037897480192670054,
+            170.53520982384842
+          ],
+          [
+            -0.0037897480192670054,
+            0.9766737613759047,
+            19.935928214772883
+          ]
+        ],
+        "matches": 23,
+        "inliers": 7,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            204,
+            149
+          ],
+          [
+            202,
+            164
+          ],
+          [
+            187,
+            175
+          ],
+          [
+            172,
+            179
+          ],
+          [
+            141,
+            179
+          ],
+          [
+            122,
+            173
+          ],
+          [
+            117,
+            169
+          ],
+          [
+            113,
+            155
+          ],
+          [
+            115,
+            151
+          ],
+          [
+            151,
+            140
+          ],
+          [
+            201,
+            146
+          ]
+        ],
+        "source_face_bottom": 179,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 162,
+          "ratio": 0.7,
+          "reason": "Eye placement retained; only lower face shortened to prevent mouth clipping against immutable master chin mask."
+        }
+      },
+      "103": {
+        "name": "想去玩（期待星星眼）",
+        "path": "sheets/rogue/emotions.png",
+        "sha256": "64968e469c52c7a3602c8e564f2d069df7e97beb7db5c401e543c419ef3b4648",
+        "cell": 6,
+        "crop": [
+          627,
+          313,
+          940,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.9643635382959033,
+            -0.09515642710714932,
+            181.8562257565068
+          ],
+          [
+            0.09515642710714932,
+            0.9643635382959033,
+            15.789001332358275
+          ]
+        ],
+        "matches": 16,
+        "inliers": 5,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            202,
+            133
+          ],
+          [
+            200,
+            150
+          ],
+          [
+            194,
+            159
+          ],
+          [
+            171,
+            169
+          ],
+          [
+            137,
+            168
+          ],
+          [
+            126,
+            164
+          ],
+          [
+            118,
+            156
+          ],
+          [
+            112,
+            140
+          ],
+          [
+            145,
+            126
+          ]
+        ],
+        "source_face_bottom": 169,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 164,
+          "ratio": 0.82,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      },
+      "104": {
+        "name": "大哭",
+        "path": "sheets/rogue/emotions.png",
+        "sha256": "64968e469c52c7a3602c8e564f2d069df7e97beb7db5c401e543c419ef3b4648",
+        "cell": 8,
+        "crop": [
+          0,
+          627,
+          313,
+          940
+        ],
+        "to_master_affine": [
+          [
+            0.9797160402280333,
+            -0.04364011769933433,
+            172.80522138760304
+          ],
+          [
+            0.04364011769933433,
+            0.9797160402280333,
+            22.43888132314234
+          ]
+        ],
+        "matches": 18,
+        "inliers": 5,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            206,
+            126
+          ],
+          [
+            206,
+            130
+          ],
+          [
+            186,
+            169
+          ],
+          [
+            164,
+            174
+          ],
+          [
+            138,
+            172
+          ],
+          [
+            127,
+            168
+          ],
+          [
+            109,
+            132
+          ],
+          [
+            114,
+            120
+          ],
+          [
+            123,
+            109
+          ],
+          [
+            128,
+            107
+          ],
+          [
+            177,
+            104
+          ],
+          [
+            197,
+            117
+          ]
+        ],
+        "source_face_bottom": 174,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 162,
+          "ratio": 0.75,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      }
+    },
+    "paladin": {
+      "100": {
+        "name": "害怕",
+        "path": "sheets/paladin/emotions.png",
+        "sha256": "a38a686c448ac5e90bc3c3c5b0b22176d262c40ce17000bbc92afc6309138f4f",
+        "cell": 0,
+        "crop": [
+          0,
+          0,
+          313,
+          313
+        ],
+        "to_master_affine": [
+          [
+            1.00035374206479,
+            -0.04192073348095746,
+            165.2282160233267
+          ],
+          [
+            0.04192073348095746,
+            1.00035374206479,
+            16.224066171756363
+          ]
+        ],
+        "matches": 12,
+        "inliers": 4,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            204,
+            135
+          ],
+          [
+            199,
+            154
+          ],
+          [
+            194,
+            159
+          ],
+          [
+            169,
+            167
+          ],
+          [
+            157,
+            167
+          ],
+          [
+            131,
+            160
+          ],
+          [
+            125,
+            154
+          ],
+          [
+            121,
+            137
+          ],
+          [
+            181,
+            104
+          ],
+          [
+            195,
+            118
+          ]
+        ],
+        "source_face_bottom": 167,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 163,
+          "ratio": 0.82,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      },
+      "101": {
+        "name": "害羞",
+        "path": "sheets/paladin/emotions.png",
+        "sha256": "a38a686c448ac5e90bc3c3c5b0b22176d262c40ce17000bbc92afc6309138f4f",
+        "cell": 2,
+        "crop": [
+          627,
+          0,
+          940,
+          313
+        ],
+        "to_master_affine": [
+          [
+            0.9563587419210381,
+            -0.06310537846718102,
+            182.77171055204792
+          ],
+          [
+            0.06310537846718102,
+            0.9563587419210381,
+            14.75141654633067
+          ]
+        ],
+        "matches": 12,
+        "inliers": 3,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            197,
+            128
+          ],
+          [
+            196,
+            154
+          ],
+          [
+            188,
+            162
+          ],
+          [
+            161,
+            172
+          ],
+          [
+            135,
+            171
+          ],
+          [
+            121,
+            165
+          ],
+          [
+            112,
+            143
+          ],
+          [
+            121,
+            125
+          ],
+          [
+            167,
+            115
+          ],
+          [
+            177,
+            116
+          ]
+        ],
+        "source_face_bottom": 172,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "102": {
+        "name": "难过（眼睛饱含泪水）",
+        "path": "sheets/paladin/emotions.png",
+        "sha256": "a38a686c448ac5e90bc3c3c5b0b22176d262c40ce17000bbc92afc6309138f4f",
+        "cell": 4,
+        "crop": [
+          0,
+          313,
+          313,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.8607155000570628,
+            -0.03705695632100148,
+            193.36314012436762
+          ],
+          [
+            0.03705695632100148,
+            0.8607155000570628,
+            24.548222938472104
+          ]
+        ],
+        "matches": 15,
+        "inliers": 6,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            207,
+            151
+          ],
+          [
+            204,
+            167
+          ],
+          [
+            191,
+            176
+          ],
+          [
+            182,
+            179
+          ],
+          [
+            142,
+            179
+          ],
+          [
+            135,
+            177
+          ],
+          [
+            123,
+            170
+          ],
+          [
+            117,
+            153
+          ],
+          [
+            148,
+            141
+          ]
+        ],
+        "source_face_bottom": 179,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 164,
+          "ratio": 0.8,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      },
+      "103": {
+        "name": "想去玩（期待星星眼）",
+        "path": "sheets/paladin/emotions.png",
+        "sha256": "a38a686c448ac5e90bc3c3c5b0b22176d262c40ce17000bbc92afc6309138f4f",
+        "cell": 6,
+        "crop": [
+          627,
+          313,
+          940,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.96,
+            0,
+            173
+          ],
+          [
+            0,
+            0.96,
+            30
+          ]
+        ],
+        "matches": 8,
+        "inliers": 2,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            201,
+            134
+          ],
+          [
+            198,
+            152
+          ],
+          [
+            193,
+            159
+          ],
+          [
+            175,
+            167
+          ],
+          [
+            143,
+            168
+          ],
+          [
+            129,
+            164
+          ],
+          [
+            118,
+            156
+          ],
+          [
+            113,
+            140
+          ],
+          [
+            121,
+            126
+          ],
+          [
+            143,
+            124
+          ],
+          [
+            165,
+            125
+          ]
+        ],
+        "source_face_bottom": 168,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 164,
+          "ratio": 0.82,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      },
+      "104": {
+        "name": "大哭",
+        "path": "sheets/paladin/emotions.png",
+        "sha256": "a38a686c448ac5e90bc3c3c5b0b22176d262c40ce17000bbc92afc6309138f4f",
+        "cell": 8,
+        "crop": [
+          0,
+          627,
+          313,
+          940
+        ],
+        "to_master_affine": [
+          [
+            0.84,
+            0,
+            190
+          ],
+          [
+            0,
+            0.7,
+            67
+          ]
+        ],
+        "matches": 7,
+        "inliers": 2,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            210,
+            138
+          ],
+          [
+            198,
+            166
+          ],
+          [
+            174,
+            173
+          ],
+          [
+            152,
+            173
+          ],
+          [
+            129,
+            166
+          ],
+          [
+            115,
+            139
+          ],
+          [
+            114,
+            126
+          ],
+          [
+            130,
+            105
+          ],
+          [
+            139,
+            102
+          ],
+          [
+            185,
+            102
+          ],
+          [
+            191,
+            104
+          ],
+          [
+            210,
+            125
+          ]
+        ],
+        "source_face_bottom": 173,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 164,
+          "ratio": 0.85,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      }
+    },
+    "warlock": {
+      "100": {
+        "name": "害怕",
+        "path": "sheets/warlock/emotions.png",
+        "sha256": "e333bd105166f18c4e67deddfca8f7059ab95a41f0ad600960ee182112e964dd",
+        "cell": 0,
+        "crop": [
+          0,
+          0,
+          313,
+          313
+        ],
+        "to_master_affine": [
+          [
+            1.033700622230169,
+            -0.010543839770109727,
+            159.0668026937239
+          ],
+          [
+            0.010543839770109727,
+            1.033700622230169,
+            15.714079963896245
+          ]
+        ],
+        "matches": 26,
+        "inliers": 13,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            206,
+            137
+          ],
+          [
+            202,
+            156
+          ],
+          [
+            196,
+            163
+          ],
+          [
+            181,
+            168
+          ],
+          [
+            164,
+            170
+          ],
+          [
+            144,
+            168
+          ],
+          [
+            130,
+            163
+          ],
+          [
+            124,
+            157
+          ],
+          [
+            120,
+            140
+          ],
+          [
+            186,
+            108
+          ]
+        ],
+        "source_face_bottom": 170,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "101": {
+        "name": "害羞",
+        "path": "sheets/warlock/emotions.png",
+        "sha256": "e333bd105166f18c4e67deddfca8f7059ab95a41f0ad600960ee182112e964dd",
+        "cell": 2,
+        "crop": [
+          627,
+          0,
+          940,
+          313
+        ],
+        "to_master_affine": [
+          [
+            1.0870977922660552,
+            -0.0024529423812867145,
+            162.6000478881446
+          ],
+          [
+            0.0024529423812867145,
+            1.0870977922660552,
+            6.878230875706818
+          ]
+        ],
+        "matches": 22,
+        "inliers": 7,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            202,
+            139
+          ],
+          [
+            200,
+            158
+          ],
+          [
+            196,
+            164
+          ],
+          [
+            164,
+            176
+          ],
+          [
+            144,
+            176
+          ],
+          [
+            126,
+            171
+          ],
+          [
+            121,
+            167
+          ],
+          [
+            113,
+            143
+          ],
+          [
+            123,
+            126
+          ],
+          [
+            131,
+            125
+          ]
+        ],
+        "source_face_bottom": 176,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "102": {
+        "name": "难过（眼睛饱含泪水）",
+        "path": "sheets/warlock/emotions.png",
+        "sha256": "e333bd105166f18c4e67deddfca8f7059ab95a41f0ad600960ee182112e964dd",
+        "cell": 4,
+        "crop": [
+          0,
+          313,
+          313,
+          627
+        ],
+        "to_master_affine": [
+          [
+            1.000431715923202,
+            -0.008343077319047904,
+            167.85940691905193
+          ],
+          [
+            0.008343077319047904,
+            1.000431715923202,
+            13.794987550156293
+          ]
+        ],
+        "matches": 19,
+        "inliers": 8,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            207,
+            151
+          ],
+          [
+            205,
+            167
+          ],
+          [
+            198,
+            174
+          ],
+          [
+            182,
+            179
+          ],
+          [
+            135,
+            178
+          ],
+          [
+            123,
+            172
+          ],
+          [
+            116,
+            156
+          ],
+          [
+            150,
+            144
+          ]
+        ],
+        "source_face_bottom": 179,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 167,
+          "ratio": 0.75,
+          "reason": "Eye placement retained; only lower face shortened to prevent mouth clipping against immutable master chin mask."
+        }
+      },
+      "103": {
+        "name": "想去玩（期待星星眼）",
+        "path": "sheets/warlock/emotions.png",
+        "sha256": "e333bd105166f18c4e67deddfca8f7059ab95a41f0ad600960ee182112e964dd",
+        "cell": 6,
+        "crop": [
+          627,
+          313,
+          940,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.9843048552475951,
+            -0.02131090155096339,
+            172.1108015462242
+          ],
+          [
+            0.02131090155096339,
+            0.9843048552475951,
+            17.389504785301355
+          ]
+        ],
+        "matches": 19,
+        "inliers": 7,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            205,
+            137
+          ],
+          [
+            201,
+            158
+          ],
+          [
+            193,
+            165
+          ],
+          [
+            178,
+            171
+          ],
+          [
+            138,
+            171
+          ],
+          [
+            132,
+            169
+          ],
+          [
+            120,
+            160
+          ],
+          [
+            115,
+            143
+          ],
+          [
+            153,
+            128
+          ]
+        ],
+        "source_face_bottom": 171,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "104": {
+        "name": "大哭",
+        "path": "sheets/warlock/emotions.png",
+        "sha256": "e333bd105166f18c4e67deddfca8f7059ab95a41f0ad600960ee182112e964dd",
+        "cell": 8,
+        "crop": [
+          0,
+          627,
+          313,
+          940
+        ],
+        "to_master_affine": [
+          [
+            0.9836033282210592,
+            -0.06639346410595064,
+            175.91376458641687
+          ],
+          [
+            0.06639346410595064,
+            0.9836033282210592,
+            7.562464175718016
+          ]
+        ],
+        "matches": 9,
+        "inliers": 3,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            208,
+            139
+          ],
+          [
+            196,
+            171
+          ],
+          [
+            167,
+            179
+          ],
+          [
+            153,
+            179
+          ],
+          [
+            125,
+            172
+          ],
+          [
+            110,
+            142
+          ],
+          [
+            109,
+            131
+          ],
+          [
+            125,
+            110
+          ],
+          [
+            181,
+            107
+          ],
+          [
+            207,
+            129
+          ]
+        ],
+        "source_face_bottom": 179,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 167,
+          "ratio": 0.75,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      }
+    },
+    "priest": {
+      "100": {
+        "name": "害怕",
+        "path": "sheets/priest/emotions.png",
+        "sha256": "ed960c0ee061b6b71a60bb7b74a4990c1bc8eca8441e852616e366ec7ac90431",
+        "cell": 0,
+        "crop": [
+          0,
+          0,
+          313,
+          313
+        ],
+        "to_master_affine": [
+          [
+            0.9640999990129231,
+            -0.05832580182815918,
+            175.7832042621222
+          ],
+          [
+            0.06532489804753829,
+            1.079791998894474,
+            0.16147667078749173
+          ]
+        ],
+        "matches": 14,
+        "inliers": 4,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            199,
+            135
+          ],
+          [
+            195,
+            154
+          ],
+          [
+            178,
+            163
+          ],
+          [
+            160,
+            165
+          ],
+          [
+            130,
+            162
+          ],
+          [
+            122,
+            156
+          ],
+          [
+            117,
+            141
+          ],
+          [
+            153,
+            129
+          ]
+        ],
+        "source_face_bottom": 165,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 165,
+          "ratio": 0.85,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      },
+      "101": {
+        "name": "害羞",
+        "path": "sheets/priest/emotions.png",
+        "sha256": "ed960c0ee061b6b71a60bb7b74a4990c1bc8eca8441e852616e366ec7ac90431",
+        "cell": 2,
+        "crop": [
+          627,
+          0,
+          940,
+          313
+        ],
+        "to_master_affine": [
+          [
+            0.972972972972973,
+            -0.16216216216216217,
+            196.6216216216216
+          ],
+          [
+            0.16216216216216217,
+            0.972972972972973,
+            -11.72972972972974
+          ]
+        ],
+        "matches": 9,
+        "inliers": 3,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            198,
+            145
+          ],
+          [
+            197,
+            163
+          ],
+          [
+            184,
+            172
+          ],
+          [
+            163,
+            178
+          ],
+          [
+            145,
+            178
+          ],
+          [
+            130,
+            174
+          ],
+          [
+            124,
+            169
+          ],
+          [
+            117,
+            151
+          ],
+          [
+            128,
+            121
+          ]
+        ],
+        "source_face_bottom": 178,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "102": {
+        "name": "难过（眼睛饱含泪水）",
+        "path": "sheets/priest/emotions.png",
+        "sha256": "ed960c0ee061b6b71a60bb7b74a4990c1bc8eca8441e852616e366ec7ac90431",
+        "cell": 4,
+        "crop": [
+          0,
+          313,
+          313,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.94,
+            0,
+            175
+          ],
+          [
+            0,
+            0.94,
+            22
+          ]
+        ],
+        "matches": 12,
+        "inliers": 3,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            200,
+            166
+          ],
+          [
+            179,
+            178
+          ],
+          [
+            138,
+            178
+          ],
+          [
+            122,
+            168
+          ],
+          [
+            117,
+            155
+          ],
+          [
+            155,
+            144
+          ],
+          [
+            171,
+            149
+          ]
+        ],
+        "source_face_bottom": 178,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 165,
+          "ratio": 0.8,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      },
+      "103": {
+        "name": "想去玩（期待星星眼）",
+        "path": "sheets/priest/emotions.png",
+        "sha256": "ed960c0ee061b6b71a60bb7b74a4990c1bc8eca8441e852616e366ec7ac90431",
+        "cell": 6,
+        "crop": [
+          627,
+          313,
+          940,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.95,
+            0,
+            173
+          ],
+          [
+            0,
+            0.95,
+            29
+          ]
+        ],
+        "matches": 12,
+        "inliers": 3,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            201,
+            133
+          ],
+          [
+            198,
+            153
+          ],
+          [
+            191,
+            161
+          ],
+          [
+            182,
+            166
+          ],
+          [
+            135,
+            168
+          ],
+          [
+            122,
+            160
+          ],
+          [
+            115,
+            143
+          ],
+          [
+            151,
+            128
+          ]
+        ],
+        "source_face_bottom": 168,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 165,
+          "ratio": 0.85,
+          "reason": "Actual expression mouth lower edge clipped or too close to immutable chin mask. Shorten only below eye line; preserve target face mask and all outfit pixels."
+        }
+      },
+      "104": {
+        "name": "大哭",
+        "path": "sheets/priest/emotions.png",
+        "sha256": "ed960c0ee061b6b71a60bb7b74a4990c1bc8eca8441e852616e366ec7ac90431",
+        "cell": 8,
+        "crop": [
+          0,
+          627,
+          313,
+          940
+        ],
+        "to_master_affine": [
+          [
+            0.8,
+            0,
+            198
+          ],
+          [
+            0,
+            0.7,
+            68
+          ]
+        ],
+        "matches": 10,
+        "inliers": 3,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            196,
+            162
+          ],
+          [
+            180,
+            170
+          ],
+          [
+            154,
+            174
+          ],
+          [
+            127,
+            168
+          ],
+          [
+            123,
+            154
+          ],
+          [
+            127,
+            142
+          ],
+          [
+            133,
+            135
+          ],
+          [
+            149,
+            129
+          ],
+          [
+            182,
+            132
+          ],
+          [
+            193,
+            146
+          ]
+        ],
+        "source_face_bottom": 174,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      }
+    },
+    "druid": {
+      "100": {
+        "name": "害怕",
+        "path": "sheets/druid/emotions.png",
+        "sha256": "c6d153dcf365bf58ecac3bd7888325b1a45604e851450e89477ebbf4d482ea80",
+        "cell": 0,
+        "crop": [
+          0,
+          0,
+          313,
+          313
+        ],
+        "to_master_affine": [
+          [
+            0.9783193401327868,
+            0.008933428118749098,
+            151.04398035353964
+          ],
+          [
+            -0.008933428118749098,
+            0.9783193401327868,
+            25.587691546435387
+          ]
+        ],
+        "matches": 23,
+        "inliers": 15,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            209,
+            143
+          ],
+          [
+            207,
+            155
+          ],
+          [
+            194,
+            163
+          ],
+          [
+            152,
+            164
+          ],
+          [
+            137,
+            156
+          ],
+          [
+            132,
+            137
+          ],
+          [
+            163,
+            132
+          ]
+        ],
+        "source_face_bottom": 164,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "101": {
+        "name": "害羞",
+        "path": "sheets/druid/emotions.png",
+        "sha256": "c6d153dcf365bf58ecac3bd7888325b1a45604e851450e89477ebbf4d482ea80",
+        "cell": 2,
+        "crop": [
+          627,
+          0,
+          940,
+          313
+        ],
+        "to_master_affine": [
+          [
+            0.9258972134900064,
+            0.04239231115174038,
+            174.48427404615563
+          ],
+          [
+            -0.04239231115174038,
+            0.9258972134900064,
+            32.109708879114024
+          ]
+        ],
+        "matches": 16,
+        "inliers": 9,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            191,
+            144
+          ],
+          [
+            188,
+            162
+          ],
+          [
+            185,
+            165
+          ],
+          [
+            158,
+            173
+          ],
+          [
+            144,
+            172
+          ],
+          [
+            125,
+            166
+          ],
+          [
+            120,
+            162
+          ],
+          [
+            115,
+            148
+          ],
+          [
+            117,
+            141
+          ]
+        ],
+        "source_face_bottom": 173,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation."
+      },
+      "102": {
+        "name": "难过（眼睛饱含泪水）",
+        "path": "sheets/druid/emotions.png",
+        "sha256": "c6d153dcf365bf58ecac3bd7888325b1a45604e851450e89477ebbf4d482ea80",
+        "cell": 4,
+        "crop": [
+          0,
+          313,
+          313,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.9387551012757359,
+            0.03798615496970083,
+            158.69041675198946
+          ],
+          [
+            -0.03798615496970083,
+            0.9387551012757359,
+            32.53963586452047
+          ]
+        ],
+        "matches": 25,
+        "inliers": 13,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            208,
+            149
+          ],
+          [
+            205,
+            164
+          ],
+          [
+            195,
+            171
+          ],
+          [
+            177,
+            173
+          ],
+          [
+            153,
+            173
+          ],
+          [
+            140,
+            170
+          ],
+          [
+            134,
+            166
+          ],
+          [
+            129,
+            150
+          ],
+          [
+            159,
+            143
+          ]
+        ],
+        "source_face_bottom": 173,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 162,
+          "ratio": 0.75,
+          "reason": "Eye placement retained; only lower face shortened to prevent mouth clipping against immutable master chin mask."
+        }
+      },
+      "103": {
+        "name": "想去玩（期待星星眼）",
+        "path": "sheets/druid/emotions.png",
+        "sha256": "c6d153dcf365bf58ecac3bd7888325b1a45604e851450e89477ebbf4d482ea80",
+        "cell": 6,
+        "crop": [
+          627,
+          313,
+          940,
+          627
+        ],
+        "to_master_affine": [
+          [
+            0.9647667994823306,
+            0.018574298247214394,
+            170.21218952474268
+          ],
+          [
+            -0.018574298247214394,
+            0.9647667994823306,
+            31.807886283228083
+          ]
+        ],
+        "matches": 18,
+        "inliers": 12,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            193,
+            137
+          ],
+          [
+            190,
+            156
+          ],
+          [
+            179,
+            164
+          ],
+          [
+            162,
+            169
+          ],
+          [
+            149,
+            169
+          ],
+          [
+            122,
+            161
+          ],
+          [
+            118,
+            157
+          ],
+          [
+            112,
+            140
+          ],
+          [
+            143,
+            130
+          ]
+        ],
+        "source_face_bottom": 169,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 162,
+          "ratio": 0.75,
+          "reason": "Eye placement retained; only lower face shortened to prevent mouth clipping against immutable master chin mask."
+        }
+      },
+      "104": {
+        "name": "大哭",
+        "path": "sheets/druid/emotions.png",
+        "sha256": "c6d153dcf365bf58ecac3bd7888325b1a45604e851450e89477ebbf4d482ea80",
+        "cell": 8,
+        "crop": [
+          0,
+          627,
+          313,
+          940
+        ],
+        "to_master_affine": [
+          [
+            0.9657487362323178,
+            0.03400565466061426,
+            152.44414145028264
+          ],
+          [
+            -0.03400565466061426,
+            0.9657487362323178,
+            34.84486662284099
+          ]
+        ],
+        "matches": 13,
+        "inliers": 6,
+        "registration_review": "Automatically proposed affine manually reviewed; nonphysical/outlier fits corrected by eye landmarks. Face source polygon excludes clothing and hands.",
+        "face_only": true,
+        "source_outfit_is_not_used": true,
+        "skin_component_hull_for_lower_boundary": [
+          [
+            213,
+            125
+          ],
+          [
+            209,
+            155
+          ],
+          [
+            195,
+            164
+          ],
+          [
+            178,
+            168
+          ],
+          [
+            165,
+            168
+          ],
+          [
+            141,
+            162
+          ],
+          [
+            135,
+            158
+          ],
+          [
+            135,
+            116
+          ],
+          [
+            148,
+            96
+          ],
+          [
+            190,
+            96
+          ]
+        ],
+        "source_face_bottom": 168,
+        "source_face_boundary_method": "Largest connected skin component identifies bottom of face; only lower clipping is applied so eyelids and tears are not removed by skin-color segmentation.",
+        "lower_face_compression": {
+          "from_y": 162,
+          "ratio": 0.75,
+          "reason": "Eye placement retained; only lower face shortened to prevent mouth clipping against immutable master chin mask."
+        }
+      }
+    }
+  }
+}

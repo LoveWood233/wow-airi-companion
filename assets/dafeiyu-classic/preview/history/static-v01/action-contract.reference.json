@@ -1,0 +1,243 @@
+{
+  "reference_only": true,
+  "runtime_verified": false,
+  "static_assets_are_not_importable_pack": true,
+  "reviewed_date": "2026-11-08",
+  "repository": "https://github.com/LoveWood233/wow-airi-companion",
+  "reviewed_ref": "main",
+  "commit_sha": null,
+  "commit_sha_note": "Source files were reviewed at main; observed_main_sha_at_delivery was subsequently retrieved from GitHub API. The source-reading requests were not independently pinned to this SHA.",
+  "renderer": {
+    "component": "airi/apps/stage-tamagotchi/src/renderer/components/dsh-pet-stage.vue",
+    "media": "WebM video with alpha for transparent presentation",
+    "display": "A/B HTMLVideoElement playback drawn into a 2D Canvas; audio muted",
+    "facing": "right mirrors the video horizontally",
+    "automatic_cross_screen_roaming": false,
+    "throw_physics_integrated": false,
+    "fixed_media_dimensions_required_by_schema": false,
+    "fixed_media_framerate_required_by_schema": false
+  },
+  "component_props": {
+    "pack": {
+      "type": "DshPetPack",
+      "required": true
+    },
+    "paused": {
+      "type": "boolean",
+      "default": false
+    },
+    "sleeping": {
+      "type": "boolean",
+      "default": false
+    },
+    "facing": {
+      "type": "left | right",
+      "default": "left"
+    },
+    "animation": {
+      "type": "string",
+      "default": "",
+      "meaning": "Explicit animation name without .webm extension"
+    },
+    "speaking": {
+      "type": "boolean",
+      "default": false
+    },
+    "thinking": {
+      "type": "boolean",
+      "default": false
+    },
+    "emotion": {
+      "type": "string",
+      "default": "neutral"
+    },
+    "scale": {
+      "type": "number",
+      "default": 1,
+      "effective_range": [
+        0.5,
+        2
+      ]
+    }
+  },
+  "component_model": {
+    "name": "state",
+    "values": [
+      "pending",
+      "loading",
+      "mounted"
+    ],
+    "default": "pending"
+  },
+  "component_exposed_methods": {
+    "playAnimation": "async (name: string, loop = false, turn = false); name must resolve to a manifest-listed WebM",
+    "canvasElement": "() => current canvas element",
+    "retry": "Reset stage and restart sleep or idle animation",
+    "endDrag": "End active pointer drag and resume animation selection"
+  },
+  "component_events": [
+    "error",
+    "reset",
+    "update:sleeping",
+    "update:facing",
+    "dragStart",
+    "contextmenu"
+  ],
+  "animation_buckets": {
+    "idle": "Required nonempty array of animation names",
+    "turn": "Required array; may be empty; direction changes after a selected turn clip finishes",
+    "drag": "Required array; may be empty; selected clip loops during dragging",
+    "clicks": "Required array; may be empty; selected clip plays on activation",
+    "categories": "Required array of {id, weight, actions, noMirror?}; actions must be nonempty",
+    "sleep": "Optional array of matched {start, loop, end} nonempty name arrays",
+    "events": "Optional record whose values are arrays of animation names or nonempty name arrays",
+    "moves": "Optional {default: numeric record, actions: [{name, params?: numeric record}]}; walking clips are available for explicit playback, not automatic roaming",
+    "baifan": "Optional animation name array; accepted metadata does not establish an active desktop behavior"
+  },
+  "status_selection": {
+    "thinking": "animations.events.workStatus[0]",
+    "speaking": "animations.events.whisper, flattened",
+    "fallback": "animations.idle",
+    "speaking_takes_priority_over_thinking": true,
+    "default_idle_weight": 10,
+    "default_turn_weight": 5,
+    "turn_weight_when_turn_pool_empty": 0,
+    "category_selection": "Positive weights only; noMirror categories excluded when facing right",
+    "repeat_policy": "Avoid current clip when a pool has alternatives"
+  },
+  "emotion_files_hardcoded_in_component": {
+    "happy": "工作状态-雀跃庆祝.webm",
+    "sad": "工作状态-垂头叹气冒汗.webm",
+    "angry": "点击回应-傲娇生气.webm",
+    "surprised": "点击回应-害羞惊讶.webm",
+    "think": "工作状态-思考冒泡.webm",
+    "curious": "东张西望.webm",
+    "question": "工作状态-原地踱步张望.webm",
+    "awkward": "点击回应-害羞惊讶.webm"
+  },
+  "emotion_notes": [
+    "No mapped clip for neutral.",
+    "Mapped feedback is skipped when its filename is absent from pack.files.",
+    "Emotion watcher is suppressed while sleeping, speaking, thinking or dragging.",
+    "The strict manifest schema has no emotionMap field. Preserve these filenames to reuse current emotion feedback without code changes."
+  ],
+  "manifest_contract": {
+    "file": "pack.json",
+    "strict_object": true,
+    "required_fields": [
+      "version",
+      "id",
+      "name",
+      "files",
+      "animations"
+    ],
+    "optional_fields": [
+      "animationWeights"
+    ],
+    "version": 1,
+    "id": {
+      "length": [
+        1,
+        80
+      ],
+      "pattern": "^[\\w-]+$"
+    },
+    "name_length": [
+      1,
+      80
+    ],
+    "files": {
+      "schema_count": [
+        1,
+        512
+      ],
+      "relative_path_length": [
+        1,
+        512
+      ],
+      "extension": ".webm",
+      "case_insensitive_duplicates_forbidden": true,
+      "absolute_paths_forbidden": true,
+      "forbidden_characters": "backslash, percent, colon, question mark, hash, U+0000 through U+001F",
+      "path_components": "Nonempty; no . or ..; maximum 255 characters each"
+    },
+    "animation_names": {
+      "length": [
+        1,
+        507
+      ],
+      "extension_omitted": true,
+      "maximum_path_component_length": 250,
+      "must_resolve_to_files_entry": true,
+      "name_array_maximum": 512
+    },
+    "categories_maximum": 100,
+    "category_id_length": [
+      1,
+      80
+    ],
+    "weight_range": [
+      0,
+      100
+    ],
+    "sleep_sets_maximum": 20,
+    "event_key_length": [
+      1,
+      80
+    ],
+    "event_slots_maximum": 100,
+    "move_actions_maximum": 100,
+    "animationWeights": {
+      "required_if_object_present": [
+        "idle",
+        "turn",
+        "move"
+      ],
+      "each_range": [
+        0,
+        100
+      ]
+    },
+    "runtime_only_field": "baseUrl is added after validation; do not put it in an import manifest",
+    "manifest_contains_executable_code": false
+  },
+  "native_import_limits": {
+    "webm_files_maximum": 256,
+    "single_media_bytes_minimum": 4,
+    "single_media_bytes_maximum": 33554432,
+    "total_media_bytes_maximum": 536870912,
+    "manifest_bytes_maximum": 131072,
+    "expected_media_header_hex": "1A45DFA3",
+    "symbolic_links_allowed": false,
+    "path_traversal_allowed": false,
+    "copies_only_manifest_listed_media": true,
+    "imported_id": "Generated UUID v4 replaces manifest id",
+    "runtime_root": "dsh-pet://packs/<generated-uuid-v4>"
+  },
+  "library_ipc_events": {
+    "get": "eventa:invoke:dsh-pet:get",
+    "configure": "eventa:invoke:dsh-pet:configure",
+    "import": "eventa:invoke:dsh-pet:import",
+    "changed": "eventa:event:dsh-pet:changed",
+    "configure_payload": "{selectedId: string, scale: number in [0.5, 2]}"
+  },
+  "asset_production_implications": [
+    "Deliver each class as its own visual variant, preserving character identity and compatible action names.",
+    "Static PNG concept previews are source/reference assets, not a runnable animation pack.",
+    "A future importable pack needs actual transparent WebM clips plus a valid manifest and playback verification.",
+    "Keep framing, character scale and baseline consistent across clips to reduce jumps at A/B transitions.",
+    "Retain applicable source asset license and provenance separately from the strict manifest."
+  ],
+  "sources": {
+    "handover": "https://github.com/LoveWood233/wow-airi-companion/blob/main/HANDOVER.md",
+    "renderer": "https://github.com/LoveWood233/wow-airi-companion/blob/main/airi/apps/stage-tamagotchi/src/renderer/components/dsh-pet-stage.vue",
+    "animation_selection": "https://github.com/LoveWood233/wow-airi-companion/blob/main/airi/apps/stage-tamagotchi/src/renderer/utils/dsh-pet-animation.ts",
+    "manifest_schema": "https://github.com/LoveWood233/wow-airi-companion/blob/main/airi/apps/stage-tamagotchi/src/shared/dsh-pet.ts",
+    "importer": "https://github.com/LoveWood233/wow-airi-companion/blob/main/airi/apps/stage-tamagotchi/src/main/services/airi/dsh-pet-library.ts",
+    "configuration_schema": "https://github.com/LoveWood233/wow-airi-companion/blob/main/airi/apps/stage-tamagotchi/src/shared/dsh-pet-library.ts",
+    "ipc": "https://github.com/LoveWood233/wow-airi-companion/blob/main/airi/apps/stage-tamagotchi/src/shared/eventa/dsh-pet.ts",
+    "builtin_manifest": "https://github.com/LoveWood233/wow-airi-companion/blob/main/airi/apps/stage-tamagotchi/src/renderer/public/dsh-pet/builtin/pack.json",
+    "original_character_repository": "https://github.com/PC2005-cloud/dsh-pet"
+  },
+  "observed_main_sha_at_delivery": "e3ddb35f8bf692c4fe3f8284caae9f4e4d526790"
+}

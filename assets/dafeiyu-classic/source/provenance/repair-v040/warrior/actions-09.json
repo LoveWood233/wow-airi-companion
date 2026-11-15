@@ -1,0 +1,342 @@
+{
+  "class": "warrior",
+  "sheet": "actions-09",
+  "original_sha256": "8a15401a47b783ee1e7372443c39aecb5919a1d046e6ff2140f78182e0d18726",
+  "replacement_sha256": "7de7d569a19418e7903e88be168a939dc08238c40a09655e1cfc443272335aca",
+  "freeze_manifest": "warrior-partial-freeze.json",
+  "source_review": {
+    "class": "warrior",
+    "sheet": "actions-09",
+    "path": "source/sheets/warrior/actions-09.png",
+    "sha256": "7de7d569a19418e7903e88be168a939dc08238c40a09655e1cfc443272335aca",
+    "qa_status": "source_pose_major_equipment_repair_reviewed_pending_motion"
+  },
+  "generation": {
+    "class": "warrior",
+    "sheet": "actions-09",
+    "method": "built_in_image_gen_precise_object_edit",
+    "original_sha256": "8a15401a47b783ee1e7372443c39aecb5919a1d046e6ff2140f78182e0d18726",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "imagegen_output": "image_gen-output:exec-53119796-fa90-4502-b9ef-0f04a5883a9c.png",
+    "sha256": "7de7d569a19418e7903e88be168a939dc08238c40a09655e1cfc443272335aca",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "review_status": "accepted_source_major_equipment_repairs_pending_motion",
+    "review_note": "Cells0..9 single-cell imagegen edits, sword viewer-left/shield viewer-right; no observed extra limbs at endpoints; cells10..15 remain identical to previous atlas. Fine hilt/armor details remain different across independently drawn poses; not strict same-texture identity.",
+    "previous_attempts": [
+      {
+        "class": "warrior",
+        "sheet": "actions-09",
+        "method": "built_in_image_gen_precise_object_edit",
+        "original_sha256": "8a15401a47b783ee1e7372443c39aecb5919a1d046e6ff2140f78182e0d18726",
+        "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+        "imagegen_output": "image_gen-output:exec-53119796-fa90-4502-b9ef-0f04a5883a9c.png",
+        "sha256": "c7a63a6ece0e56e1b130da5ed34bfb4c6412899e926c816d8b748713b1776d02",
+        "dimensions": [
+          1261,
+          1247
+        ],
+        "review_status": "needs_local_correction",
+        "review_note": "Cells0..9 sword on image right needs moved to left; 10..15 correct. Preserve activity props."
+      }
+    ],
+    "cell_assembly": {
+      "source_atlas": "workspace-revision/attempts/warrior/actions-09-before-cell-repair.png",
+      "source_sha256": "c7a63a6ece0e56e1b130da5ed34bfb4c6412899e926c816d8b748713b1776d02",
+      "output_sha256": "7de7d569a19418e7903e88be168a939dc08238c40a09655e1cfc443272335aca",
+      "cells": [
+        {
+          "cell": 0,
+          "generated": "exec-16731fb0-92fd-4061-9e74-d7398656f92e.png",
+          "generated_bbox": [
+            55,
+            48,
+            1180,
+            1153
+          ],
+          "placement": [
+            7,
+            8,
+            302,
+            297
+          ],
+          "packing": "aspect-preserving alpha-bbox resize, 6px minimum cell padding; no code repaint",
+          "review": "source sword at viewer-left and shield at viewer-right, action props and two hands retained; fine armor details remain independently redrawn"
+        },
+        {
+          "cell": 1,
+          "generated": "exec-d4fe07d9-fe9f-4a1f-bd92-4b05386431ba.png",
+          "generated_bbox": [
+            49,
+            99,
+            1186,
+            1155
+          ],
+          "placement": [
+            6,
+            24,
+            303,
+            281
+          ],
+          "packing": "aspect-preserving alpha-bbox resize, 6px minimum cell padding; no code repaint",
+          "review": "source sword at viewer-left and shield at viewer-right, action props and two hands retained; fine armor details remain independently redrawn"
+        },
+        {
+          "cell": 2,
+          "generated": "exec-87fd0d74-0856-498e-822d-05d6617bee94.png",
+          "generated_bbox": [
+            43,
+            41,
+            1104,
+            1147
+          ],
+          "placement": [
+            16,
+            6,
+            284,
+            296
+          ],
+          "packing": "aspect-preserving alpha-bbox resize, 6px minimum cell padding; no code repaint",
+          "review": "source sword at viewer-left and shield at viewer-right, action props and two hands retained; fine armor details remain independently redrawn"
+        },
+        {
+          "cell": 3,
+          "generated": "exec-3f6aea69-4f63-4de8-b98c-a073eb5cdd0e.png",
+          "generated_bbox": [
+            144,
+            41,
+            1076,
+            1157
+          ],
+          "placement": [
+            16,
+            6,
+            250,
+            299
+          ],
+          "packing": "aspect-preserving alpha-bbox resize, 6px minimum cell padding; no code repaint",
+          "review": "source sword at viewer-left and shield at viewer-right, action props and two hands retained; fine armor details remain independently redrawn"
+        },
+        {
+          "cell": 4,
+          "generated": "exec-b44948ef-0641-4c62-aa14-37c6b0091bca.png",
+          "generated_bbox": [
+            72,
+            39,
+            1141,
+            1125
+          ],
+          "placement": [
+            6,
+            8,
+            293,
+            298
+          ],
+          "packing": "aspect-preserving alpha-bbox resize, 6px minimum cell padding; no code repaint",
+          "review": "source sword at viewer-left and shield at viewer-right, action props and two hands retained; fine armor details remain independently redrawn"
+        },
+        {
+          "cell": 5,
+          "generated": "exec-2ca6dc9b-6f0f-473e-942e-d6eecf77da24.png",
+          "generated_bbox": [
+            85,
+            57,
+            1151,
+            1120
+          ],
+          "placement": [
+            6,
+            7,
+            300,
+            299
+          ],
+          "packing": "aspect-preserving alpha-bbox resize, 6px minimum cell padding; no code repaint",
+          "review": "source sword at viewer-left and shield at viewer-right, action props and two hands retained; fine armor details remain independently redrawn"
+        },
+        {
+          "cell": 6,
+          "generated": "exec-8e4a66d7-16ef-49df-958a-06db12ed79c2.png",
+          "generated_bbox": [
+            198,
+            21,
+            1082,
+            1136
+          ],
+          "placement": [
+            32,
+            6,
+            229,
+            289
+          ],
+          "packing": "aspect-preserving alpha-bbox resize, 6px minimum cell padding; no code repaint",
+          "review": "source sword at viewer-left and shield at viewer-right, action props and two hands retained; fine armor details remain independently redrawn"
+        },
+        {
+          "cell": 7,
+          "generated": "exec-1f77a267-cadb-4163-96a2-f237914cb446.png",
+          "generated_bbox": [
+            177,
+            9,
+            1069,
+            1140
+          ],
+          "placement": [
+            26,
+            6,
+            230,
+            292
+          ],
+          "packing": "aspect-preserving alpha-bbox resize, 6px minimum cell padding; no code repaint",
+          "review": "source sword at viewer-left and shield at viewer-right, action props and two hands retained; fine armor details remain independently redrawn"
+        },
+        {
+          "cell": 8,
+          "generated": "exec-bf005ebe-c9d5-4166-a75a-0703439bb33f.png",
+          "generated_bbox": [
+            282,
+            139,
+            1018,
+            1095
+          ],
+          "placement": [
+            41,
+            6,
+            231,
+            300
+          ],
+          "packing": "aspect-preserving alpha-bbox resize, 6px minimum cell padding; no code repaint",
+          "review": "source sword at viewer-left and shield at viewer-right, action props and two hands retained; fine armor details remain independently redrawn"
+        },
+        {
+          "cell": 9,
+          "generated": "exec-d2cb6efd-9e81-4461-a603-98358a691ddf.png",
+          "generated_bbox": [
+            157,
+            129,
+            980,
+            1200
+          ],
+          "placement": [
+            42,
+            6,
+            231,
+            300
+          ],
+          "packing": "aspect-preserving alpha-bbox resize, 6px minimum cell padding; no code repaint",
+          "review": "source sword at viewer-left and shield at viewer-right, action props and two hands retained; fine armor details remain independently redrawn"
+        }
+      ],
+      "untouched_cells_pixel_identical": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    "cell_prompts": [
+      {
+        "file": "prompt-6.txt",
+        "prompt": "只编辑图1：把画面右侧的剑移动到画面左侧，参照图2中正确的挂剑位置，剑尖在左脚外侧朝左下，圆盾保留画面右侧。图1仍然双手捧着红礼盒、睁眼微笑、无盒盖举起；不要照抄图2的表情和手势。删除原右腰剑，不允许右侧再有剑，只留一把左剑。其余人物比例、发型、肩甲胸甲裙甲、靴子和礼盒全部保持图1，透明背景。\n"
+      },
+      {
+        "file": "prompt-8.txt",
+        "prompt": "Move the sheathed sword from the PICTURE RIGHT thigh to the PICTURE LEFT hip. Erase the entire right-side sword and restore the right thigh armor. The ONE sword must hang LEFT of the central blue belt gem and slant DOWN LEFT, its tip just outside the LEFT boot. Retain the round shield behind the RIGHT shoulder and hip. Preserve both hands, expression, the orange lantern with whale artwork and all its sparkles, original pose, head/body scale, blue hair and all navy-gold armor design. Do not mirror the character or lantern. Retain full scene and transparent background, no cropping.\n"
+      },
+      {
+        "file": "prompt-9.txt",
+        "prompt": "Move the sheathed sword from the PICTURE RIGHT thigh to the PICTURE LEFT hip. Erase the entire right-side sword and restore the right thigh armor. The ONE sword must hang LEFT of the central blue belt gem and slant DOWN LEFT, its tip just outside the LEFT boot. Retain the round shield behind the RIGHT shoulder and hip. Preserve both hands, expression, the orange lantern with whale artwork and all its sparkles, original pose, head/body scale, blue hair and all navy-gold armor design. Do not mirror the character or lantern. Retain full scene and transparent background, no cropping.\n"
+      },
+      {
+        "file": "prompt-cat.txt",
+        "prompt": "Precise object edit. Move the sheathed sword to the OTHER SIDE of this kneeling girl. Erase the sword currently on the picture RIGHT hip completely. Restore the right side of her navy-gold skirt and leg armor. Put ONE navy-and-gold sword hanging from her picture LEFT hip, slanting toward bottom left, BEHIND THE CAT. The cat naturally covers most of this left-hip sword; show only the hilt by the left belt and any unobscured portion. Do not paste a sword over or on top of the cat. Retain the round shield behind her on picture RIGHT. Keep exactly the same kneeling pose, two hands stroking cat, expression, cat pose, heart/notice effect, blue hair, maid headband, spiked shoulder armor, segmented plate skirt, boots and proportions. Transparent background, no mirror.\n"
+      },
+      {
+        "file": "prompt-extra-6.txt",
+        "prompt": "Remove ONLY the navy-and-gold sheathed sword hanging at the right hip. Reconstruct the small area of navy-gold skirt/leg armor underneath. Do not move it or add another sword yet. Preserve absolutely everything else: gift box, hands, pose, face, hair, shield, armor design, image composition. Transparent background.\n"
+      },
+      {
+        "file": "prompt-extra-8.txt",
+        "prompt": "Keep this exact character, same left-side sword and right-side shield, same lantern holding pose and all artwork. Zoom out slightly so the FULL curved top hair tuft is visible with generous clear transparent margin above it. Restore only the cut-off hair curl at the very top. Do not crop any part of character or lantern. Add empty transparent breathing room all around, no other design changes.\n"
+      },
+      {
+        "file": "prompt-extra-9.txt",
+        "prompt": "Keep exactly this character pose and corrected left-side sword/right shield. Zoom out and extend the canvas composition so the entire floating orange lantern, including its full rounded top outline, fits comfortably inside the transparent canvas with clear margin above. Preserve lantern whale art, sparkles, extended arms and excited face. No cropped object, full figure. Do not change armor design or sword placement.\n"
+      },
+      {
+        "file": "prompt-fan.txt",
+        "prompt": "Precise object edit: move the sheathed sword to the other side of the character. It is currently over her RIGHT leg. ERASE that right-side sword completely and restore the navy-gold thigh armor. Put ONE identical navy scabbard with gold trim hanging from the LEFT side of her belt, on PICTURE LEFT, slanting toward BOTTOM LEFT and ending just LEFT OF THE LEFT BOOT. Its gold pommel starts LEFT of the blue belt gem. Retain the shield behind her on PICTURE RIGHT. Keep the original expression, exactly two hands, fan, body proportions, blue hair, three-spiked shoulder armor, chest armor and segmented skirt and boots unchanged. Do not mirror the image. Full character, transparent background.\n"
+      },
+      {
+        "file": "prompt-final-6.txt",
+        "prompt": "图中女孩子两只手捧着礼盒。请在【她本人的右胯】挂一把深蓝金边的带鞘短剑，剑的把手在礼盒的左下方（观众画面的左边，约横坐标400），剑尖指向画面左下角，位于观众看到的左脚外侧。圆盾在画面右侧，两件武器必须分列人物两侧。画面右边、盾牌下面绝对不要剑。只添加这把剑，保留原角色、礼盒、双手、脸、全部盔甲设计和透明背景。\n"
+      },
+      {
+        "file": "prompt-gift.txt",
+        "prompt": "Precise object edit: move the sheathed sword to the other side. ERASE the sword over the character's picture RIGHT thigh and restore that navy-and-gold leg armor and skirt. Put ONE navy scabbard with gold fittings on the picture LEFT hip, gold pommel to the LEFT of the blue belt buckle, sword slanting toward BOTTOM LEFT, tip just LEFT of the left boot. No sword on the right thigh. Shield stays behind the character on picture RIGHT. Preserve the original smile and eye expression, both hands, red gift box and its lid/contents, gold sparkle, pose, exact shoulder armor spikes, segmented plate skirt, blue hair and body proportions. Full character, transparent background. Do not mirror anything.\n"
+      },
+      {
+        "file": "prompt-v2.txt",
+        "prompt": "Move the sword to the other side of the character. The sword is currently over the RIGHT leg. ERASE it completely from the right leg. Repaint that exposed right thigh with plain navy-and-gold thigh armor matching the left leg. Put ONE sheathed sword in the narrow gap BETWEEN THE FLOWERPOT AND THE CHARACTER'S LEFT LEG, hanging from the LEFT side of her belt and slanting toward BOTTOM LEFT. Its gold pommel starts left of the blue belt gem, its navy scabbard ends left of the left knee. This is a necessary left-right equipment correction. The shield remains behind her on the RIGHT. Keep the pose, hands, face, flowerpot, tree branch and coin props unchanged. Transparent background.\n"
+      },
+      {
+        "file": "prompt.txt",
+        "prompt": "精确局部编辑图1中的角色装备。保持图1画面、角色大小、脸、动作、手、服装所有纹样以及全部场景道具不变，不要重新设计角色。图2只用来确认装备方向：同一把深蓝金边的带鞘剑必须挂在观众看到的画面左腰、剑尖朝左下。删除图1画面右腰的剑，把同一把剑搬到画面左腰。注意左腰可能被道具挡住，按真实遮挡只露出应该可见的部分，不要把剑画在花盆或桌子上，不要让剑浮空。背后的圆盾仍在画面右边，不能移走。只有一把剑，一面盾。其余任何可见像素尽量保持原样，尤其两只手、原有道具和人物比例。保持单个角色完整不裁边，透明背景，无文字。\n"
+      }
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-09-00-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-09-01-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-09-02-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-09-03-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-09-04-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-09-05-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-09-06-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-09-07-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-09-08-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-09-09-cell.txt",
+      "text": "只编辑图1这一格透明角色。人物与道具、动作姿势、手的位置、表情、发型、盔甲、比例和构图保持不变。图2是装备母版。把腰间的深蓝金边带鞘剑移到【观众看到的画面左侧腰间】，剑尖指向画面左下，画面右腰不留剑。已有左剑就保留左剑、删除右侧重复剑；没有左剑就将右剑完整搬移过去。每格只允许一把剑。圆盾只能在【画面右侧背后】，不能在左边。不能镜像人物或其它东西，不许删掉道具，不许改手和脚。只搬移装备，透明背景。"
+    },
+    {
+      "name": "actions-09-agent-correction-02.txt",
+      "text": "编辑图1这张4×4透明精灵图集。图2是母版；图3是已经正确的装备摆放示范，所有正面姿态都是【观众看到的画面左侧腰间挂一把深蓝金边剑鞘，画面右侧背后是一面圆盾】。只搬移武器，不镜像人物。剑必须有深蓝剑鞘、金色边和金色尖端，不能是银色裸刃。保持每格动作、四肢、表情、头发、盔甲和所有道具原样，透明底。只改前10格（第0至9格）的剑，后6格完全不动。前10格当前剑都在画面右腰，请只对剑本身作横向镜像搬移到画面左腰，删掉右腰原剑，不能两把。画面右侧圆盾不动。茱萸树、花盆、扇子、猫、红包、孔明灯、河灯、烟花、风筝和所有姿态表情保持原样。\n"
+    },
+    {
+      "name": "actions-09.txt",
+      "text": "Precise equipment repair. Image 1 is target, Image 2 is correct reference. Preserve the entire original 4x4 atlas and all sixteen unique poses, activity objects, faces, hands, armor patterns and cell positions. Add the missing navy/gold scabbarded sword to the belt on the LEFT OF THE IMAGE pointing down-left, and gold-rim navy round shield behind the shoulder on the RIGHT OF THE IMAGE, exactly as reference. Sword and shield on OPPOSITE sides; only ONE of each. Do not move existing props or hands and do not invent extra limbs. The same equipment rotates naturally with the torso when crouching, sitting or leaning. Keep all activity props: this sheet's actions must remain readable, not replaced with standing. True transparent background, clean alpha margins inside each of sixteen cells, no labels or grid.\n"
+    }
+  ]
+}

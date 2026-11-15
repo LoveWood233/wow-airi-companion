@@ -1,0 +1,72 @@
+{
+  "class": "hunter",
+  "sheet": "emotions",
+  "original_sha256": "9829fce1cd0e67df7351af0d42a1d3cdcfd4c109a29443ec5d148bc4cfe07c98",
+  "replacement_sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "emotions",
+    "candidate": "source/sheets/hunter/emotions.png",
+    "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f",
+    "review": "source/sheets/hunter/emotions.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "image_gen-output:exec-f926c36c-8beb-41c1-94d2-9efc80ef4d3b.png",
+      "source/sheets/hunter/emotions.png",
+      "source/base-keyframes/hunter/frame-00.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Local correction only to image1 full4x4 emotions atlas. Fix two cells. CELL1 (row1 col2, zero-based): restore the original fear crouch from image2 cell1: knees bent up and close together, body compressed in a timid crouching/seated pose while fists remain beside cheeks. Do not turn into standing. Keep the new full gold brown bow secured picture-left hip and existing single quiver picture-right shoulder following crouched body. CELL9 (row3 col2, zero-based): the hand wiping tears is incorrectly a dark purple full glove. Master image3 has bare pale hands emerging from purple/gold wrist bracers. Change ONLY that dark mitten-like wiping hand to the same pale bare hand/fingers while preserving its wiping-eye contact and all crying tears/face. Keep wrist bracer purple/gold. All other14 cells, equipment positions and props unchanged. Exactly two hands per sprite. Transparent background, same4x4 grid. Do not alter unused legacy turn cells10..15.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "emotions",
+    "generated_file": "image_gen-output:exec-16483119-3ab5-4c88-a4bc-51f32f47cbe5.png",
+    "output": "source/sheets/hunter/emotions.png",
+    "sha256": "b83388ea606659d080e36c3af668552dd1cd842cfe5fe6523d9a2d874c56076f",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 752134,
+      "opaque_pixels": 704997
+    },
+    "preview": "source/sheets/hunter/emotions.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "image_gen-output:exec-f926c36c-8beb-41c1-94d2-9efc80ef4d3b.png",
+        "sha256": "1cccc778c34cbbd377f4c357a98bf02dba852e33b43371f70db8520cdc4b3dbb"
+      },
+      {
+        "path": "source/sheets/hunter/emotions.png",
+        "sha256": "9829fce1cd0e67df7351af0d42a1d3cdcfd4c109a29443ec5d148bc4cfe07c98"
+      },
+      {
+        "path": "source/base-keyframes/hunter/frame-00.png",
+        "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "iterations": [
+      {
+        "prompt": "Use case: precise-object-edit. Image 1 is the edit target, a transparent 4x4 atlas of 16 source poses. Image 2 is the absolute hunter equipment identity master. Image 3 is an approved repaired atlas showing the correct bow and quiver carrying positions; do not copy its poses or props. Repair only missing/inconsistent equipment on image 1. Preserve its 4x4 grid, all 16 original poses, facial expressions, hairstyle, proportions, exact hand gestures, legs, props, special effects and action stages. Keep exactly two arms/two hands on every human sprite; never invent an extra hand to hold the bow. For every front-facing HUMAN sprite the same full curved gold-and-brown bow from image 2 must be present on PICTURE LEFT at the character's own right hip, outside left edge of body, from lower shoulder/waist down near boots, consistent scale/design. When hands manipulate props, bow remains secured at this fixed side carry point rather than taking a hand or replacing a prop. The arrow quiver remains PICTURE RIGHT rear shoulder, character's own left shoulder. No duplicated quivers. Retain existing correct bow; restore missing bow rather than replacing poses. Purple/gold dragon scale chest and layered skirt, gold bone/wing shoulders, blue oval belt buckle and horned maid headband must retain master design. For side/back poses follow CHARACTER-LOCAL right-hip bow and left-shoulder quiver attachment: rear view right hip is picture right; legitimate occlusion by body/hair is allowed but do not silently swap anatomical attachment. Transformation animal/ghost/whale end forms are intentional, do not paste human equipment onto nonhuman forms. Preserve original prop occlusion and contacts, show visible part of bow around occluding props. No new action props, no labels, borders, titles, text, watermarks. Crisp original chibi linework and genuine transparent alpha. Same square canvas and exact grid placement as image 1. All original action pairs stay distinct. Edit ONLY FIRST TEN cells, indices0..9. These five pairs are fear, shyness, sadness with eyes full of tears, eager star eyes, crying. The same full curved weapon bow must stay secured at picture-left hip across all10 poses. Preserve exact hand-to-face/finger/crying poses, eyes, tears and expressions. Do NOT add any quiver: keep only existing picture-right shoulder quiver. Last six cells10..15 are legacy turning poses NOT used by current emotions: leave those six absolutely unchanged. Do not replace these emotions with smiling idle. Keep only two hands.",
+        "referenced_image_paths": [
+          "source/sheets/hunter/emotions.png",
+          "source/base-keyframes/hunter/frame-00.png",
+          "source/sheets/hunter/actions-01.png"
+        ],
+        "generated_file": "image_gen-output:exec-f926c36c-8beb-41c1-94d2-9efc80ef4d3b.png",
+        "result": "fear_pose_needs_original_crouch_and_cry_hand_needs_bare_skin"
+      }
+    ],
+    "visual_review_notes": "Reviewed all 16 source cells; first 10 current emotion cells keep bow on picture-left and one quiver on picture-right. Crouched fear and bare wiping hand restored. Legacy spin cells 10..15 are unused and not repaired."
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

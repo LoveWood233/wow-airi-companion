@@ -1,0 +1,62 @@
+{
+  "entries": [
+    {
+      "class": "druid",
+      "sheet": "actions-04",
+      "path": "workspace-review/top-overhang-repack/candidates/druid/actions-04.png",
+      "sha256": "4c7f36afea224b93df16938231c0430afadd083d22b78b5d728979ff92461e06",
+      "dimensions": [
+        1261,
+        1247
+      ],
+      "modified_cells": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "provenance": "workspace-review/top-overhang-repack/provenance/druid/actions-04.json",
+      "review_status": "visually_reviewed_full_overhang_recovered",
+      "provenance_sha256": "8cb5a3ca21691ce68bcc75f4df851aa46bf49ea751b49cfbd3dd2d4a8ada40cb"
+    },
+    {
+      "class": "druid",
+      "sheet": "actions-13",
+      "path": "workspace-review/top-overhang-repack/candidates/druid/actions-13.png",
+      "sha256": "84cb2bf222eb6b3990accd587ee484ba235d4b18950f42a53a5b29e78740ce0f",
+      "dimensions": [
+        1239,
+        1269
+      ],
+      "modified_cells": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "provenance": "workspace-review/top-overhang-repack/provenance/druid/actions-13.json",
+      "review_status": "visually_reviewed_full_overhang_recovered",
+      "provenance_sha256": "9e8a188b967624b0436fa5121a1412ce529bebb9bbfcb8e401f84782e115d82e"
+    }
+  ],
+  "status": "eight_cells_visually_reviewed_exact_pixel_repack",
+  "crop_migration": "crop-migration.json",
+  "source_pngs_overwritten": false,
+  "action_names": [
+    "吃冰淇淋融化",
+    "吃午餐",
+    "被鼠标拖拽悬空反馈",
+    "装点圣诞树"
+  ],
+  "limitations": "Fixes source extraction clipping only. Existing neural interpolation anatomy/weapon drift findings remain and must be independently reviewed after rerender.",
+  "evidence_pages": [
+    {
+      "path": "workspace-review/top-overhang-repack/contact-before-after-00.jpg",
+      "sha256": "ca94e714931cdef159f18948a676e686fee7b04f0366b319021742a62e44fc0c"
+    },
+    {
+      "path": "workspace-review/top-overhang-repack/contact-before-after-01.jpg",
+      "sha256": "84b3662f96c2b199194eec3a98917b7d40868cb544bcef961cda2fd38c3a2cd3"
+    }
+  ]
+}

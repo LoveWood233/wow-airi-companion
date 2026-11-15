@@ -1,0 +1,26 @@
+{
+  "status": "observed_controls_worked_in_Chrome",
+  "date": "2026-11-09",
+  "scope": "Local review page controls, not all960 clips or AIRI Electron playback. Browser check preceded 40 additional emotion integrations; current page data rebuilt and hashes checked afterward, UI template unchanged.",
+  "observed": [
+    "Class switch warrior -> hunter -> druid",
+    "Exact hunter click-action search",
+    "Emotion category returned6actions",
+    "Videos 640x360, durations8 or10 seconds, readyState4, no media error",
+    "Paused frame400 time6.6675 -> frame401 time6.684166, one1/60second step",
+    "Druid happy-jump displayed frame127"
+  ],
+  "tested_data_snapshot_fixed_master_clips": 40,
+  "current_built_page_fixed_master_clips": 80,
+  "current_built_page_clips": 960,
+  "screenshot": "examples/preview-browser-qa.png",
+  "screenshot_sha256": "5241ccceb726b0aede2f2d5e49deb9d3e7f9c6c80e547d8cb8080549385abbba",
+  "template_sha256": "1543c90bd094ac529fae7f158bd163a36877b0d25213a47fc3dfbf03763773fe",
+  "range_server_checks": {
+    "cases": 11,
+    "scope": "Range/HEAD requests including suffix/open/unsatisfiable416 and returned byte accuracy",
+    "result": "passed"
+  },
+  "all_media_browser_playback_tested": false,
+  "electron_playback_tested": false
+}

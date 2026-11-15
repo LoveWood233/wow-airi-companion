@@ -1,0 +1,193 @@
+{
+  "class": "paladin",
+  "sheet": "actions-09",
+  "original_sha256": "592e83cc22c09b748fbbe8648cfe263f91f92cd373ce9ba07a8f64ac317dc387",
+  "replacement_sha256": "cdf33ed2b43018ae782fb18125b14c83df403947433b10461727e25d49b7b0a1",
+  "freeze_manifest": "paladin-08-14-freeze-manifest.json",
+  "source_review": {
+    "sheet": "actions-09",
+    "candidate": "source/sheets/paladin/actions-09.png",
+    "sha256": "cdf33ed2b43018ae782fb18125b14c83df403947433b10461727e25d49b7b0a1",
+    "review": "source/sheets/paladin/actions-09.json",
+    "cells_reviewed": 16,
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "source/sheets/paladin/actions-09.png",
+      "source/base-keyframes/paladin/frame-00.png",
+      "source/sheets/paladin/actions-08.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit. Asset: transparent 4x4 action sprite atlas, identity/equipment repair only.\nImage 1 is the EDIT TARGET with sixteen original action poses. Image 2 is the canonical paladin master identity and equipment reference. Preserve the target's exact 4x4 grid, sixteen cell positions, character scale, pose silhouettes, two original arms/hands, expressions, action props, clothing, gold cross symbols, face, hair and colors. Do not substitute idle poses and do not redraw an action.\n\nRepair only the missing canonical equipment. The paladin has exactly ONE compact gold warhammer with rectangular red-inset head, at the character's anatomical RIGHT hip (PICTURE LEFT in front view), and exactly ONE small red/gold cross holy book at anatomical LEFT hip (PICTURE RIGHT in front view). Keep the book already present; do not duplicate it or replace action props with it. Match the master hammer shape, size and proportions: short handle, broad compact rectangular head, total length roughly one fifth of character height. It hangs diagonally down/out from the same left waist belt attachment, not as a tall staff or giant mallet. When both original hands are busy, the hammer is belt-holstered and leaves both hands free; do not add a third hand to hold it. In side/prone poses, rotate and foreshorten this same attached hammer with the pelvis, allowing physically correct occlusion by body, hair or props. Keep the head and handle connected. Never move the hammer to the other hip between paired action cells.\nAll original action props remain distinct from equipped hammer/book: no converting cards, fans, toys, food or paperwork into extra holy equipment. Exactly two anatomical arms and hands, except legal occlusion.\nKeep genuine transparent background; no labels, borders, checkerboard, extra decoration, duplicate body parts, or new effects. Preserve every original cell's different action.\nImage 3 is an approved repair example for the SAME hammer belt attachment and scale only, not its poses.\nZero-based row-major target cells: 0 and1 dogwood branch/chrysanthemum flowers; 2 and3 folding fan; 4 and5 seated stroking a cat; 6 and7 red gift envelope; 8 and9 sky lantern release; 10 and11 kneeling river lantern; 12 and13 fireworks; 14 and15 flying kite. Preserve all props and their hands. For kneeling/seated poses the belt hammer tilts naturally with pelvis on the same anatomical right hip. The cat/flowers/lantern may occlude the lower hammer head; show only physically visible attached portions. Do not move hammer to the other waist to make it visible. All sixteen human cells need the same single hammer and existing right book.",
+    "generated_file": "image_gen-output:exec-9a80212c-d2f4-48a3-ab41-97936ac2166f.png",
+    "tool": "built-in image_gen",
+    "class": "paladin",
+    "sheet": "actions-09",
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "output": "outputs/all-class-equipment-revision/repaired-sheets/paladin/actions-09.png",
+    "sha256": "cdf33ed2b43018ae782fb18125b14c83df403947433b10461727e25d49b7b0a1",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 694992,
+      "opaque_pixels": 629760
+    },
+    "preview": "outputs/all-class-equipment-revision/repaired-sheets/paladin/actions-09.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "source/sheets/paladin/actions-09.png",
+        "sha256": "592e83cc22c09b748fbbe8648cfe263f91f92cd373ce9ba07a8f64ac317dc387"
+      },
+      {
+        "path": "source/base-keyframes/paladin/frame-00.png",
+        "sha256": "9a77c6ca8746c900801b48a3af1c93398195c788938de45010b11045101b44e7"
+      },
+      {
+        "path": "source/sheets/paladin/actions-08.png",
+        "sha256": "555841301aaa408631be5524e2cecd81f1175bad31974f1c9d885185ac939935"
+      }
+    ],
+    "video_frames_reviewed": 0,
+    "cell_reviews": [
+      {
+        "cell": 0,
+        "action": "插茱萸赏菊",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Flower pot partly overlaps lower left hammer; branch held in original hands."
+      },
+      {
+        "cell": 1,
+        "action": "插茱萸赏菊",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Flower pot partly overlaps hammer; hands together unchanged."
+      },
+      {
+        "cell": 2,
+        "action": "摇扇纳凉",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Original pose, expression and action prop retained; one left belt hammer and one right belt holy book."
+      },
+      {
+        "cell": 3,
+        "action": "摇扇纳凉",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Original pose, expression and action prop retained; one left belt hammer and one right belt holy book."
+      },
+      {
+        "cell": 4,
+        "action": "撸猫",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Left hammer visible between cat and thigh, connected to belt; two hands petting/resting unchanged."
+      },
+      {
+        "cell": 5,
+        "action": "撸猫",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Cat overlaps left hammer head; shaft/attachment remains, not moved to other side."
+      },
+      {
+        "cell": 6,
+        "action": "收红包",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Original pose, expression and action prop retained; one left belt hammer and one right belt holy book."
+      },
+      {
+        "cell": 7,
+        "action": "收红包",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Original pose, expression and action prop retained; one left belt hammer and one right belt holy book."
+      },
+      {
+        "cell": 8,
+        "action": "放孔明灯",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Both hands hold lantern, hammer belt-holstered left."
+      },
+      {
+        "cell": 9,
+        "action": "放孔明灯",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Lantern released, empty raised palms preserved."
+      },
+      {
+        "cell": 10,
+        "action": "放河灯",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Kneeling lean: left hammer beside hip, near-side book partly obscured by arm/torso."
+      },
+      {
+        "cell": 11,
+        "action": "放河灯",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Same kneeling gear attachment, hands releasing lantern."
+      },
+      {
+        "cell": 12,
+        "action": "放烟花",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Hammer beside seated left hip, fireworks prop remains separate."
+      },
+      {
+        "cell": 13,
+        "action": "放烟花",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Original pose, expression and action prop retained; one left belt hammer and one right belt holy book."
+      },
+      {
+        "cell": 14,
+        "action": "放风筝",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Original pose, expression and action prop retained; one left belt hammer and one right belt holy book."
+      },
+      {
+        "cell": 15,
+        "action": "放风筝",
+        "status": "pass_source_pose",
+        "equipment": "left-waist hammer / right holy book in frontal human pose; body-local attachments for other views",
+        "hands": "original two-hand pose preserved, allowing original occlusion",
+        "note": "Leaning/kite line hands retained; hammer rotates with left belt."
+      }
+    ],
+    "limitations": [
+      "Source-pose restoration/occlusion QA only; small generated linework differences remain possible and final animation requires separate frame review."
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}

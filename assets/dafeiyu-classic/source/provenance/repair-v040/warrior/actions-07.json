@@ -1,0 +1,104 @@
+{
+  "class": "warrior",
+  "sheet": "actions-07",
+  "original_sha256": "e366a373c4a8217adff491c31a7a5e349c024acd4c14b774ff0e3987e2910dfa",
+  "replacement_sha256": "1610c44c095cd835c89c36be7fd09ca69635fcc7c6e406df725e0a036768bfc0",
+  "freeze_manifest": "warrior-six-repair-integration.json",
+  "source_review": {
+    "sheet": "actions-07",
+    "path": "source/sheets/warrior/actions-07.png",
+    "sha256": "1610c44c095cd835c89c36be7fd09ca69635fcc7c6e406df725e0a036768bfc0",
+    "size": [
+      1261,
+      1247
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "provenance": "workspace-revision/provenance/warrior/actions-07.json",
+    "review_status": "candidate_visual_reviewed",
+    "review_note": "Curtsey6/7 now rigid segmented navy/gold plate skirt; one left scabbard and right shield retained, other14 action props unchanged.",
+    "remaining_limitations": [
+      "Micro ornament/proportion variance remains; temporal frames not reviewed."
+    ]
+  },
+  "generation": {
+    "class": "warrior",
+    "sheet": "actions-07",
+    "method": "built_in_image_gen_precise_object_edit",
+    "original_sha256": "e366a373c4a8217adff491c31a7a5e349c024acd4c14b774ff0e3987e2910dfa",
+    "canonical_base_sha256": "eabe8f4d7b151b6d6cceac817a0261d986ba80ced34c35c2cfcfe7e743faa4cc",
+    "imagegen_output": "image_gen-output:exec-8ab3baa8-d268-46ae-9e99-157c8833801b.png",
+    "sha256": "1610c44c095cd835c89c36be7fd09ca69635fcc7c6e406df725e0a036768bfc0",
+    "dimensions": [
+      1261,
+      1247
+    ],
+    "review_status": "candidate_visual_reviewed",
+    "review_note": "Curtsey6/7 now rigid segmented navy/gold plate skirt; one left scabbard and right shield retained, other14 action props unchanged.",
+    "attempts": [
+      {
+        "output_id": "parent-input",
+        "path": "workspace-revision/attempts/warrior/actions-07-parent-input.png",
+        "sha256": "6ada51e3be1dec79dae47824bf94d68f41a401e1d8342ceaf9fdbd60b468fcd6"
+      },
+      {
+        "output_id": "exec-8ab3baa8-d268-46ae-9e99-157c8833801b",
+        "path": "workspace-revision/attempts/warrior/actions-07-02.png",
+        "sha256": "1610c44c095cd835c89c36be7fd09ca69635fcc7c6e406df725e0a036768bfc0"
+      }
+    ],
+    "generated_output_id": "exec-8ab3baa8-d268-46ae-9e99-157c8833801b",
+    "generated_directory_id": "01a1bec6-505e-77b2-afa6-300061529fed",
+    "generated_output": "image_gen-output:exec-8ab3baa8-d268-46ae-9e99-157c8833801b.png",
+    "saved_output": "source/sheets/warrior/actions-07.png",
+    "final_sha256": "1610c44c095cd835c89c36be7fd09ca69635fcc7c6e406df725e0a036768bfc0",
+    "mode_rgba": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "prompt": "workspace-revision/prompts/warrior/actions-07.txt",
+    "prompt_sha256": "01d2c0e1d242606cee8f3e71e53291c30fcdcbdf5c40a4654504ebfab52ac3e1",
+    "visual_review": {
+      "method": "generatedImage actual full16-cell inspection",
+      "cells_viewed_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "Curtsey6/7 now rigid segmented navy/gold plate skirt; one left scabbard and right shield retained, other14 action props unchanged.",
+      "grid_cut_review": "No apparent adjacent cell clipping.",
+      "full_video_validation": false
+    },
+    "correction_prompts": [
+      "workspace-revision/prompts/warrior/actions-07-agent-correction.txt"
+    ]
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": [
+    {
+      "name": "actions-07-agent-correction.txt",
+      "text": "Input1 is transparent4x4 warrior animation atlas to edit; input2 is canonical armor reference. Make ONE local design correction only in cell6 and cell7 (SECOND ROW THIRD and FOURTH columns), the two curtsey poses: replace their broad soft navy fabric skirts with the reference's rigid segmented NAVY PLATE SKIRT ARMOR with gold edges, central pointed gold/navy tabard and separate angular side plates. Keep their hands lightly touching outer armor panels, knees bent and bowed head/eyes; make panels hinge subtly at waist, not a stretched cloth dress. Do not create extra robe fabric or petticoat. Preserve the ONE left-side navy/gold sheathed sword and ONE right-back round shield in both cells. Leave all other14 cells, expressions, hands, props, sword/shield positions, art style and4x4 layout unchanged. Transparent alpha.\n"
+    },
+    {
+      "name": "actions-07.txt",
+      "text": "Edit Image 1 only: restore missing equipment in every pose to match Image 2 reference. Add navy sword with GOLD borders and GOLD tip, belt hilt on the LEFT SIDE OF THE PICTURE, diagonal down toward the bottom-left of each cell. Add round navy shield with gold rim behind shoulder on the RIGHT SIDE OF THE PICTURE. The sword is on the OPPOSITE side to shield. Use the exact equipment design/scale in Image 2. Keep target's sixteen poses, original hands, faces, all activity objects and clothing patterns unchanged. Only add missing sword/shield behind the hands; never add an extra hand. Curtsy must keep plate skirt segments not fabric. All 16 cells remain in existing 4x4 layout and each has transparent margin; true transparent alpha, no background. This is equipment repair, not a redraw or new choreography.\n"
+    }
+  ]
+}

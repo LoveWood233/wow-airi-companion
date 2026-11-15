@@ -1,0 +1,72 @@
+{
+  "class": "hunter",
+  "sheet": "turnaround",
+  "original_sha256": "86fb2c704de210432610ab14d9a2b61581afaac667dbdffe8494b8686d23b99d",
+  "replacement_sha256": "34c0c4d50552fc9a15de2a150c73904132ab49a41c67773d1b691a941579a49f",
+  "freeze_manifest": "hunter-freeze-manifest.json",
+  "source_review": {
+    "name": "turnaround",
+    "candidate": "source/sheets/hunter/turnaround.png",
+    "sha256": "34c0c4d50552fc9a15de2a150c73904132ab49a41c67773d1b691a941579a49f",
+    "review": "source/sheets/hunter/turnaround.json",
+    "status": "source_pose_pass_pending_motion_review"
+  },
+  "generation": {
+    "referenced_image_paths": [
+      "image_gen-output:exec-9eb1b375-29f4-406a-a752-1ca7745b4b67.png",
+      "source/base-keyframes/hunter/frame-00.png",
+      "source/sheets/hunter/actions-01.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Precise equipment correction only to image1, a 4x4 sixteen-angle character turnaround. Preserve all16 original body and head view angles, hairstyles, clothes, open palm arms, quiver positions, and layout. Two bow issues to fix: (1) the curved gold-brown weapon bow has been shrunk too short. Match the master image2 and approved image3 bow proportions: full front-view bow is roughly 40-45 percent of total character height, upper curl near lower shoulder/upper arm level and lower tip near boots. The grip remains at same hip carry point. Restore this same full bow design/scale in each angle while respecting perspective, rather than short dagger-like gold curves. (2) Fix attachment in CELL4 and CELL5 (row2 col1 and col2): the character is rotating through left profile toward back, but bow wrongly stays fully visible on picture-left in cell5 then teleports to picture-right in cell6. The bow is on CHARACTER-LOCAL RIGHT HIP throughout. In cell4 left profile it is seen edge-on, mostly occluded by body/hair near central hip; in cell5 rear-left view, remove the wrong fully visible bow on picture-left and show only the correct small emerging portion near the picture-RIGHT lower hip through the hair, leading naturally into cell6's picture-right bow. Back-facing cells6..9 retain bow on picture-right hip, quiver on picture-left upper back. Front-facing cells0..2 and15 bow is picture-left. Do not add another bow or any extra hands. One bow, one existing quiver only. Do not shift quiver, change pose or shorten hair. Keep real transparency and exact4x4 grid; no labels.",
+    "tool": "built-in image_gen",
+    "class": "hunter",
+    "sheet": "turnaround",
+    "generated_file": "image_gen-output:exec-5a7955c5-b748-4fee-aca6-5871b00cdfb2.png",
+    "output": "source/sheets/hunter/turnaround.png",
+    "sha256": "34c0c4d50552fc9a15de2a150c73904132ab49a41c67773d1b691a941579a49f",
+    "file_checks": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "nontransparent_pixels": 626310,
+      "opaque_pixels": 593408
+    },
+    "preview": "source/sheets/hunter/turnaround.preview.jpg",
+    "source_hashes": [
+      {
+        "path": "image_gen-output:exec-9eb1b375-29f4-406a-a752-1ca7745b4b67.png",
+        "sha256": "59b5d11859bb8b5854f1df2ccb70ee274011298981d418bb6cf1a9334e9e76c0"
+      },
+      {
+        "path": "source/base-keyframes/hunter/frame-00.png",
+        "sha256": "443644ff1c73b7d3c2b26e1e6a72864db6fc1d3684597a59e0957865d758d6c4"
+      },
+      {
+        "path": "source/sheets/hunter/actions-01.png",
+        "sha256": "2b5ae1218d912f078a5b020a4e3bc03964f77208e97de6c1cfea6c7e2c446c9a"
+      }
+    ],
+    "visual_review_status": "source_pose_pass_pending_motion_review",
+    "video_frames_reviewed": 0,
+    "iterations": [
+      {
+        "prompt": "Use case precise-object-edit. Image1 is a 16-view transparent 4x4 hunter turnaround atlas to repair. Preserve all sixteen original head/body rotation angles and open-arm poses, exact cell alignment, same hairstyles/armor/headband and TWO BARE hands; do not replace side/back poses with front. Image2 is the equipment master and image3 demonstrates accepted front equipment carrying. Fix BOW attachment consistently across the turn: one full curved gold brown bow is secured at CHARACTER'S OWN RIGHT HIP. This means PICTURE LEFT in front-facing cells0,1,2 and15; as the character turns, the bow follows that same local hip with perspective and correct body/hair occlusion; in fully BACK-facing cells7,8,9 the bow is at PICTURE RIGHT HIP, not pasted on top of the back center. Front right-shoulder arrow quiver stays on character's OWN LEFT SHOULDER, so in back view its arrow end is toward picture LEFT. Remove the OLD bow currently attached behind head/alongside quiver on upper back; relocate that SAME bow to right hip. Do NOT keep two bows or create another quiver. Keep exactly ONE quiver with one arrow bundle on each character, and one bow only. Do not move quiver to hip. Restore bow where it was absent in front/three-quarter poses. Match image2 bow shape and scale; do not shrink it into dagger or gold decoration. Preserve all body angles and palm-out hand gestures and proper bare skin hands from master; keep same purple/gold bracers. Do not create hands to hold bow; it is secured to hip and both arms remain open. Maintain original crisp chibi style, genuine alpha background, no text/labels/gridlines or watermarks. Output full square 4x4 atlas.",
+        "referenced_image_paths": [
+          "source/sheets/hunter/turnaround.png",
+          "source/base-keyframes/hunter/frame-00.png",
+          "source/sheets/hunter/actions-01.png"
+        ],
+        "generated_file": "image_gen-output:exec-9eb1b375-29f4-406a-a752-1ca7745b4b67.png",
+        "result": "bow_too_short_and_wrong_side_cell5"
+      }
+    ],
+    "visual_review_notes": "Reviewed 16 source cells after scale/side correction. Front picture-left bow and picture-right quiver become rear picture-right bow and picture-left quiver. Cells4/5 use partial occlusion to avoid wrong-side bow. Source-only pass; final continuous angle/shape still requires motion QA."
+  },
+  "limitations": "Source review is not all-frame equipment or joint correctness certification.",
+  "prompts": []
+}
