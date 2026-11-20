@@ -11,6 +11,14 @@ describe('character snapshot recovery', () => {
     ['我的背包材料', 'inventory'],
     ['我当前天赋如何', 'talents'],
     ['任务日志', 'quests'],
+    ['我的经验还差多少', 'experience'],
+    ['副本重置时间', 'lockouts'],
+    ['今天的日程', 'schedule'],
+    ['我有多少声望', 'reputation'],
+    ['我学了哪些配方', 'professions'],
+    ['我完成了哪些成就', 'achievements'],
+    ['探索进度', 'exploration'],
+    ['银行库存', 'bank'],
   ])('recognizes %s as %s', (text, kind) => {
     expect(characterSnapshotKind(text)).toBe(kind)
   })
@@ -52,6 +60,33 @@ describe('character snapshot recovery', () => {
     expect(snapshotUnavailable('equipment', [state], current, now)).toBe(false)
     expect(snapshotUnavailable('level', [state], current, now)).toBe(false)
     expect(snapshotUnavailable('gold', [state], current, now)).toBe(false)
+  })
+
+  it('uses the latest matching low-frequency record even when the profile heartbeat carries an older level and balance', () => {
+    const state = loadoutStateFixture()
+    const bridge = state.bridge!
+    const now = Date.now()
+    const player = bridge.snapshot!
+    const current = { game: state.game, snapshot: player }
+    player.profileObservedAt = now - 740_000
+    bridge.lowFrequency = true
+    bridge.archive = {
+      progress: {
+        v: 1,
+        id: 1,
+        section: 'progress',
+        session: player.session,
+        guid: player.guid,
+        observedAt: Math.floor(now / 1000) - 720,
+        data: { level: 31, xp: 4, xpMax: 100, copper: '0' },
+      },
+    }
+    expect(snapshotUnavailable('level', [state], current, now)).toBe(false)
+    expect(snapshotUnavailable('experience', [state], current, now)).toBe(false)
+    expect(snapshotUnavailable('gold', [state], current, now)).toBe(false)
+    const progress = bridge.archive.progress!
+    progress.guid = 'another-player'
+    expect(snapshotUnavailable('experience', [state], current, now)).toBe(true)
   })
 
   it('rejects missing, partial, stale, and error observations without consulting historical equipment', () => {

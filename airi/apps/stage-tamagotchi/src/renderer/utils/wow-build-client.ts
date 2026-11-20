@@ -9,7 +9,7 @@ import { WowBuildSource } from '@proj-airi/stage-ui/libs/wow-build-source'
 
 import { electronMcpCallTool, electronMcpListTools } from '../../shared/eventa'
 import { wowRetailDatabaseQuery } from '../../shared/eventa/wow-retail-database'
-import { readCurrentCompanionPlayer } from './wow-companion-observation'
+import { readCurrentCompanionPlayer, usableCharacterObservation } from './wow-companion-observation'
 
 type ReadBuildState = (game: GameVersion) => CompanionState | undefined
 interface RetailQueryPort { query: (request: RetailDatabaseQuery) => Promise<RetailDatabaseResult> }
@@ -25,7 +25,7 @@ export function projectWowBuildContext(state: CompanionState | undefined, nowMs 
   const context: WowBuildContext = { game: state.game, guid: player.guid, session: player.session }
   const talents = state.bridge?.talents
   if (talents && !state.bridge?.talentsError && talents.guid === player.guid && talents.session === player.session
-    && talents.observedAt > 0 && nowMs - talents.observedAt * 1000 <= 180_000 && talents.observedAt * 1000 - nowMs <= 5000) {
+    && usableCharacterObservation(talents.observedAt, nowMs, state.bridge?.lowFrequency)) {
     context.classId = talents.classID ?? undefined
     context.talents = {
       guid: talents.guid,

@@ -979,6 +979,7 @@ archives:
   diagnostics: 'Connection diagnostics and capture settings'
   activity: 'Events and demos'
 fixed-notices:
+  level_gate: 'Come back to explore this area later.'
   level_up: '{player}, congratulations on reaching level {level}. You are getting stronger.'
   death: '{player}, this fall does not end our journey. I am here for another try.'
   low_health: 'Careful, {player}. Your health was just at {percent}%.'

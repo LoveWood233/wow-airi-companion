@@ -78,24 +78,30 @@ local function Capture()
     return #entries > 0 and "available" or "unavailable", entries
 end
 
-function WeaponSkills.Scan()
-    timer = nil
+function WeaponSkills.Scan(diskOnly)
+    diskOnly = diskOnly == true
+    if not diskOnly then timer = nil end
     local key = Identity()
     if not active or not key then return end
-    if key ~= lastIdentity then
+    if not diskOnly and key ~= lastIdentity then
         publish(nil)
         if database.weaponSkills and (database.weaponSkills.guid ~= owner.guid or database.weaponSkills.session ~= owner.session) then
             database.weaponSkills = nil
         end
         lastIdentity, lastCapture, lastSignature = key, nil, nil
     end
-    if pending() then dirty = true; return end
+    if not diskOnly and pending() then dirty = true; return end
     local observedAt, now = Integer(Call(GetServerTime), 1, 2147483647), Call(GetTime)
     if not observedAt or type(now) ~= "number" or now ~= now or now < 0 or now > 1e10 then return end
     local serial = eventSerial
     local status, entries = Capture()
     if key ~= Identity() or serial ~= eventSerial or not active then dirty = true; return end
     local record = { v = 1, id = 1, session = owner.session, guid = owner.guid, observedAt = 1, status = status, entries = entries }
+    if diskOnly then
+        record.id, record.observedAt = revision % 2147483647 + 1, observedAt
+        ns.OfflineHistory.Save(owner.guid, "weaponSkills", record)
+        return
+    end
     local signature = ns.Transfer.WeaponSkillsJSON(record)
     dirty = false
     if signature == lastSignature and lastCapture and now - lastCapture < 30 then return end
@@ -106,6 +112,10 @@ function WeaponSkills.Scan()
         lastCapture, lastSignature = now, signature
     else dirty = true end
 end
+function WeaponSkills.Flush()
+    if ns.OfflineHistory then WeaponSkills.Scan(true) end
+end
+
 local function Schedule()
     dirty = true
     if not active or timer then return end

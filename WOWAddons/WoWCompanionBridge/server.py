@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import BinaryIO
 from urllib.parse import parse_qs, urlsplit
 
-from protocol import ItemStorageError, GAME_PROTOCOLS, EquipmentComparisonError, EquipmentOfferError, EquipmentSwapError, EquipmentLoadoutError, InventoryError, QuestError, TalentError, WeaponSkillError, LootError, FrameError
+from protocol import ItemStorageError, GAME_PROTOCOLS, EquipmentComparisonError, EquipmentOfferError, EquipmentSwapError, EquipmentLoadoutError, InventoryError, QuestError, TalentError, WeaponSkillError, LootError, ArchiveError, FrameError
 from retail_query import RetailDatabase
 from state import CompanionState, validate_config
 
@@ -307,6 +307,10 @@ def capture_loop(state: CompanionState, stop: threading.Event, config_path: Path
                 except LootError:
                     # An intact rejected observation leaves the validated heartbeat untouched.
                     pass
+                except ArchiveError as exc:
+                    with state.lock:
+                        if state.config == config and state.capture_revision == revision and not state.demo:
+                            state.archive_error = str(exc)
                 except ItemStorageError as exc:
                     with state.lock:
                         if state.config == config and state.capture_revision == revision and not state.demo:

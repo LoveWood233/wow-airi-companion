@@ -1,9 +1,11 @@
 $ErrorActionPreference = 'Stop'
+& powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'test-launcher-encoding.ps1')
+if ($LASTEXITCODE -ne 0) { throw 'The CMD launcher fails under Windows PowerShell.' }
 $fixtureRoot = Join-Path ([IO.Path]::GetTempPath()) ('wow-companion-launcher-' + [guid]::NewGuid())
 $launcherRoot = Join-Path $fixtureRoot 'WOWAddons'
 $sourceRoot = Join-Path $fixtureRoot 'airi'
 $appRoot = Join-Path $sourceRoot 'apps\stage-tamagotchi'
-$packagedExe = Join-Path $appRoot 'dist-portable-2.27.1\win-unpacked\wow-companion.exe'
+$packagedExe = Join-Path $appRoot 'dist-portable-2.28.0\win-unpacked\wow-companion.exe'
 $electronExe = Join-Path $appRoot 'node_modules\electron\dist\electron.exe'
 $defaultProfile = Join-Path ([Environment]::GetFolderPath('UserProfile')) '.airi-wow-companion'
 $oldProfile = Join-Path ([Environment]::GetFolderPath('ApplicationData')) '@proj-airi\stage-tamagotchi'

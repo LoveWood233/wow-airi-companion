@@ -85,6 +85,102 @@ C_Container.GetContainerItemInfo=function(bag,slot) if bag==0 and slot==1 then r
         self.fire('BAG_UPDATE_DELAYED')
         self.assertEqual(len(self.records()), count)
 
+    def test_flush_saves_final_bag_slots_with_matching_item_details_without_transmitting(self):
+        self.lua.execute(b'''
+Moved=NewItem(40,"Original-GUID","Equipment"); Bags[0][1]=Moved
+C_Item.GetDetailedItemLevelInfo=function() return nil end
+''')
+        self.fire('PLAYER_ENTERING_WORLD')
+        count = len(self.records())
+        self.lua.execute(b'''
+local replacement=NewItem(40,"Replacement-GUID","Equipment")
+replacement.loaded=false; replacement.stats=nil; replacement.lines=nil
+Bags[0][1]=replacement
+Moved.loaded=false; Moved.stats=nil; Moved.lines=nil; Moved.quantity=3
+Bags[0][2]=Moved
+Bags[0][3]=NewItem(41,"New-GUID","New item")
+function GetServerTime() return 1700000090 end
+NS.ItemStorage.OnEvent("BAG_UPDATE_DELAYED")
+NS.ItemStorage.Flush()
+NS.ItemStorage.OnEvent("PLAYER_LEAVING_WORLD")
+''')
+        self.g.AdvanceTime(10)
+        self.assertEqual(len(self.records()), count)
+        stored = self.g.Database[b'itemStorage'][b'characters'][self.g.Owner[b'guid']][b'bags:0']
+        saved = json.loads(self.ns[b'Transfer'][b'StorageJSON'](stored))
+        self.assertEqual(saved['observedAt'], 1700000090)
+        replacement, moved, added = saved['slots'][:3]
+        self.assertEqual(replacement['item']['itemGUID'], 'Replacement-GUID')
+        self.assertIsNone(replacement['item']['name'])
+        self.assertEqual(moved['quantity'], 3)
+        self.assertEqual(moved['item']['itemGUID'], 'Original-GUID')
+        self.assertEqual(moved['item']['name'], 'Equipment')
+        self.assertTrue(moved['item']['stats'])
+        self.assertTrue(moved['item']['tooltip'])
+        self.assertEqual(added['item']['name'], 'New item')
+
+    def test_flush_and_close_only_refresh_banks_the_client_can_still_read(self):
+        self.lua.execute(b'''
+C_Container.GetContainerNumSlots=function(bag) return (bag==0 or bag==6 or bag==12) and 2 or 0 end
+Bags[6]={[1]=NewItem(42,"First-bank-GUID","First item")}
+Bags[12]={[1]=NewItem(43,"Account-bank-GUID","Account item")}
+''')
+        self.fire('PLAYER_ENTERING_WORLD')
+        count = len(self.records())
+        self.lua.execute(b'''
+BankAccessible=true
+NS.ItemStorage.OnEvent("BANKFRAME_OPENED")
+NS.ItemStorage.Flush()
+function GetServerTime() return 1700000090 end
+Bags[6][1]=NewItem(44,"Final-bank-GUID","Final item")
+NS.ItemStorage.OnEvent("BANKFRAME_CLOSED")
+BankAccessible=false; Bags[6],Bags[12]={},{}
+function GetServerTime() return 1700000100 end
+NS.ItemStorage.Flush()
+''')
+        self.g.AdvanceTime(3)
+        self.assertEqual(len(self.records()), count)
+        stored = self.g.Database[b'itemStorage'][b'characters'][self.g.Owner[b'guid']]
+        for scope, expected in ((b'bank:6', b'Final item'), (b'account-bank:12', b'Account item')):
+            self.assertEqual(stored[scope][b'observedAt'], 1700000090)
+            self.assertEqual(stored[scope][b'slots'][1][b'item'][b'name'], expected)
+
+    def test_flush_ignores_another_player_and_unavailable_container_reads(self):
+        self.lua.execute(b'Bags[0][1]=NewItem(45,"Saved-GUID","Saved item")')
+        self.fire('PLAYER_ENTERING_WORLD')
+        self.lua.execute(b'''
+local guid=Model.guid
+Model.guid="Player-other"
+Bags[0][1]=NewItem(46,"Different-GUID","Different item")
+function GetServerTime() return 1700000090 end
+NS.ItemStorage.Flush()
+Model.guid=guid
+C_Container.GetContainerItemInfo=function() return Secret end
+NS.ItemStorage.Flush()
+''')
+        characters = self.g.Database[b'itemStorage'][b'characters']
+        self.assertIsNone(characters[b'Player-other'])
+        self.assertEqual(characters[self.g.Owner[b'guid']][b'bags:0'][b'observedAt'], 1700000000)
+        self.assertEqual(characters[self.g.Owner[b'guid']][b'bags:0'][b'slots'][1][b'item'][b'name'], b'Saved item')
+
+    def test_a_later_incomplete_live_scan_keeps_existing_saved_item_details(self):
+        self.lua.execute(b'''
+Item=NewItem(47,"Stable-GUID","Stable item"); Bags[0][1]=Item
+C_Item.GetDetailedItemLevelInfo=function() return nil end
+''')
+        self.fire('PLAYER_ENTERING_WORLD')
+        self.lua.execute(b'Item.loaded=false; Item.stats=nil; Item.lines=nil; Item.quantity=5')
+        self.fire('BAG_UPDATE_DELAYED')
+        wire = [record for record in self.records() if record['container'] == 0][-1]['slots'][0]
+        self.assertIsNone(wire['item']['name'])
+        self.assertEqual(wire['quantity'], 5)
+        stored = self.g.Database[b'itemStorage'][b'characters'][self.g.Owner[b'guid']][b'bags:0']
+        saved = json.loads(self.ns[b'Transfer'][b'StorageJSON'](stored))['slots'][0]
+        self.assertEqual(saved['quantity'], 5)
+        self.assertEqual(saved['item']['name'], 'Stable item')
+        self.assertTrue(saved['item']['stats'])
+        self.assertTrue(saved['item']['tooltip'])
+
     def test_collects_nonequipment_and_retries_bank_metadata_without_publishing_an_empty_bank(self):
         self.lua.execute(b'''local item=NewItem(55,"Material-A","Material"); item.class=7; Bags[0][1]=item
 local original=C_Item.GetItemInfo

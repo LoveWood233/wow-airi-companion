@@ -1,7 +1,7 @@
 import type { CompanionState } from '../../shared/wow-companion'
 import type { PlayerAddress } from './wow-companion-player-address'
 
-import { hasFreshCompanionObservation } from '../utils/wow-companion-observation'
+import { hasFreshCompanionObservation, usableCharacterObservation } from '../utils/wow-companion-observation'
 
 /** Binds committed talent observations to the current player. Draft edits and expired captures never become learned ranks in chat. */
 export class TalentContext {
@@ -16,7 +16,7 @@ export class TalentContext {
       return ''
     const observation = state.bridge.talents
     const matches = !state.bridge.talentsError && observation?.guid === player.guid && observation.session === player.session
-    const fresh = matches && observation.observedAt > 0 && now - observation.observedAt * 1000 <= 180_000 && observation.observedAt * 1000 - now <= 5000
+    const fresh = matches && usableCharacterObservation(observation.observedAt, now, state.bridge.lowFrequency)
     const active = fresh && observation.status === 'active' && observation.hasStagedChanges === false
     const data = {
       game: current.game,

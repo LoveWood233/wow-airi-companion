@@ -28,6 +28,8 @@ QUEST_MAX_BYTES = 32768
 QUEST_MAX_PARTS = 137
 TALENT_MAX_BYTES = 65536
 TALENT_MAX_PARTS = 274
+ARCHIVE_MAX_PARTS = 1024
+ARCHIVE_MAX_BYTES = ARCHIVE_MAX_PARTS * EQUIPMENT_CHUNK_BYTES
 INSTANCE_TYPES = ("none", "party", "raid", "pvp", "arena", "scenario", "unknown")
 
 
@@ -79,6 +81,10 @@ class WeaponSkillError(FrameError):
 
 class LootError(FrameError):
     """An item observation failed independently of the character heartbeat."""
+
+
+class ArchiveError(FrameError):
+    """An invalid capture fragment is independent of the character heartbeat."""
 
 
 def load_json(payload: bytes) -> object:
@@ -733,6 +739,177 @@ def validate_calendar(value: object) -> dict:
     return dict(value)
 
 
+def validate_archive_fragment(value: object) -> dict:
+    try:
+        return _validate_fragment(value, "archive", ARCHIVE_MAX_PARTS, ARCHIVE_MAX_BYTES)
+    except FrameError as exc:
+        raise ArchiveError(f"角色快照分片无效：{exc}") from exc
+
+
+def _archive_fields(value: object, required: set[str], optional=frozenset()) -> None:
+    if not isinstance(value, dict) or not required <= value.keys() or value.keys() - required - optional:
+        raise FrameError("角色快照字段不完整或含未知字段")
+
+
+def _archive_list(value: object, size: int) -> list:
+    if not isinstance(value, list) or len(value) > size:
+        raise FrameError("角色快照条目超过上限或格式无效")
+    return value
+
+
+def _archive_boolean(value: object) -> None:
+    if type(value) is not bool:
+        raise FrameError("角色快照状态须为布尔值")
+
+
+def _archive_name(value: object) -> None:
+    if not _text(value, "name", 192).strip():
+        raise FrameError("角色快照缺少名称")
+
+
+def _archive_id(value: object) -> int:
+    return _integer(value, "id", 1, 2147483647)
+
+
+def _archive_unique(keys) -> None:
+    seen = set()
+    for key in keys:
+        if key in seen:
+            raise FrameError("角色快照包含重复条目")
+        seen.add(key)
+
+
+def _archive_ids(value: object, size: int) -> None:
+    _archive_unique(_archive_id(item) for item in _archive_list(value, size))
+
+
+def _validate_archive_progress(data: object) -> None:
+    currencies = {"copper", "earned", "spent"}
+    numbers = {"level", "xp", "xpMax", "levelSeconds"}
+    _archive_fields(data, set(), currencies | numbers | {"moneyEpoch"})
+    if not (data.keys() & (currencies | numbers)):
+        raise FrameError("角色进度没有可用读数")
+    if "moneyEpoch" in data:
+        _text(data["moneyEpoch"], "moneyEpoch", 40, identity=True)
+    for key in currencies & data.keys():
+        amount = data[key]
+        if (not isinstance(amount, str) or re.fullmatch(r"0|[1-9][0-9]{0,15}", amount) is None
+                or int(amount) > MAX_SAFE_INTEGER):
+            raise FrameError("角色进度铜币数无效")
+    for key in numbers & data.keys():
+        _integer(data[key], key, 1 if key == "level" else 0, 255 if key == "level" else MAX_SAFE_INTEGER)
+
+
+def _validate_archive_reputation(data: object) -> None:
+    _archive_fields(data, {"complete", "entries"})
+    _archive_boolean(data["complete"])
+    entries = _archive_list(data["entries"], 2048)
+    for entry in entries:
+        _archive_fields(entry, {"id", "name"}, {"rank", "value", "min", "max"})
+        _archive_id(entry["id"])
+        _archive_name(entry["name"])
+        if "rank" in entry:
+            _integer(entry["rank"], "rank", 0, 65535)
+        for key in ("value", "min", "max"):
+            if key in entry:
+                _integer(entry[key], key, -2147483648, 2147483647)
+    _archive_unique(entry["id"] for entry in entries)
+
+
+def _validate_archive_lockouts(data: object) -> None:
+    _archive_fields(data, {"complete", "entries"})
+    _archive_boolean(data["complete"])
+    entries = _archive_list(data["entries"], 256)
+    for entry in entries:
+        _archive_fields(entry, {"id", "name", "resetAt", "locked", "extended"}, {"difficulty"})
+        _archive_id(entry["id"])
+        _archive_name(entry["name"])
+        _archive_boolean(entry["locked"])
+        _archive_boolean(entry["extended"])
+        _integer(entry["resetAt"], "resetAt", 1, 4102444800)
+        if "difficulty" in entry:
+            _integer(entry["difficulty"], "difficulty", 0, 65535)
+    _archive_unique((entry["id"], entry.get("difficulty")) for entry in entries)
+
+
+def _validate_archive_schedule(record: dict) -> None:
+    data = record["data"]
+    _archive_fields(data, {"day", "items"})
+    items = _archive_list(data["items"], 32)
+    base = {"v": 1, "kind": "calendar", "s": record["session"], "g": record["guid"],
+            "day": data["day"], "n": len(items)}
+    if not items:
+        validate_calendar({**base, "p": 1, "title": "", "action": "none", "when": ""})
+    for index, item in enumerate(items, 1):
+        _archive_fields(item, {"title", "action", "when"})
+        validate_calendar({**base, "p": index, **item})
+
+
+def _validate_archive_professions(data: object) -> None:
+    _archive_fields(data, {"entries"})
+    entries = _archive_list(data["entries"], 32)
+    recipe_count = 0
+    for entry in entries:
+        _archive_fields(entry, {"id", "name", "rank", "maxRank"}, {"recipes", "recipesObservedAt"})
+        _archive_id(entry["id"])
+        _archive_name(entry["name"])
+        rank = _integer(entry["rank"], "rank", 0, 65535)
+        _integer(entry["maxRank"], "maxRank", rank, 65535)
+        if ("recipes" in entry) != ("recipesObservedAt" in entry):
+            raise FrameError("配方列表和采集时间须成对提供")
+        if "recipes" in entry:
+            _archive_ids(entry["recipes"], 18000 - recipe_count)
+            recipe_count += len(entry["recipes"])
+            _integer(entry["recipesObservedAt"], "recipesObservedAt", 1, 4102444800)
+    _archive_unique(entry["id"] for entry in entries)
+
+
+def _validate_archive_achievements(data: object) -> None:
+    _archive_fields(data, {"earnedIds", "complete"})
+    _archive_boolean(data["complete"])
+    _archive_ids(data["earnedIds"], 18000)
+
+
+def _validate_archive_exploration(data: object) -> None:
+    _archive_fields(data, {"maps"})
+    maps = _archive_list(data["maps"], 1500)
+    for entry in maps:
+        _archive_fields(entry, {"mapId", "name", "areaIds"}, {"overlayCount"})
+        _archive_id(entry["mapId"])
+        _archive_name(entry["name"])
+        _archive_ids(entry["areaIds"], 512)
+        if "overlayCount" in entry:
+            _integer(entry["overlayCount"], "overlayCount", 0, 65535)
+    _archive_unique(entry["mapId"] for entry in maps)
+
+
+_ARCHIVE_VALIDATORS = {
+    "progress": _validate_archive_progress,
+    "reputation": _validate_archive_reputation,
+    "lockouts": _validate_archive_lockouts,
+    "professions": _validate_archive_professions,
+    "achievements": _validate_archive_achievements,
+    "exploration": _validate_archive_exploration,
+}
+
+
+def validate_archive(value: object) -> dict:
+    _archive_fields(value, {"v", "session", "guid", "id", "observedAt", "section", "data"})
+    _integer(value["v"], "v", 1, 1)
+    _text(value["session"], "session", 40, identity=True)
+    _text(value["guid"], "guid", 48, identity=True)
+    _archive_id(value["id"])
+    _integer(value["observedAt"], "observedAt", 1, 4102444800)
+    section = value["section"]
+    if section == "schedule":
+        _validate_archive_schedule(value)
+    elif isinstance(section, str) and section in _ARCHIVE_VALIDATORS:
+        _ARCHIVE_VALIDATORS[section](value["data"])
+    else:
+        raise FrameError("未知角色快照类型")
+    return value
+
+
 def validate_macro(value: object) -> dict:
     fields = {"v", "kind", "s", "g", "q", "id", "st", "r", "hash", "bytes", "focus", "input", "chat", "combat"}
     if not isinstance(value, dict) or set(value) != fields or value["kind"] != "macro":
@@ -803,10 +980,10 @@ def validate_life(value: object) -> dict:
 
 
 def validate_pulse(value: object) -> dict:
-    """A pulse renews a known character and can carry one location and low-health observation."""
+    """A pulse renews a known character and carries optional activity observations."""
     fields = {"v", "kind", "s", "g", "q", "t", "on", "c", "d"}
     if (not isinstance(value, dict) or value.get("kind") != "pulse"
-            or not fields <= value.keys() or value.keys() - fields - {"p", "h"}):
+            or not fields <= value.keys() or value.keys() - fields - {"p", "h", "lf", "w"}):
         raise FrameError("Compact heartbeat fields are invalid")
     _integer(value["v"], "v", 1, 1)
     _text(value["s"], "s", 40, identity=True)
@@ -815,6 +992,8 @@ def validate_pulse(value: object) -> dict:
     _integer(value["t"], "t", 0, 2147483647)
     if any(type(value[key]) is not bool for key in ("on", "c", "d")):
         raise FrameError("Compact heartbeat flags must be boolean")
+    if "lf" in value and value["lf"] is not True:
+        raise FrameError("Compact heartbeat low-frequency mode is invalid")
     result = dict(value)
     if "p" in value:
         position = value["p"]
@@ -846,6 +1025,20 @@ def validate_pulse(value: object) -> dict:
         _integer(health["id"], "id", 1, 2147483647)
         _integer(health["percent"], "percent", 0, 19)
         result["h"] = dict(health)
+    if "w" in value:
+        warning = value["w"]
+        if not isinstance(warning, dict) or set(warning) != {"id", "map", "level", "min"}:
+            raise FrameError("Area level observation fields are invalid")
+        _integer(warning["id"], "id", 1, 2147483647)
+        _integer(warning["map"], "map", 1, 2147483647)
+        _integer(warning["level"], "level", 1, 255)
+        _integer(warning["min"], "min", 1, 255)
+        if not value["on"] or value["d"] or warning["level"] >= warning["min"]:
+            raise FrameError("Area level observation requires a living player below the minimum")
+        position = result.get("p")
+        if position is not None and (position["map"] != warning["map"] or position["instanceType"] != "none"):
+            raise FrameError("Area level observation requires a matching outdoor map")
+        result["w"] = dict(warning)
     return result
 
 
@@ -917,6 +1110,8 @@ def validate_message(value: object, protocol: str = "WCP1") -> dict:
             return _validate_fragment(value, "store", 8739, 2097152)
         except FrameError as exc:
             raise ItemStorageError(str(exc)) from exc
+    if isinstance(value, dict) and value.get("kind") == "archive":
+        return validate_archive_fragment(value)
     if isinstance(value, dict) and value.get("kind") == "traits":
         return validate_talent_fragment(value)
     if isinstance(value, dict) and value.get("kind") == "qlog":

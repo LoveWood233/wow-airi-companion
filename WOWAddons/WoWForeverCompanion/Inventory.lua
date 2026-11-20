@@ -5,6 +5,7 @@ ns.Inventory = Inventory
 local Public = ns.Protocol.Public
 local owner, publish, timer, active, sentGUID, sentSession
 local revision = 0
+local interval, nextCheck, signature
 
 local function Read(fn, ...)
     if type(fn) ~= "function" then return nil, false end
@@ -30,9 +31,10 @@ local function Identity()
         and type(owner.session) == "string" and owner.session ~= "" and guid ~= ""
 end
 
-function Inventory.Scan()
-    timer = nil
-    if not active or not Identity() or (sentGUID == owner.guid and sentSession == owner.session) then return end
+function Inventory.Scan(diskOnly)
+    if not diskOnly then timer = nil end
+    if not active or not Identity() then return end
+    if not diskOnly and not interval and sentGUID == owner.guid and sentSession == owner.session then return end
     local session, guid, counts, complete = owner.session, owner.guid, {}, true
     -- Only equipped bags are eligible. Missing bag metadata makes the capture partial.
     local lastBag = Integer(NUM_TOTAL_EQUIPPED_BAG_SLOTS, 0, 5)
@@ -68,20 +70,39 @@ function Inventory.Scan()
     end
     local observedAt = Integer(Read(GetServerTime), 1, 4102444800)
     if not observedAt then return end
+    local record = { v = 1, id = 1, session = session, guid = guid, observedAt = 1,
+        source = "bags", bank = "unknown", complete = complete, items = items }
+    if diskOnly then
+        record.id, record.observedAt = revision + 1, observedAt
+        ns.OfflineHistory.Save(owner.guid, "inventory", record)
+        return
+    end
+    local body
+    if interval then
+        nextCheck = (Read(GetTime) or 0) + interval
+        body = ns.Transfer.InventoryJSON(record)
+        if body == signature then return end
+    end
     revision = revision + 1
-    if publish({ v = 1, id = revision, session = session, guid = guid, observedAt = observedAt,
-        source = "bags", bank = "unknown", complete = complete, items = items }) then
-        sentGUID, sentSession = guid, session
+    record.id, record.observedAt = revision, observedAt
+    if publish(record) then
+        sentGUID, sentSession, signature = guid, session, body
     end
 end
 
+function Inventory.Flush()
+    if ns.OfflineHistory then Inventory.Scan(true) end
+end
+
 local function Schedule()
-    if not active or timer or (sentGUID == owner.guid and sentSession == owner.session) then return end
+    if not active or timer or (not interval and sentGUID == owner.guid and sentSession == owner.session) then return end
+    if interval and nextCheck and (Read(GetTime) or 0) < nextCheck then return end
     timer = C_Timer.NewTimer(0.4, Inventory.Scan)
 end
 
-function Inventory.Initialize(state, callback)
-    owner, publish = state, callback
+function Inventory.Initialize(state, callback, cadence)
+    owner, publish, nextCheck, signature = state, callback, nil, nil
+    interval = type(cadence) == "number" and cadence or nil
 end
 
 function Inventory.OnEvent(event)

@@ -8,6 +8,8 @@ import { safeParse } from 'valibot'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 
 import { snapshotSchema } from '../../../shared/wow-companion'
+import { loadoutStateFixture } from '../../../shared/wow-companion-loadout.test-helper'
+import { CompanionArchive } from './wow-companion-archive'
 import { CompanionGoldLedger } from './wow-companion-gold'
 
 function live(snapshot: Partial<Snapshot> = {}, bridge: Partial<BridgeStatus> = {}): BridgeStatus {
@@ -90,6 +92,64 @@ describe('companion gold ledger', () => {
     expect(ledger.read().accounts[0]).toMatchObject({ earned: '600', spent: '400', net: '200', balance: '100200' })
     expect(ledger.read().accounts[0]?.characters[0]).toMatchObject({ earned: '600', spent: '400', net: '200', copper: 100_200 })
     expect(ledger.read().storageError).toBeNull()
+  })
+
+  it('applies matching sampled counters once and keeps their capture time on heartbeat polls', async () => {
+    const observedAt = Math.floor(Date.now() / 1000) - 10
+    const first = live({ profileObservedAt: observedAt * 1000 })
+    await ledger.observe(first)
+    const sampled = live({ profileObservedAt: observedAt * 1000, tick: 120 }, {
+      lowFrequency: true,
+      archive: { progress: {
+        v: 1,
+        id: 1,
+        section: 'progress',
+        session: 'session-1',
+        guid: 'Player-1',
+        observedAt: observedAt + 7,
+        data: { copper: '100500', earned: '1000', spent: '500', moneyEpoch: 'epoch-1' },
+      } },
+    })
+    await ledger.observe(sampled)
+    sampled.snapshot!.tick++
+    await ledger.observe(sampled)
+    expect(ledger.read().accounts[0]?.characters[0]).toMatchObject({
+      copper: 100_500,
+      earned: '1000',
+      spent: '500',
+      lastSeen: (observedAt + 7) * 1000,
+    })
+  })
+
+  it('persists sampled character sections by account and GUID across a desktop restart', async () => {
+    const archivePath = join(directory, 'archive.json')
+    const state = loadoutStateFixture()
+    const bridge = state.bridge!
+    const player = bridge.snapshot!
+    const header = { v: 1 as const, id: 1, session: player.session, guid: player.guid, observedAt: Math.floor(Date.now() / 1000) - 1 }
+    bridge.archive = {
+      achievements: { ...header, section: 'achievements', data: { complete: true, earnedIds: [41] } },
+      professions: { ...header, section: 'professions', data: { entries: [
+        { id: 7, name: 'Mining', rank: 30, maxRank: 75, recipes: [2259], recipesObservedAt: header.observedAt },
+      ] } },
+    }
+    await new CompanionArchive(archivePath, state.game).observe(state, true)
+
+    player.account = 'a-different-account'
+    bridge.archive = {
+      achievements: { ...header, section: 'achievements', data: { complete: true, earnedIds: [42] } },
+      exploration: { ...header, guid: 'a-different-player', section: 'exploration', data: { maps: [] } },
+    }
+    await new CompanionArchive(archivePath, state.game).observe(state, true)
+    const saved: unknown = JSON.parse(await readFile(archivePath, 'utf8'))
+    expect(saved).toMatchObject({
+      characters: [
+        { guid: player.guid, observations: { achievements: { data: { earnedIds: [41] } } } },
+        { account: 'a-different-account', guid: player.guid, observations: { achievements: { data: { earnedIds: [42] } } } },
+      ],
+    })
+    expect(JSON.stringify(saved)).not.toContain('a-different-player')
+    expect(JSON.stringify(saved)).toContain('2259')
   })
 
   it('imports cumulative counters once and catches up after a disconnect and desktop restart', async () => {

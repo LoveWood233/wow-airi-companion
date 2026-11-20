@@ -8,10 +8,10 @@ The current companion release contains these versions:
 
 | Component | Version |
 | --- | --- |
-| Desktop companion | 2.27.1 |
-| Retail addon | 2.25.0 |
-| Screen bridge | 2.25.0 |
-| Infinite addon | 1.21.0 |
+| Desktop companion | 2.28.0 |
+| Retail addon | 2.26.0 |
+| Screen bridge | 2.26.0 |
+| Infinite addon | 1.22.0 |
 
 The internal package remains `@proj-airi/stage-tamagotchi`, with upstream package version `0.12.0-beta.5`.
 

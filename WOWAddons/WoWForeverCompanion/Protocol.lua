@@ -202,24 +202,34 @@ function Protocol.Encode(snapshot)
 end
 
 -- After login bootstrap the carrier publishes control flags and recent activity only.
-function Protocol.EncodePulse(snapshot, position, health)
+function Protocol.EncodePulse(snapshot, position, health, warning)
     local session, guid = snapshot.session, snapshot.guid
     if session == "" or guid == "" then return nil end
     local payload = '{"v":1,"kind":"pulse","s":' .. Escape(session) .. ',"g":' .. Escape(guid)
         .. ',"q":' .. snapshot.seq .. ',"t":' .. snapshot.tick
         .. ',"on":' .. tostring(snapshot.online) .. ',"c":' .. tostring(snapshot.combat)
         .. ',"d":' .. tostring(snapshot.dead)
+    if snapshot.lowFrequency then payload = payload .. ',"lf":true' end
+    if health then
+        payload = payload .. ',"h":{"id":' .. health.id .. ',"percent":' .. health.percent .. '}'
+    end
+    if warning then
+        payload = payload .. ',"w":{"id":' .. warning.id .. ',"map":' .. warning.map
+            .. ',"level":' .. warning.level .. ',"min":' .. warning.min .. '}'
+    end
     if position then
         local px, py = Coordinate(position.px), Coordinate(position.py)
         if not px or not py or position.map == 0 then px, py = nil, nil end
-        local zone = position.zone
-        if #zone > 64 then zone = Protocol.UTF8Prefix(zone, 64) end
-        payload = payload .. ',"p":{"map":' .. position.map .. ',"zone":' .. Escape(zone)
-            .. ',"instanceType":' .. Escape(position.instanceType) .. ',"instanceID":' .. tostring(position.instanceID or "null")
+        local zone = Protocol.UTF8Prefix(position.zone, 64)
+        local prefix = ',"p":{"map":' .. position.map .. ',"zone":'
+        local suffix = ',"instanceType":' .. Escape(position.instanceType) .. ',"instanceID":' .. tostring(position.instanceID or "null")
             .. ',"px":' .. tostring(px or "null") .. ',"py":' .. tostring(py or "null") .. '}'
-    end
-    if health then
-        payload = payload .. ',"h":{"id":' .. health.id .. ',"percent":' .. health.percent .. '}'
+        local escaped = Escape(zone)
+        local excess = #payload + #prefix + #escaped + #suffix + 1 - 504
+        if excess > 0 then
+            escaped = Escape(Protocol.UTF8Prefix(zone, math.max(0, #zone - excess)))
+        end
+        payload = payload .. prefix .. escaped .. suffix
     end
     return Protocol.Frame(payload .. '}')
 end

@@ -12,7 +12,7 @@ import { companionBridgeFiles, companionReleaseSchema } from '../../src/shared/w
 import { localUpdateManifestSchema } from '../../src/shared/wow-local-update'
 
 /** Product releases advance independently from the upstream Electron package version. */
-export const companionReleaseVersion = '2.27.1'
+export const companionReleaseVersion = '2.28.0'
 
 async function regularFile(path: string) {
   const info = await lstat(path)

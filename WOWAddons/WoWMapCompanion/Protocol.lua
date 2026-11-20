@@ -194,6 +194,7 @@ function Protocol.EncodePulse(snapshot, position, health)
         .. ',"q":' .. snapshot.seq .. ',"t":' .. snapshot.tick
         .. ',"on":' .. tostring(snapshot.online) .. ',"c":' .. tostring(snapshot.combat)
         .. ',"d":' .. tostring(snapshot.dead)
+    if snapshot.lowFrequency then payload = payload .. ',"lf":true' end
     if position then
         local px, py = Coordinate(position.px), Coordinate(position.py)
         if not px or not py or position.map == 0 then px, py = nil, nil end

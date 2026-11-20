@@ -24,6 +24,8 @@ def loot(identifier: int = 1, **changes) -> dict:
 
 
 LOCATION = {"map": 84, "zone": "暴风城", "instanceType": "none", "instanceID": None, "px": 5000, "py": 5100}
+ARRIVAL = {**LOCATION, "map": 1434, "zone": "荆棘谷"}
+LEVEL_GATE = {"id": 1, "map": 1434, "level": 29, "min": 30}
 
 
 class PulseTests(unittest.TestCase):
@@ -65,6 +67,42 @@ class PulseTests(unittest.TestCase):
                       loot(n=0), loot(name=""), loot(item=True)):
             with self.subTest(value=value), self.assertRaises(FrameError):
                 encode_frame(value)
+
+    def test_area_gate_requires_a_living_player_below_the_minimum_in_an_outdoor_area(self):
+        value = pulse(p=ARRIVAL, w=LEVEL_GATE)
+        self.assertEqual(decode_frame(encode_frame(value, "WCF1"), "WCF1"), value)
+        cases = (
+            pulse(on=False, p=ARRIVAL, w=LEVEL_GATE),
+            pulse(d=True, p=ARRIVAL, w=LEVEL_GATE),
+            pulse(p=ARRIVAL, w={**LEVEL_GATE, "level": 30}),
+            pulse(p=ARRIVAL, w={**LEVEL_GATE, "min": True}),
+            pulse(p=LOCATION, w=LEVEL_GATE),
+            pulse(p={**ARRIVAL, "instanceType": "party"}, w=LEVEL_GATE),
+        )
+        for rejected in cases:
+            with self.subTest(value=rejected), self.assertRaises(FrameError):
+                encode_frame(rejected, "WCF1")
+
+    def test_area_gate_uses_arrival_level_and_deduplicates_repeats_not_reentries(self):
+        state = CompanionState(game="forever")
+        state.ingest(snapshot(map=1429, level=36, instanceType="none"))
+        state.ingest(pulse(2, w=LEVEL_GATE))  # A warning cannot refer to the previous map.
+        state.ingest(pulse(3, p=ARRIVAL))
+        state.ingest(pulse(4, p=ARRIVAL, w=LEVEL_GATE))
+        state.ingest(pulse(5, p=ARRIVAL, w=LEVEL_GATE))
+        state.ingest(pulse(6, p=LOCATION))
+        state.ingest(pulse(7, p=ARRIVAL, w={**LEVEL_GATE, "id": 2}))
+        warnings = [event for event in state.view()["events"] if event["type"] == "level_gate"]
+        self.assertEqual(len(warnings), 2)
+        for event in warnings:
+            self.assertEqual(event["snapshot"]["map"], 1434)
+            self.assertEqual(event["snapshot"]["level"], 36)
+            self.assertEqual((event["playerLevel"], event["minimumLevel"]), (29, 30))
+            self.assertEqual(event["detail"], "前面的区域，以后再来探索吧")
+
+        self.state.ingest(snapshot())
+        self.state.ingest(pulse(2, p=ARRIVAL, w=LEVEL_GATE))
+        self.assertNotIn("level_gate", [event["type"] for event in self.state.view()["events"]])
 
     def test_live_only_pulse_requires_matching_profile(self):
         self.state.ingest(pulse())

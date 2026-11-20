@@ -207,6 +207,38 @@ describe('event telemetry notices', () => {
   })
 })
 
+describe('area level warnings', () => {
+  const destination = { ...snapshot, map: 1434, zone: '荆棘谷', instanceType: 'none' as const }
+  const warning = event(2, 'level_gate', { snapshot: destination, playerLevel: 28, minimumLevel: 30 })
+
+  it('accepts the first warning after a same-session map load during the ordinary cooldown', () => {
+    const policy = new CompanionPolicy()
+    policy.accept(bridge(), defaultSettings, now)
+    expect(policy.accept(bridge([event(1)]), defaultSettings, now)?.type).toBe('level_up')
+    const loading = bridge([event(1)], { status: 'waiting', snapshot: { ...snapshot, online: false } })
+    expect(policy.accept(loading, defaultSettings, now + 1000)).toBeUndefined()
+    const arrival = bridge([event(1), warning], { snapshot: destination })
+    expect(policy.accept(arrival, defaultSettings, now + 2000)).toEqual(warning)
+    expect(policy.accept(arrival, defaultSettings, now + 3000)).toBeUndefined()
+  })
+
+  it('drops a warning deferred by combat when the character leaves the area', () => {
+    const policy = new CompanionPolicy()
+    policy.accept(bridge(), defaultSettings, now)
+    const fighting = bridge([warning], { snapshot: { ...destination, combat: true } })
+    expect(policy.accept(fighting, defaultSettings, now + 1000)).toBeUndefined()
+    expect(policy.accept(bridge([warning]), defaultSettings, now + 2000)).toBeUndefined()
+    expect(policy.accept(bridge([warning], { snapshot: destination }), defaultSettings, now + 3000)).toBeUndefined()
+  })
+
+  it('requires a measured level below the area minimum and an outdoor observation', () => {
+    expect(parse(eventSchema, warning).playerLevel).toBe(28)
+    expect(() => parse(eventSchema, { ...warning, playerLevel: 30 })).toThrow()
+    expect(() => parse(eventSchema, { ...warning, playerLevel: undefined })).toThrow()
+    expect(() => parse(eventSchema, { ...warning, snapshot: { ...destination, instanceType: 'party' } })).toThrow()
+  })
+})
+
 describe('death interaction lifecycle', () => {
   const settings = { ...defaultSettings, cooldownSeconds: 0, death: true, revive: true, quietInCombat: true }
 

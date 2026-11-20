@@ -412,6 +412,15 @@ local function ReadCurrent(request)
         reason = request.reason, slots = slots }, complete, missing
 end
 
+function Equipment.Flush()
+    if not owner or not ns.OfflineHistory then return end
+    local record = ReadCurrent({ session = owner.session, guid = owner.guid,
+        reason = currentRequest and currentRequest.reason or "refresh" })
+    if not record or record.observedAt == 0 then return end
+    record.id = currentRevision % 2147483647 + 1
+    ns.OfflineHistory.Equipment(record)
+end
+
 local AttemptCurrent
 AttemptCurrent = function(request)
     if currentRequest ~= request or request.generation ~= currentGeneration or not CurrentIdentity(request) then return end

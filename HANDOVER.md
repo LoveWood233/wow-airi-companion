@@ -22,7 +22,7 @@ GitHub 仓库：[LoveWood233/wow-airi-companion](https://github.com/LoveWood233/
 
 发布分支为 `main`，迁移前的 Git 基线为 `654f6b5e90f1ce093f890372770cb7a7129dd52d`。该旧提交不包含本次迁移。实际交接以包含本文及迁移源码的最新提交 SHA 为准。
 
-当前维护目标为桌面版 **2.27.1**。正式服插件及桥接为 **2.25.0**，无限服插件为 **1.21.0**。桌面 workspace 的 `package.json` 仍有上游内部版本 `0.12.0-beta.5`，它不是产品安装包版本。产品版本定义在 `airi/apps/stage-tamagotchi/scripts/companion-release/files.ts`。
+当前维护目标为桌面版 **2.28.0**。正式服插件及桥接为 **2.26.0**，无限服插件为 **1.22.0**。桌面 workspace 的 `package.json` 仍有上游内部版本 `0.12.0-beta.5`，它不是产品安装包版本。产品版本定义在 `airi/apps/stage-tamagotchi/scripts/companion-release/files.ts`。
 
 本机恢复资料位于 `backups/migration-20261108-001/`。该目录保留原目标的 `airi/`、`WOWAddons/` 和原上游 Git 元数据。源目录整体迁入了当前 `airi/`。其中 `source-worktree-after-consolidation.patch` 是兼容功能合并后的差异，不能视为合并前原件。逆向重建的恢复资料在 `source-merge-before/`，使用前先读其说明。
 
@@ -95,6 +95,16 @@ flowchart LR
 换装需要游戏内用户点击确认。此前桌面气泡“好／不用”的第二套换装确认已被精简，不能从迁移备份中恢复。战斗、物品缓存未完成、装备限制和失效候选需要按插件现有状态处理。
 
 背包、银行、专业材料、配方、工具、专业装备和制作成品读取遵循客户端公开能力。银行页面未打开时使用带时间的已知快照，不能把“未读到”显示成“空银行”。分类为制作成品不等于能证实其实际制作来源，无法确认时保留未知标记。
+
+### 3.3 武器熟练度扩展
+
+`WeaponSkills.lua` 在无限服按客户端技能 ID 读取已学习武器的名称、当前熟练度、上限、永久和临时加成。正式服明确发送 `unsupported`，API缺失、受限或读取失败发送 `unavailable`，不能当成 `0/0`。技能列表取自无限客户端，包含野性战斗技能线。
+
+新流 `kind=wskill` 每个技能一帧，完整组装后才加入桥接 `snapshot.weaponSkills`。不扩大传输码，也不把所有技能挤入基础角色帧。读取不改变技能面板折叠状态，技能聊天事件只作为刷新信号。
+
+技能变化时刷新，另有30秒定期刷新。桌面只将当前角色、当前会话且120秒内的有效观察用于聊天。没有新增设置页或SQLite表。详细约束见传输协议的 Weapon proficiency 章节。
+
+升级需同时更新插件、桥接和桌面。插件新增TOC模块，完全退出并重新启动游戏后生效。此前2.27.1安装包不含此功能。
 
 ## 4. 已实现的功能及使用边界
 
@@ -247,15 +257,15 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File apps/stage-tamagotchi/sc
 
 ```powershell
 $env:CSC_IDENTITY_AUTO_DISCOVERY = 'false'
-pnpm exec electron-builder --config electron-builder.config.ts --dir --win --x64 --publish never --config.extraMetadata.version=2.27.1 --config.directories.output=dist-portable-2.27.1
-pnpm exec electron-builder --config electron-builder.config.ts --win nsis --x64 --prepackaged .\dist-portable-2.27.1\win-unpacked --publish never --config.extraMetadata.version=2.27.1 --config.directories.output=dist-setup-2.27.1
+pnpm exec electron-builder --config electron-builder.config.ts --dir --win --x64 --publish never --config.extraMetadata.version=2.28.0 --config.directories.output=dist-portable-2.28.0
+pnpm exec electron-builder --config electron-builder.config.ts --win nsis --x64 --prepackaged .\dist-portable-2.28.0\win-unpacked --publish never --config.extraMetadata.version=2.28.0 --config.directories.output=dist-setup-2.28.0
 ```
 
 首次打包需要下载对应 Electron 和打包工具。本机已有 `WOWAddons/.cache/electron-sdk-43.4.1` 时，第一条命令可附加 `--config.electronDist=<项目根目录>\WOWAddons\.cache\electron-sdk-43.4.1`。这个缓存不会随 Git 提供。
 
 `electron-builder.config.ts` 会从同级产品目录中的 `WOWAddons/` 收集插件、桥接白名单、指南和数据。版本与哈希清单由 `scripts/companion-release/files.ts` 生成。不要手工修改打包输出中的源码来代替重新构建。
 
-预期安装包名为 `WoWCompanion-2.27.1-windows-x64-setup.exe`。当前安装包未配置代码签名证书。发布前用临时 profile 检查版本、主窗口、设置、DSH、桥接退出和内置 Python，再检查安装／卸载及用户数据保留。
+预期安装包名为 `WoWCompanion-2.28.0-windows-x64-setup.exe`。当前安装包未配置代码签名证书。发布前用临时 profile 检查版本、主窗口、设置、DSH、桥接退出和内置 Python，再检查安装／卸载及用户数据保留。
 
 `WOWAddons/build-delivery.py` 是历史 2.20 增量源码包脚本，含固定旧基线。仓库层级已经改变，不能把它当成当前完整源码交接入口。维护该脚本前先重新设计 Git 路径、版本和收集范围。
 
@@ -309,6 +319,32 @@ python -m unittest discover -s tests -v
 | Docker／新电脑／真实游戏 | 本次未完成这些环境的整体验收 |
 
 迁移本机日志位于忽略的 `logs/migration-20261108/`。交接时在 PR 或发布记录补入实际命令、退出码、日志摘要和未通过原因。不要用历史版本的测试数量替代当前源码验证，也不要修改 tsconfig 隐藏既有错误。
+
+### 8.1 武器熟练度增量验证（2.28.0）
+
+- 正式服Lua：252通过、7项按版本跳过。无限服Lua：265通过、1项按版本跳过。
+- 三个TOC版本更新后，无限服主插件35项再次通过，两份无限TOC保持一致。
+- 桥接339项通过，包含两端真实Lua JSON及CRC二进制帧的互通验证。
+- 桌面Node80通过、2跳过，browser4项通过。包含身份、120秒时效与持续上下文不泄漏原始包的检查。
+- 桌面类型检查与完整构建通过，发行清单6项、启动脚本14项通过。
+- 全仓lint退出0，0错误、669条已有警告。全仓类型检查仍受独立场景包缺少vue-tsc阻断，退出127。
+- 本机正式服已安装新版插件并逐文件核对19个文件，旧版备份位于WOWAddons/backups/。正式服不支持数值式武器熟练度，实际数值采集仍需无限客户端验证。
+
+2.28.0打包EXE已使用独立资料目录启动，动画、睡醒和设置预览通过，页面脚本错误0。发行目录342文件和89项配套资源完整性通过，安装包内嵌343文件检查通过。当前安装包在 `WOWAddons/WoWCompanion-2.28.0-windows-x64-setup.exe`，SHA-256另存同名 `.sha256`。安装包未签名，未做另一台电脑安装测试。
+
+本次武器熟练度增量尚未提交或推送GitHub，远端迁移提交仍为2.27.1。协作前先同步本次增量及准确提交号。
+
+本次日志位于 `logs/weapon-skills-20261108/`。2.27.1迁移验证和安装包哈希保留为历史记录，不是2.28.0的安装包哈希。
+
+### 8.2 插件递送与绘制优化
+
+普通后台传输机会减半；原0.25秒载波驱动保留。状态、life、宏、增益和日历时隙保持原节奏，重要装备与短时效武器初传继续及时递送。全身装备初传保留快通道，完成后的重播减半。
+
+基础快照按seq/tick缓存，退出时仍强制保存历史。Telemetry先检查布局，再跳过相同帧、跳过未变字节。亮格默认85%，保持alpha=1，提供 `/wowc contrast 85`／`/wowf contrast 85`（85–100）恢复调整。
+
+本轮正式服267项通过、7项按版本跳过；无限服280项通过、1项按版本跳过。85%亮格在原解码器与非均匀缩放恢复中通过。当前桌面目录的外置插件资源已同步，342个发行文件和89项配套资源完整性核对通过；未重编译桌面EXE或重建独立安装程序。
+
+当前没有新增协议或桌面界面。详见 `logs/transport-perf-20261108/` 的模拟编码、真实CRC吞吐与几何解码验证。本机插件安装后需要游戏内 `/reload`。独立安装EXE需在下次完整构建时纳入此后续优化。
 
 ## 9. 数据、密钥与备份
 
@@ -371,6 +407,7 @@ SQLite 正在写入时不能只复制主库文件。执行恢复前停止写入�
 - [装备决策权](airi/docs/ai/adr/wow-equipment-authority.md) 与 [游戏提醒决策权](airi/docs/ai/adr/wow-game-reminder-authority.md)
 - [背包银行持久化](airi/docs/ai/adr/wow-item-storage.md) 与 [角色档案](airi/docs/ai/adr/wow-companion-character-archive.md)
 - [主动互动](airi/docs/ai/adr/wow-companion-proactive-speech.md)、[节奏](airi/docs/ai/adr/wow-companion-rhythm.md) 与 [用户称呼](airi/docs/ai/adr/wow-companion-player-address.md)
+- [人性化交互设计方案](airi/docs/ai/adr/wow-companion-humanlike-interaction.md)：待用户评审的提案，不能当成已实施规则。
 - [截图辅助](airi/docs/ai/adr/wow-screen-assist.md)、[固定用户目录](airi/docs/ai/adr/wow-companion-stable-profile.md) 与 [备份](airi/docs/ai/adr/wow-companion-backup.md)
 - [CurseForge 插件中心](airi/docs/ai/adr/wow-addons-curseforge.md) 与 [安装统计](airi/docs/ai/adr/wow-installation-statistics.md)
 - [用户说明 HTML](WOWAddons/wow-companion-implementation.html) 与 [插件桥接说明](WOWAddons/WoWCompanionBridge/README.md)

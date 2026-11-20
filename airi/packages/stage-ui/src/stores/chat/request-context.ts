@@ -18,6 +18,8 @@ export interface ChatRequestImage {
 export interface ChatRequestObservation {
   text: string
   images?: readonly ChatRequestImage[]
+  /** Suppress selected text observations for this provider request only. */
+  omitSources?: readonly string[]
 }
 
 /** Returns temporary evidence. A text result carries no images. A missing result leaves the request unchanged. */
@@ -61,6 +63,7 @@ export class ChatRequestContexts {
       return { conversation, imageDescriptions }
     const entries: { source: string, text: string }[] = []
     const images: Extract<UserTurn['content'][number], { type: 'image' }>[] = []
+    const omittedSources = new Set<string>()
     // Registration changes during a read apply to the next turn, never a second read in this turn.
     for (const [source, contributor] of [...this.contributors]) {
       if (this.contributors.get(source) !== contributor)
@@ -71,6 +74,8 @@ export class ChatRequestContexts {
       if (result === undefined || this.contributors.get(source) !== contributor)
         continue
       const observation = typeof result === 'string' ? { text: result } : result
+      for (const omitted of observation.omitSources ?? [])
+        omittedSources.add(omitted)
       if (observation.text.trim())
         entries.push({ source, text: observation.text })
       if (observation.images) {
@@ -80,12 +85,23 @@ export class ChatRequestContexts {
         }
       }
     }
-    if (!entries.length && !images.length)
+    if (!entries.length && !images.length && !omittedSources.size)
       return { conversation, imageDescriptions }
     const turns = [...conversation.turns]
-    const content: UserTurn['content'] = [...turn.content, ...images]
-    if (entries.length)
-      content.push({ type: 'runtime-context', entries })
+    const content: UserTurn['content'] = []
+    for (const part of turn.content) {
+      if (part.type !== 'runtime-context' || !omittedSources.size) {
+        content.push(part)
+        continue
+      }
+      const retained = part.entries.filter(entry => !omittedSources.has(entry.source))
+      if (retained.length)
+        content.push({ ...part, entries: retained })
+    }
+    content.push(...images)
+    const retained = entries.filter(entry => !omittedSources.has(entry.source))
+    if (retained.length)
+      content.push({ type: 'runtime-context', entries: retained })
     turns[index] = { ...turn, content }
     return { conversation: { ...conversation, turns }, imageDescriptions }
   }

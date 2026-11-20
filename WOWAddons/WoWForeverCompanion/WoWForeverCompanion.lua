@@ -13,6 +13,8 @@ local cachedFrame, cachedSeq, cachedTick
 local bootstrap, bootstrapTick, gearOwner
 local locationKey, pendingLocation, locationTick
 local pendingHealth, healthTick, healthID, lowThisFight = nil, nil, 0, false
+local pendingWarning, warningTick, warningGUID
+local lowFrequency, characterArchive = ns.LowFrequency, ns.CharacterArchive
 local savingHistory = false
 local loginProgress
 local hasFullPlayerName = false
@@ -108,7 +110,12 @@ local function CancelRefreshTimers()
     refreshTimers = {}
 end
 
-local function Export()
+local function CurrentPosition()
+    return { map = state.map, zone = state.zone, instanceType = state.instanceType,
+        instanceID = state.instanceID, px = state.px, py = state.py }
+end
+
+local function Export(final)
     if not ready or not state or state.name == "" then return end
     -- The disk snapshot follows local observations. Only the login burst sends full character data.
     if cachedSeq ~= state.seq or cachedTick ~= state.tick then
@@ -123,8 +130,10 @@ local function Export()
             and state.tick - locationTick < 8 and pendingLocation or nil
         local health = pendingHealth and state.online and state.combat and not state.dead
             and state.tick - healthTick < 8 and pendingHealth or nil
-        local newActivity = locationTick == state.tick or healthTick == state.tick
-        local fullFrame = not (position or health) or (not newActivity and state.tick % 2 == 0)
+        local warning = pendingWarning and state.tick - warningTick < 8 and pendingWarning or nil
+        if warning then position = CurrentPosition() end
+        local newActivity = locationTick == state.tick or healthTick == state.tick or (warning and warningTick == state.tick)
+        local fullFrame = not (position or health or warning) or (not newActivity and state.tick % 2 == 0)
         if bootstrap and state.online and state.tick - bootstrapTick < 12
             and (bootstrapTick == state.tick or fullFrame) then
             -- Repeat full metadata for screen calibration. Scene changes still describe the current scene.
@@ -135,14 +144,14 @@ local function Export()
             end
             cachedFrame = Protocol.Encode(frame)
         elseif bootstrap then
-            cachedFrame = Protocol.EncodePulse(state, position, health)
+            cachedFrame = Protocol.EncodePulse(state, position, health, warning)
         end
         -- The client flushes these on reload/logout, never as live disk writes.
         db.snapshot, db.snapshotJSON = clean, payload
-        if ns.OfflineHistory then ns.OfflineHistory.Observe(clean, payload, savingHistory) end
+        if ns.OfflineHistory then ns.OfflineHistory.Observe(clean, payload, savingHistory, final) end
         db.updatedAt = Number(Call(GetServerTime) or Call(time), 0)
     elseif savingHistory and ns.OfflineHistory then
-        ns.OfflineHistory.Observe(db.snapshot, currentJSON, true)
+        ns.OfflineHistory.Observe(db.snapshot, currentJSON, true, final)
     end
     if cachedFrame then Telemetry.Render(Transfer.Current(cachedFrame)) end
 end
@@ -225,8 +234,7 @@ local function ObserveActivity()
         local key = state.map .. ":" .. state.instanceType .. ":" .. (state.instanceID or "")
         if key ~= locationKey then
             if locationKey or bootstrap then
-                pendingLocation = { map = state.map, zone = state.zone, instanceType = state.instanceType,
-                    instanceID = state.instanceID, px = state.px, py = state.py }
+                pendingLocation = CurrentPosition()
                 locationTick, changed = state.tick, true
             end
             locationKey = key
@@ -246,7 +254,8 @@ local function ObserveActivity()
     return changed
 end
 
-local function Sample()
+local function Sample(preserveScene)
+    preserveScene = preserveScene == true
     if not ready then return end
     local guid = Text(Call(UnitGUID, "player"), nil, 48)
     SamplePlayerName(guid)
@@ -260,7 +269,8 @@ local function Sample()
     -- Never infer faction from race or retain either identity field when its API is unavailable.
     state.faction = Protocol.Faction(Call(UnitFactionGroup, "player"))
     state.race = Protocol.Race(Call(UnitRace, "player"))
-    local level = Number(Call(UnitLevel, "player"), state.level or 0, 255)
+    local sampledLevel = Number(Call(UnitLevel, "player"), nil, 255)
+    local level = sampledLevel or state.level or 0
     if pendingLevel then level = math.max(level, pendingLevel) end
     state.level = level
     local ok, _, class = pcall(UnitClass, "player")
@@ -270,25 +280,63 @@ local function Sample()
     local getSpecInfo = specAPI and specAPI.GetSpecializationInfo or GetSpecializationInfo
     local specIndex = Number(Call(getSpec), nil, 10)
     state.spec = specIndex and specIndex > 0 and Number(Call(getSpecInfo, specIndex), 0, 65535) or 0
-    local mapID = C_Map and Number(Call(C_Map.GetBestMapForUnit, "player"), nil, 10000000)
-    local info = mapID and Call(C_Map.GetMapInfo, mapID)
-    local readableInfo = type(info) == "table" and (not canaccesstable or canaccesstable(info))
-    local mapName = readableInfo and Public(info.name) or nil
-    local zone = Text(mapName, nil, 96) or Text(Call(GetRealZoneText), nil, 96) or Text(Call(GetZoneText), nil, 96)
-    state.map, state.zone = mapID or 0, zone or L("当前位置暂不可用")
-    state.px, state.py = SamplePosition(mapID)
-    state.instanceType, state.instanceID = SampleInstance()
+    if not preserveScene then
+        local mapID = C_Map and Number(Call(C_Map.GetBestMapForUnit, "player"), nil, 10000000)
+        local info = mapID and Call(C_Map.GetMapInfo, mapID)
+        local readableInfo = type(info) == "table" and (not canaccesstable or canaccesstable(info))
+        local mapName = readableInfo and Public(info.name) or nil
+        local zone = Text(mapName, nil, 96) or Text(Call(GetRealZoneText), nil, 96) or Text(Call(GetZoneText), nil, 96)
+        state.map, state.zone = mapID or 0, zone or L("当前位置暂不可用")
+        state.px, state.py = SamplePosition(mapID)
+        state.instanceType, state.instanceID = SampleInstance()
+    end
     state.online, state.combat, state.dead = online, combat, dead
-    if ns.ExplorationWarning then ns.ExplorationWarning.Observe(state) end
-    local activityChanged = ObserveActivity()
+    if pendingWarning and (not online or dead or not guid or guid ~= warningGUID
+        or state.map ~= pendingWarning.map or state.instanceType ~= "none") then
+        pendingWarning = nil
+    end
+    local warning = ns.ExplorationWarning and ns.ExplorationWarning.Observe(state, guid and sampledLevel)
+    if warning then pendingWarning, warningTick, warningGUID = warning, state.tick, guid end
+    local activityChanged = not preserveScene and ObserveActivity()
     local seq, tick = state.seq, state.tick
     state.seq, state.tick = 0, 0
     local businessJSON = Protocol.JSON(state)
     state.seq, state.tick = seq, tick
-    if activityChanged or businessJSON ~= lastBusinessJSON then
+    if activityChanged or warning or businessJSON ~= lastBusinessJSON then
         lastBusinessJSON = businessJSON
         state.seq = state.seq + 1
         Export()
+    end
+end
+
+local function FlushCharacter()
+    if not online then return end
+    local guid = Text(Call(UnitGUID, "player"), nil, 48)
+    if not guid or (state.guid ~= "" and guid ~= state.guid) then return end
+    -- The client may revoke world access before PLAYER_LOGOUT, so capture before leaving.
+    Sample(true)
+    Equipment.Flush()
+    ns.ItemStorage.Flush()
+    ns.Inventory.Flush()
+    ns.Quests.Flush()
+    ns.Talents.Flush()
+    ns.WeaponSkills.Flush()
+    if lowFrequency then lowFrequency.Flush() end
+    if characterArchive then characterArchive.Flush() end
+    local observedAt = Number(Call(GetServerTime), nil, 4102444800)
+    if not observedAt or observedAt == 0 then return end
+    local attributes = ns.CharacterAttributes and ns.CharacterAttributes.Capture()
+    local profile = ns.CharacterProfile and ns.CharacterProfile.Capture(ns.OfflineHistory.Read(guid, "profile"))
+    ns.OfflineHistory.Save(guid, "attributes", attributes and { data = attributes, observedAt = observedAt })
+    ns.OfflineHistory.Save(guid, "profile", profile and { data = profile, observedAt = observedAt })
+    local spellbook = ns.CharacterSpellbook and ns.CharacterSpellbook.Capture(state.spec)
+    local skillLines = ns.CharacterSkillLines and ns.CharacterSkillLines.Capture(ns.OfflineHistory.Read(guid, "skillLines"))
+    ns.OfflineHistory.Save(guid, "spellbook", spellbook and { data = spellbook, observedAt = observedAt })
+    if skillLines then
+        local languages = skillLines.languages
+        skillLines.languages = nil
+        ns.OfflineHistory.Save(guid, "skillLines", skillLines.entries and { data = skillLines, observedAt = observedAt })
+        ns.OfflineHistory.Save(guid, "languages", languages and { data = languages, observedAt = observedAt })
     end
 end
 
@@ -323,7 +371,9 @@ local function Initialize()
     state = { v = 3, session = string.format("%d-%d-%d", timestamp, uptime, math.random(100000, 999999)), seq = 0, tick = 0, guid = "", name = "", realm = "", level = 0, class = "", spec = 0, map = 0, zone = L("当前位置暂不可用"), combat = false, dead = false, online = false }
     Telemetry.Initialize(config)
     Transfer.SetMacroState(state)
-    if ns.Calendar then ns.Calendar.Initialize(db) end
+    if lowFrequency then lowFrequency.Initialize(state, db) end
+    if characterArchive and lowFrequency then characterArchive.Initialize(state, db, lowFrequency.Submit, lowFrequency.SaveLocal) end
+    if ns.Calendar then ns.Calendar.Initialize(db, lowFrequency and lowFrequency.Submit, lowFrequency and lowFrequency.interval) end
     if ns.GroupBuffs then ns.GroupBuffs.Initialize() end
     ConfirmEquip.Initialize(state, config, Transfer.AddSwap, Print, function(offer)
         Transfer.SetOffer(offer)
@@ -340,9 +390,14 @@ local function Initialize()
         if gearOwner ~= record.guid and Transfer.SetGear(record) then gearOwner = record.guid end
     end, Transfer.AddLoot)
     ns.ItemStorage.Initialize(state, db)
-    ns.Inventory.Initialize(state, Transfer.SetInventory)
-    ns.Quests.Initialize(state, Transfer.SetQuests, Transfer.QuestsBusy)
-    ns.Talents.Initialize(state, Transfer.SetTalents, Transfer.TalentsBusy)
+    local interval = lowFrequency and lowFrequency.interval
+    ns.Inventory.Initialize(state, Transfer.SetInventory, interval)
+    ns.Quests.Initialize(state, function(record)
+        return Transfer.SetQuests(record, interval ~= nil)
+    end, Transfer.QuestsBusy, interval)
+    ns.Talents.Initialize(state, function(record)
+        return Transfer.SetTalents(record, interval ~= nil)
+    end, Transfer.TalentsBusy, interval ~= nil)
     ns.WeaponSkills.Initialize(state, db, Transfer.SetWeaponSkills, Transfer.WeaponSkillsBusy)
     ready = true
     ticker = C_Timer.NewTicker(1, function()
@@ -354,6 +409,7 @@ local function Initialize()
         ns.Quests.Tick()
         ns.Talents.Tick()
         ns.WeaponSkills.Tick()
+        if lowFrequency then lowFrequency.Tick() end
         Export()
     end)
     -- Keep business heartbeats at one second while each data frame remains visible for 250 ms.
@@ -365,6 +421,10 @@ local function Initialize()
 end
 
 local events = CreateFrame("Frame")
+pcall(events.RegisterEvent, events, "UPDATE_INSTANCE_INFO")
+if characterArchive then
+    for event in pairs(characterArchive.Events) do pcall(events.RegisterEvent, events, event) end
+end
 for _, event in ipairs({ "UNIT_HEALTH", "UNIT_MAXHEALTH" }) do pcall(events.RegisterEvent, events, event) end
 for _, event in ipairs({ "BANKFRAME_OPENED", "BANKFRAME_CLOSED", "PLAYERBANKSLOTS_CHANGED", "PLAYERREAGENTBANKSLOTS_CHANGED", "BANK_TABS_CHANGED", "PLAYER_ACCOUNT_BANK_TAB_SLOTS_CHANGED" }) do pcall(events.RegisterEvent, events, event) end
 for _, event in ipairs({ "ADDON_LOADED", "PLAYER_ENTERING_WORLD", "PLAYER_LEAVING_WORLD", "PLAYER_LOGOUT", "PLAYER_MONEY", "PLAYER_LEVEL_UP", "ZONE_CHANGED_NEW_AREA", "ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "PLAYER_SPECIALIZATION_CHANGED", "NEUTRAL_FACTION_SELECT_RESULT", "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "PLAYER_DEAD", "PLAYER_ALIVE", "PLAYER_UNGHOST", "UI_SCALE_CHANGED", "DISPLAY_SIZE_CHANGED", "BAG_UPDATE_DELAYED", "PLAYER_EQUIPMENT_CHANGED", "ITEM_PUSH", "GET_ITEM_INFO_RECEIVED", "ITEM_DATA_LOAD_RESULT" }) do events:RegisterEvent(event) end
@@ -381,6 +441,11 @@ events:SetScript("OnEvent", function(_, event, arg1, arg2)
         if Public(arg1) == "player" and online and combat and not dead and not lowThisFight then Sample() end
         return
     end
+    if (event == "PLAYER_LEAVING_WORLD" or event == "PLAYER_LOGOUT") and ns.OfflineHistory then FlushCharacter() end
+    if lowFrequency then lowFrequency.OnEvent(event) end
+    if characterArchive then characterArchive.OnEvent(event, arg1, arg2) end
+    if event == "UPDATE_INSTANCE_INFO" or event == "ACHIEVEMENT_EARNED" or event == "RECEIVED_ACHIEVEMENT_LIST"
+        or event == "MAP_EXPLORATION_UPDATED" or event == "NEW_RECIPE_LEARNED" or event:sub(1, 12) == "TRADE_SKILL_" then return end
     ns.ItemStorage.OnEvent(event)
     ns.Inventory.OnEvent(event)
     ns.Quests.OnEvent(event, arg1)
@@ -397,6 +462,7 @@ events:SetScript("OnEvent", function(_, event, arg1, arg2)
         if type(isCombat) == "boolean" then combat = isCombat end
         if type(isDead) == "boolean" then dead = isDead end
         ScheduleRefresh()
+        if characterArchive then characterArchive.Enter() end
         Equipment.OnEvent(event, arg1, arg2)
     elseif event == "PLAYER_LEAVING_WORLD" or event == "PLAYER_LOGOUT" then
         if event == "PLAYER_LOGOUT" then loginProgress = nil end
@@ -404,7 +470,7 @@ events:SetScript("OnEvent", function(_, event, arg1, arg2)
         CancelRefreshTimers()
         online = false
         Sample()
-        Export()
+        Export(event == "PLAYER_LOGOUT")
         savingHistory = false
     elseif event == "BAG_UPDATE_DELAYED" or event == "PLAYER_EQUIPMENT_CHANGED" or event == "ITEM_PUSH" or event == "GET_ITEM_INFO_RECEIVED" or event == "ITEM_DATA_LOAD_RESULT" then return
     elseif event == "PLAYER_MONEY" then Sample()

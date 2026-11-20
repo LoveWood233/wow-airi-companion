@@ -11,6 +11,7 @@ import { errorMessageFrom } from '@moeru/std'
 import { array, check, literal, maxLength, minLength, object, parse, pipe, regex, safeParse, string } from 'valibot'
 
 import { snapshotSchema } from '../../../shared/wow-companion'
+import { matchingArchiveRecord } from '../../../shared/wow-companion-character-archive'
 import { companionError } from '../../../shared/wow-companion-errors'
 import { accountNameSchema, copperSchema, moneyIdSchema } from '../../../shared/wow-companion-gold'
 
@@ -66,6 +67,7 @@ export class CompanionGoldLedger {
   private blocked = false
   private dirty = false
   private lastSavedAt = 0
+  private lastMoneyObservation: string | undefined
   private loading: Promise<void> | undefined
   private queue: Promise<void> = Promise.resolve()
 
@@ -128,8 +130,26 @@ export class CompanionGoldLedger {
       let changed = false
       if (error === null && bridge?.error === null && bridge.status === 'live' && bridge.source === 'screen') {
         const result = safeParse(snapshotSchema, bridge.snapshot)
-        if (result.success && result.output.online && result.output.copper !== null && result.output.guid)
-          changed = this.accept(result.output, result.output.copper)
+        if (result.success && result.output.online && result.output.guid) {
+          const snapshot = result.output
+          const progress = matchingArchiveRecord(bridge.archive?.progress, snapshot)
+          const money = progress?.data
+          if (progress && money?.copper !== undefined && money.earned !== undefined && money.spent !== undefined) {
+            const key = JSON.stringify([snapshot.account, snapshot.guid, snapshot.session, progress.id])
+            if (key !== this.lastMoneyObservation) {
+              changed = this.accept({ ...snapshot, moneyEpoch: money.moneyEpoch ?? snapshot.moneyEpoch, earned: Number(money.earned), spent: Number(money.spent) }, Number(money.copper), progress.observedAt * 1000)
+              this.lastMoneyObservation = key
+            }
+          }
+          else if (snapshot.copper !== null) {
+            const observedAt = snapshot.profileObservedAt
+            const key = JSON.stringify([snapshot.account, snapshot.guid, snapshot.session, 'login'])
+            if (observedAt === undefined || key !== this.lastMoneyObservation) {
+              changed = this.accept(snapshot, snapshot.copper, observedAt)
+              this.lastMoneyObservation = key
+            }
+          }
+        }
       }
       await this.save(changed || this.storageError !== null)
     })
@@ -178,8 +198,7 @@ export class CompanionGoldLedger {
     }
   }
 
-  private accept(snapshot: InferOutput<typeof snapshotSchema>, copper: number) {
-    const now = Date.now()
+  private accept(snapshot: InferOutput<typeof snapshotSchema>, copper: number, now = Date.now()) {
     let account = this.ledger.accounts.find(account => account.account === snapshot.account)
     if (!account) {
       account = { account: snapshot.account, name: '', characters: [] }

@@ -5,7 +5,7 @@ import type { QuestAdviceCandidate } from '../../shared/wow-companion-quests'
 
 import { array, finite, integer, maxLength, minValue, number, object, pipe, safeParse, string } from 'valibot'
 
-import { hasFreshCompanionObservation } from '../utils/wow-companion-observation'
+import { hasFreshCompanionObservation, usableCharacterObservation } from '../utils/wow-companion-observation'
 import { canInteract } from './wow-companion-idle'
 
 const receiptsSchema = pipe(array(object({ key: pipe(string(), maxLength(1024)), attemptedAt: pipe(number(), finite(), integer(), minValue(0)) })), maxLength(1024))
@@ -39,7 +39,7 @@ function currentQuests(state: CompanionState, now: number) {
   const quests = state.bridge.quests
   const snapshot = state.bridge.snapshot
   if (state.bridge.questsError || !quests || quests.session !== snapshot.session || quests.guid !== snapshot.guid
-    || quests.observedAt <= 0 || now - quests.observedAt * 1000 > 180_000 || quests.observedAt * 1000 - now > 5000
+    || !usableCharacterObservation(quests.observedAt, now, state.bridge.lowFrequency)
     || !quests.advice || quests.advice.playerLevel !== snapshot.level) {
     return undefined
   }

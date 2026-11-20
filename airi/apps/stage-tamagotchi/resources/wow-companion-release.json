@@ -1,12 +1,12 @@
 {
   "format": "wow-companion-release",
   "version": 1,
-  "releaseVersion": "2.27.1",
+  "releaseVersion": "2.28.0",
   "appVersion": "0.12.0-beta.5",
-  "bridgeVersion": "2.25.0",
+  "bridgeVersion": "2.26.0",
   "addons": {
-    "retail": "2.25.0",
-    "forever": "1.21.0"
+    "retail": "2.26.0",
+    "forever": "1.22.0"
   },
   "python": {
     "minimum": "3.10",
@@ -15,18 +15,43 @@
   "files": [
     {
       "path": "wow-companion-addons/WoWMapCompanion/Calendar.lua",
-      "bytes": 5719,
-      "sha256": "79b1036d02c1d0c110e00147fe6bbb78c953fb1523036f197a82c4f180729533"
+      "bytes": 6393,
+      "sha256": "1d2616ba4d04b0e4dd2ac2fa66e9b72e590aed83416cb5b0a559c952b8cd2693"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/CharacterArchive.lua",
+      "bytes": 20776,
+      "sha256": "d2f8c67c91baf5fd69d8fd9336ad16eb49b2cd5acc91ce7e40a303f04fbf978a"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/CharacterAttributes.lua",
+      "bytes": 4861,
+      "sha256": "4debbb06095feef7ae8eca6c32ee212864b62d156c3bee794d9e7a0d28be8edb"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/CharacterProfile.lua",
+      "bytes": 6051,
+      "sha256": "abbff296e3d095998e7f636997cdc689c303462fa319afabf37f6c3c010918ef"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/CharacterSkillLines.lua",
+      "bytes": 4512,
+      "sha256": "9956f4509016e5773d8c4ca071ae330a569302d4beadb55c6f8f0f85736e6505"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/CharacterSpellbook.lua",
+      "bytes": 5511,
+      "sha256": "0c71db3c71ce8acf41361fb23a2f29ee8a020618f4aa0e5b37beb57a2ca68c5a"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/ConfirmEquip.lua",
-      "bytes": 25443,
-      "sha256": "a7493e07e518bcf0c9c338d58f026e23a6f107bc88358cc53eda3ed55e2dc585"
+      "bytes": 25484,
+      "sha256": "605492b1d59844798bef3ce0a36195d7d71224ef10f6718d1362aca5889cc073"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/Equipment.lua",
-      "bytes": 23920,
-      "sha256": "200002fe28d27ade8d0f7517703928af0b47a996eba9e30b74ca493ffa1b0b5d"
+      "bytes": 25492,
+      "sha256": "5e1655f8366e138b7b6f98772fcda0a0667bbf3b6aeef89699a12637aada4c45"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/EquipmentCompare.lua",
@@ -40,18 +65,23 @@
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/Inventory.lua",
-      "bytes": 4768,
-      "sha256": "bab38f8600645345dd954ad82ea23314685d17fc48ebd26f5e2976227f54ddbc"
+      "bytes": 5089,
+      "sha256": "ce355ae5c7f0ebb4e73ed78b3afa6a91d5ff0e999696d3887c4d7720e1e49296"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/ItemStorage.lua",
-      "bytes": 12655,
-      "sha256": "c4d8566d66114408466a3d46c9fcb13c15109fdce359b469b54ac46a1849797f"
+      "bytes": 19936,
+      "sha256": "9bfd437479d96805d36e01ba93888dbb2e7ee5b5a1051050dfe402d4e6764d97"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/Localization.lua",
-      "bytes": 97246,
-      "sha256": "e702994227fe3958be62e146503bbeb43e7099395ff3137ee659637beccd097f"
+      "bytes": 98640,
+      "sha256": "477e331a2dc74663e286ea4b69949451590c3262279c1ef3b39afefba1b5e486"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/LowFrequency.lua",
+      "bytes": 11620,
+      "sha256": "e7e507cd8709adb658b069508da261905347f2bf213754408cd027add480c5ac"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/Money.lua",
@@ -60,73 +90,103 @@
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/OfflineHistory.lua",
-      "bytes": 5622,
-      "sha256": "183e3cc7d406177124474741f94bcf69f57c6f0a33c7a3ae8546bc5b9b3b55ed"
+      "bytes": 9918,
+      "sha256": "58dba0b03710b7753ce1c8f35a3277ff28a88e776394ebce9aa93a3615904b6d"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/Protocol.lua",
-      "bytes": 9162,
-      "sha256": "34e04b9e39c36f4efd7f82d339e84d431b4980449a278cfde83233e420095a36"
+      "bytes": 10721,
+      "sha256": "87f2bffc24a2ed59b475577973f86f1a9437250565b165fc42634d88a6bd2b48"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/Quests.lua",
-      "bytes": 10990,
-      "sha256": "5894ab78d3501278a9656aefe2e322df4850110f218e1ef29ba9ff24b8352361"
+      "bytes": 12185,
+      "sha256": "2c427b47e2b047b48ac38baf4e469d917241346f828bda0c471ac5ef412b6019"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/Talents.lua",
-      "bytes": 15258,
-      "sha256": "5fbd1e397f442dfc8121b085d5722895f12ea5bb769ecfd4a0badf4d8a4fa18e"
+      "bytes": 17116,
+      "sha256": "c05c2c6e4431035e4daa398c697d38bef05ef825755110f1d2dab8b5332b4934"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/Telemetry.lua",
-      "bytes": 3631,
-      "sha256": "92cc380cef1d5e33db52fd1a034a699ab0b44886dca2e3ad9af97a650d5a282e"
+      "bytes": 4700,
+      "sha256": "69f26e2d92484332bda9d38808ee6f81185c15d20a697e9c3bb014de0d5776a4"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/Transfer.lua",
-      "bytes": 40716,
-      "sha256": "0d0b36fe8ecbd1e84f673adb8449d317d2d5299d137df8a3739e48b33e66543a"
+      "bytes": 49829,
+      "sha256": "b03e85ef91aaf0fccde2fc84cddb65cfb05a5bf49d2a8682e10392c90b26a8e6"
+    },
+    {
+      "path": "wow-companion-addons/WoWMapCompanion/WeaponSkills.lua",
+      "bytes": 7016,
+      "sha256": "06ed0a10aa4af5d41106b54dfb2a757fd4f2fd11fbfaf16a6bd8a03c8702605b"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/WoWMapCompanion.lua",
-      "bytes": 17421,
-      "sha256": "7d06626f8fdc3f9de9b74528647cb7303a2f50c88a2a39077a9f96550b518c96"
+      "bytes": 25790,
+      "sha256": "3f1e2af348646b4e3dedfd1dfcf957911eaf13466da1d53eba46b7e34c692336"
     },
     {
       "path": "wow-companion-addons/WoWMapCompanion/WoWMapCompanion.toc",
-      "bytes": 1924,
-      "sha256": "30935b946ecaa19e4664eeff6447d8d2bf9a43c267657338e9c8635011aab062"
+      "bytes": 2071,
+      "sha256": "b38e228dd63c4b5c3e7a75de784ce7fb8cc64ee82e9d7cd6cbe9e0d17341585d"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/Calendar.lua",
-      "bytes": 5719,
-      "sha256": "79b1036d02c1d0c110e00147fe6bbb78c953fb1523036f197a82c4f180729533"
+      "bytes": 6393,
+      "sha256": "1d2616ba4d04b0e4dd2ac2fa66e9b72e590aed83416cb5b0a559c952b8cd2693"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/CharacterArchive.lua",
+      "bytes": 20776,
+      "sha256": "d2f8c67c91baf5fd69d8fd9336ad16eb49b2cd5acc91ce7e40a303f04fbf978a"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/CharacterAttributes.lua",
+      "bytes": 4861,
+      "sha256": "4debbb06095feef7ae8eca6c32ee212864b62d156c3bee794d9e7a0d28be8edb"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/CharacterProfile.lua",
+      "bytes": 6051,
+      "sha256": "abbff296e3d095998e7f636997cdc689c303462fa319afabf37f6c3c010918ef"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/CharacterSkillLines.lua",
+      "bytes": 4512,
+      "sha256": "9956f4509016e5773d8c4ca071ae330a569302d4beadb55c6f8f0f85736e6505"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/CharacterSpellbook.lua",
+      "bytes": 5511,
+      "sha256": "0c71db3c71ce8acf41361fb23a2f29ee8a020618f4aa0e5b37beb57a2ca68c5a"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/ConfirmEquip.lua",
-      "bytes": 25443,
-      "sha256": "a7493e07e518bcf0c9c338d58f026e23a6f107bc88358cc53eda3ed55e2dc585"
+      "bytes": 25484,
+      "sha256": "605492b1d59844798bef3ce0a36195d7d71224ef10f6718d1362aca5889cc073"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/Equipment.lua",
-      "bytes": 23920,
-      "sha256": "200002fe28d27ade8d0f7517703928af0b47a996eba9e30b74ca493ffa1b0b5d"
+      "bytes": 25872,
+      "sha256": "abf61d910b396d3dacf6ea1159b7c8244017fd43f5749b975987b9b0756b4d4b"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/EquipmentCompare.lua",
-      "bytes": 19847,
-      "sha256": "5ff511acccb40f04e8b41eb4efb1a31ba97929cb769345876d362acb5f2f20de"
+      "bytes": 20128,
+      "sha256": "44466a24001c38f2e3eaaa01377d64cebab6357a71ff857403cc485f3fa875df"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/ExplorationLevels.lua",
-      "bytes": 2508,
-      "sha256": "3623ef60f8974a1abbcdc4e52103f46182f62656bffeb95e2fa00ab03c138cbb"
+      "bytes": 2533,
+      "sha256": "2f8bea89f8e584ee37333f3795b898026d35ce9b54e4e4a4dcff0fdf38634288"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/ExplorationWarning.lua",
-      "bytes": 2524,
-      "sha256": "0903c6f2b8dcd12955165f353e79b7d022ab0a30b822400f915439036cf693fd"
+      "bytes": 2052,
+      "sha256": "2a266dca1bb5bac7566690ec3e0d4a3990eb3fdad11b700f0b749c3bd1c147ed"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/GroupBuffs.lua",
@@ -135,18 +195,23 @@
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/Inventory.lua",
-      "bytes": 4768,
-      "sha256": "bab38f8600645345dd954ad82ea23314685d17fc48ebd26f5e2976227f54ddbc"
+      "bytes": 5089,
+      "sha256": "ce355ae5c7f0ebb4e73ed78b3afa6a91d5ff0e999696d3887c4d7720e1e49296"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/ItemStorage.lua",
-      "bytes": 12655,
-      "sha256": "c4d8566d66114408466a3d46c9fcb13c15109fdce359b469b54ac46a1849797f"
+      "bytes": 19936,
+      "sha256": "9bfd437479d96805d36e01ba93888dbb2e7ee5b5a1051050dfe402d4e6764d97"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/Localization.lua",
-      "bytes": 97246,
-      "sha256": "e702994227fe3958be62e146503bbeb43e7099395ff3137ee659637beccd097f"
+      "bytes": 98640,
+      "sha256": "477e331a2dc74663e286ea4b69949451590c3262279c1ef3b39afefba1b5e486"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/LowFrequency.lua",
+      "bytes": 11620,
+      "sha256": "e7e507cd8709adb658b069508da261905347f2bf213754408cd027add480c5ac"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/Money.lua",
@@ -155,53 +220,58 @@
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/OfflineHistory.lua",
-      "bytes": 5622,
-      "sha256": "183e3cc7d406177124474741f94bcf69f57c6f0a33c7a3ae8546bc5b9b3b55ed"
+      "bytes": 9918,
+      "sha256": "58dba0b03710b7753ce1c8f35a3277ff28a88e776394ebce9aa93a3615904b6d"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/Protocol.lua",
-      "bytes": 9162,
-      "sha256": "a66362e29adc11ba12c2d53f6b5077b9f06e7518209cba0bb689e97bb7d6dcf9"
+      "bytes": 11905,
+      "sha256": "50d80f0ebeb8b9af92162c74f54c7e85bee924233ba262258dfa7b993587c9d4"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/Quests.lua",
-      "bytes": 10990,
-      "sha256": "5894ab78d3501278a9656aefe2e322df4850110f218e1ef29ba9ff24b8352361"
+      "bytes": 12185,
+      "sha256": "2c427b47e2b047b48ac38baf4e469d917241346f828bda0c471ac5ef412b6019"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/Talents.lua",
-      "bytes": 15258,
-      "sha256": "5fbd1e397f442dfc8121b085d5722895f12ea5bb769ecfd4a0badf4d8a4fa18e"
+      "bytes": 17116,
+      "sha256": "c05c2c6e4431035e4daa398c697d38bef05ef825755110f1d2dab8b5332b4934"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/Telemetry.lua",
-      "bytes": 3638,
-      "sha256": "0ec61eb12f5e07522f3f8b08219e80f839fa7bf5936f416af11954490ef08e86"
+      "bytes": 4707,
+      "sha256": "4d2cf3d4a6077b1739800a179c73bbc892e374df10a1ea448214dfe59e85bc7b"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/Transfer.lua",
-      "bytes": 40716,
-      "sha256": "0d0b36fe8ecbd1e84f673adb8449d317d2d5299d137df8a3739e48b33e66543a"
+      "bytes": 50856,
+      "sha256": "e7dacf68af023c57d6f3c534eae6d695c4e29b67483c4a30dd679990f2d52d5c"
+    },
+    {
+      "path": "wow-companion-addons/WoWForeverCompanion/WeaponSkills.lua",
+      "bytes": 7015,
+      "sha256": "acb079e57e50e9374e4e53977ceb22e5d42d7a7ebc2f24e89f7ce149b402a168"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/WoWForeverCompanion.lua",
-      "bytes": 19424,
-      "sha256": "68aa7c314c6e94bbac763b8e8fcc7217fa783a3c518b2f65a7b21cf31e02db71"
+      "bytes": 30191,
+      "sha256": "daff83f0e24845d87a20df1bded52fba090bd7667b0c0130f40d5fe95fbd168a"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/WoWForeverCompanion.toc",
-      "bytes": 2000,
-      "sha256": "37083f53c0bb65b2c6065d7454ec9a13edc9e27164cd7aa5b0bc212cfb8d28f5"
+      "bytes": 2147,
+      "sha256": "b0cd8428e0853863413307eca4e415f436f171360480ea3136e25fcba90f589a"
     },
     {
       "path": "wow-companion-addons/WoWForeverCompanion/WoWForeverCompanion_Camelot.toc",
-      "bytes": 2000,
-      "sha256": "37083f53c0bb65b2c6065d7454ec9a13edc9e27164cd7aa5b0bc212cfb8d28f5"
+      "bytes": 2147,
+      "sha256": "b0cd8428e0853863413307eca4e415f436f171360480ea3136e25fcba90f589a"
     },
     {
       "path": "wow-companion-bridge/server.py",
-      "bytes": 21650,
-      "sha256": "83a456e939fe248350355aa8234288dddba282f319cd6cfe5b1eb1b7884a1fee"
+      "bytes": 22710,
+      "sha256": "a0c055efd128724c2b3666b922994be1c3487f593e154287fa61b2725ebd732f"
     },
     {
       "path": "wow-companion-bridge/capture.py",
@@ -210,13 +280,13 @@
     },
     {
       "path": "wow-companion-bridge/geometry.py",
-      "bytes": 11290,
-      "sha256": "92af992484ba5cc5fdb9aa6fe397651db073792e263fb1a59cb38369225c4f62"
+      "bytes": 11391,
+      "sha256": "9ccd0ace580f79e6208ab8b3031c67f1af2f8d84b63dcf8fd1fe5f4cf5ba93c5"
     },
     {
       "path": "wow-companion-bridge/connection.py",
-      "bytes": 9913,
-      "sha256": "4931b3e8e9a2a3ef042efdd63b9cc85a202306233c359c77944b74f1ff8e397e"
+      "bytes": 11228,
+      "sha256": "f2fd927339792ef2585fa2a3f3a895cd19624c2c921172e542718367bd102d06"
     },
     {
       "path": "wow-companion-bridge/window.py",
@@ -225,13 +295,13 @@
     },
     {
       "path": "wow-companion-bridge/protocol.py",
-      "bytes": 51861,
-      "sha256": "02b0016cabb2b7db92f1daaad93ed6b02e200775dd269eea298212846c141eda"
+      "bytes": 65991,
+      "sha256": "6280df7b7f27b36d7ed8ea46dfbe252827648710617958cc3df41cf0c91c0f52"
     },
     {
       "path": "wow-companion-bridge/state.py",
-      "bytes": 66643,
-      "sha256": "d2ed6df18ff4deb7f939322474a2e35954f8686109d0d72fefebabdc2ae853cd"
+      "bytes": 90866,
+      "sha256": "46659fd051240366462eb2f0f5cd379671ec1aef412845f099d3b9b019a515aa"
     },
     {
       "path": "wow-companion-bridge/item_storage.py",

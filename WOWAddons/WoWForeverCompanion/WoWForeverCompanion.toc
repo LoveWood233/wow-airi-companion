@@ -30,6 +30,12 @@ Protocol.lua
 Money.lua
 Equipment.lua
 Transfer.lua
+LowFrequency.lua
+CharacterArchive.lua
+CharacterAttributes.lua
+CharacterProfile.lua
+CharacterSpellbook.lua
+CharacterSkillLines.lua
 OfflineHistory.lua
 Inventory.lua
 ItemStorage.lua

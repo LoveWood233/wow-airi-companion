@@ -5,6 +5,12 @@ export function hasRecentCharacterCapture(observedAt: number, now: number): bool
   return observedAt > 0 && Math.abs(now - observedAt) <= 5000
 }
 
+/** Changed-only observations keep their original capture time while the matched game connection stays live. */
+export function usableCharacterObservation(observedAt: number, now: number, lowFrequency?: true, maximumAge = 180_000, futureTolerance = 5000): boolean {
+  const age = now - observedAt * 1000
+  return Number.isSafeInteger(observedAt) && observedAt > 0 && age >= -futureTolerance && (lowFrequency === true || age <= maximumAge)
+}
+
 /**
  * Keeps current observation validity separate from speech eligibility. Manual reads remain available during combat or death.
  * @example hasFreshCompanionObservation(state, Date.now()) // => false when the bridge is disconnected

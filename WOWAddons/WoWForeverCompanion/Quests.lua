@@ -46,10 +46,11 @@ local function Identity()
     return owner and type(owner.session) == "string" and owner.session ~= "" and type(guid) == "string"
         and guid ~= "" and guid == owner.guid and owner.session .. "/" .. guid or nil
 end
+local diskDirty = true
 local function ResetIdentity(key)
     if key ~= identity then
         identity, turnIns, turnInTruncated, lastSignature, lastCapture = key, {}, false, nil, nil
-        levelUpAt, levelUpLevel = nil, nil
+        levelUpAt, levelUpLevel, diskDirty = nil, nil, true
     end
 end
 
@@ -81,22 +82,26 @@ local function Advice(log, observedAt)
     end
     return advice
 end
+local interval, nextCheck
+
 local function Schedule()
     dirty = true
     if not active or timer then return end
+    if interval and nextCheck and (Call(GetTime) or 0) < nextCheck then return end
     timer = C_Timer.NewTimer(0.5, function() Quests.Scan() end)
 end
 
-function Quests.Scan()
-    timer = nil
+function Quests.Scan(diskOnly)
+    if not diskOnly then timer = nil end
     local key = Identity()
     if not active or not key then return end
     ResetIdentity(key)
-    if busy() then dirty = true; return end
+    if not diskOnly and busy() then dirty = true; return end
     local observedAt = Integer(Call(GetServerTime), 1, 4102444800)
     local now = Call(GetTime)
     if not observedAt or type(now) ~= "number" or now ~= now or now < 0 or now > 1e10 then return end
     local api = C_QuestLog or {}
+    local entryLimit, objectiveLimit = diskOnly and 600 or 50, diskOnly and 128 or 8
     local shown, total = Call(api.GetNumQuestLogEntries)
     shown, total = Integer(shown, 0, 1000), Integer(total, 0, 1000)
     local log = { complete = shown ~= nil and total ~= nil, truncated = false, total = total, entries = {} }
@@ -110,7 +115,7 @@ function Quests.Scan()
             if not id or seen[id] then log.complete = false
             else
                 seen[id], found = true, found + 1
-                if #log.entries >= 50 then log.complete, log.truncated = false, true
+                if #log.entries >= entryLimit then log.complete, log.truncated = false, true
                 else
                     local title, cut = Text(info.title, 128)
                     local entry = { questID = id, title = title, level = Integer(info.level, 0, 255), header = header,
@@ -120,8 +125,8 @@ function Quests.Scan()
                     local objectives = Table(Call(api.GetQuestObjectives, id))
                     if not objectives then entry.objectivesComplete = false
                     else
-                        if #objectives > 8 then entry.objectivesComplete, log.truncated = false, true end
-                        for objectiveIndex = 1, math.min(#objectives, 8) do
+                        if #objectives > objectiveLimit then entry.objectivesComplete, log.truncated = false, true end
+                        for objectiveIndex = 1, math.min(#objectives, objectiveLimit) do
                             local value = Table(objectives[objectiveIndex])
                             if not value then entry.objectivesComplete = false
                             else
@@ -157,12 +162,21 @@ function Quests.Scan()
         end
         table.sort(completion.ids)
         completion.total = #completion.ids
-        while #completion.ids > 512 do table.remove(completion.ids); completion.truncated = true end
+        if not diskOnly then
+            while #completion.ids > 512 do table.remove(completion.ids); completion.truncated = true end
+        end
         completion.complete = completion.complete and not completion.truncated
     elseif #turnIns > 0 then completion.source = "session-events" end
     if key ~= Identity() then return end
     local record = { v = 1, id = 1, session = owner.session, guid = owner.guid, observedAt = 1, source = "quest-log", log = log, completion = completion,
         advice = Advice(log, observedAt) }
+    if diskOnly then
+        record.id, record.observedAt = revision + 1, observedAt
+        record.log.observedAt, record.completion.observedAt = observedAt, observedAt
+        ns.OfflineHistory.Save(owner.guid, "quests", record)
+        diskDirty = not log.total or completion.source == "unknown"
+        return
+    end
     -- Trim only explicit coverage, not the main heartbeat or other transfer queues.
     local body = ns.Transfer.QuestsJSON(record)
     -- Reserve room for the real revision and epoch replacing the one-byte signature placeholders.
@@ -173,18 +187,31 @@ function Quests.Scan()
         body = ns.Transfer.QuestsJSON(record)
     end
     local signature = body
-    if signature == lastSignature and lastCapture and now - lastCapture < 60 then dirty = false; return end
+    if interval then
+        local advice = record.advice
+        record.advice = nil
+        signature = ns.Transfer.QuestsJSON(record)
+        record.advice = advice
+        nextCheck = now + interval
+    end
+    if signature == lastSignature and lastCapture and (interval or now - lastCapture < 60) then dirty = false; return end
     revision = revision + 1
     record.id, record.observedAt = revision, observedAt
     if publish(record) then lastCapture, lastSignature, dirty = now, signature, false end
 end
 
-function Quests.Initialize(state, callback, pending) owner, publish, busy = state, callback, pending end
+function Quests.Flush()
+    if ns.OfflineHistory and (diskDirty or Identity() ~= identity) then Quests.Scan(true) end
+end
+
+function Quests.Initialize(state, callback, pending, cadence)
+    owner, publish, busy, interval, nextCheck = state, callback, pending, cadence, nil
+end
 function Quests.OnEvent(event, questID)
     if event == "PLAYER_LOGOUT" or event == "PLAYER_LEAVING_WORLD" then
         active = false
         if timer then timer:Cancel(); timer = nil end
-        publish(nil)
+        if not interval or event == "PLAYER_LOGOUT" then publish(nil) end
     elseif event == "PLAYER_ENTERING_WORLD" then
         active = true
         ResetIdentity(Identity())
@@ -196,14 +223,15 @@ function Quests.OnEvent(event, questID)
         for index = #turnIns, 1, -1 do if turnIns[index].questID == id then table.remove(turnIns, index) end end
         turnIns[#turnIns + 1] = { questID = id, observedAt = now }
         if #turnIns > 32 then table.remove(turnIns, 1); turnInTruncated = true end
+        diskDirty = true
         Schedule()
     elseif event == "PLAYER_LEVEL_UP" then
         local key, level, now = Identity(), Integer(questID, 1, 255), Integer(Call(GetServerTime), 1, 4102444800)
         if not active or not key or not level or not now then return end
         ResetIdentity(key)
-        levelUpAt, levelUpLevel = now, level
+        levelUpAt, levelUpLevel, diskDirty = now, level, true
         Schedule()
-    elseif event == "QUEST_LOG_UPDATE" or event == "QUEST_ACCEPTED" or event == "QUEST_REMOVED" or event == "QUEST_WATCH_UPDATE" then Schedule() end
+    elseif event == "QUEST_LOG_UPDATE" or event == "QUEST_ACCEPTED" or event == "QUEST_REMOVED" or event == "QUEST_WATCH_UPDATE" then diskDirty = true; Schedule() end
 end
 function Quests.Tick()
     local now = Call(GetTime)

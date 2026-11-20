@@ -2,6 +2,7 @@ local _, ns = ...
 local Calendar = {}
 ns.Calendar = Calendar
 local storage, batch, loginDay, cursor, entered, loaded, nextTry
+local submit, cadence
 
 local function Day(t)
     if type(t) ~= "table" or not t.year or not t.month or not t.monthDay then return nil end
@@ -71,8 +72,8 @@ function Calendar.Collect(now)
     return {day=today, items=items}
 end
 
-function Calendar.Initialize(db)
-    storage = db
+function Calendar.Initialize(db, callback, interval)
+    storage, submit, cadence = db, callback, interval
     local events = CreateFrame("Frame")
     events:RegisterEvent("PLAYER_ENTERING_WORLD")
     events:RegisterEvent("CALENDAR_UPDATE_EVENT_LIST")
@@ -85,7 +86,23 @@ function Calendar.Initialize(db)
     end)
 end
 
+function Calendar.Capture()
+    if not loaded or not entered or not C_Calendar or not C_DateAndTime then return end
+    local ok, result = pcall(function()
+        return Calendar.Collect(C_DateAndTime.GetCurrentCalendarTime())
+    end)
+    if ok then return result end
+end
+
+function Calendar.Check(now)
+    if not submit or not entered or not loaded or now < nextTry or not C_Calendar or not C_DateAndTime then return end
+    nextTry = now + cadence
+    local result = Calendar.Capture()
+    if result then submit("schedule", result) end
+end
+
 function Calendar.Next()
+    if submit then return nil end
     if not entered or not C_DateAndTime or not C_Calendar then return nil end
     local now = C_DateAndTime.GetCurrentCalendarTime()
     loginDay = loginDay or Day(now)

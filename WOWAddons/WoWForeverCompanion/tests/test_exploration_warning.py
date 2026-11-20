@@ -1,4 +1,5 @@
-"""Exercise boundary events, real Lua modules, territory gates, and arrival deduplication."""
+"""Exercise outdoor boundaries, fresh levels, and the real Lua warning payload."""
+import json
 import unittest
 
 import test_addon
@@ -27,6 +28,13 @@ class ExplorationWarningTest(unittest.TestCase):
         for line in (root / (root.name + '.toc')).read_text('utf-8').splitlines():
             if line.endswith('.lua'):
                 load((root / line).read_bytes(), root.name.encode(), self.ns)
+        self.lua.eval(b'''function(ns)
+            local encode = ns.Protocol.EncodePulse
+            ns.Protocol.EncodePulse = function(...)
+                LatestPulse = encode(...)
+                return LatestPulse
+            end
+        end''')(self.ns)
         self.g.Fire(b'ADDON_LOADED', root.name.encode())
         self.g.Fire(b'PLAYER_ENTERING_WORLD')
 
@@ -39,18 +47,28 @@ class ExplorationWarningTest(unittest.TestCase):
         self.g.Clock += seconds
         self.g.RetryTimers()
 
+    def read_pulse(self):
+        frame = self.g.LatestPulse
+        self.assertEqual(frame[:4], b'WCF1')
+        size = int.from_bytes(frame[4:6], 'little')
+        return json.loads(frame[8:8 + size])
+
     def test_low_level_horde_warrior_warns_once_at_hillsbrad_boundary(self):
         self.g.Model[b'class'] = b'WARRIOR'
         self.enter()
         self.assertIsNone(self.g.Alert)
         self.settle()
-        self.assertEqual(self.g.Alert.decode(), '这里对现在的你而言太早了，前面的区域，以后再来探索吧')
-        self.assertIn(b'https://wuxianwow.com/atlas/1424', self.g.Messages[len(self.g.Messages)])
+        self.assertEqual(self.g.Alert.decode(), '前面的区域，以后再来探索吧')
+        self.assertTrue(self.g.Messages[len(self.g.Messages)].decode().endswith('前面的区域，以后再来探索吧'))
         for event in (b'ZONE_CHANGED', b'ZONE_CHANGED_INDOORS', b'PLAYER_LEVEL_UP'):
             self.g.Fire(event, 16)
         self.g.Heartbeat()
         self.g.RetryTimers()
         self.assertEqual(self.g.Alerts, 1)
+        payload = self.read_pulse()
+        self.assertEqual(payload['w'], {'id': 1, 'map': 1424, 'level': 15, 'min': 20})
+        self.assertEqual(payload['p']['map'], 1424)
+        self.assertEqual(payload['p']['instanceType'], 'none')
 
     def test_minimum_level_and_higher_do_not_warn(self):
         for level in (20, 21, 60):
@@ -61,24 +79,18 @@ class ExplorationWarningTest(unittest.TestCase):
                 self.settle()
                 self.assertIsNone(self.g.Alert)
 
-    def test_friendly_sanctuary_unknown_and_restricted_territory_do_not_warn(self):
+    def test_territory_and_faction_are_not_required(self):
         for territory in (b'friendly', b'sanctuary', b'unknown', None, 42):
             with self.subTest(territory=territory):
                 self.setUp()
+                self.g.Model[b'faction'] = b'Neutral'
                 self.enter(territory=territory)
                 self.settle()
-                self.assertIsNone(self.g.Alert)
+                self.assertEqual(self.g.Alerts, 1)
+        self.setUp()
         self.enter(territory=self.g.Secret)
         self.settle()
-        self.assertIsNone(self.g.Alert)
-
-    def test_enemy_territory_warns_for_both_known_factions(self):
-        for faction in (b'Horde', b'Alliance'):
-            self.setUp()
-            self.g.Model[b'faction'] = faction
-            self.enter(territory=b'hostile')
-            self.settle()
-            self.assertEqual(self.g.Alerts, 1)
+        self.assertEqual(self.g.Alerts, 1)
 
     def test_unknown_map_level_and_instance_do_not_warn(self):
         for map_id in (2482, 999999):
@@ -88,6 +100,31 @@ class ExplorationWarningTest(unittest.TestCase):
         self.g.Model[b'instanceType'] = b'party'
         self.enter()
         self.settle()
+        self.assertIsNone(self.g.Alert)
+        self.g.Model[b'instanceType'] = b'none'
+        self.g.Fire(b'PLAYER_DEAD')
+        self.enter(1434)
+        self.settle()
+        self.assertIsNone(self.g.Alert)
+
+    def test_hover_range_matches_the_documented_bound_instead_of_the_old_estimate(self):
+        self.g.Model[b'level'] = 18
+        self.enter(1440)
+        self.settle()
+        self.assertIsNone(self.g.Alert)
+        self.enter(2548)
+        self.settle()
+        self.g.Heartbeat()
+        self.assertEqual(self.read_pulse()['w'], {'id': 1, 'map': 2548, 'level': 18, 'min': 35})
+        self.assertEqual(self.ns[b'ExplorationLevels'][1434][b'max'], 45)
+
+    def test_stale_or_restricted_level_cannot_create_a_warning(self):
+        self.g.Model[b'level'] = self.g.Secret
+        self.enter()
+        self.settle()
+        self.assertIsNone(self.g.Alert)
+        self.g.Model[b'level'] = 20
+        self.g.Heartbeat()
         self.assertIsNone(self.g.Alert)
 
     def test_login_and_character_switch_only_establish_baseline(self):
@@ -99,16 +136,18 @@ class ExplorationWarningTest(unittest.TestCase):
         self.settle()
         self.assertIsNone(self.g.Alert)
 
-    def test_delayed_territory_is_retried_but_not_after_five_seconds(self):
-        self.enter(territory=None)
+    def test_delayed_scene_is_retried_but_not_after_five_seconds(self):
+        self.g.Model[b'instanceType'] = b'unknown'
+        self.enter()
         self.settle()
-        self.g.Model[b'territory'] = b'contested'
+        self.g.Model[b'instanceType'] = b'none'
         self.g.Heartbeat()
         self.assertEqual(self.g.Alerts, 1)
         self.setUp()
-        self.enter(territory=None)
+        self.g.Model[b'instanceType'] = b'unknown'
+        self.enter()
         self.settle(6)
-        self.g.Model[b'territory'] = b'contested'
+        self.g.Model[b'instanceType'] = b'none'
         self.g.Heartbeat()
         self.assertIsNone(self.g.Alert)
 
@@ -131,13 +170,19 @@ class ExplorationWarningTest(unittest.TestCase):
         self.settle()
         self.assertEqual(self.g.Alerts, 1)
 
-    def test_missing_or_failed_territory_api_and_unknown_faction_do_not_warn(self):
-        for script in (b'C_PvP=nil', b'Model.territoryError=true', b'Model.faction="Neutral"'):
-            self.setUp()
-            self.lua.execute(script)
-            self.enter()
-            self.settle()
-            self.assertIsNone(self.g.Alert)
+    def test_warning_pulse_expires_and_reentry_has_a_new_identifier(self):
+        self.enter()
+        self.settle()
+        self.g.Heartbeat()
+        self.assertEqual(self.read_pulse()['w']['id'], 1)
+        for _ in range(12):
+            self.g.Heartbeat()
+        self.assertNotIn('w', self.read_pulse())
+        self.enter(1413)
+        self.settle()
+        self.enter()
+        self.settle()
+        self.assertEqual(self.read_pulse()['w']['id'], 2)
 
 
 if __name__ == '__main__':

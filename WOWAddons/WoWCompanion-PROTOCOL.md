@@ -13,9 +13,20 @@ After the login burst, ordinary screen frames carry this compact heartbeat:
 - `s` and `g` bind the heartbeat to the saved profile for this game window. `q` and `t` track the state sequence and heartbeat tick. `on`, `c` and `d` report online, combat and death state.
 - `p` carries a new map or instance with `map`, `zone`, `instanceType`, `instanceID` and the paired `px` and `py` values. The location repeats for up to eight ticks. Coordinates describe the arrival sample.
 - `h` carries `id` and integer `percent` for the first readable positive health below 20% in each combat. It expires after eight ticks or when that combat ends or the character dies. Unavailable or restricted values produce no alert. [无限图鉴 wuxianwow.com · UnitHealth](https://wuxianwow.com/api/?q=UnitHealth#api)
+- `w` carries `{id,map,level,min}` when a living player enters a known Forever outdoor region below its suggested minimum. `level` is the live game observation at arrival. The bridge emits one `level_gate` event per observation ID with `playerLevel` and `minimumLevel`. Region ranges use [the OpenMap hover data](docs/wow-forever-map-level-ranges.md).
 - `{v:1,kind:"loot",s,g,id,item,name,n}` carries the ID, optional name and positive quantity of a new acquisition. Repeated frames use the same observation ID. Equipment upgrades still use the equipment comparison and confirmation streams. The carried inventory baseline excludes bank withdrawals from pickup alerts.
 
 The character, gear, and bag records continue to update in memory for the game's SavedVariables flush on reload, logout, or exit. The bridge keeps the login profile separate from current online, combat, death and scene state. For a compact-heartbeat session, the HTTP snapshot includes `profileObservedAt` in Unix milliseconds. It records the first verified full profile observation and does not advance with heartbeats. A bridge that starts after the login burst without a matching profile exposes `needsProfile`. Use `/reload` to synchronize again. New addons and the companion bridge should be updated together. The code grid and byte limits stay the same, and the bridge still accepts older v3 producers.
+
+## Character archives and six-minute updates
+
+Both addons establish a login baseline and check money, XP, carried item counts, quest logs, visible reputations, saved instance locks and the calendar every six minutes. A check queues only changed content. The calendar uses the existing today and tomorrow reminder window, including eligible personal events. Lockouts use the server's saved-instance observation and retain stable absolute reset times across countdown reads.
+
+Talents use the existing trait snapshot. Professions record known recipes from locally readable profession data, achievements record character-earned IDs, and exploration records public observations on visited maps. These collections, dated bank captures and talents are stored per character. A closed bank uses its previous capture. A profession panel may need to be opened so the client exposes its recipes. Missing and partial observations carry their scope instead of implying zero progress.
+
+New compact heartbeats include optional `lf: true`. The bridge holds accepted snapshots across a map load for the same physical client, session and character. Receipt does not refresh the connection heartbeat. The last capture date remains available between checks. Zone changes, low health, death and acquisition still share the existing real-time transport slots.
+
+`inv`, `qlog`, `traits` and `store` keep their payload formats. The new stream uses `{v:1,kind:"archive",s,g,id,p,n,d}` with 240 raw bytes per Base64 part and up to 1,024 parts. It assembles `{v:1,session,guid,id,observedAt,section,data}` before publishing the changed section. Sections are `progress`, `reputation`, `lockouts`, `schedule`, `professions`, `achievements` and `exploration`. Money uses integer copper encoded as decimal strings. The HTTP status exposes `archive` by section, and `schedule` also populates the existing `calendar` field for first-login notices.
 
 ## Weapon proficiency (Retail 2.26.0 / Infinite 1.22.0)
 

@@ -11,6 +11,7 @@ import { errorMessageFrom } from '@moeru/std'
 import { array, boolean, check, integer, literal, maxLength, maxValue, minLength, minValue, nullable, number, parse, picklist, pipe, safeParse, strictObject, string } from 'valibot'
 
 import { snapshotSchema } from '../../../shared/wow-companion'
+import { matchingArchiveRecord } from '../../../shared/wow-companion-character-archive'
 import { companionError } from '../../../shared/wow-companion-errors'
 import { moneyIdSchema } from '../../../shared/wow-companion-gold'
 
@@ -151,10 +152,14 @@ export class CompanionLevelHistory {
         && typeof bridge.instanceId === 'string' && bridge.instanceId.length > 0
         && Number.isSafeInteger(receivedAt) && receivedAt >= 0 && receivedAt <= maximumTimestamp
       const result = fresh ? safeParse(snapshotSchema, bridge.snapshot) : null
-      if (bridge && result?.success && result.output.online && result.output.guid && result.output.session && result.output.level >= 1)
-        changed = this.accept(result.output, bridge.instanceId, receivedAt)
-      else
+      if (bridge && result?.success && result.output.online && result.output.guid && result.output.session && result.output.level >= 1) {
+        const snapshot = result.output
+        const level = matchingArchiveRecord(bridge.archive?.progress, snapshot)?.data.level
+        changed = this.accept(level === undefined ? snapshot : { ...snapshot, level }, bridge.instanceId, receivedAt)
+      }
+      else {
         this.active = null
+      }
       await this.save(changed || this.storageError !== null)
     })
   }

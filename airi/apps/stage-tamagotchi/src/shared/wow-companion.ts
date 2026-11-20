@@ -10,6 +10,7 @@ import type { EquipmentLoadoutsState } from './wow-companion-loadout'
 import { array, boolean, check, finite, integer, literal, looseObject, maxLength, maxValue, minLength, minValue, nullable, number, object, optional, picklist, pipe, string, transform } from 'valibot'
 
 import { calendarSchema } from './wow-companion-calendar'
+import { characterArchiveSchema } from './wow-companion-character-archive'
 import { equipmentSchema } from './wow-companion-equipment'
 import { liveEquipmentComparisonSchema } from './wow-companion-equipment-comparisons'
 import { equipmentOfferSchema } from './wow-companion-equipment-offer'
@@ -108,10 +109,13 @@ export const snapshotSchema = pipe(snapshotFieldsSchema, check((snapshot) => {
 }))
 
 const positiveEventInteger = pipe(number(), integer(), minValue(1), maxValue(2147483647))
+const measuredLevel = pipe(count, minValue(1), maxValue(255))
 
 export const eventSchema = pipe(object({
   id: count,
-  type: picklist(['connected', 'level_up', 'zone', 'death', 'revive', 'combat_start', 'combat_end', 'offline', 'low_health', 'loot']),
+  type: picklist(['connected', 'level_up', 'zone', 'death', 'revive', 'combat_start', 'combat_end', 'offline', 'low_health', 'loot', 'level_gate']),
+  playerLevel: optional(measuredLevel),
+  minimumLevel: optional(measuredLevel),
   healthPercent: optional(pipe(count, maxValue(19))),
   itemId: optional(positiveEventInteger),
   itemName: optional(nullable(pipe(string(), minLength(1), maxLength(128)))),
@@ -122,7 +126,9 @@ export const eventSchema = pipe(object({
   snapshot: nullable(snapshotSchema),
   demo: boolean(),
 }), check(event => event.type !== 'low_health' || event.healthPercent !== undefined, 'Low health requires a measured percentage.'), check(event => event.type !== 'loot'
-  || (event.itemId !== undefined && event.itemName !== undefined && event.quantity !== undefined), 'Loot requires an item ID, an optional name, and a quantity.'))
+  || (event.itemId !== undefined && event.itemName !== undefined && event.quantity !== undefined), 'Loot requires an item ID, an optional name, and a quantity.'), check(event => event.type !== 'level_gate'
+    || (!event.demo && event.playerLevel !== undefined && event.minimumLevel !== undefined && event.playerLevel < event.minimumLevel
+      && event.snapshot?.online === true && !event.snapshot.dead && event.snapshot.instanceType === 'none' && event.snapshot.map > 0), 'An area level warning requires measured levels and an outdoor destination.'))
 
 export const captureSchema = object({
   x: pipe(number(), integer(), minValue(-32768), maxValue(32767)),
@@ -147,6 +153,8 @@ export const bridgeSchema = looseObject({
   eventCursor: count,
   events: pipe(array(eventSchema), maxLength(500)),
   needsProfile: optional(literal(true)),
+  lowFrequency: optional(literal(true)),
+  archive: optional(characterArchiveSchema),
   // Published bridges without equipment support remain a supported source of character observations.
   equipment: optional(pipe(array(equipmentSchema), maxLength(10))),
   equipmentError: optional(nullable(pipe(string(), maxLength(2048)))),

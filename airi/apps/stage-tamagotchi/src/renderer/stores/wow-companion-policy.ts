@@ -6,14 +6,21 @@ export function isSameObservedCombat(current: Snapshot | null | undefined, obser
     && (current.combatEnds === undefined || observed.combatEnds === undefined || current.combatEnds === observed.combatEnds)
 }
 
-function priority(type: CompanionEvent['type']) {
-  if (type === 'death')
-    return 4
-  if (type === 'low_health')
-    return 3
-  if (type === 'revive')
-    return 2
-  return type === 'level_up' ? 1 : 0
+export function isLevelWarningDestination(current: Snapshot | null | undefined, observed: Snapshot | null | undefined) {
+  return current?.online === true && !current.dead && current.instanceType === 'none'
+    && observed?.instanceType === 'none' && current.map > 0 && current.map === observed.map
+}
+
+const eventPriorities: Partial<Record<CompanionEvent['type'], number>> = {
+  death: 5,
+  low_health: 4,
+  level_gate: 3,
+  revive: 2,
+  level_up: 1,
+}
+
+export function companionEventPriority(type: CompanionEvent['type']) {
+  return eventPriorities[type] ?? 0
 }
 
 function eventLifetime(type: CompanionEvent['type']) {
@@ -41,11 +48,22 @@ export class CompanionPolicy {
 
   /** Returns at most one notification. Call with the current wall-clock time in milliseconds. */
   accept(bridge: BridgeStatus | null, settings: CompanionSettings, now: number): CompanionEvent | undefined {
-    if (!bridge || !settings.enabled || !['live', 'demo'].includes(bridge.status) || !bridge.snapshot?.online) {
+    if (!bridge || !settings.enabled || !bridge.snapshot) {
       this.reset()
       return
     }
-    const identity = `${bridge.instanceId}:${bridge.source}:${bridge.snapshot.guid}:${bridge.snapshot.session}`
+    const identity = `${bridge.instanceId}:${bridge.source}:${bridge.snapshot.account}:${bridge.snapshot.guid}:${bridge.snapshot.session}`
+    if (bridge.status === 'waiting' && bridge.source === 'screen' && !bridge.snapshot.online && identity === this.identity) {
+      // Keep the cursor over a map load so the first resumed frame can warn about its destination.
+      this.pending = undefined
+      this.cursor = bridge.eventCursor
+      this.deathHandled = bridge.snapshot.dead
+      return
+    }
+    if (!['live', 'demo'].includes(bridge.status) || !bridge.snapshot.online) {
+      this.reset()
+      return
+    }
     if (identity !== this.identity || bridge.eventCursor < this.cursor) {
       this.reset()
       this.identity = identity
@@ -79,6 +97,8 @@ export class CompanionPolicy {
         continue
       if (event.type === 'low_health' && !isSameObservedCombat(bridge.snapshot, event.snapshot))
         continue
+      if (event.type === 'level_gate' && !isLevelWarningDestination(bridge.snapshot, event.snapshot))
+        continue
       if (event.type === 'death') {
         if (this.deathHandled || !bridge.snapshot.dead)
           continue
@@ -87,19 +107,23 @@ export class CompanionPolicy {
       if (!this.isEnabled(event, settings))
         continue
       // Death takes priority over incidental observations. Only a new living observation permits another death response.
-      if (!this.pending || priority(event.type) >= priority(this.pending.type))
+      if (!this.pending || companionEventPriority(event.type) >= companionEventPriority(this.pending.type))
         this.pending = event
     }
-    if (this.pending && (!this.isEnabled(this.pending, settings) || now - Date.parse(this.pending.timestamp) > eventLifetime(this.pending.type)))
+    if (this.pending && (!this.isEnabled(this.pending, settings) || now - Date.parse(this.pending.timestamp) > eventLifetime(this.pending.type)
+      || (this.pending.type === 'level_gate' && !isLevelWarningDestination(bridge.snapshot, this.pending.snapshot)))) {
       this.pending = undefined
+    }
     const next = this.pending
-    if (next?.type !== 'low_health' && ((settings.quietInCombat && bridge.snapshot.combat && !bridge.snapshot.dead)
-      || now - this.lastSpokenAt < settings.cooldownSeconds * 1000)) {
+    if (!next)
+      return
+    const bypassCooldown = next.type === 'low_health' || next.type === 'level_gate'
+    if ((next.type !== 'low_health' && settings.quietInCombat && bridge.snapshot.combat && !bridge.snapshot.dead)
+      || (!bypassCooldown && now - this.lastSpokenAt < settings.cooldownSeconds * 1000)) {
       return
     }
     this.pending = undefined
-    // An urgent health alert neither waits for nor extends the ordinary event cooldown.
-    if (next && next.type !== 'low_health')
+    if (!bypassCooldown)
       this.lastSpokenAt = now
     return next
   }
@@ -108,7 +132,7 @@ export class CompanionPolicy {
     if (event.type === 'zone' && (!event.snapshot?.map || !event.snapshot.zone || event.snapshot.zone === '当前位置暂不可用'))
       return false
     return (event.type === 'level_up' && settings.levelUp)
-      || (event.type === 'zone' && settings.zone)
+      || ((event.type === 'zone' ? event.demo : event.type === 'level_gate' && !event.demo) && settings.zone)
       || (event.type === 'death' && settings.death)
       || (event.type === 'revive' && settings.revive)
       || event.type === 'low_health'

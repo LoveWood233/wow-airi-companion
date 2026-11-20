@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$AiriPath = (Join-Path (Split-Path $PSScriptRoot -Parent) 'airi'),
     [string]$UserDataPath = $env:APP_USER_DATA_PATH,
     [switch]$BridgeOnly,
@@ -38,7 +38,7 @@ try {
     Write-Output "魔兽陪伴精灵数据目录： $resolvedUserDataPath"
     Write-Output "魔兽陪伴精灵程序目录： $AiriPath"
     $appPath = Join-Path $AiriPath 'apps\stage-tamagotchi'
-    $packaged = Join-Path $appPath 'dist-portable-2.27.1\win-unpacked\wow-companion.exe'
+    $packaged = Join-Path $appPath 'dist-portable-2.28.0\win-unpacked\wow-companion.exe'
     $usePackaged = -not $Dev -and (Test-Path -LiteralPath $packaged -PathType Leaf)
     if (-not $usePackaged) {
         if (-not (Test-Path -LiteralPath (Join-Path $AiriPath 'node_modules'))) {
@@ -54,7 +54,7 @@ try {
     if ($usePackaged) {
         $executable = $packaged
         $workingDirectory = Split-Path $packaged -Parent
-        Write-Output '使用已构建的魔兽陪伴精灵 2.27.1。'
+        Write-Output '使用已构建的魔兽陪伴精灵 2.28.0。'
     }
     else {
         $executable = Join-Path $appPath 'node_modules\electron\dist\electron.exe'

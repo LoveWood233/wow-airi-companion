@@ -1100,7 +1100,7 @@ describe('arrival anecdotes', () => {
   // ROOT CAUSE:
   // Arrival narration omitted player level and gave no zone suitability rules.
   // Level and evidence requirements now accompany both arrival and ordinary chat observations.
-  it('includes player level and evidence limits for an unverified Uldum arrival', async () => {
+  it('keeps an unverified Uldum story focused on its location and preserves evidence limits', async () => {
     const state = liveState()
     state.bridge!.snapshot!.level = 11
     const result = await locationCompanion(state)
@@ -1110,10 +1110,11 @@ describe('arrival anecdotes', () => {
     await expect.poll(() => result.stream.mock.calls.length).toBe(1)
 
     const prompt = JSON.stringify(result.stream.mock.calls[0][2])
-    expect(prompt).toContain('\\"level\\":11')
-    expect(prompt).toContain('below a verified zone minimum')
-    expect(prompt).toContain('recommend returning later')
-    expect(prompt).toContain('Never invent zone level ranges, XP penalties, quest locks, routes or NPCs')
+    expect(prompt).not.toContain('\\"level\\":11')
+    expect(prompt).toContain('level, equipment, and saved character records')
+    expect(prompt).toContain('No verified local lore is available.')
+    expect(prompt).toContain('Do not invent an anecdote, characters, quotes, battles or history.')
+    expect(prompt).toContain('Do not assure the player that this zone suits their level.')
     expect(prompt).toContain('\\"reference\\":null')
     expect(prompt).not.toContain('30-35')
   })

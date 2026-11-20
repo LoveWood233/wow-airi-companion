@@ -61,15 +61,15 @@ local function Queue(scope, container, attempts)
     end
 end
 
-local function BankReadable(scope)
+local function BankReadable(scope, requireAccess)
     if not bankOpen then return false end
     local kinds = Enum and Enum.BankType
-    local kind = kinds and (scope == "account-bank" and kinds.Account or kinds.Character)
+    local kind = kinds and kinds[scope == "account-bank" and "Account" or "Character"]
     if C_Bank and C_Bank.CanViewBank and kind ~= nil then
         return Read(C_Bank.CanViewBank, kind) == true
     end
     -- Published clients without tab APIs expose the legacy bank only while its frame is open.
-    return scope == "bank" and not (C_Bank and C_Bank.FetchPurchasedBankTabIDs)
+    return not requireAccess and scope == "bank" and not (C_Bank and C_Bank.FetchPurchasedBankTabIDs)
 end
 
 local function Retry(descriptor)
@@ -85,12 +85,12 @@ local function Retry(descriptor)
     end)
 end
 
-local function Discover()
+local function Discover(visit)
     if not Current() then return end
     local last = Integer(NUM_TOTAL_EQUIPPED_BAG_SLOTS, 0, 20) or Integer(NUM_BAG_SLOTS, 0, 20)
-    if last then for bag = 0, last do Queue("bags", bag) end end
+    if last then for bag = 0, last do visit("bags", bag) end end
     local reagent = Enum and Enum.BagIndex and Integer(Enum.BagIndex.ReagentBag, 0, 20)
-    if reagent and (not last or reagent > last) then Queue("bags", reagent) end
+    if reagent and (not last or reagent > last) then visit("bags", reagent) end
     if not bankOpen then return end
     local kinds = Enum and Enum.BankType
     if C_Bank and type(C_Bank.FetchPurchasedBankTabIDs) == "function" and kinds then
@@ -98,17 +98,68 @@ local function Discover()
             if descriptor[2] ~= nil and BankReadable(descriptor[1]) then
                 local ids, readable = Read(C_Bank.FetchPurchasedBankTabIDs, descriptor[2])
                 if readable and type(ids) == "table" then
-                    for _, id in ipairs(ids) do Queue(descriptor[1], id) end
+                    for _, id in ipairs(ids) do visit(descriptor[1], id) end
                 end
             end
         end
     elseif BankReadable("bank") then
         local bank = Integer(BANK_CONTAINER, -10, -1)
-        if bank then Queue("bank", bank) end
+        if bank then visit("bank", bank) end
         local bags = Integer(NUM_BANKBAGSLOTS, 0, 20)
-        if last and bags then for bag = last + 1, last + bags do Queue("bank", bag) end end
-        if Read(IsReagentBankUnlocked) == true then Queue("bank", REAGENTBANK_CONTAINER) end
+        if last and bags then for bag = last + 1, last + bags do visit("bank", bag) end end
+        if Read(IsReagentBankUnlocked) == true then visit("bank", REAGENTBANK_CONTAINER) end
     end
+end
+
+local infoFields = { "name", "type", "subtype", "equipLoc", "quality", "itemLevel", "requiredLevel", "classID", "subclassID" }
+
+local function MatchedItem(entry, link, itemGUID)
+    local previous = type(entry) == "table" and entry.item
+    if type(previous) == "table" and previous.link == link
+        and (not previous.itemGUID or not itemGUID or previous.itemGUID == itemGUID) then
+        return previous
+    end
+end
+
+local function PreserveMetadata(item, previous)
+    if not item or not previous then return item end
+    if not item.infoComplete then
+        local complete = previous.infoComplete == true and previous.classID ~= nil and previous.subclassID ~= nil
+        for _, field in ipairs(infoFields) do
+            if complete or item[field] == nil then item[field] = previous[field] end
+        end
+        item.infoComplete = complete
+    end
+    if not item.statsComplete and type(previous.stats) == "table"
+        and (previous.statsComplete or #previous.stats > #item.stats) then
+        item.stats, item.statsComplete = previous.stats, previous.statsComplete == true
+        item.truncated = item.truncated or previous.truncated == true
+    end
+    if not item.tooltipComplete and type(previous.tooltip) == "table"
+        and (previous.tooltipComplete or #previous.tooltip > #item.tooltip) then
+        item.tooltip, item.tooltipComplete = previous.tooltip, previous.tooltipComplete == true
+        item.truncated = item.truncated or previous.truncated == true
+    end
+    return item
+end
+
+local function SavedSlots(container)
+    return type(container) == "table" and type(container.slots) == "table" and container.slots or {}
+end
+
+local function SaveLocal(record)
+    local saved = database.itemStorage.characters[record.guid]
+    if type(saved) ~= "table" then saved = {}; database.itemStorage.characters[record.guid] = saved end
+    local key = Key(record.scope, record.container)
+    -- Incomplete item data from a regular scan should only replace the local fields it could read.
+    if saved[key] then
+        local previous = SavedSlots(saved[key])
+        for index, entry in ipairs(record.slots) do
+            local item = entry.item
+            if item then PreserveMetadata(item, MatchedItem(previous[index], item.link, item.itemGUID)) end
+        end
+    end
+    saved[key] = record
 end
 
 local function Save(record, needsRetry)
@@ -127,29 +178,56 @@ local function Save(record, needsRetry)
         end
     end
     signatures[key] = signature
-    local saved = database.itemStorage.characters[record.guid]
-    if type(saved) ~= "table" then saved = {}; database.itemStorage.characters[record.guid] = saved end
-    saved[key] = record
+    SaveLocal(record)
+end
+
+local function Capacity(scope, container)
+    local minimum = scope == "bags" and container ~= 0 and 0 or 1
+    return Integer(Read(ContainerAPI("GetContainerNumSlots"), container), minimum, 200)
+end
+
+local function NewRecord(scope, container, capacity, observedAt)
+    return { v = 2, id = 1, session = owner.session, guid = owner.guid, observedAt = observedAt,
+        scope = scope, container = container, capacity = capacity, complete = true, cached = false, slots = {} }
+end
+
+local function NeedsItemData(item)
+    return not item or not item.infoComplete or (not item.truncated and (not item.statsComplete or not item.tooltipComplete))
+end
+
+local function DescribeItem(record, index, info)
+    return ns.Equipment.DescribeContainerItem(record.container, index, info, record.observedAt)
+end
+
+local function ReadSlot(record, index, describe)
+    local info, readable = ContainerInfo(record.container, index)
+    local entry = { slot = index, state = "unknown", quantity = 0 }
+    if not readable then return entry, true end
+    if info == nil then entry.state = "empty"; return entry, false end
+    if type(info) ~= "table" then return entry, true end
+    local quantity = Integer(info.stackCount, 1, 1000000)
+    local item = quantity and (describe or DescribeItem)(record, index, info, quantity)
+    if item then entry.state, entry.quantity, entry.item = "occupied", quantity, item end
+    local incomplete = NeedsItemData(item)
+    return entry, incomplete, incomplete and Integer(info.itemID, 1, 2147483647)
 end
 
 local function Capture(descriptor)
     if not Current() then return end
     if descriptor.scope ~= "bags" and not BankReadable(descriptor.scope) then Storage.Tick(); return end
-    local capacity = Integer(Read(ContainerAPI("GetContainerNumSlots"), descriptor.container), 0, 200)
-    if not capacity or (capacity == 0 and (descriptor.scope ~= "bags" or descriptor.container == 0)) then
+    local capacity = Capacity(descriptor.scope, descriptor.container)
+    if not capacity then
         Retry(descriptor)
         Storage.Tick()
         return
     end
     local observedAt = Integer(Read(GetServerTime), 1, 4102444800)
     if not observedAt then return end
-    local session, guid = owner.session, owner.guid
-    local record = { v = 2, id = 1, session = session, guid = guid, observedAt = observedAt,
-        scope = descriptor.scope, container = descriptor.container, capacity = capacity, complete = true, cached = false, slots = {} }
+    local record = NewRecord(descriptor.scope, descriptor.container, capacity, observedAt)
     local index, needsRetry = 1, false
     local function Step()
         worker = nil
-        if not Current() or owner.session ~= session or owner.guid ~= guid
+        if not Current() or owner.session ~= record.session or owner.guid ~= record.guid
             or (descriptor.scope ~= "bags" and not BankReadable(descriptor.scope)) then
             if Storage.current == descriptor then Storage.current = nil end
             Storage.Tick()
@@ -157,20 +235,12 @@ local function Capture(descriptor)
         end
         local finish = math.min(capacity, index + 7)
         while index <= finish do
-            local info, readable = ContainerInfo(descriptor.container, index)
-            local entry = { slot = index, state = "unknown", quantity = 0 }
-            if readable and info == nil then entry.state = "empty"
-            elseif readable and type(info) == "table" then
-                local quantity = Integer(info.stackCount, 1, 1000000)
-                local item = quantity and ns.Equipment.DescribeContainerItem(descriptor.container, index, info, observedAt)
-                if item then entry.state, entry.quantity, entry.item = "occupied", quantity, item end
-                if not item or not item.infoComplete or (not item.truncated and (not item.statsComplete or not item.tooltipComplete)) then
-                    needsRetry = true
-                    local identifier = Integer(info.itemID, 1, 2147483647)
-                    if identifier then Read(C_Item and C_Item.RequestLoadItemDataByID, identifier) end
-                end
+            local entry, incomplete, identifier = ReadSlot(record, index)
+            if incomplete then
+                needsRetry = true
+                if identifier then Read(C_Item and C_Item.RequestLoadItemDataByID, identifier) end
             end
-            if entry.state == "unknown" then record.complete, needsRetry = false, true end
+            if entry.state == "unknown" then record.complete = false end
             record.slots[#record.slots + 1] = entry
             index = index + 1
         end
@@ -191,6 +261,84 @@ local function Capture(descriptor)
     descriptor.inFlight = true
     Storage.current = descriptor
     Step()
+end
+
+local function PriorByGUID(saved)
+    local items = {}
+    for _, container in pairs(saved) do
+        if type(container) == "table" and type(container.slots) == "table" then
+            for _, entry in ipairs(container.slots) do
+                local item = type(entry) == "table" and entry.item
+                local guid = type(item) == "table" and item.itemGUID
+                if type(guid) == "string" and (not items[guid]
+                    or (Integer(item.observedAt, 1, 4102444800) or 0) > (Integer(items[guid].observedAt, 1, 4102444800) or 0)) then
+                    items[guid] = item
+                end
+            end
+        end
+    end
+    return items
+end
+
+local function Flush(bankOnly)
+    if not Current() or (bankOnly and not (BankReadable("bank", true) or BankReadable("account-bank", true))) then return end
+    local observedAt = Integer(Read(GetServerTime), 1, 4102444800)
+    if not observedAt then return end
+    local saved = database.itemStorage.characters[owner.guid]
+    if type(saved) ~= "table" then saved = {} end
+    local priorItems = PriorByGUID(saved)
+    local bagsReadable = not bankOnly and Capacity("bags", 0)
+    local count, seen = 0, {}
+
+    Discover(function(scope, container)
+        if scope == "bags" and not bagsReadable then return end
+        if scope ~= "bags" and not BankReadable(scope, bankOnly) then return end
+        container = Integer(container, -10, 1000)
+        if not container or count >= 40 then return end
+        local key = Key(scope, container)
+        if seen[key] then return end
+        seen[key], count = true, count + 1
+        local capacity = Capacity(scope, container)
+        if not capacity then return end
+        local record = NewRecord(scope, container, capacity, observedAt)
+        local previous = saved[key]
+        local previousSlots = SavedSlots(previous)
+
+        local function DescribeFinal(_, index, info, quantity)
+            local link = Public(info.hyperlink) or Read(ContainerAPI("GetContainerItemLink"), container, index)
+            if type(link) ~= "string" then return DescribeItem(record, index, info) end
+            local location = Read(ItemLocation and ItemLocation.CreateFromBagAndSlot, ItemLocation, container, index)
+            local itemGUID = location and Read(C_Item and C_Item.GetItemGUID, location)
+            if type(itemGUID) ~= "string" or itemGUID == "" or #itemGUID > 128 then itemGUID = nil end
+            local last = itemGUID and priorItems[itemGUID]
+            if not last or last.link ~= link then
+                last = MatchedItem(previousSlots[index], link, itemGUID)
+            end
+            if last and last.classID ~= nil and last.subclassID ~= nil and not NeedsItemData(last) then
+                local item = {}
+                for field, value in pairs(last) do item[field] = value end
+                item.guid, item.session, item.observedAt = record.guid, record.session, observedAt
+                item.itemGUID, item.quantity = itemGUID, quantity
+                return item
+            end
+            return PreserveMetadata(DescribeItem(record, index, info), last)
+        end
+
+        local anyReadable = capacity == 0
+        for index = 1, capacity do
+            local entry = ReadSlot(record, index, DescribeFinal)
+            record.slots[index] = entry
+            if entry.state == "unknown" then record.complete = false else anyReadable = true end
+        end
+        if anyReadable or not previous then
+            record.id = type(previous) == "table" and previous.id or record.id
+            SaveLocal(record)
+        end
+    end)
+end
+
+function Storage.Flush()
+    Flush(false)
 end
 
 function Storage.Initialize(state, db)
@@ -237,7 +385,7 @@ function Storage.OnEvent(event)
                     end
                 end
             end
-            Discover()
+            Discover(Queue)
             Storage.Tick()
         end)
         return
@@ -253,8 +401,10 @@ function Storage.OnEvent(event)
     elseif event == "BANKFRAME_OPENED" then
         bankOpen = true
         for key in pairs(signatures) do if not string.match(key, "^bags:") then signatures[key] = nil end end
-        Discover()
+        Discover(Queue)
     elseif event == "BANKFRAME_CLOSED" then
+        -- Closing can invalidate bank APIs before this event. Flush only if the client still confirms access.
+        Flush(true)
         bankOpen = false
         local carried = {}
         for _, descriptor in ipairs(pending) do
@@ -269,7 +419,7 @@ function Storage.OnEvent(event)
     elseif event == "BAG_UPDATE_DELAYED" or event == "PLAYERBANKSLOTS_CHANGED" or event == "PLAYERREAGENTBANKSLOTS_CHANGED"
         or event == "BANK_TABS_CHANGED" or event == "PLAYER_ACCOUNT_BANK_TAB_SLOTS_CHANGED" or event == "GET_ITEM_INFO_RECEIVED" or event == "ITEM_DATA_LOAD_RESULT" then
         if Storage.current and event ~= "GET_ITEM_INFO_RECEIVED" and event ~= "ITEM_DATA_LOAD_RESULT" then Storage.current.invalid = true end
-        Discover()
+        Discover(Queue)
     end
     Storage.Tick()
 end

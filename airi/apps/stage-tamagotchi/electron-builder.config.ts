@@ -166,11 +166,11 @@ export default {
     executableName: 'wow-companion',
     icon: 'resources/wow-companion.ico',
     target: [{ target: 'nsis', arch: ['x64'] }, { target: 'zip', arch: ['x64'] }],
-    artifactName: `WoWCompanion-${companionReleaseVersion}-windows-\${arch}-portable.\${ext}`,
+    artifactName: `WoWCompanion-\${version}-windows-\${arch}-portable.\${ext}`,
     publish: null,
   },
   nsis: {
-    artifactName: `WoWCompanion-${companionReleaseVersion}-windows-\${arch}-setup.\${ext}`,
+    artifactName: `WoWCompanion-\${version}-windows-\${arch}-setup.\${ext}`,
     shortcutName: '${productName}',
     uninstallDisplayName: '${productName}',
     createDesktopShortcut: 'always',

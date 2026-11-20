@@ -6,14 +6,14 @@
 
 | 组件 | 当前版本 |
 | --- | --- |
-| 桌面程序 | 2.27.1 |
-| 正式服插件 `WoWMapCompanion` | 2.25.0 |
-| 无限服插件 `WoWForeverCompanion` | 1.21.0 |
-| 屏幕桥接 | 2.25.0 |
+| 桌面程序 | 2.28.0 |
+| 正式服插件 `WoWMapCompanion` | 2.26.0 |
+| 无限服插件 `WoWForeverCompanion` | 1.22.0 |
+| 屏幕桥接 | 2.26.0 |
 
 ## 开始使用
 
-当前安装版为 [2.27.1 Windows x64 安装程序](WoWCompanion-2.27.1-windows-x64-setup.exe)。复制到另一台电脑后双击，选择安装目录，完成后从桌面或开始菜单打开“魔兽陪伴精灵”。
+当前开发版通过仓库根目录 `Start-WoWCompanion.cmd` 启动。当前安装版为 [2.28.0 Windows x64 安装程序](WoWCompanion-2.28.0-windows-x64-setup.exe)，包含新增武器熟练度功能。复制到另一台电脑后双击，选择安装目录，完成后从桌面或开始菜单打开“魔兽陪伴精灵”。
 
 1. 从系统托盘正常退出旧版精灵。
 2. 双击本目录的 [Start-WoWCompanion.cmd](Start-WoWCompanion.cmd)。

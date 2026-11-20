@@ -10,6 +10,7 @@ import { Playback } from '@proj-airi/pipelines-audio'
 import { useLLM } from '@proj-airi/stage-ui/stores/ai/chat-llm/llm'
 import { useChatStore } from '@proj-airi/stage-ui/stores/chat'
 import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
+import { useModsServerChannelStore } from '@proj-airi/stage-ui/stores/mods/api/channel-server'
 import { useContextBridgeStore } from '@proj-airi/stage-ui/stores/mods/api/context-bridge'
 import { useProviderConfigStore } from '@proj-airi/stage-ui/stores/providers/config'
 import { useProviderStore } from '@proj-airi/stage-ui/stores/providers/provider'
@@ -197,6 +198,9 @@ async function companionFixture(options: { chat?: boolean, speech?: boolean, com
     await settle()
     unregisterInput()
     disconnect()
+    await useContextBridgeStore(pinia).dispose()
+    useModsServerChannelStore(pinia).dispose()
+    await settle()
     screen.unmount()
     disposePinia(pinia)
     vi.restoreAllMocks()
@@ -219,10 +223,54 @@ async function companionFixture(options: { chat?: boolean, speech?: boolean, com
       await refreshAt(Math.min(Date.now() + 10_000, time))
   }
 
-  return { companion: companion!, state, snapshot, sessions, sessionId, stream, synthesize, output, preferences, observedUserInput, refreshAt, observeUntil, goal, sendMessage: (text: string) => useChatStore(pinia).send({ sessionId, text, messageId: 'owner-input-memory-limit' }), cancelMessage: () => useChatStore(pinia).cancelTurn({ sessionId, turnId: 'owner-input-memory-limit' }), setMemories: (value: CompanionMemoryEntry[]) => entries = value, removeMemories: () => entries = [], deferModel: () => deferred = true, resolveModel: (text: string) => pendingModels.at(-1)?.resolve(text), setReply: (text: string) => reply = text, progress: () => JSON.parse(localStorage.getItem(combatKey) ?? '[]') as { consumed: number }[] }
+  return { companion: companion!, state, snapshot, sessions, sessionId, stream, synthesize, output, preferences, observedUserInput, refreshAt, observeUntil, goal, sendMessage: (text: string, messageId = 'owner-input-memory-limit') => useChatStore(pinia).send({ sessionId, text, messageId }), cancelMessage: () => useChatStore(pinia).cancelTurn({ sessionId, turnId: 'owner-input-memory-limit' }), setMemories: (value: CompanionMemoryEntry[]) => entries = value, removeMemories: () => entries = [], deferModel: () => deferred = true, resolveModel: (text: string) => pendingModels.at(-1)?.resolve(text), setReply: (text: string) => reply = text, progress: () => JSON.parse(localStorage.getItem(combatKey) ?? '[]') as { consumed: number }[] }
 }
 
 describe('location speech in Forever', () => {
+  it('introduces Stranglethorn without citations or an unrelated saved loadout', async () => {
+    const result = await companionFixture({ game: 'forever' })
+    const { account, guid, session, name, realm } = result.snapshot
+    result.state.equipmentLoadouts = {
+      entries: [{ account, name, realm, receivedAt: startedAt, loadout: result.state.bridge!.equipmentLoadout! }],
+      latestCharacter: { account, guid, session, name, realm, loginObservedAt: startedAt },
+      storageError: null,
+    }
+    result.snapshot.online = false
+    await result.refreshAt(startedAt + 1000)
+
+    await result.sendMessage('给我介绍点荆棘谷的背景故事')
+
+    const conversation = JSON.stringify(result.stream.mock.lastCall?.[2])
+    expect(result.preferences.locationEnabled).toBe(false)
+    expect(conversation).toContain('古拉巴什巨魔遗迹')
+    expect(conversation).toContain('藏宝海湾的钓鱼大赛')
+    expect(conversation).not.toContain('wuxianwow.com/atlas/1434')
+    expect(conversation).not.toContain('last_recorded_snapshot')
+    expect(conversation).not.toContain('Test helm')
+
+    await result.sendMessage('我上次记录的装备是什么？', 'explicit-saved-loadout')
+    const equipment = JSON.stringify(result.stream.mock.lastCall?.[2])
+    expect(equipment).toContain('last_recorded_snapshot')
+    expect(equipment).toContain('Test helm')
+  })
+
+  it('switches a manual story request to Ashenvale after a spoken place correction', async () => {
+    const result = await companionFixture({ game: 'forever' })
+    result.snapshot.online = false
+    await result.refreshAt(startedAt + 1000)
+    await result.sendMessage('给我介绍点荆棘谷的背景故事')
+
+    await result.sendMessage('是那什么金鸡谷。 金鸡谷。 那算了，灰谷。', 'correct-story-place')
+
+    const turn = result.stream.mock.lastCall?.[2].turns.findLast(turn => turn.type === 'user')
+    const evidence = JSON.stringify(turn?.content.filter(content => content.type === 'runtime-context'))
+    expect(result.stream).toHaveBeenCalledTimes(2)
+    expect(evidence).toContain('灰谷是暗夜精灵的古林')
+    expect(evidence).toContain('战歌氏族在东部伐木')
+    expect(evidence).not.toContain('wuxianwow.com/atlas/1440')
+    expect(evidence).not.toContain('wuxianwow.com/atlas/1434')
+  })
+
   it('plays the local background and anecdote after a stable arrival without a chat model', async () => {
     const result = await companionFixture({ game: 'forever', chat: false, location: true })
     const destination = stories.find(entry => entry.mapId === 1429)!
@@ -241,6 +289,25 @@ describe('location speech in Forever', () => {
   })
 })
 
+it('passes only location facts and narration guidance to the Retail arrival model', async () => {
+  const result = await companionFixture({ game: 'retail', location: true })
+  Object.assign(result.snapshot, { map: 37, zone: 'Elwynn Forest', instanceType: 'none', instanceID: null })
+  await result.refreshAt(startedAt + 1000)
+  await result.refreshAt(startedAt + 4000)
+  await expect.poll(() => result.stream.mock.calls.length).toBe(1)
+
+  const conversation = result.stream.mock.lastCall?.[2]
+  expect(JSON.stringify(conversation)).toContain('Speak only about the location')
+  const observation = conversation?.turns.find(turn => turn.id === 'location-observation')
+  if (observation?.type !== 'user')
+    throw new Error('Missing the location observation sent to the model')
+  const details = observation.content.find(part => part.type === 'text')?.text
+  const data: unknown = JSON.parse(details ?? '{}')
+  expect(data).toMatchObject({ reference: { facts: [expect.stringContaining('Goldshire')] } })
+  expect(data).not.toHaveProperty('reference.sources')
+  expect(data).not.toHaveProperty('location.level')
+})
+
 describe('fixed game notices with the shared voice owner', () => {
   it('speaks a level event without a chat model or a model request', async () => {
     const result = await companionFixture({ chat: false })
@@ -251,6 +318,30 @@ describe('fixed game notices with the shared voice owner', () => {
     await result.refreshAt(startedAt + 1000)
     await expect.poll(() => result.synthesize.mock.calls.map(([request]) => request.text).join(' ')).toContain(String(result.snapshot.level))
     expect(result.synthesize.mock.calls.map(([request]) => request.text).join(' ')).toContain(result.snapshot.name)
+    expect(result.stream).not.toHaveBeenCalled()
+  })
+
+  it('speaks the area level warning before the location story without a model request', async () => {
+    const result = await companionFixture({ game: 'forever', chat: false, location: true })
+    const previousLocale = i18n.global.locale.value
+    onTestFinished(() => {
+      i18n.global.locale.value = previousLocale
+    })
+    i18n.global.locale.value = 'zh-Hans'
+    Object.assign(result.snapshot, { map: 1434, zone: '荆棘谷', level: 27 })
+    const current = structuredClone(result.snapshot)
+    result.state.bridge!.events = [
+      { id: 1, type: 'zone', timestamp: new Date(startedAt + 1000).toISOString(), title: 'Area', detail: '', snapshot: current, demo: false },
+      { id: 2, type: 'level_gate', playerLevel: 29, minimumLevel: 30, timestamp: new Date(startedAt + 1000).toISOString(), title: 'Warning', detail: '', snapshot: current, demo: false },
+    ]
+    result.state.bridge!.eventCursor = 2
+    await result.refreshAt(startedAt + 1000)
+    const text = '前面的区域，以后再来探索吧'
+    await expect.poll(() => result.sessions.messages.at(-1)?.content).toBe(text)
+    await expect.poll(() => result.synthesize.mock.calls.map(([request]) => request.text).join('')).toContain(text)
+    await result.refreshAt(startedAt + 4000)
+    await expect.poll(() => result.sessions.messages.at(-1)?.content).toContain('古拉巴什巨魔')
+    expect(result.sessions.messages.filter(message => message.content === text)).toHaveLength(1)
     expect(result.stream).not.toHaveBeenCalled()
   })
 

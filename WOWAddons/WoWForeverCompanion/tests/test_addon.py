@@ -426,7 +426,7 @@ class AddonTest(unittest.TestCase):
         self.assertIn("## SavedVariables: WoWForeverCompanionDB", plain)
         self.assertIn("## Version: 1.22.0", plain)
         lua_files = [line.strip() for line in plain.splitlines() if line.strip().endswith(".lua")]
-        self.assertEqual(lua_files, ["Localization.lua", "Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "OfflineHistory.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "WeaponSkills.lua", "Calendar.lua", "GroupBuffs.lua", "ExplorationLevels.lua", "ExplorationWarning.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"])
+        self.assertEqual(lua_files, ["Localization.lua", "Protocol.lua", "Money.lua", "Equipment.lua", "Transfer.lua", "LowFrequency.lua", "CharacterArchive.lua", "CharacterAttributes.lua", "CharacterProfile.lua", "CharacterSpellbook.lua", "CharacterSkillLines.lua", "OfflineHistory.lua", "Inventory.lua", "ItemStorage.lua", "Quests.lua", "Talents.lua", "WeaponSkills.lua", "Calendar.lua", "GroupBuffs.lua", "ExplorationLevels.lua", "ExplorationWarning.lua", "EquipmentCompare.lua", "ConfirmEquip.lua", "Telemetry.lua", "WoWForeverCompanion.lua"])
         for filename in lua_files:
             self.assertTrue((ROOT / filename).is_file())
 

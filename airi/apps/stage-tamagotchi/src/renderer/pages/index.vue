@@ -480,8 +480,8 @@ watch(fullscreenPhase, (phase) => {
  * - {@link setIgnoreMouseEvents}
  */
 function handleFadeOnHoverInteractionChange() {
-  // Settings cover the work area, so the whole window takes the pointer and the stage never fades.
-  if (stagePaused.value || fullscreenActive.value) {
+  // Keep the recovery button reachable when the stage cannot render its animation.
+  if (stagePaused.value || fullscreenActive.value || stageError.value) {
     isIgnoringMouseEvents.value = false
     shouldFadeOnCursorWithin.value = false
     setIgnoreMouseEvents([false, { forward: true }])
@@ -531,7 +531,7 @@ function handleFadeOnHoverInteractionChange() {
 }
 
 watch(
-  [outsideHearingStatus, outsideAuthStatus, isOutside, isOutsideFor250Ms, isPointerOverStageCanvas, isAroundWindowBorder, isAroundWindowBorderFor250Ms, isOutsideWindow, isTransparent, isTransparentForMouseEvents, controlsOverlayActive, fadeOnHoverEnabled, alwaysOnTop, stagePaused, isWayland, fullscreenActive],
+  [outsideHearingStatus, outsideAuthStatus, isOutside, isOutsideFor250Ms, isPointerOverStageCanvas, isAroundWindowBorder, isAroundWindowBorderFor250Ms, isOutsideWindow, isTransparent, isTransparentForMouseEvents, controlsOverlayActive, fadeOnHoverEnabled, alwaysOnTop, stagePaused, isWayland, fullscreenActive, stageError],
   handleFadeOnHoverInteractionChange,
   { immediate: true },
 )

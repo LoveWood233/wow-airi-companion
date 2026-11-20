@@ -24,6 +24,27 @@ describe('request-owned observations', () => {
     expect((await contexts.apply(original, request())).conversation).toBe(original)
   })
 
+  it('omits only the requested text observations on the current turn', async () => {
+    const contexts = new ChatRequestContexts()
+    contexts.register('lore', async () => ({ text: 'Forest history', omitSources: ['equipment', 'skills'] }))
+    contexts.register('skills', async () => 'Unrelated skill ranks')
+    const original: Conversation = { turns: [{ id: 'turn-0', type: 'user', content: [
+      { type: 'text', text: 'Tell me about the forest' },
+      { type: 'runtime-context', entries: [{ source: 'equipment', text: 'Old equipment' }] },
+      { type: 'runtime-context', entries: [{ source: 'unrelated', text: 'Other context' }] },
+    ] }] }
+    const result = await contexts.apply(original, request())
+    expect(result.conversation.turns[0]).toEqual({ id: 'turn-0', type: 'user', content: [
+      { type: 'text', text: 'Tell me about the forest' },
+      { type: 'runtime-context', entries: [{ source: 'unrelated', text: 'Other context' }] },
+      { type: 'runtime-context', entries: [{ source: 'lore', text: 'Forest history' }] },
+    ] })
+    expect(JSON.stringify(original)).toContain('Old equipment')
+
+    contexts.clear()
+    expect((await contexts.apply(original, request())).conversation).toBe(original)
+  })
+
   it('does not observe a conversation whose current turn differs from the request', async () => {
     const contexts = new ChatRequestContexts()
     const read = vi.fn(async () => 'Unrelated screen')

@@ -284,6 +284,8 @@ app.whenReady().then(async () => {
 
   setupSherpawModelAssetsProtocol(resolve(getElectronMainDirname(), '..', 'renderer'))
   setupSherpawModelAssets(createContext(ipcMain).context)
+  // Chromium binds protocol handlers when a window loads its first document.
+  setupDshPet(createContext(ipcMain).context)
   setupPermissionHandlers(session.defaultSession, hasSelectedScreenCaptureSource)
 
   // Initialize file logger and register the hook
@@ -562,7 +564,6 @@ app.whenReady().then(async () => {
       setupComputerUse(context)
       setupHomeAssistant(context)
       setupWowStatistics(context)
-      setupDshPet(context)
       setupWowAddons(context)
       const companion = setupWowCompanion(context)
       const backups = setupWowBackup(context, key => deps.i18n.t(key), companion.snapshotForBackup)

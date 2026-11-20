@@ -19,7 +19,7 @@ from protocol import (COMPARISON_MAX_BYTES, EQUIPMENT_MAX_BYTES, LOADOUT_MAX_BYT
                       INVENTORY_MAX_BYTES, validate_inventory_fragment, validate_inventory,
                       QUEST_MAX_BYTES, validate_quest_fragment, validate_quests,
                       TALENT_MAX_BYTES, validate_talent_fragment, validate_talents, validate_weapon_skill,
-                      validate_loot, validate_pulse)
+                      validate_loot, validate_pulse, validate_archive_fragment, validate_archive)
 
 from item_storage import ItemStorageAssembler
 
@@ -43,6 +43,8 @@ LIFE_TTL_SECONDS = 5
 WEAPON_SKILL_TTL_SECONDS = 120
 WEAPON_SKILL_PENDING_LIMIT = 2
 BULK_RECOVERY_SECONDS = 5
+ARCHIVE_TTL_SECONDS = 7200
+ARCHIVE_PENDING_LIMIT = 8
 
 
 def known_zone(snapshot: dict) -> tuple[int, str, int | None] | None:
@@ -181,8 +183,10 @@ class CompanionState:
         self._profile_source = None
         self._profile_observed_at: int | None = None
         self._pulse_active = False
+        self._reset_archive()
         self._needs_profile = False
         self._low_health_id = 0
+        self._level_gate_id = 0
         self._loot_max = 0
         self._loot_seen: set[int] = set()
 
@@ -210,7 +214,7 @@ class CompanionState:
             self._reported_source = source_token if self._valid_source(source_token) else None
             if self._bulk_recovery is not None and (not self._recovery_matches(source_token)
                     or diagnostic["phase"] == "connected" and diagnostic.get("reason") is not None):
-                self._clear_equipment()
+                self._clear_equipment(preserve_loadout=self._low_frequency and self._profile_matches_source())
             if (self._bulk_recovery is None and transient and diagnostic["phase"] == "locating"
                     and diagnostic.get("reason") == "grid-unreadable" and self.connection["phase"] == "connected"
                     and self._status() == "live" and not self.error and not self.demo and not self.reset_baseline
@@ -255,9 +259,10 @@ class CompanionState:
             if not self._pulse_active:
                 self.loadout_pending.clear()
                 self.inventory_pending.clear()
-            self.quests_pending.clear()
-            self.talents_pending.clear()
-            self.item_storage.pending.clear()
+            if not self._low_frequency:
+                self.quests_pending.clear()
+                self.talents_pending.clear()
+                self.item_storage.pending.clear()
             self.transfer_results.clear()
             self.transfer_latest.clear()
             if self.calendar is None:
@@ -318,9 +323,11 @@ class CompanionState:
 
     def _clear_equipment(self, *, preserve_bulk=False, preserve_loadout=False) -> None:
         self._clear_weapon_skills()
+        preserve_low_frequency = self._low_frequency and preserve_loadout
         if not preserve_bulk:
             self._bulk_recovery = None
-            self.item_storage.reset()
+            if not preserve_low_frequency:
+                self.item_storage.reset()
         self.transfer_results.clear()
         self.transfer_latest.clear()
         self.calendar_started = None
@@ -350,7 +357,7 @@ class CompanionState:
         self.comparison_seen.clear()
         self.comparison_rejected.clear()
         self.comparison_floor = 0
-        if preserve_bulk:
+        if preserve_bulk or preserve_low_frequency:
             return
         if not preserve_loadout:
             self.equipment_loadout = None
@@ -660,7 +667,8 @@ class CompanionState:
                 record = validate_inventory(load_json(payload))
                 if (record["session"], record["guid"], record["id"]) != (fragment["s"], fragment["g"], identifier):
                     raise FrameError("背包库存快照与分片身份不一致")
-                if not self.wall_clock() - INVENTORY_TTL_SECONDS <= record["observedAt"] <= self.wall_clock() + 120:
+                if (record["observedAt"] > self.wall_clock() + 120
+                        or not self._low_frequency and record["observedAt"] < self.wall_clock() - INVENTORY_TTL_SECONDS):
                     raise FrameError("背包库存采集时间过期或超前")
             except FrameError:
                 self._reject_inventory(identifier)
@@ -679,7 +687,7 @@ class CompanionState:
         if (status != "live" or self.demo or self.error or self.inventory_error or not self.inventory
                 or not self.snapshot or not self.snapshot["online"] or self.reset_baseline
                 or (self.inventory["session"], self.inventory["guid"]) != (self.snapshot["session"], self.snapshot["guid"])
-                or not self.wall_clock() - INVENTORY_TTL_SECONDS <= self.inventory["observedAt"] <= self.wall_clock() + 120
+                or (not self._low_frequency and not self.wall_clock() - INVENTORY_TTL_SECONDS <= self.inventory["observedAt"] <= self.wall_clock() + 120)
                 or any(revision > self.inventory["id"] for revision in self.inventory_pending)):
             return None
         return copy.deepcopy(self.inventory)
@@ -694,6 +702,8 @@ class CompanionState:
         """Only complete transfers replace a revision. Capture completeness stays an independent fact."""
         self._expire_equipment()
         if self.demo or self._status() != "live" or self.reset_baseline or self.error:
+            if self._low_frequency:
+                return
             self.quests_pending.clear()
             self.quests_error = "任务需要当前角色的实时状态帧"
             return
@@ -737,7 +747,8 @@ class CompanionState:
                 record = validate_quests(load_json(payload))
                 if (record["session"], record["guid"], record["id"]) != (fragment["s"], fragment["g"], identifier):
                     raise FrameError("任务快照与分片身份不一致")
-                if not self.wall_clock() - QUEST_TTL_SECONDS <= record["observedAt"] <= self.wall_clock() + 120:
+                if (record["observedAt"] > self.wall_clock() + 120
+                        or not self._low_frequency and record["observedAt"] < self.wall_clock() - QUEST_TTL_SECONDS):
                     raise FrameError("任务采集时间过期或超前")
             except FrameError:
                 self._reject_quests(identifier)
@@ -756,7 +767,7 @@ class CompanionState:
         if (status != "live" or self.demo or self.error or self.quests_error or not self.quests
                 or not self.snapshot or not self.snapshot["online"] or self.reset_baseline
                 or (self.quests["session"], self.quests["guid"]) != (self.snapshot["session"], self.snapshot["guid"])
-                or not self.wall_clock() - QUEST_TTL_SECONDS <= self.quests["observedAt"] <= self.wall_clock() + 120
+                or (not self._low_frequency and not self.wall_clock() - QUEST_TTL_SECONDS <= self.quests["observedAt"] <= self.wall_clock() + 120)
                 or any(revision > self.quests["id"] for revision in self.quests_pending)):
             return None
         return copy.deepcopy(self.quests)
@@ -771,6 +782,8 @@ class CompanionState:
         """Only complete transfers replace a revision. Capture completeness stays an independent fact."""
         self._expire_equipment()
         if self.demo or self._status() != "live" or self.reset_baseline or self.error:
+            if self._low_frequency:
+                return
             self.talents_pending.clear()
             self.talents_error = "天赋需要当前角色的实时状态帧"
             return
@@ -814,7 +827,8 @@ class CompanionState:
                 record = validate_talents(load_json(payload))
                 if (record["session"], record["guid"], record["id"]) != (fragment["s"], fragment["g"], identifier):
                     raise FrameError("天赋快照与分片身份不一致")
-                if not self.wall_clock() - TALENT_TTL_SECONDS <= record["observedAt"] <= self.wall_clock() + 120:
+                if (record["observedAt"] > self.wall_clock() + 120
+                        or not self._low_frequency and record["observedAt"] < self.wall_clock() - TALENT_TTL_SECONDS):
                     raise FrameError("天赋采集时间过期或超前")
             except FrameError:
                 self._reject_talents(identifier)
@@ -831,14 +845,15 @@ class CompanionState:
     def _current_talents(self, status: str) -> dict | None:
         if self.talents and self.snapshot:
             if (self.talents["class"] is not None and self.talents["class"] != self.snapshot["class"]
-                    or self.talents["specID"] is not None and self.snapshot["spec"] > 0 and self.talents["specID"] != self.snapshot["spec"]
+                    or not self._low_frequency and self.talents["specID"] is not None
+                    and self.snapshot["spec"] > 0 and self.talents["specID"] != self.snapshot["spec"]
                     or self.game == "retail" and self.talents["configType"] == 4):
                 return None
         # Stale, paused, demo, foreign, and superseded captures cannot supply automatic task observations.
         if (status != "live" or self.demo or self.error or self.talents_error or not self.talents
                 or not self.snapshot or not self.snapshot["online"] or self.reset_baseline
                 or (self.talents["session"], self.talents["guid"]) != (self.snapshot["session"], self.snapshot["guid"])
-                or not self.wall_clock() - TALENT_TTL_SECONDS <= self.talents["observedAt"] <= self.wall_clock() + 120
+                or (not self._low_frequency and not self.wall_clock() - TALENT_TTL_SECONDS <= self.talents["observedAt"] <= self.wall_clock() + 120)
                 or any(revision > self.talents["id"] for revision in self.talents_pending)):
             return None
         return copy.deepcopy(self.talents)
@@ -1073,6 +1088,68 @@ class CompanionState:
             return
         snapshot["loginId"], snapshot["combatEnds"] = self.life_login, self.life_count
 
+    def _reset_archive(self) -> None:
+        self._low_frequency = False
+        self._archive: dict[str, dict] = {}
+        self._archive_pending: dict[int, dict] = {}
+        self._archive_retired: OrderedDict[int, None] = OrderedDict()
+        self.archive_error: str | None = None
+
+    def _archive_live(self, status: str) -> bool:
+        return (status == "live" and not self.demo and not self.reset_baseline and not self.error
+                and self.snapshot is not None and self.snapshot["online"] and self._profile_matches_source())
+
+    def _retire_archive(self, identifier: int) -> None:
+        self._archive_pending.pop(identifier, None)
+        self._archive_retired[identifier] = None
+        if len(self._archive_retired) > EQUIPMENT_DEDUP_LIMIT:
+            self._archive_retired.popitem(last=False)
+
+    def _ingest_archive(self, value: dict) -> None:
+        if not self._archive_live(self._status()):
+            return
+        try:
+            fragment = validate_archive_fragment(value)
+            identity = (fragment["s"], fragment["g"])
+            if identity != (self.snapshot["session"], self.snapshot["guid"]):
+                return
+            now = self.clock()
+            for revision, pending in list(self._archive_pending.items()):
+                if now - pending["started"] > ARCHIVE_TTL_SECONDS:
+                    self._retire_archive(revision)
+            identifier = fragment["id"]
+            if identifier in self._archive_retired or any(record["id"] == identifier for record in self._archive.values()):
+                return
+            if identifier not in self._archive_pending:
+                if len(self._archive_pending) >= ARCHIVE_PENDING_LIMIT:
+                    self._retire_archive(min(self._archive_pending))
+                self._archive_pending[identifier] = {"started": now, "count": fragment["n"], "parts": {}}
+            pending = self._archive_pending[identifier]
+            part = fragment["p"]
+            raw = base64.b64decode(fragment["d"])
+            if pending["count"] != fragment["n"] or (part in pending["parts"] and pending["parts"][part] != raw):
+                self._retire_archive(identifier)
+                raise FrameError("角色快照分片冲突，已丢弃该修订")
+            pending["parts"][part] = raw
+            if len(pending["parts"]) != pending["count"]:
+                return
+            self._retire_archive(identifier)
+            body = b"".join(pending["parts"][index] for index in range(1, pending["count"] + 1))
+            record = validate_archive(load_json(body))
+            if (record["session"], record["guid"], record["id"]) != (*identity, identifier):
+                raise FrameError("角色快照与分片标识不一致")
+            if record["observedAt"] > self.wall_clock() + 120:
+                raise FrameError("角色快照采集时间超前")
+            section = record["section"]
+            previous = self._archive.get(section)
+            if previous and (record["id"] <= previous["id"] or record["observedAt"] < previous["observedAt"]):
+                return
+            self._archive[section] = record
+            self._low_frequency = True
+            self.archive_error = None
+        except FrameError as exc:
+            self.archive_error = str(exc)
+
     def view(self, after: int | None = None) -> dict:
         with self.lock:
             if self._bulk_recovery is not None and not self._recovery_matches(self._reported_source):
@@ -1102,9 +1179,18 @@ class CompanionState:
             current_inventory = self._current_inventory(status)
             current_quests = self._current_quests(status)
             current_talents = self._current_talents(status)
+            current_archive = self._archive if self._archive_live(status) else {}
+            section = current_archive.get("schedule")
+            calendar = section["data"] if section else None
+            if calendar is None and status == "live" and not self.demo and not self.error and self.calendar_at is not None:
+                if self.clock() - self.calendar_at < 70:
+                    calendar = self.calendar
+            archive_state = {"lowFrequency": True, "archive": copy.deepcopy(current_archive)} if self._low_frequency else {}
+            if self.archive_error is not None:
+                archive_state["archiveError"] = self.archive_error
             needs_profile = {"needsProfile": True} if self._needs_profile and status == "waiting" else {}
             return {"instanceId": self.instance_id, "status": status, "source": "demo" if self.demo else "screen", "snapshot": current_snapshot,
-                    **needs_profile,
+                    **needs_profile, **archive_state,
                     "lastSeen": self.last_seen, "ageSeconds": age, "itemStorageRevision": self.item_storage.sequence,
                     "itemStorageError": self.item_storage.error,
                     "eventCursor": self.event_id,
@@ -1121,8 +1207,7 @@ class CompanionState:
                     and current_snapshot and current_snapshot["online"] and not current_snapshot["combat"] and not current_snapshot["dead"]
                     and current_snapshot.get("instanceType") == self.group_buff["instanceType"]
                     and current_snapshot.get("instanceID") == self.group_buff["instanceID"] else None,
-                    "calendar": copy.deepcopy(self.calendar) if status == "live" and not self.demo and not self.error
-                    and self.calendar_at is not None and self.clock() - self.calendar_at < 70 else None,
+                    "calendar": copy.deepcopy(calendar),
                     "macroImport": copy.deepcopy(self.macro_import) if status == "live" and not self.demo
                     and not self.error and self.macro_import_at is not None and self.clock() - self.macro_import_at < 2.5 else None,
                     "equipmentComparisons": copy.deepcopy(self.equipment_comparisons),
@@ -1143,7 +1228,7 @@ class CompanionState:
 
     def read_item_storage(self, after: int) -> dict:
         with self.lock:
-            if self._bulk_recovery is not None:
+            if self._bulk_recovery is not None or (self._low_frequency and not self._archive_live(self._status())):
                 return {"cursor": after, "record": None, "hasMore": False}
             return self.item_storage.read(after)
 
@@ -1171,6 +1256,7 @@ class CompanionState:
         if value["t"] == base["tick"] and (self.fresh_at is None or self._status() == "stale"):
             return None
         self._pulse_active = True
+        self._low_frequency = self._low_frequency or value.get("lf", False)
         # Position belongs to an arrival observation. A heartbeat without an
         # arrival must not make an old coordinate look current.
         return {**base, "px": None, "py": None, **value.get("p", {}), "seq": value["q"],
@@ -1194,7 +1280,7 @@ class CompanionState:
                     self._event("zone", "进入新区域", f"当前区域：{snapshot['zone']}", snapshot)
             self.last_known_zone = zone
 
-    def _record_pulse_events(self, snapshot: dict, old: dict, health: dict | None) -> None:
+    def _record_pulse_events(self, snapshot: dict, old: dict, health: dict | None, warning: dict | None) -> None:
         self._record_zone(snapshot)
         if snapshot["dead"] and not old["dead"]:
             self._event("death", "角色倒下", "角色已死亡", snapshot)
@@ -1206,6 +1292,11 @@ class CompanionState:
                 self._merge_life(observation, self._status())
                 self._event("low_health", "战斗中生命过低", f"当前生命值降至 {percent}%", observation,
                             healthPercent=percent)
+        if (self.game == "forever" and warning is not None and warning["id"] > self._level_gate_id
+                and snapshot["map"] == warning["map"] and snapshot.get("instanceType") == "none" and not snapshot["dead"]):
+            self._level_gate_id = warning["id"]
+            self._event("level_gate", "区域等级提醒", "前面的区域，以后再来探索吧", snapshot,
+                        playerLevel=warning["level"], minimumLevel=warning["min"])
 
     def _ingest_loot(self, snapshot: dict) -> None:
         value = validate_loot(snapshot)
@@ -1231,10 +1322,11 @@ class CompanionState:
             pulse = kind == "pulse"
             if kind and not pulse and self._bulk_recovery is not None:
                 return
-            health = None
+            health = warning = None
             if pulse:
                 value = validate_pulse(snapshot)
                 health = value.get("h")
+                warning = value.get("w")
                 snapshot = self._pulse_snapshot(value)
                 if snapshot is None:
                     return
@@ -1246,6 +1338,9 @@ class CompanionState:
                 return
             if snapshot.get("kind") == "life":
                 self._ingest_life(snapshot)
+                return
+            if kind == "archive":
+                self._ingest_archive(snapshot)
                 return
             if snapshot.get("kind") == "store":
                 if not self.demo and self._status() == "live" and not self.reset_baseline and not self.error:
@@ -1349,7 +1444,9 @@ class CompanionState:
             self._verified_source = self._reported_source
             if identity_changed:
                 self._pulse_active = False
+                self._reset_archive()
                 self._low_health_id = 0
+                self._level_gate_id = 0
                 self._loot_max = 0
                 self._loot_seen.clear()
             if not pulse:
@@ -1369,7 +1466,7 @@ class CompanionState:
                 self.reset_baseline = False
                 if self._pulse_active:
                     if snapshot["online"]:
-                        self._record_pulse_events(snapshot, old, health)
+                        self._record_pulse_events(snapshot, old, health, warning)
                     return
                 self.last_known_zone = known_zone(snapshot) if snapshot["online"] and snapshot["map"] > 0 else None
                 if snapshot["online"] and not resume_bulk:
@@ -1377,7 +1474,7 @@ class CompanionState:
                 return
             if self._pulse_active:
                 if snapshot["online"]:
-                    self._record_pulse_events(snapshot, old, health)
+                    self._record_pulse_events(snapshot, old, health, warning)
                 elif old["online"]:
                     self._clear_equipment(preserve_loadout=True)
                     self.reset_baseline = True
@@ -1416,7 +1513,7 @@ class CompanionState:
                 if not self._pulse_active:
                     self.loadout_pending.clear()
                     self.inventory_pending.clear()
-            if self._bulk_recovery is None:
+            if self._bulk_recovery is None and not self._low_frequency:
                 self.quests_pending.clear()
 
     def capture_inventory_error(self, message: str) -> None:
@@ -1485,8 +1582,10 @@ class CompanionState:
                 self._profile_source = None
                 self._profile_observed_at = None
                 self._pulse_active = False
+                self._reset_archive()
                 self._needs_profile = False
                 self._low_health_id = 0
+                self._level_gate_id = 0
                 self._loot_max = 0
                 self._loot_seen.clear()
                 self.fresh_at = None

@@ -165,6 +165,42 @@ function UnitClass() return "Warrior","WARRIOR",Secret end''')
         self.setUp(); self.lua.execute(b'ConfigType=4')
         self.assertEqual(self.capture()['status'], 'active' if ROOT.name == 'WoWForeverCompanion' else 'unknown')
 
+    def test_forever_reads_the_active_talent_group_and_retail_reads_its_active_config(self):
+        self.lua.execute(b'''
+C_SpecializationInfo.GetActiveSpecGroup=function() return 2 end
+C_SpecializationInfo.GetCombatConfigIDForSpecGroup=function(group) assert(group==2); return 24 end
+''')
+        record = self.capture()
+        self.assertEqual(record['status'], 'active')
+        self.assertEqual(record['configID'], 24 if ROOT.name == 'WoWForeverCompanion' else 7)
+
+    def test_forever_does_not_guess_the_active_group_when_its_value_is_restricted(self):
+        self.lua.execute(b'''
+C_SpecializationInfo.GetActiveSpecGroup=function() return Secret end
+C_SpecializationInfo.GetCombatConfigIDForSpecGroup=function() error("invalid group read") end
+''')
+        record = self.capture()
+        if ROOT.name == 'WoWForeverCompanion':
+            self.assertEqual(record['status'], 'inaccessible')
+            self.assertIsNone(record['configID'])
+            self.assertEqual(record['nodes'], [])
+        else:
+            self.assertEqual(record['configID'], 7)
+
+    def test_saves_latest_talent_ranks_and_names_locally_without_a_final_transfer(self):
+        self.lua.execute(b'''
+Saved={}; NS.LowFrequency={SaveTalents=function(record) Saved[#Saved+1]=record end}
+C_Spell={GetSpellName=function(id) assert(id==1001); return "Practice Talent" end}
+''')
+        wire = self.capture()
+        self.assertNotIn('name', wire['nodes'][0]['entries'][0])
+        self.assertEqual(self.g.Saved[1][b'nodes'][1][b'entries'][1][b'name'], b'Practice Talent')
+        self.lua.execute(b'local node=Nodes[9001]; node.ranksPurchased=2; node.activeRank=2; node.activeEntry.rank=2')
+        self.ns[b'Talents'][b'Flush']()
+        self.assertEqual(len(self.g.Captures), 1)
+        self.assertEqual(len(self.g.Saved), 2)
+        self.assertEqual(self.g.Saved[2][b'nodes'][1][b'entries'][1][b'rank'], 2)
+
     def test_combat_does_not_prevent_public_committed_reads_or_call_any_mutator(self):
         self.lua.execute(b'''Model.combat=true
 C_Traits.CommitConfig=function() error("mutator") end
@@ -211,7 +247,8 @@ C_ClassTalents.LoadConfig=function() error("mutator") end''')
         self.assertIsNone(record['specID'])
 
     def test_payload_budget_truncates_known_zeros_before_selected_nodes_without_inventing_absence(self):
-        self.lua.execute(b'''Nodes={}; local ids={}
+        self.lua.execute(b'''Saved={}; NS.LowFrequency={SaveTalents=function(record) Saved[#Saved+1]=record end}
+Nodes={}; local ids={}
 for n=1,2000 do ids[n]=n; Nodes[n]={ID=n,ranksPurchased=n<=500 and 1 or 0,activeRank=n<=500 and 1 or 0,maxRanks=2,
 isAvailable=true,isVisible=true,meetsEdgeRequirements=true,entryIDsWithCommittedRanks={},conditionIDs={}}
 if n<=500 then Nodes[n].activeEntry={entryID=101,rank=1}; for e=1,8 do Nodes[n].entryIDsWithCommittedRanks[e]=100+e; Nodes[n].conditionIDs[e]=600+e end end end
@@ -225,6 +262,8 @@ C_Traits.GetConditionInfo=function(config,condition) return {condID=condition,is
         self.assertFalse(record['complete'])
         self.assertLess(len(record['nodes']), 128)
         self.assertEqual(record['knownZeroNodes'], [])
+        self.assertEqual(len(self.g.Saved[1][b'nodes']), 128)
+        self.assertEqual(len(self.g.Saved[1][b'knownZeroNodes']), 1024)
         self.assertLessEqual(len(json.dumps(record, ensure_ascii=False, separators=(',', ':')).encode()), 65536)
         self.assertEqual(self.drain(), record)
 

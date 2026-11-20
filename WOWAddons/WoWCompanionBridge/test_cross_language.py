@@ -88,7 +88,33 @@ end''')
                 lua = LuaRuntime(encoding=None, unpack_returned_tuples=True)
                 lua.execute(harness.MOCK)
                 lua.execute(b'''
-Clock, Quantity, Health = 0, 2, 100
+Clock, Quantity, Health, Experience, FactionStanding = 0, 2, 100, 15, 125
+function UnitXP() return Experience end
+function UnitXPMax() return 100 end
+QuestProgress = 0
+C_QuestLog = {
+    GetNumQuestLogEntries = function() return 1, 1 end,
+    GetInfo = function() return {questID=100, title="Mock quest", level=29, isHeader=false} end,
+    ReadyForTurnIn = function() return QuestProgress == 2 end,
+    IsFailed = function() return false end,
+    GetAllCompletedQuestIDs = function() return {} end,
+    GetQuestObjectives = function() return {{text="Items collected", type="item",
+        numFulfilled=QuestProgress, numRequired=2, finished=QuestProgress == 2}} end,
+}
+C_Reputation = {
+    GetNumFactions = function() return 1 end,
+    GetFactionDataByIndex = function() return {factionID=72,name="Stormwind",reaction=4,
+        currentStanding=FactionStanding,currentReactionThreshold=0,nextReactionThreshold=3000,isHeader=false} end,
+}
+function RequestRaidInfo() RaidRequested = true end
+function GetNumSavedInstances() return 1 end
+function GetSavedInstanceInfo() return "Mock dungeon", 31, 1700086400 - GetServerTime(), 2, true, false end
+C_DateAndTime = {GetCurrentCalendarTime = function() return {year=2026,month=11,monthDay=16} end}
+C_Calendar = {
+    OpenCalendar = function() end,
+    GetMonthInfo = function() return {year=2026,month=11} end,
+    GetNumDayEvents = function() return 0 end,
+}
 function GetTime() return Clock end
 function GetServerTime() return 1700000000 + math.floor(Clock) end
 function UnitHealth() return Health end
@@ -145,15 +171,29 @@ NS.Telemetry.Render = function(frame) Wire = frame; render(frame) end''')
 
                 g.Fire(b"PLAYER_ENTERING_WORLD", True, False)
                 self.assertEqual(observe()["level"], 29)
+                g.Fire(b"CALENDAR_UPDATE_EVENT_LIST")
                 step(13)
+                self.assertTrue(g.RaidRequested)
+                g.Fire(b"UPDATE_INSTANCE_INFO")
+                step(12)
+                baseline = engine.view()
+                self.assertTrue(baseline["lowFrequency"])
+                self.assertEqual(baseline["archive"]["progress"]["data"]["xp"], 15)
+                self.assertEqual(baseline["inventory"]["items"], [{"itemID": 2589, "quantity": 2}])
+                self.assertEqual(baseline["archive"]["reputation"]["data"]["entries"][0]["value"], 125)
+                self.assertEqual(baseline["archive"]["lockouts"]["data"]["entries"][0]["resetAt"], 1700086400)
+                self.assertEqual(baseline["calendar"], {"day": "2026-11-16", "items": []})
+                self.assertEqual(baseline["quests"]["log"]["entries"][0]["objectives"][0]["fulfilled"], 0)
                 later = len(frames)
                 g.Model[b"level"], g.Model[b"copper"] = 32, 103500
+                g.Experience, g.FactionStanding, g.QuestProgress = 35, 170, 2
+                g.Fire(b"QUEST_LOG_UPDATE")
                 g.Fire(b"PLAYER_MONEY")
                 g.Fire(b"PLAYER_LEVEL_UP", 32)
                 step(3)
                 steady = [frame for frame in frames[later:] if frame.get("kind") == "pulse"]
                 self.assertTrue(steady)
-                self.assertTrue(all(set(frame) == {"v", "kind", "s", "g", "q", "t", "on", "c", "d"} for frame in steady))
+                self.assertTrue(all(set(frame) == {"v", "kind", "s", "g", "q", "t", "on", "c", "d", "lf"} for frame in steady))
                 self.assertTrue(all(frame.get("kind") for frame in frames[later:]))
                 self.assertEqual((engine.view()["snapshot"]["level"], engine.view()["snapshot"]["copper"]), (29, 100000))
                 saved = json.loads(g[(name + "DB").encode()][b"snapshotJSON"])
@@ -167,6 +207,19 @@ NS.Telemetry.Render = function(frame) Wire = frame; render(frame) end''')
                 step(1)
                 self.assertEqual(engine.view()["snapshot"]["map"], 37)
                 self.assertIn("zone", [event["type"] for event in engine.view()["events"]])
+                if game == "forever":
+                    lua.execute(b'function IsInInstance() return false, "none" end')
+                    # The wire profile still says 29. The live level of 32 meets the 30 minimum.
+                    g.Model[b"map"], g.Model[b"zone"] = 1434, "荆棘谷".encode()
+                    g.Fire(b"ZONE_CHANGED_NEW_AREA")
+                    step(3)
+                    self.assertNotIn("level_gate", [event["type"] for event in engine.view()["events"]])
+                    g.Model[b"map"], g.Model[b"zone"] = 1427, "灼热峡谷".encode()
+                    g.Fire(b"ZONE_CHANGED_NEW_AREA")
+                    step(5)
+                    warnings = [event for event in engine.view()["events"] if event["type"] == "level_gate"]
+                    self.assertEqual([(event["snapshot"]["map"], event["playerLevel"], event["minimumLevel"])
+                                      for event in warnings], [(1427, 32, 45)])
                 g.Health = 20
                 g.Fire(b"PLAYER_REGEN_DISABLED")
                 step(1)
@@ -191,6 +244,23 @@ NS.Telemetry.Render = function(frame) Wire = frame; render(frame) end''')
                 self.assertEqual([event["quantity"] for event in events if event["type"] == "loot"], [3])
                 self.assertEqual(sum(event["type"] == "death" for event in events), 1)
                 self.assertTrue(all(frame.get("kind") for frame in frames[later:]))
+                early = engine.view()
+                self.assertEqual(early["archive"]["progress"]["id"], baseline["archive"]["progress"]["id"])
+                self.assertEqual(early["inventory"]["id"], baseline["inventory"]["id"])
+                self.assertEqual(early["quests"]["id"], baseline["quests"]["id"])
+                # Refresh the wire without simulating six minutes of 64x64 texture copies.
+                g.Clock = 360
+                step(12)
+                g.Fire(b"UPDATE_INSTANCE_INFO")
+                step(10)
+                changed = engine.view()
+                self.assertEqual(changed["archive"]["progress"]["data"]["copper"], "103500")
+                self.assertEqual(changed["archive"]["progress"]["data"]["xp"], 35)
+                self.assertEqual(changed["archive"]["reputation"]["data"]["entries"][0]["value"], 170)
+                self.assertEqual(changed["inventory"]["items"], [{"itemID": 2589, "quantity": 5}])
+                self.assertEqual(changed["quests"]["log"]["entries"][0]["objectives"][0]["fulfilled"], 2)
+                self.assertEqual(changed["archive"]["lockouts"]["id"], baseline["archive"]["lockouts"]["id"])
+                self.assertEqual(changed["archive"]["schedule"]["id"], baseline["archive"]["schedule"]["id"])
 
     def test_real_lua_level_event_to_python_pixels_to_state(self):
         self.check_game(ADDON, "WoWMapCompanion", "retail", "WCP1", 2)

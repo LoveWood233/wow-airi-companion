@@ -978,6 +978,7 @@ archives:
   diagnostics: '连接诊断与采集设置'
   activity: '事件与演示'
 fixed-notices:
+  level_gate: '前面的区域，以后再来探索吧'
   level_up: '{player}，恭喜升到{level}级，你又变强了。'
   death: '{player}，这次倒下不是旅途的终点。我陪你再来。'
   low_health: '{player}，小心，刚才的生命值只有百分之{percent}。'

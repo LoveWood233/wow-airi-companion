@@ -84,9 +84,21 @@ local function Build()
         if type(build) == "string" and string.match(build, "^%d+$") and #version + #build < 40 then return version .. "." .. build end
     end
 end
+local function ActiveConfig()
+    local spec = C_SpecializationInfo
+    if addon == "WoWForeverCompanion" and spec and type(spec.GetActiveSpecGroup) == "function"
+        and type(spec.GetCombatConfigIDForSpecGroup) == "function" then
+        -- Camelot has separate combat configs for the active and inactive talent groups.
+        local group, readable = Read(spec.GetActiveSpecGroup)
+        group = Integer(group, 1, 2)
+        if not group then return nil, readable end
+        return Read(spec.GetCombatConfigIDForSpecGroup, group)
+    end
+    return Read(C_ClassTalents and C_ClassTalents.GetActiveConfigID)
+end
 local function Metadata()
     local class, classID, specID = ClassSpec()
-    local configID, readable = Read(C_ClassTalents and C_ClassTalents.GetActiveConfigID)
+    local configID, readable = ActiveConfig()
     configID = ID(configID)
     local record = { v = 1, id = 1, session = owner.session, guid = owner.guid, observedAt = 1, source = "class-traits",
         clientBuild = Build(), locale = Text(Call(GetLocale), 4), class = class, classID = classID, specID = specID, configID = configID,
@@ -154,10 +166,16 @@ local function Capture()
                             local entryInfo = Table(Call(api.GetEntryInfo, record.configID, entryID))
                             local definitionID = entryInfo and ID(entryInfo.definitionID)
                             local definition = definitionID and Table(Call(api.GetDefinitionInfo, definitionID)) or nil
+                            local spellID = definition and ID(definition.spellID)
+                            local name = definition and Text(definition.overrideName, 128)
+                            if not name or name == "" then
+                                name = spellID and Text(Call(C_Spell and C_Spell.GetSpellName or GetSpellInfo, spellID), 128)
+                            end
                             local isActive
                             if selectedID then isActive = entryID == selectedID end
-                            node.entries[#node.entries + 1] = { entryID = entryID, definitionID = definitionID, spellID = definition and ID(definition.spellID),
-                                rank = entryID == selectedID and Rank(selected.rank) or nil, isActive = isActive }
+                            node.entries[#node.entries + 1] = { entryID = entryID, definitionID = definitionID, spellID = spellID,
+                                rank = entryID == selectedID and Rank(selected.rank) or nil, isActive = isActive,
+                                name = name, subTreeID = entryInfo and ID(entryInfo.subTreeID) }
                             if not entryInfo or (definitionID and not definition)
                                 or (entryInfo and issecretvalue and issecretvalue(entryInfo.definitionID))
                                 or (definition and issecretvalue and issecretvalue(definition.spellID)) then node.entriesComplete = false end
@@ -197,20 +215,34 @@ local function Capture()
     return record
 end
 
-function Talents.Scan()
-    timer = nil
+local snapshotOnly
+
+local function Save(record, observedAt)
+    if not ns.LowFrequency then return end
+    local snapshot = {}
+    -- The optical encoder can trim top-level lists and completeness flags for its frame budget.
+    for key, value in pairs(record) do snapshot[key] = value end
+    snapshot.id, snapshot.observedAt = revision + 1, observedAt
+    ns.LowFrequency.SaveTalents(snapshot)
+end
+
+function Talents.Scan(diskOnly)
+    diskOnly = diskOnly == true
+    if not diskOnly then timer = nil end
     local key = Identity()
     if not active or not key then return end
-    if busy() and not (invalidate and lastStatus == "active") then dirty = true; return end
+    if not diskOnly and busy() and not (invalidate and lastStatus == "active") then dirty = true; return end
     local observedAt, now = Integer(Call(GetServerTime), 1, 4102444800), Call(GetTime)
     if not observedAt or type(now) ~= "number" or now ~= now or now < 0 or now > 1e10 then return end
     local record
-    if busy() then
+    if not diskOnly and busy() then
         record = Metadata()
         record.status, record.complete = record.hasStagedChanges == true and "staged" or "unknown", false
         dirty = true
     else record = Capture(); dirty = false end
     if key ~= Identity() then return end
+    Save(record, observedAt)
+    if diskOnly then return end
     local body = ns.Transfer.TalentsJSON(record)
     if #body > 65460 then
         record.complete, record.truncated = false, true
@@ -237,23 +269,30 @@ function Talents.Scan()
             end
         end
     end
-    if body == lastSignature and lastCapture and now - lastCapture < 60 and not invalidate then return end
+    if body == lastSignature and lastCapture and (snapshotOnly or now - lastCapture < 60) and not invalidate then return end
     revision = revision + 1
     record.id, record.observedAt = revision, observedAt
     if publish(record) then lastCapture, lastSignature, lastStatus, invalidate = now, body, record.status, false end
 end
+function Talents.Flush()
+    if ns.LowFrequency then Talents.Scan(true) end
+end
+
 local function Schedule()
     dirty = true
     if not active or timer then return end
     timer = C_Timer.NewTimer(0.5, Talents.Scan)
 end
-function Talents.Initialize(state, callback, pending) owner, publish, busy = state, callback, pending end
+function Talents.Initialize(state, callback, pending, snapshots) owner, publish, busy, snapshotOnly = state, callback, pending, snapshots end
 function Talents.OnEvent(event, unit)
     if event == "PLAYER_LOGOUT" or event == "PLAYER_LEAVING_WORLD" then
         active = false
         if timer then timer:Cancel(); timer = nil end
-        publish(nil)
-    elseif event == "PLAYER_ENTERING_WORLD" then active = true; lastSignature = nil; Schedule()
+        if not snapshotOnly or event == "PLAYER_LOGOUT" then publish(nil) end
+    elseif event == "PLAYER_ENTERING_WORLD" then
+        active = true
+        if not snapshotOnly then lastSignature = nil end
+        Schedule()
     elseif event == "PLAYER_SPECIALIZATION_CHANGED" and Public(unit) ~= "player" then return
     elseif event == "PLAYER_SPECIALIZATION_CHANGED" or event == "PLAYER_TALENT_UPDATE" or event == "TRAIT_CONFIG_UPDATED"
         or event == "TRAIT_CONFIG_LIST_UPDATED" or event == "TRAIT_NODE_CHANGED" or event == "TRAIT_TREE_CHANGED" or event == "PLAYER_LEVEL_UP" then
@@ -263,6 +302,6 @@ function Talents.OnEvent(event, unit)
 end
 function Talents.Tick()
     local now = Call(GetTime)
-    if active and not timer and type(now) == "number" and (dirty or not lastCapture or now - lastCapture >= 60)
+    if active and not timer and type(now) == "number" and (dirty or not lastCapture or (not snapshotOnly and now - lastCapture >= 60))
         and (not busy() or (invalidate and lastStatus == "active")) then Schedule() end
 end

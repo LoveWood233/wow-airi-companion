@@ -1,51 +1,40 @@
-"""Refresh offline exploration levels from the public wuxianwow MCP atlas tool."""
-import json
+"""Regenerate the addon ranges from the documented OpenMap values."""
+import re
 from pathlib import Path
-from urllib.request import Request, urlopen
+
+
+LEVEL_ROW = re.compile(
+    r"^\| ([^|]+?) \| (\d+)–(\d+) \| "
+    r"\[(\d+)\]\(https://wuxianwow\.com/atlas/\4\) \|$"
+)
 
 
 def main():
-    body = json.dumps({
-        "jsonrpc": "2.0", "id": 1, "method": "tools/call",
-        "params": {"name": "atlas", "arguments": {"kind": "区域", "limit": 200}},
-    }).encode("utf-8")
-    request = Request("https://wuxianwow.com/mcp", data=body, headers={
-        "Content-Type": "application/json", "Accept": "application/json, text/event-stream",
-        "User-Agent": "WoWForeverCompanion-atlas/1.13.0",
-    })
-    with urlopen(request, timeout=30) as response:
-        envelope = json.load(response)
-    result = envelope["result"]
-    if result.get("isError"):
-        raise ValueError("MCP atlas returned an error")
-    data = json.loads(next(block["text"] for block in result["content"] if block["type"] == "text"))
-    if data["outcome"] != "ok" or data["has_more"] or len(data["results"]) != data["total"]:
-        raise ValueError("Atlas response is incomplete")
+    addon = Path(__file__).resolve().parents[1]
+    source = addon.parent / "docs/wow-forever-map-level-ranges.md"
     lines = [
-        "-- Source: 无限图鉴 wuxianwow.com, MCP atlas.",
-        "-- Minimum and maximum exploration levels, not quest or enemy levels.",
+        "-- Source: OpenMap v0.8.5 map label ranges in docs/wow-forever-map-level-ranges.md.",
+        "-- These bounds are the same as the world map hover labels.",
         "-- Refresh with tools/update_exploration_levels.py. Missing levels stay absent.",
         "local _, ns = ...", "ns.ExplorationLevels = {",
     ]
-    count = 0
-    for row in data["results"]:
-        level = row["level"]
-        if level is None:
+    seen = set()
+    for line in source.read_text(encoding="utf-8").splitlines():
+        match = LEVEL_ROW.fullmatch(line)
+        if not match:
             continue
-        map_id, minimum, maximum = row["id"], level["min"], level["max"]
-        if not all(type(value) is int for value in (map_id, minimum, maximum)):
-            raise ValueError("Invalid numeric exploration level")
-        if map_id <= 0 or not 1 <= minimum <= maximum <= 60:
-            raise ValueError("Exploration level out of range")
-        title = row["title"].replace("\n", " ").replace("\r", " ")
+        title, low, high, identifier = match.groups()
+        map_id, minimum, maximum = int(identifier), int(low), int(high)
+        if map_id <= 0 or map_id in seen or not 1 <= minimum <= maximum <= 60:
+            raise ValueError(f"Invalid OpenMap level range for map {map_id}")
+        seen.add(map_id)
         lines.append(f"    [{map_id}] = {{ min = {minimum}, max = {maximum} }}, -- {title}")
-        count += 1
-    if not count:
-        raise ValueError("Atlas contains no exploration levels")
+    if not seen:
+        raise ValueError("The reference contains no numeric OpenMap level ranges")
     lines.append("}")
-    destination = Path(__file__).resolve().parents[1] / "ExplorationLevels.lua"
+    destination = addon / "ExplorationLevels.lua"
     destination.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"Updated {count} maps: {destination}")
+    print(f"Updated {len(seen)} maps: {destination}")
 
 
 if __name__ == "__main__":

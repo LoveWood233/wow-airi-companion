@@ -8,7 +8,11 @@ import { mkdir, open, readFile, rename, rm } from 'node:fs/promises'
 import { dirname } from 'node:path'
 
 import { errorMessageFrom } from '@moeru/std'
-import { array, check, integer, literal, looseObject, minValue, null_, nullable, number, object, parse, picklist, pipe, regex, string } from 'valibot'
+import { array, check, integer, literal, looseObject, minValue, null_, nullable, number, object, optional, parse, picklist, pipe, regex, string } from 'valibot'
+
+import { characterArchiveSchema, matchingArchiveRecord } from '../../../shared/wow-companion-character-archive'
+import { moneyIdSchema } from '../../../shared/wow-companion-gold'
+import { talentSnapshotSchema } from '../../../shared/wow-companion-talents'
 
 const amount = pipe(string(), regex(/^(?:0|[1-9]\d*)$/))
 const count = pipe(number(), integer(), minValue(0))
@@ -29,13 +33,23 @@ const transaction = object({
   occurredAt: null_(),
   reason: null_(),
 })
+const characterSchema = object({
+  account: moneyIdSchema,
+  guid: string(),
+  name: string(),
+  realm: string(),
+  observations: characterArchiveSchema,
+  talents: optional(talentSnapshotSchema),
+})
 const savedSchema = pipe(looseObject({
   version: literal(1),
   game: picklist(['retail', 'forever']),
   checkpoints: array(checkpoint),
   goldJournal: array(transaction),
+  characters: optional(array(characterSchema)),
 }), check(value => new Set(value.checkpoints.map(row => JSON.stringify([row.account, row.guid]))).size === value.checkpoints.length
-  && new Set(value.goldJournal.map(row => row.id)).size === value.goldJournal.length, 'Duplicate archive identities'))
+  && new Set(value.goldJournal.map(row => row.id)).size === value.goldJournal.length
+  && (!value.characters || new Set(value.characters.map(row => JSON.stringify([row.account, row.guid]))).size === value.characters.length), 'Duplicate archive identities'))
 
 /**
  * Publishes offline character data and a receipt-interval money journal in one fixed JSON file per game.
@@ -44,6 +58,7 @@ const savedSchema = pipe(looseObject({
 export class CompanionArchive {
   private checkpoints: InferOutput<typeof checkpoint>[] = []
   private goldJournal: InferOutput<typeof transaction>[] = []
+  private readonly characters = new Map<string, InferOutput<typeof characterSchema>>()
   private loading: Promise<void> | undefined
   private queue: Promise<void> = Promise.resolve()
   private blocked = false
@@ -61,6 +76,7 @@ export class CompanionArchive {
       if (this.blocked || state.game !== this.game)
         return
       this.latest = state
+      this.observeCharacter(state)
       if (addonHistory)
         this.addonHistory = addonHistory
       if (!state.gold.storageError) {
@@ -120,6 +136,8 @@ export class CompanionArchive {
         throw new Error('Archive belongs to another game')
       this.checkpoints = saved.checkpoints
       this.goldJournal = saved.goldJournal
+      for (const row of saved.characters ?? [])
+        this.characters.set(JSON.stringify([row.account, row.guid]), row)
     }
     catch (cause) {
       if (typeof cause === 'object' && cause !== null && 'code' in cause && cause.code === 'ENOENT')
@@ -127,6 +145,40 @@ export class CompanionArchive {
       this.blocked = true
       throw cause
     }
+  }
+
+  private observeCharacter(state: CompanionState) {
+    const bridge = state.bridge
+    const player = bridge?.snapshot
+    if (state.error || !bridge || bridge.error || bridge.status !== 'live' || bridge.source !== 'screen'
+      || bridge.config.paused || !player?.online) {
+      return
+    }
+    const key = JSON.stringify([player.account, player.guid])
+    const previous = this.characters.get(key)
+    const observations = { ...previous?.observations }
+    let changed = false
+    for (const [section, record] of Object.entries(bridge.archive ?? {})) {
+      if (!record || !matchingArchiveRecord(record, player))
+        continue
+      const old = observations[record.section]
+      if (old && (record.observedAt < old.observedAt || (record.session === old.session && record.id <= old.id)))
+        continue
+      // Each section replaces its own observation without altering the other capture times.
+      if (section === record.section) {
+        Object.assign(observations, { [section]: record })
+        changed = true
+      }
+    }
+    let talents = previous?.talents
+    const current = bridge.talentsError ? undefined : matchingArchiveRecord(bridge.talents, player)
+    if (current?.status === 'active' && !current.hasStagedChanges && current.complete && !current.truncated
+      && (!talents || (current.observedAt >= talents.observedAt && (current.session !== talents.session || current.id > talents.id)))) {
+      talents = current
+      changed = true
+    }
+    if (changed)
+      this.characters.set(key, { account: player.account, guid: player.guid, name: player.name, realm: player.realm, observations, talents })
   }
 
   private async save() {
@@ -155,6 +207,7 @@ export class CompanionArchive {
           equipmentLoadouts: state.equipmentLoadouts,
           equipmentHistory: state.equipmentHistory,
           levelHistory: state.levelHistory,
+          characters: [...this.characters.values()],
           checkpoints: this.checkpoints,
           goldJournal: this.goldJournal,
           journalSemantics: 'Changes between desktop observations, possibly multiple transactions. Exact transaction times and reasons are unknown. History starts at the first archive baseline.',

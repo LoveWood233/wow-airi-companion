@@ -8,7 +8,7 @@ import { wowQuestFailure } from '@proj-airi/stage-shared/wow-knowledge'
 import { WowQuestSource } from '@proj-airi/stage-ui/libs/wow-quest-source'
 
 import { electronMcpCallTool, electronMcpListTools } from '../../shared/eventa'
-import { readCurrentCompanionPlayer } from './wow-companion-observation'
+import { readCurrentCompanionPlayer, usableCharacterObservation } from './wow-companion-observation'
 
 type ReadQuestState = (game: GameVersion) => CompanionState | undefined
 
@@ -20,8 +20,7 @@ export function projectWowQuestContext(state: CompanionState | undefined, nowMs 
   const player = readCurrentCompanionPlayer(state, nowMs)
   const quests = state?.bridge?.quests
   if (!state || !player || !quests || state.bridge?.questsError
-    || quests.guid !== player.guid || quests.session !== player.session || !Number.isSafeInteger(quests.observedAt)
-    || nowMs - quests.observedAt * 1000 > 180_000 || quests.observedAt * 1000 - nowMs > 30_000) {
+    || quests.guid !== player.guid || quests.session !== player.session || !usableCharacterObservation(quests.observedAt, nowMs, state.bridge?.lowFrequency, 180_000, 30_000)) {
     return { game: 'unknown' }
   }
   return {

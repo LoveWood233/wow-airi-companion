@@ -141,18 +141,24 @@ function Transfer.EncodeQuests(record)
     end
     return frames, body
 end
-function Transfer.SetQuests(record)
+function Transfer.SetQuests(record, bounded)
     if not record then quests, questPart = nil, 0; return true end
     local frames = Transfer.EncodeQuests(record)
     if not frames then dropped = dropped + 1; return false end
-    quests, questPart = { frames = frames, fresh = true }, 0
+    quests, questPart = { frames = frames, fresh = true, passes = bounded and 2 or nil }, 0
     return true
 end
 function Transfer.QuestsBusy() return quests and quests.fresh or false end
 local function NextQuests()
     questPart = questPart % #quests.frames + 1
     heldFrame = quests.frames[questPart]
-    if questPart == #quests.frames then quests.fresh = false end
+    if questPart == #quests.frames then
+        quests.fresh = false
+        if quests.passes then
+            quests.passes = quests.passes - 1
+            if quests.passes == 0 then quests, questPart = nil, 0 end
+        end
+    end
 end
 
 function Transfer.TalentsJSON(record)
@@ -186,18 +192,24 @@ function Transfer.EncodeTalents(record)
     end
     return frames, body
 end
-function Transfer.SetTalents(record)
+function Transfer.SetTalents(record, bounded)
     if not record then talents, talentPart = nil, 0; return true end
     local frames = Transfer.EncodeTalents(record)
     if not frames then dropped = dropped + 1; return false end
-    talents, talentPart = { frames = frames, fresh = true }, 0
+    talents, talentPart = { frames = frames, fresh = true, passes = bounded and 2 or nil }, 0
     return true
 end
 function Transfer.TalentsBusy() return talents and talents.fresh or false end
 local function NextTalents()
     talentPart = talentPart % #talents.frames + 1
     heldFrame = talents.frames[talentPart]
-    if talentPart == #talents.frames then talents.fresh = false end
+    if talentPart == #talents.frames then
+        talents.fresh = false
+        if talents.passes then
+            talents.passes = talents.passes - 1
+            if talents.passes == 0 then talents, talentPart = nil, 0 end
+        end
+    end
 end
 
 function Transfer.Base64(bytes)
@@ -636,6 +648,70 @@ local function NextWeaponSkills()
     if weaponSkillPart == #weaponSkills.frames then weaponSkills.fresh = false end
 end
 
+
+-- One bounded revision per section. Fresh sections rotate at fragment boundaries.
+local archive, archiveCursor, archiveRevision = {}, 0, 0
+local archiveSections = { "progress", "schedule", "lockouts", "reputation", "professions", "achievements", "exploration" }
+
+local function ArchiveDataJSON(value)
+    if type(value) ~= "table" then return Value(value) end
+    local fields = {}
+    if #value > 0 or next(value) == nil then
+        for _, entry in ipairs(value) do fields[#fields + 1] = ArchiveDataJSON(entry) end
+        return "[" .. table.concat(fields, ",") .. "]"
+    end
+    for key, entry in pairs(value) do fields[#fields + 1] = Escape(key) .. ":" .. ArchiveDataJSON(entry) end
+    table.sort(fields)
+    return "{" .. table.concat(fields, ",") .. "}"
+end
+Transfer.ArchiveDataJSON = ArchiveDataJSON
+
+function Transfer.SetArchive(owner, section, observedAt, dataJSON)
+    if #dataJSON > 245500 or not Identity(owner.session, 40) or not Identity(owner.guid, 48) then return false end
+    archiveRevision = archiveRevision + 1
+    local header = FieldsJSON({ v = 1, id = archiveRevision, session = owner.session,
+        guid = owner.guid, observedAt = observedAt, section = section }, {"v", "id", "session", "guid", "observedAt", "section"})
+    local body = header:sub(1, -2) .. ',"data":' .. dataJSON .. '}'
+    local record = { body = body, count = math.ceil(#body / 240), part = 0, passes = 2,
+        id = archiveRevision, session = owner.session, guid = owner.guid }
+    local inFlight = archive[section]
+    if inFlight and inFlight.passes == 2 and inFlight.part > 0 then
+        inFlight.next = record
+    else
+        archive[section] = record
+    end
+    return true
+end
+
+local function HasArchive(pass)
+    for _, record in pairs(archive) do
+        if record.passes == pass then return true end
+    end
+    return false
+end
+
+local function AdvanceArchive(pass)
+    for _ = 1, #archiveSections do
+        archiveCursor = archiveCursor % #archiveSections + 1
+        local section = archiveSections[archiveCursor]
+        local record = archive[section]
+        if record and record.passes == pass then
+            record.part = record.part + 1
+            local raw = record.body:sub((record.part - 1) * 240 + 1, record.part * 240)
+            local data = {v = 1, kind = "archive", s = record.session, g = record.guid,
+                id = record.id, p = record.part, n = record.count, d = Transfer.Base64(raw)}
+            heldFrame = Protocol.Frame(FieldsJSON(data, {"v", "kind", "s", "g", "id", "p", "n", "d"}))
+            if record.part == record.count then
+                record.part, record.passes = 0, record.passes - 1
+                if record.next or record.passes == 0 then archive[section] = record.next end
+            end
+            return
+        end
+    end
+end
+local function NextArchive() AdvanceArchive(2) end
+local function ReplayArchive() AdvanceArchive(1) end
+
 function Transfer.AddLoot(record)
     if not Identity(record.session, 40) or not Identity(record.guid, 48)
         or not Integer(record.itemID, 1, 2147483647) or not Integer(record.quantity, 1, 2147483647)
@@ -783,6 +859,7 @@ function Transfer.Advance()
         if quests and quests.fresh then pending[#pending + 1] = NextQuests end
         if talents and talents.fresh then pending[#pending + 1] = NextTalents end
         if weaponSkills and weaponSkills.fresh then pending[#pending + 1] = NextWeaponSkills end
+        if HasArchive(2) then pending[#pending + 1] = NextArchive end
         if #pending > 0 and not (gear and gear.fresh and snapshotOpportunity % 4 == 0) then
             snapshotCursor = snapshotCursor % #pending + 1
             pending[snapshotCursor]()
@@ -793,6 +870,7 @@ function Transfer.Advance()
             if quests then pending[#pending + 1] = NextQuests end
             if talents then pending[#pending + 1] = NextTalents end
             if weaponSkills then pending[#pending + 1] = NextWeaponSkills end
+            if HasArchive(1) then pending[#pending + 1] = ReplayArchive end
             if #pending > 0 then
                 snapshotCursor = snapshotCursor % #pending + 1
                 pending[snapshotCursor]()

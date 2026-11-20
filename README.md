@@ -9,7 +9,7 @@
 | `assets/` | 仓库已有的角色与参考资源 |
 | `backups/`、`logs/` | 本机迁移恢复资料与验证记录，Git忽略 |
 
-桌面当前为2.27.1，正式服插件与桥接为2.25.0，无限服插件为1.21.0。桌面采用dsh-pet透明WebM动画。
+桌面当前为2.28.0，正式服插件与桥接为2.26.0，无限服插件为1.22.0。桌面采用dsh-pet透明WebM动画。无限服新增武器熟练度读取与传输，聊天可使用当前已学习武器技能的数值。
 
 ## 启动
 
@@ -21,6 +21,8 @@
 ## 开发与协作
 
 先阅读 [AGENTS.md](AGENTS.md) 和 [交接文档](HANDOVER.md)，再进入 `airi/` 并阅读该目录的开发规范。
+
+拟开发方案：[陪伴精灵人性化交互设计](airi/docs/ai/adr/wow-companion-humanlike-interaction.md)，当前为待评审提案。
 
 ```powershell
 Set-Location I:\GameTools\wow-airi-companion\airi
@@ -38,6 +40,7 @@ pnpm -F @proj-airi/stage-tamagotchi build
 - [桌面源码说明](airi/README.md)
 - [当前功能、安装与实现说明](WOWAddons/wow-companion-implementation.html)
 - [插件与桥接说明](WOWAddons/README.md)
+- [无限服功能支持与本机验收记录](WOWAddons/docs/forever-support.md)
 - [数据中台部署](WOWAddons/WoWCompanionDataHub/README.md)
 - [MIT许可证](airi/LICENSE)
 

@@ -10,6 +10,7 @@ import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
 
 import { electronMcpCallTool, electronMcpListTools } from '../../shared/eventa'
+import { usableCharacterObservation } from '../utils/wow-companion-observation'
 import { WowProfessionSource } from '../utils/wow-profession-source'
 import { useWowCompanionStore } from './wow-companion'
 
@@ -65,7 +66,7 @@ export const useWowProfessionsStore = defineStore('wow-professions', () => {
       || !current || current.source !== 'screen' || !snapshot?.online || !inventory || inventory.guid !== snapshot.guid || inventory.session !== snapshot.session) {
       return { ...identity, status: 'unknown' as const }
     }
-    if (current.status !== 'live' || now.value.getTime() / 1000 - inventory.observedAt > 180 || inventory.observedAt > now.value.getTime() / 1000 + 30)
+    if (current.status !== 'live' || !usableCharacterObservation(inventory.observedAt, now.value.getTime(), current.lowFrequency, 180_000, 30_000))
       return { ...identity, status: 'stale' as const }
     return { ...identity, status: inventory.complete ? 'ready' as const : 'partial' as const }
   })
