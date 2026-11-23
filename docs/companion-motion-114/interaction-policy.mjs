@@ -39,7 +39,7 @@ function resolveRoute(index, request) {
     && rule.origin === request.origin && rule.event === request.event) ?? null
 }
 
-function validLowHealth(request, state) {
+function validLowHealth(request, state, recheckAfterRelease = false) {
   if (!sameCharacter(request, state) || state.alive !== true || state.inCombat !== true
     || typeof state.combatId !== 'string' || !state.combatId || request.combatId !== state.combatId
     || !Number.isFinite(request.healthPercent) || request.healthPercent < 0 || request.healthPercent >= 20
@@ -47,11 +47,15 @@ function validLowHealth(request, state) {
   // A verified recovery newer than the source event can arrive before (or after)
   // the late alert packet. Normal bridge snapshots need not contain any HP.
   const hp = state.latestHealth
-  const recovered = hp?.verified === true && hp.characterId === state.characterId
-    && hp.combatId === state.combatId && Number.isFinite(hp.at)
-    && hp.at >= request.observedAt && hp.at <= state.now
-    && Number.isFinite(hp.percent) && hp.percent >= 20 && hp.percent <= 100
-  return !recovered
+  const hasReading = hp?.verified === true && hp.sessionId === state.sessionId
+    && hp.characterId === state.characterId && hp.combatId === state.combatId
+    && Number.isFinite(hp.at) && hp.at >= request.observedAt && hp.at <= state.now
+    && Number.isFinite(hp.percent) && hp.percent >= 0 && hp.percent <= 100
+  if (recheckAfterRelease && Number.isFinite(state.lastDragReleaseAt)
+    && request.observedAt < state.lastDragReleaseAt) {
+    return hasReading && hp.at >= state.lastDragReleaseAt && hp.percent < 20
+  }
+  return !hasReading || hp.percent < 20
 }
 
 function currentCombatDelivery(state) {
@@ -76,7 +80,7 @@ export function chooseVisual(index, state, candidates) {
     if (rule.max_age_ms && (!Number.isFinite(request.expiresAt) || age >= rule.max_age_ms)) continue
     if (rule.origin === 'game' && !sameCharacter(request, state)) continue
     if (rule.priority === 'death' && state.alive !== false) continue
-    if (rule.priority === 'low_health' && (!validLowHealth(request, state)
+    if (rule.priority === 'low_health' && (!validLowHealth(request, state, true)
       || currentCombatDelivery(state).visualDelivered === true)) continue
     const urgent = rule.priority === 'death' || rule.priority === 'low_health'
     if (!urgent && !state.atBoundary) continue

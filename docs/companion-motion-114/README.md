@@ -47,16 +47,16 @@
 
 ## 在同事代码里从哪儿接
 
-下表区分现有接线点与拟实施的改动。目标服为 `forever`，与 `retail` 分开记录角色、事件游标和冷却。路径均可从当前仓库直接打开。
+魔兽陪玩模式统一使用这 114 段。菜单、手势、问答和待机在正式服和无限服共用。游戏事件按当前版本选择适配器，分别保存角色、事件游标和冷却。下表以无限服为首轮联调对象。正式服按 WCP1 实际上报的事件启用同一套路由，缺少对应信号时保持安静。
 
 | 接线点 | 现有行为 | 实施改动 |
 | --- | --- | --- |
-| [无限服插件](../../WOWAddons/WoWForeverCompanion) → [桥接](../../WOWAddons/WoWCompanionBridge) → [共享事件类型](../../airi/apps/stage-tamagotchi/src/shared/wow-companion.ts) | 无限服走 WCF1，正式服走 WCP1。低血事件带 `healthPercent`，普通快照没有连续血量字段 | 复用已校验的角色、会话、战斗及事件 ID。松手时检查是否仍在同场、仍存活、警报未满 10 秒；有更新的可信读数再检查是否已经回血。重连后重建基线 |
-| [WoW store 的 acceptState / react](../../airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion.ts) 和 [现有事件策略](../../airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-policy.ts) | 单项通知策略只保留一个候选，拾取、死亡和低血均能进入现有固定语音队列 | 在同角色原始事件批次上先按 ID 去重并做 8 秒拾取聚合。动作与原语音队列共用事件的发声结果，普通拾取静默、低血一次、死复活共享安慰。保留其他独立通知和原有玩家开关 |
+| [无限服插件](../../WOWAddons/WoWForeverCompanion) → [桥接](../../WOWAddons/WoWCompanionBridge) → [共享事件类型](../../airi/apps/stage-tamagotchi/src/shared/wow-companion.ts) | 无限服走 WCF1，正式服走 WCP1。低血事件带 `healthPercent`，普通快照没有连续血量字段 | 复用已校验的角色、会话、战斗及事件 ID。松手时检查是否仍在同场、仍存活、警报未满 10 秒；只有松手时或之后采到的同会话、同角色、同战斗读数仍低于 20% 才补 A002。缺少读数则跳过画面。重连后重建基线 |
+| [WoW store 的 acceptState / react](../../airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion.ts) 和 [现有事件策略](../../airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-policy.ts) | 单项通知策略只保留一个候选，拾取、死亡和低血均能进入现有固定语音队列 | 由运行中的桌面主窗口在当前版本已校验的事件批次上按 ID 去重并做 8 秒拾取聚合。动作与原语音队列共用事件的发声结果，普通拾取静默、低血一次、死复活共享安慰。保留其他独立通知和原有玩家开关 |
 | [桌面主页和菜单](../../airi/apps/stage-tamagotchi/src/renderer/pages/index.vue) | 类别随机菜单、睡眠、朝向以及 `animation`、`speaking` 等属性均能影响舞台 | 菜单和手势发出有 requestId 的意图。点名节目精确查键；自动待机只从当时合法的池选。重播同名节目也有独立请求，能与过期回调区分 |
 | [DSH 舞台](../../airi/apps/stage-tamagotchi/src/renderer/components/dsh-pet-stage.vue) 和 [选片工具](../../airi/apps/stage-tamagotchi/src/renderer/utils/dsh-pet-animation.ts) | 片尾、点击、拖动、情绪和问答属性都可能直接起播；播放器已有双视频槽、取消加载和 generation 检查 | 保留指针捕获、原生拖窗、绘制和预载。将各直接起播点收敛为一次仲裁。阶段改变、首帧、片尾及失败回调带 playbackId；暂停、失焦、切包都能释放占用 |
-| [无限服故事请求](../../airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-forever-story-request.ts) 和 [桌宠语音](../../airi/apps/stage-tamagotchi/src/renderer/composables/use-dsh-pet-speech.ts) | 已有故事请求与语音交付通道 | 复用已获准的语义段，首段可配 A073；逐段出字幕，整轮只启动一次说话动作。玩家说「让我静静」时立即停止尚在说的话和后续段。项目 FAQ 的卡号是可选内容依据 |
-| [原生动作包导入器](../../airi/apps/stage-tamagotchi/src/main/services/airi/dsh-pet-library.ts) | 导入校验、暂存后切换，用户可能选中自己的 UUID 包 | 新版内置包随客户端版本整包切换。若用导入包灰度，记录本次导入的 UUID 和制作版本；不能仅凭键名相同认定是新画面。切换时取消旧播放代次并重新加载 |
+| [无限服故事请求](../../airi/apps/stage-tamagotchi/src/renderer/stores/wow-companion-forever-story-request.ts) 和 [桌宠语音](../../airi/apps/stage-tamagotchi/src/renderer/composables/use-dsh-pet-speech.ts) | 已有故事请求与语音交付通道 | 在[共享语音播放回调](../../airi/packages/stage-ui/src/composables/use-desktop-pet-speech.ts) 的 `onPlaybackStart` 确认实际起声。复用已获准的语义段，首段可配 A073；逐段出字幕，整轮只启动一次说话动作。玩家说「让我静静」时立即停止尚在说的话和后续段。项目 FAQ 的卡号是可选内容依据 |
+| [原生动作包导入器](../../airi/apps/stage-tamagotchi/src/main/services/airi/dsh-pet-library.ts) | 导入校验、暂存后切换，用户可能选中自己的 UUID 包 | [选包 store](../../airi/apps/stage-tamagotchi/src/renderer/stores/dsh-pet.ts) 先提供 builtin，再异步恢复已选 UUID。进入魔兽模式时等待初始化完成，确认目标包和版本后才交付首帧。新版内置包随客户端版本整包切换。若用导入包灰度，记录本次导入的 UUID 和制作版本；不能仅凭键名相同认定是新画面。切换时取消旧播放代次并重新加载 |
 
 ## 实施和撤回
 
