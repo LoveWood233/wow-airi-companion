@@ -1,31 +1,31 @@
 # 魔兽陪伴精灵
 
-本仓库是项目的唯一开发目录：`I:\GameTools\wow-airi-companion`。目录统一于2026-11-08完成。
+本仓库根目录 `./` 是项目的统一开发入口。目录统一于 2026-11-08 完成。下文的项目路径均相对于仓库根目录，命令块另行注明工作目录。
 
 | 目录 | 内容 |
 | --- | --- |
 | `airi/` | 桌面二开源码、工作区依赖、构建脚本与本机发行目录 |
 | `WOWAddons/` | 正式服与无限服插件、屏幕桥接、数据中台、数据资料、启动与交付脚本 |
 | `assets/` | 仓库已有的角色与参考资源 |
-| `backups/`、`logs/` | 本机迁移恢复资料与验证记录，Git忽略 |
+| `backups/`、`WOWAddons/logs/` | 本机迁移恢复资料与验证记录，Git 忽略 |
 
-桌面当前为2.28.0，正式服插件与桥接为2.26.0，无限服插件为1.22.0。桌面采用dsh-pet透明WebM动画。无限服新增武器熟练度读取与传输，聊天可使用当前已学习武器技能的数值。
+桌面发布标识为 **2.28.0**，当前源码中的正式服插件与桥接为 **2.26.0**、无限服插件为 **1.22.0**。桌面采用 dsh-pet 透明 WebM 动画。已有安装包的配套组件版本以安装目录下的 `resources/wow-companion-release.json` 为准。无限服新增武器熟练度读取与传输，聊天可使用当前已学习武器技能的数值。
 
 ## 启动
 
 双击仓库根目录的 [Start-WoWCompanion.cmd](Start-WoWCompanion.cmd)。启动入口使用本仓库 `airi/apps/stage-tamagotchi` 中的程序。
 
-个人资料继续位于 `%USERPROFILE%\.airi-wow-companion`。`APP_USER_DATA_PATH` 可指定独立资料目录。
-原 `I:\GameTools\WOWAddons` 的启动脚本转发到本仓库。后续开发、构建和交付均在本仓库执行。
+个人资料默认保存在用户主目录下的 `.airi-wow-companion/`，`APP_USER_DATA_PATH` 可指定独立资料目录。
+启动脚本按仓库内的相对目录定位桌面程序。后续开发、构建和交付均在本仓库执行。
 
 ## 开发与协作
 
-先阅读 [AGENTS.md](AGENTS.md) 和 [交接文档](HANDOVER.md)，再进入 `airi/` 并阅读该目录的开发规范。
+先阅读 [AGENTS.md](AGENTS.md) 和 [交接文档](HANDOVER.md)，再阅读 `airi/AGENTS.md`。以下命令从仓库根目录执行，先进入桌面源码目录。
 
 拟开发方案：[陪伴精灵人性化交互设计](airi/docs/ai/adr/wow-companion-humanlike-interaction.md)，当前为待评审提案。
 
 ```powershell
-Set-Location I:\GameTools\wow-airi-companion\airi
+Set-Location .\airi
 $env:pnpm_config_verify_deps_before_run='warn'
 pnpm -F @proj-airi/i18n build
 pnpm -F @proj-airi/stage-tamagotchi typecheck
@@ -45,7 +45,7 @@ pnpm -F @proj-airi/stage-tamagotchi build
 - [MIT许可证](airi/LICENSE)
 
 旧官方AIRI仓库的Git元数据、原目标源码及兼容合并恢复资料保存在本机 `backups/migration-20261108-001/`。
-以下保留早期同步记录，路径与版本按对应历史时点阅读。
+以下保留早期同步记录。各次同步的版本、功能边界和验证结果按对应历史时点阅读。当前源码版本与启动入口见上文。
 
 <details>
 <summary>仓库既有源码快照与开发历史（保留原同步记录）</summary>
@@ -56,7 +56,7 @@ pnpm -F @proj-airi/stage-tamagotchi build
 
 插件把角色、地图、金币、升级、死亡等状态编码到游戏画面的 WCP1 黑白网格；Python 桥接程序解码后提供本机 HTTP 接口，AIRI 根据角色设定生成聊天和语音回应，并在本机保存每个账号的金币收支账本。
 
-## 最新功能清单（2026-11-01）
+## 功能清单历史记录（2026-11-01）
 
 [最新功能与待办](WOWAddons/魔兽陪伴精灵-最新功能与待办-2026-11-01.md)整理了本地已实现能力、待实机验收项目、独立成果和未开发扩展，并记录备份、安装与更新交付的最新检查结果。
 
@@ -66,7 +66,7 @@ pnpm -F @proj-airi/stage-tamagotchi build
 
 本次同步正式服插件 **2.20.0**、无限服插件 **1.18.0**、桥接 **2.20.0** 的源码与测试。宏导入插件 **1.0.0** 的源码已在仓库中。
 新增源码包含离线历史、库存、任务和天赋传输。插件保存能力、桥接接收能力与 AIRI 界面消费能力分别说明，不能由插件版本推断桌面功能已经全部接通。
-当前仓库 AIRI 的通用角色服务尚未导入 SavedVariables 中的 `snapshotJSON`。其他本地向导、备份及安装更新功能也不因本次插件同步自动发布。
+该次同步时，AIRI 的通用角色服务尚未导入 SavedVariables 中的 `snapshotJSON`。当前桌面已实现从已配置游戏目录读取 `snapshotJSON.offlineHistory`，导入离线角色、金币、等级与装备历史，见[离线历史导入源码](airi/apps/stage-tamagotchi/src/main/services/airi/wow-companion-saved-history.ts)。其他本地向导、备份及安装更新功能的历史同步范围按当时记录阅读。
 
 ## 已有桌面功能基线：日历与组队增益提醒
 
@@ -124,7 +124,9 @@ pnpm -F @proj-airi/stage-tamagotchi build
 
 ## 大肥鱼经典八职业动作资产
 
-[大肥鱼 × 经典八职业 v0.3.2](assets/dafeiyu-classic/README.md)：273 张源 PNG 及可重建工具，每职业生成 120 段 60fps 透明 WebM。本次修复战士开心蹦跳的装备变化，统一八份配置版本；其余 959 段媒体沿用上一版，未完成全库装备一致性验收。
+[大肥鱼 × 经典八职业](assets/dafeiyu-classic/README.md) 当前为 **v0.4.0 修复候选版**，包含源图、配置与重建工具，可生成八职业各 120 段 640×360、60 fps 透明 WebM。完整媒体通过资产说明中的 GitHub Release 分发，候选版仍有装备、遮挡和关节连续性问题待视觉验收。
+
+历史 v0.3.2 只修复战士开心蹦跳，其余 959 段媒体沿用前一版。
 
 [修复后战士蹦跳预览](assets/dafeiyu-classic/preview/happy-jump.mp4) · [生成与导入说明](assets/dafeiyu-classic/README.md#安装与重建)。完整视频及可导入 ZIP 在本地生成；修复范围、历史验收遗漏和其余动作的限制见资产说明。
 
@@ -151,32 +153,32 @@ pnpm -F @proj-airi/stage-tamagotchi build
 | `WOWAddons/魔兽陪伴精灵-使用说明.html` | 启动、模型配置和日常使用说明 |
 | `WOWAddons/魔兽陪伴精灵-功能现状与扩展规划.md` | 当前能力、验收边界及后续扩展建议 |
 | `WOWAddons/wow-companion-implementation.html` | 功能清单、实现逻辑、配置步骤和需用户协助的验收事项 |
-| `WOWAddons/WoWCompanion-PROTOCOL.md` | WCP1 数据协议与边界说明 |
+| `WOWAddons/WoWCompanion-PROTOCOL.md` | WCP1/WCF1 数据协议与边界说明 |
 | `WOWAddons/WoWIntelAPI/` | 早期独立攻略情报接口源码，保留归档，不属于当前陪伴流程的必需组件 |
 | `WOWAddons/wow-ai-companion.html` | 早期研究方案 |
-| `WOWAddons/*.zip` | 保留的独立宏插件与早期情报接口包；旧版陪伴插件和 source 包已清理 |
-| `snapshot-manifest.json` | 原文件 SHA-256、AIRI 基线及本次二开文件清单 |
+| `snapshot-manifest.json` | 早期源码快照的 SHA-256、上游基线与同步记录，字段按当时目录和版本解释 |
 
-`airi/` 和 `WOWAddons/` 保持同级，启动脚本可按相对路径找到 AIRI。原电脑上的工作目录仍为 `I:\GameTools\airi` 和 `I:\GameTools\WOWAddons`；本仓库不会改变正在使用的程序。
+`airi/` 和 `WOWAddons/` 保持同级，启动脚本按相对路径找到桌面程序。后续开发和启动均使用当前仓库。
 
 ## 新电脑恢复与启动
 
 需要 Windows、Python 3.10+、Node.js 和 AIRI 指定的 `pnpm@11.24.0`。本次成功构建使用 Node.js `24.14.0`；上游 `.tool-versions` 的版本与此次验证环境不同。在仓库根目录执行：
 
 ```powershell
-cd airi
+Set-Location .\airi
 pnpm install --frozen-lockfile --ignore-scripts --filter '@proj-airi/stage-tamagotchi...'
 pnpm -r --filter '@proj-airi/stage-tamagotchi^...' run build
 pnpm -F '@proj-airi/stage-tamagotchi' exec install-electron
 pnpm -F '@proj-airi/stage-tamagotchi' build
-cd ..\WOWAddons
-.\Install-WoWCompanion.ps1 -AddOnsPath '你的魔兽目录\_retail_\Interface\AddOns'
+Set-Location ..\WOWAddons
+$addOnsPath = Read-Host '请输入正式服 Interface\AddOns 目录（相对于当前目录）'
+.\Install-WoWCompanion.ps1 -AddOnsPath $addOnsPath
 .\Start-WoWCompanion.cmd
 ```
 
 随后打开本地 HTML 说明，按步骤启用插件、校准黑白网格采集区域，并在 AIRI 中选择聊天模型和语音服务。麦克风语音识别可选；游戏数据桥接不需要视觉模型。
 
-HTML 中出现的 `I:\GameTools\...` 是原电脑的实际路径；在其他电脑上请换成当前克隆目录。GitHub 文件预览不会执行 HTML，需下载或克隆后在浏览器打开。
+配套 HTML 说明中的历史安装路径应按当前克隆目录替换。GitHub 文件预览不会执行 HTML，需下载或克隆后在浏览器打开。
 
 2026-10-23 更新至 2.2.0：只启动 AIRI 即可。开启陪伴连接后，AIRI 自动启动隐藏的 Python 桥接；关闭连接或退出 AIRI 时清理自有子进程，意外退出也通过管道关闭触发清理。兼容的外部桥接会被复用，保持原有生命周期。启动失败显示错误，30 秒后重试。仍需本机 Python 3.10+，本次没有捆绑 Python 解释器。源码版保留原 `bridge-config.json` 校准；打包版使用 AIRI 用户数据目录保存校准。`-BridgeOnly` 仅供独立排错。
 
