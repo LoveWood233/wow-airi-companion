@@ -1,0 +1,744 @@
+{
+  "schema_version": 1,
+  "source": {
+    "commit": "34e62b692242b980f1ec173a01cac264318c5fd3",
+    "directory": "assets/video",
+    "filename": "{clip_key}_00001.mp4",
+    "interaction_index": "interaction-animation-index.json"
+  },
+  "class_directories": {
+    "WARRIOR": "战士",
+    "PALADIN": "圣骑士",
+    "HUNTER": "猎人",
+    "ROGUE": "盗贼",
+    "PRIEST": "牧师",
+    "DRUID": "德鲁伊",
+    "MAGE": "法师",
+    "WARLOCK": "术士"
+  },
+  "class_tree_sha": {
+    "WARRIOR": "1b574f969d5341dfdbb1f39c977f5eed0b08236f",
+    "PALADIN": "16652c5f07f8369c0ca0940d061af520b2932503",
+    "HUNTER": "8ee3b36a15d6b189df36d5de24084a21e20dd3e5",
+    "ROGUE": "e21c8a04e44561bf139b6ac21c04039dd43080df",
+    "PRIEST": "fde38c50b379baf21a5f3e8470c1285dc88bc9f0",
+    "DRUID": "fc4b555ddd4b8d4daa541833b1cfee8d59e80ef6",
+    "MAGE": "d40e7185e7decf4178b1aef472b48ad91374d62a",
+    "WARLOCK": "7f27b207673a477c06b233de23ca9a3b6fb24558"
+  },
+  "actions": [
+    {
+      "id": "A001",
+      "clip_key": "女仆屈膝礼仪",
+      "entry": "game",
+      "route": "game.revive.courtesy"
+    },
+    {
+      "id": "A002",
+      "clip_key": "被吓一跳",
+      "entry": "game",
+      "route": "game.low_health.startle"
+    },
+    {
+      "id": "A003",
+      "clip_key": "轻快记录",
+      "entry": "game",
+      "route": "game.loot.record"
+    },
+    {
+      "id": "A004",
+      "clip_key": "工作状态-清点归档",
+      "entry": "game",
+      "route": "game.loot.archive"
+    },
+    {
+      "id": "A005",
+      "clip_key": "工作状态-原地踱步张望",
+      "entry": "game",
+      "route": "game.level_gate.pace"
+    },
+    {
+      "id": "A006",
+      "clip_key": "工作状态-雀跃庆祝",
+      "entry": "game",
+      "route": "game.level_up.celebrate"
+    },
+    {
+      "id": "A007",
+      "clip_key": "工作状态-垂头叹气冒汗",
+      "entry": "game",
+      "route": "game.death.console"
+    },
+    {
+      "id": "A008",
+      "clip_key": "被鼠标拖拽悬空反馈",
+      "entry": "interaction",
+      "route": "pointer.drag.suspend"
+    },
+    {
+      "id": "A009",
+      "clip_key": "点击回应-开心跃动",
+      "entry": "interaction",
+      "route": "pointer.click/点击回应-开心跃动"
+    },
+    {
+      "id": "A010",
+      "clip_key": "点击回应-害羞惊讶",
+      "entry": "interaction",
+      "route": "pointer.click/点击回应-害羞惊讶"
+    },
+    {
+      "id": "A011",
+      "clip_key": "点击回应-傲娇生气",
+      "entry": "interaction",
+      "route": "pointer.click/点击回应-傲娇生气"
+    },
+    {
+      "id": "A012",
+      "clip_key": "点击回应-挠痒咯咯笑",
+      "entry": "interaction",
+      "route": "pointer.click/点击回应-挠痒咯咯笑"
+    },
+    {
+      "id": "A013",
+      "clip_key": "点击回应-元气挥手",
+      "entry": "interaction",
+      "route": "pointer.click/点击回应-元气挥手"
+    },
+    {
+      "id": "A014",
+      "clip_key": "开心小跑",
+      "entry": "interaction",
+      "route": "feed.enter/开心小跑"
+    },
+    {
+      "id": "A015",
+      "clip_key": "侧身急躁跑",
+      "entry": "interaction",
+      "route": "feed.enter/侧身急躁跑"
+    },
+    {
+      "id": "A016",
+      "clip_key": "期待开饭",
+      "entry": "interaction",
+      "route": "feed.wait/期待开饭"
+    },
+    {
+      "id": "A017",
+      "clip_key": "吃饭·碗饭",
+      "entry": "interaction",
+      "route": "feed.eat/吃饭·碗饭"
+    },
+    {
+      "id": "A018",
+      "clip_key": "吃饭团",
+      "entry": "interaction",
+      "route": "feed.eat/吃饭团"
+    },
+    {
+      "id": "A019",
+      "clip_key": "螃蟹走路",
+      "entry": "interaction",
+      "route": "menu.walk/螃蟹走路"
+    },
+    {
+      "id": "A020",
+      "clip_key": "原地漂浮踏步",
+      "entry": "interaction",
+      "route": "menu.walk/原地漂浮踏步"
+    },
+    {
+      "id": "A021",
+      "clip_key": "原地左转奔跑",
+      "entry": "interaction",
+      "route": "menu.walk/原地左转奔跑"
+    },
+    {
+      "id": "A022",
+      "clip_key": "原地敲击桌面互动",
+      "entry": "interaction",
+      "route": "menu.tease/原地敲击桌面互动"
+    },
+    {
+      "id": "A023",
+      "clip_key": "原地重力下蹲压缩",
+      "entry": "interaction",
+      "route": "menu.tease/原地重力下蹲压缩"
+    },
+    {
+      "id": "A024",
+      "clip_key": "小幅度原地360度旋转展示",
+      "entry": "interaction",
+      "route": "menu.preview/小幅度原地360度旋转展示"
+    },
+    {
+      "id": "A025",
+      "clip_key": "偷吃零食被抓住",
+      "entry": "interaction",
+      "route": "menu.tease/偷吃零食被抓住"
+    },
+    {
+      "id": "A026",
+      "clip_key": "用鲸鱼尾巴拍打地面",
+      "entry": "interaction",
+      "route": "menu.tease/用鲸鱼尾巴拍打地面"
+    },
+    {
+      "id": "A027",
+      "clip_key": "打瞌睡被惊醒",
+      "entry": "interaction",
+      "route": "menu.tease/打瞌睡被惊醒"
+    },
+    {
+      "id": "A028",
+      "clip_key": "整体换装试色",
+      "entry": "interaction",
+      "route": "menu.preview/整体换装试色"
+    },
+    {
+      "id": "A030",
+      "clip_key": "原地蹲下玩玩具汽车",
+      "entry": "interaction",
+      "route": "menu.show/原地蹲下玩玩具汽车"
+    },
+    {
+      "id": "A031",
+      "clip_key": "鲸鱼吐泡泡特效",
+      "entry": "interaction",
+      "route": "menu.show/鲸鱼吐泡泡特效"
+    },
+    {
+      "id": "A033",
+      "clip_key": "玩游戏气急败坏",
+      "entry": "interaction",
+      "route": "menu.show/玩游戏气急败坏"
+    },
+    {
+      "id": "A036",
+      "clip_key": "蓝鲸现世",
+      "entry": "interaction",
+      "route": "menu.show/蓝鲸现世"
+    },
+    {
+      "id": "A037",
+      "clip_key": "优雅女仆舞",
+      "entry": "interaction",
+      "route": "menu.show/优雅女仆舞"
+    },
+    {
+      "id": "A038",
+      "clip_key": "轻快摇摆舞",
+      "entry": "interaction",
+      "route": "menu.show/轻快摇摆舞"
+    },
+    {
+      "id": "A039",
+      "clip_key": "可爱宅舞",
+      "entry": "interaction",
+      "route": "menu.show/可爱宅舞"
+    },
+    {
+      "id": "A040",
+      "clip_key": "吹气球",
+      "entry": "interaction",
+      "route": "menu.show/吹气球"
+    },
+    {
+      "id": "A041",
+      "clip_key": "动物环绕",
+      "entry": "interaction",
+      "route": "menu.show/动物环绕"
+    },
+    {
+      "id": "A043",
+      "clip_key": "拆礼物",
+      "entry": "interaction",
+      "route": "menu.show/拆礼物"
+    },
+    {
+      "id": "A046",
+      "clip_key": "抽陀螺",
+      "entry": "interaction",
+      "route": "menu.show/抽陀螺"
+    },
+    {
+      "id": "A048",
+      "clip_key": "蝴蝶蜜蜂环绕头顶开花",
+      "entry": "interaction",
+      "route": "menu.show/蝴蝶蜜蜂环绕头顶开花"
+    },
+    {
+      "id": "A054",
+      "clip_key": "吃白饭",
+      "entry": "interaction",
+      "route": "menu.food/吃白饭"
+    },
+    {
+      "id": "A055",
+      "clip_key": "大口吃零食",
+      "entry": "interaction",
+      "route": "menu.food/大口吃零食"
+    },
+    {
+      "id": "A056",
+      "clip_key": "吃Token",
+      "entry": "interaction",
+      "route": "menu.easter/吃Token"
+    },
+    {
+      "id": "A057",
+      "clip_key": "吃冰淇淋融化",
+      "entry": "interaction",
+      "route": "menu.food/吃冰淇淋融化"
+    },
+    {
+      "id": "A059",
+      "clip_key": "吃糖葫芦",
+      "entry": "interaction",
+      "route": "menu.food/吃糖葫芦"
+    },
+    {
+      "id": "A060",
+      "clip_key": "吃长寿面",
+      "entry": "interaction",
+      "route": "menu.food/吃长寿面"
+    },
+    {
+      "id": "A062",
+      "clip_key": "涮火锅",
+      "entry": "interaction",
+      "route": "menu.food/涮火锅"
+    },
+    {
+      "id": "A063",
+      "clip_key": "是啊，吃什么",
+      "entry": "interaction",
+      "route": "dialogue.food_choice"
+    },
+    {
+      "id": "A064",
+      "clip_key": "深度思考碎碎念",
+      "entry": "interaction",
+      "route": "dialogue.thinking"
+    },
+    {
+      "id": "A065",
+      "clip_key": "余额-钱袋满溢",
+      "entry": "interaction",
+      "route": "wallet.inspect.target_met"
+    },
+    {
+      "id": "A066",
+      "clip_key": "余额-金袋叮当",
+      "entry": "interaction",
+      "route": "wallet.inspect.three_quarters"
+    },
+    {
+      "id": "A067",
+      "clip_key": "余额-钱袋如常",
+      "entry": "interaction",
+      "route": "wallet.inspect.two_fifths"
+    },
+    {
+      "id": "A068",
+      "clip_key": "余额-数金皱眉",
+      "entry": "interaction",
+      "route": "wallet.inspect.fifteen_percent"
+    },
+    {
+      "id": "A069",
+      "clip_key": "余额-袋空如洗",
+      "entry": "interaction",
+      "route": "wallet.inspect.below_fifteen"
+    },
+    {
+      "id": "A070",
+      "clip_key": "余额-分文不剩",
+      "entry": "interaction",
+      "route": "wallet.inspect.zero"
+    },
+    {
+      "id": "A071",
+      "clip_key": "碎碎念-擦桌碎碎念",
+      "entry": "interaction",
+      "route": "chat.proactive/碎碎念-擦桌碎碎念"
+    },
+    {
+      "id": "A072",
+      "clip_key": "碎碎念-发呆碎碎念",
+      "entry": "interaction",
+      "route": "chat.proactive/碎碎念-发呆碎碎念"
+    },
+    {
+      "id": "A073",
+      "clip_key": "碎碎念-对屏碎碎念",
+      "entry": "interaction",
+      "route": "dialogue.speaking"
+    },
+    {
+      "id": "A074",
+      "clip_key": "工作状态-思考冒泡",
+      "entry": "interaction",
+      "route": "query.wait/工作状态-思考冒泡"
+    },
+    {
+      "id": "A075",
+      "clip_key": "工作状态-忙碌点按",
+      "entry": "interaction",
+      "route": "query.wait/工作状态-忙碌点按"
+    },
+    {
+      "id": "A076",
+      "clip_key": "睡觉-开始",
+      "entry": "interaction",
+      "route": "nap.enter"
+    },
+    {
+      "id": "A077",
+      "clip_key": "睡觉-循环",
+      "entry": "interaction",
+      "route": "nap.loop"
+    },
+    {
+      "id": "A078",
+      "clip_key": "睡觉-起来",
+      "entry": "interaction",
+      "route": "nap.wake"
+    },
+    {
+      "id": "A079",
+      "clip_key": "待机呼吸休闲",
+      "entry": "idle",
+      "route": "idle.breath"
+    },
+    {
+      "id": "A080",
+      "clip_key": "东张西望",
+      "entry": "idle",
+      "route": "idle.look"
+    },
+    {
+      "id": "A081",
+      "clip_key": "悠闲哼歌",
+      "entry": "idle",
+      "route": "idle.variation/悠闲哼歌"
+    },
+    {
+      "id": "A082",
+      "clip_key": "超大伸懒腰",
+      "entry": "idle",
+      "route": "idle.variation/超大伸懒腰"
+    },
+    {
+      "id": "A083",
+      "clip_key": "哈欠连天",
+      "entry": "idle",
+      "route": "idle.variation/哈欠连天"
+    },
+    {
+      "id": "A084",
+      "clip_key": "原地小憩沉眠",
+      "entry": "idle",
+      "route": "idle.variation/原地小憩沉眠"
+    },
+    {
+      "id": "A085",
+      "clip_key": "照镜子",
+      "entry": "idle",
+      "route": "idle.variation/照镜子"
+    },
+    {
+      "id": "A086",
+      "clip_key": "摇扇纳凉",
+      "entry": "idle",
+      "route": "idle.variation/摇扇纳凉"
+    },
+    {
+      "id": "A087",
+      "clip_key": "晨间刷牙",
+      "entry": "idle",
+      "route": "idle.variation/晨间刷牙"
+    },
+    {
+      "id": "A089",
+      "clip_key": "撸猫",
+      "entry": "idle",
+      "route": "idle.pastime/撸猫",
+      "secondary_route": "menu.pastime/撸猫"
+    },
+    {
+      "id": "A091",
+      "clip_key": "吃早餐",
+      "entry": "idle",
+      "route": "idle.meal/吃早餐",
+      "secondary_route": "menu.meal/吃早餐"
+    },
+    {
+      "id": "A092",
+      "clip_key": "吃午餐",
+      "entry": "idle",
+      "route": "idle.meal/吃午餐",
+      "secondary_route": "menu.meal/吃午餐"
+    },
+    {
+      "id": "A093",
+      "clip_key": "吃晚餐",
+      "entry": "idle",
+      "route": "idle.meal/吃晚餐",
+      "secondary_route": "menu.meal/吃晚餐"
+    },
+    {
+      "id": "A094",
+      "clip_key": "被落叶淹没",
+      "entry": "idle",
+      "route": "idle.theme/被落叶淹没",
+      "secondary_route": "menu.theme/被落叶淹没"
+    },
+    {
+      "id": "A095",
+      "clip_key": "中秋赏月吃月饼",
+      "entry": "idle",
+      "route": "idle.theme/中秋赏月吃月饼",
+      "secondary_route": "menu.theme/中秋赏月吃月饼"
+    },
+    {
+      "id": "A096",
+      "clip_key": "堆雪人",
+      "entry": "idle",
+      "route": "idle.theme/堆雪人",
+      "secondary_route": "menu.theme/堆雪人"
+    },
+    {
+      "id": "A097",
+      "clip_key": "放烟花",
+      "entry": "idle",
+      "route": "idle.theme/放烟花",
+      "secondary_route": "menu.theme/放烟花"
+    },
+    {
+      "id": "A098",
+      "clip_key": "吃粽子",
+      "entry": "idle",
+      "route": "idle.theme/吃粽子",
+      "secondary_route": "menu.theme/吃粽子"
+    },
+    {
+      "id": "A099",
+      "clip_key": "吃年糕",
+      "entry": "idle",
+      "route": "idle.theme/吃年糕",
+      "secondary_route": "menu.theme/吃年糕"
+    },
+    {
+      "id": "A100",
+      "clip_key": "吃青团",
+      "entry": "idle",
+      "route": "idle.theme/吃青团",
+      "secondary_route": "menu.theme/吃青团"
+    },
+    {
+      "id": "A101",
+      "clip_key": "吃腊八粥",
+      "entry": "idle",
+      "route": "idle.theme/吃腊八粥",
+      "secondary_route": "menu.theme/吃腊八粥"
+    },
+    {
+      "id": "A102",
+      "clip_key": "吃重阳糕",
+      "entry": "idle",
+      "route": "idle.theme/吃重阳糕",
+      "secondary_route": "menu.theme/吃重阳糕"
+    },
+    {
+      "id": "A103",
+      "clip_key": "收红包",
+      "entry": "idle",
+      "route": "idle.theme/收红包",
+      "secondary_route": "menu.theme/收红包"
+    },
+    {
+      "id": "A104",
+      "clip_key": "写福字",
+      "entry": "idle",
+      "route": "idle.theme/写福字",
+      "secondary_route": "menu.theme/写福字"
+    },
+    {
+      "id": "A106",
+      "clip_key": "舞狮头",
+      "entry": "idle",
+      "route": "idle.theme/舞狮头",
+      "secondary_route": "menu.theme/舞狮头"
+    },
+    {
+      "id": "A107",
+      "clip_key": "讨糖南瓜灯",
+      "entry": "idle",
+      "route": "idle.theme/讨糖南瓜灯",
+      "secondary_route": "menu.theme/讨糖南瓜灯"
+    },
+    {
+      "id": "A108",
+      "clip_key": "插茱萸赏菊",
+      "entry": "idle",
+      "route": "idle.theme/插茱萸赏菊",
+      "secondary_route": "menu.theme/插茱萸赏菊"
+    },
+    {
+      "id": "A109",
+      "clip_key": "放河灯",
+      "entry": "idle",
+      "route": "idle.theme/放河灯",
+      "secondary_route": "menu.theme/放河灯"
+    },
+    {
+      "id": "A110",
+      "clip_key": "萌化小幽灵",
+      "entry": "idle",
+      "route": "idle.theme/萌化小幽灵",
+      "secondary_route": "menu.theme/萌化小幽灵"
+    },
+    {
+      "id": "A111",
+      "clip_key": "装点圣诞树",
+      "entry": "idle",
+      "route": "idle.theme/装点圣诞树",
+      "secondary_route": "menu.theme/装点圣诞树"
+    },
+    {
+      "id": "A112",
+      "clip_key": "放孔明灯",
+      "entry": "idle",
+      "route": "idle.theme/放孔明灯",
+      "secondary_route": "menu.theme/放孔明灯"
+    },
+    {
+      "id": "A113",
+      "clip_key": "吃汤圆",
+      "entry": "idle",
+      "route": "idle.theme/吃汤圆",
+      "secondary_route": "menu.theme/吃汤圆"
+    },
+    {
+      "id": "A114",
+      "clip_key": "吃饺子",
+      "entry": "idle",
+      "route": "idle.theme/吃饺子",
+      "secondary_route": "menu.theme/吃饺子"
+    }
+  ],
+  "priest_only": [
+    {
+      "id": "A029",
+      "clip_key": "写代码",
+      "entry": "interaction",
+      "route": "menu.easter/写代码"
+    },
+    {
+      "id": "A032",
+      "clip_key": "原地跳跃抓碎头顶物品",
+      "entry": "interaction",
+      "route": "menu.show/原地跳跃抓碎头顶物品"
+    },
+    {
+      "id": "A034",
+      "clip_key": "玩水枪",
+      "entry": "interaction",
+      "route": "menu.show/玩水枪"
+    },
+    {
+      "id": "A035",
+      "clip_key": "小提琴演奏",
+      "entry": "interaction",
+      "route": "menu.show/小提琴演奏"
+    },
+    {
+      "id": "A042",
+      "clip_key": "放风筝",
+      "entry": "interaction",
+      "route": "menu.show/放风筝"
+    },
+    {
+      "id": "A044",
+      "clip_key": "变鸽子",
+      "entry": "interaction",
+      "route": "menu.show/变鸽子"
+    },
+    {
+      "id": "A045",
+      "clip_key": "扑克魔术",
+      "entry": "interaction",
+      "route": "menu.show/扑克魔术"
+    },
+    {
+      "id": "A047",
+      "clip_key": "吹笛子",
+      "entry": "interaction",
+      "route": "menu.show/吹笛子"
+    },
+    {
+      "id": "A049",
+      "clip_key": "凭空生花",
+      "entry": "interaction",
+      "route": "menu.show/凭空生花"
+    },
+    {
+      "id": "A050",
+      "clip_key": "骑木马",
+      "entry": "interaction",
+      "route": "menu.show/骑木马"
+    },
+    {
+      "id": "A051",
+      "clip_key": "三球抛接",
+      "entry": "interaction",
+      "route": "menu.show/三球抛接"
+    },
+    {
+      "id": "A052",
+      "clip_key": "踢毽子",
+      "entry": "interaction",
+      "route": "menu.show/踢毽子"
+    },
+    {
+      "id": "A053",
+      "clip_key": "荡秋千",
+      "entry": "interaction",
+      "route": "menu.show/荡秋千"
+    },
+    {
+      "id": "A058",
+      "clip_key": "吃大闸蟹",
+      "entry": "interaction",
+      "route": "menu.food/吃大闸蟹"
+    },
+    {
+      "id": "A061",
+      "clip_key": "吃西瓜",
+      "entry": "interaction",
+      "route": "menu.food/吃西瓜"
+    },
+    {
+      "id": "A088",
+      "clip_key": "原地专心玩魔方",
+      "entry": "idle",
+      "route": "idle.pastime/原地专心玩魔方",
+      "secondary_route": "menu.pastime/原地专心玩魔方"
+    },
+    {
+      "id": "A090",
+      "clip_key": "下五子棋",
+      "entry": "idle",
+      "route": "idle.pastime/下五子棋",
+      "secondary_route": "menu.pastime/下五子棋"
+    },
+    {
+      "id": "A105",
+      "clip_key": "穿针乞巧",
+      "entry": "idle",
+      "route": "idle.theme/穿针乞巧",
+      "secondary_route": "menu.theme/穿针乞巧"
+    }
+  ]
+}
