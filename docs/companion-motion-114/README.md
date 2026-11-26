@@ -1,6 +1,8 @@
 # 魔兽陪玩 · 114 段牧师动作整合方案
 
-在魔兽陪玩模式中，桌面大肥鱼统一使用 2026-11-19 版牧师的 114 段动作。游戏状态决定何时可以提醒，玩家决定点哪个节目；只有前两者都安静下来，精灵才自行换姿势。开口与动作分别判断，玩家不必等一段十秒的影片播完才看到答案。
+八职业模拟测试采用仓库中八个职业都有的 **96 个动作**。牧师有完整 114 段，其余七个职业各缺相同的 18 段。[八职业对照与模拟验收](eight-class-common-96.md) · [96 项触发索引及 18 项缺口](eight-class-common-96.json)
+
+以下保留 2026-11-19 版牧师 114 段动作的设计基线。游戏状态决定何时可以提醒，玩家决定点哪个节目；只有前两者都安静下来，精灵才自行换姿势。开口与动作分别判断，玩家不必等一段十秒的影片播完才看到答案。
 
 本次提交提供替换方案、逐项索引、调度规格和独立的规则参考函数。媒体交付与 AIRI 客户端接线留到实施阶段。协作方可先用本文评审范围和数据，再按用例验收实机表现。
 
@@ -12,7 +14,7 @@
 
 ## 哪些画面要换
 
-比对基线为同事仓库的 [main 快照 8ae020e](https://github.com/LoveWood233/wow-airi-companion/tree/8ae020ede01f3587d9676d39b2bd151a7c336121)。[内置清单](../../airi/apps/stage-tamagotchi/src/renderer/public/dsh-pet/builtin/pack.json) 已有 114 个 WebM 文件名，去掉后缀后，与[新版牧师母版](../../assets/video/牧师全动作-20261119)的 114 个动作名逐项相同。每一行索引记录源 MP4 的 Git 对象标识，便于核对同名文件究竟来自哪一版。
+比对基线为同事仓库的 [main 快照 8ae020e](https://github.com/LoveWood233/wow-airi-companion/tree/8ae020ede01f3587d9676d39b2bd151a7c336121)。[内置清单](../../airi/apps/stage-tamagotchi/src/renderer/public/dsh-pet/builtin/pack.json) 已有 114 个 WebM 文件名，去掉后缀后，与[新版牧师母版](https://github.com/LoveWood233/wow-airi-companion/tree/8ae020ede01f3587d9676d39b2bd151a7c336121/assets/video/牧师全动作-20261119)的 114 个动作名逐项相同。每一行索引记录源 MP4 的 Git 对象标识，便于核对同名文件究竟来自哪一版。
 
 | 上游对象 | 交付约定 |
 | --- | --- |
